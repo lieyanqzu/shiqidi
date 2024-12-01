@@ -16,7 +16,8 @@ interface CardApiResponse {
   type: 'normal' | 'double'
   data: Array<{
     zhs_type: string
-    zhs_text: string
+    zhs_text?: string
+    translatedText?: string
     side?: 'a' | 'b'
     zhs_faceName?: string
   }>
@@ -26,7 +27,8 @@ interface CardDetails {
   type: 'normal' | 'double'
   data: Array<{
     zhs_type: string
-    zhs_text: string
+    zhs_text?: string
+    translatedText?: string
     side?: 'a' | 'b'
     zhs_faceName?: string
   }>
@@ -37,6 +39,12 @@ const CardTooltip: FC<CardTooltipProps> = ({ card, visible, x, y, expansion }) =
   const chineseCard = chineseCards[card.name];
   const chineseName = chineseCard?.zhs_name || chineseCard?.officialName || chineseCard?.translatedName;
   const [cardDetails, setCardDetails] = useState<CardDetails | null>(null);
+
+  // 处理文本替换
+  const processText = (text?: string) => {
+    if (!text) return '';
+    return text.replace(/\\n/g, '\n').replace(/CARDNAME/g, chineseName || card.name);
+  };
 
   useEffect(() => {
     if (visible && chineseCard?.setCode && chineseCard?.number) {
@@ -49,6 +57,7 @@ const CardTooltip: FC<CardTooltipProps> = ({ card, visible, x, y, expansion }) =
               data: json.data.map(card => ({
                 zhs_type: card.zhs_type,
                 zhs_text: card.zhs_text,
+                translatedText: card.translatedText,
                 side: card.side,
                 zhs_faceName: card.zhs_faceName
               }))
@@ -101,27 +110,27 @@ const CardTooltip: FC<CardTooltipProps> = ({ card, visible, x, y, expansion }) =
           </div>
 
           {/* 卡牌效果 */}
-          {cardDetails && (
+          {cardDetails?.data && (
             <div className="text-sm p-3 bg-gray-50 dark:bg-gray-900 rounded">
               {cardDetails.type === 'normal' ? (
                 // 单面卡显示
                 <div className="whitespace-pre-wrap break-words max-w-[300px]">
-                  <div className="font-medium mb-1">{cardDetails.data[0].zhs_type}</div>
-                  <div>{cardDetails.data[0].zhs_text.replace(/\\n/g, '\n')}</div>
+                  <div className="font-medium mb-1">{cardDetails.data[0]?.zhs_type}</div>
+                  <div>{processText(cardDetails.data[0]?.zhs_text || cardDetails.data[0]?.translatedText)}</div>
                 </div>
               ) : (
                 // 双面卡显示
                 <div className="flex gap-4 max-w-[450px]">
                   <div className="flex-1 min-w-0 whitespace-pre-wrap break-words">
-                    <div className="font-medium mb-1">{cardDetails.data[0].zhs_faceName}</div>
-                    <div className="font-medium text-sm text-gray-600 dark:text-gray-400 mb-1">{cardDetails.data[0].zhs_type}</div>
-                    <div>{cardDetails.data[0].zhs_text.replace(/\\n/g, '\n')}</div>
+                    <div className="font-medium mb-1">{cardDetails.data[0]?.zhs_faceName}</div>
+                    <div className="font-medium text-sm text-gray-600 dark:text-gray-400 mb-1">{cardDetails.data[0]?.zhs_type}</div>
+                    <div>{processText(cardDetails.data[0]?.zhs_text || cardDetails.data[0]?.translatedText)}</div>
                   </div>
                   <div className="w-px bg-gray-200 dark:bg-gray-700 mx-2 shrink-0" />
                   <div className="flex-1 min-w-0 whitespace-pre-wrap break-words">
-                    <div className="font-medium mb-1">{cardDetails.data[1].zhs_faceName}</div>
-                    <div className="font-medium text-sm text-gray-600 dark:text-gray-400 mb-1">{cardDetails.data[1].zhs_type}</div>
-                    <div>{cardDetails.data[1].zhs_text.replace(/\\n/g, '\n')}</div>
+                    <div className="font-medium mb-1">{cardDetails.data[1]?.zhs_faceName}</div>
+                    <div className="font-medium text-sm text-gray-600 dark:text-gray-400 mb-1">{cardDetails.data[1]?.zhs_type}</div>
+                    <div>{processText(cardDetails.data[1]?.zhs_text || cardDetails.data[1]?.translatedText)}</div>
                   </div>
                 </div>
               )}
