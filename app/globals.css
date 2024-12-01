@@ -1,0 +1,134 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #f6f4f1;
+  --background-subtle: #ece9e5;
+  --foreground: #4a4a4a;
+  --foreground-muted: #737373;
+  
+  /* 组件背景 */
+  --component-background: #fcfbf9;
+  --component-background-hover: #ffffff;
+  
+  /* 文本颜色 */
+  --component-foreground: #4a4a4a;
+  --component-foreground-muted: #737373;
+  
+  /* 边框 */
+  --border: #e7e5e4;
+  
+  /* 主题色 */
+  --primary: #3b82f6;
+  --primary-foreground: #ffffff;
+  
+  /* 表格专用 */
+  --table-header-background: var(--component-background);
+  --table-header-foreground: var(--component-foreground);
+  --table-border: var(--border);
+  --table-row-hover: var(--component-background-hover);
+  
+  /* 卡片专用 */
+  --card: var(--component-background);
+}
+
+:root.dark {
+  --background: #111827;
+  --background-subtle: #172033;
+  --foreground: #e2e8f0;
+  --foreground-muted: #94a3b8;
+  
+  /* 组件背景 */
+  --component-background: #1e293b;
+  --component-background-hover: #2d3a4f;
+  
+  /* 文本颜色 */
+  --component-foreground: #e2e8f0;
+  --component-foreground-muted: #94a3b8;
+  
+  /* 边框 */
+  --border: #334155;
+  
+  /* 主题色 */
+  --primary: #60a5fa;
+  --primary-foreground: #ffffff;
+  
+  /* 表格专用 */
+  --table-header-background: var(--component-background);
+  --table-header-foreground: var(--component-foreground);
+  --table-border: var(--border);
+  --table-row-hover: var(--component-background-hover);
+  
+  /* 卡片专用 */
+  --card: var(--component-background);
+}
+
+/* 背景纹理 */
+body {
+  color: var(--foreground);
+  background-color: var(--background);
+  background-image: 
+    linear-gradient(to bottom, var(--background-subtle) 1px, transparent 1px),
+    linear-gradient(to right, var(--background-subtle) 1px, transparent 1px);
+  background-size: 32px 32px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* 表格样式 */
+table {
+  @apply w-full border-collapse bg-[--table-header-background] rounded-lg overflow-hidden shadow-sm;
+}
+
+th {
+  @apply px-4 py-2 text-left bg-[--table-header-background] text-[--table-header-foreground] font-medium border-b border-[--table-border];
+}
+
+td {
+  @apply px-4 py-2 border-t border-[--table-border] text-[--foreground] bg-[--table-header-background];
+}
+
+tr:hover td {
+  @apply bg-[--table-row-hover];
+}
+
+/* 卡片容器 */
+.card {
+  @apply bg-[--card] rounded-lg border border-[--table-border] shadow-sm;
+}
+
+/* 日期选择器样式 */
+.react-datepicker {
+  @apply bg-[--card] border border-[--table-border] text-[--foreground] shadow-lg;
+}
+
+.react-datepicker__header {
+  @apply bg-[--table-header-background] border-[--table-border];
+}
+
+.react-datepicker__current-month,
+.react-datepicker__day-name {
+  @apply text-[--foreground];
+}
+
+.react-datepicker__day {
+  @apply text-[--foreground] hover:bg-[--background-subtle] rounded;
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__day--keyboard-selected {
+  @apply bg-[--primary] text-[--primary-foreground] hover:bg-[--primary] hover:text-[--primary-foreground];
+}
+
+.react-datepicker__day--disabled {
+  @apply text-[--foreground-muted];
+}
+
+.react-datepicker__navigation-icon::before {
+  @apply border-[--foreground-muted];
+}
+
+.react-datepicker__triangle::before,
+.react-datepicker__triangle::after {
+  @apply border-b-[--card];
+}
