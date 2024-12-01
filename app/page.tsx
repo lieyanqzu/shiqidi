@@ -10,7 +10,7 @@ export default function HomePage() {
         </p>
       </section>
 
-      <section className="grid gap-4 md:grid-cols-2">
+      <section className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         <Link href="/cards" className="block">
           <div className="card p-6 hover:bg-[--accent] transition-colors rounded-lg border border-[--border]">
             <h2 className="text-xl font-semibold mb-4 text-[--foreground]">轮抽卡牌数据</h2>
@@ -25,6 +25,15 @@ export default function HomePage() {
             <h2 className="text-xl font-semibold mb-4 text-[--foreground]">活动日历</h2>
             <p className="text-[--foreground-muted] mb-4">
               查看MTGA活动日程，包括周中万智牌、快速轮抽、资格赛等赛事安排。
+            </p>
+          </div>
+        </Link>
+
+        <Link href="/rotation" className="block">
+          <div className="card p-6 hover:bg-[--accent] transition-colors rounded-lg border border-[--border]">
+            <h2 className="text-xl font-semibold mb-4 text-[--foreground]">标准轮替</h2>
+            <p className="text-[--foreground-muted] mb-4">
+              查看标准赛制的系列轮替时间表，了解当前可用系列和即将轮替的系列。
             </p>
           </div>
         </Link>

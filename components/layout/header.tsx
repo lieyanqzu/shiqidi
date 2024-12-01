@@ -20,6 +20,9 @@ export function Header() {
             <Link href="/calendar" className="text-[--foreground-muted] hover:text-[--foreground]">
               活动日历
             </Link>
+            <Link href="/rotation" className="text-[--foreground-muted] hover:text-[--foreground]">
+              标准轮替
+            </Link>
           </nav>
         </div>
         <div className="flex items-center space-x-4">

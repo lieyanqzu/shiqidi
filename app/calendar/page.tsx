@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { EventCard } from '@/components/event-card';
 import { events } from '@/data/events';
+import { ExternalLink } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: '活动日历 - 十七地',
@@ -18,12 +19,27 @@ export default function CalendarPage() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-2xl font-bold mb-6">活动日历</h1>
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4 mb-6">
+          <h1 className="text-2xl font-bold">活动日历</h1>
+          <div className="flex items-center gap-2 text-sm text-[--muted-foreground]">
+            <span>更新于 2024/11/25</span>
+            <span>·</span>
+            <a
+              href="https://magic.wizards.com/en/news/mtg-arena/mtg-arena-announcements-november-25-2024#schedule"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 hover:text-[--foreground] transition-colors"
+            >
+              <span>官方公告</span>
+              <ExternalLink className="w-4 h-4" />
+            </a>
+          </div>
+        </div>
         
-        {/* 时区说明 */}
+        {/* 说明 */}
         <div className="bg-[--card] rounded-lg p-4 mb-8">
           <p className="text-sm text-[--muted-foreground] leading-relaxed">
-            除非另有说明，所有活动时间均为太平洋时间（UTC-08:00）。大多数活动在开始日期的早上 8 点开放，在结束日期的早上 8 点停止报名。
+            活动列表可能并非最新，请以官方公告为准。
           </p>
         </div>
 
@@ -70,10 +86,6 @@ export default function CalendarPage() {
         <section className="mb-8">
           <h2 className="text-xl font-semibold mb-4">竞技赛程</h2>
           <div className="bg-[--card] rounded-lg p-4">
-            <p className="text-sm text-[--muted-foreground] mb-6 leading-relaxed">
-              所有时间均为太平洋时间（UTC-08:00）。
-            </p>
-            
             {/* 资格赛 */}
             <div className="mb-8">
               <h3 className="text-lg font-medium mb-4">资格赛</h3>
