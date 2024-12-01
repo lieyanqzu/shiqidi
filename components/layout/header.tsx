@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { Github } from "lucide-react";
 
 export function Header() {
   return (
@@ -18,7 +19,17 @@ export function Header() {
             </Link>
           </nav>
         </div>
-        <ThemeToggle />
+        <div className="flex items-center space-x-4">
+          <a
+            href="https://github.com/lieyanqzu/shiqidi"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[--foreground-muted] hover:text-[--foreground] transition-colors"
+          >
+            <Github className="h-5 w-5" />
+          </a>
+          <ThemeToggle />
+        </div>
       </div>
     </header>
   );

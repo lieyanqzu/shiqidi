@@ -66,15 +66,15 @@ const sets = [
 
 // 游戏模式
 const formats = [
-  { label: "Premier Draft", value: "PremierDraft" },
-  { label: "Traditional Draft", value: "TradDraft" },
-  { label: "Quick Draft", value: "QuickDraft" },
-  { label: "Sealed", value: "Sealed" },
-  { label: "Traditional Sealed", value: "TradSealed" },
-  { label: "Arena Direct Sealed", value: "ArenaDirect_Sealed" },
-  { label: "Open Sealed D1 Bo1", value: "OpenSealed_D1_Bo1" },
-  { label: "Open Sealed D1 Bo3", value: "OpenSealed_D1_Bo3" },
-  { label: "Qualifier Play-In Sealed", value: "QualifierPlayInSealed" },
+  { label: "真人轮抽", value: "PremierDraft" },
+  { label: "真人轮抽BO3", value: "TradDraft" },
+  { label: "快速轮抽", value: "QuickDraft" },
+  { label: "现开赛", value: "Sealed" },
+  { label: "现开赛BO3", value: "TradSealed" },
+  { label: "竞技场直邮赛现开", value: "ArenaDirect_Sealed" },
+  { label: "公开赛第一日现开BO1", value: "OpenSealed_D1_Bo1" },
+  { label: "公开赛第一日现开BO3", value: "OpenSealed_D1_Bo3" },
+  { label: "Play-In预选赛现开", value: "QualifierPlayInSealed" },
 ];
 
 // 玩家分组
@@ -93,8 +93,8 @@ const colors = [
   { label: "B", value: "B" },
   { label: "R", value: "R" },
   { label: "G", value: "G" },
-  { label: "Multicolor", value: "Multicolor" },
-  { label: "Colorless", value: "Colorless" },
+  { label: "多色", value: "Multicolor" },
+  { label: "无色", value: "Colorless" },
 ];
 
 // 套牌颜色
