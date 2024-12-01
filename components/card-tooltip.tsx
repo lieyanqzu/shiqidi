@@ -46,6 +46,32 @@ const CardTooltip: FC<CardTooltipProps> = ({ card, visible, x, y, expansion }) =
     return text.replace(/\\n/g, '\n').replace(/CARDNAME/g, chineseName || card.name);
   };
 
+  // 计算悬浮窗位置
+  const getTooltipPosition = () => {
+    if (typeof window === 'undefined') return { top: y + 10, left: x + 10 };
+
+    const tooltipHeight = cardDetails?.type === 'normal' ? 300 : 400; // 估计的悬浮窗高度
+    const screenHeight = window.innerHeight;
+    const screenWidth = window.innerWidth;
+    
+    // 默认显示在鼠标下方
+    let top = y + 10;
+    
+    // 如果下方空间不够，则显示在上方
+    if (top + tooltipHeight + 10 > screenHeight) {
+      top = y - tooltipHeight - 10;
+    }
+
+    // 处理水平方向的溢出
+    let left = x + 10;
+    const tooltipWidth = cardDetails?.type === 'normal' ? 300 : 450;
+    if (left + tooltipWidth > screenWidth - 10) {
+      left = screenWidth - tooltipWidth - 10;
+    }
+
+    return { top, left };
+  };
+
   useEffect(() => {
     if (visible && chineseCard?.setCode && chineseCard?.number) {
       fetch(`https://api.sbwsz.com/card/${chineseCard.setCode}/${chineseCard.number}`)
@@ -70,6 +96,8 @@ const CardTooltip: FC<CardTooltipProps> = ({ card, visible, x, y, expansion }) =
 
   if (!visible) return null
 
+  const position = getTooltipPosition();
+
   // 处理稀有度图标的系列代码
   const processedSet = expansion.startsWith('Y')
     ? `y${expansion.slice(expansion.match(/Y\d{0,2}/)![0].length)}`.toLowerCase()
@@ -84,9 +112,9 @@ const CardTooltip: FC<CardTooltipProps> = ({ card, visible, x, y, expansion }) =
     <div 
       className="fixed z-50 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700"
       style={{
-        left: x + 10,
-        top: y + 10,
-        minWidth: '600px'
+        left: position.left,
+        top: position.top,
+        minWidth: cardDetails?.type === 'normal' ? '300px' : '450px'
       }}
     >
       <div className="flex gap-4">
