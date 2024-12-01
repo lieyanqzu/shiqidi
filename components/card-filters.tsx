@@ -74,7 +74,7 @@ const formats = [
   { label: "竞技场直邮赛现开", value: "ArenaDirect_Sealed" },
   { label: "公开赛第一日现开BO1", value: "OpenSealed_D1_Bo1" },
   { label: "公开赛第一日现开BO3", value: "OpenSealed_D1_Bo3" },
-  { label: "Play-In预选赛现开", value: "QualifierPlayInSealed" },
+  { label: "资格赛预选现开", value: "QualifierPlayInSealed" },
 ];
 
 // 玩家分组

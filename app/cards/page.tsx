@@ -131,7 +131,7 @@ export default function CardsPage() {
         <div className="flex items-center gap-3 mb-8">
           <SetSymbol set={params.expansion} />
           <h1 className="text-2xl font-semibold">
-            {params.expansion} 卡牌数据
+            {params.expansion} 轮抽卡牌数据
           </h1>
         </div>
         <CardFilters 

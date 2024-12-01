@@ -15,7 +15,10 @@ export function Header() {
               首页
             </Link>
             <Link href="/cards" className="text-[--foreground-muted] hover:text-[--foreground]">
-              卡牌数据
+              轮抽卡牌数据
+            </Link>
+            <Link href="/calendar" className="text-[--foreground-muted] hover:text-[--foreground]">
+              活动日历
             </Link>
           </nav>
         </div>
