@@ -191,7 +191,7 @@ export default async function RotationPage() {
         {/* 说明 */}
         <div className="bg-[--card] rounded-lg p-4 mb-8">
           <p className="text-sm text-[--muted-foreground] leading-relaxed">
-            标准赛制中，最近两年内发行的正式系列都可以使用。每年秋季系列发售时，超过两年的系列将会轮替出标准赛制。
+            标准赛制中，最近三年内发行的正式系列都可以使用。2027年起，每年新系列发售时，超过三年的系列将会轮替出标准赛制。
           </p>
         </div>
 
