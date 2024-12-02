@@ -7,6 +7,7 @@ import { CardNameCell } from "@/components/card-name-cell";
 import { StatCell } from "@/components/stat-cell";
 import type { Stats } from "@/lib/stats";
 import { ManaSymbols } from "@/components/mana-symbols";
+import { calculateStats } from "@/lib/stats";
 
 export interface Column {
   accessorKey: string;
@@ -54,12 +55,27 @@ export function CardTable({ data, columns, loading = false, expansion = '' }: Ca
         );
       }
       
-      if (record.stats?.[column.accessorKey]) {
+      // 处理统计数据列
+      const numericColumns = [
+        "avg_seen", "avg_pick", "play_rate", "win_rate",
+        "opening_hand_win_rate", "drawn_win_rate", "ever_drawn_win_rate",
+        "never_drawn_win_rate", "drawn_improvement_win_rate"
+      ];
+
+      if (numericColumns.includes(column.accessorKey)) {
+        const formatter = (v: number) => {
+          if (column.accessorKey.includes("rate")) {
+            return `${(v * 100).toFixed(1)}%`;
+          }
+          return v.toFixed(2);
+        };
+
         return (
           <StatCell
             value={value}
-            stats={record.stats[column.accessorKey] as Stats}
+            stats={calculateStats(data, column.accessorKey, value)}
             label={column.accessorKey}
+            formatter={formatter}
           />
         );
       }
