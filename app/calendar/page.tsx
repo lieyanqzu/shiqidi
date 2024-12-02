@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import { EventCard } from '@/components/event-card';
-import { events } from '@/data/events';
+import { events, calendarMetadata } from '@/data/events';
 import { ExternalLink } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -22,10 +22,10 @@ export default function CalendarPage() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4 mb-6">
           <h1 className="text-2xl font-bold">活动日历</h1>
           <div className="flex items-center gap-2 text-sm text-[--muted-foreground]">
-            <span>更新于 2024/11/25</span>
+            <span>更新于 {calendarMetadata.lastUpdated}</span>
             <span>·</span>
             <a
-              href="https://magic.wizards.com/en/news/mtg-arena/mtg-arena-announcements-november-25-2024#schedule"
+              href={calendarMetadata.announcementUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 hover:text-[--foreground] transition-colors"
