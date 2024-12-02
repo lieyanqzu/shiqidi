@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import { Table } from "antd";
+import { useState, useEffect } from "react";
+import { Table, Button, Checkbox, Popover, Space } from "antd";
+import { SettingOutlined } from '@ant-design/icons';
 import type { ColumnsType } from "antd/es/table";
 import { CardNameCell } from "@/components/card-name-cell";
 import { StatCell } from "@/components/stat-cell";
@@ -26,6 +27,42 @@ interface CardTableProps {
 export function CardTable({ data, columns, loading = false, expansion = '' }: CardTableProps) {
   const [pageSize, setPageSize] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
+  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 0);
+
+  const mobileDefaultColumns = [
+    'name',
+    'color',
+    'rarity',
+    'drawn_improvement_win_rate'
+  ];
+
+  const desktopDefaultColumns = [
+    'name',
+    'color',
+    'rarity',
+    'drawn_improvement_win_rate',
+    'ever_drawn_win_rate',
+    'avg_seen'
+  ];
+
+  const defaultVisibleColumns = windowWidth < 768 ? mobileDefaultColumns : desktopDefaultColumns;
+  
+  const [visibleColumns, setVisibleColumns] = useState<string[]>(defaultVisibleColumns);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      setWindowWidth(width);
+      if (width < 768) {
+        if (visibleColumns.length > mobileDefaultColumns.length) {
+          setVisibleColumns(mobileDefaultColumns);
+        }
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [visibleColumns]);
 
   const antColumns: ColumnsType<any> = columns.map(column => ({
     title: column.title || column.header,
@@ -143,10 +180,73 @@ export function CardTable({ data, columns, loading = false, expansion = '' }: Ca
     key: item.name || `row-${index}`,
   }));
 
+  const ColumnSelector = () => (
+    <div className="p-4 min-w-[200px]">
+      <div className="mb-2 flex justify-between items-center">
+        <span className="text-[--foreground]">列展示</span>
+        <Button 
+          type="link" 
+          size="small"
+          onClick={() => setVisibleColumns(
+            windowWidth < 768 ? mobileDefaultColumns : desktopDefaultColumns
+          )}
+        >
+          重置
+        </Button>
+      </div>
+      <Checkbox.Group 
+        value={visibleColumns}
+        onChange={(checkedValues) => {
+          if (!checkedValues.includes('name')) {
+            checkedValues.push('name');
+          }
+          if (checkedValues.length === 0) {
+            return;
+          }
+          setVisibleColumns(checkedValues as string[]);
+        }}
+      >
+        <Space direction="vertical">
+          {columns.map(column => (
+            <Checkbox 
+              key={column.accessorKey} 
+              value={column.accessorKey}
+              disabled={
+                column.accessorKey === 'name' || 
+                (visibleColumns.length === 1 && visibleColumns.includes(column.accessorKey))
+              }
+            >
+              {column.title || column.header}
+            </Checkbox>
+          ))}
+        </Space>
+      </Checkbox.Group>
+    </div>
+  );
+
+  const visibleAntColumns = antColumns.filter(col => 
+    visibleColumns.includes(col.key as string)
+  );
+
   return (
     <div className="card w-full">
+      <div className="flex justify-end p-2 border-b border-[--table-border]">
+        <Popover 
+          content={<ColumnSelector />} 
+          trigger="click"
+          placement="bottomRight"
+          overlayClassName="column-selector-popover"
+        >
+          <Button 
+            icon={<SettingOutlined />}
+            className="flex items-center"
+          >
+            列设置
+          </Button>
+        </Popover>
+      </div>
       <Table
-        columns={antColumns}
+        columns={visibleAntColumns}
         dataSource={dataWithKeys}
         loading={loading}
         scroll={{ x: 'max-content' }}

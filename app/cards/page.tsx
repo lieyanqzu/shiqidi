@@ -50,10 +50,16 @@ export default function CardsPage() {
       tooltip: "卡牌稀有度"
     },
     {
-      accessorKey: "seen_count",
-      header: "# Seen",
-      title: "# Seen",
-      tooltip: "轮抽中见过的次数"
+      accessorKey: "drawn_improvement_win_rate",
+      header: "IWD",
+      title: "IWD",
+      tooltip: "抽到时的胜率提升"
+    },
+    {
+      accessorKey: "ever_drawn_win_rate",
+      header: "GIH WR",
+      title: "GIH WR",
+      tooltip: "在手上时的胜率(起手或抽到)"
     },
     {
       accessorKey: "avg_seen",
@@ -62,10 +68,10 @@ export default function CardsPage() {
       tooltip: "平均最后见到的抓位"
     },
     {
-      accessorKey: "pick_count",
-      header: "# Picked",
-      title: "# Picked",
-      tooltip: "被选择的次数"
+      accessorKey: "seen_count",
+      header: "# Seen",
+      title: "# Seen",
+      tooltip: "轮抽中见过的次数"
     },
     {
       accessorKey: "avg_pick",
@@ -122,12 +128,6 @@ export default function CardsPage() {
       tooltip: "在手上的对局数量(起手或抽到)"
     },
     {
-      accessorKey: "ever_drawn_win_rate",
-      header: "GIH WR",
-      title: "GIH WR",
-      tooltip: "在手上时的胜率(起手或抽到)"
-    },
-    {
       accessorKey: "never_drawn_game_count",
       header: "# GNS",
       title: "# GNS",
@@ -138,12 +138,6 @@ export default function CardsPage() {
       header: "GNS WR",
       title: "GNS WR",
       tooltip: "未见到的胜率"
-    },
-    {
-      accessorKey: "drawn_improvement_win_rate",
-      header: "IWD",
-      title: "IWD",
-      tooltip: "抽到时的胜率提升"
     },
   ], []);
 

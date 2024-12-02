@@ -168,3 +168,17 @@ tr:hover td {
   background-color: var(--background-subtle);
   border-radius: 4px;
 }
+
+/* 列选择器样式 */
+.column-selector-popover .ant-popover-inner {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+}
+
+.column-selector-popover .ant-checkbox-wrapper {
+  color: var(--foreground);
+}
+
+.column-selector-popover .ant-checkbox-wrapper:hover {
+  background-color: var(--component-hover);
+}
