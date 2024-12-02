@@ -135,3 +135,36 @@ tr:hover td {
 .react-datepicker__triangle::after {
   @apply border-b-[--card];
 }
+
+/* 自定义表格滚动条样式 */
+.table-scroll-top .ant-table-body {
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  order: 2;
+}
+
+.table-scroll-top .ant-table-header {
+  order: 1;
+}
+
+/* 调整表格容器为 flex 布局 */
+.table-scroll-top .ant-table-container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 美化滚动条样式 */
+.table-scroll-top .ant-table-body::-webkit-scrollbar {
+  height: 8px;
+  background-color: var(--background);
+}
+
+.table-scroll-top .ant-table-body::-webkit-scrollbar-thumb {
+  background-color: var(--border);
+  border-radius: 4px;
+}
+
+.table-scroll-top .ant-table-body::-webkit-scrollbar-track {
+  background-color: var(--background-subtle);
+  border-radius: 4px;
+}

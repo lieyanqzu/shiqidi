@@ -31,7 +31,9 @@ export function CardTable({ data, columns, loading = false, expansion = '' }: Ca
     title: column.title || column.header,
     dataIndex: column.accessorKey,
     key: column.accessorKey,
-    ellipsis: true,
+    minWidth: getColumnMinWidth(column.accessorKey),
+    width: 'auto',
+    align: column.accessorKey === 'name' ? 'left' : 'center',
     sorter: (a: any, b: any) => {
       if (column.accessorKey === "color") {
         return String(a.color).length - String(b.color).length;
@@ -60,7 +62,7 @@ export function CardTable({ data, columns, loading = false, expansion = '' }: Ca
 
       if (column.accessorKey === "color") {
         return (
-          <div className="w-12 whitespace-nowrap">
+          <div className="w-12 whitespace-nowrap mx-auto">
             <ManaSymbols color={String(value)} />
           </div>
         );
@@ -73,7 +75,7 @@ export function CardTable({ data, columns, loading = false, expansion = '' }: Ca
           : (expansion || '').toLowerCase();
         
         return (
-          <div className="whitespace-nowrap">
+          <div className="whitespace-nowrap text-center">
             <i 
               className={`keyrune ss ss-${processedSet} ss-${rarity} ss-2x`}
               aria-hidden="true"
@@ -113,6 +115,29 @@ export function CardTable({ data, columns, loading = false, expansion = '' }: Ca
     },
   }));
 
+  function getColumnMinWidth(accessorKey: string): number {
+    switch (accessorKey) {
+      case 'color':
+        return 80;
+      case 'rarity':
+        return 70;
+      case 'name':
+        return 150;
+      case 'avg_seen':
+      case 'avg_pick':
+      case 'play_rate':
+      case 'win_rate':
+      case 'opening_hand_win_rate':
+      case 'drawn_win_rate':
+      case 'ever_drawn_win_rate':
+      case 'never_drawn_win_rate':
+      case 'drawn_improvement_win_rate':
+        return 100;
+      default:
+        return 100;
+    }
+  }
+
   const dataWithKeys = data.map((item, index) => ({
     ...item,
     key: item.name || `row-${index}`,
@@ -124,13 +149,13 @@ export function CardTable({ data, columns, loading = false, expansion = '' }: Ca
         columns={antColumns}
         dataSource={dataWithKeys}
         loading={loading}
-        scroll={{ x: true }}
+        scroll={{ x: 'max-content' }}
         sticky={{
           offsetHeader: 64
         }}
         size="middle"
         rowKey="name"
-        className="whitespace-nowrap [&_.ant-table-body]:!overflow-y-hidden"
+        className="whitespace-nowrap [&_.ant-table-body]:!overflow-y-hidden table-scroll-top"
         pagination={{
           current: currentPage,
           pageSize: pageSize,
@@ -159,6 +184,7 @@ export function CardTable({ data, columns, loading = false, expansion = '' }: Ca
             next_5: '向后 5 页',
           }
         }}
+        tableLayout="auto"
       />
     </div>
   );
