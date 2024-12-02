@@ -13,6 +13,7 @@ export interface Column {
   accessorKey: string;
   header: string;
   title?: string;
+  tooltip?: string;
 }
 
 interface CardTableProps {
@@ -28,6 +29,23 @@ export function CardTable({ data, columns, loading = false, expansion = '' }: Ca
     dataIndex: column.accessorKey,
     key: column.accessorKey,
     ellipsis: true,
+    sorter: (a: any, b: any) => {
+      if (column.accessorKey === "color") {
+        return String(a.color).length - String(b.color).length;
+      }
+      
+      if (column.accessorKey === "rarity") {
+        const rarityOrder = { mythic: 4, rare: 3, uncommon: 2, common: 1 };
+        return (rarityOrder[a.rarity.toLowerCase()] || 0) - (rarityOrder[b.rarity.toLowerCase()] || 0);
+      }
+      
+      if (typeof a[column.accessorKey] === 'number' && typeof b[column.accessorKey] === 'number') {
+        return a[column.accessorKey] - b[column.accessorKey];
+      }
+      
+      return String(a[column.accessorKey]).localeCompare(String(b[column.accessorKey]));
+    },
+    defaultSortOrder: column.accessorKey === 'win_rate' ? 'descend' : undefined,
     render: (value, record) => {
       if (column.accessorKey === "name") {
         return (
@@ -62,7 +80,6 @@ export function CardTable({ data, columns, loading = false, expansion = '' }: Ca
         );
       }
       
-      // 处理统计数据列
       const numericColumns = [
         "avg_seen", "avg_pick", "play_rate", "win_rate",
         "opening_hand_win_rate", "drawn_win_rate", "ever_drawn_win_rate",
