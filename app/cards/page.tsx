@@ -33,98 +33,117 @@ export default function CardsPage() {
   const columns: Column[] = useMemo(() => [
     {
       accessorKey: "name",
-      header: "Card Name",
-      title: "Card Name",
+      header: "卡牌名称",
+      title: "卡牌名称",
+      tooltip: "卡牌名称"
     },
     {
       accessorKey: "color",
-      header: "Color",
-      title: "Card Color",
+      header: "颜色",
+      title: "颜色",
+      tooltip: "卡牌颜色"
     },
     {
       accessorKey: "rarity",
-      header: "Rarity",
-      title: "Card Rarity",
+      header: "稀有度",
+      title: "稀有度",
+      tooltip: "卡牌稀有度"
     },
     {
       accessorKey: "seen_count",
       header: "# Seen",
-      title: "Times Seen in Drafts",
+      title: "# Seen",
+      tooltip: "轮抽中见过的次数"
     },
     {
       accessorKey: "avg_seen",
       header: "ALSA",
-      title: "Average Last Seen Position",
+      title: "ALSA",
+      tooltip: "平均最后见到的抓位"
     },
     {
       accessorKey: "pick_count",
       header: "# Picked",
-      title: "Times Picked",
+      title: "# Picked",
+      tooltip: "被选择的次数"
     },
     {
       accessorKey: "avg_pick",
       header: "ATA",
-      title: "Average Pick Position",
+      title: "ATA",
+      tooltip: "平均选择抓位"
     },
     {
       accessorKey: "game_count",
       header: "# GP",
-      title: "Number of Games Used",
+      title: "# GP",
+      tooltip: "使用过的对局数量"
     },
     {
       accessorKey: "play_rate",
       header: "% GP",
-      title: "Play Rate",
+      title: "% GP",
+      tooltip: "主牌使用率"
     },
     {
       accessorKey: "win_rate",
       header: "GP WR",
-      title: "Win Rate When Used",
+      title: "GP WR",
+      tooltip: "主牌使用时的胜率"
     },
     {
       accessorKey: "opening_hand_game_count",
       header: "# OH",
-      title: "Number of Games Used in Opening Hand",
+      title: "# OH",
+      tooltip: "在起手的对局数量"
     },
     {
       accessorKey: "opening_hand_win_rate",
       header: "OH WR",
-      title: "Win Rate When Used in Opening Hand",
+      title: "OH WR",
+      tooltip: "在起手时的胜率"
     },
     {
       accessorKey: "drawn_game_count",
       header: "# GD",
-      title: "Number of Games Drawn in First Round",
+      title: "# GD",
+      tooltip: "第一回合后抽到的对局数量"
     },
     {
       accessorKey: "drawn_win_rate",
       header: "GD WR",
-      title: "Win Rate When Drawn in First Round",
+      title: "GD WR",
+      tooltip: "第一回合后抽到的胜率"
     },
     {
       accessorKey: "ever_drawn_game_count",
       header: "# GIH",
-      title: "Number of Games in Hand (Both in Opening Hand or Drawn)",
+      title: "# GIH",
+      tooltip: "在手上的对局数量(起手或抽到)"
     },
     {
       accessorKey: "ever_drawn_win_rate",
       header: "GIH WR",
-      title: "Win Rate When in Hand (Both in Opening Hand or Drawn)",
+      title: "GIH WR",
+      tooltip: "在手上时的胜率(起手或抽到)"
     },
     {
       accessorKey: "never_drawn_game_count",
       header: "# GNS",
-      title: "Number of Games Not Seen",
+      title: "# GNS",
+      tooltip: "未见到的对局数量"
     },
     {
       accessorKey: "never_drawn_win_rate",
       header: "GNS WR",
-      title: "Win Rate of Games Not Seen",
+      title: "GNS WR",
+      tooltip: "未见到的胜率"
     },
     {
       accessorKey: "drawn_improvement_win_rate",
       header: "IWD",
-      title: "Win Rate Improvement When Drawn",
+      title: "IWD",
+      tooltip: "抽到时的胜率提升"
     },
   ], []);
 
@@ -186,7 +205,7 @@ export default function CardsPage() {
     loadCardData();
   }, [params, setCards, setIsLoading, setError]);
 
-  // 加载中文数据，包括当前系列和 SPG
+  // 加载中文数据,包括当前系列和 SPG
   useEffect(() => {
     async function loadChineseData() {
       try {
@@ -231,7 +250,7 @@ export default function CardsPage() {
         <div className="flex items-center gap-3 mb-8">
           <SetSymbol set={params.expansion} />
           <h1 className="text-2xl font-semibold">
-            {params.expansion} Draft Card Data
+            {params.expansion} 轮抽卡牌数据
           </h1>
           <a 
             href="https://www.17lands.com/card_data"

@@ -27,14 +27,19 @@ export function CardTable({ data, columns, loading = false, expansion = '' }: Ca
     title: column.title || column.header,
     dataIndex: column.accessorKey,
     key: column.accessorKey,
+    ellipsis: true,
     render: (value, record) => {
       if (column.accessorKey === "name") {
-        return <CardNameCell card={record} expansion={expansion} />;
+        return (
+          <div className="whitespace-nowrap">
+            <CardNameCell card={record} expansion={expansion} />
+          </div>
+        );
       }
 
       if (column.accessorKey === "color") {
         return (
-          <div className="w-12">
+          <div className="w-12 whitespace-nowrap">
             <ManaSymbols color={String(value)} />
           </div>
         );
@@ -47,11 +52,13 @@ export function CardTable({ data, columns, loading = false, expansion = '' }: Ca
           : (expansion || '').toLowerCase();
         
         return (
-          <i 
-            className={`keyrune ss ss-${processedSet} ss-${rarity} ss-2x`}
-            aria-hidden="true"
-            title={String(value)}
-          />
+          <div className="whitespace-nowrap">
+            <i 
+              className={`keyrune ss ss-${processedSet} ss-${rarity} ss-2x`}
+              aria-hidden="true"
+              title={String(value)}
+            />
+          </div>
         );
       }
       
@@ -71,16 +78,18 @@ export function CardTable({ data, columns, loading = false, expansion = '' }: Ca
         };
 
         return (
-          <StatCell
-            value={value}
-            stats={calculateStats(data, column.accessorKey, value)}
-            label={column.accessorKey}
-            formatter={formatter}
-          />
+          <div className="whitespace-nowrap">
+            <StatCell
+              value={value}
+              stats={calculateStats(data, column.accessorKey, value)}
+              label={column.accessorKey}
+              formatter={formatter}
+            />
+          </div>
         );
       }
       
-      return value;
+      return <div className="whitespace-nowrap">{value}</div>;
     },
   }));
 
@@ -99,6 +108,7 @@ export function CardTable({ data, columns, loading = false, expansion = '' }: Ca
         size="middle"
         pagination={false}
         rowKey="name"
+        className="whitespace-nowrap"
       />
     </div>
   );
