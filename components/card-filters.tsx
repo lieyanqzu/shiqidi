@@ -174,72 +174,74 @@ export function CardFilters({
   return (
     <div className="space-y-4">
       {/* 第一行：搜索和时间范围 */}
-      <div className="flex flex-wrap items-center gap-4">
+      <div className="flex flex-col sm:flex-row gap-4">
         <Input
           placeholder="搜索卡牌名称..."
           value={searchText}
           onChange={(e) => onSearchFilter(e.target.value)}
-          className="w-64"
+          className="w-full sm:w-64"
         />
-        <DateRangePicker
-          startDate={startDate}
-          endDate={endDate}
-          onStartDateChange={(date) => 
-            onParamsChange({ 
-              start_date: date.toISOString().split('T')[0] 
-            })
-          }
-          onEndDateChange={(date) => 
-            onParamsChange({ 
-              end_date: date.toISOString().split('T')[0] 
-            })
-          }
-        />
+        <div className="w-full sm:w-auto">
+          <DateRangePicker
+            startDate={startDate}
+            endDate={endDate}
+            onStartDateChange={(date) => 
+              onParamsChange({ 
+                start_date: date.toISOString().split('T')[0] 
+              })
+            }
+            onEndDateChange={(date) => 
+              onParamsChange({ 
+                end_date: date.toISOString().split('T')[0] 
+              })
+            }
+          />
+        </div>
       </div>
 
       {/* 第二行：其他筛选项 */}
-      <div className="flex flex-wrap items-center gap-4">
+      <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-2 sm:gap-4">
         <Select
           options={sets}
           value={params.expansion}
           onChange={(e) => onParamsChange({ expansion: e.target.value })}
-          title="Select Set"
-          className="min-w-[120px]"
+          title="系列"
+          className="w-full sm:w-auto sm:min-w-[120px]"
         />
         <Select
           options={formats}
           value={params.format}
           onChange={(e) => onParamsChange({ format: e.target.value })}
-          title="Select Format"
-          className="min-w-[140px]"
+          title="模式"
+          className="w-full sm:w-auto sm:min-w-[140px]"
         />
         <Select
           options={userGroups}
           value={params.user_group}
           onChange={(e) => onParamsChange({ user_group: e.target.value })}
-          title="Select User Group"
-          className="min-w-[100px]"
+          title="用户组"
+          className="w-full sm:w-auto sm:min-w-[100px]"
         />
         <Select
           options={colors}
           value={selectedColor}
           onChange={(e) => onColorFilter(e.target.value)}
-          title="Select Card Color"
-          className="min-w-[120px]"
+          title="卡牌颜色"
+          className="w-full sm:w-auto sm:min-w-[120px]"
         />
         <Select
           options={deckColors}
           value={params.colors || ""}
           onChange={(e) => onParamsChange({ colors: e.target.value })}
-          title="Select Deck Color"
-          className="min-w-[120px]"
+          title="套牌颜色"
+          className="w-full sm:w-auto sm:min-w-[120px]"
         />
         <Select
           options={rarities}
           value={selectedRarity}
           onChange={(e) => onRarityFilter(e.target.value)}
-          title="Select Rarity"
-          className="min-w-[100px]"
+          title="稀有度"
+          className="w-full sm:w-auto sm:min-w-[100px]"
         />
       </div>
     </div>

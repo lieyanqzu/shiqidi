@@ -1,9 +1,10 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useCardStore } from "@/lib/store";
 import type { CardData } from "@/types/card";
 import CardTooltip from '@/components/card-tooltip';
+import { useMediaQuery } from "@/hooks/use-media-query";
 
 interface CardNameCellProps {
   card: CardData;
@@ -14,6 +15,7 @@ export function CardNameCell({ card, expansion }: CardNameCellProps) {
   const { chineseCards } = useCardStore();
   const chineseCard = chineseCards[card.name];
   const chineseName = chineseCard?.zhs_name || chineseCard?.officialName || chineseCard?.translatedName;
+  const isMobile = useMediaQuery("(max-width: 768px)");
   
   const [tooltipVisible, setTooltipVisible] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -22,14 +24,37 @@ export function CardNameCell({ card, expansion }: CardNameCellProps) {
     ? `https://cards.scryfall.io/large/front/${chineseCard.scryfallId.slice(0, 1)}/${chineseCard.scryfallId.slice(1, 2)}/${chineseCard.scryfallId}.jpg`
     : null;
 
-  const handleMouseEnter = () => setTooltipVisible(true);
-  const handleMouseLeave = () => setTooltipVisible(false);
+  // 在移动端，点击时阻止事件冒泡
+  useEffect(() => {
+    if (isMobile && tooltipVisible) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMobile, tooltipVisible]);
+
+  const handleMouseEnter = () => !isMobile && setTooltipVisible(true);
+  const handleMouseLeave = () => !isMobile && setTooltipVisible(false);
   const handleMouseMove = (e: React.MouseEvent) => {
-    setMousePos({ x: e.clientX, y: e.clientY });
+    if (!isMobile) {
+      setMousePos({ x: e.clientX, y: e.clientY });
+    }
   };
 
-  const handleClick = () => {
-    if (chineseCard?.setCode && chineseCard?.number) {
+  const handleClick = (e: React.MouseEvent) => {
+    if (isMobile) {
+      e.preventDefault();
+      e.stopPropagation();
+      const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
+      setMousePos({ 
+        x: rect.left, 
+        y: rect.top + window.scrollY 
+      });
+      setTooltipVisible(!tooltipVisible);
+    } else if (chineseCard?.setCode && chineseCard?.number) {
       window.open(`https://sbwsz.com/card/${chineseCard.setCode}/${chineseCard.number}`, '_blank');
     }
   };
@@ -62,6 +87,7 @@ export function CardNameCell({ card, expansion }: CardNameCellProps) {
         x={mousePos.x}
         y={mousePos.y}
         expansion={expansion}
+        isMobile={isMobile}
       />
     </div>
   );
