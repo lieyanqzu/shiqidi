@@ -20,18 +20,14 @@ export function StatCell({ value, stats, label, formatter = (v) => v.toFixed(2) 
   useEffect(() => {
     if (showTooltip && cellRef.current) {
       const cell = cellRef.current;
-      const table = cell.closest('.card');
+      const rect = cell.getBoundingClientRect();
+      const viewportWidth = window.innerWidth;
       
-      if (table) {
-        const cellRect = cell.getBoundingClientRect();
-        const tableRect = table.getBoundingClientRect();
-        
-        // 假设悬浮窗宽度为 200px
-        const tooltipWidth = 200;
-        const spaceOnRight = tableRect.right - cellRect.right;
-        
-        setTooltipPosition(spaceOnRight >= tooltipWidth ? 'right' : 'left');
-      }
+      // 假设tooltip宽度为200px，加上一些边距
+      const tooltipWidth = 220;
+      const spaceOnRight = viewportWidth - rect.right;
+      
+      setTooltipPosition(spaceOnRight >= tooltipWidth ? 'right' : 'left');
     }
   }, [showTooltip]);
 
@@ -50,21 +46,28 @@ export function StatCell({ value, stats, label, formatter = (v) => v.toFixed(2) 
   };
 
   return (
-    <div className="relative inline-block" ref={cellRef}>
-      <span
-        className="cursor-help"
-        onMouseEnter={() => setShowTooltip(true)}
-        onMouseLeave={() => setShowTooltip(false)}
-      >
+    <div 
+      className="relative" 
+      ref={cellRef}
+      onMouseEnter={() => setShowTooltip(true)}
+      onMouseLeave={() => setShowTooltip(false)}
+    >
+      <span className="cursor-help whitespace-nowrap">
         {formatter(value)}
         {getZScoreIndicator(stats.zScore)}
       </span>
       {showTooltip && (
-        <div className={`absolute top-0 z-[9999] ${
-          tooltipPosition === 'right' 
-            ? 'left-full ml-2' 
-            : 'left-[-190px]'
-        }`}>
+        <div 
+          className={`fixed z-[9999] ${
+            tooltipPosition === 'right' 
+              ? 'translate-x-2' 
+              : '-translate-x-[210px]'
+          }`}
+          style={{
+            top: cellRef.current ? cellRef.current.getBoundingClientRect().top - 10 : 0,
+            left: cellRef.current ? cellRef.current.getBoundingClientRect().right : 0,
+          }}
+        >
           <StatTooltip {...stats} label={label} isLowerBetter={['ALSA', 'ATA'].includes(label)} />
         </div>
       )}

@@ -24,6 +24,9 @@ interface CardTableProps {
 }
 
 export function CardTable({ data, columns, loading = false, expansion = '' }: CardTableProps) {
+  const [pageSize, setPageSize] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
+
   const antColumns: ColumnsType<any> = columns.map(column => ({
     title: column.title || column.header,
     dataIndex: column.accessorKey,
@@ -123,9 +126,36 @@ export function CardTable({ data, columns, loading = false, expansion = '' }: Ca
         loading={loading}
         scroll={{ x: true }}
         size="middle"
-        pagination={false}
         rowKey="name"
         className="whitespace-nowrap"
+        pagination={{
+          current: currentPage,
+          pageSize: pageSize,
+          total: data.length,
+          showSizeChanger: true,
+          showQuickJumper: true,
+          pageSizeOptions: ['10', '20', '50', '100'],
+          position: ['bottomCenter'],
+          showTotal: (total) => `共 ${total} 张卡牌`,
+          onChange: (page, size) => {
+            setCurrentPage(page);
+            setPageSize(size);
+          },
+          onShowSizeChange: (current, size) => {
+            setPageSize(size);
+            setCurrentPage(1);
+          },
+          locale: {
+            items_per_page: '条/页',
+            jump_to: '跳转到',
+            jump_to_confirm: '确定',
+            page: '页',
+            prev_page: '上一页',
+            next_page: '下一页',
+            prev_5: '向前 5 页',
+            next_5: '向后 5 页',
+          }
+        }}
       />
     </div>
   );
