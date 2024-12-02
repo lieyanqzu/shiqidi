@@ -7,6 +7,7 @@ import { SetSymbol } from "@/components/set-symbol";
 import { useCardStore } from "@/lib/store";
 import { fetchCardData, fetchChineseCardData } from "@/lib/api";
 import { BackToTop } from "@/components/back-to-top";
+import type { Column } from "@/components/card-table";
 
 export default function CardsPage() {
   const { 
@@ -27,6 +28,105 @@ export default function CardsPage() {
 
   // 记录 SPG 数据是否已加载
   const [spgLoaded, setSpgLoaded] = useState(false);
+
+  // 定义表格列
+  const columns: Column[] = useMemo(() => [
+    {
+      accessorKey: "name",
+      header: "Card Name",
+      title: "Card Name",
+    },
+    {
+      accessorKey: "color",
+      header: "Color",
+      title: "Card Color",
+    },
+    {
+      accessorKey: "rarity",
+      header: "Rarity",
+      title: "Card Rarity",
+    },
+    {
+      accessorKey: "seen_count",
+      header: "# Seen",
+      title: "Times Seen in Drafts",
+    },
+    {
+      accessorKey: "avg_seen",
+      header: "ALSA",
+      title: "Average Last Seen Position",
+    },
+    {
+      accessorKey: "pick_count",
+      header: "# Picked",
+      title: "Times Picked",
+    },
+    {
+      accessorKey: "avg_pick",
+      header: "ATA",
+      title: "Average Pick Position",
+    },
+    {
+      accessorKey: "game_count",
+      header: "# GP",
+      title: "Number of Games Used",
+    },
+    {
+      accessorKey: "play_rate",
+      header: "% GP",
+      title: "Play Rate",
+    },
+    {
+      accessorKey: "win_rate",
+      header: "GP WR",
+      title: "Win Rate When Used",
+    },
+    {
+      accessorKey: "opening_hand_game_count",
+      header: "# OH",
+      title: "Number of Games Used in Opening Hand",
+    },
+    {
+      accessorKey: "opening_hand_win_rate",
+      header: "OH WR",
+      title: "Win Rate When Used in Opening Hand",
+    },
+    {
+      accessorKey: "drawn_game_count",
+      header: "# GD",
+      title: "Number of Games Drawn in First Round",
+    },
+    {
+      accessorKey: "drawn_win_rate",
+      header: "GD WR",
+      title: "Win Rate When Drawn in First Round",
+    },
+    {
+      accessorKey: "ever_drawn_game_count",
+      header: "# GIH",
+      title: "Number of Games in Hand (Both in Opening Hand or Drawn)",
+    },
+    {
+      accessorKey: "ever_drawn_win_rate",
+      header: "GIH WR",
+      title: "Win Rate When in Hand (Both in Opening Hand or Drawn)",
+    },
+    {
+      accessorKey: "never_drawn_game_count",
+      header: "# GNS",
+      title: "Number of Games Not Seen",
+    },
+    {
+      accessorKey: "never_drawn_win_rate",
+      header: "GNS WR",
+      title: "Win Rate of Games Not Seen",
+    },
+    {
+      accessorKey: "drawn_improvement_win_rate",
+      header: "IWD",
+      title: "Win Rate Improvement When Drawn",
+    },
+  ], []);
 
   const filteredCards = useMemo(() => {
     let result = cards;
@@ -131,7 +231,7 @@ export default function CardsPage() {
         <div className="flex items-center gap-3 mb-8">
           <SetSymbol set={params.expansion} />
           <h1 className="text-2xl font-semibold">
-            {params.expansion} 轮抽卡牌数据
+            {params.expansion} Draft Card Data
           </h1>
           <a 
             href="https://www.17lands.com/card_data"
@@ -157,11 +257,14 @@ export default function CardsPage() {
           searchText={searchText}
         />
       </div>
-      <CardTable 
-        data={filteredCards} 
-        isLoading={isLoading} 
-        expansion={params.expansion}
-      />
+      <div className="container mx-auto px-4">
+        <CardTable 
+          data={filteredCards} 
+          columns={columns}
+          loading={isLoading}
+          expansion={params.expansion}
+        />
+      </div>
       <BackToTop />
     </div>
   );

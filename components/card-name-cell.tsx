@@ -8,10 +8,10 @@ import { useMediaQuery } from "@/hooks/use-media-query";
 
 interface CardNameCellProps {
   card: CardData;
-  expansion: string;
+  expansion?: string;
 }
 
-export function CardNameCell({ card, expansion }: CardNameCellProps) {
+export function CardNameCell({ card, expansion = '' }: CardNameCellProps) {
   const { chineseCards } = useCardStore();
   const chineseCard = chineseCards[card.name];
   const chineseName = chineseCard?.zhs_name || chineseCard?.officialName || chineseCard?.translatedName;
