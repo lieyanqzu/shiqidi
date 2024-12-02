@@ -9,7 +9,7 @@ export default function HomePage() {
       links: [
         { label: "卡牌数据", href: "/cards", description: "查看各系列轮抽中卡牌的表现数据，包括胜率、选取率等详细统计" },
         { label: "色组数据", href: "https://www.17lands.com/deck_color_data", external: true, description: "分析不同色组组合的胜率和选用率" },
-        { label: "赛制速度", href: "https://www.17lands.com/format_speed", external: true, description: "了解当前赛制的游戏节奏和速度" },
+        { label: "赛制速度", href: "https://www.17lands.com/format_speed", external: true, description: "了解各个系列限制赛的速度和先手胜率" },
       ]
     },
     {
