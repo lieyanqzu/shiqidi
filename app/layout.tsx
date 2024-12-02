@@ -1,6 +1,8 @@
 import '@/app/globals.css';
 import '@/styles/mana-symbols.css';
 import 'keyrune/css/keyrune.css';
+import 'antd/dist/reset.css';
+import { ConfigProvider, theme } from 'antd';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 
@@ -31,11 +33,29 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen bg-[--background] font-sans">
-        <div className="flex min-h-screen flex-col">
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </div>
+        <ConfigProvider
+          theme={{
+            algorithm: theme.defaultAlgorithm,
+            token: {
+              colorPrimary: '#1677ff',
+              borderRadius: 8,
+            },
+            components: {
+              Table: {
+                headerBg: 'var(--component-background)',
+                headerColor: 'var(--component-foreground)',
+                rowHoverBg: 'var(--component-hover)',
+                borderColor: 'var(--border)',
+              },
+            },
+          }}
+        >
+          <div className="flex min-h-screen flex-col">
+            <Header />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </div>
+        </ConfigProvider>
       </body>
     </html>
   );

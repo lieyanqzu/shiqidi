@@ -48,7 +48,7 @@ export function CardTable({ data, columns, loading = false, expansion = '' }: Ca
       
       return String(a[column.accessorKey]).localeCompare(String(b[column.accessorKey]));
     },
-    defaultSortOrder: column.accessorKey === 'win_rate' ? 'descend' : undefined,
+    defaultSortOrder: column.accessorKey === 'name' ? 'ascend' : undefined,
     render: (value, record) => {
       if (column.accessorKey === "name") {
         return (
@@ -125,9 +125,12 @@ export function CardTable({ data, columns, loading = false, expansion = '' }: Ca
         dataSource={dataWithKeys}
         loading={loading}
         scroll={{ x: true }}
+        sticky={{
+          offsetHeader: 64
+        }}
         size="middle"
         rowKey="name"
-        className="whitespace-nowrap"
+        className="whitespace-nowrap [&_.ant-table-body]:!overflow-y-hidden"
         pagination={{
           current: currentPage,
           pageSize: pageSize,
