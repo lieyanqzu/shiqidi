@@ -1,5 +1,6 @@
+'use client';
 import { Input } from "@/components/ui/input";
-import { Select } from "@/components/ui/select";
+import { Select } from "antd";
 
 // 卡牌颜色选项
 const colors = [
@@ -50,16 +51,16 @@ export function CardInfoFilters({
       <Select
         options={colors}
         value={selectedColor}
-        onChange={(e) => onColorFilter(e.target.value)}
-        title="卡牌颜色"
-        className="w-32"
+        onChange={onColorFilter}
+        placeholder="卡牌颜色"
+        style={{ width: 128 }}
       />
       <Select
         options={rarities}
         value={selectedRarity}
-        onChange={(e) => onRarityFilter(e.target.value)}
-        title="稀有度"
-        className="w-28"
+        onChange={onRarityFilter}
+        placeholder="稀有度"
+        style={{ width: 112 }}
       />
     </div>
   );
