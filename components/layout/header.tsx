@@ -2,14 +2,125 @@
 
 import Link from "next/link";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { Github, ChevronDown, ExternalLink, Menu, X } from "lucide-react";
+import { Github, ChevronDown, ExternalLink, Menu, X, Calendar, Activity } from "lucide-react";
 import { useState, useEffect } from "react";
+import digitalSets from '@/data/digital-sets.json';
+import { useStatusStore, StatusData } from '@/lib/store';
 
 interface MenuItem {
   label: string;
   href?: string;
   external?: boolean;
   children?: MenuItem[];
+}
+
+interface DigitalSet {
+  name: string;
+  code: string;
+  releaseDate: string;
+}
+
+function getCurrentAndNextSet(): { current: DigitalSet | null; next: DigitalSet | null } {
+  const now = new Date();
+  const sets = digitalSets.sets
+    .sort((a, b) => new Date(a.releaseDate).getTime() - new Date(b.releaseDate).getTime());
+
+  let current: DigitalSet | null = null;
+  let next: DigitalSet | null = null;
+
+  for (let i = sets.length - 1; i >= 0; i--) {
+    const set = sets[i];
+    if (new Date(set.releaseDate) <= now) {
+      current = set;
+      next = sets[i + 1] || null;
+      break;
+    }
+  }
+
+  return { current, next };
+}
+
+function formatDate(dateStr: string): string {
+  const date = new Date(dateStr);
+  return new Intl.DateTimeFormat('zh-CN', {
+    month: 'long',
+    day: 'numeric',
+  }).format(date);
+}
+
+function SetInfo({ className = "" }: { className?: string }) {
+  const { current, next } = getCurrentAndNextSet();
+  
+  if (!current) return null;
+  
+  return (
+    <div className={`flex items-center gap-4 px-3 py-1.5 text-sm text-[--muted-foreground] ${className}`}>
+      <div className="flex items-center gap-1.5">
+        <i className={`ss ss-${current.code.toLowerCase()} ss-fw`} />
+        <span>当前系列：{current.name}</span>
+      </div>
+      {next && (
+        <>
+          <div className="w-px h-4 bg-[--border]" />
+          <div className="flex items-center gap-1.5">
+            <Calendar className="w-4 h-4" />
+            <span>下个系列：{next.name}（{formatDate(next.releaseDate)}）</span>
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
+function ServerStatusInfo({ className = "" }: { className?: string }) {
+  const { data: status, isLoading, error, fetchStatus } = useStatusStore();
+
+  useEffect(() => {
+    fetchStatus();
+    const interval = setInterval(() => fetchStatus(), 60000); // 每分钟更新一次
+    return () => clearInterval(interval);
+  }, [fetchStatus]);
+
+  if (isLoading) {
+    return (
+      <div className={`flex items-center gap-1.5 px-3 py-1.5 text-sm ${className}`}>
+        <Activity className="w-4 h-4 animate-pulse text-[--muted-foreground]" />
+        <span className="text-[--muted-foreground] md:inline hidden">MTGA服务：</span>
+        <span className="text-[--muted-foreground]">检查中...</span>
+      </div>
+    );
+  }
+
+  if (error || !status) return null;
+
+  const statusColors: Record<StatusData['status']['indicator'], string> = {
+    none: 'text-emerald-500',
+    minor: 'text-yellow-500',
+    major: 'text-orange-500',
+    critical: 'text-red-500'
+  };
+
+  const statusText: Record<StatusData['status']['indicator'], string> = {
+    none: '正常',
+    minor: '轻微问题',
+    major: '重要问题',
+    critical: '严重问题'
+  };
+
+  const statusAnimation = status.status.indicator !== 'none' ? 'animate-pulse' : '';
+
+  return (
+    <Link 
+      href="/status"
+      className={`flex items-center gap-1.5 px-3 py-1.5 text-sm hover:opacity-80 transition-opacity ${className}`}
+    >
+      <Activity className={`w-4 h-4 ${statusColors[status.status.indicator]} ${statusAnimation}`} />
+      <span className="text-[--muted-foreground] md:inline hidden">MTGA服务：</span>
+      <span className={statusColors[status.status.indicator]}>
+        {statusText[status.status.indicator]}
+      </span>
+    </Link>
+  );
 }
 
 const menuItems: MenuItem[] = [
@@ -26,6 +137,7 @@ const menuItems: MenuItem[] = [
     children: [
       { label: "MTGA活动日历", href: "/calendar" },
       { label: "标准轮替日程", href: "/rotation" },
+      { label: "MTGA服务状态", href: "/status" },
     ]
   },
   {
@@ -33,13 +145,14 @@ const menuItems: MenuItem[] = [
     children: [
       { label: "MTGA汉化MOD", href: "/mod" },
       { label: "Scryfall汉化脚本", href: "/script" },
+      { label: "抽卡概率计算器", href: "/hypergeometric" },
     ]
   },
   {
     label: "关于",
     href: "/about"
   }
-]
+];
 
 function MobileMenuItem({ item, onClose }: { item: MenuItem; onClose: () => void }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -159,17 +272,23 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-[--border] bg-[--background]">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        <div className="flex items-center">
-          <Link href="/" className="mr-6 font-semibold text-[--foreground]">
-            十七地
-          </Link>
+        <div className="flex items-center gap-6">
+          <div className="flex items-center gap-2 md:gap-3 min-w-0">
+            <Link href="/" className="font-semibold text-[--foreground] whitespace-nowrap">
+              十七地
+            </Link>
+            <ServerStatusInfo className="md:hidden" />
+          </div>
           <nav className="hidden md:flex items-center space-x-6 text-sm">
             {menuItems.map((item, index) => (
               <DesktopDropdownMenu key={index} item={item} />
             ))}
           </nav>
         </div>
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center gap-4">
+          <SetInfo className="hidden md:flex" />
+          <div className="w-px h-4 bg-[--border] hidden md:block" />
+          <ServerStatusInfo className="hidden md:flex" />
           <a
             href="https://space.bilibili.com/271023"
             target="_blank"
@@ -202,10 +321,15 @@ export function Header() {
 
       {isMobileMenuOpen && (
         <div className="fixed inset-0 top-16 bg-[--background] z-40 md:hidden">
-          <nav className="container mx-auto px-4 py-4 space-y-1">
-            {menuItems.map((item, index) => (
-              <MobileMenuItem key={index} item={item} onClose={() => setIsMobileMenuOpen(false)} />
-            ))}
+          <nav className="container mx-auto px-4 py-4">
+            <div className="space-y-4 mb-6">
+              <SetInfo />
+            </div>
+            <div className="space-y-1">
+              {menuItems.map((item, index) => (
+                <MobileMenuItem key={index} item={item} onClose={() => setIsMobileMenuOpen(false)} />
+              ))}
+            </div>
           </nav>
         </div>
       )}

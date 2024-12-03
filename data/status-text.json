@@ -1,0 +1,22 @@
+{
+  "componentNames": {
+    "Platform": "平台",
+    "Game": "游戏",
+    "Logins": "登录",
+    "Matches": "对局",
+    "Social": "社交",
+    "Store": "商店",
+    "Windows": "Windows",
+    "macOS": "macOS",
+    "Android": "Android",
+    "iOS": "iOS"
+  },
+  "componentDescriptions": {
+    "Platform": "各平台客户端状态",
+    "Game": "游戏服务状态",
+    "Logins": "登录和认证服务状态",
+    "Matches": "对局和活动服务状态",
+    "Social": "社交功能状态",
+    "Store": "商店和兑换码服务状态"
+  }
+} 
