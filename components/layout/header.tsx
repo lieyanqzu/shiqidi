@@ -97,7 +97,8 @@ function ServerStatusInfo({ className = "" }: { className?: string }) {
     none: 'text-emerald-500',
     minor: 'text-yellow-500',
     major: 'text-orange-500',
-    critical: 'text-red-500'
+    critical: 'text-red-500',
+    maintenance: 'text-blue-500'
   };
 
   const statusText = {
