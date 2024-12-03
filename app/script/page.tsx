@@ -2,6 +2,12 @@
 
 import { useState, useEffect } from "react"
 import Image from 'next/image'
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: '十七地 - Scryfall汉化脚本',
+  description: '为Scryfall卡牌数据库添加中文翻译支持',
+};
 
 export default function ScriptPage() {
   const screenshots = [

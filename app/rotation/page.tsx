@@ -2,8 +2,8 @@ import { Metadata } from 'next';
 import rotationData from '@/data/rotation.json';
 
 export const metadata: Metadata = {
-  title: '标准轮替 - 十七地',
-  description: '万智牌：竞技场标准赛制轮替日程，包括各系列的进入和退出时间。',
+  title: '十七地 - 标准轮替日程',
+  description: '了解标准赛制的系列轮替时间表，掌握当前可用系列和即将轮替的系列',
 };
 
 interface Set {

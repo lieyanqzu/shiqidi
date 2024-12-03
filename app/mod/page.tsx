@@ -1,6 +1,12 @@
 'use client'
 
 import { useState } from "react"
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: '十七地 - MTGA汉化MOD',
+  description: '下载并安装MTGA游戏界面汉化MOD',
+};
 
 export default function ModPage() {
   const [downloading, setDownloading] = useState(false)

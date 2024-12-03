@@ -4,7 +4,7 @@ export interface CalendarMetadata {
 }
 
 export interface Event {
-  type: 'midweek_magic' | 'quick_draft' | 'other' | 'premier_play' | 'arena_open' | 'arena_championship';
+  type: 'midweek_magic' | 'premier_draft' | 'quick_draft' | 'other' | 'premier_play' | 'arena_open' | 'arena_championship';
   title: string;
   startTime: Date;
   endTime: Date;
@@ -47,7 +47,21 @@ export const events: Event[] = [
     endTime: new Date('2024-12-26T14:00:00-08:00'),
     format: '探险',
   },
-
+  // 竞技轮抽
+  {
+    type: 'premier_draft',
+    title: '万智牌：基石构筑',
+    startTime: new Date('2024-11-12T08:00:00-08:00'),
+    endTime: new Date('2025-02-11T08:00:00-08:00'),
+    format: '竞技轮抽',
+  },
+  {
+    type: 'premier_draft',
+    title: '先驱大师',
+    startTime: new Date('2024-12-10T08:00:00-08:00'),
+    endTime: new Date('2025-02-11T08:00:00-08:00'),
+    format: '竞技轮抽',
+  },
   // 快速轮抽
   {
     type: 'quick_draft',
