@@ -68,9 +68,14 @@ export function ClientStatusContent() {
       {/* 总体状态 */}
       <div className="bg-[--card] rounded-lg p-6 mb-8">
         <div className="flex items-center gap-3 text-lg font-medium mb-2">
-          <StatusIcon status={data.status.indicator === 'none' ? 'operational' : 'major_outage'} />
+          <StatusIcon status={data.status.indicator === 'none' ? 'operational' : data.status.indicator === 'maintenance' ? 'maintenance' : 'major_outage'} />
           <span>
-            {data.status.indicator === 'none' ? '所有服务正常运行' : '部分服务出现问题'}
+            {data.status.indicator === 'none' 
+              ? '所有服务正常运行' 
+              : data.status.indicator === 'maintenance'
+              ? '服务正在维护中'
+              : '部分服务出现问题'
+            }
           </span>
         </div>
         {data.status.indicator !== 'none' && (

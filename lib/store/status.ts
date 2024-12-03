@@ -25,7 +25,7 @@ export interface ScheduledMaintenance {
 
 export interface StatusData {
   status: {
-    indicator: 'none' | 'minor' | 'major' | 'critical';
+    indicator: 'none' | 'minor' | 'major' | 'critical' | 'maintenance';
     description: string;
   };
   components: Component[];
@@ -56,28 +56,6 @@ export const useStatusStore = create<StatusStore>((set, get) => ({
         store.lastUpdated && 
         now - store.lastUpdated < 60000) {
       return;
-    }
-
-    // 测试模式：通过 URL 参数模拟不同状态
-    if (typeof window !== 'undefined') {
-      const urlParams = new URLSearchParams(window.location.search);
-      const mockStatus = urlParams.get('mockStatus');
-      if (mockStatus) {
-        set({
-          data: {
-            status: {
-              indicator: mockStatus as 'none' | 'minor' | 'major' | 'critical',
-              description: "模拟状态"
-            },
-            components: [],
-            scheduled_maintenances: []
-          },
-          isLoading: false,
-          error: null,
-          lastUpdated: now
-        });
-        return;
-      }
     }
 
     set({ isLoading: true });
