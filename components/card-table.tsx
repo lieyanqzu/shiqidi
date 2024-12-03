@@ -71,6 +71,7 @@ export function CardTable({ data, columns, loading = false, expansion = '' }: Ca
     minWidth: getColumnMinWidth(column.accessorKey),
     width: 'auto',
     align: column.accessorKey === 'name' ? 'left' : 'center',
+    showSorterTooltip: false,
     sorter: (a: CardData, b: CardData) => {
       if (column.accessorKey === "color") {
         return String(a.color).length - String(b.color).length;
@@ -90,6 +91,7 @@ export function CardTable({ data, columns, loading = false, expansion = '' }: Ca
       return String(a[column.accessorKey]).localeCompare(String(b[column.accessorKey]));
     },
     defaultSortOrder: column.accessorKey === 'name' ? 'ascend' : undefined,
+    sortDirections: ['ascend', 'descend', 'ascend'],
     render: (value, record) => {
       if (column.accessorKey === "name") {
         return (
