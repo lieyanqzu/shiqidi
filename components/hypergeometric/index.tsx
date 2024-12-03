@@ -118,7 +118,7 @@ export function HypergeometricCalculator() {
             <div className="flex items-center justify-between mb-1">
               <div>
                 <Label className="text-base font-medium">牌库大小</Label>
-                <div className="text-xs text-[--muted-foreground] mt-0.5">
+                <div className="text-xs text-gray-500 mt-0.5">
                   你的牌库中的总牌数
                 </div>
               </div>
@@ -151,7 +151,7 @@ export function HypergeometricCalculator() {
             <div className="flex items-center justify-between mb-1">
               <div>
                 <Label className="text-base font-medium">抽牌数量</Label>
-                <div className="text-xs text-[--muted-foreground] mt-0.5">
+                <div className="text-xs text-gray-500 mt-0.5">
                   要抽的牌数，例如起手牌数
                 </div>
               </div>
@@ -184,7 +184,7 @@ export function HypergeometricCalculator() {
             <div className="flex items-center justify-between mb-1">
               <div>
                 <Label className="text-base font-medium">目标牌数量</Label>
-                <div className="text-xs text-[--muted-foreground] mt-0.5">
+                <div className="text-xs text-gray-500 mt-0.5">
                   牌库中你想要找的牌的数量
                 </div>
               </div>
@@ -217,7 +217,7 @@ export function HypergeometricCalculator() {
             <div className="flex items-center justify-between mb-1">
               <div>
                 <Label className="text-base font-medium">期望抽到数量</Label>
-                <div className="text-xs text-[--muted-foreground] mt-0.5">
+                <div className="text-xs text-gray-500 mt-0.5">
                   你想要抽到多少张目标牌
                 </div>
               </div>
@@ -265,7 +265,7 @@ export function HypergeometricCalculator() {
                 抽到 {values.successesInSample} 张或更多目标牌的概率
               </div>
               <div className="text-3xl font-bold text-[--primary]">
-                {(probabilities.orMore * 100).toFixed(1)}%
+                {(probabilities.orMore * 100).toPrecision(3)}%
               </div>
             </div>
 
@@ -274,7 +274,7 @@ export function HypergeometricCalculator() {
                 抽到恰好 {values.successesInSample} 张目标牌的概率
               </div>
               <div className="text-3xl font-bold text-[--primary]">
-                {(probabilities.exact * 100).toFixed(1)}%
+                {(probabilities.exact * 100).toPrecision(3)}%
               </div>
             </div>
 
@@ -283,7 +283,7 @@ export function HypergeometricCalculator() {
                 抽到 {values.successesInSample} 张或更少目标牌的概率
               </div>
               <div className="text-3xl font-bold text-[--primary]">
-                {(probabilities.orLess * 100).toFixed(1)}%
+                {(probabilities.orLess * 100).toPrecision(3)}%
               </div>
             </div>
 
@@ -292,7 +292,7 @@ export function HypergeometricCalculator() {
                 一张目标牌都抽不到的概率
               </div>
               <div className="text-3xl font-bold text-[--primary]">
-                {(probabilities.zero * 100).toFixed(1)}%
+                {(probabilities.zero * 100).toPrecision(3)}%
               </div>
             </div>
           </div>

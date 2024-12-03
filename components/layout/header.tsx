@@ -146,6 +146,7 @@ const menuItems: MenuItem[] = [
       { label: "MTGA汉化MOD", href: "/mod" },
       { label: "Scryfall汉化脚本", href: "/script" },
       { label: "抽卡概率计算器", href: "/hypergeometric" },
+      { label: "精研通行证计算器", href: "/mastery" },
     ]
   },
   {

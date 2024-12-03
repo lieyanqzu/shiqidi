@@ -9,6 +9,11 @@
         "name": "先驱大师",
         "code": "PIO",
         "releaseDate": "2024-12-10"
-      }
+    },
+    {
+        "name": "乙太漂移",
+        "code": "DFT",
+        "releaseDate": "2025-2-11"
+    }
   ]
 } 
