@@ -5,12 +5,12 @@ const nextConfig: NextConfig = {
   env: {
     NEXT_PUBLIC_ICP_NUMBER: process.env.ICP_NUMBER,
   },
-  // eslint: {
-  //   ignoreDuringBuilds: true,
-  // },
-  // typescript: {
-  //   ignoreBuildErrors: true,
-  // },
+  eslint: {
+    ignoreDuringBuilds: process.env.APP_ENV === 'development',
+  },
+  typescript: {
+    ignoreBuildErrors: process.env.APP_ENV === 'development',
+  },
 };
 
 export default nextConfig;
