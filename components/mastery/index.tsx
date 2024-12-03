@@ -259,7 +259,7 @@ export function MasteryCalculator() {
               <div className="p-4 rounded-lg bg-[--accent]/50">
                 <SliderField
                   label="每日任务数"
-                  description={`你预计每天能完成多少个每日任务？（${getLocalRefreshTimeString()} 刷新）`}
+                  description={`你预计一共能完成多少个每日任务？（${getLocalRefreshTimeString()} 刷新）`}
                   value={values.dailyQuestsLeft}
                   onChange={(value) => {
                     const newValues = {

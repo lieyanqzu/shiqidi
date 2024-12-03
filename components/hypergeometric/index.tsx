@@ -117,7 +117,7 @@ export function HypergeometricCalculator() {
           <div className="space-y-1.5">
             <div className="flex items-center justify-between mb-1">
               <div>
-                <Label className="text-base font-medium">牌库大小</Label>
+                <Label className="text-base font-medium">牌库总数</Label>
                 <div className="text-xs text-gray-500 mt-0.5">
                   你的牌库中的总牌数
                 </div>
