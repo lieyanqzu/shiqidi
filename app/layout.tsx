@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-CN" suppressHydrationWarning>
-      <head>
+      <body className="min-h-screen bg-[--background] font-sans">
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -31,8 +31,6 @@ export default function RootLayout({
             `,
           }}
         />
-      </head>
-      <body className="min-h-screen bg-[--background] font-sans">
         <ConfigProvider
           theme={{
             algorithm: theme.defaultAlgorithm,
