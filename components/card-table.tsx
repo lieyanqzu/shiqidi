@@ -6,19 +6,19 @@ import { SettingOutlined } from '@ant-design/icons';
 import type { ColumnsType } from "antd/es/table";
 import { CardNameCell } from "@/components/card-name-cell";
 import { StatCell } from "@/components/stat-cell";
-import type { Stats } from "@/lib/stats";
 import { ManaSymbols } from "@/components/mana-symbols";
 import { calculateStats } from "@/lib/stats";
+import type { CardData } from "@/types/card";
 
 export interface Column {
-  accessorKey: string;
+  accessorKey: keyof CardData;
   header: string;
   title?: string;
   tooltip?: string;
 }
 
 interface CardTableProps {
-  data: any[];
+  data: CardData[];
   columns: Column[];
   loading?: boolean;
   expansion: string;
@@ -29,14 +29,14 @@ export function CardTable({ data, columns, loading = false, expansion = '' }: Ca
   const [currentPage, setCurrentPage] = useState(1);
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 0);
 
-  const mobileDefaultColumns = [
+  const mobileDefaultColumns: Array<keyof CardData> = [
     'name',
     'color',
     'rarity',
     'drawn_improvement_win_rate'
   ];
 
-  const desktopDefaultColumns = [
+  const desktopDefaultColumns: Array<keyof CardData> = [
     'name',
     'color',
     'rarity',
@@ -47,7 +47,7 @@ export function CardTable({ data, columns, loading = false, expansion = '' }: Ca
 
   const defaultVisibleColumns = windowWidth < 768 ? mobileDefaultColumns : desktopDefaultColumns;
   
-  const [visibleColumns, setVisibleColumns] = useState<string[]>(defaultVisibleColumns);
+  const [visibleColumns, setVisibleColumns] = useState<Array<keyof CardData>>(defaultVisibleColumns);
 
   useEffect(() => {
     const handleResize = () => {
@@ -55,34 +55,36 @@ export function CardTable({ data, columns, loading = false, expansion = '' }: Ca
       setWindowWidth(width);
       if (width < 768) {
         if (visibleColumns.length > mobileDefaultColumns.length) {
-          setVisibleColumns(mobileDefaultColumns);
+          setVisibleColumns([...mobileDefaultColumns]);
         }
       }
     };
 
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, [visibleColumns]);
+  }, [visibleColumns, mobileDefaultColumns]);
 
-  const antColumns: ColumnsType<any> = columns.map(column => ({
+  const antColumns: ColumnsType<CardData> = columns.map(column => ({
     title: column.title || column.header,
     dataIndex: column.accessorKey,
     key: column.accessorKey,
     minWidth: getColumnMinWidth(column.accessorKey),
     width: 'auto',
     align: column.accessorKey === 'name' ? 'left' : 'center',
-    sorter: (a: any, b: any) => {
+    sorter: (a: CardData, b: CardData) => {
       if (column.accessorKey === "color") {
         return String(a.color).length - String(b.color).length;
       }
       
       if (column.accessorKey === "rarity") {
-        const rarityOrder = { mythic: 4, rare: 3, uncommon: 2, common: 1 };
-        return (rarityOrder[a.rarity.toLowerCase()] || 0) - (rarityOrder[b.rarity.toLowerCase()] || 0);
+        const rarityOrder: Record<string, number> = { mythic: 4, rare: 3, uncommon: 2, common: 1 };
+        const aRarity = (a.rarity?.toLowerCase() || '') as keyof typeof rarityOrder;
+        const bRarity = (b.rarity?.toLowerCase() || '') as keyof typeof rarityOrder;
+        return (rarityOrder[aRarity] || 0) - (rarityOrder[bRarity] || 0);
       }
       
       if (typeof a[column.accessorKey] === 'number' && typeof b[column.accessorKey] === 'number') {
-        return a[column.accessorKey] - b[column.accessorKey];
+        return (a[column.accessorKey] as number) - (b[column.accessorKey] as number);
       }
       
       return String(a[column.accessorKey]).localeCompare(String(b[column.accessorKey]));
@@ -188,7 +190,7 @@ export function CardTable({ data, columns, loading = false, expansion = '' }: Ca
           type="link" 
           size="small"
           onClick={() => setVisibleColumns(
-            windowWidth < 768 ? mobileDefaultColumns : desktopDefaultColumns
+            [...(windowWidth < 768 ? mobileDefaultColumns : desktopDefaultColumns)]
           )}
         >
           重置
@@ -203,7 +205,9 @@ export function CardTable({ data, columns, loading = false, expansion = '' }: Ca
           if (checkedValues.length === 0) {
             return;
           }
-          setVisibleColumns(checkedValues as string[]);
+          setVisibleColumns(checkedValues.filter((value): value is keyof CardData => 
+            typeof value === 'string' && value in data[0]
+          ));
         }}
       >
         <Space direction="vertical">
@@ -225,7 +229,7 @@ export function CardTable({ data, columns, loading = false, expansion = '' }: Ca
   );
 
   const visibleAntColumns = antColumns.filter(col => 
-    visibleColumns.includes(col.key as string)
+    visibleColumns.includes(col.key as keyof CardData)
   );
 
   return (
