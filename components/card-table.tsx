@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Table, Button, Checkbox, Popover, Space } from "antd";
 import { SettingOutlined } from '@ant-design/icons';
 import type { ColumnsType } from "antd/es/table";
@@ -9,6 +9,7 @@ import { StatCell } from "@/components/stat-cell";
 import { ManaSymbols } from "@/components/mana-symbols";
 import { calculateStats } from "@/lib/stats";
 import type { CardData } from "@/types/card";
+import { CardInfoFilters } from "@/components/card-info-filters";
 
 export interface Column {
   accessorKey: keyof CardData;
@@ -22,9 +23,28 @@ interface CardTableProps {
   columns: Column[];
   loading?: boolean;
   expansion: string;
+  searchText: string;
+  selectedColor: string;
+  selectedRarity: string;
+  chineseCards: ChineseCardMap;
+  onColorFilter: (color: string) => void;
+  onRarityFilter: (rarity: string) => void;
+  onSearchFilter: (search: string) => void;
 }
 
-export function CardTable({ data, columns, loading = false, expansion = '' }: CardTableProps) {
+export function CardTable({ 
+  data, 
+  columns, 
+  loading = false, 
+  expansion = '',
+  searchText,
+  selectedColor,
+  selectedRarity,
+  chineseCards,
+  onColorFilter,
+  onRarityFilter,
+  onSearchFilter,
+}: CardTableProps) {
   const [pageSize, setPageSize] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 0);
@@ -179,10 +199,50 @@ export function CardTable({ data, columns, loading = false, expansion = '' }: Ca
     }
   }
 
-  const dataWithKeys = data.map((item, index) => ({
-    ...item,
-    key: item.name || `row-${index}`,
-  }));
+  const filteredData = useMemo(() => {
+    let result = data;
+
+    // 搜索筛选
+    if (searchText) {
+      const searchLower = searchText.toLowerCase();
+      result = result.filter(card => {
+        // 英文名匹配
+        const englishMatch = card.name.toLowerCase().includes(searchLower);
+        // 中文名匹配
+        const chineseCard = chineseCards[card.name];
+        const chineseName = chineseCard?.zhs_name || chineseCard?.officialName || chineseCard?.translatedName;
+        const chineseMatch = chineseName?.toLowerCase().includes(searchLower);
+        
+        return englishMatch || chineseMatch;
+      });
+    }
+
+    // 颜色筛选
+    if (selectedColor) {
+      result = result.filter(card => {
+        if (selectedColor === "Multicolor") {
+          return card.color.length > 1;
+        }
+        if (selectedColor === "Colorless") {
+          return card.color === "";
+        }
+        return card.color === selectedColor;
+      });
+    }
+
+    // 稀有度筛选
+    if (selectedRarity) {
+      result = result.filter(card => 
+        card.rarity.toLowerCase() === selectedRarity
+      );
+    }
+
+    return result;
+  }, [data, searchText, selectedColor, selectedRarity, chineseCards]);
+
+  const visibleAntColumns = antColumns.filter(col => 
+    visibleColumns.includes(col.key as keyof CardData)
+  );
 
   const ColumnSelector = () => (
     <div className="p-4 min-w-[200px]">
@@ -230,13 +290,22 @@ export function CardTable({ data, columns, loading = false, expansion = '' }: Ca
     </div>
   );
 
-  const visibleAntColumns = antColumns.filter(col => 
-    visibleColumns.includes(col.key as keyof CardData)
-  );
+  // 当筛选条件改变时重置页码
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchText, selectedColor, selectedRarity]);
 
   return (
     <div className="card w-full">
-      <div className="flex justify-end p-2 border-b border-[--table-border]">
+      <div className="flex justify-between p-2 border-b border-[--table-border]">
+        <CardInfoFilters
+          onColorFilter={onColorFilter}
+          selectedColor={selectedColor}
+          onRarityFilter={onRarityFilter}
+          selectedRarity={selectedRarity}
+          onSearchFilter={onSearchFilter}
+          searchText={searchText}
+        />
         <Popover 
           content={<ColumnSelector />} 
           trigger="click"
@@ -253,7 +322,10 @@ export function CardTable({ data, columns, loading = false, expansion = '' }: Ca
       </div>
       <Table
         columns={visibleAntColumns}
-        dataSource={dataWithKeys}
+        dataSource={filteredData.map((item, index) => ({
+          ...item,
+          key: item.name || `row-${index}`,
+        }))}
         loading={loading}
         scroll={{ x: 'max-content' }}
         sticky={{
@@ -265,7 +337,7 @@ export function CardTable({ data, columns, loading = false, expansion = '' }: Ca
         pagination={{
           current: currentPage,
           pageSize: pageSize,
-          total: data.length,
+          total: filteredData.length,
           showSizeChanger: true,
           showQuickJumper: true,
           pageSizeOptions: ['10', '20', '50', '100'],

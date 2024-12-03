@@ -46,6 +46,12 @@ export interface ChineseCardData {
   layout: string;            // 版面布局
 }
 
+export interface ChineseCard {
+  zhs_name?: string;
+  officialName?: string;
+  translatedName?: string;
+}
+
 export interface ChineseCardMap {
-  [key: string]: ChineseCardData;  // 以英文名为key的映射
+  [key: string]: ChineseCard;
 } 

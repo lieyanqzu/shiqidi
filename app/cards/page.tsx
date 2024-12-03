@@ -141,47 +141,6 @@ export default function CardsPage() {
     },
   ], []);
 
-  const filteredCards = useMemo(() => {
-    let result = cards;
-
-    // 搜索筛选
-    if (searchText) {
-      const searchLower = searchText.toLowerCase();
-      result = result.filter(card => {
-        // 英文名匹配
-        const englishMatch = card.name.toLowerCase().includes(searchLower);
-        // 中文名匹配
-        const chineseCard = chineseCards[card.name];
-        const chineseName = chineseCard?.zhs_name || chineseCard?.officialName || chineseCard?.translatedName;
-        const chineseMatch = chineseName?.toLowerCase().includes(searchLower);
-        
-        return englishMatch || chineseMatch;
-      });
-    }
-
-    // 颜色筛选
-    if (selectedColor) {
-      result = result.filter(card => {
-        if (selectedColor === "Multicolor") {
-          return card.color.length > 1;
-        }
-        if (selectedColor === "Colorless") {
-          return card.color === "";
-        }
-        return card.color === selectedColor;
-      });
-    }
-
-    // 稀有度筛选
-    if (selectedRarity) {
-      result = result.filter(card => 
-        card.rarity.toLowerCase() === selectedRarity
-      );
-    }
-
-    return result;
-  }, [cards, searchText, selectedColor, selectedRarity, chineseCards]);
-
   // 加载17lands数据
   useEffect(() => {
     async function loadCardData() {
@@ -238,6 +197,18 @@ export default function CardsPage() {
     loadChineseData();
   }, [params.expansion, setChineseCards, spgLoaded]);
 
+  const handleColorFilter = (color: string) => {
+    setSelectedColor(color);
+  };
+
+  const handleRarityFilter = (rarity: string) => {
+    setSelectedRarity(rarity);
+  };
+
+  const handleSearchFilter = (search: string) => {
+    setSearchText(search);
+  };
+
   return (
     <div className="py-8">
       <div className="container mx-auto px-4 mb-8">
@@ -262,20 +233,27 @@ export default function CardsPage() {
         <CardFilters 
           params={params} 
           onParamsChange={setParams}
-          onColorFilter={setSelectedColor}
+          onColorFilter={handleColorFilter}
           selectedColor={selectedColor}
-          onRarityFilter={setSelectedRarity}
+          onRarityFilter={handleRarityFilter}
           selectedRarity={selectedRarity}
-          onSearchFilter={setSearchText}
+          onSearchFilter={handleSearchFilter}
           searchText={searchText}
         />
       </div>
       <div className="container mx-auto px-4">
         <CardTable 
-          data={filteredCards} 
+          data={cards}
           columns={columns}
           loading={isLoading}
           expansion={params.expansion}
+          searchText={searchText}
+          selectedColor={selectedColor}
+          selectedRarity={selectedRarity}
+          chineseCards={chineseCards}
+          onColorFilter={handleColorFilter}
+          onRarityFilter={handleRarityFilter}
+          onSearchFilter={handleSearchFilter}
         />
       </div>
       <BackToTop />
