@@ -7,12 +7,6 @@ import { SetSymbol } from "@/components/set-symbol";
 import { useCardStore } from "@/lib/store";
 import { fetchCardData, fetchChineseCardData } from "@/lib/api";
 import { BackToTop } from "@/components/back-to-top";
-import { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: '十七地 - 卡牌数据',
-  description: '查看各系列轮抽中卡牌的表现数据，包括胜率、选取率等详细统计',
-};
 
 export default function CardsPage() {
   const { 

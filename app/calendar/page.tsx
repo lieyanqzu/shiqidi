@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { EventCard } from '@/components/event-card';
+import { EventCard } from '@/components/calendar/event-card';
 import { events, calendarMetadata } from '@/data/events';
 import { ExternalLink } from 'lucide-react';
 

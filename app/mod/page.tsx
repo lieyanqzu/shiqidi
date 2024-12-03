@@ -1,7 +1,5 @@
-'use client'
-
-import { useState } from "react"
 import { Metadata } from 'next';
+import { ModDownloadButton } from '@/components/mod/mod-download-button';
 
 export const metadata: Metadata = {
   title: '十七地 - MTGA汉化MOD',
@@ -9,27 +7,6 @@ export const metadata: Metadata = {
 };
 
 export default function ModPage() {
-  const [downloading, setDownloading] = useState(false)
-
-  const handleDownload = async () => {
-    try {
-      setDownloading(true)
-      
-      const fileUrl = '/mods/mod.zip'
-      
-      const link = document.createElement('a')
-      link.href = fileUrl
-      link.download = 'mod.zip'
-      document.body.appendChild(link)
-      link.click()
-      document.body.removeChild(link)
-    } catch (error) {
-      console.error('下载失败:', error)
-    } finally {
-      setDownloading(false)
-    }
-  }
-
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="max-w-4xl mx-auto">
@@ -65,13 +42,7 @@ export default function ModPage() {
               <div>
                 <h3 className="font-medium text-[--foreground]">汉化MOD更新器 v0.4</h3>
               </div>
-              <button 
-                onClick={handleDownload}
-                disabled={downloading}
-                className="px-4 py-2 rounded-md bg-[--primary] text-[--primary-foreground] hover:opacity-90 disabled:opacity-50 transition-opacity"
-              >
-                {downloading ? '准备下载...' : '下载更新器'}
-              </button>
+              <ModDownloadButton />
             </div>
 
             <div className="border-t border-[--border] pt-4">
