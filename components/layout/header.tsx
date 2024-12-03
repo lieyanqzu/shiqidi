@@ -100,12 +100,13 @@ function ServerStatusInfo({ className = "" }: { className?: string }) {
     critical: 'text-red-500'
   };
 
-  const statusText: Record<StatusData['status']['indicator'], string> = {
+  const statusText = {
     none: '正常',
     minor: '轻微问题',
     major: '重要问题',
-    critical: '严重问题'
-  };
+    critical: '严重问题',
+    maintenance: '维护中'
+  } as const;
 
   const statusAnimation = status.status.indicator !== 'none' ? 'animate-pulse' : '';
 
