@@ -233,12 +233,6 @@ export default function CardsPage() {
         <CardFilters 
           params={params} 
           onParamsChange={setParams}
-          onColorFilter={handleColorFilter}
-          selectedColor={selectedColor}
-          onRarityFilter={handleRarityFilter}
-          selectedRarity={selectedRarity}
-          onSearchFilter={handleSearchFilter}
-          searchText={searchText}
         />
       </div>
       <div className="container mx-auto px-4">

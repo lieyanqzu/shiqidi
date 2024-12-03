@@ -8,7 +8,7 @@ import { CardNameCell } from "@/components/card-name-cell";
 import { StatCell } from "@/components/stat-cell";
 import { ManaSymbols } from "@/components/mana-symbols";
 import { calculateStats } from "@/lib/stats";
-import type { CardData } from "@/types/card";
+import type { CardData, ChineseCardMap } from "@/types/card";
 import { CardInfoFilters } from "@/components/card-info-filters";
 
 export interface Column {
