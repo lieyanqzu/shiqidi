@@ -1,6 +1,6 @@
 'use client'
 
-import { format as formatDate, differenceInDays, isBefore, isAfter, differenceInHours, isToday } from 'date-fns';
+import { format as formatDate, differenceInDays, isBefore, isAfter, differenceInHours } from 'date-fns';
 import { zhCN } from 'date-fns/locale';
 import { Trophy, Swords, Scroll, Crown, Sparkles, Gamepad2 } from 'lucide-react';
 
@@ -133,8 +133,8 @@ export function EventCard({ title, startTime, endTime, format: eventFormat, desc
       );
     }
 
-    const startTimeStr = formatDate(startTime, isToday(startTime) ? 'HH:mm' : 'M月d日 HH:mm', { locale: zhCN });
-    const endTimeStr = formatDate(endTime, isToday(endTime) ? 'HH:mm' : 'M月d日 HH:mm', { locale: zhCN });
+    const startTimeStr = formatDate(startTime, 'M月d日 HH:mm', { locale: zhCN });
+    const endTimeStr = formatDate(endTime, 'M月d日 HH:mm', { locale: zhCN });
 
     return (
       <div className="text-sm text-[--muted-foreground] whitespace-nowrap bg-[--accent]/5 px-3 py-1 rounded-full">

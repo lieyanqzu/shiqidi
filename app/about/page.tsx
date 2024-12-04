@@ -41,6 +41,21 @@ export default function AboutPage() {
       url: "https://tailwindcss.com"
     },
     {
+      name: "Ant Design",
+      description: "企业级UI组件库，提供了丰富的交互组件",
+      url: "https://ant.design"
+    },
+    {
+      name: "@ant-design/icons",
+      description: "Ant Design的图标库",
+      url: "https://ant.design/components/icon"
+    },
+    {
+      name: "Radix UI",
+      description: "无样式的UI组件库，提供了基础的交互组件",
+      url: "https://www.radix-ui.com"
+    },
+    {
       name: "Zustand",
       description: "轻量级状态管理库",
       url: "https://github.com/pmndrs/zustand"
@@ -59,6 +74,21 @@ export default function AboutPage() {
       name: "Recharts",
       description: "基于React的图表库",
       url: "https://recharts.org"
+    },
+    {
+      name: "date-fns",
+      description: "现代JavaScript日期工具库",
+      url: "https://date-fns.org"
+    },
+    {
+      name: "Day.js",
+      description: "轻量级日期处理库",
+      url: "https://day.js.org"
+    },
+    {
+      name: "React DatePicker",
+      description: "灵活的日期选择器组件",
+      url: "https://reactdatepicker.com"
     },
     {
       name: "Lucide Icons",

@@ -21,7 +21,7 @@ export default function CalendarPage() {
     <div className="container mx-auto px-4 py-8">
       <div className="max-w-4xl mx-auto">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4 mb-6">
-          <h1 className="text-2xl font-bold">活动日历</h1>
+          <h1 className="text-2xl font-bold">MTGA 活动日历</h1>
           <div className="flex items-center gap-2 text-sm text-[--muted-foreground]">
             <span>更新于 {calendarMetadata.lastUpdated}</span>
             <span>·</span>

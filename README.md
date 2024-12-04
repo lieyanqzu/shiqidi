@@ -10,22 +10,31 @@
   - 赛制速度：了解各个系列限制赛的速度和先手胜率（跳转至17Lands）
 
 - **万智日程**
-  - MTGA活动日历：查看MTGA活动日程，包括周中万智牌、快速轮抽、资格赛等赛事安排
+  - MTGA活动日历：查看MTGA活动日程，包括周中万智牌、轮抽、资格赛等赛事安排
   - 标准轮替日程：了解标准赛制的系列轮替时间表，掌握当前可用系列和即将轮替的系列
+  - MTGA服务状态：查看MTGA的服务器状态、维护信息和各平台运行情况
 
 - **其他工具**
   - MTGA汉化MOD：下载并安装MTGA游戏界面汉化MOD
   - Scryfall汉化脚本：为Scryfall卡牌数据库添加中文翻译支持
+  - 抽卡概率计算器：计算万智牌抽卡概率，基于超几何分布
+  - 精研通行证计算器：计算精研通行证等级进度
 
 ## 技术栈
 
 - [Next.js](https://nextjs.org) - React框架，提供了服务端渲染、路由等功能
 - [React](https://react.dev) - 用于构建用户界面的JavaScript库
 - [Tailwind CSS](https://tailwindcss.com) - CSS框架，提供了现代化的样式系统
+- [Ant Design](https://ant.design) - 企业级UI组件库，提供了丰富的交互组件
+- [@ant-design/icons](https://ant.design/components/icon) - Ant Design的图标库
+- [Radix UI](https://www.radix-ui.com) - 无样式的UI组件库，提供了基础的交互组件
 - [Zustand](https://github.com/pmndrs/zustand) - 轻量级状态管理库
 - [React Query](https://tanstack.com/query) - 用于数据获取和缓存的库
 - [React Table](https://tanstack.com/table) - 用于构建强大的表格组件
 - [Recharts](https://recharts.org) - 基于React的图表库
+- [date-fns](https://date-fns.org) - 现代JavaScript日期工具库
+- [Day.js](https://day.js.org) - 轻量级日期处理库
+- [React DatePicker](https://reactdatepicker.com) - 灵活的日期选择器组件
 - [Lucide Icons](https://lucide.dev) - 图标库，提供了界面中使用的各种图标
 - [Keyrune](https://keyrune.andrewgioia.com) - 提供万智牌系列图标的字体库
 
@@ -33,6 +42,7 @@
 
 - [17Lands](https://www.17lands.com) - 提供轮抽数据分析的核心数据
 - [大学院废墟](https://www.sbwsz.com) - 提供万智牌的中文翻译数据
+- [What's in Standard](https://github.com/glacials/whatsinstandard) - 提供标准赛制轮替数据
 
 ## 开发
 

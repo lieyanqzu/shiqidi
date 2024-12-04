@@ -123,7 +123,7 @@ export const events: Event[] = [
   // 竞技场锦标赛
   {
     type: 'arena_championship',
-    title: '竞技场锦标赛 7',
+    title: '竞技场冠军赛 7',
     startTime: new Date('2024-12-14T00:00:00-08:00'),
     endTime: new Date('2024-12-15T23:59:59-08:00'),
     format: '标准',
