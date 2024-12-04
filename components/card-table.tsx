@@ -46,7 +46,7 @@ export function CardTable({
   onRarityFilter,
   onSearchFilter,
 }: CardTableProps) {
-  const [pageSize, setPageSize] = useState(10);
+  const [pageSize, setPageSize] = useState(1000);
   const [currentPage, setCurrentPage] = useState(1);
   const [windowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 0);
   const isMobile = windowWidth < 768;
@@ -356,7 +356,7 @@ export function CardTable({
           total: filteredData.length,
           showSizeChanger: true,
           showQuickJumper: true,
-          pageSizeOptions: ['10', '20', '50', '100'],
+          pageSizeOptions: ['10', '50', '100', '1000'],
           position: ['bottomCenter'],
           showTotal: (total) => `共 ${total} 张卡牌`,
           onChange: (page, size) => {
