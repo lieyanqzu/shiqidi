@@ -7,8 +7,8 @@ import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 
 export const metadata = {
-  title: "十七地 - MTG轮抽数据分析",
-  description: "Magic: The Gathering轮抽数据分析平台",
+  title: "十七地 - MTGA小助手",
+  description: "你的万智牌：竞技场坐牢小助手",
 };
 
 export default function RootLayout({

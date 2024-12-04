@@ -5,7 +5,7 @@ import { CardTable } from "@/components/card-table";
 import { CardFilters } from "@/components/card-filters";
 import { SetSymbol } from "@/components/set-symbol";
 import { useCardStore } from "@/lib/store";
-import { fetchCardData, fetchChineseCardData } from "@/lib/api";
+import { fetchCardData, fetchAllChineseCardData } from "@/lib/api";
 import { BackToTop } from "@/components/back-to-top";
 import type { Column } from "@/components/card-table";
 
@@ -26,8 +26,7 @@ export default function CardsPage() {
   const [selectedRarity, setSelectedRarity] = useState<string>("");
   const [searchText, setSearchText] = useState<string>("");
 
-  // 记录 SPG 数据是否已加载
-  const [spgLoaded, setSpgLoaded] = useState(false);
+
 
   // 定义表格列
   const columns: Column[] = useMemo(() => [
@@ -141,62 +140,35 @@ export default function CardsPage() {
     },
   ], []);
 
-  // 加载17lands数据
+  // 加载卡牌数据
   useEffect(() => {
-    async function loadCardData() {
+    async function loadData() {
       try {
         setIsLoading(true);
+        // 加载17lands数据
         const data = await fetchCardData(params);
         setCards(data);
+        setIsLoading(false);
+
+        // 后台加载中文数据，支持增量更新
+        fetchAllChineseCardData(
+          params.expansion, 
+          data,
+          (results) => {
+            // 每次有新的中文数据就更新
+            setChineseCards(results);
+          }
+        ).catch(error => {
+          console.error('Failed to load Chinese card data:', error);
+        });
       } catch (error) {
         setError(error as Error);
-      } finally {
         setIsLoading(false);
       }
     }
 
-    loadCardData();
-  }, [params, setCards, setIsLoading, setError]);
-
-  // 加载中文数据,包括当前系列和 SPG
-  useEffect(() => {
-    async function loadChineseData() {
-      try {
-        // 获取当前系列的中文数据
-        const currentSetData = await fetchChineseCardData(params.expansion);
-        
-        // 如果是 YXXX 系列，也获取 XXX 系列的数据
-        let originalSetData = { results: [] };
-        if (params.expansion.startsWith('Y')) {
-          const originalSetCode = params.expansion.replace(/^Y\d{0,2}/, '');
-          originalSetData = await fetchChineseCardData(originalSetCode);
-        }
-        
-        // 如果 SPG 数据还没加载过，就加载它
-        let spgData = { results: [] };
-        if (!spgLoaded) {
-          spgData = await fetchChineseCardData('SPG');
-          setSpgLoaded(true);
-        }
-
-        // 合并所有数据
-        const allResults = [
-          ...(currentSetData.results || []),
-          ...(originalSetData.results || []),
-          ...(spgData.results || [])
-        ];
-
-        if (allResults.length > 0) {
-          setChineseCards(allResults);
-        }
-      } catch (error) {
-        console.error('Failed to load Chinese card data:', error);
-      }
-    }
-
-    loadChineseData();
-  }, [params.expansion, setChineseCards, spgLoaded]);
-
+    loadData();
+  }, [params, setCards, setChineseCards, setIsLoading, setError]);
   const handleColorFilter = (color: string) => {
     setSelectedColor(color);
   };
@@ -208,7 +180,6 @@ export default function CardsPage() {
   const handleSearchFilter = (search: string) => {
     setSearchText(search);
   };
-
   return (
     <div className="py-8">
       <div className="container mx-auto px-4 mb-8">

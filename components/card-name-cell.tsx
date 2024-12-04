@@ -20,9 +20,9 @@ export function CardNameCell({ card, expansion = '' }: CardNameCellProps) {
   const [tooltipVisible, setTooltipVisible] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
-  const cardImageUrl = chineseCard?.scryfallId 
-    ? `https://cards.scryfall.io/large/front/${chineseCard.scryfallId.slice(0, 1)}/${chineseCard.scryfallId.slice(1, 2)}/${chineseCard.scryfallId}.jpg`
-    : null;
+  const cardImageUrl = card.url || (chineseCard?.scryfallId 
+    ? `https://cards.scryfall.io/normal/front/${chineseCard.scryfallId.slice(0, 1)}/${chineseCard.scryfallId.slice(1, 2)}/${chineseCard.scryfallId}.jpg`
+    : null);
 
   // 在移动端，点击时阻止事件冒泡
   useEffect(() => {

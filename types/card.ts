@@ -18,6 +18,7 @@ export interface CardData {
   never_drawn_game_count?: number;            // 未抽到数量
   never_drawn_win_rate?: number;       // 未抽到胜率
   drawn_improvement_win_rate?: number; // 抽到改善胜率
+  url?: string;                       // 卡牌链接
 }
 
 export interface ChineseCardData {

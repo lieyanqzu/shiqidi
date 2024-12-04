@@ -3,7 +3,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: string;
 }
 
-export function Input({ label, error, className, ...props }: InputProps) {
+export function Input({ label, error, className, readOnly, ...props }: InputProps) {
   return (
     <div className="space-y-2">
       {label && (
@@ -17,8 +17,10 @@ export function Input({ label, error, className, ...props }: InputProps) {
           placeholder:text-[--component-foreground-muted]
           focus:border-[--primary] focus:outline-none focus:ring-1 focus:ring-[--primary]
           disabled:cursor-not-allowed disabled:opacity-50
+          ${readOnly ? 'focus:ring-0 focus:border-[--border] cursor-default' : ''}
           ${className}
         `}
+        readOnly={readOnly}
         {...props}
       />
       {error && (

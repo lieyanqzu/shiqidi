@@ -1,0 +1,19 @@
+{
+  "sets": [
+    {
+      "name": "万智牌：基石构筑",
+      "code": "FDN",
+      "releaseDate": "2024-11-12"
+    },
+    {
+        "name": "先驱大师",
+        "code": "PIO",
+        "releaseDate": "2024-12-10"
+    },
+    {
+        "name": "乙太漂移",
+        "code": "DFT",
+        "releaseDate": "2025-2-11"
+    }
+  ]
+} 

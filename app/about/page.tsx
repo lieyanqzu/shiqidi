@@ -1,3 +1,10 @@
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: '十七地 - 关于',
+  description: '十七地是一个专注于万智牌：竞技场的工具平台，旨在帮助玩家提升游玩体验。',
+};
+
 export default function AboutPage() {
   const resources = [
     {
