@@ -3,13 +3,10 @@
 import { Select } from "@/components/ui/select";
 import { DatePicker } from "antd";
 import type { CardDataParams } from "@/lib/api";
-import dayjs from "dayjs";
 import zhCN from 'antd/locale/zh_CN';
 import { ConfigProvider } from 'antd';
-import 'dayjs/locale/zh-cn';
-
-// 设置 dayjs 的语言为中文
-dayjs.locale('zh-cn');
+import type { Dayjs } from 'dayjs';
+import dayjs from 'dayjs';
 
 // 系列选项
 const sets = [
@@ -153,7 +150,7 @@ export function CardFilters({
             <DatePicker
               placeholder="开始日期"
               value={startDate ? dayjs(startDate) : null}
-              onChange={(date) => 
+              onChange={(date: Dayjs | null) => 
                 onParamsChange({ 
                   start_date: date ? date.format('YYYY-MM-DD') : '' 
                 })
@@ -163,7 +160,7 @@ export function CardFilters({
             <DatePicker
               placeholder="结束日期"
               value={endDate ? dayjs(endDate) : null}
-              onChange={(date) => 
+              onChange={(date: Dayjs | null) => 
                 onParamsChange({ 
                   end_date: date ? date.format('YYYY-MM-DD') : '' 
                 })

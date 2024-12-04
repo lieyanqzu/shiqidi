@@ -10,6 +10,7 @@ import { ManaSymbols } from "@/components/mana-symbols";
 import { calculateStats } from "@/lib/stats";
 import type { CardData, ChineseCardMap } from "@/types/card";
 import { CardInfoFilters } from "@/components/card-info-filters";
+import { SortOrder } from "antd/es/table/interface";
 
 export interface Column {
   accessorKey: keyof CardData;
@@ -47,7 +48,7 @@ export function CardTable({
 }: CardTableProps) {
   const [pageSize, setPageSize] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
-  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 0);
+  const [windowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 0);
   const isMobile = windowWidth < 768;
 
   const mobileDefaultColumns: Array<keyof CardData> = [
@@ -86,6 +87,7 @@ export function CardTable({
   //   return () => window.removeEventListener('resize', handleResize);
   // }, [visibleColumns, mobileDefaultColumns]);
 
+
   const antColumns: ColumnsType<CardData> = columns.map(column => ({
     title: column.title || column.header,
     dataIndex: column.accessorKey,
@@ -94,35 +96,33 @@ export function CardTable({
     width: column.accessorKey === 'name' ? getNameColumnWidth() : 'auto',
     align: column.accessorKey === 'name' ? 'center' : 'center',
     showSorterTooltip: false,
-    sorter: {
-      compare: (a: CardData, b: CardData, sortOrder: 'ascend' | 'descend' | null) => {
-        const aValue = a[column.accessorKey];
-        const bValue = b[column.accessorKey];
-        
-        const aIsNull = aValue === null || aValue === undefined;
-        const bIsNull = bValue === null || bValue === undefined;
-        
-        if (aIsNull && bIsNull) return 0;
-        if (aIsNull) return sortOrder === 'ascend' ? 1 : -1;
-        if (bIsNull) return sortOrder === 'ascend' ? -1 : 1;
-        
-        if (column.accessorKey === "color") {
-          return String(aValue).length - String(bValue).length;
-        }
-        
-        if (column.accessorKey === "rarity") {
-          const rarityOrder: Record<string, number> = { mythic: 4, rare: 3, uncommon: 2, common: 1 };
-          const aRarity = (String(aValue).toLowerCase() || '') as keyof typeof rarityOrder;
-          const bRarity = (String(bValue).toLowerCase() || '') as keyof typeof rarityOrder;
-          return (rarityOrder[aRarity] || 0) - (rarityOrder[bRarity] || 0);
-        }
-        
-        if (typeof aValue === 'number' && typeof bValue === 'number') {
-          return aValue - bValue;
-        }
-        
-        return String(aValue).localeCompare(String(bValue));
-      },
+    sorter: (a: CardData, b: CardData, sortOrder?: SortOrder) => {
+      const aValue = a[column.accessorKey];
+      const bValue = b[column.accessorKey];
+      
+      const aIsNull = aValue === null || aValue === undefined;
+      const bIsNull = bValue === null || bValue === undefined;
+      
+      if (aIsNull && bIsNull) return 0;
+      if (aIsNull) return sortOrder === 'ascend' ? 1 : -1;
+      if (bIsNull) return sortOrder === 'ascend' ? -1 : 1;
+      
+      if (column.accessorKey === "color") {
+        return String(aValue).length - String(bValue).length;
+      }
+      
+      if (column.accessorKey === "rarity") {
+        const rarityOrder: Record<string, number> = { mythic: 4, rare: 3, uncommon: 2, common: 1 };
+        const aRarity = (String(aValue).toLowerCase() || '') as keyof typeof rarityOrder;
+        const bRarity = (String(bValue).toLowerCase() || '') as keyof typeof rarityOrder;
+        return (rarityOrder[aRarity] || 0) - (rarityOrder[bRarity] || 0);
+      }
+      
+      if (typeof aValue === 'number' && typeof bValue === 'number') {
+        return aValue - bValue;
+      }
+      
+      return String(aValue).localeCompare(String(bValue));
     },
     defaultSortOrder: column.accessorKey === 'name' ? 'ascend' : undefined,
     sortDirections: ['ascend', 'descend', 'ascend'],
@@ -134,7 +134,7 @@ export function CardTable({
           </div>
         );
       }
-
+  
       if (column.accessorKey === "color") {
         return (
           <div className="w-12 whitespace-nowrap mx-auto">
@@ -142,7 +142,7 @@ export function CardTable({
           </div>
         );
       }
-
+  
       if (column.accessorKey === "rarity") {
         const rarity = String(value || '').toLowerCase();
         const processedSet = expansion?.startsWith("Y")
@@ -165,7 +165,7 @@ export function CardTable({
         "opening_hand_win_rate", "drawn_win_rate", "ever_drawn_win_rate",
         "never_drawn_win_rate", "drawn_improvement_win_rate"
       ];
-
+  
       if (numericColumns.includes(column.accessorKey)) {
         const formatter = (v: number) => {
           if (column.accessorKey.includes("rate")) {
@@ -173,7 +173,7 @@ export function CardTable({
           }
           return v.toFixed(2);
         };
-
+  
         return (
           <div className="whitespace-nowrap">
             <StatCell
