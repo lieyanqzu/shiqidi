@@ -114,9 +114,9 @@ const CardTooltip: FC<CardTooltipProps> = ({ card, visible, x, y, expansion, isM
   const position = getTooltipPosition();
 
   // 处理稀有度图标的系列代码
-  const processedSet = expansion?.startsWith('Y')
+  const processedSet = expansion.startsWith('Y')
     ? `y${expansion.slice(expansion.match(/Y\d{0,2}/)![0].length)}`.toLowerCase()
-    : (expansion || '').toLowerCase()
+    : expansion.toLowerCase()
 
   // 获取卡图URL
   const cardImageUrl = card.url || (chineseCard?.scryfallId 

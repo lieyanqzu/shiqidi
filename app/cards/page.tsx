@@ -7,7 +7,6 @@ import { SetSymbol } from "@/components/set-symbol";
 import { useCardStore } from "@/lib/store";
 import { fetchCardData, fetchAllChineseCardData } from "@/lib/api";
 import { BackToTop } from "@/components/back-to-top";
-import type { Column } from "@/components/card-table";
 
 export default function CardsPage() {
   const { 
@@ -26,119 +25,46 @@ export default function CardsPage() {
   const [selectedRarity, setSelectedRarity] = useState<string>("");
   const [searchText, setSearchText] = useState<string>("");
 
+  const filteredCards = useMemo(() => {
+    let result = cards;
 
+    // 搜索筛选
+    if (searchText) {
+      const searchLower = searchText.toLowerCase();
+      result = result.filter(card => {
+        // 英文名匹配
+        const englishMatch = card.name.toLowerCase().includes(searchLower);
+        // 中文名匹配
+        const chineseCard = chineseCards[card.name];
+        const chineseName = chineseCard?.zhs_name || chineseCard?.officialName || chineseCard?.translatedName;
+        const chineseMatch = chineseName?.toLowerCase().includes(searchLower);
+        
+        return englishMatch || chineseMatch;
+      });
+    }
 
-  // 定义表格列
-  const columns: Column[] = useMemo(() => [
-    {
-      accessorKey: "name",
-      header: "卡牌名称",
-      title: "卡牌名称",
-      tooltip: "卡牌名称"
-    },
-    {
-      accessorKey: "color",
-      header: "颜色",
-      title: "颜色",
-      tooltip: "卡牌颜色"
-    },
-    {
-      accessorKey: "rarity",
-      header: "稀有度",
-      title: "稀有度",
-      tooltip: "卡牌稀有度"
-    },
-    {
-      accessorKey: "drawn_improvement_win_rate",
-      header: "IWD",
-      title: "IWD",
-      tooltip: "抽到时的胜率提升"
-    },
-    {
-      accessorKey: "ever_drawn_win_rate",
-      header: "GIH WR",
-      title: "GIH WR",
-      tooltip: "在手上时的胜率(起手或抽到)"
-    },
-    {
-      accessorKey: "avg_seen",
-      header: "ALSA",
-      title: "ALSA",
-      tooltip: "平均最后见到的抓位"
-    },
-    {
-      accessorKey: "seen_count",
-      header: "# Seen",
-      title: "# Seen",
-      tooltip: "轮抽中见过的次数"
-    },
-    {
-      accessorKey: "avg_pick",
-      header: "ATA",
-      title: "ATA",
-      tooltip: "平均选择抓位"
-    },
-    {
-      accessorKey: "game_count",
-      header: "# GP",
-      title: "# GP",
-      tooltip: "使用过的对局数量"
-    },
-    {
-      accessorKey: "play_rate",
-      header: "% GP",
-      title: "% GP",
-      tooltip: "主牌使用率"
-    },
-    {
-      accessorKey: "win_rate",
-      header: "GP WR",
-      title: "GP WR",
-      tooltip: "主牌使用时的胜率"
-    },
-    {
-      accessorKey: "opening_hand_game_count",
-      header: "# OH",
-      title: "# OH",
-      tooltip: "在起手的对局数量"
-    },
-    {
-      accessorKey: "opening_hand_win_rate",
-      header: "OH WR",
-      title: "OH WR",
-      tooltip: "在起手时的胜率"
-    },
-    {
-      accessorKey: "drawn_game_count",
-      header: "# GD",
-      title: "# GD",
-      tooltip: "第一回合后抽到的对局数量"
-    },
-    {
-      accessorKey: "drawn_win_rate",
-      header: "GD WR",
-      title: "GD WR",
-      tooltip: "第一回合后抽到的胜率"
-    },
-    {
-      accessorKey: "ever_drawn_game_count",
-      header: "# GIH",
-      title: "# GIH",
-      tooltip: "在手上的对局数量(起手或抽到)"
-    },
-    {
-      accessorKey: "never_drawn_game_count",
-      header: "# GNS",
-      title: "# GNS",
-      tooltip: "未见到的对局数量"
-    },
-    {
-      accessorKey: "never_drawn_win_rate",
-      header: "GNS WR",
-      title: "GNS WR",
-      tooltip: "未见到的胜率"
-    },
-  ], []);
+    // 颜色筛选
+    if (selectedColor) {
+      result = result.filter(card => {
+        if (selectedColor === "Multicolor") {
+          return card.color.length > 1;
+        }
+        if (selectedColor === "Colorless") {
+          return card.color === "";
+        }
+        return card.color === selectedColor;
+      });
+    }
+
+    // 稀有度筛选
+    if (selectedRarity) {
+      result = result.filter(card => 
+        card.rarity.toLowerCase() === selectedRarity
+      );
+    }
+
+    return result;
+  }, [cards, searchText, selectedColor, selectedRarity, chineseCards]);
 
   // 加载卡牌数据
   useEffect(() => {
@@ -169,17 +95,7 @@ export default function CardsPage() {
 
     loadData();
   }, [params, setCards, setChineseCards, setIsLoading, setError]);
-  const handleColorFilter = (color: string) => {
-    setSelectedColor(color);
-  };
 
-  const handleRarityFilter = (rarity: string) => {
-    setSelectedRarity(rarity);
-  };
-
-  const handleSearchFilter = (search: string) => {
-    setSearchText(search);
-  };
   return (
     <div className="py-8">
       <div className="container mx-auto px-4 mb-8">
@@ -204,23 +120,19 @@ export default function CardsPage() {
         <CardFilters 
           params={params} 
           onParamsChange={setParams}
-        />
-      </div>
-      <div className="container mx-auto px-4">
-        <CardTable 
-          data={cards}
-          columns={columns}
-          loading={isLoading}
-          expansion={params.expansion}
-          searchText={searchText}
+          onColorFilter={setSelectedColor}
           selectedColor={selectedColor}
+          onRarityFilter={setSelectedRarity}
           selectedRarity={selectedRarity}
-          chineseCards={chineseCards}
-          onColorFilter={handleColorFilter}
-          onRarityFilter={handleRarityFilter}
-          onSearchFilter={handleSearchFilter}
+          onSearchFilter={setSearchText}
+          searchText={searchText}
         />
       </div>
+      <CardTable 
+        data={filteredCards} 
+        isLoading={isLoading} 
+        expansion={params.expansion}
+      />
       <BackToTop />
     </div>
   );

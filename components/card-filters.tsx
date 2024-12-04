@@ -1,12 +1,9 @@
 'use client';
 
 import { Select } from "@/components/ui/select";
-import { DatePicker } from "antd";
+import { DateRangePicker } from "@/components/ui/date-range-picker";
+import { Input } from "@/components/ui/input";
 import type { CardDataParams } from "@/lib/api";
-import zhCN from 'antd/locale/zh_CN';
-import { ConfigProvider } from 'antd';
-import type { Dayjs } from 'dayjs';
-import dayjs from 'dayjs';
 
 // 系列选项
 const sets = [
@@ -88,6 +85,18 @@ const userGroups = [
   { label: "顶级", value: "top" },
 ];
 
+// 卡牌颜色
+const colors = [
+  { label: "卡牌颜色", value: "" },
+  { label: "W", value: "W" },
+  { label: "U", value: "U" },
+  { label: "B", value: "B" },
+  { label: "R", value: "R" },
+  { label: "G", value: "G" },
+  { label: "多色", value: "Multicolor" },
+  { label: "无色", value: "Colorless" },
+];
+
 // 套牌颜色
 const deckColors = [
   { label: "全部套牌", value: "" },
@@ -129,45 +138,64 @@ const deckColors = [
   { label: "WUBRG", value: "WUBRG" },
 ];
 
+// 稀有度
+const rarities = [
+  { label: "稀有度", value: "" },
+  { label: "普通", value: "common" },
+  { label: "非普通", value: "uncommon" },
+  { label: "稀有", value: "rare" },
+  { label: "秘稀", value: "mythic" },
+];
+
 interface CardFiltersProps {
   params: CardDataParams;
   onParamsChange: (params: Partial<CardDataParams>) => void;
+  onColorFilter: (color: string) => void;
+  selectedColor: string;
+  onRarityFilter: (rarity: string) => void;
+  selectedRarity: string;
+  onSearchFilter: (search: string) => void;
+  searchText: string;
 }
 
 export function CardFilters({ 
   params, 
   onParamsChange,
+  onColorFilter,
+  selectedColor,
+  onRarityFilter,
+  selectedRarity,
+  onSearchFilter,
+  searchText,
 }: CardFiltersProps) {
-  const startDate = params.start_date ? new Date(params.start_date) : null;
-  const endDate = params.end_date ? new Date(params.end_date) : null;
+  const startDate = new Date(params.start_date);
+  const endDate = new Date(params.end_date);
 
   return (
     <div className="space-y-4">
-      {/* 第一行：只保留时间范围 */}
+      {/* 第一行：搜索和时间范围 */}
       <div className="flex flex-col sm:flex-row gap-4">
-        <div className="flex gap-2 w-full sm:w-auto">
-          <ConfigProvider locale={zhCN}>
-            <DatePicker
-              placeholder="开始日期"
-              value={startDate ? dayjs(startDate) : null}
-              onChange={(date: Dayjs | null) => 
-                onParamsChange({ 
-                  start_date: date ? date.format('YYYY-MM-DD') : '' 
-                })
-              }
-              className="w-full sm:w-[160px]"
-            />
-            <DatePicker
-              placeholder="结束日期"
-              value={endDate ? dayjs(endDate) : null}
-              onChange={(date: Dayjs | null) => 
-                onParamsChange({ 
-                  end_date: date ? date.format('YYYY-MM-DD') : '' 
-                })
-              }
-              className="w-full sm:w-[160px]"
-            />
-          </ConfigProvider>
+        <Input
+          placeholder="搜索卡牌名称..."
+          value={searchText}
+          onChange={(e) => onSearchFilter(e.target.value)}
+          className="w-full sm:w-64"
+        />
+        <div className="w-full sm:w-auto">
+          <DateRangePicker
+            startDate={startDate}
+            endDate={endDate}
+            onStartDateChange={(date) => 
+              onParamsChange({ 
+                start_date: date.toISOString().split('T')[0] 
+              })
+            }
+            onEndDateChange={(date) => 
+              onParamsChange({ 
+                end_date: date.toISOString().split('T')[0] 
+              })
+            }
+          />
         </div>
       </div>
 
@@ -195,11 +223,25 @@ export function CardFilters({
           className="w-full sm:w-auto sm:min-w-[100px]"
         />
         <Select
+          options={colors}
+          value={selectedColor}
+          onChange={(e) => onColorFilter(e.target.value)}
+          title="卡牌颜色"
+          className="w-full sm:w-auto sm:min-w-[120px]"
+        />
+        <Select
           options={deckColors}
           value={params.colors || ""}
           onChange={(e) => onParamsChange({ colors: e.target.value })}
           title="套牌颜色"
           className="w-full sm:w-auto sm:min-w-[120px]"
+        />
+        <Select
+          options={rarities}
+          value={selectedRarity}
+          onChange={(e) => onRarityFilter(e.target.value)}
+          title="稀有度"
+          className="w-full sm:w-auto sm:min-w-[100px]"
         />
       </div>
     </div>

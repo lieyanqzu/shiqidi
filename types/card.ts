@@ -31,7 +31,7 @@ export interface ChineseCardData {
   zhs_flavorName: string | null; // 中文风味名
   zhs_type: string;          // 中文类型
   zhs_language: string;      // 中文语言来源
-  officialName: string | undefined; // 官方名称
+  officialName: string | null; // 官方名称
   translatedName: string;    // 翻译名称
   setCode: string;           // 系列代码
   keyruneCode: string;       // Keyrune代码
@@ -47,12 +47,6 @@ export interface ChineseCardData {
   layout: string;            // 版面布局
 }
 
-export interface ChineseCard {
-  zhs_name?: string;
-  officialName?: string;
-  translatedName?: string;
-}
-
 export interface ChineseCardMap {
-  [key: string]: ChineseCard;
+  [key: string]: ChineseCardData;  // 以英文名为key的映射
 } 

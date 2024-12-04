@@ -31,8 +31,6 @@
   
   /* 卡片专用 */
   --card: var(--component-background);
-  --component-hover: #f5f5f5;
-  --radius: 8px;
 }
 
 :root.dark {
@@ -64,7 +62,6 @@
   
   /* 卡片专用 */
   --card: var(--component-background);
-  --component-hover: #2a2a2a;
 }
 
 /* 背景纹理 */
@@ -134,51 +131,4 @@ tr:hover td {
 .react-datepicker__triangle::before,
 .react-datepicker__triangle::after {
   @apply border-b-[--card];
-}
-
-/* 自定义表格滚动条样式 */
-.table-scroll-top .ant-table-body {
-  overflow-x: auto !important;
-  overflow-y: hidden !important;
-  order: 2;
-}
-
-.table-scroll-top .ant-table-header {
-  order: 1;
-}
-
-/* 调整表格容器为 flex 布局 */
-.table-scroll-top .ant-table-container {
-  display: flex;
-  flex-direction: column;
-}
-
-/* 美化滚动条样式 */
-.table-scroll-top .ant-table-body::-webkit-scrollbar {
-  height: 8px;
-  background-color: var(--background);
-}
-
-.table-scroll-top .ant-table-body::-webkit-scrollbar-thumb {
-  background-color: var(--border);
-  border-radius: 4px;
-}
-
-.table-scroll-top .ant-table-body::-webkit-scrollbar-track {
-  background-color: var(--background-subtle);
-  border-radius: 4px;
-}
-
-/* 列选择器样式 */
-.column-selector-popover .ant-popover-inner {
-  background-color: var(--card);
-  border: 1px solid var(--border);
-}
-
-.column-selector-popover .ant-checkbox-wrapper {
-  color: var(--foreground);
-}
-
-.column-selector-popover .ant-checkbox-wrapper:hover {
-  background-color: var(--component-hover);
 }
