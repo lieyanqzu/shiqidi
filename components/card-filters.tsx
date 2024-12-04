@@ -1,8 +1,15 @@
 'use client';
 
 import { Select } from "@/components/ui/select";
-import { DateRangePicker } from "@/components/ui/date-range-picker";
+import { DatePicker } from "antd";
 import type { CardDataParams } from "@/lib/api";
+import dayjs from "dayjs";
+import zhCN from 'antd/locale/zh_CN';
+import { ConfigProvider } from 'antd';
+import 'dayjs/locale/zh-cn';
+
+// 设置 dayjs 的语言为中文
+dayjs.locale('zh-cn');
 
 // 系列选项
 const sets = [
@@ -134,28 +141,36 @@ export function CardFilters({
   params, 
   onParamsChange,
 }: CardFiltersProps) {
-  const startDate = new Date(params.start_date);
-  const endDate = new Date(params.end_date);
+  const startDate = params.start_date ? new Date(params.start_date) : null;
+  const endDate = params.end_date ? new Date(params.end_date) : null;
 
   return (
     <div className="space-y-4">
       {/* 第一行：只保留时间范围 */}
       <div className="flex flex-col sm:flex-row gap-4">
-        <div className="w-full sm:w-auto">
-          <DateRangePicker
-            startDate={startDate}
-            endDate={endDate}
-            onStartDateChange={(date) => 
-              onParamsChange({ 
-                start_date: date.toISOString().split('T')[0] 
-              })
-            }
-            onEndDateChange={(date) => 
-              onParamsChange({ 
-                end_date: date.toISOString().split('T')[0] 
-              })
-            }
-          />
+        <div className="flex gap-2 w-full sm:w-auto">
+          <ConfigProvider locale={zhCN}>
+            <DatePicker
+              placeholder="开始日期"
+              value={startDate ? dayjs(startDate) : null}
+              onChange={(date) => 
+                onParamsChange({ 
+                  start_date: date ? date.format('YYYY-MM-DD') : '' 
+                })
+              }
+              className="w-full sm:w-[160px]"
+            />
+            <DatePicker
+              placeholder="结束日期"
+              value={endDate ? dayjs(endDate) : null}
+              onChange={(date) => 
+                onParamsChange({ 
+                  end_date: date ? date.format('YYYY-MM-DD') : '' 
+                })
+              }
+              className="w-full sm:w-[160px]"
+            />
+          </ConfigProvider>
         </div>
       </div>
 
