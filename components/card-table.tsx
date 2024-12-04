@@ -94,23 +94,35 @@ export function CardTable({
     width: column.accessorKey === 'name' ? getNameColumnWidth() : 'auto',
     align: column.accessorKey === 'name' ? 'center' : 'center',
     showSorterTooltip: false,
-    sorter: (a: CardData, b: CardData) => {
-      if (column.accessorKey === "color") {
-        return String(a.color).length - String(b.color).length;
-      }
-      
-      if (column.accessorKey === "rarity") {
-        const rarityOrder: Record<string, number> = { mythic: 4, rare: 3, uncommon: 2, common: 1 };
-        const aRarity = (a.rarity?.toLowerCase() || '') as keyof typeof rarityOrder;
-        const bRarity = (b.rarity?.toLowerCase() || '') as keyof typeof rarityOrder;
-        return (rarityOrder[aRarity] || 0) - (rarityOrder[bRarity] || 0);
-      }
-      
-      if (typeof a[column.accessorKey] === 'number' && typeof b[column.accessorKey] === 'number') {
-        return (a[column.accessorKey] as number) - (b[column.accessorKey] as number);
-      }
-      
-      return String(a[column.accessorKey]).localeCompare(String(b[column.accessorKey]));
+    sorter: {
+      compare: (a: CardData, b: CardData, sortOrder: 'ascend' | 'descend' | null) => {
+        const aValue = a[column.accessorKey];
+        const bValue = b[column.accessorKey];
+        
+        const aIsNull = aValue === null || aValue === undefined;
+        const bIsNull = bValue === null || bValue === undefined;
+        
+        if (aIsNull && bIsNull) return 0;
+        if (aIsNull) return sortOrder === 'ascend' ? 1 : -1;
+        if (bIsNull) return sortOrder === 'ascend' ? -1 : 1;
+        
+        if (column.accessorKey === "color") {
+          return String(aValue).length - String(bValue).length;
+        }
+        
+        if (column.accessorKey === "rarity") {
+          const rarityOrder: Record<string, number> = { mythic: 4, rare: 3, uncommon: 2, common: 1 };
+          const aRarity = (String(aValue).toLowerCase() || '') as keyof typeof rarityOrder;
+          const bRarity = (String(bValue).toLowerCase() || '') as keyof typeof rarityOrder;
+          return (rarityOrder[aRarity] || 0) - (rarityOrder[bRarity] || 0);
+        }
+        
+        if (typeof aValue === 'number' && typeof bValue === 'number') {
+          return aValue - bValue;
+        }
+        
+        return String(aValue).localeCompare(String(bValue));
+      },
     },
     defaultSortOrder: column.accessorKey === 'name' ? 'ascend' : undefined,
     sortDirections: ['ascend', 'descend', 'ascend'],
