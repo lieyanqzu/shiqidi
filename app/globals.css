@@ -132,3 +132,7 @@ tr:hover td {
 .react-datepicker__triangle::after {
   @apply border-b-[--card];
 }
+
+.react-datepicker-popper {
+  z-index: 10 !important;
+}

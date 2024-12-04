@@ -72,7 +72,7 @@ export function CardNameCell({ card, expansion }: CardNameCellProps) {
       onMouseMove={handleMouseMove}
       onClick={handleClick}
     >
-      <div className="relative z-10 bg-black/50 p-1 rounded hover:bg-black/60 transition-colors">
+      <div className="relative z-1 bg-black/50 p-1 rounded hover:bg-black/60 transition-colors">
         <div className="font-medium text-white truncate">
           {chineseName || card.name}
         </div>

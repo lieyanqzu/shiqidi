@@ -2,6 +2,8 @@
 
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
+import { useMediaQuery } from '@/hooks/use-media-query';
+import { zhCN } from 'date-fns/locale';
 
 interface DateRangePickerProps {
   startDate: Date;
@@ -16,10 +18,12 @@ export function DateRangePicker({
   onStartDateChange,
   onEndDateChange,
 }: DateRangePickerProps) {
-  const inputClassName = "form-control bg-[--component-background] border border-[--border] rounded-md px-3 py-2 text-sm text-[--component-foreground] focus:border-[--primary] focus:outline-none focus:ring-1 focus:ring-[--primary]";
+  const isMobile = useMediaQuery('(max-width: 640px)');
+  
+  const inputClassName = "form-control w-full sm:w-32 bg-[--component-background] border border-[--border] rounded-md px-3 py-2 text-sm text-[--component-foreground] focus:border-[--primary] focus:outline-none focus:ring-1 focus:ring-[--primary]";
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-2 w-full">
       <DatePicker
         selected={startDate}
         onChange={(date: Date | null) => date && onStartDateChange(date)}
@@ -27,10 +31,14 @@ export function DateRangePicker({
         startDate={startDate}
         endDate={endDate}
         maxDate={endDate}
-        placeholderText="Start Date"
+        placeholderText="开始日期"
         className={inputClassName}
+        withPortal={isMobile}
+        portalId="date-picker-portal"
+        dateFormat="yyyy/MM/dd"
+        locale={zhCN}
       />
-      <span className="text-[--component-foreground-muted]">–</span>
+      <span className="text-[--component-foreground-muted] shrink-0">–</span>
       <DatePicker
         selected={endDate}
         onChange={(date: Date | null) => date && onEndDateChange(date)}
@@ -39,8 +47,12 @@ export function DateRangePicker({
         endDate={endDate}
         minDate={startDate}
         maxDate={new Date()}
-        placeholderText="End Date"
+        placeholderText="结束日期"
         className={inputClassName}
+        withPortal={isMobile}
+        portalId="date-picker-portal"
+        dateFormat="yyyy/MM/dd"
+        locale={zhCN}
       />
     </div>
   );

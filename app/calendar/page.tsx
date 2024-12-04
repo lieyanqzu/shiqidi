@@ -138,9 +138,9 @@ export default function CalendarPage() {
               {/* 竞技场锦标赛 */}
               {arenaChampionshipEvents.length > 0 && (
                 <div>
-                  <h3 className="text-lg font-medium mb-4">竞技场锦标赛</h3>
+                  <h3 className="text-lg font-medium mb-4">竞技场冠军赛</h3>
                   <p className="text-sm text-[--muted-foreground] mb-4 leading-relaxed">
-                    竞技场锦标赛是一个为期两天的虚拟邀请赛，参赛资格通过资格赛周末活动获得。
+                    竞技场冠军赛是一个为期两天的虚拟邀请赛，参赛资格通过资格赛周末活动获得。
                   </p>
                   <div className="space-y-3">
                     {arenaChampionshipEvents.map((event, index) => (

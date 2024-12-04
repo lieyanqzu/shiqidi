@@ -1,159 +1,28 @@
 'use client';
 
-import { Select } from "@/components/ui/select";
-import { DateRangePicker } from "@/components/ui/date-range-picker";
 import { Input } from "@/components/ui/input";
 import type { CardDataParams } from "@/lib/api";
-
-// 系列选项
-const sets = [
-  { label: "FDN", value: "FDN" },
-  { label: "DSK", value: "DSK" },
-  { label: "Y25DSK", value: "Y25DSK" },
-  { label: "BLB", value: "BLB" },
-  { label: "Y25BLB", value: "Y25BLB" },
-  { label: "MH3", value: "MH3" },
-  { label: "OTJ", value: "OTJ" },
-  { label: "Y24OTJ", value: "Y24OTJ" },
-  { label: "MKM", value: "MKM" },
-  { label: "Y24MKM", value: "Y24MKM" },
-  { label: "LCI", value: "LCI" },
-  { label: "Y24LCI", value: "Y24LCI" },
-  { label: "WOE", value: "WOE" },
-  { label: "Y24WOE", value: "Y24WOE" },
-  { label: "LTR", value: "LTR" },
-  { label: "MOM", value: "MOM" },
-  { label: "MAT", value: "MAT" },
-  { label: "SIR", value: "SIR" },
-  { label: "ONE", value: "ONE" },
-  { label: "Y23ONE", value: "Y23ONE" },
-  { label: "BRO", value: "BRO" },
-  { label: "Y23BRO", value: "Y23BRO" },
-  { label: "DMU", value: "DMU" },
-  { label: "Y23DMU", value: "Y23DMU" },
-  { label: "HBG", value: "HBG" },
-  { label: "SNC", value: "SNC" },
-  { label: "Y22SNC", value: "Y22SNC" },
-  { label: "NEO", value: "NEO" },
-  { label: "DBL", value: "DBL" },
-  { label: "VOW", value: "VOW" },
-  { label: "RAVM", value: "RAVM" },
-  { label: "MID", value: "MID" },
-  { label: "AFR", value: "AFR" },
-  { label: "STX", value: "STX" },
-  { label: "CORE", value: "CORE" },
-  { label: "KHM", value: "KHM" },
-  { label: "KLR", value: "KLR" },
-  { label: "ZNR", value: "ZNR" },
-  { label: "AKR", value: "AKR" },
-  { label: "M21", value: "M21" },
-  { label: "IKO", value: "IKO" },
-  { label: "THB", value: "THB" },
-  { label: "ELD", value: "ELD" },
-  { label: "Ravnica", value: "Ravnica" },
-  { label: "M20", value: "M20" },
-  { label: "WAR", value: "WAR" },
-  { label: "M19", value: "M19" },
-  { label: "DOM", value: "DOM" },
-  { label: "RIX", value: "RIX" },
-  { label: "GRN", value: "GRN" },
-  { label: "RNA", value: "RNA" },
-  { label: "KTK", value: "KTK" },
-  { label: "XLN", value: "XLN" },
-  { label: "Cube", value: "Cube" },
-  { label: "Chaos", value: "Chaos" },
-];
-
-// 游戏模式
-const formats = [
-  { label: "真人轮抽", value: "PremierDraft" },
-  { label: "真人轮抽BO3", value: "TradDraft" },
-  { label: "快速轮抽", value: "QuickDraft" },
-  { label: "现开赛", value: "Sealed" },
-  { label: "现开赛BO3", value: "TradSealed" },
-  { label: "竞技场直邮赛现开", value: "ArenaDirect_Sealed" },
-  { label: "公开赛第一日现开BO1", value: "OpenSealed_D1_Bo1" },
-  { label: "公开赛第一日现开BO3", value: "OpenSealed_D1_Bo3" },
-  { label: "资格赛预选现开", value: "QualifierPlayInSealed" },
-];
-
-// 玩家分组
-const userGroups = [
-  { label: "所有用户", value: "" },
-  { label: "低级", value: "bottom" },
-  { label: "中级", value: "middle" },
-  { label: "顶级", value: "top" },
-];
-
-// 卡牌颜色
-const colors = [
-  { label: "卡牌颜色", value: "" },
-  { label: "W", value: "W" },
-  { label: "U", value: "U" },
-  { label: "B", value: "B" },
-  { label: "R", value: "R" },
-  { label: "G", value: "G" },
-  { label: "多色", value: "Multicolor" },
-  { label: "无色", value: "Colorless" },
-];
-
-// 套牌颜色
-const deckColors = [
-  { label: "全部套牌", value: "" },
-  // 单色
-  { label: "W", value: "W" },
-  { label: "U", value: "U" },
-  { label: "B", value: "B" },
-  { label: "R", value: "R" },
-  { label: "G", value: "G" },
-  // 双色
-  { label: "WU", value: "WU" },
-  { label: "WB", value: "WB" },
-  { label: "WR", value: "WR" },
-  { label: "WG", value: "WG" },
-  { label: "UB", value: "UB" },
-  { label: "UR", value: "UR" },
-  { label: "UG", value: "UG" },
-  { label: "BR", value: "BR" },
-  { label: "BG", value: "BG" },
-  { label: "RG", value: "RG" },
-  // 三色
-  { label: "WUB", value: "WUB" },
-  { label: "WUR", value: "WUR" },
-  { label: "WUG", value: "WUG" },
-  { label: "WBR", value: "WBR" },
-  { label: "WBG", value: "WBG" },
-  { label: "WRG", value: "WRG" },
-  { label: "UBR", value: "UBR" },
-  { label: "UBG", value: "UBG" },
-  { label: "URG", value: "URG" },
-  { label: "BRG", value: "BRG" },
-  // 四色
-  { label: "WUBR", value: "WUBR" },
-  { label: "WUBG", value: "WUBG" },
-  { label: "WURG", value: "WURG" },
-  { label: "WBRG", value: "WBRG" },
-  { label: "UBRG", value: "UBRG" },
-  // 五色
-  { label: "WUBRG", value: "WUBRG" },
-];
-
-// 稀有度
-const rarities = [
-  { label: "稀有度", value: "" },
-  { label: "普通", value: "common" },
-  { label: "非普通", value: "uncommon" },
-  { label: "稀有", value: "rare" },
-  { label: "秘稀", value: "mythic" },
-];
+import { useState, useRef } from 'react';
+import { useMediaQuery } from '@/hooks/use-media-query';
+import { Select } from "@/components/ui/select";
+import { DateRangePicker } from "@/components/ui/date-range-picker";
+import { Popper } from "@/components/ui/popper";
+import { 
+  expansionOptions, 
+  formatOptions, 
+  userGroupOptions, 
+  deckColorOptions, 
+  cardColorOptions, 
+  rarityOptions 
+} from "@/lib/options";
 
 interface CardFiltersProps {
   params: CardDataParams;
   onParamsChange: (params: Partial<CardDataParams>) => void;
-  onColorFilter: (color: string) => void;
-  selectedColor: string;
-  onRarityFilter: (rarity: string) => void;
-  selectedRarity: string;
+  onColorFilter: (colors: string[]) => void;
+  selectedColors: string[];
+  onRarityFilter: (rarities: string[]) => void;
+  selectedRarities: string[];
   onSearchFilter: (search: string) => void;
   searchText: string;
 }
@@ -162,88 +31,307 @@ export function CardFilters({
   params, 
   onParamsChange,
   onColorFilter,
-  selectedColor,
+  selectedColors,
   onRarityFilter,
-  selectedRarity,
+  selectedRarities,
   onSearchFilter,
   searchText,
 }: CardFiltersProps) {
   const startDate = new Date(params.start_date);
   const endDate = new Date(params.end_date);
+  const isMobile = useMediaQuery('(max-width: 640px)');
+  const [showFilters, setShowFilters] = useState(false);
+  const filterButtonRef = useRef<HTMLButtonElement>(null);
+
+  // 移动端临时筛选状态
+  const [tempParams, setTempParams] = useState<CardDataParams>(params);
+  const [tempColors, setTempColors] = useState<string[]>(selectedColors);
+  const [tempRarities, setTempRarities] = useState<string[]>(selectedRarities);
+
+  // 处理移动端确认
+  const handleConfirm = () => {
+    // 检查除了颜色和稀有度之外的参数是否有变化
+    const hasParamsChanged = Object.entries(tempParams).some(([key, value]) => {
+      return params[key as keyof CardDataParams] !== value;
+    });
+
+    // 如果有参数变化，才调用 onParamsChange
+    if (hasParamsChanged) {
+      onParamsChange(tempParams);
+    }
+
+    // 颜色和稀有度的变化不会触发数据重新获取
+    onColorFilter(tempColors);
+    onRarityFilter(tempRarities);
+    setShowFilters(false);
+  };
+
+  // 每次打开筛选面板时，初始化临时状态
+  const handleOpenFilters = () => {
+    setTempParams(params);
+    setTempColors(selectedColors);
+    setTempRarities(selectedRarities);
+    setShowFilters(true);
+  };
 
   return (
     <div className="space-y-4">
-      {/* 第一行：搜索和时间范围 */}
-      <div className="flex flex-col sm:flex-row gap-4">
-        <Input
-          placeholder="搜索卡牌名称..."
-          value={searchText}
-          onChange={(e) => onSearchFilter(e.target.value)}
-          className="w-full sm:w-64"
-        />
-        <div className="w-full sm:w-auto">
-          <DateRangePicker
-            startDate={startDate}
-            endDate={endDate}
-            onStartDateChange={(date) => 
-              onParamsChange({ 
-                start_date: date.toISOString().split('T')[0] 
-              })
-            }
-            onEndDateChange={(date) => 
-              onParamsChange({ 
-                end_date: date.toISOString().split('T')[0] 
-              })
-            }
+      {/* 移动端：搜索、系列和筛选按钮 */}
+      {isMobile ? (
+        <div className="flex items-center gap-2">
+          <Input
+            placeholder="搜索卡牌名称..."
+            value={searchText}
+            onChange={(e) => onSearchFilter(e.target.value)}
+            className="flex-1"
           />
+          <Select
+            options={expansionOptions}
+            value={params.expansion}
+            onChange={(e) => onParamsChange({ expansion: e.target.value })}
+            title="系列"
+            className="w-32 shrink-0"
+          />
+          <button
+            ref={filterButtonRef}
+            onClick={handleOpenFilters}
+            className={`
+              p-2 rounded-md transition-colors shrink-0
+              ${showFilters 
+                ? 'bg-[--primary] text-white' 
+                : 'bg-[--component-background] hover:bg-[--component-background-hover]'}
+            `}
+            aria-label="显示筛选选项"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
+              <path d="M10 3.75a2 2 0 10-4 0 2 2 0 004 0zM17.25 4.5a.75.75 0 000-1.5h-5.5a.75.75 0 000 1.5h5.5zM5 3.75a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5a.75.75 0 01.75.75zM4.25 17a.75.75 0 000-1.5h-1.5a.75.75 0 000 1.5h1.5zM17.25 17a.75.75 0 000-1.5h-5.5a.75.75 0 000 1.5h5.5zM9 10a.75.75 0 01-.75.75h-5.5a.75.75 0 010-1.5h5.5A.75.75 0 019 10zM17.25 10.75a.75.75 0 000-1.5h-1.5a.75.75 0 000 1.5h1.5zM14 10a2 2 0 10-4 0 2 2 0 004 0zM10 16.25a2 2 0 10-4 0 2 2 0 004 0z" />
+            </svg>
+          </button>
         </div>
-      </div>
+      ) : (
+        <>
+          {/* 桌面端：第一行 - 搜索和时间范围 */}
+          <div className="flex flex-col sm:flex-row gap-4">
+            <Input
+              placeholder="搜索卡牌名称..."
+              value={searchText}
+              onChange={(e) => onSearchFilter(e.target.value)}
+              className="w-full sm:w-64"
+            />
+            <div className="w-full sm:w-auto">
+              <DateRangePicker
+                startDate={startDate}
+                endDate={endDate}
+                onStartDateChange={(date) => onParamsChange({ start_date: date.toISOString().split('T')[0] })}
+                onEndDateChange={(date) => onParamsChange({ end_date: date.toISOString().split('T')[0] })}
+              />
+            </div>
+          </div>
 
-      {/* 第二行：其他筛选项 */}
-      <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-2 sm:gap-4">
-        <Select
-          options={sets}
-          value={params.expansion}
-          onChange={(e) => onParamsChange({ expansion: e.target.value })}
-          title="系列"
-          className="w-full sm:w-auto sm:min-w-[120px]"
-        />
-        <Select
-          options={formats}
-          value={params.format}
-          onChange={(e) => onParamsChange({ format: e.target.value })}
-          title="模式"
-          className="w-full sm:w-auto sm:min-w-[140px]"
-        />
-        <Select
-          options={userGroups}
-          value={params.user_group}
-          onChange={(e) => onParamsChange({ user_group: e.target.value })}
-          title="用户组"
-          className="w-full sm:w-auto sm:min-w-[100px]"
-        />
-        <Select
-          options={colors}
-          value={selectedColor}
-          onChange={(e) => onColorFilter(e.target.value)}
-          title="卡牌颜色"
-          className="w-full sm:w-auto sm:min-w-[120px]"
-        />
-        <Select
-          options={deckColors}
-          value={params.colors || ""}
-          onChange={(e) => onParamsChange({ colors: e.target.value })}
-          title="套牌颜色"
-          className="w-full sm:w-auto sm:min-w-[120px]"
-        />
-        <Select
-          options={rarities}
-          value={selectedRarity}
-          onChange={(e) => onRarityFilter(e.target.value)}
-          title="稀有度"
-          className="w-full sm:w-auto sm:min-w-[100px]"
-        />
-      </div>
+          {/* 桌面端：第二行 - 其他筛选选项 */}
+          <div className="flex flex-wrap gap-2 sm:gap-4">
+            <Select
+              options={expansionOptions}
+              value={params.expansion}
+              onChange={(e) => onParamsChange({ expansion: e.target.value })}
+              title="系列"
+              className="w-full sm:w-32 shrink-0"
+            />
+            <Select
+              options={formatOptions}
+              value={params.format}
+              onChange={(e) => onParamsChange({ format: e.target.value })}
+              title="模式"
+              className="w-full sm:w-auto sm:min-w-[140px]"
+            />
+            <Select
+              options={userGroupOptions}
+              value={params.user_group}
+              onChange={(e) => onParamsChange({ user_group: e.target.value })}
+              title="用户组"
+              className="w-full sm:w-auto sm:min-w-[100px]"
+            />
+            <Select
+              options={deckColorOptions}
+              value={params.colors || ""}
+              onChange={(e) => onParamsChange({ colors: e.target.value })}
+              title="套牌颜色"
+              className="w-full sm:w-auto sm:min-w-[120px]"
+            />
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-[--component-foreground-muted] whitespace-nowrap">卡牌颜色:</span>
+              <div className="flex gap-1">
+                {cardColorOptions.map((color) => (
+                  <button
+                    key={color.value}
+                    className={`
+                      w-8 h-8 rounded-full flex items-center justify-center
+                      card-symbol-${color.value}
+                      bg-no-repeat bg-[length:100%_100%]
+                      ${selectedColors.includes(color.value) 
+                        ? 'ring-2 ring-[#FFB000] ring-opacity-80' 
+                        : 'hover:ring-2 hover:ring-[#FFB000] hover:ring-opacity-50 brightness-75'}
+                      bg-[--component-background] hover:bg-[--component-background-hover]
+                      transition-all
+                    `}
+                    onClick={() => {
+                      const newColors = selectedColors.includes(color.value)
+                        ? selectedColors.filter(c => c !== color.value)
+                        : [...selectedColors, color.value];
+                      onColorFilter(newColors);
+                    }}
+                  />
+                ))}
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-[--component-foreground-muted] whitespace-nowrap">稀有度:</span>
+              <div className="flex gap-1">
+                {rarityOptions.map((rarity) => (
+                  <button
+                    key={rarity.value}
+                    className={`
+                      w-8 h-8 rounded-full flex items-center justify-center
+                      ${selectedRarities.includes(rarity.value)
+                        ? 'ring-2 ring-[#FFB000] ring-opacity-80' 
+                        : 'hover:ring-2 hover:ring-[#FFB000] hover:ring-opacity-50 brightness-75'}
+                      transition-all
+                    `}
+                    onClick={() => {
+                      const newRarities = selectedRarities.includes(rarity.value)
+                        ? selectedRarities.filter(r => r !== rarity.value)
+                        : [...selectedRarities, rarity.value];
+                      onRarityFilter(newRarities);
+                    }}
+                    title={rarity.label}
+                  >
+                    <i 
+                      className={`keyrune ss ss-${params.expansion.toLowerCase()} ss-${rarity.value} ss-2x`}
+                      aria-hidden="true"
+                      style={{ backgroundColor: 'transparent' }}
+                    />
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </>
+      )}
+
+      {/* 移动端筛选 Popper */}
+      {isMobile && (
+        <Popper
+          open={showFilters}
+          onClose={() => setShowFilters(false)}
+          anchor={filterButtonRef.current}
+        >
+          <div className="space-y-4">
+            <DateRangePicker
+              startDate={new Date(tempParams.start_date)}
+              endDate={new Date(tempParams.end_date)}
+              onStartDateChange={(date) => setTempParams({ 
+                ...tempParams, 
+                start_date: date.toISOString().split('T')[0] 
+              })}
+              onEndDateChange={(date) => setTempParams({ 
+                ...tempParams, 
+                end_date: date.toISOString().split('T')[0] 
+              })}
+            />
+            
+            <Select
+              options={formatOptions}
+              value={tempParams.format}
+              onChange={(e) => setTempParams({ ...tempParams, format: e.target.value })}
+              title="模式"
+              className="w-full"
+            />
+            
+            <Select
+              options={userGroupOptions}
+              value={tempParams.user_group}
+              onChange={(e) => setTempParams({ ...tempParams, user_group: e.target.value })}
+              title="用户组"
+              className="w-full"
+            />
+            
+            <Select
+              options={deckColorOptions}
+              value={tempParams.colors || ""}
+              onChange={(e) => setTempParams({ ...tempParams, colors: e.target.value })}
+              title="套牌颜色"
+              className="w-full"
+            />
+            
+            <div className="space-y-2">
+              <span className="text-sm text-[--component-foreground-muted] whitespace-nowrap">卡牌颜色:</span>
+              <div className="flex flex-wrap gap-1">
+                {cardColorOptions.map((color) => (
+                  <button
+                    key={color.value}
+                    className={`
+                      w-8 h-8 rounded-full flex items-center justify-center
+                      card-symbol-${color.value}
+                      bg-no-repeat bg-[length:100%_100%]
+                      ${tempColors.includes(color.value) 
+                        ? 'ring-2 ring-[#FFB000] ring-opacity-80' 
+                        : 'hover:ring-2 hover:ring-[#FFB000] hover:ring-opacity-50 brightness-75'}
+                      bg-[--component-background] hover:bg-[--component-background-hover]
+                      transition-all
+                    `}
+                    onClick={() => {
+                      const newColors = tempColors.includes(color.value)
+                        ? tempColors.filter(c => c !== color.value)
+                        : [...tempColors, color.value];
+                      setTempColors(newColors);
+                    }}
+                  />
+                ))}
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <span className="text-sm text-[--component-foreground-muted] whitespace-nowrap">稀有度:</span>
+              <div className="flex flex-wrap gap-1">
+                {rarityOptions.map((rarity) => (
+                  <button
+                    key={rarity.value}
+                    className={`
+                      w-8 h-8 rounded-full flex items-center justify-center
+                      ${tempRarities.includes(rarity.value)
+                        ? 'ring-2 ring-[#FFB000] ring-opacity-80' 
+                        : 'hover:ring-2 hover:ring-[#FFB000] hover:ring-opacity-50 brightness-75'}
+                      transition-all
+                    `}
+                    onClick={() => {
+                      const newRarities = tempRarities.includes(rarity.value)
+                        ? tempRarities.filter(r => r !== rarity.value)
+                        : [...tempRarities, rarity.value];
+                      setTempRarities(newRarities);
+                    }}
+                    title={rarity.label}
+                  >
+                    <i 
+                      className={`keyrune ss ss-${params.expansion.toLowerCase()} ss-${rarity.value} ss-2x`}
+                      aria-hidden="true"
+                      style={{ backgroundColor: 'transparent' }}
+                    />
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex justify-end pt-4">
+              <button
+                onClick={handleConfirm}
+                className="px-4 py-2 bg-[--primary] text-white rounded-md hover:bg-[--primary]/90 transition-colors"
+              >
+                确定
+              </button>
+            </div>
+          </div>
+        </Popper>
+      )}
     </div>
   );
 } 

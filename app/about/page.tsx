@@ -36,19 +36,9 @@ export default function AboutPage() {
       url: "https://react.dev"
     },
     {
-      name: "Tailwind CSS",
+      name: "Tailwind CSS", 
       description: "CSS框架，提供了现代化的样式系统",
       url: "https://tailwindcss.com"
-    },
-    {
-      name: "Ant Design",
-      description: "企业级UI组件库，提供了丰富的交互组件",
-      url: "https://ant.design"
-    },
-    {
-      name: "@ant-design/icons",
-      description: "Ant Design的图标库",
-      url: "https://ant.design/components/icon"
     },
     {
       name: "Radix UI",
@@ -61,12 +51,12 @@ export default function AboutPage() {
       url: "https://github.com/pmndrs/zustand"
     },
     {
-      name: "React Query",
+      name: "TanStack Query",
       description: "用于数据获取和缓存的库",
       url: "https://tanstack.com/query"
     },
     {
-      name: "React Table",
+      name: "TanStack Table",
       description: "用于构建强大的表格组件",
       url: "https://tanstack.com/table"
     },
@@ -79,11 +69,6 @@ export default function AboutPage() {
       name: "date-fns",
       description: "现代JavaScript日期工具库",
       url: "https://date-fns.org"
-    },
-    {
-      name: "Day.js",
-      description: "轻量级日期处理库",
-      url: "https://day.js.org"
     },
     {
       name: "React DatePicker",

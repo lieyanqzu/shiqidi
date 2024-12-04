@@ -270,4 +270,4 @@ export async function fetchAllChineseCardData(
     console.error('Failed to fetch all Chinese card data:', error);
     return [];
   }
-} 
+}

@@ -21,8 +21,8 @@ export default function CardsPage() {
     setParams,
   } = useCardStore();
 
-  const [selectedColor, setSelectedColor] = useState<string>("");
-  const [selectedRarity, setSelectedRarity] = useState<string>("");
+  const [selectedColors, setSelectedColors] = useState<string[]>([]);
+  const [selectedRarities, setSelectedRarities] = useState<string[]>([]);
   const [searchText, setSearchText] = useState<string>("");
 
   const filteredCards = useMemo(() => {
@@ -44,27 +44,59 @@ export default function CardsPage() {
     }
 
     // 颜色筛选
-    if (selectedColor) {
+    if (selectedColors.length > 0) {
       result = result.filter(card => {
-        if (selectedColor === "Multicolor") {
-          return card.color.length > 1;
+        const cardColors = card.color ? card.color.split('') : [];
+        const isMulticolor = cardColors.length > 1;
+        const isColorless = cardColors.length === 0;
+        
+        // 检查选中的颜色中是否包含 M（多色）和 C（无色）
+        const hasMulticolorSelected = selectedColors.includes('M');
+        const hasColorlessSelected = selectedColors.includes('C');
+        
+        // 如果是无色卡牌且选中了无色，直接返回 true
+        if (isColorless && hasColorlessSelected) {
+          return true;
         }
-        if (selectedColor === "Colorless") {
-          return card.color === "";
+        
+        // 如果选中了多色按钮，只显示多色卡牌
+        if (hasMulticolorSelected) {
+          // 如果不是多色卡牌，直接返回 false
+          if (!isMulticolor) {
+            return false;
+          }
+          
+          // 获取选中的基本颜色（WUBRG）
+          const selectedBasicColors = selectedColors.filter(c => 'WUBRG'.includes(c));
+          // 如果同时选中了基本颜色，则多色卡必须包含所有选中的基本颜色
+          if (selectedBasicColors.length > 0) {
+            return selectedBasicColors.every(color => cardColors.includes(color));
+          }
+          // 如果只选中了多色按钮，显示所有多色卡
+          return true;
         }
-        return card.color === selectedColor;
+        
+        // 获取选中的基本颜色（WUBRG）
+        const selectedBasicColors = selectedColors.filter(c => 'WUBRG'.includes(c));
+        
+        // 如果选中了基本颜色，检查卡牌是否包含任何一个选中的颜色
+        if (selectedBasicColors.length > 0) {
+          return selectedBasicColors.some(color => cardColors.includes(color));
+        }
+        
+        return false;
       });
     }
 
     // 稀有度筛选
-    if (selectedRarity) {
+    if (selectedRarities.length > 0) {
       result = result.filter(card => 
-        card.rarity.toLowerCase() === selectedRarity
+        selectedRarities.includes(card.rarity.toLowerCase())
       );
     }
 
     return result;
-  }, [cards, searchText, selectedColor, selectedRarity, chineseCards]);
+  }, [cards, searchText, selectedColors, selectedRarities, chineseCards]);
 
   // 加载卡牌数据
   useEffect(() => {
@@ -120,10 +152,10 @@ export default function CardsPage() {
         <CardFilters 
           params={params} 
           onParamsChange={setParams}
-          onColorFilter={setSelectedColor}
-          selectedColor={selectedColor}
-          onRarityFilter={setSelectedRarity}
-          selectedRarity={selectedRarity}
+          onColorFilter={setSelectedColors}
+          selectedColors={selectedColors}
+          onRarityFilter={setSelectedRarities}
+          selectedRarities={selectedRarities}
           onSearchFilter={setSearchText}
           searchText={searchText}
         />

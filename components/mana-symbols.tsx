@@ -7,7 +7,8 @@ interface ManaSymbolsProps {
 }
 
 export function ManaSymbols({ color }: ManaSymbolsProps) {
-  const symbols = color.split('').sort();
+  // 如果颜色为空,则显示无色符号
+  const symbols = color === '' ? ['C'] : color.split('').sort();
   const spacing = symbols.length === 5 ? '-space-x-2' 
     : symbols.length >= 3 ? '-space-x-1'
     : 'gap-0.5';
@@ -32,6 +33,8 @@ function getColorName(symbol: string): string {
     case 'B': return '黑色';
     case 'R': return '红色';
     case 'G': return '绿色';
-    default: return '无色';
+    case 'M': return '多色';
+    case 'C': return '无色';
+    default: return '';
   }
 } 
