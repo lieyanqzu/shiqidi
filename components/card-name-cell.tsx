@@ -61,11 +61,11 @@ export function CardNameCell({ card, expansion = '' }: CardNameCellProps) {
 
   return (
     <div 
-      className="relative max-w-[300px] cursor-pointer"
+      className="relative max-w-[125px] sm:max-w-[250px] cursor-pointer"
       style={{
         backgroundImage: cardImageUrl ? `url(${cardImageUrl})` : 'none',
         backgroundSize: '150%',
-        backgroundPosition: '-50px -100px',
+        backgroundPosition: isMobile ? '-25px -50px' : '-50px -100px',
       }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}

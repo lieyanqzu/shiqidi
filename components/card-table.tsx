@@ -48,6 +48,7 @@ export function CardTable({
   const [pageSize, setPageSize] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 0);
+  const isMobile = windowWidth < 768;
 
   const mobileDefaultColumns: Array<keyof CardData> = [
     'name',
@@ -65,7 +66,7 @@ export function CardTable({
     'avg_seen'
   ];
 
-  const defaultVisibleColumns = windowWidth < 768 ? mobileDefaultColumns : desktopDefaultColumns;
+  const defaultVisibleColumns = isMobile ? mobileDefaultColumns : desktopDefaultColumns;
   
   const [visibleColumns, setVisibleColumns] = useState<Array<keyof CardData>>(defaultVisibleColumns);
 
@@ -73,7 +74,8 @@ export function CardTable({
     const handleResize = () => {
       const width = window.innerWidth;
       setWindowWidth(width);
-      if (width < 768) {
+      const newIsMobile = width < 768;
+      if (newIsMobile) {
         if (visibleColumns.length > mobileDefaultColumns.length) {
           setVisibleColumns([...mobileDefaultColumns]);
         }
@@ -89,8 +91,8 @@ export function CardTable({
     dataIndex: column.accessorKey,
     key: column.accessorKey,
     minWidth: getColumnMinWidth(column.accessorKey),
-    width: 'auto',
-    align: column.accessorKey === 'name' ? 'left' : 'center',
+    width: column.accessorKey === 'name' ? getNameColumnWidth() : 'auto',
+    align: column.accessorKey === 'name' ? 'center' : 'center',
     showSorterTooltip: false,
     sorter: (a: CardData, b: CardData) => {
       if (column.accessorKey === "color") {
@@ -175,7 +177,9 @@ export function CardTable({
       return <div className="whitespace-nowrap">{value}</div>;
     },
   }));
-
+  function getNameColumnWidth() { 
+    return isMobile ? 125 : 250;
+  }
   function getColumnMinWidth(accessorKey: string): number {
     switch (accessorKey) {
       case 'color':
@@ -183,7 +187,7 @@ export function CardTable({
       case 'rarity':
         return 70;
       case 'name':
-        return 150;
+        return 1;
       case 'avg_seen':
       case 'avg_pick':
       case 'play_rate':
@@ -252,7 +256,7 @@ export function CardTable({
           type="link" 
           size="small"
           onClick={() => setVisibleColumns(
-            [...(windowWidth < 768 ? mobileDefaultColumns : desktopDefaultColumns)]
+            [...(isMobile ? mobileDefaultColumns : desktopDefaultColumns)]
           )}
         >
           重置
