@@ -8,8 +8,9 @@ import { CardNameCell } from "@/components/card-name-cell";
 import { StatCell } from "@/components/stat-cell";
 import { ManaSymbols } from "@/components/mana-symbols";
 import { calculateStats } from "@/lib/stats";
-import type { CardData } from "@/types/card";
+import type { CardData, ChineseCardMap } from "@/types/card";
 import { CardInfoFilters } from "@/components/card-info-filters";
+import { SortOrder } from "antd/es/table/interface";
 
 export interface Column {
   accessorKey: keyof CardData;
@@ -47,7 +48,8 @@ export function CardTable({
 }: CardTableProps) {
   const [pageSize, setPageSize] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
-  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 0);
+  const [windowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 0);
+  const isMobile = windowWidth < 768;
 
   const mobileDefaultColumns: Array<keyof CardData> = [
     'name',
@@ -65,50 +67,62 @@ export function CardTable({
     'avg_seen'
   ];
 
-  const defaultVisibleColumns = windowWidth < 768 ? mobileDefaultColumns : desktopDefaultColumns;
+  const defaultVisibleColumns = isMobile ? mobileDefaultColumns : desktopDefaultColumns;
   
   const [visibleColumns, setVisibleColumns] = useState<Array<keyof CardData>>(defaultVisibleColumns);
 
-  useEffect(() => {
-    const handleResize = () => {
-      const width = window.innerWidth;
-      setWindowWidth(width);
-      if (width < 768) {
-        if (visibleColumns.length > mobileDefaultColumns.length) {
-          setVisibleColumns([...mobileDefaultColumns]);
-        }
-      }
-    };
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     const width = window.innerWidth;
+  //     setWindowWidth(width);
+  //     const newIsMobile = width < 768;
+  //     if (newIsMobile) {
+  //       if (visibleColumns.length > mobileDefaultColumns.length) {
+  //         setVisibleColumns([...mobileDefaultColumns]);
+  //       }
+  //     }
+  //   };
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [visibleColumns, mobileDefaultColumns]);
+  //   window.addEventListener('resize', handleResize);
+  //   return () => window.removeEventListener('resize', handleResize);
+  // }, [visibleColumns, mobileDefaultColumns]);
+
 
   const antColumns: ColumnsType<CardData> = columns.map(column => ({
     title: column.title || column.header,
     dataIndex: column.accessorKey,
     key: column.accessorKey,
     minWidth: getColumnMinWidth(column.accessorKey),
-    width: 'auto',
-    align: column.accessorKey === 'name' ? 'left' : 'center',
+    width: column.accessorKey === 'name' ? getNameColumnWidth() : 'auto',
+    align: column.accessorKey === 'name' ? 'center' : 'center',
     showSorterTooltip: false,
-    sorter: (a: CardData, b: CardData) => {
+    sorter: (a: CardData, b: CardData, sortOrder?: SortOrder) => {
+      const aValue = a[column.accessorKey];
+      const bValue = b[column.accessorKey];
+      
+      const aIsNull = aValue === null || aValue === undefined;
+      const bIsNull = bValue === null || bValue === undefined;
+      
+      if (aIsNull && bIsNull) return 0;
+      if (aIsNull) return sortOrder === 'ascend' ? 1 : -1;
+      if (bIsNull) return sortOrder === 'ascend' ? -1 : 1;
+      
       if (column.accessorKey === "color") {
-        return String(a.color).length - String(b.color).length;
+        return String(aValue).length - String(bValue).length;
       }
       
       if (column.accessorKey === "rarity") {
         const rarityOrder: Record<string, number> = { mythic: 4, rare: 3, uncommon: 2, common: 1 };
-        const aRarity = (a.rarity?.toLowerCase() || '') as keyof typeof rarityOrder;
-        const bRarity = (b.rarity?.toLowerCase() || '') as keyof typeof rarityOrder;
+        const aRarity = (String(aValue).toLowerCase() || '') as keyof typeof rarityOrder;
+        const bRarity = (String(bValue).toLowerCase() || '') as keyof typeof rarityOrder;
         return (rarityOrder[aRarity] || 0) - (rarityOrder[bRarity] || 0);
       }
       
-      if (typeof a[column.accessorKey] === 'number' && typeof b[column.accessorKey] === 'number') {
-        return (a[column.accessorKey] as number) - (b[column.accessorKey] as number);
+      if (typeof aValue === 'number' && typeof bValue === 'number') {
+        return aValue - bValue;
       }
       
-      return String(a[column.accessorKey]).localeCompare(String(b[column.accessorKey]));
+      return String(aValue).localeCompare(String(bValue));
     },
     defaultSortOrder: column.accessorKey === 'name' ? 'ascend' : undefined,
     sortDirections: ['ascend', 'descend', 'ascend'],
@@ -120,7 +134,7 @@ export function CardTable({
           </div>
         );
       }
-
+  
       if (column.accessorKey === "color") {
         return (
           <div className="w-12 whitespace-nowrap mx-auto">
@@ -128,7 +142,7 @@ export function CardTable({
           </div>
         );
       }
-
+  
       if (column.accessorKey === "rarity") {
         const rarity = String(value || '').toLowerCase();
         const processedSet = expansion?.startsWith("Y")
@@ -151,7 +165,7 @@ export function CardTable({
         "opening_hand_win_rate", "drawn_win_rate", "ever_drawn_win_rate",
         "never_drawn_win_rate", "drawn_improvement_win_rate"
       ];
-
+  
       if (numericColumns.includes(column.accessorKey)) {
         const formatter = (v: number) => {
           if (column.accessorKey.includes("rate")) {
@@ -159,7 +173,7 @@ export function CardTable({
           }
           return v.toFixed(2);
         };
-
+  
         return (
           <div className="whitespace-nowrap">
             <StatCell
@@ -175,7 +189,9 @@ export function CardTable({
       return <div className="whitespace-nowrap">{value}</div>;
     },
   }));
-
+  function getNameColumnWidth() { 
+    return isMobile ? 125 : 250;
+  }
   function getColumnMinWidth(accessorKey: string): number {
     switch (accessorKey) {
       case 'color':
@@ -183,7 +199,7 @@ export function CardTable({
       case 'rarity':
         return 70;
       case 'name':
-        return 150;
+        return 1;
       case 'avg_seen':
       case 'avg_pick':
       case 'play_rate':
@@ -252,7 +268,7 @@ export function CardTable({
           type="link" 
           size="small"
           onClick={() => setVisibleColumns(
-            [...(windowWidth < 768 ? mobileDefaultColumns : desktopDefaultColumns)]
+            [...(isMobile ? mobileDefaultColumns : desktopDefaultColumns)]
           )}
         >
           重置

@@ -1,5 +1,10 @@
+export interface CalendarMetadata {
+  lastUpdated: string;
+  announcementUrl: string;
+}
+
 export interface Event {
-  type: 'midweek_magic' | 'quick_draft' | 'other' | 'premier_play' | 'arena_open' | 'arena_championship';
+  type: 'midweek_magic' | 'premier_draft' | 'quick_draft' | 'other' | 'premier_play' | 'arena_open' | 'arena_championship';
   title: string;
   startTime: Date;
   endTime: Date;
@@ -7,15 +12,13 @@ export interface Event {
   description?: string;
 }
 
+export const calendarMetadata: CalendarMetadata = {
+  lastUpdated: '2024/12/02',
+  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/mtg-arena-announcements-december-2-2024#schedule',
+};
+
 export const events: Event[] = [
-  // 周中魔法
-  {
-    type: 'midweek_magic',
-    title: '标准套牌对决',
-    startTime: new Date('2024-11-26T14:00:00-08:00'),
-    endTime: new Date('2024-11-28T14:00:00-08:00'),
-    format: '标准',
-  },
+  // 周中万智牌
   {
     type: 'midweek_magic',
     title: '万智牌：基石构筑争锋构筑挑战',
@@ -37,15 +40,29 @@ export const events: Event[] = [
     endTime: new Date('2024-12-19T14:00:00-08:00'),
     format: '争锋',
   },
-
-  // 快速轮抽
   {
-    type: 'quick_draft',
-    title: '万智牌：基石构筑',
-    startTime: new Date('2024-11-22T08:00:00-08:00'),
-    endTime: new Date('2024-12-03T08:00:00-08:00'),
-    format: '快速轮抽',
+    type: 'midweek_magic',
+    title: '探险展览',
+    startTime: new Date('2024-12-24T14:00:00-08:00'),
+    endTime: new Date('2024-12-26T14:00:00-08:00'),
+    format: '探险',
   },
+  // 竞技轮抽
+  {
+    type: 'premier_draft',
+    title: '万智牌：基石构筑',
+    startTime: new Date('2024-11-12T08:00:00-08:00'),
+    endTime: new Date('2025-02-11T08:00:00-08:00'),
+    format: '竞技轮抽',
+  },
+  {
+    type: 'premier_draft',
+    title: '先驱大师',
+    startTime: new Date('2024-12-10T08:00:00-08:00'),
+    endTime: new Date('2025-02-11T08:00:00-08:00'),
+    format: '竞技轮抽',
+  },
+  // 快速轮抽
   {
     type: 'quick_draft',
     title: '光雷驿镖客',
@@ -53,21 +70,28 @@ export const events: Event[] = [
     endTime: new Date('2024-12-12T08:00:00-08:00'),
     format: '快速轮抽',
   },
+  {
+    type: 'quick_draft',
+    title: '班隆洛',
+    startTime: new Date('2024-12-12T08:00:00-08:00'),
+    endTime: new Date('2024-12-22T08:00:00-08:00'),
+    format: '快速轮抽',
+  },
 
   // 其他活动
-  {
-    type: 'other',
-    title: '基石构筑速战',
-    startTime: new Date('2024-11-19T08:00:00-08:00'),
-    endTime: new Date('2024-12-03T08:00:00-08:00'),
-    format: '速学',
-  },
   {
     type: 'other',
     title: '永恒环境挑战赛',
     startTime: new Date('2024-12-06T08:00:00-08:00'),
     endTime: new Date('2024-12-08T08:00:00-08:00'),
     format: '永恒',
+  },
+  {
+    type: 'other',
+    title: '探险环境挑战赛',
+    startTime: new Date('2024-12-20T08:00:00-08:00'),
+    endTime: new Date('2024-12-22T08:00:00-08:00'),
+    format: '探险',
   },
 
   // 资格赛
@@ -96,16 +120,6 @@ export const events: Event[] = [
     description: '两日赛事，获胜者将获得参加即将到来的竞技场锦标赛的资格。',
   },
 
-  // 竞技场公开赛
-  {
-    type: 'arena_open',
-    title: '竞技场公开赛',
-    startTime: new Date('2024-11-30T06:00:00-08:00'),
-    endTime: new Date('2024-12-01T03:00:00-08:00'),
-    format: '万智牌：基石构筑现开/轮抽',
-    description: '第一天：基石构筑现开（BO1/BO3），第二天：基石构筑轮抽（BO3）',
-  },
-
   // 竞技场锦标赛
   {
     type: 'arena_championship',
@@ -115,4 +129,4 @@ export const events: Event[] = [
     format: '标准',
     description: '仅限受邀选手参加的两日幻影赛事，参赛资格通过资格赛周末活动获得。',
   },
-]; 
+];

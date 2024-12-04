@@ -18,6 +18,7 @@ export default function HomePage() {
       links: [
         { label: "MTGA活动日历", href: "/calendar", description: "查看MTGA活动日程，包括周中万智牌、快速轮抽、资格赛等赛事安排" },
         { label: "标准轮替日程", href: "/rotation", description: "了解标准赛制的系列轮替时间表，掌握当前可用系列和即将轮替的系列" },
+        { label: "MTGA服务状态", href: "/status", description: "查看MTGA的服务器状态、维护信息和各平台运行情况" },
       ]
     },
     {
@@ -26,6 +27,8 @@ export default function HomePage() {
       links: [
         { label: "MTGA汉化MOD", href: "/mod", description: "下载并安装MTGA游戏界面汉化MOD" },
         { label: "Scryfall汉化脚本", href: "/script", description: "为Scryfall卡牌数据库添加中文翻译支持" },
+        { label: "抽卡概率计算器", href: "/hypergeometric", description: "计算万智牌抽卡概率，基于超几何分布" },
+        { label: "精研通行证计算器", href: "/mastery", description: "计算精研通行证等级进度" },
       ]
     }
   ]
@@ -54,7 +57,15 @@ export default function HomePage() {
                 <h2 className="text-2xl font-semibold mb-2">{section.title}</h2>
                 <p className="text-[--muted-foreground]">{section.description}</p>
               </div>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div 
+                className={`grid gap-6 ${
+                  section.links.length <= 3 
+                    ? 'md:grid-cols-2 lg:grid-cols-3'
+                    : section.links.length === 4
+                    ? 'grid-cols-1 md:grid-cols-4 lg:grid-cols-4'
+                    : 'grid-cols-1 md:grid-cols-5 lg:grid-cols-5'
+                }`}
+              >
                 {section.links.map((link, linkIndex) => (
                   link.external ? (
                     <a

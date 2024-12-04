@@ -83,6 +83,11 @@ const CardTooltip: FC<CardTooltipProps> = ({ card, visible, x, y, expansion, isM
   };
 
   useEffect(() => {
+    if (!visible) {
+      setCardDetails(null);
+      return;
+    }
+
     if (visible && chineseCard?.setCode && chineseCard?.number) {
       fetch(`https://api.sbwsz.com/card/${chineseCard.setCode}/${chineseCard.number}`)
         .then(res => res.json())
@@ -114,9 +119,9 @@ const CardTooltip: FC<CardTooltipProps> = ({ card, visible, x, y, expansion, isM
     : (expansion || '').toLowerCase()
 
   // 获取卡图URL
-  const cardImageUrl = chineseCard?.scryfallId 
+  const cardImageUrl = card.url || (chineseCard?.scryfallId 
     ? `https://cards.scryfall.io/normal/front/${chineseCard.scryfallId.slice(0, 1)}/${chineseCard.scryfallId.slice(1, 2)}/${chineseCard.scryfallId}.jpg`
-    : null;
+    : null);
 
   const handleClose = () => {
     const event = new MouseEvent('mouseleave');

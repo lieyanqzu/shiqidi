@@ -18,6 +18,7 @@ export interface CardData {
   never_drawn_game_count?: number;            // 未抽到数量
   never_drawn_win_rate?: number;       // 未抽到胜率
   drawn_improvement_win_rate?: number; // 抽到改善胜率
+  url?: string;                       // 卡牌链接
 }
 
 export interface ChineseCardData {
@@ -30,7 +31,7 @@ export interface ChineseCardData {
   zhs_flavorName: string | null; // 中文风味名
   zhs_type: string;          // 中文类型
   zhs_language: string;      // 中文语言来源
-  officialName: string | null; // 官方名称
+  officialName: string | undefined; // 官方名称
   translatedName: string;    // 翻译名称
   setCode: string;           // 系列代码
   keyruneCode: string;       // Keyrune代码
