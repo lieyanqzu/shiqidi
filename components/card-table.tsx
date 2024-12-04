@@ -70,21 +70,21 @@ export function CardTable({
   
   const [visibleColumns, setVisibleColumns] = useState<Array<keyof CardData>>(defaultVisibleColumns);
 
-  useEffect(() => {
-    const handleResize = () => {
-      const width = window.innerWidth;
-      setWindowWidth(width);
-      const newIsMobile = width < 768;
-      if (newIsMobile) {
-        if (visibleColumns.length > mobileDefaultColumns.length) {
-          setVisibleColumns([...mobileDefaultColumns]);
-        }
-      }
-    };
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     const width = window.innerWidth;
+  //     setWindowWidth(width);
+  //     const newIsMobile = width < 768;
+  //     if (newIsMobile) {
+  //       if (visibleColumns.length > mobileDefaultColumns.length) {
+  //         setVisibleColumns([...mobileDefaultColumns]);
+  //       }
+  //     }
+  //   };
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [visibleColumns, mobileDefaultColumns]);
+  //   window.addEventListener('resize', handleResize);
+  //   return () => window.removeEventListener('resize', handleResize);
+  // }, [visibleColumns, mobileDefaultColumns]);
 
   const antColumns: ColumnsType<CardData> = columns.map(column => ({
     title: column.title || column.header,
