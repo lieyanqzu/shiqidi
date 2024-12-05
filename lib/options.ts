@@ -3,8 +3,23 @@ export interface Option {
   value: string;
 }
 
-// 赛制选项
 export const formatOptions: Option[] = [
+  { label: "真人轮抽", value: "PremierDraft" },
+  { label: "真人轮抽BO3", value: "TradDraft" },
+  { label: "快速轮抽", value: "QuickDraft" },
+  { label: "现开赛", value: "Sealed" },
+  { label: "现开赛BO3", value: "TradSealed" },
+  { label: "竞技场直邮赛现开", value: "ArenaDirect_Sealed" },
+  { label: "公开赛第二日轮抽BO3", value: "OpenDraft_D2_Draft1_Bo3" },
+  { label: "公开赛第二日轮抽2B BO3", value: "OpenDraft_D2_Draft2B_Bo3" },
+  { label: "公开赛第二日轮抽2 BO3", value: "OpenDraft_D2_Draft2_Bo3" },
+  { label: "公开赛第一日现开BO1", value: "OpenSealed_D1_Bo1" },
+  { label: "公开赛第一日现开BO3", value: "OpenSealed_D1_Bo3" },
+  { label: "资格赛预选现开", value: "QualifierPlayInSealed" },
+];
+
+// 赛制选项
+export const formatSpeedOptions: Option[] = [
   { label: "真人轮抽", value: "PremierDraft" },
   { label: "快速轮抽", value: "QuickDraft" },
   { label: "现开赛", value: "Sealed" },

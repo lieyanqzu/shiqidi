@@ -51,16 +51,6 @@ export default function AboutPage() {
       url: "https://github.com/pmndrs/zustand"
     },
     {
-      name: "TanStack Query",
-      description: "用于数据获取和缓存的库",
-      url: "https://tanstack.com/query"
-    },
-    {
-      name: "TanStack Table",
-      description: "用于构建强大的表格组件",
-      url: "https://tanstack.com/table"
-    },
-    {
       name: "Recharts",
       description: "基于React的图表库",
       url: "https://recharts.org"

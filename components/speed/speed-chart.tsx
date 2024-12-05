@@ -62,9 +62,18 @@ const CustomScatter = (props: CustomScatterProps) => {
   );
 };
 
-const CustomTooltip = ({ active, payload, isMobile, selectedPoint }: any) => {
-  if ((!isMobile && active && payload && payload.length) || (isMobile && selectedPoint)) {
-    const data = isMobile ? selectedPoint : payload[0].payload;
+interface CustomTooltipProps {
+  active?: boolean;
+  payload?: Array<{
+    payload: SpeedData;
+  }>;
+  isMobile?: boolean;
+  selectedPoint?: SpeedData | null;
+}
+
+const CustomTooltip = ({ active, payload, isMobile, selectedPoint }: CustomTooltipProps) => {
+  if ((!isMobile && active && payload?.length) || (isMobile && selectedPoint)) {
+    const data = isMobile ? selectedPoint! : payload![0].payload;
     const processedSet = data.expansion.startsWith('Y') 
       ? `y${data.expansion.slice(data.expansion.match(/Y\d{0,2}/)![0].length)}`.toLowerCase()
       : data.expansion.toLowerCase();

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
-import { Option, formatOptions, expansionOptions } from "@/lib/options";
+import { Option, formatSpeedOptions, expansionOptions } from "@/lib/options";
 
 interface SpeedFiltersProps {
   selectedExpansions: string[];
@@ -33,7 +33,7 @@ export function SpeedFilters({
     { selectedExpansionOptions: [] as Option[], unselectedExpansionOptions: [] as Option[] }
   );
 
-  const { selectedFormatOptions, unselectedFormatOptions } = formatOptions.reduce(
+  const { selectedFormatOptions, unselectedFormatOptions } = formatSpeedOptions.reduce(
     (acc, option) => {
       if (selectedFormats.includes(option.value)) {
         acc.selectedFormatOptions.push(option);

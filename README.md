@@ -6,8 +6,9 @@
 
 - **轮抽数据**
   - 卡牌数据：查看各系列轮抽中卡牌的表现数据，包括胜率、选取率等详细统计
-  - 色组数据：分析不同色组组合的胜率和选用率（跳转至17Lands）
   - 赛制速度：了解各个系列限制赛的速度和先手胜率
+  - 色组数据：分析不同色组组合的胜率和选用率（跳转至17Lands）
+
 
 - **万智日程**
   - MTGA活动日历：查看MTGA活动日程，包括周中万智牌、轮抽、资格赛等赛事安排
@@ -22,18 +23,16 @@
 
 ## 技术栈
 
-- [Next.js](https://nextjs.org) - React框架，提供了服务端渲染、路由等功能 (v15.0.3)
-- [React](https://react.dev) - 用于构建用户界面的JavaScript库 (v18.2.0)
+- [Next.js](https://nextjs.org) - React框架，提供了服务端渲染、路由等功能
+- [React](https://react.dev) - 用于构建用户界面的JavaScript库
 - [Tailwind CSS](https://tailwindcss.com) - CSS框架，提供了现代化的样式系统
 - [Radix UI](https://www.radix-ui.com) - 无样式的UI组件库，提供了基础的交互组件
-- [Zustand](https://github.com/pmndrs/zustand) - 轻量级状态管理库 (v5.0.1)
-- [TanStack Query](https://tanstack.com/query) - 用于数据获取和缓存的库 (v5.62.0)
-- [TanStack Table](https://tanstack.com/table) - 用于构建强大的表格组件 (v8.20.5)
-- [Recharts](https://recharts.org) - 基于React的图表库 (v2.14.1)
-- [date-fns](https://date-fns.org) - 现代JavaScript日期工具库 (v4.1.0)
-- [React DatePicker](https://reactdatepicker.com) - 灵活的日期选择器组件 (v7.5.0)
-- [Lucide Icons](https://lucide.dev) - 图标库，提供了界面中使用的各种图标 (v0.462.0)
-- [Keyrune](https://keyrune.andrewgioia.com) - 提供万智牌系列图标的字体库 (v3.16.0)
+- [Zustand](https://github.com/pmndrs/zustand) - 轻量级状态管理库
+- [Recharts](https://recharts.org) - 基于React的图表库
+- [date-fns](https://date-fns.org) - 现代JavaScript日期工具库
+- [React DatePicker](https://reactdatepicker.com) - 灵活的日期选择器组件
+- [Lucide Icons](https://lucide.dev) - 图标库，提供了界面中使用的各种图标
+- [Keyrune](https://keyrune.andrewgioia.com) - 提供万智牌系列图标的字体库
 
 ## 数据来源
 

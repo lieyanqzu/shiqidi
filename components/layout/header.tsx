@@ -130,8 +130,8 @@ const menuItems: MenuItem[] = [
     label: "轮抽数据",
     children: [
       { label: "卡牌数据", href: "/cards" },
-      { label: "色组数据", href: "https://www.17lands.com/deck_color_data", external: true },
       { label: "赛制速度", href: "/speed" },
+      { label: "色组数据", href: "https://www.17lands.com/deck_color_data", external: true },
     ]
   },
   {

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useCallback, useMemo } from 'react';
+import { useEffect, useRef, useCallback, useMemo } from 'react';
 
 interface Column<T> {
   header: string;
@@ -31,7 +31,6 @@ export function Table<T>({
 }: TableProps<T>) {
   const headerRef = useRef<HTMLDivElement>(null);
   const bodyRef = useRef<HTMLDivElement>(null);
-  const [columnWidths, setColumnWidths] = useState<number[]>([]);
 
   // 缓存计算列宽的函数
   const calculateColumnWidths = useCallback(() => {

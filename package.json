@@ -10,8 +10,6 @@
   },
   "dependencies": {
     "@radix-ui/react-slider": "^1.2.1",
-    "@tanstack/react-query": "^5.62.0",
-    "@tanstack/react-table": "^8.20.5",
     "date-fns": "^4.1.0",
     "keyrune": "^3.16.0",
     "lucide-react": "^0.462.0",
