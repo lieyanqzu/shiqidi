@@ -57,9 +57,23 @@ export const events: Event[] = [
   },
   {
     type: 'premier_draft',
-    title: '先驱大师',
+    title: '先驱大师 - 奖励列表：鹏洛客',
     startTime: new Date('2024-12-10T08:00:00-08:00'),
-    endTime: new Date('2025-02-11T08:00:00-08:00'),
+    endTime: new Date('2024-12-24T08:00:00-08:00'),
+    format: '竞技轮抽',
+  },
+  {
+    type: 'premier_draft', 
+    title: '先驱大师 - 奖励列表：咒语',
+    startTime: new Date('2024-12-24T08:00:00-08:00'),
+    endTime: new Date('2025-01-07T08:00:00-08:00'),
+    format: '竞技轮抽',
+  },
+  {
+    type: 'premier_draft',
+    title: '先驱大师 - 奖励列表：献力',
+    startTime: new Date('2025-01-07T08:00:00-08:00'), 
+    endTime: new Date('2025-01-21T08:00:00-08:00'),
     format: '竞技轮抽',
   },
   // 快速轮抽
