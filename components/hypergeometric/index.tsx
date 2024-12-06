@@ -92,9 +92,30 @@ export function HypergeometricCalculator() {
   const [probabilities, setProbabilities] = useState<ProbabilityResults | null>(null);
 
   const handleChange = (id: keyof CalculatorInput, value: string) => {
-    const numValue = parseInt(value) || 0;
-    setValues(prev => ({ ...prev, [id]: numValue }));
+    // 如果输入为空，使用0
+    if (!value) {
+      setValues(prev => ({ ...prev, [id]: 0 }));
+      return;
+    }
+
+    // 处理数字转换
+    const numValue = parseInt(value);
+    if (!isNaN(numValue)) {
+      setValues(prev => ({ ...prev, [id]: numValue }));
+    }
     setProbabilities(null);
+  };
+
+  const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    e.target.select();
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    // 如果当前值为0，且输入的是数字，则清空输入框
+    const input = e.currentTarget;
+    if (input.value === '0' && e.key >= '0' && e.key <= '9') {
+      input.value = '';
+    }
   };
 
   const handleCalculate = () => {
@@ -129,6 +150,8 @@ export function HypergeometricCalculator() {
                   onChange={(e) => handleChange('populationSize', e.target.value)}
                   min={0}
                   className="w-20 text-lg text-right"
+                  onFocus={handleFocus}
+                  onKeyDown={handleKeyDown}
                 />
                 <div className="flex gap-1 justify-end">
                   {quickInputs.populationSize.map(value => (
@@ -162,6 +185,8 @@ export function HypergeometricCalculator() {
                   onChange={(e) => handleChange('sampleSize', e.target.value)}
                   min={0}
                   className="w-20 text-lg text-right"
+                  onFocus={handleFocus}
+                  onKeyDown={handleKeyDown}
                 />
                 <div className="flex gap-1 justify-end">
                   {quickInputs.sampleSize.map(value => (
@@ -195,6 +220,8 @@ export function HypergeometricCalculator() {
                   onChange={(e) => handleChange('successesInPopulation', e.target.value)}
                   min={0}
                   className="w-20 text-lg text-right"
+                  onFocus={handleFocus}
+                  onKeyDown={handleKeyDown}
                 />
                 <div className="flex gap-1 justify-end">
                   {quickInputs.successesInPopulation.map(value => (
@@ -228,6 +255,8 @@ export function HypergeometricCalculator() {
                   onChange={(e) => handleChange('successesInSample', e.target.value)}
                   min={0}
                   className="w-20 text-lg text-right"
+                  onFocus={handleFocus}
+                  onKeyDown={handleKeyDown}
                 />
                 <div className="flex gap-1 justify-end">
                   {quickInputs.successesInSample.map(value => (
