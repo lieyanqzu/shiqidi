@@ -1,10 +1,14 @@
-import { Metadata } from 'next';
 import { ScriptCarousel } from '@/components/script/script-carousel';
+import { generateMetadata } from '../metadata';
 
-export const metadata: Metadata = {
-  title: '十七地 - Scryfall汉化脚本',
-  description: '为Scryfall卡牌数据库添加中文翻译支持',
-};
+export const metadata = generateMetadata(
+  "十七地 - Scryfall汉化脚本",
+  "为Scryfall卡牌数据库添加中文翻译支持，让你可以使用中文名称搜索卡牌。包含安装方法和使用说明。",
+  "/script",
+  {
+    keywords: ["MTGA", "万智牌", "Scryfall", "汉化脚本", "中文翻译", "卡牌数据库", "中文搜索", "卡牌查询"],
+  }
+);
 
 const screenshots = [
   'https://greasyfork.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MTUwMzA1LCJwdXIiOiJibG9iX2lkIn19--61eca926dc865ee445e0ef18b844e13a302ad049/2.jpg?locale=zh-CN',
