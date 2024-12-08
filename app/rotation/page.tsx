@@ -1,10 +1,14 @@
-import { Metadata } from 'next';
+import { generateMetadata } from '../metadata';
 import rotationData from '@/data/rotation.json';
 
-export const metadata: Metadata = {
-  title: '十七地 - 标准轮替日程',
-  description: '了解标准赛制的系列轮替时间表，掌握当前可用系列和即将轮替的系列',
-};
+export const metadata = generateMetadata(
+  "十七地 - 标准轮替日程",
+  "了解标准赛制的系列轮替时间表，掌握当前可用系列和即将轮替的系列信息。帮助你合理规划卡牌收集。",
+  "/rotation",
+  {
+    keywords: ["MTGA", "万智牌", "标准轮替", "系列更新", "标准赛制", "轮替时间表", "系列表"],
+  }
+);
 
 interface Set {
   name: string | null;
