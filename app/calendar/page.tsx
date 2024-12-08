@@ -107,7 +107,7 @@ export default function CalendarPage() {
           </section>
         )}
 
-        {/* 竞技���程 */}
+        {/* 竞技比赛日程 */}
         {(premierPlayEvents.length > 0 || arenaOpenEvents.length > 0 || arenaChampionshipEvents.length > 0) && (
           <section className="mb-8">
             <h2 className="text-xl font-semibold mb-4">竞技赛程</h2>
