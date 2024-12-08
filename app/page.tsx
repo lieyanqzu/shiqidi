@@ -1,5 +1,15 @@
 import Link from 'next/link'
 import { ExternalLink } from 'lucide-react'
+import { generateMetadata } from './metadata'
+
+export const metadata = generateMetadata(
+  "十七地 - MTGA小助手",
+  "你的万智牌：竞技场小助手，提供轮抽数据查询、MTGA活动日历、精研通行证计算器等功能。包括轮抽数据分析、赛事日程、汉化工具等多种实用功能。",
+  "/",
+  {
+    keywords: ["MTGA", "万智牌", "竞技场", "十七地", "MTG", "Magic: The Gathering Arena", "轮抽数据", "赛事日程", "汉化工具"],
+  }
+)
 
 export default function HomePage() {
   const sections = [

@@ -1,10 +1,14 @@
 import { SpeedChart } from '@/components/speed/speed-chart';
-import { Metadata } from 'next';
+import { generateMetadata } from '../metadata';
 
-export const metadata: Metadata = {
-  title: '十七地 - 赛制速度',
-  description: '了解各个系列限制赛的速度和先手胜率',
-};
+export const metadata = generateMetadata(
+  "十七地 - 轮抽赛制速度",
+  "了解MTGA各个系列限制赛的速度和先手胜率。通过数据分析帮助你更好地理解当前赛制环境，选择合适的策略。",
+  "/speed",
+  {
+    keywords: ["MTGA", "万智牌", "限制赛", "赛制速度", "先手胜率", "环境分析", "数据统计"],
+  }
+);
 
 async function getSpeedData() {
   const response = await fetch('https://www.17lands.com/data/play_draw', {
