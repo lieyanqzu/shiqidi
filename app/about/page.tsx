@@ -91,7 +91,7 @@ export default function AboutPage() {
             <h1 className="text-2xl font-bold mb-4">关于十七地</h1>
             <div className="space-y-4">
               <p className="text-[--muted-foreground] leading-relaxed">
-                十七地是一个专注于万智牌：竞技场的工��平台，旨在帮助玩家提升游玩体验。
+                十七地是一个专注于万智牌：竞技场的工具平台，旨在帮助玩家提升游玩体验。
               </p>
               <p className="text-[--muted-foreground] leading-relaxed">
                 本站的轮抽数据功能基于17Lands提供的数据，同时也整合了一些实用工具以提升游戏体验。
