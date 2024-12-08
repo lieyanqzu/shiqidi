@@ -1,9 +1,13 @@
-import { Metadata } from 'next';
+import { generateMetadata } from '../metadata';
 
-export const metadata: Metadata = {
-  title: '十七地 - 关于',
-  description: '十七地是一个专注于万智牌：竞技场的工具平台，旨在帮助玩家提升游玩体验。',
-};
+export const metadata = generateMetadata(
+  "十七地 - 关于",
+  "了解十七地项目，一个为MTGA玩家提供全方位辅助工具的开源项目。包含项目介绍、功能说明和技术细节。",
+  "/about",
+  {
+    keywords: ["MTGA", "万智牌", "十七地", "工具集", "开源项目", "辅助工具", "项目介绍"],
+  }
+);
 
 export default function AboutPage() {
   const resources = [
@@ -87,7 +91,7 @@ export default function AboutPage() {
             <h1 className="text-2xl font-bold mb-4">关于十七地</h1>
             <div className="space-y-4">
               <p className="text-[--muted-foreground] leading-relaxed">
-                十七地是一个专注于万智牌：竞技场的工具平台，旨在帮助玩家提升游玩体验。
+                十七地是一个专注于万智牌：竞技场的工��平台，旨在帮助玩家提升游玩体验。
               </p>
               <p className="text-[--muted-foreground] leading-relaxed">
                 本站的轮抽数据功能基于17Lands提供的数据，同时也整合了一些实用工具以提升游戏体验。

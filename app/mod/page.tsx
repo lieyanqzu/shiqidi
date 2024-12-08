@@ -1,10 +1,14 @@
-import { Metadata } from 'next';
 import { ModDownloadButton } from '@/components/mod/mod-download-button';
+import { generateMetadata } from '../metadata';
 
-export const metadata: Metadata = {
-  title: '十七地 - MTGA汉化MOD',
-  description: '下载并安装MTGA游戏界面汉化MOD',
-};
+export const metadata = generateMetadata(
+  "十七地 - MTGA汉化MOD",
+  "下载并安装MTGA游戏界面汉化MOD，让游戏界面完全中文化。包含安装教程和使用说明，支持最新版本。",
+  "/mod",
+  {
+    keywords: ["MTGA", "万智牌", "汉化MOD", "中文化", "游戏界面", "汉化补丁", "中文界面", "汉化工具"],
+  }
+);
 
 export default function ModPage() {
   return (

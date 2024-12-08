@@ -79,7 +79,7 @@ export default function CardsPage() {
         // 获取选中的基本颜色（WUBRG）
         const selectedBasicColors = selectedColors.filter(c => 'WUBRG'.includes(c));
         
-        // 如果选中了基本颜色，检查卡牌是否包含任何一个选中的颜色
+        // 如果选中了基本颜色检查卡牌是否包含任何一个选中的颜色
         if (selectedBasicColors.length > 0) {
           return selectedBasicColors.some(color => cardColors.includes(color));
         }

@@ -1,12 +1,16 @@
-import { Metadata } from 'next';
 import { EventCard } from '@/components/calendar/event-card';
 import { events, calendarMetadata } from '@/data/events';
 import { ExternalLink } from 'lucide-react';
+import { generateMetadata } from '../metadata';
 
-export const metadata: Metadata = {
-  title: '十七地 - MTGA活动日历',
-  description: '查看MTGA活动日程，包括周中万智牌、快速轮抽、资格赛等赛事安排',
-};
+export const metadata = generateMetadata(
+  "十七地 - MTGA活动日历",
+  "查看MTGA活动日程安排，包括周中万智牌、快速轮抽、资格赛等赛事时间表。及时了解最新活动信息，合理安排游戏时间。",
+  "/calendar",
+  {
+    keywords: ["MTGA", "万智牌", "活动日历", "赛事日程", "周中万智牌", "快速轮抽", "资格赛", "比赛时间"],
+  }
+);
 
 export default function CalendarPage() {
   const midweekMagicEvents = events.filter(event => event.type === 'midweek_magic');
@@ -103,7 +107,7 @@ export default function CalendarPage() {
           </section>
         )}
 
-        {/* 竞技赛程 */}
+        {/* 竞技���程 */}
         {(premierPlayEvents.length > 0 || arenaOpenEvents.length > 0 || arenaChampionshipEvents.length > 0) && (
           <section className="mb-8">
             <h2 className="text-xl font-semibold mb-4">竞技赛程</h2>
