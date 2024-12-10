@@ -13,19 +13,12 @@ export interface Event {
 }
 
 export const calendarMetadata: CalendarMetadata = {
-  lastUpdated: '2024/12/02',
-  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/mtg-arena-announcements-december-2-2024#schedule',
+  lastUpdated: '2024/12/09',
+  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/mtg-arena-announcements-december-9-2024#schedule',
 };
 
 export const events: Event[] = [
   // 周中万智牌
-  {
-    type: 'midweek_magic',
-    title: '万智牌：基石构筑争锋构筑挑战',
-    startTime: new Date('2024-12-03T14:00:00-08:00'),
-    endTime: new Date('2024-12-05T14:00:00-08:00'),
-    format: '争锋',
-  },
   {
     type: 'midweek_magic',
     title: '探险构筑',
@@ -46,6 +39,13 @@ export const events: Event[] = [
     startTime: new Date('2024-12-24T14:00:00-08:00'),
     endTime: new Date('2024-12-26T14:00:00-08:00'),
     format: '探险',
+  },
+  {
+    type: 'midweek_magic',
+    title: '万智牌：基石构筑幻影现开',
+    startTime: new Date('2024-12-31T14:00:00-08:00'),
+    endTime: new Date('2025-01-02T14:00:00-08:00'),
+    format: '现开',
   },
   // 竞技轮抽
   {
@@ -95,17 +95,17 @@ export const events: Event[] = [
   // 其他活动
   {
     type: 'other',
-    title: '永恒环境挑战赛',
-    startTime: new Date('2024-12-06T08:00:00-08:00'),
-    endTime: new Date('2024-12-08T08:00:00-08:00'),
-    format: '永恒',
-  },
-  {
-    type: 'other',
     title: '探险环境挑战赛',
     startTime: new Date('2024-12-20T08:00:00-08:00'),
     endTime: new Date('2024-12-22T08:00:00-08:00'),
     format: '探险',
+  },
+  {
+    type: 'other',
+    title: '标准环境挑战赛',
+    startTime: new Date('2025-01-03T08:00:00-08:00'),
+    endTime: new Date('2025-01-05T08:00:00-08:00'),
+    format: '标准',
   },
 
   // 资格赛

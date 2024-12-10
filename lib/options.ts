@@ -48,6 +48,7 @@ export const formatSpeedOptions: Option[] = [
 
 // 系列选项
 export const expansionOptions: Option[] = [
+  { label: "PIO", value: "PIO" },
   { label: "FDN", value: "FDN" },
   { label: "DSK", value: "DSK" },
   { label: "Y25DSK", value: "Y25DSK" },
