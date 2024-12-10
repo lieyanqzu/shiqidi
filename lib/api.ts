@@ -227,7 +227,11 @@ export async function fetchAllChineseCardData(
     }
 
     // 创建一个映射来快速查找已有的中文数据
-    const existingCards = new Map(allResults.map(card => [card.name, card]));
+    const existingCards = new Map(allResults.flatMap(card => 
+      card.faceName 
+        ? [[card.name, card], [card.faceName, card]]
+        : [[card.name, card]]
+    ));
 
     // 检查哪些卡牌没有中文数据
     const missingCards = cards.filter(card => !existingCards.has(card.name));
