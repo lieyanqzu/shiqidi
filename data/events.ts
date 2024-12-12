@@ -138,7 +138,7 @@ export const events: Event[] = [
     startTime: new Date('2024-12-21T06:00:00-08:00'),
     endTime: new Date('2024-12-22T16:00:00-08:00'),
     format: '万智牌：基石构筑限制赛',
-    description: '两日赛事，获胜者将获得参加即将到来的竞技场锦标赛的资格。',
+    description: '两日赛事，获胜者将获得参加即将到来的竞技场冠军赛的资格。',
   },
 
   // Arena Open
@@ -166,6 +166,5 @@ export const events: Event[] = [
     startTime: new Date('2024-12-14T00:00:00-08:00'),
     endTime: new Date('2024-12-15T23:59:59-08:00'),
     format: '标准',
-    description: '仅限受邀选手参加的两日幻影赛事，参赛资格通过资格赛周末活动获得。',
   },
 ];
