@@ -9,27 +9,27 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@radix-ui/react-slider": "^1.2.1",
-    "@radix-ui/react-tabs": "^1.1.1",
+    "@radix-ui/react-slider": "^1.2.2",
+    "@radix-ui/react-tabs": "^1.1.2",
     "date-fns": "^4.1.0",
-    "keyrune": "^3.16.0",
+    "keyrune": "^3.16.1",
     "lucide-react": "^0.462.0",
     "next": "15.0.3",
-    "react": "^18.2.0",
+    "react": "^18.3.1",
     "react-datepicker": "^7.5.0",
-    "react-dom": "^18.2.0",
-    "recharts": "^2.14.1",
-    "zustand": "^5.0.1"
+    "react-dom": "^18.3.1",
+    "recharts": "^2.15.0",
+    "zustand": "^5.0.2"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/node": "^20.17.10",
+    "@types/react": "^18.3.16",
+    "@types/react-dom": "^18.3.5",
     "@types/recharts": "^1.8.29",
-    "eslint": "^9",
+    "eslint": "^9.16.0",
     "eslint-config-next": "15.0.3",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.16",
+    "typescript": "^5.7.2"
   }
 }
