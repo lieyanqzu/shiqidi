@@ -20,13 +20,6 @@ export const calendarMetadata: CalendarMetadata = {
 const midweekMagicEvents: Event[] = [
   {
     type: 'midweek_magic',
-    title: '探险展览',
-    startTime: new Date('2024-12-24T14:00:00-08:00'),
-    endTime: new Date('2024-12-26T14:00:00-08:00'),
-    format: '探险',
-  },
-  {
-    type: 'midweek_magic',
     title: '万智牌：基石构筑幻影现开',
     startTime: new Date('2024-12-31T14:00:00-08:00'),
     endTime: new Date('2025-01-02T14:00:00-08:00'),
@@ -65,9 +58,9 @@ const midweekMagicEvents: Event[] = [
 const premierDraftEvents: Event[] = [
   {
     type: 'premier_draft',
-    title: '先驱大师 - 奖励列表：鹏洛客',
-    startTime: new Date('2024-12-10T08:00:00-08:00'),
-    endTime: new Date('2024-12-24T08:00:00-08:00'),
+    title: '万智牌：基石构筑',
+    startTime: new Date('2024-11-12T08:00:00-08:00'),
+    endTime: new Date('2025-02-11T08:00:00-08:00'),
     format: '竞技轮抽',
   },
   {
@@ -132,13 +125,6 @@ const quickDraftEvents: Event[] = [
 ];
 
 const otherEvents: Event[] = [
-  {
-    type: 'other',
-    title: '竞技场直邮赛：班隆洛',
-    startTime: new Date('2024-12-27T08:00:00-08:00'),
-    endTime: new Date('2024-12-30T08:00:00-08:00'),
-    format: '班隆洛限制赛',
-  },
   {
     type: 'other',
     title: '标准环境挑战赛',
