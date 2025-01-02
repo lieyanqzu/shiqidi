@@ -262,7 +262,6 @@ export function Bo1LandCalculator() {
               <div className="grid gap-2">
                 {probabilities.landDistribution.map(({ lands, probability }) => {
                   const normalProb = probabilities.normalProbability.find(p => p.lands === lands)?.probability || 0;
-                  const maxProb = Math.max(probability, normalProb);
                   return (
                     <div 
                       key={lands}
