@@ -22,7 +22,7 @@
     "zustand": "^5.0.2"
   },
   "devDependencies": {
-    "@types/node": "^20.17.10",
+    "@types/node": "^20.17.11",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
     "@types/recharts": "^1.8.29",
