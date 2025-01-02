@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { SingleCardCalculator } from './single-card';
 import { MultiCardCalculator } from './multi-card';
+import { Bo1LandCalculator } from './bo1-land';
 import type { CalculatorInput } from './single-card';
 import type { MultiCardInput } from './multi-card';
 
@@ -35,7 +36,7 @@ export function HypergeometricCalculator() {
   return (
     <div className="space-y-6">
       <Tabs value={tab} onValueChange={setTab} className="w-full">
-        <TabsList className="grid w-full sm:w-fit grid-cols-2 h-11 p-0.5 bg-[--accent]/50">
+        <TabsList className="grid w-full sm:w-fit grid-cols-3 h-11 p-0.5 bg-[--accent]/50">
           <TabsTrigger 
             value="single" 
             className="px-8 text-base data-[state=active]:bg-[--background] data-[state=active]:text-[--foreground] data-[state=active]:shadow-none"
@@ -47,6 +48,12 @@ export function HypergeometricCalculator() {
             className="px-8 text-base data-[state=active]:bg-[--background] data-[state=active]:text-[--foreground] data-[state=active]:shadow-none"
           >
             多牌概率
+          </TabsTrigger>
+          <TabsTrigger 
+            value="bo1" 
+            className="px-8 text-base data-[state=active]:bg-[--background] data-[state=active]:text-[--foreground] data-[state=active]:shadow-none"
+          >
+            BO1地牌
           </TabsTrigger>
         </TabsList>
 
@@ -62,6 +69,10 @@ export function HypergeometricCalculator() {
             values={multiCardValues}
             onChange={setMultiCardValues}
           />
+        </TabsContent>
+
+        <TabsContent value="bo1" className="mt-6">
+          <Bo1LandCalculator />
         </TabsContent>
       </Tabs>
     </div>
