@@ -13,18 +13,11 @@ export interface Event {
 }
 
 export const calendarMetadata: CalendarMetadata = {
-  lastUpdated: '2024/12/23',
-  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/mtg-arena-announcements-december-23-2024#schedule',
+  lastUpdated: '2025/01/06',
+  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/mtg-arena-announcements-january-6-2025#schedule',
 };
 
 const midweekMagicEvents: Event[] = [
-  {
-    type: 'midweek_magic',
-    title: '万智牌：基石构筑幻影现开',
-    startTime: new Date('2024-12-31T14:00:00-08:00'),
-    endTime: new Date('2025-01-02T14:00:00-08:00'),
-    format: '现开',
-  },
   {
     type: 'midweek_magic',
     title: '先驱大师幻影现开（含全部奖励列表！）',
@@ -103,13 +96,6 @@ const premierDraftEvents: Event[] = [
 const quickDraftEvents: Event[] = [
   {
     type: 'quick_draft',
-    title: '万智牌：基石构筑',
-    startTime: new Date('2024-12-22T08:00:00-08:00'),
-    endTime: new Date('2025-01-04T08:00:00-08:00'),
-    format: '快速轮抽',
-  },
-  {
-    type: 'quick_draft',
     title: '暮悲邸：鬼屋惊魂',
     startTime: new Date('2025-01-04T08:00:00-08:00'),
     endTime: new Date('2025-01-18T08:00:00-08:00'),
@@ -127,17 +113,11 @@ const quickDraftEvents: Event[] = [
 const otherEvents: Event[] = [
   {
     type: 'other',
-    title: '标准环境挑战赛',
-    startTime: new Date('2025-01-03T08:00:00-08:00'),
-    endTime: new Date('2025-01-05T08:00:00-08:00'),
-    format: '标准',
-  },
-  {
-    type: 'other',
-    title: '基石构筑全知全能轮抽',
-    startTime: new Date('2025-01-03T08:00:00-08:00'),
-    endTime: new Date('2025-01-06T08:00:00-08:00'),
+    title: '五彩方盒轮抽',
+    startTime: new Date('2025-01-28T08:00:00-08:00'),
+    endTime: new Date('2025-02-11T08:00:00-08:00'),
     format: '轮抽',
+    description: '提供BO1和BO3两种模式',
   },
 ];
 
