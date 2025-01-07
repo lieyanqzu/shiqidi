@@ -4,6 +4,7 @@ import 'keyrune/css/keyrune.css';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { Metadata } from 'next';
+import { AnalyticsTracker } from '@/components/analytics-tracker';
 
 export const metadata: Metadata = {
   title: {
@@ -77,7 +78,10 @@ export default function RootLayout({
       <body className="min-h-screen bg-[--background] font-sans">
         <div className="flex min-h-screen flex-col">
           <Header />
-          <main className="flex-1">{children}</main>
+          <main className="flex-1">
+            <AnalyticsTracker />
+            {children}
+          </main>
           <Footer />
         </div>
       </body>
