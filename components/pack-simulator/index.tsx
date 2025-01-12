@@ -1,12 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { Select } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
 import { PackDisplay } from './pack-display';
 import { Statistics } from './statistics';
 import { getAvailableSets, simulatePacks } from '@/lib/pack-simulator';
-import type { Card } from '@/types/pack-simulator';
+import type { Card, PackSimulatorResults } from '@/types/pack-simulator';
 
 const sets = getAvailableSets();
 const setOptions = sets.map(set => ({
@@ -17,7 +17,7 @@ const setOptions = sets.map(set => ({
 export function PackSimulator() {
   const [selectedSet, setSelectedSet] = useState<string>(setOptions[0]?.value || '');
   const [isLoading, setIsLoading] = useState(false);
-  const [results, setResults] = useState<{ packs: any[] }>({ packs: [] });
+  const [results, setResults] = useState<PackSimulatorResults>({ packs: [], statistics: { totalCards: 0, byRarity: {}, bySheet: {} } });
   const [flippedCards, setFlippedCards] = useState<Card[]>([]);
   const [autoFlipCommon, setAutoFlipCommon] = useState(false);
 
@@ -39,7 +39,7 @@ export function PackSimulator() {
 
   // 清空结果
   const handleClear = () => {
-    setResults({ packs: [] });
+    setResults({ packs: [], statistics: { totalCards: 0, byRarity: {}, bySheet: {} } });
     setFlippedCards([]); // 清空已翻开卡牌
   };
 
@@ -51,7 +51,8 @@ export function PackSimulator() {
     try {
       const newResults = await simulatePacks(selectedSet, 1);
       setResults(prev => ({
-        packs: [...prev.packs, ...newResults.packs]
+        packs: [...prev.packs, ...newResults.packs],
+        statistics: newResults.statistics
       }));
     } catch (error) {
       console.error('模拟开包失败:', error);
@@ -61,9 +62,9 @@ export function PackSimulator() {
   };
 
   // 处理卡牌翻开状态变化
-  const handleFlippedCardsChange = (cards: Card[]) => {
+  const handleFlippedCardsChange = useCallback((cards: Card[]) => {
     setFlippedCards(cards);
-  };
+  }, []);
 
   return (
     <div className="space-y-6">

@@ -1,4 +1,4 @@
-import type { BoosterData, BoosterType, Sheet, Pack, Card, PackSimulatorResults, PackStatistics, CardInfo, CardInfoResponse } from '@/types/pack-simulator';
+import type { BoosterData, Sheet, Pack, Card, PackSimulatorResults, PackStatistics, CardInfo, CardInfoResponse, Sheets } from '@/types/pack-simulator';
 import sealedData from '@/data/sealed_basic_data.json';
 import boosterConfig from '@/data/booster-config.json';
 
@@ -181,21 +181,31 @@ function calculateStatistics(packs: Pack[]): PackStatistics {
   return stats;
 }
 
-// 从表名推断稀有度
-function getRarityFromSheet(sheetName: string): string | null {
-  if (sheetName.includes('common')) return 'common';
-  if (sheetName.includes('uncommon')) return 'uncommon';
-  if (sheetName.includes('rare')) return 'rare';
-  if (sheetName.includes('mythic')) return 'mythic';
-  return null;
-}
-
 // 获取可用的系列列表
 export function getAvailableSets() {
   return SUPPORTED_BOOSTERS.map(booster => ({
     code: booster.code,
     name: booster.name
   }));
+}
+
+interface RawSheet {
+  total_weight: number;
+  cards: { [key: string]: number | undefined };
+  allow_duplicates?: boolean;
+}
+
+interface RawBoosterData {
+  name: string;
+  code: string;
+  set_code: string;
+  set_name: string;
+  boosters: Array<{
+    sheets: { [key: string]: number };
+    weight: number;
+  }>;
+  sheets: { [key: string]: RawSheet };
+  source_set_codes?: string[];
 }
 
 // 模拟开包
@@ -207,10 +217,34 @@ export async function simulatePacks(setCode: string, count: number): Promise<Pac
   }
 
   // 找到对应系列的数据
-  const boosterData = (sealedData as BoosterData[]).find(data => data.code === setCode);
-  if (!boosterData) {
+  const rawBoosterData = (sealedData as unknown as RawBoosterData[]).find((data: RawBoosterData) => data.code === setCode);
+  if (!rawBoosterData) {
     throw new Error(`找不到系列 ${setCode} 的数据`);
   }
+
+  // 转换数据结构
+  const boosterData: BoosterData = {
+    name: rawBoosterData.name,
+    code: rawBoosterData.code,
+    set_code: rawBoosterData.set_code,
+    set_name: rawBoosterData.set_name,
+    boosters: rawBoosterData.boosters.map(booster => ({
+      sheets: booster.sheets,
+      weight: booster.weight
+    })),
+    sheets: Object.entries(rawBoosterData.sheets).reduce<Sheets>((acc, [key, sheet]) => {
+      acc[key] = {
+        total_weight: sheet.total_weight,
+        cards: Object.entries(sheet.cards).reduce((cardAcc, [cardId, weight]) => {
+          if (weight !== undefined) {
+            cardAcc[cardId] = weight;
+          }
+          return cardAcc;
+        }, {} as { [key: string]: number })
+      };
+      return acc;
+    }, {})
+  };
   
   // 模拟指定数量的补充包
   const packs: Pack[] = [];
