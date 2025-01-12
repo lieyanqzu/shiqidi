@@ -22,7 +22,7 @@ async function getClientIP(): Promise<string> {
         return ip;
       }
     } catch (error) {
-      console.error(`Failed to get IP from ${apiUrl}:`, error);
+      console.info(`Failed to get IP from ${apiUrl}:`, error);
       continue;
     }
   }
