@@ -1,0 +1,68 @@
+{
+  "boosters": [
+    {
+      "code": "fdn-collector",
+      "name": "基石构筑 - 聚珍补充包"
+    },
+    {
+      "code": "fdn-play",
+      "name": "基石构筑 - 常规补充包"
+    },
+    {
+      "code": "dsk-collector",
+      "name": "暮悲邸 - 聚珍补充包"
+    },
+    {
+      "code": "dsk-play",
+      "name": "暮悲邸 - 常规补充包"
+    },
+    {
+      "code": "blb-collector",
+      "name": "班隆洛 - 聚珍补充包"
+    },
+    {
+      "code": "blb-play",
+      "name": "班隆洛 - 常规补充包"
+    },
+    {
+      "code": "mb2-draft",
+      "name": "神秘补充包2 - 轮抽补充包"
+    },
+    {
+      "code": "acr",
+      "name": "刺客信条 - 无疆补充包"
+    },
+    {
+      "code": "acr-collector",
+      "name": "刺客信条 - 聚珍补充包"
+    },
+    {
+      "code": "mh3-collector",
+      "name": "摩登新篇3 - 聚珍补充包"
+    },
+    {
+      "code": "mh3-play",
+      "name": "摩登新篇3 - 常规补充包"
+    },
+    {
+      "code": "otj-collector",
+      "name": "光雷驿镖客 - 聚珍补充包"
+    },
+    {
+      "code": "otj-play",
+      "name": "光雷驿镖客 - 常规补充包"
+    },
+    {
+      "code": "pip-collector",
+      "name": "辐射 - 聚珍补充包"
+    },
+    {
+      "code": "mkm-collector",
+      "name": "卡洛夫庄园谋杀案 - 聚珍补充包"
+    },
+    {
+      "code": "mkm-play",
+      "name": "卡洛夫庄园谋杀案 - 常规补充包"
+    }
+  ]
+} 
