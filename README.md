@@ -20,6 +20,7 @@
   - Scryfall汉化脚本：为Scryfall卡牌数据库添加中文翻译支持
   - 抽卡概率计算器：计算万智牌抽卡概率，基于超几何分布
   - 精研通行证计算器：计算精研通行证等级进度
+  - 开包模拟器：模拟开启补充包，体验开包乐趣
 
 ## 技术栈
 
@@ -39,6 +40,7 @@
 - [17Lands](https://www.17lands.com) - 提供轮抽数据分析的核心数据
 - [大学院废墟](https://www.sbwsz.com) - 提供万智牌的中文翻译数据
 - [What's in Standard](https://github.com/glacials/whatsinstandard) - 提供标准赛制轮替数据
+- [magic-sealed-data](https://github.com/taw/magic-sealed-data) - 提供补充包开包出率模拟数据
 
 ## 开发
 

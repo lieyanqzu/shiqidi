@@ -39,6 +39,7 @@ export default function HomePage() {
         { label: "Scryfall汉化脚本", href: "/script", description: "为Scryfall卡牌数据库添加中文翻译支持" },
         { label: "抽卡概率计算器", href: "/hypergeometric", description: "计算万智牌抽卡概率，基于超几何分布" },
         { label: "精研通行证计算器", href: "/mastery", description: "计算精研通行证等级进度" },
+        { label: "开包模拟器", href: "/simulator", description: "模拟开启补充包，体验开包乐趣" },
       ]
     }
   ]

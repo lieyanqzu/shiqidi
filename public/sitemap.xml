@@ -72,4 +72,10 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://shiqidi.lenitatis.com/simulator</loc>
+    <lastmod>2025-01-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset> 
