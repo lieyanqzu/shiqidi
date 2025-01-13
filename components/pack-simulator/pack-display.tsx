@@ -269,7 +269,11 @@ export function PackDisplay({ packs, onFlippedCardsChange, autoFlipCommon }: Pac
                                       // 如果 sbwsz.com 的图片加载失败，切换到 scryfall 的图片
                                       const img = e.target as HTMLImageElement;
                                       if (!img.src.includes('scryfall.io')) {
-                                        img.src = `https://cards.scryfall.io/large/front/${card.scryfallId!.slice(0, 1)}/${card.scryfallId!.slice(1, 2)}/${card.scryfallId}.jpg`;
+                                        if (card.scryfallId) {
+                                          img.src = `https://cards.scryfall.io/large/front/${card.scryfallId.slice(0, 1)}/${card.scryfallId.slice(1, 2)}/${card.scryfallId}.jpg`;
+                                        } else {
+                                          img.src = 'https://static.wikia.nocookie.net/mtgsalvation_gamepedia/images/f/f8/Magic_card_back.jpg';
+                                        }
                                       }
                                       setLoadingImages(prev => {
                                         const next = new Set(prev);
@@ -317,7 +321,11 @@ export function PackDisplay({ packs, onFlippedCardsChange, autoFlipCommon }: Pac
                                     // 如果 sbwsz.com 的图片加载失败，切换到 scryfall 的图片
                                     const img = e.target as HTMLImageElement;
                                     if (!img.src.includes('scryfall.io')) {
-                                      img.src = `https://cards.scryfall.io/large/front/${card.scryfallId!.slice(0, 1)}/${card.scryfallId!.slice(1, 2)}/${card.scryfallId}.jpg`;
+                                      if (card.scryfallId) {
+                                        img.src = `https://cards.scryfall.io/large/front/${card.scryfallId.slice(0, 1)}/${card.scryfallId.slice(1, 2)}/${card.scryfallId}.jpg`;
+                                      } else {
+                                        img.src = 'https://static.wikia.nocookie.net/mtgsalvation_gamepedia/images/f/f8/Magic_card_back.jpg';
+                                      }
                                     }
                                     setLoadingImages(prev => {
                                       const next = new Set(prev);
