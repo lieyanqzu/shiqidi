@@ -1,7 +1,7 @@
 {
   "sets": [
     {
-      "name": "万智牌：基石构筑",
+      "name": "基石构筑",
       "code": "FDN",
       "releaseDate": "2024-11-12"
     },
@@ -11,7 +11,7 @@
         "releaseDate": "2024-12-10"
     },
     {
-        "name": "乙太漂移",
+        "name": "乙太飘移",
         "code": "DFT",
         "releaseDate": "2025-2-12"
     }

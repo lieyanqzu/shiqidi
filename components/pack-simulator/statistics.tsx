@@ -1,18 +1,32 @@
 'use client';
 
-import { type ReactNode } from 'react';
+import { useEffect } from 'react';
 import type { Card } from '@/types/pack-simulator';
 import boosterConfig from '@/data/booster-config.json';
+import { useSetStore } from '@/lib/store';
 
 interface StatisticsProps {
   cards: Card[];
   setCode: string;
+  boosterCode: string;
   packCount: number;
 }
 
-export function Statistics({ cards, setCode, packCount }: StatisticsProps): ReactNode {
+export function Statistics({ cards, setCode, boosterCode, packCount }: StatisticsProps) {
+  const { chineseSetNames, fetchChineseSetNames } = useSetStore();
+
+  useEffect(() => {
+    fetchChineseSetNames();
+  }, [fetchChineseSetNames]);
+
+  // 获取系列名称
+  const setName = chineseSetNames[setCode] || setCode;
+
   // 获取补充包名称
-  const boosterName = boosterConfig.boosters.find(booster => booster.code === setCode)?.name;
+  const boosterName = boosterConfig.sets
+    .find(set => set.code === setCode)
+    ?.boosters.find(booster => booster.code === boosterCode)
+    ?.name;
 
   // 按稀有度统计
   const rarityStats = cards.reduce((acc, card) => {
@@ -74,8 +88,10 @@ export function Statistics({ cards, setCode, packCount }: StatisticsProps): Reac
       <div className="bg-[--card] border border-[--border] rounded-lg p-4">
         <h3 className="font-medium mb-4">
           获得卡牌统计
-          {boosterName && (
-            <span className="ml-2 text-sm text-[--muted-foreground]">（{boosterName}）</span>
+          {setName && boosterName && (
+            <span className="ml-2 text-sm text-[--muted-foreground] inline-flex items-center gap-1">
+              （<i className={`keyrune ss ss-${setCode.toLowerCase()}`} />{setName} - {boosterName}）
+            </span>
           )}
         </h3>
         
@@ -95,7 +111,6 @@ export function Statistics({ cards, setCode, packCount }: StatisticsProps): Reac
                    rarity === 'rare' ? '稀有' :
                    rarity === 'uncommon' ? '非普通' : '普通'}
                 </span>
-                <span className="text-[--muted-foreground] ml-1">卡牌</span>
               </div>
             </div>
           ))}
@@ -153,7 +168,7 @@ export function Statistics({ cards, setCode, packCount }: StatisticsProps): Reac
                     {card.zhs_name || card.officialName || card.translatedName || card.name || card.id}
                   </span>
                   {card.sheet.includes('foil') && (
-                    <span className="text-xs rainbow-text shrink-0">闪卡</span>
+                    <span className="text-xs rainbow-text shrink-0">闪</span>
                   )}
                 </div>
               ))

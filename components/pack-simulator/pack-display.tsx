@@ -3,6 +3,7 @@
 import type { Pack, Card } from '@/types/pack-simulator';
 import Image from 'next/image';
 import { useState, useEffect, useRef, useCallback } from 'react';
+import { CardModal } from './card-modal';
 
 interface PackDisplayProps {
   packs: Pack[];
@@ -43,8 +44,55 @@ export function PackDisplay({ packs, onFlippedCardsChange, autoFlipCommon }: Pac
   const [flippedCards, setFlippedCards] = useState<Set<string>>(new Set());
   const [collapsedPacks, setCollapsedPacks] = useState<Set<number>>(new Set());
   const [loadingImages, setLoadingImages] = useState<Set<string>>(new Set());
+  const [selectedCard, setSelectedCard] = useState<{ 
+    card: Card & { 
+      packIndex: number; 
+      cardIndex: number;
+      isPackSeparator?: boolean;
+    }; 
+    imageUrl: string 
+  } | null>(null);
   const latestPackRef = useRef<HTMLDivElement>(null);
   const prevFlippedCardsRef = useRef<Card[]>([]);
+
+  // 获取所有已翻开的卡牌
+  const getAllCards = useCallback((currentPackIndex: number) => {
+    const allCards: Array<Card & { 
+      packIndex: number; 
+      cardIndex: number;
+      isPackSeparator?: boolean;
+    }> = [];
+
+    // 只获取当前包中已翻开的卡牌
+    const pack = packs[currentPackIndex];
+    if (pack?.cards) {
+      // 按照卡牌在包中的顺序返回已翻开的卡牌
+      for (let cardIndex = 0; cardIndex < pack.cards.length; cardIndex++) {
+        const cardKey = `${currentPackIndex}-${cardIndex}`;
+        if (flippedCards.has(cardKey)) {
+          allCards.push({
+            ...pack.cards[cardIndex],
+            packIndex: currentPackIndex,
+            cardIndex
+          });
+        }
+      }
+    }
+
+    return allCards;
+  }, [packs, flippedCards]);
+
+  // 处理卡牌切换
+  const handleCardChange = useCallback((newCard: Card & { packIndex: number; cardIndex: number }) => {
+    setSelectedCard({
+      card: {
+        ...newCard,
+        packIndex: newCard.packIndex,
+        cardIndex: newCard.cardIndex
+      },
+      imageUrl: getCardImageUrl(newCard.scryfallId!, newCard.setCode, newCard.number)
+    });
+  }, []);
 
   // 获取所有已翻开的卡牌
   const getFlippedCards = useCallback(() => {
@@ -126,10 +174,20 @@ export function PackDisplay({ packs, onFlippedCardsChange, autoFlipCommon }: Pac
 
   const handleCardClick = (packIndex: number, cardIndex: number) => {
     const cardKey = `${packIndex}-${cardIndex}`;
-    setFlippedCards(prev => {
-      const next = new Set(prev);
-      next.add(cardKey);
-      return next;
+    if (!flippedCards.has(cardKey)) {
+      setFlippedCards(prev => {
+        const next = new Set(prev);
+        next.add(cardKey);
+        return next;
+      });
+    }
+  };
+
+  const handleCardImageClick = (e: React.MouseEvent, card: Card, packIndex: number, cardIndex: number) => {
+    e.stopPropagation();
+    setSelectedCard({
+      card: { ...card, packIndex, cardIndex },
+      imageUrl: getCardImageUrl(card.scryfallId!, card.setCode, card.number)
     });
   };
 
@@ -168,8 +226,71 @@ export function PackDisplay({ packs, onFlippedCardsChange, autoFlipCommon }: Pac
         .loading-pulse {
           animation: pulse 1.5s ease-in-out infinite;
         }
+        @keyframes rareGlow {
+          0% {
+            box-shadow: 0 0 10px 2px rgba(218, 165, 32, 0.3),
+                      0 0 20px 5px rgba(218, 165, 32, 0.2),
+                      0 0 30px 10px rgba(218, 165, 32, 0.1);
+            transform: scale(1);
+            filter: brightness(1);
+          }
+          50% {
+            box-shadow: 0 0 20px 5px rgba(218, 165, 32, 0.5),
+                      0 0 40px 10px rgba(218, 165, 32, 0.3),
+                      0 0 60px 15px rgba(218, 165, 32, 0.2);
+            transform: scale(1.08);
+            filter: brightness(1.2);
+          }
+          100% {
+            box-shadow: 0 0 10px 2px rgba(218, 165, 32, 0.3),
+                      0 0 20px 5px rgba(218, 165, 32, 0.2),
+                      0 0 30px 10px rgba(218, 165, 32, 0.1);
+            transform: scale(1);
+            filter: brightness(1);
+          }
+        }
+        @keyframes mythicGlow {
+          0% {
+            box-shadow: 0 0 15px 3px rgba(255, 69, 0, 0.3),
+                      0 0 30px 8px rgba(255, 69, 0, 0.2),
+                      0 0 45px 15px rgba(255, 69, 0, 0.1);
+            transform: scale(1);
+            filter: brightness(1);
+          }
+          50% {
+            box-shadow: 0 0 30px 8px rgba(255, 69, 0, 0.5),
+                      0 0 60px 15px rgba(255, 69, 0, 0.3),
+                      0 0 90px 20px rgba(255, 69, 0, 0.2);
+            transform: scale(1.12);
+            filter: brightness(1.3);
+          }
+          100% {
+            box-shadow: 0 0 15px 3px rgba(255, 69, 0, 0.3),
+                      0 0 30px 8px rgba(255, 69, 0, 0.2),
+                      0 0 45px 15px rgba(255, 69, 0, 0.1);
+            transform: scale(1);
+            filter: brightness(1);
+          }
+        }
+        .rare-glow {
+          animation: rareGlow 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+          z-index: 10;
+        }
+        .mythic-glow {
+          animation: mythicGlow 1.8s cubic-bezier(0.4, 0, 0.2, 1);
+          z-index: 10;
+        }
       `}</style>
       <div className="space-y-4">
+        {selectedCard && (
+          <CardModal
+            card={selectedCard.card}
+            imageUrl={selectedCard.imageUrl}
+            onClose={() => setSelectedCard(null)}
+            allCards={getAllCards(selectedCard.card.packIndex)}
+            onCardChange={handleCardChange}
+          />
+        )}
         {packs.map((pack, packIndex) => {
           const isCollapsed = collapsedPacks.has(packIndex);
           const isLatestPack = packIndex === packs.length - 1;
@@ -228,12 +349,19 @@ export function PackDisplay({ packs, onFlippedCardsChange, autoFlipCommon }: Pac
                           {/* 卡牌正面 */}
                           <div className={`absolute inset-0 backface-hidden rotate-y-180`}>
                             {isFlipped ? (
-                              <a 
-                                href={getCardDetailUrl(card)} 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                              >
-                                <div className={`relative ${card.sheet.includes('foil') ? 'foil-effect' : ''}`}>
+                              <>
+                                <div 
+                                  className={`
+                                    relative cursor-pointer
+                                    ${card.sheet.includes('foil') ? 'foil-effect' : ''} 
+                                    ${isFlipped && card.rarity === 'rare' ? 'rare-glow' : ''}
+                                    ${isFlipped && card.rarity === 'mythic' ? 'mythic-glow' : ''}
+                                  `}
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleCardImageClick(e, card, packIndex, cardIndex);
+                                  }}
+                                >
                                   {isLoading && (
                                     <div className="absolute inset-0 bg-[--card] loading-pulse rounded-lg" />
                                   )}
@@ -269,7 +397,11 @@ export function PackDisplay({ packs, onFlippedCardsChange, autoFlipCommon }: Pac
                                       // 如果 sbwsz.com 的图片加载失败，切换到 scryfall 的图片
                                       const img = e.target as HTMLImageElement;
                                       if (!img.src.includes('scryfall.io')) {
-                                        img.src = `https://cards.scryfall.io/large/front/${card.scryfallId!.slice(0, 1)}/${card.scryfallId!.slice(1, 2)}/${card.scryfallId}.jpg`;
+                                        if (card.scryfallId) {
+                                          img.src = `https://cards.scryfall.io/large/front/${card.scryfallId.slice(0, 1)}/${card.scryfallId.slice(1, 2)}/${card.scryfallId}.jpg`;
+                                        } else {
+                                          img.src = 'https://static.wikia.nocookie.net/mtgsalvation_gamepedia/images/f/f8/Magic_card_back.jpg';
+                                        }
                                       }
                                       setLoadingImages(prev => {
                                         const next = new Set(prev);
@@ -279,9 +411,14 @@ export function PackDisplay({ packs, onFlippedCardsChange, autoFlipCommon }: Pac
                                     }}
                                   />
                                 </div>
-                              </a>
+                              </>
                             ) : (
-                              <div className={`relative ${card.sheet.includes('foil') ? 'foil-effect' : ''}`}>
+                              <div className={`
+                                relative 
+                                ${card.sheet.includes('foil') ? 'foil-effect' : ''} 
+                                ${isFlipped && card.rarity === 'rare' ? 'rare-glow' : ''}
+                                ${isFlipped && card.rarity === 'mythic' ? 'mythic-glow' : ''}
+                              `}>
                                 {isLoading && (
                                   <div className="absolute inset-0 bg-[--card] loading-pulse rounded-lg" />
                                 )}
@@ -317,7 +454,11 @@ export function PackDisplay({ packs, onFlippedCardsChange, autoFlipCommon }: Pac
                                     // 如果 sbwsz.com 的图片加载失败，切换到 scryfall 的图片
                                     const img = e.target as HTMLImageElement;
                                     if (!img.src.includes('scryfall.io')) {
-                                      img.src = `https://cards.scryfall.io/large/front/${card.scryfallId!.slice(0, 1)}/${card.scryfallId!.slice(1, 2)}/${card.scryfallId}.jpg`;
+                                      if (card.scryfallId) {
+                                        img.src = `https://cards.scryfall.io/large/front/${card.scryfallId.slice(0, 1)}/${card.scryfallId.slice(1, 2)}/${card.scryfallId}.jpg`;
+                                      } else {
+                                        img.src = 'https://static.wikia.nocookie.net/mtgsalvation_gamepedia/images/f/f8/Magic_card_back.jpg';
+                                      }
                                     }
                                     setLoadingImages(prev => {
                                       const next = new Set(prev);
@@ -335,13 +476,18 @@ export function PackDisplay({ packs, onFlippedCardsChange, autoFlipCommon }: Pac
                         {isFlipped && (
                           <div className="mt-2 text-sm">
                             <div className="flex items-center gap-2">
-                              <div className={`truncate ${card.rarity ? getRarityColor(card.rarity) : ''}`}>
+                              <a 
+                                href={getCardDetailUrl(card)} 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className={`truncate hover:opacity-80 transition-opacity ${card.rarity ? getRarityColor(card.rarity) : ''}`}
+                              >
                                 <div className="text-sm truncate max-w-full">
                                   {card.zhs_name || card.officialName || card.translatedName || card.name || card.id}
                                 </div>
-                              </div>
+                              </a>
                               {card.sheet.includes('foil') && (
-                                <span className="text-xs rainbow-text">闪卡</span>
+                                <span className="text-xs rainbow-text">闪</span>
                               )}
                             </div>
                           </div>
