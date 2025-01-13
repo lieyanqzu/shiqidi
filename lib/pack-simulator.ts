@@ -1,71 +1,27 @@
-import type { BoosterData, Sheet, Pack, Card, PackSimulatorResults, PackStatistics, CardInfo, CardInfoResponse, Sheets } from '@/types/pack-simulator';
+import type { BoosterData, Sheet, Pack, Card, PackSimulatorResults, PackStatistics, Sheets, Set, BoosterConfig } from '@/types/pack-simulator';
 import sealedData from '@/data/sealed_basic_data.json';
 import boosterConfig from '@/data/booster-config.json';
 
-// 支持的补充包类型列表
-const SUPPORTED_BOOSTERS = boosterConfig.boosters;
-
-// 缓存卡牌信息
-const cardInfoCache: Map<string, CardInfo> = new Map();
-
-// 获取卡牌信息
-async function fetchCardInfo(setCode: string, number: string): Promise<CardInfo | null> {
-  const cacheKey = `${setCode}:${number}`;
-  
-  // 检查缓存
-  if (cardInfoCache.has(cacheKey)) {
-    return cardInfoCache.get(cacheKey)!;
-  }
-
-  async function tryFetch(cardNumber: string): Promise<CardInfo | null> {
-    const url = `https://api.sbwsz.com/card/${setCode}/${cardNumber}`;
-    
-    try {
-      const response = await fetch(url);
-      const responseText = await response.text();
-      
-      if (!response.ok) {
-        return null;
-      }
-
-      try {
-        const data: CardInfoResponse = JSON.parse(responseText);
-        if ((data.type === 'normal' || data.type === 'double') && data.data.length > 0) {
-          // 对于双面牌，使用第一面（正面）的信息
-          const cardInfo = data.data[0];
-          // 如果是双面牌，合并名称
-          if (data.type === 'double') {
-            cardInfo.name = cardInfo.name || `${cardInfo.faceName} // ${data.data[1]?.faceName}`;
-            cardInfo.zhs_name = cardInfo.zhs_name || `${cardInfo.zhs_faceName} // ${data.data[1]?.zhs_faceName}`;
-            cardInfo.translatedName = cardInfo.translatedName || `${cardInfo.zhs_faceName} // ${data.data[1]?.zhs_faceName}`;
-          }
-          return cardInfo;
-        }
-      } catch (parseError) {
-        console.error(`[Error] JSON parse error for ${url}:`, parseError);
-      }
-    } catch (error) {
-      console.error(`[Error] Network error for ${url}:`, error);
-    }
-    return null;
-  }
-
-  // 首先尝试原始卡牌号
-  let cardInfo = await tryFetch(number);
-
-  // 如果获取失败且卡牌号带有 a 或 b 后缀，尝试不带后缀的卡牌号
-  if (!cardInfo && /^(\d+)[ab]$/.test(number)) {
-    const baseNumber = number.slice(0, -1);
-    cardInfo = await tryFetch(baseNumber);
-  }
-
-  // 如果获取成功，存入缓存
-  if (cardInfo) {
-    cardInfoCache.set(cacheKey, cardInfo);
-  }
-
-  return cardInfo;
+interface CardSearchResult {
+  name: string;
+  zhs_name: string;
+  officialName: string;
+  translatedName: string | null;
+  setCode: string;
+  number: string;
+  scryfallId: string;
+  rarity: string;
 }
+
+const config = boosterConfig as BoosterConfig;
+
+// 支持的补充包类型列表
+const SUPPORTED_BOOSTERS = config.sets.flatMap(set => 
+  set.boosters.map(booster => ({
+    ...booster,
+    setCode: set.code
+  }))
+);
 
 // 解析卡牌ID
 function parseCardId(id: string): { setCode: string; number: string } {
@@ -130,17 +86,177 @@ async function simulateBoosterPack(boosterData: BoosterData): Promise<Pack> {
   }
 
   // 获取卡牌信息
-  await Promise.all(cards.map(async (card) => {
-    const cardInfo = await fetchCardInfo(card.setCode, card.number);
-    if (cardInfo) {
+  try {
+    // 构建查询条件
+    const elements = cards.map(card => {
+      // 检查编号是否包含字母后缀
+      const hasLetterSuffix = /\d+[a-z]$/i.test(card.number);
+      const baseNumber = hasLetterSuffix ? card.number.slice(0, -1) : card.number;
+
+      if (hasLetterSuffix) {
+        // 如果有字母后缀，同时搜索完整编号和基础编号
+        return {
+          type: "or" as const,
+          elements: [
+            {
+              type: "and" as const,
+              elements: [
+                {
+                  type: "basic" as const,
+                  key: "setCode",
+                  operator: "=",
+                  value: card.setCode,
+                },
+                {
+                  type: "basic" as const,
+                  key: "number",
+                  operator: "=",
+                  value: card.number,
+                },
+              ],
+            },
+            {
+              type: "and" as const,
+              elements: [
+                {
+                  type: "basic" as const,
+                  key: "setCode",
+                  operator: "=",
+                  value: card.setCode,
+                },
+                {
+                  type: "basic" as const,
+                  key: "number",
+                  operator: "=",
+                  value: baseNumber,
+                },
+              ],
+            },
+          ],
+        };
+      } else {
+        // 如果没有字母后缀，使用原来的搜索条件
+        return {
+          type: "and" as const,
+          elements: [
+            {
+              type: "basic" as const,
+              key: "setCode",
+              operator: "=",
+              value: card.setCode,
+            },
+            {
+              type: "basic" as const,
+              key: "number",
+              operator: "=",
+              value: card.number,
+            },
+          ],
+        };
+      }
+    });
+
+    const response = await fetch(
+      `https://api.sbwsz.com/search?page=1&page_size=100&get_total=1&q=${encodeURIComponent(
+        JSON.stringify({ type: "or", elements })
+      )}`
+    );
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    const cardResults = data.results;
+
+    // 记录未找到的卡牌
+    const notFoundCards = cards.filter(card => 
+      !cardResults.some((info: CardSearchResult) => 
+        info.setCode.toLowerCase() === card.setCode.toLowerCase() && 
+        info.number.toString() === card.number.toString()
+      )
+    );
+
+    // 如果有未找到的卡牌，进行单独搜索
+    if (notFoundCards.length > 0) {
+      console.log('部分卡牌未找到，进行二次搜索:', notFoundCards);
+      
+      // 对每张未找到的卡牌进行单独搜索
+      const additionalResults = await Promise.all(
+        notFoundCards.map(async card => {
+          const query = {
+            type: "and" as const,
+            elements: [
+              {
+                type: "basic" as const,
+                key: "setCode",
+                operator: "=",
+                value: card.setCode,
+              },
+              {
+                type: "basic" as const,
+                key: "number",
+                operator: "=",
+                value: card.number,
+              },
+            ],
+          };
+
+          const retryResponse = await fetch(
+            `https://api.sbwsz.com/search?page=1&page_size=1&get_total=1&q=${encodeURIComponent(
+              JSON.stringify(query)
+            )}`
+          );
+
+          if (!retryResponse.ok) {
+            console.warn(`二次搜索失败: ${card.setCode}:${card.number}`);
+            return null;
+          }
+
+          const retryData = await retryResponse.json();
+          return retryData.results[0];
+        })
+      );
+
+      // 将找到的结果添加到cardResults中
+      cardResults.push(...additionalResults.filter(Boolean));
+    }
+
+    // 更新卡牌信息
+    cards.forEach(card => {
+      // 检查编号是否包含字母后缀
+      const hasLetterSuffix = /\d+[a-z]$/i.test(card.number);
+      const baseNumber = hasLetterSuffix ? card.number.slice(0, -1) : card.number;
+
+      // 首先尝试匹配完整编号
+      let cardInfo = cardResults.find(
+        (info: CardSearchResult) => info.setCode.toLowerCase() === card.setCode.toLowerCase() && 
+          info.number.toString() === card.number.toString()
+      );
+
+      // 如果有字母后缀且找不到完整编号的卡牌，尝试匹配基础编号
+      if (!cardInfo && hasLetterSuffix) {
+        cardInfo = cardResults.find(
+          (info: CardSearchResult) => info.setCode.toLowerCase() === card.setCode.toLowerCase() && 
+            info.number.toString() === baseNumber.toString()
+        );
+      }
+
+      if (!cardInfo) {
+        console.warn(`未找到卡牌信息: ${card.setCode}:${card.number}`);
+        return;
+      }
+
       card.name = cardInfo.name;
       card.zhs_name = cardInfo.zhs_name;
       card.officialName = cardInfo.officialName;
       card.translatedName = cardInfo.translatedName;
       card.scryfallId = cardInfo.scryfallId;
-      card.rarity = cardInfo.rarity;
-    }
-  }));
+      card.rarity = cardInfo.rarity?.toLowerCase();
+    });
+  } catch (error) {
+    console.error('批量获取卡牌信息失败:', error);
+  }
   
   return {
     cards,
@@ -181,12 +297,9 @@ function calculateStatistics(packs: Pack[]): PackStatistics {
   return stats;
 }
 
-// 获取可用的系列列表
-export function getAvailableSets() {
-  return SUPPORTED_BOOSTERS.map(booster => ({
-    code: booster.code,
-    name: booster.name
-  }));
+// 获取可用系列
+export function getAvailableSets(): Set[] {
+  return config.sets;
 }
 
 interface RawSheet {
@@ -211,15 +324,15 @@ interface RawBoosterData {
 // 模拟开包
 export async function simulatePacks(setCode: string, count: number): Promise<PackSimulatorResults> {
   // 检查是否是支持的补充包类型
-  const supportedBooster = SUPPORTED_BOOSTERS.find(booster => booster.code === setCode);
-  if (!supportedBooster) {
+  const booster = SUPPORTED_BOOSTERS.find(booster => booster.code === setCode);
+  if (!booster) {
     throw new Error(`不支持的补充包类型: ${setCode}`);
   }
 
   // 找到对应系列的数据
   const rawBoosterData = (sealedData as unknown as RawBoosterData[]).find((data: RawBoosterData) => data.code === setCode);
   if (!rawBoosterData) {
-    throw new Error(`找不到系列 ${setCode} 的数据`);
+    throw new Error(`找不到系列 ${booster.setCode} 的数据`);
   }
 
   // 转换数据结构

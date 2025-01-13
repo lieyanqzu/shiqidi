@@ -13,18 +13,11 @@ export interface Event {
 }
 
 export const calendarMetadata: CalendarMetadata = {
-  lastUpdated: '2025/01/06',
-  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/mtg-arena-announcements-january-6-2025#schedule',
+  lastUpdated: '2025/01/13',
+  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/mtg-arena-announcements-january-13-2025#schedule',
 };
 
 const midweekMagicEvents: Event[] = [
-  {
-    type: 'midweek_magic',
-    title: '先驱大师幻影现开（含全部奖励列表！）',
-    startTime: new Date('2025-01-07T14:00:00-08:00'),
-    endTime: new Date('2025-01-09T14:00:00-08:00'),
-    format: '现开',
-  },
   {
     type: 'midweek_magic',
     title: '莫秘维',
@@ -46,6 +39,13 @@ const midweekMagicEvents: Event[] = [
     endTime: new Date('2025-01-30T14:00:00-08:00'),
     format: '史迹',
   },
+  {
+    type: 'midweek_magic',
+    title: '黄金包现开赛',
+    startTime: new Date('2025-02-04T14:00:00-08:00'),
+    endTime: new Date('2025-02-05T14:00:00-08:00'),
+    format: '现开',
+  },
 ];
 
 const premierDraftEvents: Event[] = [
@@ -54,13 +54,6 @@ const premierDraftEvents: Event[] = [
     title: '万智牌：基石构筑',
     startTime: new Date('2024-11-12T08:00:00-08:00'),
     endTime: new Date('2025-02-11T08:00:00-08:00'),
-    format: '竞技轮抽',
-  },
-  {
-    type: 'premier_draft', 
-    title: '先驱大师 - 奖励列表：咒语',
-    startTime: new Date('2024-12-24T08:00:00-08:00'),
-    endTime: new Date('2025-01-07T08:00:00-08:00'),
     format: '竞技轮抽',
   },
   {
@@ -113,6 +106,13 @@ const quickDraftEvents: Event[] = [
 const otherEvents: Event[] = [
   {
     type: 'other',
+    title: '竞技场直邮赛 - 暮悲邸：鬼屋惊魂',
+    startTime: new Date('2025-01-24T08:00:00-08:00'),
+    endTime: new Date('2025-01-27T08:00:00-08:00'),
+    format: '现开',
+  },
+  {
+    type: 'other',
     title: '五彩方盒轮抽',
     startTime: new Date('2025-01-28T08:00:00-08:00'),
     endTime: new Date('2025-02-11T08:00:00-08:00'),
@@ -148,24 +148,7 @@ const premierPlayEvents: Event[] = [
   },
 ];
 
-const arenaOpenEvents: Event[] = [
-  {
-    type: 'arena_open',
-    title: '竞技场公开赛 - 先驱大师 奖励列表：献力 - 第一天',
-    startTime: new Date('2025-01-11T06:00:00-08:00'),
-    endTime: new Date('2025-01-12T03:00:00-08:00'),
-    format: '先驱大师现开',
-    description: '第一天比赛采用现开赛制，可选择BO1或BO3模式参赛。',
-  },
-  {
-    type: 'arena_open',
-    title: '竞技场公开赛 - 先驱大师 奖励列表：献力 - 第二天',
-    startTime: new Date('2025-01-12T06:00:00-08:00'),
-    endTime: new Date('2025-01-12T08:00:00-08:00'),
-    format: '先驱大师轮抽',
-    description: '第二天比赛采用BO3轮抽赛制，仅限第一天晋级选手参加。',
-  },
-];
+const arenaOpenEvents: Event[] = [];
 
 const arenaChampionshipEvents: Event[] = [];
 

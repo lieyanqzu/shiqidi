@@ -1,68 +1,1745 @@
 {
+  "sets": [
+    {
+      "code": "FDN",
   "boosters": [
     {
       "code": "fdn-collector",
-      "name": "基石构筑 - 聚珍补充包"
+          "name": "聚珍补充包"
     },
     {
       "code": "fdn-play",
-      "name": "基石构筑 - 常规补充包"
+          "name": "常规补充包"
+        }
+      ]
     },
     {
+      "code": "DSK",
+      "boosters": [
+    {
       "code": "dsk-collector",
-      "name": "暮悲邸 - 聚珍补充包"
+          "name": "聚珍补充包"
     },
     {
       "code": "dsk-play",
-      "name": "暮悲邸 - 常规补充包"
+          "name": "常规补充包"
+        }
+      ]
     },
     {
+      "code": "BLB",
+      "boosters": [
+    {
       "code": "blb-collector",
-      "name": "班隆洛 - 聚珍补充包"
+          "name": "聚珍补充包"
     },
     {
       "code": "blb-play",
-      "name": "班隆洛 - 常规补充包"
+          "name": "常规补充包"
+        }
+      ]
     },
+    {
+      "code": "MB2",
+      "boosters": [
     {
       "code": "mb2-draft",
-      "name": "神秘补充包2 - 轮抽补充包"
+          "name": "轮抽补充包"
+        }
+      ]
     },
     {
+      "code": "ACR",
+      "boosters": [
+    {
       "code": "acr",
-      "name": "刺客信条 - 无疆补充包"
+          "name": "无疆补充包"
     },
     {
       "code": "acr-collector",
-      "name": "刺客信条 - 聚珍补充包"
+          "name": "聚珍补充包"
+        }
+      ]
     },
     {
+      "code": "MH3",
+      "boosters": [
+    {
       "code": "mh3-collector",
-      "name": "摩登新篇3 - 聚珍补充包"
+          "name": "聚珍补充包"
     },
     {
       "code": "mh3-play",
-      "name": "摩登新篇3 - 常规补充包"
+          "name": "常规补充包"
+        }
+      ]
     },
     {
+      "code": "OTJ",
+      "boosters": [
+    {
       "code": "otj-collector",
-      "name": "光雷驿镖客 - 聚珍补充包"
+          "name": "聚珍补充包"
     },
     {
       "code": "otj-play",
-      "name": "光雷驿镖客 - 常规补充包"
+          "name": "常规补充包"
+        }
+      ]
     },
+    {
+      "code": "PIP",
+      "boosters": [
     {
       "code": "pip-collector",
-      "name": "辐射 - 聚珍补充包"
+          "name": "聚珍补充包"
+        }
+      ]
     },
     {
+      "code": "MKM",
+      "boosters": [
+    {
       "code": "mkm-collector",
-      "name": "卡洛夫庄园谋杀案 - 聚珍补充包"
+          "name": "聚珍补充包"
     },
     {
       "code": "mkm-play",
-      "name": "卡洛夫庄园谋杀案 - 常规补充包"
+          "name": "常规补充包"
+        }
+      ]
+    },
+    {
+      "code": "RVR",
+      "boosters": [
+        {
+          "code": "rvr-collector",
+          "name": "聚珍补充包"
+        },
+        {
+          "code": "rvr-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "LCI",
+      "boosters": [
+        {
+          "code": "lci-collector",
+          "name": "聚珍补充包"
+        },
+        {
+          "code": "lci-draft",
+          "name": "轮抽补充包"
+        },
+        {
+          "code": "lci-set",
+          "name": "系列补充包"
+        }
+      ]
+    },
+    {
+      "code": "WHO",
+      "boosters": [
+        {
+          "code": "who-collector",
+          "name": "聚珍补充包"
+        }
+      ]
+    },
+    {
+      "code": "WOE",
+      "boosters": [
+        {
+          "code": "woe-collector",
+          "name": "聚珍补充包"
+        },
+        {
+          "code": "woe-draft",
+          "name": "轮抽补充包"
+        },
+        {
+          "code": "woe-set",
+          "name": "系列补充包"
+        }
+      ]
+    },
+    {
+      "code": "CMM",
+      "boosters": [
+        {
+          "code": "cmm-collector",
+          "name": "聚珍补充包"
+        },
+        {
+          "code": "cmm-draft",
+          "name": "轮抽补充包"
+        },
+        {
+          "code": "cmm-set",
+          "name": "系列补充包"
+        }
+      ]
+    },
+    {
+      "code": "LTR",
+      "boosters": [
+        {
+          "code": "ltr-collector",
+          "name": "聚珍补充包"
+        },
+        {
+          "code": "ltr-draft",
+          "name": "轮抽补充包"
+        },
+        {
+          "code": "ltr-set",
+          "name": "系列补充包"
+        }
+      ]
+    },
+    {
+      "code": "MAT",
+      "boosters": [
+        {
+          "code": "mat",
+          "name": "后记补充包"
+        },
+        {
+          "code": "mat-collector",
+          "name": "聚珍补充包"
+        }
+      ]
+    },
+    {
+      "code": "MOM",
+      "boosters": [
+        {
+          "code": "mom-collector",
+          "name": "聚珍补充包"
+        },
+        {
+          "code": "mom-draft",
+          "name": "轮抽补充包"
+        },
+        {
+          "code": "mom-set",
+          "name": "系列补充包"
+        }
+      ]
+    },
+    {
+      "code": "ONE",
+      "boosters": [
+        {
+          "code": "one-collector",
+          "name": "聚珍补充包"
+        },
+        {
+          "code": "one-compleat",
+          "name": "完化补充包"
+        },
+        {
+          "code": "one-draft",
+          "name": "轮抽补充包"
+        },
+        {
+          "code": "one-set",
+          "name": "系列补充包"
+        }
+      ]
+    },
+    {
+      "code": "DMR",
+      "boosters": [
+        {
+          "code": "dmr-collector",
+          "name": "聚珍补充包"
+        },
+        {
+          "code": "dmr-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "30A",
+      "boosters": [
+        {
+          "code": "30a-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "BRO",
+      "boosters": [
+        {
+          "code": "bro-collector",
+          "name": "聚珍补充包"
+        },
+        {
+          "code": "bro-draft",
+          "name": "轮抽补充包"
+        },
+        {
+          "code": "bro-set",
+          "name": "系列补充包"
+        }
+      ]
+    },
+    {
+      "code": "UNF",
+      "boosters": [
+        {
+          "code": "unf-collector",
+          "name": "聚珍补充包"
+        },
+        {
+          "code": "unf-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "DMU",
+      "boosters": [
+        {
+          "code": "dmu-collector",
+          "name": "聚珍补充包"
+        },
+        {
+          "code": "dmu-draft",
+          "name": "轮抽补充包"
+        },
+        {
+          "code": "dmu-set",
+          "name": "系列补充包"
+        }
+      ]
+    },
+    {
+      "code": "2X2",
+      "boosters": [
+        {
+          "code": "2x2-collector",
+          "name": "聚珍补充包"
+        },
+        {
+          "code": "2x2-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "CLB",
+      "boosters": [
+        {
+          "code": "clb-collector",
+          "name": "聚珍补充包"
+        },
+        {
+          "code": "clb-draft",
+          "name": "轮抽补充包"
+        },
+        {
+          "code": "clb-set",
+          "name": "系列补充包"
+        }
+      ]
+    },
+    {
+      "code": "SNC",
+      "boosters": [
+        {
+          "code": "snc-collector",
+          "name": "聚珍补充包"
+        },
+        {
+          "code": "snc-draft",
+          "name": "轮抽补充包"
+        },
+        {
+          "code": "snc-set",
+          "name": "系列补充包"
+        }
+      ]
+    },
+    {
+      "code": "NEO",
+      "boosters": [
+        {
+          "code": "neo-collector",
+          "name": "聚珍补充包"
+        },
+        {
+          "code": "neo-draft",
+          "name": "轮抽补充包"
+        },
+        {
+          "code": "neo-set",
+          "name": "系列补充包"
+        }
+      ]
+    },
+    {
+      "code": "DBL",
+      "boosters": [
+        {
+          "code": "dbl-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "VOW",
+      "boosters": [
+        {
+          "code": "vow-collector",
+          "name": "聚珍补充包"
+        },
+        {
+          "code": "vow-draft",
+          "name": "轮抽补充包"
+        },
+        {
+          "code": "vow-set",
+          "name": "系列补充包"
+        }
+      ]
+    },
+    {
+      "code": "MID",
+      "boosters": [
+        {
+          "code": "mid-collector",
+          "name": "聚珍补充包"
+        },
+        {
+          "code": "mid-draft",
+          "name": "轮抽补充包"
+        },
+        {
+          "code": "mid-set",
+          "name": "系列补充包"
+        }
+      ]
+    },
+    {
+      "code": "AFR",
+      "boosters": [
+        {
+          "code": "afr-collector",
+          "name": "聚珍补充包"
+        },
+        {
+          "code": "afr-draft",
+          "name": "轮抽补充包"
+        },
+        {
+          "code": "afr-set",
+          "name": "系列补充包"
+        }
+      ]
+    },
+    {
+      "code": "MH2",
+      "boosters": [
+        {
+          "code": "mh2-collector",
+          "name": "聚珍补充包"
+        },
+        {
+          "code": "mh2-draft",
+          "name": "轮抽补充包"
+        },
+        {
+          "code": "mh2-set",
+          "name": "系列补充包"
+        }
+      ]
+    },
+    {
+      "code": "STX",
+      "boosters": [
+        {
+          "code": "stx-collector",
+          "name": "聚珍补充包"
+        },
+        {
+          "code": "stx-draft",
+          "name": "轮抽补充包"
+        },
+        {
+          "code": "stx-set",
+          "name": "系列补充包"
+        }
+      ]
+    },
+    {
+      "code": "TSR",
+      "boosters": [
+        {
+          "code": "tsr-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "KHM",
+      "boosters": [
+        {
+          "code": "khm-collector",
+          "name": "聚珍补充包"
+        },
+        {
+          "code": "khm-draft",
+          "name": "轮抽补充包"
+        },
+        {
+          "code": "khm-set",
+          "name": "系列补充包"
+        }
+      ]
+    },
+    {
+      "code": "CMR",
+      "boosters": [
+        {
+          "code": "cmr-collector",
+          "name": "聚珍补充包"
+        },
+        {
+          "code": "cmr-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "ZNR",
+      "boosters": [
+        {
+          "code": "znr-collector",
+          "name": "聚珍补充包"
+        },
+        {
+          "code": "znr-draft",
+          "name": "轮抽补充包"
+        },
+        {
+          "code": "znr-set",
+          "name": "系列补充包"
+        }
+      ]
+    },
+    {
+      "code": "2XM",
+      "boosters": [
+        {
+          "code": "2xm-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "M21",
+      "boosters": [
+        {
+          "code": "m21-collector",
+          "name": "聚珍补充包"
+        },
+        {
+          "code": "m21-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "IKO",
+      "boosters": [
+        {
+          "code": "iko-collector",
+          "name": "聚珍补充包"
+        },
+        {
+          "code": "iko-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "THB",
+      "boosters": [
+        {
+          "code": "thb-collector",
+          "name": "聚珍补充包"
+        },
+        {
+          "code": "thb-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "MB1",
+      "boosters": [
+        {
+          "code": "mb1-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "ELD",
+      "boosters": [
+        {
+          "code": "eld-collector",
+          "name": "聚珍补充包"
+        },
+        {
+          "code": "eld-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "M20",
+      "boosters": [
+        {
+          "code": "m20-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "MH1",
+      "boosters": [
+        {
+          "code": "mh1-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "WAR",
+      "boosters": [
+        {
+          "code": "war-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "RNA",
+      "boosters": [
+        {
+          "code": "rna-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "UMA",
+      "boosters": [
+        {
+          "code": "uma-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "GRN",
+      "boosters": [
+        {
+          "code": "grn-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "M19",
+      "boosters": [
+        {
+          "code": "m19-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "BBD",
+      "boosters": [
+        {
+          "code": "bbd-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "DOM",
+      "boosters": [
+        {
+          "code": "dom-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "A25",
+      "boosters": [
+        {
+          "code": "a25-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "RIX",
+      "boosters": [
+        {
+          "code": "rix-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "UST",
+      "boosters": [
+        {
+          "code": "ust-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "IMA",
+      "boosters": [
+        {
+          "code": "ima-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "XLN",
+      "boosters": [
+        {
+          "code": "xln-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "HOU",
+      "boosters": [
+        {
+          "code": "hou-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "AKH",
+      "boosters": [
+        {
+          "code": "akh-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "MM3",
+      "boosters": [
+        {
+          "code": "mm3-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "AER",
+      "boosters": [
+        {
+          "code": "aer-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "KLD",
+      "boosters": [
+        {
+          "code": "kld-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "CN2",
+      "boosters": [
+        {
+          "code": "cn2-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "EMN",
+      "boosters": [
+        {
+          "code": "emn-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "EMA",
+      "boosters": [
+        {
+          "code": "ema-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "SOI",
+      "boosters": [
+        {
+          "code": "soi-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "OGW",
+      "boosters": [
+        {
+          "code": "ogw-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "BFZ",
+      "boosters": [
+        {
+          "code": "bfz-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "ORI",
+      "boosters": [
+        {
+          "code": "ori-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "MM2",
+      "boosters": [
+        {
+          "code": "mm2-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "DTK",
+      "boosters": [
+        {
+          "code": "dtk-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "KTK",
+      "boosters": [
+        {
+          "code": "ktk-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "M15",
+      "boosters": [
+        {
+          "code": "m15-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "CNS",
+      "boosters": [
+        {
+          "code": "cns-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "JOU",
+      "boosters": [
+        {
+          "code": "jou-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "BNG",
+      "boosters": [
+        {
+          "code": "bng-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "THS",
+      "boosters": [
+        {
+          "code": "ths-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "M14",
+      "boosters": [
+        {
+          "code": "m14-draft",
+          "name": "轮抽补充包"
+        },
+        {
+          "code": "m14-six",
+          "name": "六枚补充包"
+        }
+      ]
+    },
+    {
+      "code": "MMA",
+      "boosters": [
+        {
+          "code": "mma-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "DGM",
+      "boosters": [
+        {
+          "code": "dgm-draft",
+          "name": "轮抽补充包"
+        },
+        {
+          "code": "dgm-six",
+          "name": "六枚补充包"
+        }
+      ]
+    },
+    {
+      "code": "GTC",
+      "boosters": [
+        {
+          "code": "gtc-draft",
+          "name": "轮抽补充包"
+        },
+        {
+          "code": "gtc-six",
+          "name": "六枚补充包"
+        }
+      ]
+    },
+    {
+      "code": "RTR",
+      "boosters": [
+        {
+          "code": "rtr-draft",
+          "name": "轮抽补充包"
+        },
+        {
+          "code": "rtr-six",
+          "name": "六枚补充包"
+        }
+      ]
+    },
+    {
+      "code": "M13",
+      "boosters": [
+        {
+          "code": "m13-draft",
+          "name": "轮抽补充包"
+        },
+        {
+          "code": "m13-six",
+          "name": "六枚补充包"
+        }
+      ]
+    },
+    {
+      "code": "AVR",
+      "boosters": [
+        {
+          "code": "avr-draft",
+          "name": "轮抽补充包"
+        },
+        {
+          "code": "avr-six",
+          "name": "六枚补充包"
+        }
+      ]
+    },
+    {
+      "code": "DKA",
+      "boosters": [
+        {
+          "code": "dka-draft",
+          "name": "轮抽补充包"
+        },
+        {
+          "code": "dka-six",
+          "name": "六枚补充包"
+        }
+      ]
+    },
+    {
+      "code": "ISD",
+      "boosters": [
+        {
+          "code": "isd-draft",
+          "name": "轮抽补充包"
+        },
+        {
+          "code": "isd-six",
+          "name": "六枚补充包"
+        }
+      ]
+    },
+    {
+      "code": "M12",
+      "boosters": [
+        {
+          "code": "m12-draft",
+          "name": "轮抽补充包"
+        },
+        {
+          "code": "m12-six",
+          "name": "六枚补充包"
+        }
+      ]
+    },
+    {
+      "code": "NPH",
+      "boosters": [
+        {
+          "code": "nph-draft",
+          "name": "轮抽补充包"
+        },
+        {
+          "code": "nph-six",
+          "name": "六枚补充包"
+        }
+      ]
+    },
+    {
+      "code": "MBS",
+      "boosters": [
+        {
+          "code": "mbs-draft",
+          "name": "轮抽补充包"
+        },
+        {
+          "code": "mbs-six",
+          "name": "六枚补充包"
+        }
+      ]
+    },
+    {
+      "code": "SOM",
+      "boosters": [
+        {
+          "code": "som-draft",
+          "name": "轮抽补充包"
+        },
+        {
+          "code": "som-six",
+          "name": "六枚补充包"
+        }
+      ]
+    },
+    {
+      "code": "M11",
+      "boosters": [
+        {
+          "code": "m11-draft",
+          "name": "轮抽补充包"
+        },
+        {
+          "code": "m11-six",
+          "name": "六枚补充包"
+        }
+      ]
+    },
+    {
+      "code": "ROE",
+      "boosters": [
+        {
+          "code": "roe-draft",
+          "name": "轮抽补充包"
+        },
+        {
+          "code": "roe-six",
+          "name": "六枚补充包"
+        }
+      ]
+    },
+    {
+      "code": "WWK",
+      "boosters": [
+        {
+          "code": "wwk-draft",
+          "name": "轮抽补充包"
+        },
+        {
+          "code": "wwk-six",
+          "name": "六枚补充包"
+        }
+      ]
+    },
+    {
+      "code": "ZEN",
+      "boosters": [
+        {
+          "code": "zen-draft",
+          "name": "轮抽补充包"
+        },
+        {
+          "code": "zen-six",
+          "name": "六枚补充包"
+        }
+      ]
+    },
+    {
+      "code": "M10",
+      "boosters": [
+        {
+          "code": "m10-draft",
+          "name": "轮抽补充包"
+        },
+        {
+          "code": "m10-six",
+          "name": "六枚补充包"
+        }
+      ]
+    },
+    {
+      "code": "ARB",
+      "boosters": [
+        {
+          "code": "arb-draft",
+          "name": "轮抽补充包"
+        },
+        {
+          "code": "arb-six",
+          "name": "六枚补充包"
+        }
+      ]
+    },
+    {
+      "code": "CON",
+      "boosters": [
+        {
+          "code": "con-draft",
+          "name": "轮抽补充包"
+        },
+        {
+          "code": "con-six",
+          "name": "六枚补充包"
+        }
+      ]
+    },
+    {
+      "code": "ALA",
+      "boosters": [
+        {
+          "code": "ala-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "EVE",
+      "boosters": [
+        {
+          "code": "eve-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "SHM",
+      "boosters": [
+        {
+          "code": "shm-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "MOR",
+      "boosters": [
+        {
+          "code": "mor-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "LRW",
+      "boosters": [
+        {
+          "code": "lrw-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "10E",
+      "boosters": [
+        {
+          "code": "10e-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "FUT",
+      "boosters": [
+        {
+          "code": "fut-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "PLC",
+      "boosters": [
+        {
+          "code": "plc-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "TSP",
+      "boosters": [
+        {
+          "code": "tsp-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "CSP",
+      "boosters": [
+        {
+          "code": "csp-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "DIS",
+      "boosters": [
+        {
+          "code": "dis-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "GPT",
+      "boosters": [
+        {
+          "code": "gpt-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "RAV",
+      "boosters": [
+        {
+          "code": "rav-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "9ED",
+      "boosters": [
+        {
+          "code": "9ed-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "SOK",
+      "boosters": [
+        {
+          "code": "sok-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "BOK",
+      "boosters": [
+        {
+          "code": "bok-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "UNH",
+      "boosters": [
+        {
+          "code": "unh-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "CHK",
+      "boosters": [
+        {
+          "code": "chk-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "5DN",
+      "boosters": [
+        {
+          "code": "5dn-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "DST",
+      "boosters": [
+        {
+          "code": "dst-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "MRD",
+      "boosters": [
+        {
+          "code": "mrd-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "8ED",
+      "boosters": [
+        {
+          "code": "8ed-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "SCG",
+      "boosters": [
+        {
+          "code": "scg-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "LGN",
+      "boosters": [
+        {
+          "code": "lgn-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "ONS",
+      "boosters": [
+        {
+          "code": "ons-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "JUD",
+      "boosters": [
+        {
+          "code": "jud-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "TOR",
+      "boosters": [
+        {
+          "code": "tor-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "ODY",
+      "boosters": [
+        {
+          "code": "ody-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "APC",
+      "boosters": [
+        {
+          "code": "apc-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "7ED",
+      "boosters": [
+        {
+          "code": "7ed-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "PLS",
+      "boosters": [
+        {
+          "code": "pls-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "INV",
+      "boosters": [
+        {
+          "code": "inv-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "PCY",
+      "boosters": [
+        {
+          "code": "pcy-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "NEM",
+      "boosters": [
+        {
+          "code": "nem-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "MMQ",
+      "boosters": [
+        {
+          "code": "mmq-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "UDS",
+      "boosters": [
+        {
+          "code": "uds-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "PTK",
+      "boosters": [
+        {
+          "code": "ptk",
+          "name": "补充包"
+        }
+      ]
+    },
+    {
+      "code": "6ED",
+      "boosters": [
+        {
+          "code": "6ed-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "ULG",
+      "boosters": [
+        {
+          "code": "ulg-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "USG",
+      "boosters": [
+        {
+          "code": "usg-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "UGL",
+      "boosters": [
+        {
+          "code": "ugl-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "P02",
+      "boosters": [
+        {
+          "code": "p02",
+          "name": "补充包"
+        }
+      ]
+    },
+    {
+      "code": "EXO",
+      "boosters": [
+        {
+          "code": "exo-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "STH",
+      "boosters": [
+        {
+          "code": "sth-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "TMP",
+      "boosters": [
+        {
+          "code": "tmp-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "WTH",
+      "boosters": [
+        {
+          "code": "wth-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "POR",
+      "boosters": [
+        {
+          "code": "por",
+          "name": "补充包"
+        }
+      ]
+    },
+    {
+      "code": "5ED",
+      "boosters": [
+        {
+          "code": "5ed-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "VIS",
+      "boosters": [
+        {
+          "code": "vis-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "MIR",
+      "boosters": [
+        {
+          "code": "mir-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
+      "code": "ALL",
+      "boosters": [
+        {
+          "code": "all",
+          "name": "补充包"
+        }
+      ]
+    },
+    {
+      "code": "HML",
+      "boosters": [
+        {
+          "code": "hml",
+          "name": "补充包"
+        }
+      ]
+    },
+    {
+      "code": "CHR",
+      "boosters": [
+        {
+          "code": "chr",
+          "name": "补充包"
+        }
+      ]
+    },
+    {
+      "code": "ICE",
+      "boosters": [
+        {
+          "code": "ice",
+          "name": "补充包"
+        }
+      ]
+    },
+    {
+      "code": "4ED",
+      "boosters": [
+        {
+          "code": "4ed",
+          "name": "补充包"
+        }
+      ]
+    },
+    {
+      "code": "FEM",
+      "boosters": [
+        {
+          "code": "fem",
+          "name": "补充包"
+        }
+      ]
+    },
+    {
+      "code": "DRK",
+      "boosters": [
+        {
+          "code": "drk",
+          "name": "补充包"
+        }
+      ]
+    },
+    {
+      "code": "LEG",
+      "boosters": [
+        {
+          "code": "leg",
+          "name": "补充包"
+        }
+      ]
+    },
+    {
+      "code": "3ED",
+      "boosters": [
+        {
+          "code": "3ed",
+          "name": "补充包"
+        }
+      ]
+    },
+    {
+      "code": "ATQ",
+      "boosters": [
+        {
+          "code": "atq",
+          "name": "补充包"
+        }
+      ]
+    },
+    {
+      "code": "ARN",
+      "boosters": [
+        {
+          "code": "arn",
+          "name": "补充包"
+        }
+      ]
+    },
+    {
+      "code": "2ED",
+      "boosters": [
+        {
+          "code": "2ed",
+          "name": "补充包"
+        }
+      ]
+    },
+    {
+      "code": "LEB",
+      "boosters": [
+        {
+          "code": "leb",
+          "name": "补充包"
+        }
+      ]
+    },
+    {
+      "code": "LEA",
+      "boosters": [
+        {
+          "code": "lea",
+          "name": "补充包"
+        }
+      ]
     }
   ]
 } 
