@@ -168,7 +168,7 @@ export function Statistics({ cards, setCode, boosterCode, packCount }: Statistic
                     {card.zhs_name || card.officialName || card.translatedName || card.name || card.id}
                   </span>
                   {card.sheet.includes('foil') && (
-                    <span className="text-xs rainbow-text shrink-0">闪卡</span>
+                    <span className="text-xs rainbow-text shrink-0">闪</span>
                   )}
                 </div>
               ))
