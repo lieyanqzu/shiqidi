@@ -89,4 +89,16 @@ export interface CardInfo {
   setCode: string;
   number: string;
   [key: string]: any;  // 其他字段
+}
+
+export interface Set {
+  code: string;
+  boosters: {
+    code: string;
+    name: string;
+  }[];
+}
+
+export interface BoosterConfig {
+  sets: Set[];
 } 

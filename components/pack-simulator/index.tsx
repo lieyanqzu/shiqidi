@@ -1,33 +1,61 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect, useMemo } from 'react';
 import { Select } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
 import { PackDisplay } from './pack-display';
 import { Statistics } from './statistics';
+import { SetSelect } from './set-select';
 import { getAvailableSets, simulatePacks } from '@/lib/pack-simulator';
+import { useSetStore } from '@/lib/store';
 import type { Card, PackSimulatorResults } from '@/types/pack-simulator';
 
-const sets = getAvailableSets();
-const setOptions = sets.map(set => ({
-  label: set.name,
-  value: set.code
-}));
-
 export function PackSimulator() {
-  const [selectedSet, setSelectedSet] = useState<string>(setOptions[0]?.value || '');
+  const { fetchChineseSetNames } = useSetStore();
+  const [selectedSetCode, setSelectedSetCode] = useState<string>('');
+  const [selectedBoosterCode, setSelectedBoosterCode] = useState<string>('');
   const [isLoading, setIsLoading] = useState(false);
   const [results, setResults] = useState<PackSimulatorResults>({ packs: [], statistics: { totalCards: 0, byRarity: {}, bySheet: {} } });
   const [flippedCards, setFlippedCards] = useState<Card[]>([]);
   const [autoFlipCommon, setAutoFlipCommon] = useState(false);
 
+  useEffect(() => {
+    fetchChineseSetNames();
+  }, [fetchChineseSetNames]);
+
+  const sets = getAvailableSets();
+
+  // 获取当前选中系列的补充包选项
+  const boosterOptions = useMemo(() => selectedSetCode
+    ? sets
+        .find(set => set.code === selectedSetCode)
+        ?.boosters.map(booster => ({
+          label: booster.name,
+          value: booster.code,
+        })) || []
+    : [], [selectedSetCode, sets]);
+
+  // 当选择系列时，自动选择该系列的第一个补充包
+  useEffect(() => {
+    if (sets.length > 0 && !selectedSetCode) {
+      setSelectedSetCode(sets[0].code);
+    }
+  }, [sets, selectedSetCode]);
+
+  // 当系列改变时，重置补充包选择
+  useEffect(() => {
+    if (selectedSetCode && boosterOptions.length > 0 && !selectedBoosterCode) {
+      setSelectedBoosterCode(boosterOptions[0].value);
+    }
+  }, [selectedSetCode, boosterOptions, selectedBoosterCode]);
+
   // 开新包
   const handleNewPack = async () => {
-    if (!selectedSet) return;
+    if (!selectedBoosterCode) return;
 
     setIsLoading(true);
     try {
-      const results = await simulatePacks(selectedSet, 1);
+      const results = await simulatePacks(selectedBoosterCode, 1);
       setResults(results);
       setFlippedCards([]); // 清空已翻开卡牌
     } catch (error) {
@@ -45,11 +73,11 @@ export function PackSimulator() {
 
   // 再来一包（追加结果）
   const handleMorePack = async () => {
-    if (!selectedSet) return;
+    if (!selectedBoosterCode) return;
 
     setIsLoading(true);
     try {
-      const newResults = await simulatePacks(selectedSet, 1);
+      const newResults = await simulatePacks(selectedBoosterCode, 1);
       setResults(prev => ({
         packs: [...prev.packs, ...newResults.packs],
         statistics: newResults.statistics
@@ -70,20 +98,33 @@ export function PackSimulator() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-center gap-4">
         <div className="w-full sm:w-[200px]">
-          <Select
-            value={selectedSet}
-            onChange={(e) => {
-              setSelectedSet(e.target.value);
+          <SetSelect
+            value={selectedSetCode}
+            onChange={(value) => {
+              setSelectedSetCode(value);
+              setSelectedBoosterCode(''); // 重置补充包选择
               handleClear();
             }}
-            title="支持卡包陆续更新中..."
             disabled={isLoading}
-            options={setOptions}
+            title="选择系列"
+            iconSize="1x"
+          />
+        </div>
+        <div className="w-full sm:w-[200px]">
+          <Select
+            value={selectedBoosterCode}
+            onChange={(e) => {
+              setSelectedBoosterCode(e.target.value);
+              handleClear();
+            }}
+            title="选择补充包"
+            disabled={isLoading || boosterOptions.length === 0}
+            options={boosterOptions}
           />
         </div>
 
         {results.packs.length > 0 ? (
-          <Button 
+          <Button
             onClick={handleClear}
             variant="secondary"
             className="w-full sm:w-auto"
@@ -92,9 +133,9 @@ export function PackSimulator() {
           </Button>
         ) : (
           <>
-            <Button 
+            <Button
               onClick={handleNewPack}
-              disabled={!selectedSet || isLoading}
+              disabled={!selectedBoosterCode || isLoading}
               className="w-full sm:w-auto"
             >
               {isLoading ? '补充包正在赶来...' : '我现在就要开包'}
@@ -135,7 +176,8 @@ export function PackSimulator() {
             </div>
             <Statistics 
               cards={flippedCards} 
-              setCode={selectedSet}
+              setCode={selectedSetCode}
+              boosterCode={selectedBoosterCode}
               packCount={results.packs.length}
             />
           </div>
@@ -143,7 +185,8 @@ export function PackSimulator() {
       ) : (
         <Statistics 
           cards={[]} 
-          setCode={selectedSet}
+          setCode={selectedSetCode}
+          boosterCode={selectedBoosterCode}
           packCount={0}
         />
       )}
