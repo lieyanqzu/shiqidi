@@ -36,7 +36,7 @@ export function Statistics({ cards, setCode, boosterCode, packCount }: Statistic
   }, {} as Record<string, number>);
 
   // 按闪卡统计
-  const foilCount = cards.filter(card => card.sheet.includes('foil')).length;
+  const foilCount = cards.filter(card => card.id.includes('foil')).length;
 
   // 获取稀有和秘稀卡牌
   const rareAndMythicCards = cards.filter(card => 
@@ -47,8 +47,8 @@ export function Statistics({ cards, setCode, boosterCode, packCount }: Statistic
       return a.rarity === 'mythic' ? -1 : 1;
     }
     // 再按闪卡排序（闪卡在前）
-    if (a.sheet.includes('foil') !== b.sheet.includes('foil')) {
-      return a.sheet.includes('foil') ? -1 : 1;
+    if (a.id.includes('foil') !== b.id.includes('foil')) {
+      return a.id.includes('foil') ? -1 : 1;
     }
     // 最后按名称排序
     return (a.zhs_name || a.name || '').localeCompare(b.zhs_name || b.name || '');
@@ -167,7 +167,7 @@ export function Statistics({ cards, setCode, boosterCode, packCount }: Statistic
                   <span className="truncate text-sm">
                     {card.zhs_name || card.officialName || card.translatedName || card.name || card.id}
                   </span>
-                  {card.sheet.includes('foil') && (
+                  {card.id.includes('foil') && (
                     <span className="text-xs rainbow-text shrink-0">闪</span>
                   )}
                 </div>
