@@ -2,13 +2,13 @@
   "sets": [
     {
       "code": "FDN",
-  "boosters": [
-    {
-      "code": "fdn-collector",
+      "boosters": [
+        {
+          "code": "fdn-collector",
           "name": "聚珍补充包"
-    },
-    {
-      "code": "fdn-play",
+        },
+        {
+          "code": "fdn-play",
           "name": "常规补充包"
         }
       ]
@@ -16,12 +16,12 @@
     {
       "code": "DSK",
       "boosters": [
-    {
-      "code": "dsk-collector",
+        {
+          "code": "dsk-collector",
           "name": "聚珍补充包"
-    },
-    {
-      "code": "dsk-play",
+        },
+        {
+          "code": "dsk-play",
           "name": "常规补充包"
         }
       ]
@@ -29,12 +29,12 @@
     {
       "code": "BLB",
       "boosters": [
-    {
-      "code": "blb-collector",
+        {
+          "code": "blb-collector",
           "name": "聚珍补充包"
-    },
-    {
-      "code": "blb-play",
+        },
+        {
+          "code": "blb-play",
           "name": "常规补充包"
         }
       ]
@@ -42,8 +42,8 @@
     {
       "code": "MB2",
       "boosters": [
-    {
-      "code": "mb2-draft",
+        {
+          "code": "mb2-draft",
           "name": "轮抽补充包"
         }
       ]
@@ -51,12 +51,12 @@
     {
       "code": "ACR",
       "boosters": [
-    {
-      "code": "acr",
+        {
+          "code": "acr",
           "name": "无疆补充包"
-    },
-    {
-      "code": "acr-collector",
+        },
+        {
+          "code": "acr-collector",
           "name": "聚珍补充包"
         }
       ]
@@ -64,12 +64,12 @@
     {
       "code": "MH3",
       "boosters": [
-    {
-      "code": "mh3-collector",
+        {
+          "code": "mh3-collector",
           "name": "聚珍补充包"
-    },
-    {
-      "code": "mh3-play",
+        },
+        {
+          "code": "mh3-play",
           "name": "常规补充包"
         }
       ]
@@ -77,12 +77,12 @@
     {
       "code": "OTJ",
       "boosters": [
-    {
-      "code": "otj-collector",
+        {
+          "code": "otj-collector",
           "name": "聚珍补充包"
-    },
-    {
-      "code": "otj-play",
+        },
+        {
+          "code": "otj-play",
           "name": "常规补充包"
         }
       ]
@@ -90,8 +90,8 @@
     {
       "code": "PIP",
       "boosters": [
-    {
-      "code": "pip-collector",
+        {
+          "code": "pip-collector",
           "name": "聚珍补充包"
         }
       ]
@@ -99,12 +99,12 @@
     {
       "code": "MKM",
       "boosters": [
-    {
-      "code": "mkm-collector",
+        {
+          "code": "mkm-collector",
           "name": "聚珍补充包"
-    },
-    {
-      "code": "mkm-play",
+        },
+        {
+          "code": "mkm-play",
           "name": "常规补充包"
         }
       ]
@@ -1742,4 +1742,4 @@
       ]
     }
   ]
-} 
+}

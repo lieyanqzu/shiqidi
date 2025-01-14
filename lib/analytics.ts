@@ -21,8 +21,7 @@ async function getClientIP(): Promise<string> {
         cachedIP = ip;
         return ip;
       }
-    } catch (error) {
-      console.info(`Failed to get IP from ${apiUrl}:`, error);
+    } catch {
       continue;
     }
   }
