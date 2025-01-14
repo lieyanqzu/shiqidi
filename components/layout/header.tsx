@@ -306,7 +306,7 @@ export function Header() {
               </button>
             )}
             <a
-              href="https://space.bilibili.com/45916"
+              href="https://space.bilibili.com/271023"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[--foreground-muted] hover:text-[--foreground] transition-colors"
