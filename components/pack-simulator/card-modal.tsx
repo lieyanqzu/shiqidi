@@ -281,7 +281,7 @@ export function CardModal({ card, onClose, imageUrl, allCards, onCardChange }: C
               >
                 {card.zhs_name || card.officialName || card.translatedName || card.name || card.id}
               </a>
-              {card.sheet.includes('foil') && (
+              {card.id.includes('foil') && (
                 <span className="text-sm rainbow-text">闪卡</span>
               )}
             </div>
@@ -362,7 +362,7 @@ export function CardModal({ card, onClose, imageUrl, allCards, onCardChange }: C
 
           {/* 当前卡片 */}
           <div 
-            className={`relative ${card.sheet.includes('foil') ? 'foil-effect' : ''} z-20`}
+            className={`relative ${card.id.includes('foil') ? 'foil-effect' : ''} z-20`}
             style={{
               transform: `translateX(${translateX}px)`,
               transition: isDragging ? 'none' : 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',

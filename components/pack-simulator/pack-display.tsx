@@ -353,7 +353,7 @@ export function PackDisplay({ packs, onFlippedCardsChange, autoFlipCommon }: Pac
                                 <div 
                                   className={`
                                     relative cursor-pointer
-                                    ${card.sheet.includes('foil') ? 'foil-effect' : ''} 
+                                    ${card.id.includes('foil') ? 'foil-effect' : ''} 
                                     ${isFlipped && card.rarity === 'rare' ? 'rare-glow' : ''}
                                     ${isFlipped && card.rarity === 'mythic' ? 'mythic-glow' : ''}
                                   `}
@@ -415,7 +415,7 @@ export function PackDisplay({ packs, onFlippedCardsChange, autoFlipCommon }: Pac
                             ) : (
                               <div className={`
                                 relative 
-                                ${card.sheet.includes('foil') ? 'foil-effect' : ''} 
+                                ${card.id.includes('foil') ? 'foil-effect' : ''} 
                                 ${isFlipped && card.rarity === 'rare' ? 'rare-glow' : ''}
                                 ${isFlipped && card.rarity === 'mythic' ? 'mythic-glow' : ''}
                               `}>
@@ -486,7 +486,7 @@ export function PackDisplay({ packs, onFlippedCardsChange, autoFlipCommon }: Pac
                                   {card.zhs_name || card.officialName || card.translatedName || card.name || card.id}
                                 </div>
                               </a>
-                              {card.sheet.includes('foil') && (
+                              {card.id.includes('foil') && (
                                 <span className="text-xs rainbow-text">闪</span>
                               )}
                             </div>
