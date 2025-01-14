@@ -15,7 +15,7 @@ export function CardNameCell({ card, expansion }: CardNameCellProps) {
   const { chineseCards } = useCardStore();
   const chineseCard = chineseCards[card.name];
   const chineseName = chineseCard?.zhs_name || chineseCard?.officialName || chineseCard?.translatedName;
-  const isMobile = useMediaQuery("(max-width: 768px)");
+  const isMobile = useMediaQuery("(max-width: 1024px)");
   
   const [tooltipVisible, setTooltipVisible] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
