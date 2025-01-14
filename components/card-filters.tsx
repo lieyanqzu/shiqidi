@@ -39,7 +39,7 @@ export function CardFilters({
 }: CardFiltersProps) {
   const startDate = new Date(params.start_date);
   const endDate = new Date(params.end_date);
-  const isMobile = useMediaQuery('(max-width: 640px)');
+  const isMobile = useMediaQuery('(max-width: 1024px)');
   const [showFilters, setShowFilters] = useState(false);
   const filterButtonRef = useRef<HTMLButtonElement>(null);
 

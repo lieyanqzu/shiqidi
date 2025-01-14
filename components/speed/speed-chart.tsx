@@ -98,7 +98,7 @@ const CustomTooltip = ({ active, payload, isMobile, selectedPoint }: CustomToolt
 };
 
 export function SpeedChart({ initialData }: SpeedChartProps) {
-  const isMobile = useMediaQuery("(max-width: 640px)");
+  const isMobile = useMediaQuery("(max-width: 1024px)");
   const [selectedPoint, setSelectedPoint] = useState<SpeedData | null>(null);
   const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
   const [tooltipAlign, setTooltipAlign] = useState<'center' | 'left' | 'right'>('center');

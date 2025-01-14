@@ -62,6 +62,13 @@ export default function RootLayout({
     <html lang="zh-CN" suppressHydrationWarning>
       <head>
         <meta name="baidu-site-verification" content="codeva-KeyiIuwEpJ" />
+        <meta name="application-name" content="十七地" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="十七地" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="theme-color" content="#f6f4f1" />
+        <link rel="manifest" href="/manifest.json" />
         <script
           dangerouslySetInnerHTML={{
             __html: `

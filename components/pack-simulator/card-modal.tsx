@@ -134,6 +134,9 @@ export function CardModal({ card, onClose, imageUrl, allCards, onCardChange }: C
 
   // 处理触摸事件
   const handleTouchStart = useCallback((e: TouchEvent) => {
+    // 如果点击的是链接，不阻止默认行为
+    if ((e.target as HTMLElement).tagName === 'A') return;
+    
     e.preventDefault();
     e.stopPropagation();
     setTouchEnd(null);
@@ -142,6 +145,9 @@ export function CardModal({ card, onClose, imageUrl, allCards, onCardChange }: C
   }, []);
 
   const handleTouchMove = useCallback((e: TouchEvent) => {
+    // 如果点击的是链接，不阻止默认行为
+    if ((e.target as HTMLElement).tagName === 'A') return;
+    
     e.preventDefault();
     e.stopPropagation();
     setTouchEnd(e.targetTouches[0].clientX);
@@ -152,12 +158,14 @@ export function CardModal({ card, onClose, imageUrl, allCards, onCardChange }: C
   }, [touchStart]);
 
   const handleTouchEnd = useCallback((e: TouchEvent) => {
+    // 如果点击的是链接，不阻止默认行为
+    if ((e.target as HTMLElement).tagName === 'A') return;
+    
     e.preventDefault();
     e.stopPropagation();
     if (!touchStart || !touchEnd) return;
     
     const distance = touchStart - touchEnd;
-    // 获取容器宽度的三分之一作为切换阈值
     const containerWidth = containerRef.current?.clientWidth ?? 300;
     const threshold = containerWidth / 3;
     
@@ -195,6 +203,13 @@ export function CardModal({ card, onClose, imageUrl, allCards, onCardChange }: C
     };
   }, [handleTouchStart, handleTouchMove, handleTouchEnd]);
 
+  // 获取卡牌详情页面URL
+  function getCardDetailUrl(card: Card): string {
+    // 如果卡牌号带有 a 或 b 后缀，使用基础卡牌号
+    const number = /^(\d+)[ab]$/.test(card.number) ? card.number.slice(0, -1) : card.number;
+    return `https://sbwsz.com/card/${card.setCode}/${number}`;
+  }
+
   return (
     <div 
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/80"
@@ -226,13 +241,25 @@ export function CardModal({ card, onClose, imageUrl, allCards, onCardChange }: C
         </svg>
       </button>
 
+      <style jsx>{`
+        @keyframes fade-out {
+          0% { opacity: 0.8; transform: translateY(20px); }
+          10% { opacity: 1; transform: translateY(0); }
+          80% { opacity: 1; transform: translateY(0); }
+          100% { opacity: 0; transform: translateY(20px); }
+        }
+        .animate-fade-out {
+          animation: fade-out 3s ease-in-out forwards;
+        }
+      `}</style>
+
       {showSwipeHint && allCards.length > 1 && (
         <div className="fixed inset-x-0 bottom-20 flex justify-center sm:hidden">
           <div className="bg-black/60 text-white px-4 py-2 rounded-full text-sm flex items-center gap-2 animate-fade-out">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M17 8l4 4-4 4M7 8L3 12l4 4"/>
             </svg>
-            <span>左右滑动切换卡图</span>
+            <span>左右滑动切换卡图 · 点击卡名查看详情</span>
           </div>
         </div>
       )}
@@ -245,9 +272,15 @@ export function CardModal({ card, onClose, imageUrl, allCards, onCardChange }: C
         <div className="p-4 bg-black/60 text-white rounded-t-lg">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <span className={`text-lg font-medium ${card.rarity ? getRarityColor(card.rarity) : ''}`}>
+              <a 
+                href={getCardDetailUrl(card)} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className={`text-lg font-medium hover:opacity-80 transition-opacity ${card.rarity ? getRarityColor(card.rarity) : ''}`}
+                onClick={e => e.stopPropagation()}
+              >
                 {card.zhs_name || card.officialName || card.translatedName || card.name || card.id}
-              </span>
+              </a>
               {card.sheet.includes('foil') && (
                 <span className="text-sm rainbow-text">闪卡</span>
               )}
@@ -358,18 +391,6 @@ export function CardModal({ card, onClose, imageUrl, allCards, onCardChange }: C
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes fade-out {
-          0% { opacity: 0.8; transform: translateY(20px); }
-          10% { opacity: 1; transform: translateY(0); }
-          80% { opacity: 1; transform: translateY(0); }
-          100% { opacity: 0; transform: translateY(20px); }
-        }
-        .animate-fade-out {
-          animation: fade-out 3s ease-in-out forwards;
-        }
-      `}</style>
     </div>
   );
 }
