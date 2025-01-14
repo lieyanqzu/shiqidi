@@ -18,7 +18,7 @@ export function DateRangePicker({
   onStartDateChange,
   onEndDateChange,
 }: DateRangePickerProps) {
-  const isMobile = useMediaQuery('(max-width: 640px)');
+  const isMobile = useMediaQuery('(max-width: 1024px)');
   
   const inputClassName = "form-control w-full sm:w-32 bg-[--component-background] border border-[--border] rounded-md px-3 py-2 text-sm text-[--component-foreground] focus:border-[--primary] focus:outline-none focus:ring-1 focus:ring-[--primary]";
 
