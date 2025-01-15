@@ -24,14 +24,19 @@ interface DigitalSet {
 function getCurrentAndNextSet(): { current: DigitalSet | null; next: DigitalSet | null } {
   const now = new Date();
   const sets = digitalSets.sets
-    .sort((a, b) => new Date(a.releaseDate).getTime() - new Date(b.releaseDate).getTime());
+    .sort((a, b) => {
+      const dateA = new Date(a.releaseDate.replace('~', ''));
+      const dateB = new Date(b.releaseDate.replace('~', ''));
+      return dateA.getTime() - dateB.getTime();
+    });
 
   let current: DigitalSet | null = null;
   let next: DigitalSet | null = null;
 
   for (let i = sets.length - 1; i >= 0; i--) {
     const set = sets[i];
-    if (new Date(set.releaseDate) <= now) {
+    const releaseDate = new Date(set.releaseDate.replace('~', ''));
+    if (releaseDate <= now) {
       current = set;
       next = sets[i + 1] || null;
       break;
@@ -42,8 +47,9 @@ function getCurrentAndNextSet(): { current: DigitalSet | null; next: DigitalSet 
 }
 
 function formatDate(dateStr: string): string {
-  const date = new Date(dateStr);
-  return new Intl.DateTimeFormat('zh-CN', {
+  const prefix = dateStr.includes('~') ? '约' : '';
+  const date = new Date(dateStr.replace('~', ''));
+  return prefix + new Intl.DateTimeFormat('zh-CN', {
     month: 'long',
     day: 'numeric',
   }).format(date);
@@ -58,7 +64,7 @@ function SetInfo({ className = "" }: { className?: string }) {
     <div className={`flex items-center gap-4 px-3 py-1.5 text-sm text-[--muted-foreground] ${className}`}>
       <div className="flex items-center gap-1.5">
         <i className={`ss ss-${current.code.toLowerCase()} ss-fw`} />
-        <span>当前系列：{current.name}</span>
+        <span>最新系列：{current.name}</span>
       </div>
       {next && (
         <>
@@ -278,7 +284,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-[--border] bg-[--background]">
       <div className="container mx-auto">
-        <div className="flex h-16 items-center justify-between px-4">
+        <div className="flex h-16 md:h-8 2xl:h-16 items-center justify-between px-4">
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-2 md:gap-3 min-w-0">
               <Link href="/" className="font-semibold text-[--foreground] whitespace-nowrap">

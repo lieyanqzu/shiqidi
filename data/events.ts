@@ -51,13 +51,6 @@ const midweekMagicEvents: Event[] = [
 const premierDraftEvents: Event[] = [
   {
     type: 'premier_draft',
-    title: '万智牌：基石构筑',
-    startTime: new Date('2024-11-12T08:00:00-08:00'),
-    endTime: new Date('2025-02-11T08:00:00-08:00'),
-    format: '竞技轮抽',
-  },
-  {
-    type: 'premier_draft',
     title: '先驱大师 - 奖励列表：献力',
     startTime: new Date('2025-01-07T08:00:00-08:00'), 
     endTime: new Date('2025-01-21T08:00:00-08:00'),
