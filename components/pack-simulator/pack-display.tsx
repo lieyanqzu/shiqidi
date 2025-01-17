@@ -337,7 +337,7 @@ export function PackDisplay({ packs, onFlippedCardsChange, autoFlipCommon }: Pac
                           {/* 卡背 */}
                           <div className="absolute inset-0 backface-hidden">
                             <Image
-                              src="https://static.wikia.nocookie.net/mtgsalvation_gamepedia/images/f/f8/Magic_card_back.jpg"
+                              src="/image/back.png"
                               alt="Card Back"
                               width={300}
                               height={420}
@@ -400,7 +400,7 @@ export function PackDisplay({ packs, onFlippedCardsChange, autoFlipCommon }: Pac
                                         if (card.scryfallId) {
                                           img.src = `https://cards.scryfall.io/large/front/${card.scryfallId.slice(0, 1)}/${card.scryfallId.slice(1, 2)}/${card.scryfallId}.jpg`;
                                         } else {
-                                          img.src = 'https://static.wikia.nocookie.net/mtgsalvation_gamepedia/images/f/f8/Magic_card_back.jpg';
+                                          img.src = '/image/back.png';
                                         }
                                       }
                                       setLoadingImages(prev => {
@@ -457,7 +457,7 @@ export function PackDisplay({ packs, onFlippedCardsChange, autoFlipCommon }: Pac
                                       if (card.scryfallId) {
                                         img.src = `https://cards.scryfall.io/large/front/${card.scryfallId.slice(0, 1)}/${card.scryfallId.slice(1, 2)}/${card.scryfallId}.jpg`;
                                       } else {
-                                        img.src = 'https://static.wikia.nocookie.net/mtgsalvation_gamepedia/images/f/f8/Magic_card_back.jpg';
+                                        img.src = '/image/back.png';
                                       }
                                     }
                                     setLoadingImages(prev => {
