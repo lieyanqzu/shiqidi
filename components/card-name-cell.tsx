@@ -55,7 +55,7 @@ export function CardNameCell({ card, expansion }: CardNameCellProps) {
       });
       setTooltipVisible(!tooltipVisible);
     } else if (chineseCard?.setCode && chineseCard?.number) {
-      window.open(`https://sbwsz.com/card/${chineseCard.setCode}/${chineseCard.number}`, '_blank');
+      window.open(`https://www.sbwsz.com/card/${chineseCard.setCode}/${chineseCard.number}?utm_source=shiqidi`, '_blank');
     }
   };
 

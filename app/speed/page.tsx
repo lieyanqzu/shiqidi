@@ -31,7 +31,7 @@ export default async function SpeedPage() {
             赛制速度
           </h1>
           <a 
-            href="https://www.17lands.com/format_speed"
+            href="https://www.17lands.com/format_speed?utm_source=shiqidi"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1 px-2 py-1 text-xs rounded-md bg-[--accent]/10 text-[--muted-foreground] hover:text-[--foreground] hover:bg-[--accent]/20 transition-colors"
