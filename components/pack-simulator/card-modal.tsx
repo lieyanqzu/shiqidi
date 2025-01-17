@@ -318,7 +318,7 @@ export function CardModal({ card, onClose, imageUrl, allCards, onCardChange }: C
                     if (nextCard?.scryfallId) {
                       setNextImageUrl(`https://cards.scryfall.io/large/front/${nextCard.scryfallId.slice(0, 1)}/${nextCard.scryfallId.slice(1, 2)}/${nextCard.scryfallId}.jpg`);
                     } else {
-                      setNextImageUrl('https://static.wikia.nocookie.net/mtgsalvation_gamepedia/images/f/f8/Magic_card_back.jpg');
+                      setNextImageUrl('/image/back.png');
                     }
                   }
                 }}
@@ -352,7 +352,7 @@ export function CardModal({ card, onClose, imageUrl, allCards, onCardChange }: C
                     if (prevCard?.scryfallId) {
                       setPrevImageUrl(`https://cards.scryfall.io/large/front/${prevCard.scryfallId.slice(0, 1)}/${prevCard.scryfallId.slice(1, 2)}/${prevCard.scryfallId}.jpg`);
                     } else {
-                      setPrevImageUrl('https://static.wikia.nocookie.net/mtgsalvation_gamepedia/images/f/f8/Magic_card_back.jpg');
+                      setPrevImageUrl('/image/back.png');
                     }
                   }
                 }}
@@ -383,7 +383,7 @@ export function CardModal({ card, onClose, imageUrl, allCards, onCardChange }: C
                   if (card.scryfallId) {
                     setCurrentImageUrl(`https://cards.scryfall.io/large/front/${card.scryfallId.slice(0, 1)}/${card.scryfallId.slice(1, 2)}/${card.scryfallId}.jpg`);
                   } else {
-                    setCurrentImageUrl('https://static.wikia.nocookie.net/mtgsalvation_gamepedia/images/f/f8/Magic_card_back.jpg');
+                    setCurrentImageUrl('/image/back.png');
                   }
                 }
               }}
