@@ -154,12 +154,12 @@ const CardTooltip: FC<CardTooltipProps> = ({ card, visible, x, y, expansion, isM
                 onClick={(e) => {
                   e.stopPropagation();
                   if (chineseCard?.setCode && chineseCard?.number) {
-                    window.open(`https://sbwsz.com/card/${chineseCard.setCode}/${chineseCard.number}`, '_blank');
+                    window.open(`https://www.sbwsz.com/card/${chineseCard.setCode}/${chineseCard.number}?utm_source=shiqidi`, '_blank');
                   }
                 }}
                 className="text-sm text-blue-500 hover:text-blue-600"
               >
-                在 sbwsz.com 中查看
+                在 大学院废墟 中查看
               </button>
             </div>
           </div>
