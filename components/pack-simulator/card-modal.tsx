@@ -207,7 +207,7 @@ export function CardModal({ card, onClose, imageUrl, allCards, onCardChange }: C
   function getCardDetailUrl(card: Card): string {
     // 如果卡牌号带有 a 或 b 后缀，使用基础卡牌号
     const number = /^(\d+)[ab]$/.test(card.number) ? card.number.slice(0, -1) : card.number;
-    return `https://sbwsz.com/card/${card.setCode}/${number}`;
+    return `https://www.sbwsz.com/card/${card.setCode}/${number}?utm_source=shiqidi`;
   }
 
   return (
