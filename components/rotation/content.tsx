@@ -74,6 +74,15 @@ function getTimeSpan(sets: Set[]): string {
   return `${startYear}–${endYear}`;
 }
 
+function ExternalLinkIcon({ className = "" }: { className?: string }) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className={`w-3 h-3 ${className}`}>
+      <path fillRule="evenodd" d="M4.25 5.5a.75.75 0 0 0-.75.75v8.5c0 .414.336.75.75.75h8.5a.75.75 0 0 0 .75-.75v-4a.75.75 0 0 1 1.5 0v4A2.25 2.25 0 0 1 12.75 17h-8.5A2.25 2.25 0 0 1 2 14.75v-8.5A2.25 2.25 0 0 1 4.25 4h5a.75.75 0 0 1 0 1.5h-5Z" clipRule="evenodd" />
+      <path fillRule="evenodd" d="M6.194 12.753a.75.75 0 0 0 1.06.053L16.5 4.44v2.81a.75.75 0 0 0 1.5 0v-4.5a.75.75 0 0 0-.75-.75h-4.5a.75.75 0 0 0 0 1.5h2.553l-9.056 8.194a.75.75 0 0 0-.053 1.06Z" clipRule="evenodd" />
+    </svg>
+  );
+}
+
 export function Content({ currentSetGroups, futureSets, recentBans }: Props) {
   const { chineseSetNames, fetchChineseSetNames } = useSetStore();
 
@@ -154,13 +163,25 @@ export function Content({ currentSetGroups, futureSets, recentBans }: Props) {
                 <div className="p-4">
                   <div className="space-y-3">
                     {group.sets.map(set => (
-                      <div key={set.code} className="border border-[--border] rounded-lg p-4">
+                      <div key={set.code} className="border border-[--border] rounded-lg p-4 group">
                         <div className="flex flex-col gap-2">
                           <div className="flex items-start justify-between gap-4">
                             <div>
-                              <h3 className="font-medium text-[--foreground]">
-                                {set.code && chineseSetNames[set.code] ? chineseSetNames[set.code] : set.name}
-                              </h3>
+                              <div className="flex items-center gap-2">
+                                <h3 className="font-medium text-[--foreground] flex items-center gap-1">
+                                  <a
+                                    href={set.code ? `https://www.sbwsz.com/set/${set.code}?utm_source=shiqidi` : '#'}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={`text-[--foreground] ${set.code ? 'hover:opacity-70 transition-opacity' : ''}`}
+                                  >
+                                    {set.code && chineseSetNames[set.code] ? chineseSetNames[set.code] : set.name}
+                                  </a>
+                                  {set.code && (
+                                    <ExternalLinkIcon className="opacity-0 group-hover:opacity-50 transition-opacity" />
+                                  )}
+                                </h3>
+                              </div>
                               <div className="text-sm text-[--muted-foreground] mt-1 flex items-center gap-1.5">
                                 {set.code && (
                                   <i className={`ss ss-${set.code.toLowerCase()} ss-fw`} />
@@ -192,15 +213,27 @@ export function Content({ currentSetGroups, futureSets, recentBans }: Props) {
           <div className="bg-[--card] rounded-lg p-4">
             <div className="space-y-3">
               {futureSets.map((set, index) => (
-                <div key={set.code || index} className="border border-[--border] rounded-lg p-4">
+                <div key={set.code || index} className="border border-[--border] rounded-lg p-4 group">
                   <div className="flex flex-col gap-2">
                     <div className="flex items-start justify-between gap-4">
                       <div>
-                        <h3 className="font-medium text-[--foreground]">
-                          {set.code && chineseSetNames[set.code] 
-                            ? chineseSetNames[set.code] 
-                            : (set.name || set.codename || '未知系列')}
-                        </h3>
+                        <div className="flex items-center gap-2">
+                          <h3 className="font-medium text-[--foreground] flex items-center gap-1">
+                            <a
+                              href={set.code ? `https://www.sbwsz.com/set/${set.code}?utm_source=shiqidi` : '#'}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className={`text-[--foreground] ${set.code ? 'hover:opacity-70 transition-opacity' : ''}`}
+                            >
+                              {set.code && chineseSetNames[set.code] 
+                                ? chineseSetNames[set.code] 
+                                : (set.name || set.codename || '未知系列')}
+                            </a>
+                            {set.code && (
+                              <ExternalLinkIcon className="opacity-0 group-hover:opacity-50 transition-opacity" />
+                            )}
+                          </h3>
+                        </div>
                         {set.code && (
                           <div className="text-sm text-[--muted-foreground] mt-1 flex items-center gap-1.5">
                             <i className={`ss ss-${set.code.toLowerCase()} ss-fw`} />
@@ -208,7 +241,7 @@ export function Content({ currentSetGroups, futureSets, recentBans }: Props) {
                           </div>
                         )}
                       </div>
-                      <div className="text-right">
+                      <div className="text-right flex flex-col items-end gap-2">
                         <div className="text-sm text-[--muted-foreground] whitespace-nowrap">
                           {formatDate(set.enter_date, set.rough_enter_date)} 发售
                         </div>
@@ -246,7 +279,7 @@ export function Content({ currentSetGroups, futureSets, recentBans }: Props) {
                     </div>
                     {ban.announcement_url && (
                       <a
-                        href={ban.announcement_url}
+                        href={`${ban.announcement_url}${ban.announcement_url.includes('?') ? '&' : '?'}utm_source=shiqidi`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-sm text-[--primary] hover:underline"
