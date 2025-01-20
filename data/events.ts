@@ -13,18 +13,11 @@ export interface Event {
 }
 
 export const calendarMetadata: CalendarMetadata = {
-  lastUpdated: '2025/01/13',
-  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/mtg-arena-announcements-january-13-2025#schedule',
+  lastUpdated: '2025/01/20',
+  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/mtg-arena-announcements-january-20-2025#schedule',
 };
 
 const midweekMagicEvents: Event[] = [
-  {
-    type: 'midweek_magic',
-    title: '莫秘维',
-    startTime: new Date('2025-01-14T14:00:00-08:00'),
-    endTime: new Date('2025-01-16T14:00:00-08:00'),
-    format: '莫秘维',
-  },
   {
     type: 'midweek_magic',
     title: '倾曳争锋',
@@ -46,16 +39,16 @@ const midweekMagicEvents: Event[] = [
     endTime: new Date('2025-02-05T14:00:00-08:00'),
     format: '现开',
   },
+  {
+    type: 'midweek_magic',
+    title: '投身乙太漂移',
+    startTime: new Date('2025-02-11T14:00:00-08:00'),
+    endTime: new Date('2025-02-12T14:00:00-08:00'),
+    format: '预组',
+  },
 ];
 
 const premierDraftEvents: Event[] = [
-  {
-    type: 'premier_draft',
-    title: '先驱大师 - 奖励列表：献力',
-    startTime: new Date('2025-01-07T08:00:00-08:00'), 
-    endTime: new Date('2025-01-21T08:00:00-08:00'),
-    format: '竞技轮抽',
-  },
   {
     type: 'premier_draft',
     title: '暮悲邸：鬼屋惊魂',
@@ -82,16 +75,16 @@ const premierDraftEvents: Event[] = [
 const quickDraftEvents: Event[] = [
   {
     type: 'quick_draft',
-    title: '暮悲邸：鬼屋惊魂',
-    startTime: new Date('2025-01-04T08:00:00-08:00'),
-    endTime: new Date('2025-01-18T08:00:00-08:00'),
+    title: '艾卓仙踪',
+    startTime: new Date('2025-01-18T08:00:00-08:00'),
+    endTime: new Date('2025-02-01T08:00:00-08:00'),
     format: '快速轮抽',
   },
   {
     type: 'quick_draft',
-    title: '艾卓仙踪',
-    startTime: new Date('2025-01-18T08:00:00-08:00'),
-    endTime: new Date('2025-02-01T08:00:00-08:00'),
+    title: '班隆洛',
+    startTime: new Date('2025-02-01T08:00:00-08:00'),
+    endTime: new Date('2025-02-15T08:00:00-08:00'),
     format: '快速轮抽',
   },
 ];
@@ -115,14 +108,6 @@ const otherEvents: Event[] = [
 ];
 
 const premierPlayEvents: Event[] = [
-  {
-    type: 'premier_play',
-    title: '资格赛入围赛BO1',
-    startTime: new Date('2025-01-18T06:00:00-08:00'),
-    endTime: new Date('2025-01-19T03:00:00-08:00'),
-    format: '探险',
-    description: '单日赛事，玩家将竞争获得本月资格赛周末的参赛资格。',
-  },
   {
     type: 'premier_play',
     title: '资格赛入围赛BO3',
