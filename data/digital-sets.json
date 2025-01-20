@@ -11,9 +11,33 @@
       "releaseDate": "2024-12-11"
     },
     {
-      "name": "乙太飘移",
+      "name": "乙太漂移",
       "code": "DFT",
-      "releaseDate": "2025-2-12"
+      "releaseDate": "2025-2-12",
+      "wikiUrl": "https://mtg.fandom.com/wiki/Aetherdrift?utm_source=shiqidi",
+      "preview": {
+        "title": "扣紧护带",
+        "description": "甩开对手！上车加入乙太漂移，参与这场跨越三个时空、让肾上腺素飙升的多重宇宙竞速赛。",
+        "backgroundImage": "/image/DFT_sma_key_1920x1080_en.jpg",
+        "links": [
+          {
+            "name": "大学院废墟（中文）",
+            "url": "https://sbwsz.com/previews/DFT?utm_source=shiqidi"
+          },
+          {
+            "name": "官网牌图集合",
+            "url": "https://magic.wizards.com/en/products/aetherdrift/card-image-gallery"
+          },
+          {
+            "name": "Scryfall",
+            "url": "https://scryfall.com/sets/dft?order=spoiled&utm_source=shiqidi"
+          },
+          {
+            "name": "Untapped.gg",
+            "url": "https://mtga.untapped.gg/codex/spoilers/aetherdrift?utm_source=shiqidi"
+          }
+        ]
+      }
     },
     {
       "name": "炼金：乙太飘移",
