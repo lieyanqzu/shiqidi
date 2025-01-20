@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import digitalSets from '@/data/digital-sets.json';
 import { useStatusStore, StatusData } from '@/lib/store';
 import { usePWAInstall } from '@/hooks/use-pwa-install';
+import { Tooltip } from "@/components/ui/tooltip"
 
 interface MenuItem {
   label: string;
@@ -19,6 +20,13 @@ interface DigitalSet {
   name: string;
   code: string;
   releaseDate: string;
+  wikiUrl?: string;
+  preview?: {
+    title: string;
+    description: string;
+    links: { name: string; url: string }[];
+    backgroundImage: string;
+  };
 }
 
 function getCurrentAndNextSet(): { current: DigitalSet | null; next: DigitalSet | null } {
@@ -57,24 +65,112 @@ function formatDate(dateStr: string): string {
 
 function SetInfo({ className = "" }: { className?: string }) {
   const { current, next } = getCurrentAndNextSet();
+  const [showTooltip, setShowTooltip] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   
+  useEffect(() => {
+    // 检查是否应该显示提示，并且确保有预览信息
+    const lastShownDate = localStorage.getItem('previewTooltipLastShown');
+    const now = new Date().getTime();
+    
+    // 如果从未显示过，或者距离上次显示超过48小时，并且有预览信息
+    if ((!lastShownDate || now - parseInt(lastShownDate) > 48 * 60 * 60 * 1000) && next?.preview) {
+      setShowTooltip(true);
+      localStorage.setItem('previewTooltipLastShown', now.toString());
+    }
+  }, [next]);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   if (!current) return null;
   
   return (
     <div className={`flex items-center gap-4 px-3 py-1.5 text-sm text-[--muted-foreground] ${className}`}>
-      <div className="flex items-center gap-1.5">
-        <i className={`ss ss-${current.code.toLowerCase()} ss-fw`} />
-        <span>最新系列：{current.name}</span>
+      <div className="grid md:flex grid-cols-2 w-full md:w-auto gap-4 md:gap-4">
+        <div className="flex items-center gap-1.5 min-w-0">
+          <i className={`ss ss-${current.code.toLowerCase()} ss-fw flex-shrink-0`} />
+          <span className="break-words">最新系列：{current.name}</span>
+        </div>
+        {next && (
+          <>
+            <div className="hidden md:block w-px h-4 bg-[--border]" />
+            {next.preview ? (
+              <Tooltip
+                open={showTooltip}
+                onOpenChange={setShowTooltip}
+                side="top"
+                showCloseButton={true}
+                asNotification={isMobile}
+                backgroundImage={next.preview.backgroundImage}
+                content={
+                  <div className="w-[320px] space-y-3">
+                    <div className="flex items-center gap-3">
+                      <div className="space-y-2 flex-1">
+                        <div className="flex items-center gap-2">
+                          <h3 className="font-medium text-[--foreground] flex items-center gap-2">
+                            <span className="text-[13px] text-[--muted-foreground]">新系列：</span>
+                            <i className={`ss ss-${next.code.toLowerCase()} ss-2x opacity-80 flex-shrink-0`} />
+                            {next.name}
+                            {next.wikiUrl && (
+                              <a
+                                href={next.wikiUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1 text-[13px] text-[--primary] hover:text-[--primary]/80 transition-colors"
+                                onClick={e => e.stopPropagation()}
+                              >
+                                <ExternalLink className="w-3.5 h-3.5" />
+                                <span>MTG Wiki</span>
+                              </a>
+                            )}
+                          </h3>
+                        </div>
+                        <p className="text-sm leading-relaxed">
+                          <span className="text-[--foreground]">{next.preview?.title}</span>
+                          <span className="mx-2 text-[--muted-foreground] opacity-30">|</span>
+                          <span className="text-[--muted-foreground]">{next.preview?.description}</span>
+                        </p>
+                      </div>
+                    </div>
+                    <div className="space-y-1.5">
+                      <p className="text-[13px] text-[--muted-foreground] opacity-90">前往以下网站，了解{next.name}最新预览卡牌</p>
+                      <div className="grid grid-cols-2 gap-2">
+                        {next.preview?.links.map((link, index) => (
+                          <a
+                            key={index}
+                            href={link.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-1.5 text-[13px] text-[--primary] hover:text-[--primary]/80 transition-colors"
+                          >
+                            <ExternalLink className="w-3.5 h-3.5 flex-shrink-0" />
+                            <span className="truncate">{link.name}</span>
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                }
+              >
+                <span className="flex items-center gap-1.5 cursor-help min-w-0" data-next-set-trigger>
+                  <Calendar className="w-4 h-4 flex-shrink-0" />
+                  <span className="break-words">下个系列：{next.name}（{formatDate(next.releaseDate)}）<span className="inline-flex items-center justify-center px-1.5 py-0.5 text-xs border border-[--primary] text-[--primary] rounded ml-1">预览</span></span>
+                </span>
+              </Tooltip>
+            ) : (
+              <span className="flex items-center gap-1.5 min-w-0">
+                <Calendar className="w-4 h-4 flex-shrink-0" />
+                <span className="break-words">下个系列：{next.name}（{formatDate(next.releaseDate)}）</span>
+              </span>
+            )}
+          </>
+        )}
       </div>
-      {next && (
-        <>
-          <div className="w-px h-4 bg-[--border]" />
-          <div className="flex items-center gap-1.5">
-            <Calendar className="w-4 h-4" />
-            <span>下个系列：{next.name}（{formatDate(next.releaseDate)}）</span>
-          </div>
-        </>
-      )}
     </div>
   );
 }
@@ -351,16 +447,6 @@ export function Header() {
           <nav className="container mx-auto px-4 py-4">
             <div className="space-y-4 mb-6">
               <SetInfo />
-              {isInstallable && (
-                <button
-                  onClick={install}
-                  className="flex items-center gap-2 text-[--foreground-muted] hover:text-[--foreground] transition-colors"
-                  title="安装应用"
-                >
-                  <Download className="h-5 w-5" />
-                  <span>安装应用</span>
-                </button>
-              )}
             </div>
             <div className="space-y-1">
               {menuItems.map((item, index) => (
