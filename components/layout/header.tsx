@@ -214,16 +214,69 @@ function ServerStatusInfo({ className = "" }: { className?: string }) {
 
   const statusAnimation = status.status.indicator !== 'none' ? 'animate-pulse' : '';
 
+  const hasScheduledMaintenance = status.scheduled_maintenances.length > 0;
+  const nextMaintenance = hasScheduledMaintenance ? status.scheduled_maintenances[0] : null;
+
+  const StatusContent = (
+    <div className="flex items-center gap-1.5">
+      <Activity className={`w-4 h-4 ${statusColors[status.status.indicator]} ${statusAnimation}`} />
+      <span className="text-[--muted-foreground] md:inline hidden">MTGA服务：</span>
+      <span className={statusColors[status.status.indicator]}>
+        {hasScheduledMaintenance && status.status.indicator === 'none' ? '计划维护' : statusText[status.status.indicator]}
+      </span>
+    </div>
+  );
+
+  if (hasScheduledMaintenance && nextMaintenance) {
+    const startTime = new Date(nextMaintenance.scheduled_for);
+    const endTime = new Date(nextMaintenance.scheduled_until);
+    const formatTime = (date: Date) => {
+      return new Intl.DateTimeFormat('zh-CN', {
+        month: 'long',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        hour12: false
+      }).format(date);
+    };
+
+    return (
+      <Tooltip
+        content={
+          <div className="w-[320px] space-y-2">
+            <div className="flex items-center gap-2">
+              <Activity className="w-5 h-5 text-blue-500" />
+              <h3 className="font-medium text-[--foreground]">{nextMaintenance.name}</h3>
+            </div>
+            <div className="space-y-2 text-sm text-[--muted-foreground]">
+              <div>开始时间：{formatTime(startTime)}</div>
+              <div>结束时间：{formatTime(endTime)}</div>
+            </div>
+            {nextMaintenance.incident_updates.length > 0 && (
+              <div className="text-sm whitespace-pre-wrap">
+                {nextMaintenance.incident_updates[0].body}
+              </div>
+            )}
+          </div>
+        }
+        side="bottom"
+      >
+        <Link 
+          href="/status"
+          className={`flex items-center gap-1.5 px-3 py-1.5 text-sm hover:opacity-80 transition-opacity ${className}`}
+        >
+          {StatusContent}
+        </Link>
+      </Tooltip>
+    );
+  }
+
   return (
     <Link 
       href="/status"
       className={`flex items-center gap-1.5 px-3 py-1.5 text-sm hover:opacity-80 transition-opacity ${className}`}
     >
-      <Activity className={`w-4 h-4 ${statusColors[status.status.indicator]} ${statusAnimation}`} />
-      <span className="text-[--muted-foreground] md:inline hidden">MTGA服务：</span>
-      <span className={statusColors[status.status.indicator]}>
-        {statusText[status.status.indicator]}
-      </span>
+      {StatusContent}
     </Link>
   );
 }
