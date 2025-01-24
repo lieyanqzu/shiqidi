@@ -41,7 +41,7 @@ const midweekMagicEvents: Event[] = [
   },
   {
     type: 'midweek_magic',
-    title: '投身乙太漂移',
+    title: '投身乙太飘移',
     startTime: new Date('2025-02-11T14:00:00-08:00'),
     endTime: new Date('2025-02-12T14:00:00-08:00'),
     format: '预组',
