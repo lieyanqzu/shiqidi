@@ -73,8 +73,8 @@ function SetInfo({ className = "" }: { className?: string }) {
     const lastShownDate = localStorage.getItem('previewTooltipLastShown');
     const now = new Date().getTime();
     
-    // 如果从未显示过，或者距离上次显示超过48小时，并且有预览信息
-    if ((!lastShownDate || now - parseInt(lastShownDate) > 48 * 60 * 60 * 1000) && next?.preview) {
+    // 如果从未显示过，或者距离上次显示超过5天，并且有预览信息
+    if ((!lastShownDate || now - parseInt(lastShownDate) > 5 * 24 * 60 * 60 * 1000) && next?.preview) {
       setShowTooltip(true);
       localStorage.setItem('previewTooltipLastShown', now.toString());
     }

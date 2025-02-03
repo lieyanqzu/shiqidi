@@ -1,6 +1,19 @@
 {
   "sets": [
     {
+      "code": "INR",
+      "boosters": [
+        {
+          "code": "inr-collector",
+          "name": "聚珍补充包"
+        },
+        {
+          "code": "inr-play",
+          "name": "常规补充包"
+        }
+      ]
+    },
+    {
       "code": "FDN",
       "boosters": [
         {
