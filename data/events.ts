@@ -20,13 +20,6 @@ export const calendarMetadata: CalendarMetadata = {
 const midweekMagicEvents: Event[] = [
   {
     type: 'midweek_magic',
-    title: '史迹纯铁',
-    startTime: new Date('2025-01-28T14:00:00-08:00'),
-    endTime: new Date('2025-01-30T14:00:00-08:00'),
-    format: '史迹',
-  },
-  {
-    type: 'midweek_magic',
     title: '黄金包现开赛',
     startTime: new Date('2025-02-04T14:00:00-08:00'),
     endTime: new Date('2025-02-06T14:00:00-08:00'),
@@ -51,13 +44,6 @@ const midweekMagicEvents: Event[] = [
 const premierDraftEvents: Event[] = [
   {
     type: 'premier_draft',
-    title: '暮悲邸：鬼屋惊魂',
-    startTime: new Date('2025-01-21T08:00:00-08:00'),
-    endTime: new Date('2025-01-28T08:00:00-08:00'),
-    format: '竞技轮抽',
-  },
-  {
-    type: 'premier_draft',
     title: '光雷驿镖客',
     startTime: new Date('2025-01-28T08:00:00-08:00'),
     endTime: new Date('2025-02-04T08:00:00-08:00'),
@@ -70,21 +56,35 @@ const premierDraftEvents: Event[] = [
     endTime: new Date('2025-02-11T08:00:00-08:00'),
     format: '竞技轮抽',
   },
+  {
+    type: 'premier_draft',
+    title: '乙太飘移',
+    startTime: new Date('2025-02-11T08:00:00-08:00'),
+    endTime: new Date('2025-04-08T08:00:00-08:00'),
+    format: '竞技轮抽',
+  },
 ];
 
 const quickDraftEvents: Event[] = [
   {
     type: 'quick_draft',
-    title: '艾卓仙踪',
-    startTime: new Date('2025-01-18T08:00:00-08:00'),
-    endTime: new Date('2025-02-01T08:00:00-08:00'),
+    title: '班隆洛',
+    startTime: new Date('2025-02-01T08:00:00-08:00'),
+    endTime: new Date('2025-02-15T08:00:00-08:00'),
     format: '快速轮抽',
   },
   {
     type: 'quick_draft',
-    title: '班隆洛',
-    startTime: new Date('2025-02-01T08:00:00-08:00'),
-    endTime: new Date('2025-02-15T08:00:00-08:00'),
+    title: '光雷驿镖客',
+    startTime: new Date('2025-02-15T08:00:00-08:00'),
+    endTime: new Date('2025-02-25T08:00:00-08:00'),
+    format: '快速轮抽',
+  },
+  {
+    type: 'quick_draft',
+    title: '乙太飘移',
+    startTime: new Date('2025-02-25T08:00:00-08:00'),
+    endTime: new Date('2025-03-07T08:00:00-08:00'),
     format: '快速轮抽',
   },
 ];
@@ -96,7 +96,7 @@ const otherEvents: Event[] = [
     startTime: new Date('2025-01-28T08:00:00-08:00'),
     endTime: new Date('2025-02-11T08:00:00-08:00'),
     format: '轮抽',
-    description: '提供BO1和BO3两种模式，卡表见https://magic.wizards.com/en/news/mtg-arena/chromatic-cube-draft',
+    description: '提供BO1和BO3两种模式，卡表：https://magic.wizards.com/en/news/mtg-arena/chromatic-cube-draft',
   },
   {
     type: 'other',
