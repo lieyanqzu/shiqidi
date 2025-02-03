@@ -14,7 +14,14 @@ async function fetchSpeedData() {
       res.on('end', () => {
         try {
           const jsonData = JSON.parse(data);
-          resolve(jsonData);
+          // 转换数据格式，只保留需要的字段
+          const transformedData = jsonData.data.map(item => ({
+            expansion: item.expansion,
+            event_type: item.event_type,
+            average_game_length: item.average_game_length,
+            win_rate_on_play: item.win_rate_on_play
+          }));
+          resolve(transformedData);
         } catch (e) {
           reject(e);
         }
