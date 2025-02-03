@@ -14,7 +14,7 @@
       "name": "乙太飘移",
       "code": "DFT",
       "releaseDate": "2025-2-12",
-      "wikiUrl": "https://mtg.fandom.com/wiki/Aetherdrift?utm_source=shiqidi",
+      "wikiUrl": "https://mtg.wiki/page/Aetherdrift?utm_source=shiqidi",
       "preview": {
         "title": "扣紧护带",
         "description": "甩开对手！上车加入乙太飘移，参与这场跨越三个时空、让肾上腺素飙升的多重宇宙竞速赛。",
@@ -34,7 +34,7 @@
           },
           {
             "name": "Untapped.gg",
-            "url": "https://mtga.untapped.gg/codex/spoilers/aetherdrift?utm_source=shiqidi"
+            "url": "https://mtga.untapped.gg/codex/spoilers/aetherdrift?sortBy=spoilerDate&utm_source=shiqidi"
           }
         ]
       }
@@ -43,6 +43,11 @@
       "name": "炼金：乙太飘移",
       "code": "YDFT",
       "releaseDate": "~2025-3-5"
+    },
+    {
+      "name": "Tarkir: Dragonstorm",
+      "code": "TDM",
+      "releaseDate": "2025-4-9"
     }
   ]
 }
