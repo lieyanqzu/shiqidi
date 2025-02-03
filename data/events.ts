@@ -13,8 +13,8 @@ export interface Event {
 }
 
 export const calendarMetadata: CalendarMetadata = {
-  lastUpdated: '2025/01/27',
-  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-january-27-2025#schedule',
+  lastUpdated: '2025/02/03',
+  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-february-3-2025#schedule',
 };
 
 const midweekMagicEvents: Event[] = [
@@ -38,6 +38,13 @@ const midweekMagicEvents: Event[] = [
     startTime: new Date('2025-02-18T14:00:00-08:00'),
     endTime: new Date('2025-02-20T14:00:00-08:00'),
     format: '乙太飘移',
+  },
+  {
+    type: 'midweek_magic',
+    title: '标准纯铁',
+    startTime: new Date('2025-02-25T14:00:00-08:00'),
+    endTime: new Date('2025-02-27T14:00:00-08:00'),
+    format: '标准',
   },
 ];
 
