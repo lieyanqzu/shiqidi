@@ -7,6 +7,7 @@ import { InfoCard } from './info-card';
 import { SliderField } from './slider-field';
 import { calculateCurrentXP, calculateExpectedDailyWinsXP, calculateExpectedWeeklyWinsXP, calculateExpectedDailyQuestsXP, calculateExpectedLevel, calculateDaysLeft, getLocalRefreshTimeString, getLocalRefreshTimeStringWithWeekday } from './utils';
 import { masteryConfig } from '@/data/mastery';
+import digitalSets from '@/data/digital-sets.json';
 
 interface MasteryState {
   // 基础信息
@@ -55,6 +56,9 @@ export function MasteryCalculator() {
   // 计算预期等级
   const expectedLevel = calculateExpectedLevel(totalXP, totalDailyWinXP + totalDailyQuestXP + totalWeeklyWinsXP);
 
+  // 获取当前系列信息
+  const currentSet = digitalSets.sets.find(set => set.code === masteryConfig.setCode);
+
   const handleSliderChange = (field: keyof MasteryState, value: number[]) => {
     setValues(prev => ({ ...prev, [field]: value[0] }));
   };
@@ -85,8 +89,14 @@ export function MasteryCalculator() {
       <InfoCard 
         title="通行证信息"
         extra={
-          <div className="text-sm text-[--muted-foreground]">
-            时间：{new Date(masteryConfig.startDate).toLocaleDateString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit' })} ~ {new Date(masteryConfig.endDate).toLocaleDateString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit' })}
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
+              <i className={`keyrune ss ss-2x ss-${masteryConfig.setCode.toLowerCase()}`} />
+              <span>{currentSet?.name}</span>
+            </div>
+            <div className="text-sm text-[--muted-foreground]">
+              时间：{new Date(masteryConfig.startDate).toLocaleDateString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit' })} ~ {new Date(masteryConfig.endDate).toLocaleDateString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit' })}
+            </div>
           </div>
         }
       >

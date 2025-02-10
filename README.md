@@ -22,7 +22,7 @@
   - 精研通行证计算器：计算精研通行证等级进度
   - 开包模拟器：模拟开启补充包，体验开包乐趣
 
-## 技术栈
+## 开源组件
 
 - [Next.js](https://nextjs.org) - React框架，提供了服务端渲染、路由等功能
 - [React](https://react.dev) - 用于构建用户界面的JavaScript库

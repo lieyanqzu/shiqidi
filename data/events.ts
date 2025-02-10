@@ -13,18 +13,11 @@ export interface Event {
 }
 
 export const calendarMetadata: CalendarMetadata = {
-  lastUpdated: '2025/02/03',
-  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-february-3-2025#schedule',
+  lastUpdated: '2025/02/10',
+  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-february-10-2025#schedule',
 };
 
 const midweekMagicEvents: Event[] = [
-  {
-    type: 'midweek_magic',
-    title: '黄金包现开赛',
-    startTime: new Date('2025-02-04T14:00:00-08:00'),
-    endTime: new Date('2025-02-06T14:00:00-08:00'),
-    format: '现开',
-  },
   {
     type: 'midweek_magic',
     title: '投身乙太飘移',
@@ -41,33 +34,33 @@ const midweekMagicEvents: Event[] = [
   },
   {
     type: 'midweek_magic',
-    title: '标准纯铁',
+    title: '标准纯普',
     startTime: new Date('2025-02-25T14:00:00-08:00'),
     endTime: new Date('2025-02-27T14:00:00-08:00'),
     format: '标准',
+  },
+  {
+    type: 'midweek_magic',
+    title: '迈入未来',
+    startTime: new Date('2025-03-04T14:00:00-08:00'),
+    endTime: new Date('2025-03-06T14:00:00-08:00'),
+    format: '预组',
   },
 ];
 
 const premierDraftEvents: Event[] = [
   {
     type: 'premier_draft',
-    title: '光雷驿镖客',
-    startTime: new Date('2025-01-28T08:00:00-08:00'),
-    endTime: new Date('2025-02-04T08:00:00-08:00'),
-    format: '竞技轮抽',
-  },
-  {
-    type: 'premier_draft',
-    title: '邪军压境',
-    startTime: new Date('2025-02-04T08:00:00-08:00'),
-    endTime: new Date('2025-02-11T08:00:00-08:00'),
-    format: '竞技轮抽',
-  },
-  {
-    type: 'premier_draft',
     title: '乙太飘移',
     startTime: new Date('2025-02-11T08:00:00-08:00'),
     endTime: new Date('2025-04-08T08:00:00-08:00'),
+    format: '竞技轮抽',
+  },
+  {
+    type: 'premier_draft',
+    title: '炼金：乙太飘移',
+    startTime: new Date('2025-03-04T08:00:00-08:00'),
+    endTime: new Date('2025-03-18T08:00:00-08:00'),
     format: '竞技轮抽',
   },
 ];
@@ -83,7 +76,7 @@ const quickDraftEvents: Event[] = [
   {
     type: 'quick_draft',
     title: '光雷驿镖客',
-    startTime: new Date('2025-02-15T08:00:00-08:00'),
+    startTime: new Date('2025-02-16T08:00:00-08:00'),
     endTime: new Date('2025-02-25T08:00:00-08:00'),
     format: '快速轮抽',
   },
@@ -99,18 +92,18 @@ const quickDraftEvents: Event[] = [
 const otherEvents: Event[] = [
   {
     type: 'other',
-    title: '五彩方盒Cube轮抽',
-    startTime: new Date('2025-01-28T08:00:00-08:00'),
-    endTime: new Date('2025-02-11T08:00:00-08:00'),
-    format: '轮抽',
-    description: '提供BO1和BO3两种模式，卡表：https://magic.wizards.com/en/news/mtg-arena/chromatic-cube-draft',
-  },
-  {
-    type: 'other',
     title: '史迹环境挑战赛',
     startTime: new Date('2025-02-21T08:00:00-08:00'),
     endTime: new Date('2025-02-23T08:00:00-08:00'),
     format: '史迹',
+  },
+  {
+    type: 'other',
+    title: '竞技场直邮赛 - 乙太飘移',
+    startTime: new Date('2025-02-21T08:00:00-08:00'),
+    endTime: new Date('2025-02-24T06:00:00-08:00'),
+    format: '现开',
+    description: '奖励：1盒乙太飘移聚珍补充包',
   },
 ];
 
