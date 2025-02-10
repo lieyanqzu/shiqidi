@@ -22,7 +22,7 @@ export const useCardStore = create<CardStore>((set) => ({
   cards: [],
   chineseCards: {},
   params: {
-    expansion: 'PIO',
+    expansion: 'DFT',
     format: 'PremierDraft', 
     start_date: '2016-01-01',
     end_date: today,
