@@ -11,9 +11,9 @@ export const metadata = generateMetadata(
 );
 
 const screenshots = [
-  'https://greasyfork.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MTUwMzA1LCJwdXIiOiJibG9iX2lkIn19--61eca926dc865ee445e0ef18b844e13a302ad049/2.jpg?locale=zh-CN',
-  'https://greasyfork.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MTUwMzA3LCJwdXIiOiJibG9iX2lkIn19--e92c9465452d383faba6c1fccb64c5e422a78f2c/4.jpg?locale=zh-CN',
-  'https://greasyfork.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MTUwMzA4LCJwdXIiOiJibG9iX2lkIn19--eb2156494f7949c2a86a0380d98071220446ae76/5.jpg?locale=zh-CN'
+  'https://cn-greasyfork.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MTUwMzA1LCJwdXIiOiJibG9iX2lkIn19--61eca926dc865ee445e0ef18b844e13a302ad049/2.jpg?locale=zh-CN',
+  'https://cn-greasyfork.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MTUwMzA3LCJwdXIiOiJibG9iX2lkIn19--e92c9465452d383faba6c1fccb64c5e422a78f2c/4.jpg?locale=zh-CN',
+  'https://cn-greasyfork.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MTUwMzA4LCJwdXIiOiJibG9iX2lkIn19--eb2156494f7949c2a86a0380d98071220446ae76/5.jpg?locale=zh-CN'
 ]
 
 export default function ScriptPage() {
@@ -32,7 +32,7 @@ export default function ScriptPage() {
               </p>
             </div>
             <a 
-              href="https://greasyfork.org/zh-CN/scripts/508932-scryfall%E5%8D%A1%E7%89%8C%E6%B1%89%E5%8C%96"
+              href="https://cn-greasyfork.org/zh-CN/scripts/508932-scryfall%E5%8D%A1%E7%89%8C%E6%B1%89%E5%8C%96"
               target="_blank"
               rel="noopener noreferrer"
               className="px-4 py-2 rounded-md bg-[--primary] text-[--primary-foreground] hover:opacity-90 transition-opacity"

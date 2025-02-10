@@ -1,6 +1,15 @@
 {
   "sets": [
     {
+      "code": "DFT",
+      "boosters": [
+        {
+          "code": "dft-play",
+          "name": "常规补充包"
+        }
+      ]
+    },
+    {
       "code": "INR",
       "boosters": [
         {

@@ -2,6 +2,8 @@
  * 精研通行证配置
  */
 export const masteryConfig = {
+  // 系列代号
+  setCode: 'DFT',
   // 当前赛季开始日期（UTC）
   startDate: '2025-02-11',
   // 当前赛季结束日期（UTC）
