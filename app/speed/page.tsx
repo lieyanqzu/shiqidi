@@ -1,5 +1,6 @@
 import { SpeedChart } from '@/components/speed/speed-chart';
 import { generateMetadata } from '../metadata';
+import speedData from './speed-data.json';
 
 export const metadata = generateMetadata(
   "十七地 - 轮抽赛制速度",
@@ -10,19 +11,7 @@ export const metadata = generateMetadata(
   }
 );
 
-async function getSpeedData() {
-  const response = await fetch('https://www.17lands.com/data/play_draw', {
-    next: { revalidate: 3600 }
-  });
-  if (!response.ok) {
-    throw new Error('Failed to fetch speed data');
-  }
-  return response.json();
-}
-
-export default async function SpeedPage() {
-  const data = await getSpeedData();
-
+export default function SpeedPage() {
   return (
     <div className="py-8">
       <div className="container mx-auto px-4">
@@ -43,7 +32,7 @@ export default async function SpeedPage() {
             17Lands
           </a>
         </div>
-        <SpeedChart initialData={data} />
+        <SpeedChart initialData={speedData} />
       </div>
     </div>
   );
