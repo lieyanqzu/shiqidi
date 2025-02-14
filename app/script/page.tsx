@@ -34,7 +34,8 @@ export default function ScriptPage() {
             <div className="flex gap-4">
               <a 
                 href="/scryfall.user.js"
-                download="scryfall.user.js"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-4 py-2 rounded-md bg-[--primary] text-[--primary-foreground] hover:opacity-90 transition-opacity"
               >
                 直接安装
