@@ -11,9 +11,9 @@ export const metadata = generateMetadata(
 );
 
 const screenshots = [
-  'https://cn-greasyfork.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MTUwMzA1LCJwdXIiOiJibG9iX2lkIn19--61eca926dc865ee445e0ef18b844e13a302ad049/2.jpg?locale=zh-CN',
-  'https://cn-greasyfork.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MTUwMzA3LCJwdXIiOiJibG9iX2lkIn19--e92c9465452d383faba6c1fccb64c5e422a78f2c/4.jpg?locale=zh-CN',
-  'https://cn-greasyfork.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MTUwMzA4LCJwdXIiOiJibG9iX2lkIn19--eb2156494f7949c2a86a0380d98071220446ae76/5.jpg?locale=zh-CN'
+  '/screenshots/scryfall/screenshot1.jpg',
+  '/screenshots/scryfall/screenshot2.jpg',
+  '/screenshots/scryfall/screenshot3.jpg'
 ]
 
 export default function ScriptPage() {
@@ -28,17 +28,26 @@ export default function ScriptPage() {
             <div>
               <h3 className="font-medium text-[--foreground]">立即安装</h3>
               <p className="text-sm text-[--muted-foreground] mt-1">
-                在 Greasyfork 上安装脚本
+                选择安装方式，请确认已安装<a href="https://www.tampermonkey.net" target="_blank" rel="noopener noreferrer" className="text-[--primary] hover:underline">篡改猴</a>浏览器扩展
               </p>
             </div>
-            <a 
-              href="https://cn-greasyfork.org/zh-CN/scripts/508932-scryfall%E5%8D%A1%E7%89%8C%E6%B1%89%E5%8C%96"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-4 py-2 rounded-md bg-[--primary] text-[--primary-foreground] hover:opacity-90 transition-opacity"
-            >
-              前往安装
-            </a>
+            <div className="flex gap-4">
+              <a 
+                href="/scryfall.user.js"
+                download="scryfall.user.js"
+                className="px-4 py-2 rounded-md bg-[--primary] text-[--primary-foreground] hover:opacity-90 transition-opacity"
+              >
+                直接安装
+              </a>
+              <a 
+                href="https://greasyfork.org/zh-CN/scripts/508932-scryfall%E5%8D%A1%E7%89%8C%E6%B1%89%E5%8C%96"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 rounded-md border border-[--primary] text-[--primary] hover:bg-[--primary] hover:text-[--primary-foreground] transition-colors"
+              >
+                从Greasyfork安装
+              </a>
+            </div>
           </div>
         </div>
 
