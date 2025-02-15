@@ -1,10 +1,11 @@
 'use client';
 
-import { Activity, XCircle } from "lucide-react";
+import { Activity, XCircle, AlertTriangle } from "lucide-react";
 import { useEffect } from "react";
 import { useStatusStore } from '@/lib/store';
 import { ComponentGroup, StatusIcon, StatusText } from "@/components/status";
 import statusText from '@/data/status-text.json';
+import { Incident, IncidentUpdate } from '@/lib/store/status';
 
 function formatDateTime(dateStr: string) {
   return new Date(dateStr).toLocaleString('zh-CN', {
@@ -85,6 +86,43 @@ export function ClientStatusContent() {
         )}
       </div>
 
+      {/* 突发事件 */}
+      {data.incidents.length > 0 && (
+        <div className="mb-8">
+          <h2 className="text-xl font-semibold mb-4">突发事件</h2>
+          <div className="space-y-4">
+            {data.incidents.map((incident: Incident) => (
+              <div key={incident.id} className="bg-[--card] rounded-lg p-6 border border-[--border]">
+                <div className="flex items-center gap-2 mb-3">
+                  <AlertTriangle className="w-5 h-5 text-yellow-500" />
+                  <span className="font-medium">{incident.name}</span>
+                </div>
+                <div className="divide-y divide-[--border]/20">
+                  {incident.incident_updates.map((update: IncidentUpdate, index: number) => (
+                    <div key={index} className="py-4 first:pt-0 last:pb-0">
+                      <div className="text-sm whitespace-pre-wrap">
+                        <span className="font-medium text-[--foreground]">
+                          {update.status === 'investigating' ? '正在调查' :
+                           update.status === 'identified' ? '已确认问题' :
+                           update.status === 'monitoring' ? '监控中' :
+                           update.status === 'resolved' ? '已解决' :
+                           update.status}
+                        </span>
+                        {' - '}
+                        {update.body}
+                      </div>
+                      <div className="text-xs text-[--muted-foreground]/75 mt-2">
+                        发布于：{formatDateTime(update.created_at)}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* 计划维护 */}
       {hasScheduledMaintenance && (
         <div className="mb-8">
@@ -96,15 +134,28 @@ export function ClientStatusContent() {
                   <Activity className="w-5 h-5 text-blue-500" />
                   <span className="font-medium">{maintenance.name}</span>
                 </div>
-                <div className="space-y-2 text-sm text-[--muted-foreground] mb-4">
-                  <div>开始时间：{formatDateTime(maintenance.scheduled_for)}</div>
-                  <div>结束时间：{formatDateTime(maintenance.scheduled_until)}</div>
+                <div className="text-xs text-[--muted-foreground]/75 mb-4">
+                  时间：{formatDateTime(maintenance.scheduled_for)} - {formatDateTime(maintenance.scheduled_until)}
                 </div>
-                {maintenance.incident_updates.map((update, index) => (
-                  <div key={index} className="text-sm mt-2 whitespace-pre-wrap">
-                    {update.body}
-                  </div>
-                ))}
+                <div className="divide-y divide-[--border]/20">
+                  {maintenance.incident_updates.map((update, index) => (
+                    <div key={index} className="py-4 first:pt-0 last:pb-0">
+                      <div className="text-sm whitespace-pre-wrap">
+                        <span className="font-medium text-[--foreground]">
+                          {maintenance.status === 'scheduled' ? '已排期' :
+                           maintenance.status === 'in_progress' ? '进行中' :
+                           maintenance.status === 'completed' ? '已完成' :
+                           maintenance.status}
+                        </span>
+                        {' - '}
+                        {update.body}
+                      </div>
+                      <div className="text-xs text-[--muted-foreground]/75 mt-2">
+                        发布于：{formatDateTime(update.created_at)}
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             ))}
           </div>
