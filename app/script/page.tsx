@@ -24,19 +24,19 @@ export default function ScriptPage() {
         
         {/* 下载按钮 */}
         <div className="bg-[--card] rounded-lg p-4 mb-8">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-0">
             <div>
               <h3 className="font-medium text-[--foreground]">立即安装</h3>
               <p className="text-sm text-[--muted-foreground] mt-1">
                 选择安装方式，请确认已安装<a href="https://www.tampermonkey.net" target="_blank" rel="noopener noreferrer" className="text-[--primary] hover:underline">篡改猴</a>浏览器扩展
               </p>
             </div>
-            <div className="flex gap-4">
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-4">
               <a 
                 href="/scryfall.user.js"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-2 rounded-md bg-[--primary] text-[--primary-foreground] hover:opacity-90 transition-opacity"
+                className="px-4 py-2 rounded-md bg-[--primary] text-[--primary-foreground] hover:opacity-90 transition-opacity text-center"
               >
                 直接安装
               </a>
@@ -44,7 +44,7 @@ export default function ScriptPage() {
                 href="https://greasyfork.org/zh-CN/scripts/508932-scryfall%E5%8D%A1%E7%89%8C%E6%B1%89%E5%8C%96"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-2 rounded-md border border-[--primary] text-[--primary] hover:bg-[--primary] hover:text-[--primary-foreground] transition-colors"
+                className="px-4 py-2 rounded-md border border-[--primary] text-[--primary] hover:bg-[--primary] hover:text-[--primary-foreground] transition-colors text-center"
               >
                 从Greasyfork安装
               </a>
