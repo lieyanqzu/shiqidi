@@ -11,6 +11,37 @@ export interface Component {
   components?: string[];
 }
 
+export interface IncidentUpdate {
+  id: string;
+  status: string;
+  body: string;
+  incident_id: string;
+  created_at: string;
+  updated_at: string;
+  display_at: string;
+  affected_components: Array<{
+    code: string;
+    name: string;
+    old_status: string;
+    new_status: string;
+  }>;
+}
+
+export interface Incident {
+  id: string;
+  name: string;
+  status: string;
+  created_at: string;
+  updated_at: string;
+  monitoring_at: string | null;
+  resolved_at: string | null;
+  impact: string;
+  shortlink: string;
+  started_at: string;
+  page_id: string;
+  incident_updates: IncidentUpdate[];
+}
+
 export interface ScheduledMaintenance {
   id: string;
   name: string;
@@ -29,6 +60,7 @@ export interface StatusData {
     description: string;
   };
   components: Component[];
+  incidents: Incident[];
   scheduled_maintenances: ScheduledMaintenance[];
 }
 
