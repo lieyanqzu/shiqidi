@@ -13,24 +13,18 @@ export interface Event {
 }
 
 export const calendarMetadata: CalendarMetadata = {
-  lastUpdated: '2025/02/10',
-  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-february-10-2025#schedule',
+  lastUpdated: '2025/02/17',
+  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-february-17-2025#schedule',
 };
 
 const midweekMagicEvents: Event[] = [
-  {
-    type: 'midweek_magic',
-    title: '投身乙太飘移',
-    startTime: new Date('2025-02-11T14:00:00-08:00'),
-    endTime: new Date('2025-02-13T14:00:00-08:00'),
-    format: '预组',
-  },
   {
     type: 'midweek_magic',
     title: '乙太飘移构筑',
     startTime: new Date('2025-02-18T14:00:00-08:00'),
     endTime: new Date('2025-02-20T14:00:00-08:00'),
     format: '乙太飘移',
+    description: '只能使用乙太飘移系列卡牌构筑套牌',
   },
   {
     type: 'midweek_magic',
@@ -41,10 +35,18 @@ const midweekMagicEvents: Event[] = [
   },
   {
     type: 'midweek_magic',
-    title: '迈入未来',
+    title: '进入未来',
     startTime: new Date('2025-03-04T14:00:00-08:00'),
     endTime: new Date('2025-03-06T14:00:00-08:00'),
-    format: '预组',
+    format: '炼金：乙太漂移预组',
+  },
+    {
+    type: 'midweek_magic',
+    title: '慢启动',
+    startTime: new Date('2025-03-11T14:00:00-08:00'),
+    endTime: new Date('2025-03-13T14:00:00-08:00'),
+    format: '可能为炼金',
+    description: '先手玩家第一块地须横置进场',
   },
 ];
 
@@ -66,13 +68,6 @@ const premierDraftEvents: Event[] = [
 ];
 
 const quickDraftEvents: Event[] = [
-  {
-    type: 'quick_draft',
-    title: '班隆洛',
-    startTime: new Date('2025-02-01T08:00:00-08:00'),
-    endTime: new Date('2025-02-15T08:00:00-08:00'),
-    format: '快速轮抽',
-  },
   {
     type: 'quick_draft',
     title: '光雷驿镖客',
