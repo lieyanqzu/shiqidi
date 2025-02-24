@@ -29,6 +29,7 @@ export default function HomePage() {
         { label: "MTGA活动日历", href: "/calendar", description: "查看MTGA活动日程，包括周中万智牌、快速轮抽、资格赛等赛事安排" },
         { label: "标准轮替日程", href: "/rotation", description: "了解标准赛制的系列轮替时间表，掌握当前可用系列和即将轮替的系列" },
         { label: "MTGA服务状态", href: "/status", description: "查看MTGA的服务器状态、维护信息和各平台运行情况" },
+        { label: "炼金系列预览", href: "/previews", description: "查看最新炼金系列的卡牌中文预览" },
       ]
     },
     {

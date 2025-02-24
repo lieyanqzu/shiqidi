@@ -25,7 +25,7 @@ interface DigitalSet {
     title: string;
     description: string;
     links: { name: string; url: string }[];
-    backgroundImage: string;
+    backgroundImage?: string;
   };
 }
 
@@ -131,9 +131,13 @@ function SetInfo({ className = "" }: { className?: string }) {
                           </h3>
                         </div>
                         <p className="text-sm leading-relaxed">
-                          <span className="text-[--foreground]">{next.preview?.title}</span>
-                          <span className="mx-2 text-[--muted-foreground] opacity-30">|</span>
-                          <span className="text-[--muted-foreground]">{next.preview?.description}</span>
+                          {next.preview?.title && next.preview?.description && (
+                            <>
+                              <span className="text-[--foreground]">{next.preview.title}</span>
+                              <span className="mx-2 text-[--muted-foreground] opacity-30">|</span>
+                              <span className="text-[--muted-foreground]">{next.preview.description}</span>
+                            </>
+                          )}
                         </p>
                       </div>
                     </div>
@@ -296,6 +300,7 @@ const menuItems: MenuItem[] = [
       { label: "MTGA活动日历", href: "/calendar" },
       { label: "标准轮替日程", href: "/rotation" },
       { label: "MTGA服务状态", href: "/status" },
+      { label: "炼金系列预览", href: "/previews" },
     ]
   },
   {
