@@ -42,12 +42,28 @@
     {
       "name": "炼金：乙太飘移",
       "code": "YDFT",
-      "releaseDate": "2025-3-5"
+      "releaseDate": "2025-3-5",
+      "wikiUrl": "https://mtg.wiki/page/Alchemy?utm_source=shiqidi",
+      "preview": {
+        "title": "炼金预览",
+        "description": "最新炼金系列将于2025年3月5日上线万智牌：竞技场，即日起开始预览。",
+        "links": [
+          {
+            "name": "十七地（中文）",
+            "url": "/previews/ydft"
+          },
+          {
+            "name": "Scryfall",
+            "url": "https://scryfall.com/sets/ydft?order=spoiled&utm_source=shiqidi"
+          }
+        ]
+      }
     },
     {
-      "name": "Tarkir: Dragonstorm",
+      "name": "鞑契：巨龙风暴",
       "code": "TDM",
-      "releaseDate": "2025-4-9"
+      "releaseDate": "2025-4-9",
+      "wikiUrl": "https://mtg.wiki/page/Tarkir:_Dragonstorm?utm_source=shiqidi"
     }
   ]
 }

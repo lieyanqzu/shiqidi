@@ -78,6 +78,11 @@ export default function AboutPage() {
       name: "Keyrune",
       description: "提供万智牌系列图标的字体库",
       url: "https://keyrune.andrewgioia.com"
+    },
+    {
+      name: "Mana",
+      description: "提供万智牌法术力符号的字体库",
+      url: "https://mana.andrewgioia.com"
     }
   ]
 
