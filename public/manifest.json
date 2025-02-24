@@ -88,6 +88,11 @@
       "name": "开包模拟",
       "url": "/simulator",
       "description": "模拟开启补充包"
+    },
+    {
+      "name": "炼金系列预览",
+      "url": "/previews",
+      "description": "炼金系列卡牌中文预览"
     }
   ]
 } 

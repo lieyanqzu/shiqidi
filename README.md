@@ -34,6 +34,7 @@
 - [React DatePicker](https://reactdatepicker.com) - 灵活的日期选择器组件
 - [Lucide Icons](https://lucide.dev) - 图标库，提供了界面中使用的各种图标
 - [Keyrune](https://keyrune.andrewgioia.com) - 提供万智牌系列图标的字体库
+- [Mana](https://mana.andrewgioia.com) - 提供万智牌法术力符号的字体库
 
 ## 数据来源
 
