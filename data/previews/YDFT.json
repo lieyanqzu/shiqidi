@@ -17,7 +17,7 @@
       "text": "(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)\nI — All creature cards you own with mana value 2 or less perpetually get +1/+1.\nII — Seek a creature card with mana value 2 or less and put it onto the battlefield.\nIII — Creatures you control with mana value 2 or less gain flying until end of turn.",
       "zhs_text": "（于此传纪进场时及于你抓牌步骤后，加一个学问指示物。到III后牺牲之。）\nI — 所有由你拥有且法术力值等于或小于2的生物牌永久得+1/+1。\nII — 掏一张法术力值等于或小于2的生物牌，并将之放进战场。\nIII — 由你操控且法术力值等于或小于2的生物获得飞行异能直到回合结束。",
       "image_url_en": "https://media.wizards.com/2025/y25-dft/en_96369_Printed__NaktamunShinesAgain.webp",
-      "image_url_zh": "/images/previews/alchemy/ydft/拿塔蒙复耀纪.png"
+      "image_url_zh": "/image/alchemy/ydft/拿塔蒙复耀纪.png"
     },
     {
       "id": "ydft-2",
@@ -31,7 +31,7 @@
       "text": "Flying, Trample\nWhenever Arius attacks, seek a non-Shark card. Discard that card at the beginning of the next end step.\nWhenever you discard one or more cards, put a +1/+1 counter on Arius.",
       "zhs_text": "飞行，践踏\n每当厄琉斯攻击时，掏一张非鲨鱼牌。在下一个结束步骤开始时，弃掉该牌。\n每当你弃一张或数张牌时，在厄琉斯上放置一个+1/+1指示物。",
       "image_url_en": "https://media.wizards.com/2025/y25-dft/en_96388_Printed__AriusFlybyTrawler.webp",
-      "image_url_zh": "/images/previews/alchemy/ydft/飞掠曳鲨厄琉斯.png",
+      "image_url_zh": "/image/alchemy/ydft/飞掠曳鲨厄琉斯.png",
       "pow_tough": "1/1"
     },
     {
@@ -46,7 +46,7 @@
       "text": "Flying, Vigilance\nWhen this Vehicle enters, create four 1/1 colorless Servo artifact creature tokens.\nWhenever this Vehicle attacks, draft a card from Support Skyforge's spellbook. That card perpetually becomes an artifact creature.\nCrew 4",
       "zhs_text": "飞行，警戒\n当此载具进场时，派出四个1/1无色自动机衍生神器生物。\n每当此载具攻击时，从支援空锻机的法术书中发现一张牌。该牌永久成为神器生物。\n搭载4",
       "image_url_en": "https://media.wizards.com/2025/y25-dft/en_96393_Printed__SupportSkyforge.webp",
-      "image_url_zh": "/images/previews/alchemy/ydft/支援空锻机.png",
+      "image_url_zh": "/image/alchemy/ydft/支援空锻机.png",
       "spellbook": [],
       "pow_tough": "4/4"
     }
