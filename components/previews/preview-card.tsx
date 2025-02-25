@@ -152,6 +152,12 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
         </div>
 
         {card.spellbook && card.spellbook.length > 0 && renderCardRefs(spellbookCards, '法术书')}
+        {card.spellbook && card.spellbook.length === 0 && (
+          <div className="mt-4 pt-2 border-t border-[--border]">
+            <div className="text-sm font-medium mb-2">法术书</div>
+            <div className="text-sm text-[--muted-foreground]">暂未公布</div>
+          </div>
+        )}
         {card.related && card.related.length > 0 && renderCardRefs(relatedCards, '相关卡牌')}
 
         <div className="flex items-center justify-between gap-1 mt-4 pt-2 border-t border-[--border]">

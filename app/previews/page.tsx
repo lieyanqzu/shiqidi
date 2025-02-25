@@ -61,11 +61,6 @@ export default async function PreviewsPage() {
                         </span>
                       )}
                     </div>
-                    {set.description && (
-                      <p className="text-sm text-[--muted-foreground] mt-1 line-clamp-1">
-                        {set.description}
-                      </p>
-                    )}
                   </div>
                   <div className="text-sm text-[--muted-foreground] flex-shrink-0">
                     {set.cards.length} 张卡牌
