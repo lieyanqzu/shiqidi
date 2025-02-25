@@ -22,6 +22,7 @@ interface CardRef {
 export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
   const [spellbookCards, setSpellbookCards] = useState<CardRef[]>([]);
   const [relatedCards, setRelatedCards] = useState<CardRef[]>([]);
+  const [isImageExpanded, setIsImageExpanded] = useState(false);
 
   // 获取卡牌中文名的通用函数
   const fetchCardNames = async (cardRefs: string[]) => {
@@ -119,23 +120,64 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
   return (
     <div className="bg-[--card] rounded-lg overflow-hidden border border-[--border] flex flex-col md:flex-row">
       <div className="px-4 md:p-0 pt-4 md:pt-0">
-        <div className="relative w-full md:w-[240px] aspect-[488/680] md:h-[340px] bg-black mx-auto max-w-[280px]">
+        <div 
+          className="relative w-full md:w-[240px] aspect-[488/680] md:h-[340px] bg-black mx-auto max-w-[280px] cursor-pointer"
+          onClick={() => setIsImageExpanded(true)}
+        >
           <Image
             src={isEnglish ? card.image_url_en : card.image_url_zh}
             alt={isEnglish ? card.name : card.zhs_name}
             fill
-            className="object-contain"
+            className="object-cover"
             unoptimized
           />
         </div>
       </div>
+      
+      {/* 卡牌大图模态框 */}
+      {isImageExpanded && (
+        <div 
+          className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4"
+          onClick={() => setIsImageExpanded(false)}
+        >
+          <div 
+            className="relative bg-black rounded-lg overflow-hidden" 
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={isEnglish ? card.image_url_en : card.image_url_zh}
+              alt={isEnglish ? card.name : card.zhs_name}
+              className="max-h-[85vh] max-w-[85vw] object-contain"
+            />
+            <button
+              className="absolute top-2 right-2 w-8 h-8 bg-black/60 text-white rounded-full flex items-center justify-center hover:bg-black/80"
+              onClick={() => setIsImageExpanded(false)}
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+      )}
+
       <div className="p-4 flex-1 flex flex-col min-w-0">
         <div className="flex items-start gap-4">
           <div className="flex items-center gap-1.5 min-w-0 flex-1">
             <i className={`ss ${getRarityIcon(card.rarity)} ss-fw ss-2x ss-${logoCode}`} />
-            <h3 className="font-medium break-words leading-none pt-0.5">
-              {isEnglish ? card.name : card.zhs_name}
-            </h3>
+            <div className="font-medium break-words leading-none pt-0.5">
+              {card.zhs_name === card.name ? (
+                <h3>{card.name}</h3>
+              ) : isEnglish ? (
+                <>
+                  <h3>{card.name}</h3>
+                  <div className="text-xs font-light text-[--muted-foreground] mt-1">{card.zhs_name}</div>
+                </>
+              ) : (
+                <>
+                  <h3>{card.zhs_name}</h3>
+                  <div className="text-xs font-light text-[--muted-foreground] mt-1">{card.name}</div>
+                </>
+              )}
+            </div>
           </div>
           <div className="flex-shrink-0">
             <ManaText text={card.mana_cost} />
