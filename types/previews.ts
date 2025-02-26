@@ -23,4 +23,5 @@ export interface PreviewSet {
   release_date: string;
   cards: PreviewCard[];
   description: string;
+  total_cards?: number;
 } 
