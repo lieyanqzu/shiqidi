@@ -144,11 +144,16 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
             className="relative bg-black rounded-lg overflow-hidden" 
             onClick={(e) => e.stopPropagation()}
           >
-            <img
-              src={isEnglish ? card.image_url_en : card.image_url_zh}
-              alt={isEnglish ? card.name : card.zhs_name}
-              className="max-h-[85vh] max-w-[85vw] object-contain"
-            />
+            <div className="relative" style={{ width: 'min(85vw, 85vh * 488/680)', height: 'min(85vh, 85vw * 680/488)' }}>
+              <Image
+                src={isEnglish ? card.image_url_en : card.image_url_zh}
+                alt={isEnglish ? card.name : card.zhs_name}
+                fill
+                className="object-contain"
+                unoptimized
+                sizes="85vw"
+              />
+            </div>
             <button
               className="absolute top-2 right-2 w-8 h-8 bg-black/60 text-white rounded-full flex items-center justify-center hover:bg-black/80"
               onClick={() => setIsImageExpanded(false)}
@@ -183,12 +188,12 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
           </div>
         </div>
 
-        <div className="mt-4 flex-1 divide-y divide-[--border]">
-          <div className="text-sm pb-2 flex items-center justify-between">
+        <div className="mt-1 flex-1 divide-y divide-[--border]">
+          <div className="text-sm flex items-center justify-between">
             <ManaText text={isEnglish ? card.type : card.zhs_type} />
             <i className={`ss ${getRarityIcon(card.rarity)} ss-fw ss-3x ss-${logoCode}`} />
           </div>
-          <div className="text-sm whitespace-pre-wrap pt-2 leading-normal">
+          <div className="text-sm whitespace-pre-wrap pt-1 leading-normal">
             {renderText(isEnglish ? card.text : card.zhs_text)}
           </div>
         </div>
