@@ -162,7 +162,6 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
       <div className="p-4 flex-1 flex flex-col min-w-0">
         <div className="flex items-start gap-4">
           <div className="flex items-center gap-1.5 min-w-0 flex-1">
-            <i className={`ss ${getRarityIcon(card.rarity)} ss-fw ss-2x ss-${logoCode}`} />
             <div className="font-medium break-words leading-none pt-0.5">
               {card.zhs_name === card.name ? (
                 <h3>{card.name}</h3>
@@ -185,8 +184,9 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
         </div>
 
         <div className="mt-4 flex-1 divide-y divide-[--border]">
-          <div className="text-sm pb-2">
+          <div className="text-sm pb-2 flex items-center justify-between">
             <ManaText text={isEnglish ? card.type : card.zhs_type} />
+            <i className={`ss ${getRarityIcon(card.rarity)} ss-fw ss-3x ss-${logoCode}`} />
           </div>
           <div className="text-sm whitespace-pre-wrap pt-2 leading-normal">
             {renderText(isEnglish ? card.text : card.zhs_text)}

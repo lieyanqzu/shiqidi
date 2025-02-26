@@ -23,4 +23,4 @@ export function ManaText({ text, className = '' }: ManaTextProps) {
       dangerouslySetInnerHTML={{ __html: processedText }}
     />
   );
-} 
+}

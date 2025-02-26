@@ -1,6 +1,7 @@
 {
   "code": "YDFT",
   "name": "炼金：乙太飘移",
+  "total_cards": 30,
   "logo_code": "y25",
   "release_date": "2025-03-05",
   "description": "炼金：乙太飘移共30张卡牌，将于2025年3月5日上线万智牌：竞技场。感谢轻脚翻译并制作中文卡图。",
@@ -47,7 +48,16 @@
       "zhs_text": "飞行，警戒\n当此载具进场时，派出四个1/1无色自动机衍生神器生物。\n每当此载具攻击时，从支援空锻机的法术书中发现一张牌。该牌永久成为神器生物。\n搭载4",
       "image_url_en": "https://media.wizards.com/2025/y25-dft/en_96393_Printed__SupportSkyforge.webp",
       "image_url_zh": "/image/alchemy/ydft/支援空锻机.png",
-      "spellbook": [],
+      "spellbook": [
+        "DFT:1",
+        "NEC:159",
+        "KLD:233",
+        "NEO:247",
+        "AER:153",
+        "AER:142",
+        "DFT:47",
+        "NEC:160"
+      ],
       "pow_tough": "4/4"
     },
     {
