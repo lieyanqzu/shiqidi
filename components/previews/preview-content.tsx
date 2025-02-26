@@ -21,11 +21,19 @@ export function PreviewContent({ previewData, setName }: PreviewContentProps) {
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-3">
             <h1 className="text-2xl font-bold">{setName}预览</h1>
-            {isReleased && (
-              <span className="inline-flex items-center px-2 py-1 text-xs bg-[--primary] text-[--primary-foreground] rounded">
-                已上线
+            <div className="flex items-center gap-2">
+              {isReleased && (
+                <span className="inline-flex items-center px-2 py-1 text-xs bg-[--primary] text-[--primary-foreground] rounded">
+                  已上线
+                </span>
+              )}
+              <span className="inline-flex items-center px-2 py-1 text-xs bg-[--card] text-[--muted-foreground] rounded border border-[--border]">
+                {previewData.total_cards && previewData.cards.length === previewData.total_cards
+                  ? `共 ${previewData.total_cards} 张卡牌`
+                  : `${previewData.cards.length} / ${previewData.total_cards || '?'} 张卡牌`
+                }
               </span>
-            )}
+            </div>
           </div>
           <Button
             variant="secondary"
