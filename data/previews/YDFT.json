@@ -49,6 +49,24 @@
       "image_url_zh": "/image/alchemy/ydft/支援空锻机.png",
       "spellbook": [],
       "pow_tough": "4/4"
+    },
+    {
+      "id": "ydft-4",
+      "rarity": "mythic",
+      "mana_cost": "{7}{G}{G}",
+      "artist": "Vincent Proce",
+      "name": "Mitotic Ultimus",
+      "zhs_name": "丝裂祖浆",
+      "type": "Legendary Creature — Ooze Giant",
+      "zhs_type": "传奇生物～流浆／巨人",
+      "text": "This spell costs {X} less to cast, where X is the greatest power among creatures you control.\nTrample\nWhen Mitotic Ultimus dies, conjure two cards named Mitotic Slime onto the battlefield.",
+      "zhs_text": "此咒语减少{X}来施放，X为由你操控之生物中的最大力量。\n践踏\n当丝裂祖浆死去时，变出两张名称为丝裂黏菌的牌放进战场。",
+      "image_url_en": "/image/alchemy/ydft/Mitotic_Ultimus.jpg",
+      "image_url_zh": "/image/alchemy/ydft/丝裂祖浆.png",
+      "pow_tough": "8/8",
+      "related": [
+        "NCC:302"
+      ]
     }
   ]
-} 
+}
