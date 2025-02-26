@@ -83,7 +83,7 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
   // 处理文本，保持换行的同时渲染法术力符号
   const renderText = (text: string) => {
     return text.split('\n').map((line, index, array) => (
-      <div key={index}>
+      <div key={index} className="inline-block w-full">
         <ManaText text={line} />
         {index < array.length - 1 && <br />}
       </div>
@@ -188,7 +188,7 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
           <div className="text-sm pb-2">
             <ManaText text={isEnglish ? card.type : card.zhs_type} />
           </div>
-          <div className="text-sm whitespace-pre-wrap pt-2">
+          <div className="text-sm whitespace-pre-wrap pt-2 leading-normal">
             {renderText(isEnglish ? card.text : card.zhs_text)}
           </div>
         </div>

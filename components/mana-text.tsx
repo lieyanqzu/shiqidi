@@ -11,15 +11,15 @@ export function ManaText({ text, className = '' }: ManaTextProps) {
     // 处理混合法术力，如 {W/P}
     if (symbol.includes('/')) {
       const [color1, color2] = symbol.split('/');
-      return `<i class="ms ms-cost ms-${color1.toLowerCase()}${color2.toLowerCase()}"></i>`;
+      return `<i class="ms ms-cost ms-${color1.toLowerCase()}${color2.toLowerCase()} align-text-bottom"></i>`;
     }
     // 处理普通法术力
-    return `<i class="ms ms-cost ms-${symbol.toLowerCase()}"></i>`;
+    return `<i class="ms ms-cost ms-${symbol.toLowerCase()} align-text-bottom"></i>`;
   });
 
   return (
     <span 
-      className={`inline-flex items-center gap-0.5 ${className}`}
+      className={`inline ${className}`}
       dangerouslySetInnerHTML={{ __html: processedText }}
     />
   );
