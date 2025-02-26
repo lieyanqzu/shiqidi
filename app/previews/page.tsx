@@ -63,7 +63,10 @@ export default async function PreviewsPage() {
                     </div>
                   </div>
                   <div className="text-sm text-[--muted-foreground] flex-shrink-0">
-                    {set.cards.length} 张卡牌
+                    {set.total_cards && set.cards.length === set.total_cards
+                      ? `共 ${set.total_cards} 张卡牌`
+                      : `${set.cards.length} / ${set.total_cards || '?'} 张卡牌`
+                    }
                   </div>
                 </div>
               </Link>
