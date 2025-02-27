@@ -77,6 +77,36 @@
       "related": [
         "NCC:302"
       ]
+    },
+    {
+      "id": "ydft-5",
+      "rarity": "rare",
+      "mana_cost": "{1}{U}{R}",
+      "artist": "Mirko Failoni",
+      "name": "Sala, Deck Boss",
+      "zhs_name": "甲板霸主萨勒",
+      "type": "Legendary Creature — Squid Pirate",
+      "zhs_type": "传奇生物～乌贼／海盗",
+      "text": "Each creature you control with an exhaust ability has haste.\nWhenever you activate an exhaust ability that isn't a mana ability, copy it. You may choose new targets for the copy.",
+      "zhs_text": "每个由你操控且具有竭能异能的生物均具有敏捷异能。\n每当你起动任一非法术力异能的竭能异能时，将它复制。你可以为该复制品选择新的目标。",
+      "image_url_en": "/image/alchemy/ydft/Sala_Deck_Boss.png",
+      "image_url_zh": "/image/alchemy/ydft/甲板霸主萨勒.png",
+      "pow_tough": "3/3"
+    },
+    {
+      "id": "ydft-6",
+      "rarity": "rare",
+      "mana_cost": "{1}{B}",
+      "artist": "John Tedrick",
+      "name": "Terrors of the Track",
+      "zhs_name": "赛道惧龙",
+      "type": "Creature — Dinosaur",
+      "zhs_type": "生物～恐龙",
+      "text": "Flying\nDouble team\nWhenever this creature or another creature dies, each opponent loses 1 life and you gain 1 life. This ability triggers only once each turn.",
+      "zhs_text": "飞行\n后继\n每当此生物或另一个生物死去时，每位对手各失去1点生命且你获得1点生命。此异能每回合只会触发一次。",
+      "image_url_en": "/image/alchemy/ydft/Terrors_of_the_Track.png",
+      "image_url_zh": "/image/alchemy/ydft/赛道惧龙.png",
+      "pow_tough": "2/1"
     }
   ]
 }
