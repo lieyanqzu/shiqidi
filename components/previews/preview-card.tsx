@@ -65,7 +65,13 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
       }
 
       const data = await response.json();
-      return data.results.map((result: any) => ({
+      return data.results.map((result: {
+        setCode: string;
+        number: string;
+        zhs_name?: string;
+        officialName?: string;
+        translatedName?: string;
+      }) => ({
         setCode: result.setCode,
         number: result.number,
         zhs_name: result.zhs_name,
@@ -124,7 +130,7 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
   };
 
   // 获取卡图URL
-  const getCardImageUrl = (setCode: string, number: string, scryfallId?: string): string => {
+  const getCardImageUrl = (setCode: string, number: string): string => {
     return `https://sbwsz.com/image/large/${setCode.toUpperCase()}/${setCode.toUpperCase()}_${number}.jpg`;
   };
 
@@ -147,31 +153,32 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
     // 卡片预览的尺寸
     const tooltipWidth = 300;
     const tooltipHeight = 420;
+    const margin = 20;
     
-    // 默认显示在鼠标右侧
-    let x = e.clientX + 20;
+    let x = e.clientX + margin;
+    let y = e.clientY - tooltipHeight / 2;
     
-    // 如果右侧空间不足，尝试显示在左侧
-    if (x + tooltipWidth > viewportWidth - 20) {
-      x = e.clientX - tooltipWidth - 20;
-      
-      // 如果左侧空间也不足，则贴靠左侧边界
-      if (x < 20) {
-        x = 20;
-      }
+    // 如果右侧空间不足
+    if (x + tooltipWidth > viewportWidth - margin) {
+      // 尝试显示在左侧
+      x = e.clientX - tooltipWidth - margin;
     }
     
-    // 计算 y 坐标
-    let y = e.clientY - 100;
-    
-    // 处理下边界
-    if (y + tooltipHeight > viewportHeight - 20) {
-      y = viewportHeight - tooltipHeight - 20;
+    // 如果左侧空间不足
+    if (x < margin) {
+      // 贴靠在左侧边界
+      x = margin;
     }
     
-    // 处理上边界
-    if (y < 20) {
-      y = 20;
+    // 处理垂直方向
+    // 确保不超出顶部
+    if (y < margin) {
+      y = margin;
+    }
+    
+    // 确保不超出底部
+    if (y + tooltipHeight > viewportHeight - margin) {
+      y = viewportHeight - tooltipHeight - margin;
     }
 
     setMousePos({ x, y });
