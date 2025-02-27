@@ -121,7 +121,7 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
     <div className="bg-[--card] rounded-lg overflow-hidden border border-[--border] flex flex-col md:flex-row">
       <div className="px-4 md:p-0 pt-4 md:pt-0">
         <div 
-          className="relative w-full md:w-[240px] aspect-[488/680] md:h-[340px] bg-black mx-auto max-w-[280px] cursor-pointer"
+          className="relative w-full md:w-[300px] aspect-[488/680] md:h-[420px] bg-black mx-auto max-w-[300px] cursor-pointer"
           onClick={() => setIsImageExpanded(true)}
         >
           <Image
