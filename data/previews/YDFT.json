@@ -103,7 +103,7 @@
       "type": "Creature — Dinosaur",
       "zhs_type": "生物～恐龙",
       "text": "Flying\nDouble team\nWhenever this creature or another creature dies, each opponent loses 1 life and you gain 1 life. This ability triggers only once each turn.",
-      "zhs_text": "飞行\n后继\n每当此生物或另一个生物死去时，每位对手各失去1点生命且你获得1点生命。此异能每回合只会触发一次。",
+      "zhs_text": "飞行\n后继（当具后继异能的生物攻击时，如果它不为衍生物，变出一张它的复制牌置于你手上，然后两者永久失去后继异能。）\n每当此生物或另一个生物死去时，每位对手各失去1点生命且你获得1点生命。此异能每回合只会触发一次。",
       "image_url_en": "/image/alchemy/ydft/Terrors_of_the_Track.png",
       "image_url_zh": "/image/alchemy/ydft/赛道惧龙.png",
       "pow_tough": "2/1"
