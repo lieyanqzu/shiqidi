@@ -107,6 +107,38 @@
       "image_url_en": "/image/alchemy/ydft/Terrors_of_the_Track.png",
       "image_url_zh": "/image/alchemy/ydft/赛道惧龙.png",
       "pow_tough": "2/1"
+    },
+    {
+      "id": "ydft-7",
+      "rarity": "uncommon",
+      "mana_cost": "{R}{G}",
+      "artist": "Raymond Swanland",
+      "name": "Wish Good Luck",
+      "zhs_name": "祈愿吉运",
+      "type": "Sorcery",
+      "zhs_type": "法术",
+      "text": "Create a Food token.\nCreate a tapped Treasure token.\nCreate a 3/2 colorless Vehicle artifact token with crew 1.",
+      "zhs_text": "派出一个食品衍生物。\n派出一个已横置的珍宝衍生物。\n派出一个3/2无色，具搭载1的载具衍生神器。",
+      "image_url_en": "/image/alchemy/ydft/Wish_Good_Luck.png",
+      "image_url_zh": "/image/alchemy/ydft/祈愿吉运.png"
+    },
+    {
+      "id": "ydft-8",
+      "rarity": "mythic",
+      "mana_cost": "{2}{R}{R}",
+      "artist": "Fariba Khamseh",
+      "name": "Kari Zev, Crew of Two",
+      "zhs_name": "双盗组卡丽泽夫",
+      "type": "Legendary Creature — Human Pirate",
+      "zhs_type": "传奇生物～人类／海盗",
+      "text": "Menace, Haste\nWhenever Kari Zev attacks while you don't control a legendary Monkey, conjure a card named Ragavan, Nimble Pilferer onto the battlefield tapped and attacking. At the beginning of the next end step, if that card is on the battlefield, return it to its owner's hand.",
+      "zhs_text": "威慑，敏捷\n每当卡丽泽夫于你未操控传奇猴时攻击，变出一张名称为巧手窃猴勒格文的牌放进战场，其为横置且正进行攻击。在下一个结束步骤开始时，若该牌在战场上，则将它移回其拥有者手上。",
+      "image_url_en": "/image/alchemy/ydft/Kari_Zev_Crew_of_Two.png",
+      "image_url_zh": "/image/alchemy/ydft/双盗组卡丽泽夫.png",
+      "pow_tough": "3/3",
+      "related": [
+        "H2R:11"
+      ]
     }
   ]
 }
