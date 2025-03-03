@@ -13,18 +13,11 @@ export interface Event {
 }
 
 export const calendarMetadata: CalendarMetadata = {
-  lastUpdated: '2025/02/24',
-  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-february-24-2025#schedule',
+  lastUpdated: '2025/03/03',
+  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-march-3-2025#schedule',
 };
 
 const midweekMagicEvents: Event[] = [
-  {
-    type: 'midweek_magic',
-    title: '标准纯普',
-    startTime: new Date('2025-02-25T14:00:00-08:00'),
-    endTime: new Date('2025-02-27T14:00:00-08:00'),
-    format: '标准',
-  },
   {
     type: 'midweek_magic',
     title: '进入未来',
@@ -68,7 +61,7 @@ const premierDraftEvents: Event[] = [
     type: 'premier_draft',
     title: '炼金：乙太飘移',
     startTime: new Date('2025-03-04T08:00:00-08:00'),
-    endTime: new Date('2025-03-18T08:00:00-07:00'),
+    endTime: new Date('2025-03-17T08:00:00-07:00'),
     format: '竞技轮抽',
   },
 ];
@@ -78,14 +71,21 @@ const quickDraftEvents: Event[] = [
     type: 'quick_draft',
     title: '乙太飘移',
     startTime: new Date('2025-02-25T08:00:00-08:00'),
-    endTime: new Date('2025-03-07T08:00:00-08:00'),
+    endTime: new Date('2025-03-06T08:00:00-08:00'),
     format: '快速轮抽',
   },
   {
     type: 'quick_draft',
     title: '万智牌：基石构筑',
     startTime: new Date('2025-03-07T08:00:00-08:00'),
-    endTime: new Date('2025-03-18T08:00:00-07:00'),
+    endTime: new Date('2025-03-17T08:00:00-07:00'),
+    format: '快速轮抽',
+  },
+  {
+    type: 'quick_draft',
+    title: '乙太飘移',
+    startTime: new Date('2025-03-18T08:00:00-07:00'),
+    endTime: new Date('2025-03-31T08:00:00-07:00'),
     format: '快速轮抽',
   },
 ];
@@ -98,6 +98,14 @@ const otherEvents: Event[] = [
     endTime: new Date('2025-03-10T11:00:00-07:00'),
     format: '轮抽',
     description: '赛制：暮悲邸：鬼屋惊魂轮抽BO1，6胜或2负出局。奖励：6胜获得2盒暮悲邸：鬼屋惊魂常规补充包。',
+  },
+  {
+    type: 'other',
+    title: '标准环境挑战赛',
+    startTime: new Date('2025-03-07T08:00:00-08:00'),
+    endTime: new Date('2025-03-09T08:00:00-08:00'),
+    format: '标准',
+    description: '赛制：标准构筑BO1，7胜或2负出局。奖励：7胜获得30包乙太飘移补充包。',
   },
 ];
 
@@ -136,16 +144,7 @@ const premierPlayEvents: Event[] = [
   },
 ];
 
-const arenaOpenEvents: Event[] = [
-  {
-    type: 'arena_open',
-    title: '竞技场公开赛：乙太飘移',
-    startTime: new Date('2025-03-01T06:00:00-08:00'),
-    endTime: new Date('2025-03-02T08:00:00-08:00'),
-    format: '乙太飘移现开/轮抽',
-    description: '第一天：乙太飘移现开（BO1和BO3），第二天：乙太飘移轮抽（BO3）。参赛奖励：五彩玛珂牌套。',
-  },
-];
+const arenaOpenEvents: Event[] = [];
 
 const arenaChampionshipEvents: Event[] = [];
 
