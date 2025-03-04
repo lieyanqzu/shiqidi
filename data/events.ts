@@ -93,6 +93,13 @@ const quickDraftEvents: Event[] = [
 const otherEvents: Event[] = [
   {
     type: 'other',
+    title: '火花精灵生日派对',
+    startTime: new Date('2025-03-06T08:00:00-08:00'),
+    endTime: new Date('2025-03-07T08:00:00-08:00'),
+    format: '争锋预组',
+  },
+  {
+    type: 'other',
     title: '竞技场直邮赛 - 暮悲邸：鬼屋惊魂',
     startTime: new Date('2025-03-07T08:00:00-08:00'),
     endTime: new Date('2025-03-10T11:00:00-07:00'),
