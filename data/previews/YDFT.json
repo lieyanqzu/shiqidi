@@ -7,7 +7,7 @@
   "description": "炼金：乙太飘移共30张卡牌，将于2025年3月5日上线万智牌：竞技场。感谢轻脚翻译并制作中文卡图。",
   "cards": [
     {
-      "id": "ydft-1",
+      "id": "ydft-2",
       "rarity": "rare",
       "mana_cost": "{2}{W}",
       "artist": "Andrew Mar",
@@ -17,7 +17,7 @@
       "zhs_type": "结界～传纪",
       "text": "(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)\nI — All creature cards you own with mana value 2 or less perpetually get +1/+1.\nII — Seek a creature card with mana value 2 or less and put it onto the battlefield.\nIII — Creatures you control with mana value 2 or less gain flying until end of turn.",
       "zhs_text": "（于此传纪进场时及于你抓牌步骤后，加一个学问指示物。到III后牺牲之。）\nI — 所有由你拥有且法术力值等于或小于2的生物牌永久得+1/+1。\nII — 掏一张法术力值等于或小于2的生物牌，并将之放进战场。\nIII — 由你操控且法术力值等于或小于2的生物获得飞行异能直到回合结束。",
-      "image_url_en": "https://media.wizards.com/2025/y25-dft/en_96369_Printed__NaktamunShinesAgain.webp",
+      "image_url_en": "https://cards.scryfall.io/normal/front/5/9/59988d6c-d43c-4f37-85d5-27c5c47bc792.jpg",
       "image_url_zh": "/image/alchemy/ydft/拿塔蒙复耀纪.png"
     },
     {
@@ -31,12 +31,12 @@
       "zhs_type": "传奇生物～鲨鱼／海盗",
       "text": "Flying, Trample\nWhenever Arius attacks, seek a non-Shark card. Discard that card at the beginning of the next end step.\nWhenever you discard one or more cards, put a +1/+1 counter on Arius.",
       "zhs_text": "飞行，践踏\n每当厄琉斯攻击时，掏一张非鲨鱼牌。在下一个结束步骤开始时，弃掉该牌。\n每当你弃一张或数张牌时，在厄琉斯上放置一个+1/+1指示物。",
-      "image_url_en": "https://media.wizards.com/2025/y25-dft/en_96388_Printed__AriusFlybyTrawler.webp",
+      "image_url_en": "https://cards.scryfall.io/normal/front/b/3/b3fc822f-5870-4dc4-a932-5c69a5cb2add.jpg",
       "image_url_zh": "/image/alchemy/ydft/飞掠曳鲨厄琉斯.png",
       "pow_tough": "1/1"
     },
     {
-      "id": "ydft-25",
+      "id": "ydft-26",
       "rarity": "rare",
       "mana_cost": "{3}{W}{U}",
       "artist": "Joseph Meehan",
@@ -46,7 +46,7 @@
       "zhs_type": "神器～载具",
       "text": "Flying, Vigilance\nWhen this Vehicle enters, create four 1/1 colorless Servo artifact creature tokens.\nWhenever this Vehicle attacks, draft a card from Support Skyforge's spellbook. That card perpetually becomes an artifact creature.\nCrew 4",
       "zhs_text": "飞行，警戒\n当此载具进场时，派出四个1/1无色自动机衍生神器生物。\n每当此载具攻击时，从支援空锻机的法术书中发现一张牌。该牌永久成为神器生物。\n搭载4",
-      "image_url_en": "https://media.wizards.com/2025/y25-dft/en_96393_Printed__SupportSkyforge.webp",
+      "image_url_en": "https://cards.scryfall.io/normal/front/5/e/5eff53fa-5f8a-4de4-909b-116f9f606849.jpg",
       "image_url_zh": "/image/alchemy/ydft/支援空锻机.png",
       "spellbook": [
         "DFT:1",
@@ -61,7 +61,7 @@
       "pow_tough": "4/4"
     },
     {
-      "id": "ydft-17",
+      "id": "ydft-19",
       "rarity": "mythic",
       "mana_cost": "{7}{G}{G}",
       "artist": "Vincent Proce",
@@ -71,7 +71,7 @@
       "zhs_type": "传奇生物～流浆／巨人",
       "text": "This spell costs {X} less to cast, where X is the greatest power among creatures you control.\nTrample\nWhen Mitotic Ultimus dies, conjure two cards named Mitotic Slime onto the battlefield.",
       "zhs_text": "此咒语减少{X}来施放，X为由你操控之生物中的最大力量。\n践踏\n当丝裂祖浆死去时，变出两张名称为丝裂黏菌的牌放进战场。",
-      "image_url_en": "https://media.wizards.com/2025/y25-dft/en_96386_Printed__MitoticUltimus.webp",
+      "image_url_en": "https://cards.scryfall.io/normal/front/f/4/f49fbd95-16bb-4426-ac98-6d900417dfc5.jpg",
       "image_url_zh": "/image/alchemy/ydft/丝裂祖浆.png",
       "pow_tough": "8/8",
       "related": [
@@ -79,7 +79,7 @@
       ]
     },
     {
-      "id": "ydft-22",
+      "id": "ydft-25",
       "rarity": "rare",
       "mana_cost": "{1}{U}{R}",
       "artist": "Mirko Failoni",
@@ -89,12 +89,12 @@
       "zhs_type": "传奇生物～乌贼／海盗",
       "text": "Each creature you control with an exhaust ability has haste.\nWhenever you activate an exhaust ability that isn't a mana ability, copy it. You may choose new targets for the copy.",
       "zhs_text": "每个由你操控且具有竭能异能的生物均具有敏捷异能。\n每当你起动任一非法术力异能的竭能异能时，将它复制。你可以为该复制品选择新的目标。",
-      "image_url_en": "https://media.wizards.com/2025/y25-dft/en_96392_Printed__SalaDeckBoss.webp",
+      "image_url_en": "https://cards.scryfall.io/normal/front/c/f/cfffa520-9cf6-479f-a123-53499aebd6c5.jpg",
       "image_url_zh": "/image/alchemy/ydft/甲板霸主萨勒.png",
       "pow_tough": "3/3"
     },
     {
-      "id": "ydft-7",
+      "id": "ydft-10",
       "rarity": "rare",
       "mana_cost": "{1}{B}",
       "artist": "John Tedrick",
@@ -104,12 +104,12 @@
       "zhs_type": "生物～恐龙",
       "text": "Flying\nDouble team\nWhenever this creature or another creature dies, each opponent loses 1 life and you gain 1 life. This ability triggers only once each turn.",
       "zhs_text": "飞行\n后继（当具后继异能的生物攻击时，如果它不为衍生物，变出一张它的复制牌置于你手上，然后两者永久失去后继异能。）\n每当此生物或另一个生物死去时，每位对手各失去1点生命且你获得1点生命。此异能每回合只会触发一次。",
-      "image_url_en": "https://media.wizards.com/2025/y25-dft/en_96377_Printed__TerrorsoftheTrack.webp",
+      "image_url_en": "https://cards.scryfall.io/normal/front/5/6/56e26a8f-db06-49e1-bcbb-92ee7f067a77.jpg",
       "image_url_zh": "/image/alchemy/ydft/赛道惧龙.png",
       "pow_tough": "2/1"
     },
     {
-      "id": "ydft-24",
+      "id": "ydft-28",
       "rarity": "uncommon",
       "mana_cost": "{R}{G}",
       "artist": "Raymond Swanland",
@@ -119,11 +119,11 @@
       "zhs_type": "法术",
       "text": "Create a Food token.\nCreate a tapped Treasure token.\nCreate a 3/2 colorless Vehicle artifact token with crew 1.",
       "zhs_text": "派出一个食品衍生物。\n派出一个已横置的珍宝衍生物。\n派出一个3/2无色，具搭载1的载具衍生神器。",
-      "image_url_en": "https://media.wizards.com/2025/y25-dft/en_96395_Printed__WishGoodLuck.webp",
+      "image_url_en": "https://cards.scryfall.io/normal/front/b/6/b66bccde-c32f-4daa-89a9-a6561e9fdac7.jpg",
       "image_url_zh": "/image/alchemy/ydft/祈愿吉运.png"
     },
     {
-      "id": "ydft-12",
+      "id": "ydft-14",
       "rarity": "mythic",
       "mana_cost": "{2}{R}{R}",
       "artist": "Fariba Khamseh",
@@ -133,7 +133,7 @@
       "zhs_type": "传奇生物～人类／海盗",
       "text": "Menace, Haste\nWhenever Kari Zev attacks while you don't control a legendary Monkey, conjure a card named Ragavan, Nimble Pilferer onto the battlefield tapped and attacking. At the beginning of the next end step, if that card is on the battlefield, return it to its owner's hand.",
       "zhs_text": "威慑，敏捷\n每当卡丽泽夫于你未操控传奇猴时攻击，变出一张名称为巧手窃猴勒格文的牌放进战场，其为横置且正进行攻击。在下一个结束步骤开始时，若该牌在战场上，则将它移回其拥有者手上。",
-      "image_url_en": "https://media.wizards.com/2025/y25-dft/en_96381_Printed__KariZevCrewofTwo.webp",
+      "image_url_en": "https://cards.scryfall.io/normal/front/0/4/042a1907-0f97-4891-b39f-4c884e7524da.jpg",
       "image_url_zh": "/image/alchemy/ydft/双盗组卡丽泽夫.png",
       "pow_tough": "3/3",
       "related": [
@@ -141,7 +141,7 @@
       ]
     },
     {
-      "id": "ydft-8",
+      "id": "ydft-7",
       "rarity": "uncommon",
       "mana_cost": "{B}",
       "artist": "Daren Bader",
@@ -151,11 +151,11 @@
       "zhs_type": "瞬间",
       "text": "Until end of turn, target creature you control gains \"When this creature dies, return it to the battlefield tapped under its owner's control. It deals 1 damage to each opponent.\"\nOverload {2}{B}{B}",
       "zhs_text": "直到回合结束，目标由你操控的生物获得「当此生物死去时，将它在其拥有者的操控下横置移回战场。它向每位对手各造成1点伤害。」\n超载{2}{B}{B}（你可以支付此咒语的超载费用来施放它。如果你如此作，将其中的「目标」字样更改为「每个」。）",
-      "image_url_en": "https://media.wizards.com/2025/y25-dft/en_96374_Printed__BailOut.webp",
+      "image_url_en": "https://cards.scryfall.io/normal/front/a/e/ae7f5d31-bc72-4f95-b94b-2bb38553621a.jpg",
       "image_url_zh": "/image/alchemy/ydft/弹射脱逃.png"
     },
     {
-      "id": "ydft-13",
+      "id": "ydft-12",
       "rarity": "rare",
       "mana_cost": "{4}{R}{R}",
       "artist": "Boria Pindado",
@@ -165,12 +165,12 @@
       "zhs_type": "生物～恐龙",
       "text": "Whenever this creature enters or attacks, discard a card, then seek a nonland card. When you discard a card this way, this creature deals damage equal to the discarded card's mana value to any target.",
       "zhs_text": "每当此生物进场或攻击时，弃一张牌，然后掏一张非地牌。当你以此法弃一张牌时，此生物对任意一个目标造成伤害，其数量等同于所弃之牌的法术力值。",
-      "image_url_en": "https://media.wizards.com/2025/y25-dft/en_96379_Printed__ChompingMastasaur.webp",
+      "image_url_en": "https://cards.scryfall.io/normal/front/0/a/0a4db818-47f9-4a4f-a2fa-e617a91475fc.jpg",
       "image_url_zh": "/image/alchemy/ydft/血口乳突龙.png",
       "pow_tough": "6/6"
     },
     {
-      "id": "ydft-5",
+      "id": "ydft-4",
       "rarity": "uncommon",
       "mana_cost": "{2}{U}",
       "artist": "Julia Metzger",
@@ -180,11 +180,11 @@
       "zhs_type": "结界",
       "text": "Start your engines!\nWhen this enchantment enters, create two 1/1 colorless Thopter artifact creature tokens with flying.\nMax speed — {1}{U}, Sacrifice this enchantment: Create two 1/1 colorless Thopter artifact creature tokens with flying.",
       "zhs_text": "发动引擎！\n当此结界进场时，派出两个1/1无色，具飞行异能的振翼机衍生神器生物。\n速度极限～{1}{U}，牺牲此结界：派出两个1/1无色，具飞行异能的振翼机衍生神器生物。",
-      "image_url_en": "https://media.wizards.com/2025/y25-dft/en_96371_Printed__DeviantSkytech.webp",
+      "image_url_en": "https://cards.scryfall.io/normal/front/d/a/da6f7821-38bd-4ccf-95b4-aa18d10d16ef.jpg",
       "image_url_zh": "/image/alchemy/ydft/异变空械.png"
     },
     {
-      "id": "ydft-18",
+      "id": "ydft-17",
       "rarity": "uncommon",
       "mana_cost": "{1}{G}",
       "artist": "Arif Wijaya",
@@ -194,12 +194,12 @@
       "zhs_type": "生物～流浆／德鲁伊",
       "text": "At the beginning of your first main phase, a random creature card with the greatest mana value among creature cards in your hand perpetually gains \"This spell costs {1} less to cast.\"\n{Tap}: Add one mana of any color.",
       "zhs_text": "在你的第一个行动阶段开始时，随机一张你手上生物牌中法术力值最大者永久获得「此咒语减少{1}来施放。」\n{Tap}：加一点任意颜色的法术力。",
-      "image_url_en": "https://media.wizards.com/2025/y25-dft/en_96384_Printed__FuelTankFeaster.webp",
+      "image_url_en": "https://cards.scryfall.io/normal/front/3/b/3bd66ee9-d818-4cd9-9d95-521b9f276def.jpg",
       "image_url_zh": "/image/alchemy/ydft/油罐饕客.png",
       "pow_tough": "1/3"
     },
     {
-      "id": "ydft-14",
+      "id": "ydft-13",
       "rarity": "uncommon",
       "mana_cost": "{1}{R}",
       "artist": "Anthony Devine",
@@ -209,12 +209,12 @@
       "zhs_type": "生物～鬼怪／驾手",
       "text": "Whenever this creature crews a Vehicle, that Vehicle gains haste until end of turn. At the beginning of the next end step, sacrifice that Vehicle. When you sacrifice a creature this way, it deals damage equal to its power to any target.",
       "zhs_text": "每当此生物搭载载具时，该载具获得敏捷异能直到回合结束。在下一个结束步骤开始时，牺牲该载具。当你以此法牺牲生物时，它对任意一个目标造成等同于其力量的伤害。",
-      "image_url_en": "https://media.wizards.com/2025/y25-dft/en_96380_Printed__GoblinCrashPilot.webp",
+      "image_url_en": "https://cards.scryfall.io/normal/front/1/b/1bec84dd-dc6e-4aaa-b94c-6bbad991df54.jpg",
       "image_url_zh": "/image/alchemy/ydft/鬼怪坠驾手.png",
       "pow_tough": "2/1"
     },
     {
-      "id": "ydft-19",
+      "id": "ydft-18",
       "rarity": "uncommon",
       "mana_cost": "{1}{G}",
       "artist": "Luis Lasahido",
@@ -224,7 +224,7 @@
       "zhs_type": "生物～猿猴／德鲁伊",
       "text": "Double team\n{3}{G}: Conjure a card named Muraganda Petroglyphs onto the battlefield, then this creature loses this ability. Activate only as a sorcery.",
       "zhs_text": "后继（当具后继异能的生物攻击时，如果它不为衍生物，变出一张它的复制牌置于你手上，然后两者永久失去后继异能。）\n{3}{G}：变出一张名称为莫甘达岩画的牌放进战场，然后此生物失去此异能。只能于法术时机起动。",
-      "image_url_en": "https://media.wizards.com/2025/y25-dft/en_96385_Printed__GreatFangChroniclers.webp",
+      "image_url_en": "https://cards.scryfall.io/normal/front/b/e/befff08c-7d75-48c5-9f46-9954ccdf770b.jpg",
       "image_url_zh": "/image/alchemy/ydft/长齿大年代史家.png",
       "pow_tough": "2/2",
       "related": [
@@ -232,7 +232,7 @@
       ]
     },
     {
-      "id": "ydft-2",
+      "id": "ydft-1",
       "rarity": "rare",
       "mana_cost": "{1}{W}",
       "artist": "Aaron J. Riley",
@@ -242,14 +242,14 @@
       "zhs_type": "神器",
       "text": "Start your engines!\nWhen this artifact enters, conjure a card named Hangarback Walker onto the battlefield, then put a +1/+1 counter on it.\nMax speed — At the beginning of your end step, put a +1/+1 counter on each artifact creature and/or Vehicle you control.",
       "zhs_text": "发动引擎！\n当此神器进场时，变出一张名称为行走机库的牌放进战场，然后在其上放置一个+1/+1指示物。\n速度极限～在你的结束步骤开始时，在每个由你操控的神器生物和/或载具上各放置一个+1/+1指示物。",
-      "image_url_en": "https://media.wizards.com/2025/y25-dft/en_96368_Printed__HangarbackAssembler.webp",
+      "image_url_en": "https://cards.scryfall.io/normal/front/e/8/e8ad8608-8db1-4750-8db1-d6b727c2d8ef.jpg",
       "image_url_zh": "/image/alchemy/ydft/机库组装间.png",
       "related": [
         "J22:772"
       ]
     },
     {
-      "id": "ydft-23",
+      "id": "ydft-22",
       "rarity": "rare",
       "mana_cost": "{2}{B}{R}",
       "artist": "Konstantin Porubov",
@@ -259,7 +259,7 @@
       "zhs_type": "生物～蝎子／龙",
       "text": "Flying\nStart your engines!\nWhenever this creature enters or attacks, target creature card in your graveyard without unearth perpetually gains unearth. The unearth cost is equal to its mana cost.\nMax speed — You may pay {0} rather than pay the unearth cost of the first unearth ability you activate each turn.",
       "zhs_text": "飞行\n发动引擎！\n每当此生物进场或攻击时，目标在你坟墓场中且不具破坟异能的生物牌永久获得破坟异能。其破坟费用等同于其法术力费用。\n速度极限～你可以支付{0}，而不支付你每回合首度起动之破坟异能的破坟费用。",
-      "image_url_en": "https://media.wizards.com/2025/y25-dft/en_96389_Printed__HighwayReaver.webp",
+      "image_url_en": "https://cards.scryfall.io/normal/front/1/2/1241e40a-54c2-4b45-b121-bd3bcbf39c6a.jpg",
       "image_url_zh": "/image/alchemy/ydft/大道裂肢龙.png",
       "pow_tough": "4/4"
     },
@@ -274,7 +274,7 @@
       "zhs_type": "神器",
       "text": "When this artifact is put into a graveyard from the battlefield, draft a card from Masterpiece Vault's spellbook and put it onto the battlefield. When an Equipment enters this way, attach it to up to one target creature you control.\n{5}: Sacrifice this artifact.",
       "zhs_text": "当此神器从战场进入坟墓场时，从杰作宝库的法术书中发现一张牌并放进战场。当武具以此法进场时，将它贴附在至多一个目标由你操控的生物上。\n{5}：牺牲此神器。",
-      "image_url_en": "https://media.wizards.com/2025/y25-dft/en_96396_Printed__MasterpieceVault.webp",
+      "image_url_en": "https://cards.scryfall.io/normal/front/8/6/862c78a0-ac2c-4f64-a0f4-5415717e3a5f.jpg",
       "image_url_zh": "/image/alchemy/ydft/杰作宝库.png",
       "spellbook": [
         "PIP:228",
@@ -297,7 +297,7 @@
       "zhs_type": "生物～矮人／诗人",
       "text": "Improvise\nWhen this creature enters, conjure a card named Inspiring Statuary into your hand.",
       "zhs_text": "拼造（此咒语能用你的神器来协助施放。你起动完法术力异能之后每横置一个神器，就能为此咒语支付{1}。）\n当此生物进场时，变出一张名称为启迪塑像的牌置于你手上。",
-      "image_url_en": "https://media.wizards.com/2025/y25-dft/en_96382_Printed__MotivatedMuralist.webp",
+      "image_url_en": "https://cards.scryfall.io/normal/front/1/f/1f536096-7cf0-4407-a554-940e5322dc27.jpg",
       "image_url_zh": "/image/alchemy/ydft/积极壁画师.png",
       "pow_tough": "2/1",
       "related": [
@@ -305,7 +305,7 @@
       ]
     },
     {
-      "id": "ydft-26",
+      "id": "ydft-23",
       "rarity": "mythic",
       "mana_cost": "{X}{G}{U}",
       "artist": "Daniel Ljunggren",
@@ -315,11 +315,11 @@
       "zhs_type": "法术",
       "text": "For each number between 1 and X, conjure a duplicate of a random creature card with that mana value onto the battlefield. X can't be 0.",
       "zhs_text": "为1至X中的每个数字各进行以下流程～变出一张法术力值等同于该数字的随机生物牌之复制牌放进战场。X不能为0。",
-      "image_url_en": "https://media.wizards.com/2025/y25-dft/en_96390_Printed__OrnateImitations.webp",
+      "image_url_en": "https://cards.scryfall.io/normal/front/a/f/af8313cf-ef33-48f4-a69b-71b8622b3b32.jpg",
       "image_url_zh": "/image/alchemy/ydft/华美仿品.png"
     },
     {
-      "id": "ydft-27",
+      "id": "ydft-24",
       "rarity": "rare",
       "mana_cost": "{G}{W}",
       "artist": "Mark Poole",
@@ -329,7 +329,7 @@
       "zhs_type": "神器～武具",
       "text": "Starting intensity 0\nEquipped creature gets +X/+X, where X is this Equipment's intensity.\nWhenever a creature you control enters, this Equipment intensifies by X, where X is that creature's power.\nEquip {2}",
       "zhs_text": "起始强度0\n佩带此武具的生物得+X/+X，X为此武具的强度。\n每当一个由你操控的生物进场时，此武具的强度增加X，X为该生物的力量。\n佩带{2}",
-      "image_url_en": "https://media.wizards.com/2025/y25-dft/en_96391_Printed__QuickbeastAmulet.webp",
+      "image_url_en": "https://cards.scryfall.io/normal/front/9/a/9a5fa9fa-d6d8-43e7-9928-b3c28423f70d.jpg",
       "image_url_zh": "/image/alchemy/ydft/迅兽护身符.png"
     },
     {
@@ -343,7 +343,7 @@
       "zhs_type": "神器地",
       "text": "If you were the starting player, this land enters tapped.\nStart your engines!\n{Tap}: Add {C}.\nMax speed — At the beginning of combat on your turn, this land becomes a 2/2 Construct creature in addition to its other types until end of turn.",
       "zhs_text": "如果你是先手牌手，则此地须横置进场。\n发动引擎！\n{Tap}：加{C}。\n速度极限～在你回合的战斗开始时，此地成为2/2组构体生物直到回合结束，且仍具有原本类别。",
-      "image_url_en": "https://media.wizards.com/2025/y25-dft/en_96397_Printed__RisingChicane.webp",
+      "image_url_en": "https://cards.scryfall.io/normal/front/7/e/7e0ff302-03f0-4bc5-9c33-1cc1734a6f0d.jpg",
       "image_url_zh": "/image/alchemy/ydft/上升弯道.png"
     },
     {
@@ -357,7 +357,7 @@
       "zhs_type": "生物～麋鹿／坐骑",
       "text": "Whenever this creature attacks while saddled, seek a land card and put it onto the battlefield tapped.\nSaddle 2",
       "zhs_text": "每当此生物于已乘驾时攻击，掏一张地牌并横置放进战场。\n乘驾2",
-      "image_url_en": "https://media.wizards.com/2025/y25-dft/en_96387_Printed__RoutewayMoose.webp",
+      "image_url_en": "https://cards.scryfall.io/normal/front/2/6/26d3ff7a-1401-4891-a9f3-fb6a06cfc5cb.jpg",
       "image_url_zh": "/image/alchemy/ydft/识途驼鹿.png",
       "pow_tough": "3/3"
     },
@@ -372,12 +372,12 @@
       "zhs_type": "生物～突变体／狂战士",
       "text": "Menace\nStart your engines!\nWhenever one or more creatures you control deal combat damage to a player, conjure a duplicate of target nontoken creature into exile.\nMax speed — At the beginning of combat on your turn, put all cards exiled with this creature onto the battlefield. They gain haste. Sacrifice them at the beginning of the next end step.",
       "zhs_text": "威慑\n发动引擎！\n每当一个或数个由你操控的生物对任一牌手造成战斗伤害时，变出一张目标非衍生物的生物之复制牌置于放逐区。\n速度极限～在你回合的战斗开始时，将所有以此生物放逐之牌放进战场。它们获得敏捷异能。在下一个结束步骤开始时将它们牺牲。",
-      "image_url_en": "https://media.wizards.com/2025/y25-dft/en_96383_Printed__SmogSmasher.webp",
+      "image_url_en": "https://cards.scryfall.io/normal/front/8/f/8f1eb895-a856-4693-8f98-4b2434ed3b2f.jpg",
       "image_url_zh": "/image/alchemy/ydft/碎雾战狂.png",
       "pow_tough": "4/4"
     },
     {
-      "id": "ydft-9",
+      "id": "ydft-8",
       "rarity": "rare",
       "mana_cost": "{1}{B}",
       "artist": "Loïc Canavaggia",
@@ -387,11 +387,11 @@
       "zhs_type": "结界",
       "text": "Whenever one or more creatures die, put a wreck counter on this enchantment.\nAt the beginning of your upkeep, if this enchantment has one or more wreck counters on it, remove a wreck counter from it and seek a nonland card.",
       "zhs_text": "每当一个或数个生物死去时，在此结界上放置一个毁坏指示物。\n在你的维持开始时，若此结界上有一个或数个毁坏指示物，则移去一个毁坏指示物并掏一张非地牌。",
-      "image_url_en": "https://media.wizards.com/2025/y25-dft/en_96375_Printed__SpectacleofDestruction.webp",
+      "image_url_en": "https://cards.scryfall.io/normal/front/c/6/c61f31ef-083e-4572-bb1e-644f847d3ab7.jpg",
       "image_url_zh": "/image/alchemy/ydft/坏灭奇景.png"
     },
     {
-      "id": "ydft-10",
+      "id": "ydft-9",
       "rarity": "mythic",
       "mana_cost": "{3}{B}{B}",
       "artist": "Yohann Schepacz",
@@ -401,12 +401,12 @@
       "zhs_type": "生物～昆虫／杀手",
       "text": "Flying\nWhen this creature enters, choose target opponent. Secretly choose a creature or planeswalker that player controls. That player sacrifices a creature or planeswalker of their choice, then sacrifices the chosen permanent.",
       "zhs_text": "飞行\n当此生物进场时，选择目标对手。私下选择一个由该牌手操控的生物或鹏洛客。该牌手牺牲一个依其选择的生物或鹏洛客，然后牺牲所选永久物。",
-      "image_url_en": "https://media.wizards.com/2025/y25-dft/en_96376_Printed__SpeedbroodStalker.webp",
+      "image_url_en": "https://cards.scryfall.io/normal/front/e/9/e9ccfea5-238d-45e2-be82-2277ec683299.jpg",
       "image_url_zh": "/image/alchemy/ydft/极速虫伏击客.png",
       "pow_tough": "4/3"
     },
     {
-      "id": "ydft-6",
+      "id": "ydft-5",
       "rarity": "uncommon",
       "mana_cost": "{1}{U}",
       "artist": "Julian Kok Joon Wen",
@@ -416,11 +416,11 @@
       "zhs_type": "瞬间",
       "text": "Choose one. If you have max speed, choose both instead.\n• Seek a card with start your engines!\n• Seek a nonland card.\nJump-start",
       "zhs_text": "选择一项。如果你达到速度极限，则改为两项都选。\n• 掏一张具发动引擎！异能的牌。\n• 掏一张非地牌。\n再起（你可以从你的坟墓场施放此牌，但必须支付其所需费用并额外弃一张牌。然后放逐此牌。）",
-      "image_url_en": "https://media.wizards.com/2025/y25-dft/en_96372_Printed__SurgeofAcclaim.webp",
+      "image_url_en": "https://cards.scryfall.io/normal/front/5/6/560c01a9-0802-423b-8e79-6d52c44a46d3.jpg",
       "image_url_zh": "/image/alchemy/ydft/欢呼翻腾.png"
     },
     {
-      "id": "ydft-4",
+      "id": "ydft-6",
       "rarity": "rare",
       "mana_cost": "{U}",
       "artist": "Maxime Minard",
@@ -430,7 +430,7 @@
       "zhs_type": "生物～人鱼",
       "text": "{4}{U}: Draw a card.\nExhaust — {U}: Conjure a card named Training Grounds onto the battlefield.",
       "zhs_text": "{4}{U}：抓一张牌。\n竭绝～{U}：变出一张名称为训练场的牌放进战场。",
-      "image_url_en": "https://media.wizards.com/2025/y25-dft/en_96373_Printed__TrackhandTrainer.webp",
+      "image_url_en": "https://cards.scryfall.io/normal/front/2/8/28a718f3-fb8d-433a-95ab-a35a11ee41a0.jpg",
       "image_url_zh": "/image/alchemy/ydft/护道员训练师.png",
       "pow_tough": "1/1",
       "related": [
@@ -438,7 +438,7 @@
       ]
     },
     {
-      "id": "ydft-28",
+      "id": "ydft-27",
       "rarity": "rare",
       "mana_cost": "{R}{W}{B}",
       "artist": "Brian Valeza",
@@ -448,7 +448,7 @@
       "zhs_type": "传奇生物～恐龙／狂战士",
       "text": "Double strike\nStart your engines!\nWhenever Tsagan attacks, creatures you control get +1/+0 until end of turn for each creature you control with first strike or double strike.\nMax speed — Tsagan has deathtouch. Other creatures you control have first strike.",
       "zhs_text": "连击\n发动引擎！\n每当察甘攻击时，你每操控一个具先攻或连击异能的生物，由你操控的生物便获得+1/+0直到回合结束。\n速度极限～察甘具有死触异能。由你操控的其他生物具有先攻异能。",
-      "image_url_en": "https://media.wizards.com/2025/y25-dft/en_96394_Printed__TsaganRaiderWarlord.webp",
+      "image_url_en": "https://cards.scryfall.io/normal/front/c/7/c766a094-4230-466e-b141-894e389585d1.jpg",
       "image_url_zh": "/image/alchemy/ydft/劫掠王察甘.png",
       "pow_tough": "1/4"
     },
@@ -463,7 +463,7 @@
       "zhs_type": "法术",
       "text": "Destroy all non-Vehicle creatures. Then choose a Vehicle you control. It perpetually becomes an artifact creature.",
       "zhs_text": "消灭所有非载具生物。然后选择一个由你操控的载具。它永久成为神器生物。",
-      "image_url_en": "https://media.wizards.com/2025/y25-dft/en_96370_Printed__TurbochargedEscape.webp",
+      "image_url_en": "https://cards.scryfall.io/normal/front/b/8/b8ce1550-45c3-476f-80f4-07c2315c41ab.jpg",
       "image_url_zh": "/image/alchemy/ydft/增压脱逃.png"
     },
     {
@@ -477,7 +477,7 @@
       "zhs_type": "法术",
       "text": "If you weren't the starting player, this spell costs {1} less to cast.\nDestroy target creature or Vehicle. Its controller loses 2 life.",
       "zhs_text": "如果你不是先手牌手，则此咒语减少{1}来施放。\n消灭目标生物或载具。其操控者失去2点生命。",
-      "image_url_en": "https://media.wizards.com/2025/y25-dft/en_96378_Printed__UnforgivingOvertake.webp",
+      "image_url_en": "https://cards.scryfall.io/normal/front/c/f/cf52f97e-81ca-4660-9b08-2470a337d222.jpg",
       "image_url_zh": "/image/alchemy/ydft/含怨超车.png"
     }
   ]
