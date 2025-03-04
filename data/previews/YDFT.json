@@ -88,7 +88,7 @@
       "type": "Legendary Creature — Squid Pirate",
       "zhs_type": "传奇生物～乌贼／海盗",
       "text": "Each creature you control with an exhaust ability has haste.\nWhenever you activate an exhaust ability that isn't a mana ability, copy it. You may choose new targets for the copy.",
-      "zhs_text": "每个由你操控且具有竭能异能的生物均具有敏捷异能。\n每当你起动任一非法术力异能的竭能异能时，将它复制。你可以为该复制品选择新的目标。",
+      "zhs_text": "每个由你操控且具有竭绝异能的生物均具有敏捷异能。\n每当你起动任一非法术力异能的竭绝异能时，将它复制。你可以为该复制品选择新的目标。",
       "image_url_en": "https://cards.scryfall.io/normal/front/c/f/cfffa520-9cf6-479f-a123-53499aebd6c5.jpg",
       "image_url_zh": "/image/alchemy/ydft/甲板霸主萨勒.png",
       "pow_tough": "3/3"
