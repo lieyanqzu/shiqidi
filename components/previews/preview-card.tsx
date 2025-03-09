@@ -26,6 +26,7 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
   const [tooltipVisible, setTooltipVisible] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [hoveredCard, setHoveredCard] = useState<CardRef | null>(null);
+  const [renderedRelatedCardIndices, setRenderedRelatedCardIndices] = useState<Set<number>>(new Set());
 
   // 获取卡牌中文名的通用函数
   const fetchCardNames = async (cardRefs: string[]) => {
@@ -99,6 +100,35 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
     }
   }, [card.related]);
 
+  // 使用useEffect来处理相关卡牌引用的检测
+  useEffect(() => {
+    if (card.related && card.related.length > 0 && relatedCards.length > 0) {
+      const newRenderedIndices = new Set<number>();
+      const text = isEnglish ? card.text : card.zhs_text;
+      
+      // 检查文本中的所有行
+      text.split('\n').forEach(line => {
+        // 使用正则表达式匹配反引号中的卡牌引用
+        const regex = /`([^`]+)`/g;
+        let match;
+        
+        while ((match = regex.exec(line)) !== null) {
+          const cardRefText = match[1];
+          const cardRefMatch = cardRefText.match(/([^:]+):(\d+)/);
+          
+          if (cardRefMatch) {
+            const cardIdx = parseInt(cardRefMatch[2], 10);
+            if (relatedCards[cardIdx]) {
+              newRenderedIndices.add(cardIdx);
+            }
+          }
+        }
+      });
+      
+      setRenderedRelatedCardIndices(newRenderedIndices);
+    }
+  }, [card.related, card.text, card.zhs_text, relatedCards, isEnglish]);
+
   const getRarityIcon = (rarity: string): string => {
     switch (rarity) {
       case 'mythic':
@@ -116,7 +146,36 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
   const renderText = (text: string) => {
     return text.split('\n').map((line, index, array) => (
       <div key={index} className="inline-block w-full">
-        <ManaText text={line} />
+        <ManaText 
+          text={line} 
+          renderCardRef={(text, index) => {
+            // 检查是否是卡牌引用格式 卡名:索引
+            const match = text.match(/([^:]+):(\d+)/);
+            if (match) {
+              const [, cardName, cardIndex] = match;
+              const cardIdx = parseInt(cardIndex, 10);
+              const refCard = relatedCards[cardIdx];
+              
+              if (refCard) {
+                return (
+                  <a
+                    key={index}
+                    href={getCardDetailUrl(refCard.setCode, refCard.number)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[--primary] hover:opacity-80 transition-opacity"
+                    onMouseEnter={() => handleMouseEnter(refCard)}
+                    onMouseLeave={handleMouseLeave}
+                    onMouseMove={handleMouseMove}
+                  >
+                    {cardName}
+                  </a>
+                );
+              }
+            }
+            return null;
+          }}
+        />
         {index < array.length - 1 && <br />}
       </div>
     ));
@@ -184,28 +243,38 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
     setMousePos({ x, y });
   };
 
-  // 渲染卡牌引用列表
-  const renderCardRefs = (cards: CardRef[], title: string) => (
-    <div className="mt-4 pt-2 border-t border-[--border]">
-      <div className="text-sm font-medium mb-2">{title}</div>
-      <div className="flex flex-wrap gap-2">
-        {cards.map((card, index) => (
-          <a
-            key={index}
-            href={getCardDetailUrl(card.setCode, card.number)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm text-[--primary] hover:opacity-80 transition-opacity"
-            onMouseEnter={() => handleMouseEnter(card)}
-            onMouseLeave={handleMouseLeave}
-            onMouseMove={handleMouseMove}
-          >
-            {card.zhs_name || card.officialName || card.translatedName || `${card.setCode}:${card.number}`}
-          </a>
-        ))}
+  // 渲染卡牌引用列表，只显示未在文本中渲染的卡牌
+  const renderCardRefs = (cards: CardRef[], title: string) => {
+    // 过滤出未在文本中渲染的卡牌
+    const unreferencedCards = cards.filter((_, index) => !renderedRelatedCardIndices.has(index));
+    
+    // 如果没有未渲染的卡牌，不显示区域
+    if (unreferencedCards.length === 0) {
+      return null;
+    }
+    
+    return (
+      <div className="mt-4 pt-2 border-t border-[--border]">
+        <div className="text-sm font-medium mb-2">{title}</div>
+        <div className="flex flex-wrap gap-2">
+          {unreferencedCards.map((card, index) => (
+            <a
+              key={index}
+              href={getCardDetailUrl(card.setCode, card.number)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-[--primary] hover:opacity-80 transition-opacity"
+              onMouseEnter={() => handleMouseEnter(card)}
+              onMouseLeave={handleMouseLeave}
+              onMouseMove={handleMouseMove}
+            >
+              {card.zhs_name || card.officialName || card.translatedName || `${card.setCode}:${card.number}`}
+            </a>
+          ))}
+        </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   return (
     <>
