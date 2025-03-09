@@ -20,14 +20,30 @@ async function getPreviewSets(): Promise<PreviewSet[]> {
 
   const previewSets = await Promise.all(
     jsonFiles.map(async file => {
-      const filePath = path.join(previewsDir, file);
-      const content = await fs.readFile(filePath, 'utf8');
-      return JSON.parse(content) as PreviewSet;
+      try {
+        const filePath = path.join(previewsDir, file);
+        const content = await fs.readFile(filePath, 'utf8');
+        const data = JSON.parse(content);
+        
+        // 确保这是一个有效的预览集
+        if (!data.code || !data.name || !Array.isArray(data.cards)) {
+          console.warn(`跳过无效的预览集文件: ${file}`);
+          return null;
+        }
+        
+        return data as PreviewSet;
+      } catch (error) {
+        console.error(`解析预览集文件时出错: ${file}`, error);
+        return null;
+      }
     })
   );
 
+  // 过滤掉无效的预览集
+  const validPreviewSets = previewSets.filter(set => set !== null) as PreviewSet[];
+
   // 按照发售日期倒序排序，最新的系列显示在前面
-  return previewSets.sort((a, b) => {
+  return validPreviewSets.sort((a, b) => {
     const dateA = new Date(a.release_date);
     const dateB = new Date(b.release_date);
     return dateB.getTime() - dateA.getTime();
