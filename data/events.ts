@@ -13,23 +13,16 @@ export interface Event {
 }
 
 export const calendarMetadata: CalendarMetadata = {
-  lastUpdated: '2025/03/03',
-  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-march-3-2025#schedule',
+  lastUpdated: '2025/03/10',
+  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-march-10-2025#schedule',
 };
 
 const midweekMagicEvents: Event[] = [
   {
     type: 'midweek_magic',
-    title: '进入未来',
-    startTime: new Date('2025-03-04T14:00:00-08:00'),
-    endTime: new Date('2025-03-06T14:00:00-08:00'),
-    format: '炼金：乙太漂移预组',
-  },
-  {
-    type: 'midweek_magic',
     title: '慢启动',
-    startTime: new Date('2025-03-11T14:00:00-07:00'),
-    endTime: new Date('2025-03-13T14:00:00-07:00'),
+    startTime: new Date('2025-03-11T14:00:00-08:00'),
+    endTime: new Date('2025-03-13T14:00:00-08:00'),
     format: '炼金',
     description: '先手玩家第一块地须横置进场',
   },
@@ -52,13 +45,6 @@ const premierDraftEvents: Event[] = [
   },
   {
     type: 'premier_draft',
-    title: '暮悲邸：鬼屋惊魂',
-    startTime: new Date('2025-03-04T08:00:00-08:00'),
-    endTime: new Date('2025-03-09T08:00:00-08:00'),
-    format: '竞技轮抽',
-  },
-  {
-    type: 'premier_draft',
     title: '炼金：乙太飘移',
     startTime: new Date('2025-03-04T08:00:00-08:00'),
     endTime: new Date('2025-03-17T08:00:00-07:00'),
@@ -67,13 +53,6 @@ const premierDraftEvents: Event[] = [
 ];
 
 const quickDraftEvents: Event[] = [
-  {
-    type: 'quick_draft',
-    title: '乙太飘移',
-    startTime: new Date('2025-02-25T08:00:00-08:00'),
-    endTime: new Date('2025-03-06T08:00:00-08:00'),
-    format: '快速轮抽',
-  },
   {
     type: 'quick_draft',
     title: '万智牌：基石构筑',
@@ -102,7 +81,7 @@ const otherEvents: Event[] = [
     type: 'other',
     title: '竞技场直邮赛 - 暮悲邸：鬼屋惊魂',
     startTime: new Date('2025-03-07T08:00:00-08:00'),
-    endTime: new Date('2025-03-10T11:00:00-07:00'),
+    endTime: new Date('2025-03-10T11:00:00-08:00'),
     format: '轮抽',
     description: '赛制：暮悲邸：鬼屋惊魂轮抽BO1，6胜或2负出局。奖励：6胜获得2盒暮悲邸：鬼屋惊魂常规补充包。',
   },
@@ -120,7 +99,7 @@ const premierPlayEvents: Event[] = [
   {
     type: 'premier_play',
     title: '资格赛入围赛BO1',
-    startTime: new Date('2025-03-15T06:00:00-07:00'),
+    startTime: new Date('2025-03-15T06:00:00-08:00'),
     endTime: new Date('2025-03-16T03:00:00-07:00'),
     format: '标准',
     description: '单日赛事，玩家将竞争获得本月资格赛周末的参赛资格。',
