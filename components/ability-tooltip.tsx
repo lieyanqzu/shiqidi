@@ -20,7 +20,7 @@ export function AbilityTooltip({ children, abilityName }: AbilityTooltipProps) {
   const [abilityText, setAbilityText] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [showTooltip, setShowTooltip] = useState(false);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [position, setPosition] = useState({ x: 0, y: 0, arrowOffset: 0 });
   const triggerRef = useRef<HTMLSpanElement>(null);
   const tooltipRef = useRef<HTMLDivElement>(null);
 
@@ -58,7 +58,7 @@ export function AbilityTooltip({ children, abilityName }: AbilityTooltipProps) {
       const margin = 8;
 
       // 默认显示在上方
-      let x = triggerRect.left + (triggerRect.width - tooltipRect.width) / 2;
+      let x = triggerRect.left;
       let y = triggerRect.top - tooltipRect.height - margin;
 
       // 如果上方空间不够，显示在下方
@@ -67,13 +67,17 @@ export function AbilityTooltip({ children, abilityName }: AbilityTooltipProps) {
       }
 
       // 确保不超出左右边界
-      if (x < margin) {
-        x = margin;
-      } else if (x + tooltipRect.width > window.innerWidth - margin) {
+      if (x + tooltipRect.width > window.innerWidth - margin) {
         x = window.innerWidth - tooltipRect.width - margin;
       }
+      if (x < margin) {
+        x = margin;
+      }
 
-      setPosition({ x, y });
+      // 计算箭头位置
+      const arrowOffset = Math.max(16, Math.min(triggerRect.left - x + triggerRect.width / 2, tooltipRect.width - 16));
+
+      setPosition({ x, y, arrowOffset });
     }
 
     if (showTooltip) {
@@ -98,7 +102,7 @@ export function AbilityTooltip({ children, abilityName }: AbilityTooltipProps) {
     <>
       <span
         ref={triggerRef}
-        className="cursor-help border-b border-dotted border-[--muted-foreground] inline text-black dark:text-white"
+        className="cursor-help border-b border-dotted border-[--muted-foreground] inline text-black dark:text-white font-medium"
         onMouseEnter={() => setShowTooltip(true)}
         onMouseLeave={() => setShowTooltip(false)}
       >
@@ -114,12 +118,22 @@ export function AbilityTooltip({ children, abilityName }: AbilityTooltipProps) {
             pointerEvents: 'none',
           }}
         >
-          <div className="rounded-lg bg-[--card] border border-[--border] shadow-lg relative after:absolute after:w-3 after:h-3 after:rotate-45 after:bg-[--card] after:border after:border-[--border] after:top-[100%] after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2">
+          <div 
+            className="rounded-lg bg-[--card] border border-[--border] shadow-lg relative after:absolute after:w-3 after:h-3 after:rotate-45 after:bg-[--card] after:border after:border-[--border] after:top-[100%] after:-translate-y-1/2"
+            style={{
+              '--arrow-offset': `${position.arrowOffset || 0}px`
+            } as React.CSSProperties}
+          >
             <div className="relative overflow-hidden rounded-lg px-3 py-2 text-sm text-[--foreground]">
               <div className="relative">
                 <ManaText text={abilityText || ''} />
               </div>
             </div>
+            <style jsx>{`
+              div:after {
+                left: var(--arrow-offset);
+              }
+            `}</style>
           </div>
         </div>
       )}

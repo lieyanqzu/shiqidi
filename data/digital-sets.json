@@ -63,7 +63,35 @@
       "name": "鞑契龙岚录",
       "code": "TDM",
       "releaseDate": "2025-4-9",
-      "wikiUrl": "https://mtg.wiki/page/Tarkir:_Dragonstorm?utm_source=shiqidi"
+      "wikiUrl": "https://mtg.wiki/page/Tarkir:_Dragonstorm?utm_source=shiqidi",
+      "preview": {
+        "title": "冲破风暴",
+        "description": "鞑契比以往更大更狂放，其中满是电影化的行动、充满活力的部落特色，还有强力的新龙，可以成为加入你收藏的持久火力。",
+        "backgroundImage": "/image/background/TDM_sma_key_1920x1080_en.jpg",
+        "links": [
+          {
+            "name": "大学院废墟（中文）",
+            "url": "https://sbwsz.com/previews/TDM?utm_source=shiqidi"
+          },
+          {
+            "name": "官网牌图集合",
+            "url": "https://magic.wizards.com/en/products/tarkir-dragonstorm/card-image-gallery"
+          },
+          {
+            "name": "Scryfall",
+            "url": "https://scryfall.com/sets/tdm?order=spoiled&utm_source=shiqidi"
+          },
+          {
+            "name": "Untapped.gg",
+            "url": "https://mtga.untapped.gg/codex/sets/tarkir-dragonstorm?sortBy=spoilerDate&utm_source=shiqidi"
+          }
+        ]
+      }
+    },
+    {
+      "name": "炼金：龙岚录",
+      "code": "YTDM",
+      "releaseDate": "2025-4-30"
     }
   ]
 }
