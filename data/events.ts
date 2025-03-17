@@ -13,25 +13,31 @@ export interface Event {
 }
 
 export const calendarMetadata: CalendarMetadata = {
-  lastUpdated: '2025/03/10',
-  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-march-10-2025#schedule',
+  lastUpdated: '2025/03/17',
+  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-march-17-2025#schedule',
 };
 
 const midweekMagicEvents: Event[] = [
   {
     type: 'midweek_magic',
-    title: '慢启动',
-    startTime: new Date('2025-03-11T14:00:00-08:00'),
-    endTime: new Date('2025-03-13T14:00:00-08:00'),
-    format: '炼金',
-    description: '先手玩家第一块地须横置进场',
+    title: '标准倾曳',
+    startTime: new Date('2025-03-18T14:00:00-07:00'), 
+    endTime: new Date('2025-03-20T14:00:00-07:00'),
+    format: '标准',
   },
   {
     type: 'midweek_magic',
-    title: '标准倾曳',
-    startTime: new Date('2025-03-18T14:00:00-07:00'),
-    endTime: new Date('2025-03-20T14:00:00-07:00'),
-    format: '标准',
+    title: '争锋构筑挑战',
+    startTime: new Date('2025-03-25T14:00:00-07:00'),
+    endTime: new Date('2025-03-27T14:00:00-07:00'), 
+    format: '争锋',
+  },
+  {
+    type: 'midweek_magic',
+    title: '不开玩笑！乙太飘移快速轮抽',
+    startTime: new Date('2025-04-01T14:00:00-07:00'),
+    endTime: new Date('2025-04-03T14:00:00-07:00'),
+    format: '快速轮抽 - 乙太飘移',
   },
 ];
 
@@ -67,51 +73,26 @@ const quickDraftEvents: Event[] = [
     endTime: new Date('2025-03-31T08:00:00-07:00'),
     format: '快速轮抽',
   },
+  {
+    type: 'quick_draft',
+    title: '卡洛夫庄园谋杀案',
+    startTime: new Date('2025-04-01T08:00:00-07:00'),
+    endTime: new Date('2025-04-16T08:00:00-07:00'),
+    format: '快速轮抽',
+  },
 ];
 
 const otherEvents: Event[] = [
   {
     type: 'other',
-    title: '火花精灵生日派对',
-    startTime: new Date('2025-03-06T08:00:00-08:00'),
-    endTime: new Date('2025-03-07T08:00:00-08:00'),
-    format: '争锋预组',
-  },
-  {
-    type: 'other',
-    title: '竞技场直邮赛 - 暮悲邸：鬼屋惊魂',
-    startTime: new Date('2025-03-07T08:00:00-08:00'),
-    endTime: new Date('2025-03-10T11:00:00-08:00'),
-    format: '轮抽',
-    description: '赛制：暮悲邸：鬼屋惊魂轮抽BO1，6胜或2负出局。奖励：6胜获得2盒暮悲邸：鬼屋惊魂常规补充包。',
-  },
-  {
-    type: 'other',
-    title: '标准环境挑战赛',
-    startTime: new Date('2025-03-07T08:00:00-08:00'),
-    endTime: new Date('2025-03-09T08:00:00-08:00'),
-    format: '标准',
-    description: '赛制：标准构筑BO1，7胜或2负出局。奖励：7胜获得30包乙太飘移补充包。',
+    title: '奇密理快速轮抽：乙太飘移',
+    startTime: new Date('2025-03-21T08:00:00-07:00'),
+    endTime: new Date('2025-03-23T08:00:00-07:00'),
+    format: '快速轮抽',
   },
 ];
 
 const premierPlayEvents: Event[] = [
-  {
-    type: 'premier_play',
-    title: '资格赛入围赛BO1',
-    startTime: new Date('2025-03-15T06:00:00-08:00'),
-    endTime: new Date('2025-03-16T03:00:00-07:00'),
-    format: '标准',
-    description: '单日赛事，玩家将竞争获得本月资格赛周末的参赛资格。',
-  },
-  {
-    type: 'premier_play',
-    title: '额外资格赛入围赛BO1',
-    startTime: new Date('2025-03-16T05:00:00-07:00'),
-    endTime: new Date('2025-03-17T05:00:00-07:00'),
-    format: '乙太飘移现开',
-    description: '单日赛事，玩家将竞争获得本月资格赛周末的参赛资格。',
-  },
   {
     type: 'premier_play',
     title: '资格赛入围赛BO3',

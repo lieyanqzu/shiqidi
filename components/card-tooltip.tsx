@@ -282,7 +282,7 @@ const CardTooltip: FC<CardTooltipProps> = ({ card, visible, x, y, expansion, isM
                 </p>
                 <p className="flex justify-between">
                   <span className="text-gray-500">使用胜率</span>
-                  <span className="font-medium">{(card.play_rate ? (card.play_rate * 100).toFixed(1) : '-') + '%'}</span>
+                  <span className="font-medium">{(card.win_rate ? (card.win_rate * 100).toFixed(1) : '-') + '%'}</span>
                 </p>
               </div>
             </div>
