@@ -53,19 +53,33 @@ const premierDraftEvents: Event[] = [
     type: 'premier_draft',
     title: '炼金：乙太飘移',
     startTime: new Date('2025-03-04T08:00:00-08:00'),
-    endTime: new Date('2025-03-17T08:00:00-07:00'),
+    endTime: new Date('2025-03-18T08:00:00-07:00'),
+    format: '竞技轮抽',
+  },
+  {
+    type: 'premier_draft',
+    title: '卡拉德许重制版',
+    startTime: new Date('2025-03-18T08:00:00-07:00'),
+    endTime: new Date('2025-03-25T08:00:00-07:00'),
+    format: '竞技轮抽',
+  },
+  {
+    type: 'premier_draft',
+    title: '阿芒凯重制版',
+    startTime: new Date('2025-03-25T08:00:00-07:00'),
+    endTime: new Date('2025-04-01T08:00:00-07:00'),
+    format: '竞技轮抽',
+  },
+  {
+    type: 'premier_draft',
+    title: '火花之战重制版',
+    startTime: new Date('2025-04-01T08:00:00-07:00'),
+    endTime: new Date('2025-04-08T08:00:00-07:00'),
     format: '竞技轮抽',
   },
 ];
 
 const quickDraftEvents: Event[] = [
-  {
-    type: 'quick_draft',
-    title: '万智牌：基石构筑',
-    startTime: new Date('2025-03-07T08:00:00-08:00'),
-    endTime: new Date('2025-03-17T08:00:00-07:00'),
-    format: '快速轮抽',
-  },
   {
     type: 'quick_draft',
     title: '乙太飘移',
