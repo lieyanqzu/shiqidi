@@ -13,18 +13,11 @@ export interface Event {
 }
 
 export const calendarMetadata: CalendarMetadata = {
-  lastUpdated: '2025/03/17',
-  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-march-17-2025#schedule',
+  lastUpdated: '2025/03/24',
+  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-march-24-2025#schedule',
 };
 
 const midweekMagicEvents: Event[] = [
-  {
-    type: 'midweek_magic',
-    title: '标准倾曳',
-    startTime: new Date('2025-03-18T14:00:00-07:00'), 
-    endTime: new Date('2025-03-20T14:00:00-07:00'),
-    format: '标准',
-  },
   {
     type: 'midweek_magic',
     title: '争锋构筑挑战',
@@ -39,6 +32,13 @@ const midweekMagicEvents: Event[] = [
     endTime: new Date('2025-04-03T14:00:00-07:00'),
     format: '快速轮抽 - 乙太飘移',
   },
+  {
+    type: 'midweek_magic',
+    title: '投身鞑契龙岚录',
+    startTime: new Date('2025-04-08T14:00:00-07:00'),
+    endTime: new Date('2025-04-10T14:00:00-07:00'),
+    format: '鞑契龙岚录',
+  },
 ];
 
 const premierDraftEvents: Event[] = [
@@ -47,20 +47,6 @@ const premierDraftEvents: Event[] = [
     title: '乙太飘移',
     startTime: new Date('2025-02-11T08:00:00-08:00'),
     endTime: new Date('2025-04-08T08:00:00-07:00'),
-    format: '竞技轮抽',
-  },
-  {
-    type: 'premier_draft',
-    title: '炼金：乙太飘移',
-    startTime: new Date('2025-03-04T08:00:00-08:00'),
-    endTime: new Date('2025-03-18T08:00:00-07:00'),
-    format: '竞技轮抽',
-  },
-  {
-    type: 'premier_draft',
-    title: '卡拉德许重制版',
-    startTime: new Date('2025-03-18T08:00:00-07:00'),
-    endTime: new Date('2025-03-25T08:00:00-07:00'),
     format: '竞技轮抽',
   },
   {
@@ -94,15 +80,37 @@ const quickDraftEvents: Event[] = [
     endTime: new Date('2025-04-16T08:00:00-07:00'),
     format: '快速轮抽',
   },
+  {
+    type: 'quick_draft',
+    title: '鞑契龙岚录',
+    startTime: new Date('2025-04-16T08:00:00-07:00'),
+    endTime: new Date('2025-04-26T08:00:00-07:00'),
+    format: '快速轮抽',
+  },
 ];
 
 const otherEvents: Event[] = [
   {
     type: 'other',
-    title: '奇密理快速轮抽：乙太飘移',
-    startTime: new Date('2025-03-21T08:00:00-07:00'),
-    endTime: new Date('2025-03-23T08:00:00-07:00'),
-    format: '快速轮抽',
+    title: '万智牌：竞技场幻影方盒轮抽',
+    startTime: new Date('2025-03-25T08:00:00-07:00'),
+    endTime: new Date('2025-04-08T08:00:00-07:00'),
+    format: '方盒轮抽',
+  },
+  {
+    type: 'other',
+    title: '竞技场直邮赛 - 乙太漂移',
+    startTime: new Date('2025-03-28T08:00:00-07:00'),
+    endTime: new Date('2025-03-31T08:00:00-07:00'),
+    format: '乙太漂移现开',
+    description: '6胜获得两盒乙太漂移常规补充包'
+  },
+  {
+    type: 'other',
+    title: '永恒环境挑战赛',
+    startTime: new Date('2025-03-28T08:00:00-07:00'),
+    endTime: new Date('2025-03-31T08:00:00-07:00'),
+    format: '永恒',
   },
 ];
 
@@ -127,7 +135,15 @@ const premierPlayEvents: Event[] = [
 
 const arenaOpenEvents: Event[] = [];
 
-const arenaChampionshipEvents: Event[] = [];
+const arenaChampionshipEvents: Event[] = [
+  {
+    type: 'arena_championship',
+    title: '竞技场冠军赛8',
+    startTime: new Date('2025-03-29T09:00:00-07:00'),
+    endTime: new Date('2025-03-30T23:00:00-07:00'),
+    format: '探险',
+  },
+];
 
 export const events: Event[] = [
   ...midweekMagicEvents,
