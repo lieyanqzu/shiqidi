@@ -14,6 +14,14 @@ export interface PreviewCard {
   spellbook?: string[];
   related?: string[];
   pow_tough?: string;
+  name2?: string;
+  zhs_name2?: string;
+  mana_cost2?: string;
+  type2?: string;
+  zhs_type2?: string;
+  text2?: string;
+  zhs_text2?: string;
+  backface?: PreviewCard;
 }
 
 export interface PreviewSet {
