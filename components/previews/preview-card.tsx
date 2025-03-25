@@ -27,6 +27,7 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [hoveredCard, setHoveredCard] = useState<CardRef | null>(null);
   const [renderedRelatedCardIndices, setRenderedRelatedCardIndices] = useState<Set<number>>(new Set());
+  const [showBackface, setShowBackface] = useState(false);
 
   // 获取卡牌中文名的通用函数
   const fetchCardNames = async (cardRefs: string[]) => {
@@ -276,6 +277,9 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
     );
   };
 
+  // 获取当前显示的卡牌数据
+  const currentCard = showBackface && card.backface ? card.backface : card;
+
   return (
     <>
       <div className="bg-[--card] rounded-lg overflow-hidden border border-[--border] flex flex-col md:flex-row">
@@ -285,12 +289,26 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
             onClick={() => setIsImageExpanded(true)}
           >
             <Image
-              src={isEnglish ? card.image_url_en : card.image_url_zh}
-              alt={isEnglish ? card.name : card.zhs_name}
+              src={isEnglish ? currentCard.image_url_en : currentCard.image_url_zh}
+              alt={isEnglish ? currentCard.name : currentCard.zhs_name}
               fill
               className="object-cover"
               unoptimized
             />
+            {card.backface && (
+              <button
+                className="absolute bottom-2 left-1/2 -translate-x-1/2 w-10 h-10 bg-black/60 text-white rounded-full flex items-center justify-center hover:bg-black/80 transition-colors"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setShowBackface(!showBackface);
+                }}
+              >
+                <svg className="w-6 h-6" focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+                  <path fill="currentColor" d="M884.3,357.6c116.8,117.7,151.7,277-362.2,320V496.4L243.2,763.8L522,1031.3V860.8C828.8,839.4,1244.9,604.5,884.3,357.6z" />
+                  <path fill="currentColor" d="M557.8,288.2v138.4l230.8-213.4L557.8,0v142.8c-309.2,15.6-792.1,253.6-426.5,503.8C13.6,527.9,30,330.1,557.8,288.2z" />
+                </svg>
+              </button>
+            )}
           </div>
         </div>
         
@@ -306,77 +324,133 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
             >
               <div className="relative" style={{ width: 'min(85vw, 85vh * 488/680)', height: 'min(85vh, 85vw * 680/488)' }}>
                 <Image
-                  src={isEnglish ? card.image_url_en : card.image_url_zh}
-                  alt={isEnglish ? card.name : card.zhs_name}
+                  src={isEnglish ? currentCard.image_url_en : currentCard.image_url_zh}
+                  alt={isEnglish ? currentCard.name : currentCard.zhs_name}
                   fill
                   className="object-contain"
                   unoptimized
                   sizes="85vw"
                 />
               </div>
-              <button
-                className="absolute top-2 right-2 w-8 h-8 bg-black/60 text-white rounded-full flex items-center justify-center hover:bg-black/80"
-                onClick={() => setIsImageExpanded(false)}
-              >
-                ✕
-              </button>
+              <div className="absolute top-2 right-2 flex gap-2">
+                {card.backface && (
+                  <button
+                    className="w-10 h-10 bg-black/60 text-white rounded-full flex items-center justify-center hover:bg-black/80 transition-colors"
+                    onClick={() => setShowBackface(!showBackface)}
+                  >
+                    <svg className="w-6 h-6" focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+                      <path fill="currentColor" d="M884.3,357.6c116.8,117.7,151.7,277-362.2,320V496.4L243.2,763.8L522,1031.3V860.8C828.8,839.4,1244.9,604.5,884.3,357.6z" />
+                      <path fill="currentColor" d="M557.8,288.2v138.4l230.8-213.4L557.8,0v142.8c-309.2,15.6-792.1,253.6-426.5,503.8C13.6,527.9,30,330.1,557.8,288.2z" />
+                    </svg>
+                  </button>
+                )}
+                <button
+                  className="w-8 h-8 bg-black/60 text-white rounded-full flex items-center justify-center hover:bg-black/80"
+                  onClick={() => setIsImageExpanded(false)}
+                >
+                  ✕
+                </button>
+              </div>
             </div>
           </div>
         )}
 
         <div className="p-4 flex-1 flex flex-col min-w-0">
-          <div className="flex items-start gap-4">
-            <div className="flex items-center gap-1.5 min-w-0 flex-1">
-              <div className="font-medium break-words leading-none pt-0.5">
-                {card.zhs_name === card.name ? (
-                  <h3>{card.name}</h3>
-                ) : isEnglish ? (
-                  <>
-                    <h3>{card.name}</h3>
-                    <div className="text-xs font-light text-[--muted-foreground] mt-1">{card.zhs_name}</div>
-                  </>
-                ) : (
-                  <>
-                    <h3>{card.zhs_name}</h3>
-                    <div className="text-xs font-light text-[--muted-foreground] mt-1">{card.name}</div>
-                  </>
-                )}
+          {/* 卡牌内容 */}
+          <div>
+            <div className="flex items-start gap-4">
+              <div className="flex items-center gap-1.5 min-w-0 flex-1">
+                <div className="font-medium break-words leading-none pt-0.5">
+                  {currentCard.zhs_name === currentCard.name ? (
+                    <h3>{currentCard.name}</h3>
+                  ) : isEnglish ? (
+                    <>
+                      <h3>{currentCard.name}</h3>
+                      <div className="text-xs font-light text-[--muted-foreground] mt-1">{currentCard.zhs_name}</div>
+                    </>
+                  ) : (
+                    <>
+                      <h3>{currentCard.zhs_name}</h3>
+                      <div className="text-xs font-light text-[--muted-foreground] mt-1">{currentCard.name}</div>
+                    </>
+                  )}
+                </div>
+              </div>
+              <div className="flex-shrink-0">
+                <ManaText text={currentCard.mana_cost} />
               </div>
             </div>
-            <div className="flex-shrink-0">
-              <ManaText text={card.mana_cost} />
+
+            <div className="mt-1 divide-y divide-[--border]">
+              <div className="text-sm flex items-center justify-between">
+                <ManaText text={isEnglish ? currentCard.type : currentCard.zhs_type} />
+                <i className={`ss ${getRarityIcon(currentCard.rarity)} ss-fw ss-3x ss-${logoCode}`} />
+              </div>
+              <div className="text-sm whitespace-pre-wrap pt-1 leading-normal">
+                {renderText(isEnglish ? currentCard.text : currentCard.zhs_text)}
+              </div>
             </div>
           </div>
 
-          <div className="mt-1 flex-1 divide-y divide-[--border]">
-            <div className="text-sm flex items-center justify-between">
-              <ManaText text={isEnglish ? card.type : card.zhs_type} />
-              <i className={`ss ${getRarityIcon(card.rarity)} ss-fw ss-3x ss-${logoCode}`} />
-            </div>
-            <div className="text-sm whitespace-pre-wrap pt-1 leading-normal">
-              {renderText(isEnglish ? card.text : card.zhs_text)}
-            </div>
-          </div>
+          {/* 卡牌第二部分 */}
+          {currentCard.name2 && (
+            <div className="mt-2 pt-2 border-t-2 border-[--border]">
+              <div className="flex items-start gap-4">
+                <div className="flex items-center gap-1.5 min-w-0 flex-1">
+                  <div className="font-medium break-words leading-none pt-0.5">
+                    {currentCard.zhs_name2 === currentCard.name2 ? (
+                      <h3>{currentCard.name2}</h3>
+                    ) : isEnglish ? (
+                      <>
+                        <h3>{currentCard.name2}</h3>
+                        <div className="text-xs font-light text-[--muted-foreground] mt-1">{currentCard.zhs_name2}</div>
+                      </>
+                    ) : (
+                      <>
+                        <h3>{currentCard.zhs_name2}</h3>
+                        <div className="text-xs font-light text-[--muted-foreground] mt-1">{currentCard.name2}</div>
+                      </>
+                    )}
+                  </div>
+                </div>
+                <div className="flex-shrink-0">
+                  <ManaText text={currentCard.mana_cost2 || ''} />
+                </div>
+              </div>
 
-          {card.spellbook && card.spellbook.length > 0 && renderCardRefs(spellbookCards, '法术书')}
-          {card.spellbook && card.spellbook.length === 0 && (
-            <div className="mt-4 pt-2 border-t border-[--border]">
-              <div className="text-sm font-medium mb-2">法术书</div>
-              <div className="text-sm text-[--muted-foreground]">暂未公布</div>
+              <div className="mt-1 divide-y divide-[--border]">
+                <div className="text-sm flex items-center justify-between">
+                  <ManaText text={isEnglish ? (currentCard.type2 || '') : (currentCard.zhs_type2 || '')} />
+                  <i className={`ss ss-fw ss-3x ss-${logoCode} invisible`} />
+                </div>
+                <div className="text-sm whitespace-pre-wrap pt-1 leading-normal">
+                  {renderText(isEnglish ? (currentCard.text2 || '') : (currentCard.zhs_text2 || ''))}
+                </div>
+              </div>
             </div>
           )}
-          {card.related && card.related.length > 0 && renderCardRefs(relatedCards, '相关卡牌')}
 
-          <div className="flex items-center justify-between gap-1 mt-4 pt-2 border-t border-[--border]">
-            <div className="text-xs text-[--muted-foreground] flex items-center gap-1">
-              <i className="ms ms-artist-nib ms-fw" />
-              <span>{card.artist}</span>
-            </div>
-            {card.pow_tough && (
-              <div className="text-sm font-medium">
-                {card.pow_tough}
+          <div className="mt-auto">
+            {currentCard.spellbook && currentCard.spellbook.length > 0 && renderCardRefs(spellbookCards, '法术书')}
+            {currentCard.spellbook && currentCard.spellbook.length === 0 && (
+              <div className="mt-4 pt-2 border-t border-[--border]">
+                <div className="text-sm font-medium mb-2">法术书</div>
+                <div className="text-sm text-[--muted-foreground]">暂未公布</div>
               </div>
             )}
+            {currentCard.related && currentCard.related.length > 0 && renderCardRefs(relatedCards, '相关卡牌')}
+
+            <div className="flex items-center justify-between gap-1 mt-4 pt-2 border-t border-[--border]">
+              <div className="text-xs text-[--muted-foreground] flex items-center gap-1">
+                <i className="ms ms-artist-nib ms-fw" />
+                <span>{currentCard.artist}</span>
+              </div>
+              {currentCard.pow_tough && (
+                <div className="text-sm font-medium">
+                  {currentCard.pow_tough}
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
