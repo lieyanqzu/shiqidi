@@ -70,7 +70,7 @@ const quickDraftEvents: Event[] = [
     type: 'quick_draft',
     title: '乙太飘移',
     startTime: new Date('2025-03-18T08:00:00-07:00'),
-    endTime: new Date('2025-04-7T08:00:00-07:00'),
+    endTime: new Date('2025-04-07T08:00:00-07:00'),
     format: '快速轮抽',
   },
   {
