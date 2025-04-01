@@ -68,13 +68,6 @@ const premierDraftEvents: Event[] = [
 const quickDraftEvents: Event[] = [
   {
     type: 'quick_draft',
-    title: '乙太飘移',
-    startTime: new Date('2025-03-18T08:00:00-07:00'),
-    endTime: new Date('2025-04-07T08:00:00-07:00'),
-    format: '快速轮抽',
-  },
-  {
-    type: 'quick_draft',
     title: '卡洛夫庄园谋杀案',
     startTime: new Date('2025-04-01T08:00:00-07:00'),
     endTime: new Date('2025-04-17T08:00:00-07:00'),
@@ -110,6 +103,7 @@ const otherEvents: Event[] = [
     startTime: new Date('2025-04-08T08:00:00-07:00'),
     endTime: new Date('2025-05-01T08:00:00-07:00'),
     format: '现开',
+    description: '除常规现开赛外，额外有五个部族主题现开赛',
   }
 ];
 
