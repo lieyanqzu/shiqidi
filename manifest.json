@@ -1,0 +1,98 @@
+{
+  "name": "十七地 - MTGA小助手",
+  "short_name": "十七地",
+  "description": "你的万智牌：竞技场小助手，提供轮抽数据查询、MTGA活动日历、精研通行证计算器等功能",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f6f4f1",
+  "theme_color": "#f6f4f1",
+  "categories": ["games", "utilities"],
+  "lang": "zh-CN",
+  "orientation": "any",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshots/home.png",
+      "sizes": "1920x1080",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "主页"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "卡牌数据",
+      "url": "/cards",
+      "description": "查看各系列轮抽中卡牌的表现数据"
+    },
+    {
+      "name": "赛制速度",
+      "url": "/speed",
+      "description": "了解各个系列限制赛的速度和先手胜率"
+    },
+    {
+      "name": "活动日历",
+      "url": "/calendar",
+      "description": "查看MTGA活动日程"
+    },
+    {
+      "name": "标准轮替",
+      "url": "/rotation",
+      "description": "了解标准赛制的系列轮替时间表"
+    },
+    {
+      "name": "服务状态",
+      "url": "/status",
+      "description": "查看MTGA的服务器状态"
+    },
+    {
+      "name": "汉化MOD",
+      "url": "/mod",
+      "description": "下载并安装MTGA游戏界面汉化MOD"
+    },
+    {
+      "name": "Scryfall汉化",
+      "url": "/script",
+      "description": "为Scryfall卡牌数据库添加中文翻译支持"
+    },
+    {
+      "name": "抽卡概率",
+      "url": "/hypergeometric",
+      "description": "计算万智牌抽卡概率"
+    },
+    {
+      "name": "精研通行证",
+      "url": "/mastery",
+      "description": "计算精研通行证等级进度"
+    },
+    {
+      "name": "开包模拟",
+      "url": "/simulator",
+      "description": "模拟开启补充包"
+    },
+    {
+      "name": "炼金系列预览",
+      "url": "/previews",
+      "description": "炼金系列卡牌中文预览"
+    }
+  ]
+} 
