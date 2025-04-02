@@ -1,0 +1,50 @@
+name: Build Next.js Static Site
+
+on:
+  push:
+    branches: [ master ]
+
+# 添加权限设置
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: '8'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Run prebuild script
+        run: pnpm prebuild
+
+      - name: Build
+        run: pnpm build
+        env:
+          NEXT_TELEMETRY_DISABLED: 1
+          LEANCLOUD_APP_ID: ${{ secrets.LEANCLOUD_APP_ID }}
+          LEANCLOUD_APP_KEY: ${{ secrets.LEANCLOUD_APP_KEY }}
+          LEANCLOUD_SERVER_URL: ${{ secrets.LEANCLOUD_SERVER_URL }}
+          ICP_NUMBER: ${{ secrets.ICP_NUMBER }}
+
+      - name: Deploy to out branch
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: out
+          branch: out
+          clean: true
+          token: ${{ secrets.GITHUB_TOKEN }} # 使用GitHub自动提供的令牌 
