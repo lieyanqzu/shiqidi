@@ -13,42 +13,29 @@ export interface Event {
 }
 
 export const calendarMetadata: CalendarMetadata = {
-  lastUpdated: '2025/03/31',
-  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-march-31-2025#schedule',
+  lastUpdated: '2025/04/07',
+  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-april-7-2025#schedule',
 };
 
 const midweekMagicEvents: Event[] = [
   {
     type: 'midweek_magic',
-    title: '不开玩笑！乙太飘移快速轮抽',
-    startTime: new Date('2025-04-01T14:00:00-07:00'),
-    endTime: new Date('2025-04-03T14:00:00-07:00'),
-    format: '快速轮抽 - 乙太飘移',
-  },
-  {
-    type: 'midweek_magic',
     title: '投身鞑契龙岚录',
     startTime: new Date('2025-04-08T14:00:00-07:00'),
     endTime: new Date('2025-04-10T14:00:00-07:00'),
-    format: '鞑契龙岚录',
+    format: '鞑契龙岚录预组',
+  },
+  {
+    type: 'midweek_magic',
+    title: '慢热启动',
+    startTime: new Date('2025-04-15T14:00:00-07:00'),
+    endTime: new Date('2025-04-17T14:00:00-07:00'),
+    format: '标准',
+    description: '先手玩家的第一块地须横置进场',
   },
 ];
 
 const premierDraftEvents: Event[] = [
-  {
-    type: 'premier_draft',
-    title: '乙太飘移',
-    startTime: new Date('2025-02-11T08:00:00-08:00'),
-    endTime: new Date('2025-04-08T08:00:00-07:00'),
-    format: '竞技轮抽',
-  },
-  {
-    type: 'premier_draft',
-    title: '火花之战重制版',
-    startTime: new Date('2025-04-01T08:00:00-07:00'),
-    endTime: new Date('2025-04-08T08:00:00-07:00'),
-    format: '竞技轮抽',
-  },
   {
     type: 'premier_draft',
     title: '鞑契龙岚录',
@@ -90,13 +77,6 @@ const quickDraftEvents: Event[] = [
 ];
 
 const otherEvents: Event[] = [
-  {
-    type: 'other',
-    title: '万智牌：竞技场幻影方盒轮抽',
-    startTime: new Date('2025-03-25T08:00:00-07:00'),
-    endTime: new Date('2025-04-08T08:00:00-07:00'),
-    format: '方盒轮抽',
-  },
   {
     type: 'other',
     title: '鞑契龙岚录现开赛',
