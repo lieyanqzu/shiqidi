@@ -3,6 +3,8 @@ name: Build Next.js Static Site
 on:
   push:
     branches: [ master ]
+  schedule:
+    - cron: '0 1 * * *'
 
 # 添加权限设置
 permissions:
