@@ -91,8 +91,7 @@ const otherEvents: Event[] = [
     title: '标准环境挑战赛',
     startTime: new Date('2025-04-18T08:00:00-07:00'),
     endTime: new Date('2025-04-20T08:00:00-07:00'),
-    format: '标准',
-    description: '除常规现开赛外，额外有五个部族主题现开赛',
+    format: '标准'
   },
   {
     type: 'other',
