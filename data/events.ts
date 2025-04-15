@@ -34,6 +34,13 @@ const midweekMagicEvents: Event[] = [
     format: '标准',
     description: '只能使用暮悲邸：鬼屋惊魂、乙太飘移和鞑契龙岚录中的牌',
   },
+  {
+    type: 'midweek_magic',
+    title: '步入未来',
+    startTime: new Date('2025-04-29T14:00:00-07:00'),
+    endTime: new Date('2025-05-01T14:00:00-07:00'),
+    format: '炼金预组'
+  },
 ];
 
 const premierDraftEvents: Event[] = [
@@ -73,6 +80,13 @@ const quickDraftEvents: Event[] = [
     title: '暮悲邸：鬼屋惊魂',
     startTime: new Date('2025-04-27T08:00:00-07:00'),
     endTime: new Date('2025-05-08T08:00:00-07:00'),
+    format: '快速轮抽',
+  },
+  {
+    type: 'quick_draft',
+    title: '鞑契龙岚录',
+    startTime: new Date('2025-05-08T08:00:00-07:00'),
+    endTime: new Date('2025-05-20T08:00:00-07:00'),
     format: '快速轮抽',
   },
 ];
