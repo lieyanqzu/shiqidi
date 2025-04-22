@@ -91,7 +91,28 @@
     {
       "name": "炼金：鞑契",
       "code": "YTDM",
-      "releaseDate": "2025-4-30"
+      "releaseDate": "2025-4-30",
+      "wikiUrl": "https://mtg.wiki/page/Alchemy:_Tarkir?utm_source=shiqidi",
+      "preview": {
+        "title": "炼金预览",
+        "description": "最新炼金系列将于2025年4月30日上线万智牌：竞技场，即日起开始预览。",
+        "links": [
+          {
+            "name": "十七地（中文）",
+            "url": "/previews/ytdm"
+          },
+          {
+            "name": "Scryfall",
+            "url": "https://scryfall.com/sets/ytdm?order=spoiled&utm_source=shiqidi"
+          }
+        ]
+      }
+    },
+    {
+      "name": "万智牌～最终幻想",
+      "code": "FIN",
+      "releaseDate": "2025-6-11",
+      "wikiUrl": "https://mtg.wiki/page/Final_Fantasy?utm_source=shiqidi"
     }
   ]
 }
