@@ -1,0 +1,25 @@
+{
+  "code": "YTDM",
+  "name": "炼金：鞑契",
+  "total_cards": 30,
+  "logo_code": "y25",
+  "release_date": "2025-04-30",
+  "description": "炼金：鞑契共30张卡牌，将于2025年4月30日上线万智牌：竞技场。感谢轻脚翻译并制作中文卡图。",
+  "cards": [
+    {
+      "id": "ytdm-1",
+      "name": "Hamza, Might of the Yathan",
+      "zhs_name": "雅善会雄威哈姆札",
+      "mana_cost": "{2}{W}{B}{G}",
+      "type": "Legendary Creature — Elephant Warrior",
+      "zhs_type": "传奇生物～象／战士",
+      "text": "Whenever a creature you control is turned face up, it `endures` X, where X is that creature's toughness.\nLandfall — Whenever a land you control enters, `seek` a creature card and `manifest` it.",
+      "zhs_text": "每当一个由你操控的生物翻回正面时，它`续战`X，X为该生物的防御力。\n地落～每当一个由你操控的地进场时，`取出`一张生物牌并`显化`它。",
+      "artist": "Svetlin Velinov",
+      "image_url_en": "https://media.wizards.com/2025/y25-tdm/en_o2oFnl2V6auJ.webp",
+      "image_url_zh": "/image/alchemy/ytdm/雅善会雄威哈姆札.png",
+      "rarity": "mythic",
+      "pow_tough": "5/6"
+    }
+  ]
+}

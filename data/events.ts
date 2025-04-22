@@ -13,26 +13,18 @@ export interface Event {
 }
 
 export const calendarMetadata: CalendarMetadata = {
-  lastUpdated: '2025/04/14',
-  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-april-14-2025#schedule',
+  lastUpdated: '2025/04/21',
+  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-april-21-2025#schedule',
 };
 
 const midweekMagicEvents: Event[] = [
   {
     type: 'midweek_magic',
-    title: '慢热启动',
-    startTime: new Date('2025-04-15T14:00:00-07:00'),
-    endTime: new Date('2025-04-17T14:00:00-07:00'),
-    format: '炼金',
-    description: '先手玩家的第一块地须横置进场',
-  },
-  {
-    type: 'midweek_magic',
-    title: '剑走偏锋',
+    title: '剑走偏锋 - 万智牌：基石构筑',
     startTime: new Date('2025-04-22T14:00:00-07:00'),
     endTime: new Date('2025-04-24T14:00:00-07:00'),
     format: '标准',
-    description: '只能使用暮悲邸：鬼屋惊魂、乙太飘移和鞑契龙岚录中的牌',
+    description: '只能使用万智牌：基石构筑、暮悲邸：鬼屋惊魂、乙太飘移和鞑契龙岚录中的牌',
   },
   {
     type: 'midweek_magic',
@@ -40,6 +32,20 @@ const midweekMagicEvents: Event[] = [
     startTime: new Date('2025-04-29T14:00:00-07:00'),
     endTime: new Date('2025-05-01T14:00:00-07:00'),
     format: '炼金预组'
+  },
+  {
+    type: 'midweek_magic',
+    title: '史迹全铁',
+    startTime: new Date('2025-05-06T14:00:00-07:00'),
+    endTime: new Date('2025-05-08T14:00:00-07:00'),
+    format: '史迹'
+  },
+  {
+    type: 'midweek_magic',
+    title: '争锋构筑挑战赛',
+    startTime: new Date('2025-05-13T14:00:00-07:00'),
+    endTime: new Date('2025-05-15T14:00:00-07:00'),
+    format: '争锋'
   },
 ];
 
@@ -61,13 +67,6 @@ const premierDraftEvents: Event[] = [
 ];
 
 const quickDraftEvents: Event[] = [
-  {
-    type: 'quick_draft',
-    title: '卡洛夫庄园谋杀案',
-    startTime: new Date('2025-04-01T08:00:00-07:00'),
-    endTime: new Date('2025-04-17T08:00:00-07:00'),
-    format: '快速轮抽',
-  },
   {
     type: 'quick_draft',
     title: '鞑契龙岚录',
@@ -102,18 +101,11 @@ const otherEvents: Event[] = [
   },
   {
     type: 'other',
-    title: '标准环境挑战赛',
-    startTime: new Date('2025-04-18T08:00:00-07:00'),
-    endTime: new Date('2025-04-20T08:00:00-07:00'),
-    format: '标准'
-  },
-  {
-    type: 'other',
     title: '竞技场直邮赛 - 鞑契龙岚录',
-    startTime: new Date('2025-04-18T08:00:00-07:00'),
-    endTime: new Date('2025-04-20T08:00:00-07:00'),
+    startTime: new Date('2025-05-02T08:00:00-07:00'),
+    endTime: new Date('2025-05-05T08:00:00-07:00'),
     format: '现开',
-    description: '6胜获得1盒鞑契龙岚录聚珍补充包。',
+    description: '门票改为 6,000 宝石，增加宝石奖励。六胜：一盒常规补充包，七胜：两盒常规补充包。'
   }
 ];
 
