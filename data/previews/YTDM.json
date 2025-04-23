@@ -20,6 +20,36 @@
       "image_url_zh": "/image/alchemy/ytdm/雅善会雄威哈姆札.png",
       "rarity": "mythic",
       "pow_tough": "5/6"
+    },
+    {
+      "id": "ytdm-2",
+      "name": "Dragonblood Twins",
+      "zhs_name": "龙血双子",
+      "mana_cost": "{1}{R}",
+      "type": "Creature — Human Monk",
+      "zhs_type": "生物～人类／修行僧",
+      "text": "`Double team`\nFlurry — Whenever you cast your second spell each turn, until end of turn, this creature has base power and toughness 4/4 and gains `flying`.",
+      "zhs_text": "`双打`\n连咒～每当你施放每回合中你的第二个咒语时，直到回合结束，此生物的基础力量与防御力为4/4且获得`飞行`异能。",
+      "artist": "Bram Sels",
+      "image_url_en": "https://gladiatormtga.com/assets/cards/ytdm/Y25-DragonbloodTwins-DA.png",
+      "image_url_zh": "https://gladiatormtga.com/assets/cards/ytdm/Y25-DragonbloodTwins-DA.png",
+      "rarity": "uncommon",
+      "pow_tough": "2/2"
+    },
+    {
+      "id": "ytdm-3",
+      "name": "Thunderbond Vanguard",
+      "zhs_name": "霆绊先锋",
+      "mana_cost": "{2}{W}",
+      "type": "Creature — Human Warrior",
+      "zhs_type": "生物～人类／战士",
+      "text": "Thunderbond Vanguard's power and toughness are each equal to the number of creatures you control.\nEach creature token you control enters as a copy of this creature.",
+      "zhs_text": "霆绊先锋的力量和防御力各等同于由你操控的生物数量。\n每个由你操控的衍生生物均当成此生物的复制品来进场。",
+      "artist": "Carlos Palma Cruchaga",
+      "image_url_en": "https://gladiatormtga.com/assets/cards/ytdm/Y25-ThunderbondVanguard-DA.png",
+      "image_url_zh": "https://gladiatormtga.com/assets/cards/ytdm/Y25-ThunderbondVanguard-DA.png",
+      "rarity": "rare",
+      "pow_tough": "*/*"
     }
   ]
 }
