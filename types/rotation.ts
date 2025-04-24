@@ -7,6 +7,9 @@ export interface Set {
   block: string | null;
   rough_enter_date: string | null;
   rough_exit_date: string | null;
+  digital_name?: string | null;
+  digital_code?: string | null;
+  universes_beyond?: boolean;
 }
 
 export interface Ban {

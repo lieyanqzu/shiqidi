@@ -99,6 +99,20 @@ export function Content({ currentSetGroups, futureSets, recentBans }: Props) {
         <p className="text-sm text-[--muted-foreground] leading-relaxed">
           标准赛制中，最近三年内发行的正式系列都可以使用。2027年起，每年新系列发售时，超过三年的系列将会轮替出标准赛制。
         </p>
+        <div className="mt-3 pt-3 border-t border-[--border]">
+          <div className="mb-2 text-sm text-[--muted-foreground]">
+            <span className="inline-flex items-center rounded-md bg-purple-400/10 px-2 py-1 text-xs font-medium text-purple-500 ring-1 ring-inset ring-purple-400/20 whitespace-nowrap mr-2">
+              无疆新宇宙
+            </span>
+            与其他IP跨界联动的系列，如魔戒：中洲传说™、最终幻想™等，引入了万智牌以外的世界观和角色。
+          </div>
+          <div className="text-sm text-[--muted-foreground]">
+            <span className="inline-flex items-center rounded-md bg-emerald-400/10 px-2 py-1 text-xs font-medium text-emerald-500 ring-1 ring-inset ring-emerald-400/20 whitespace-nowrap mr-2">
+              穿越预兆路
+            </span>
+            部分联动IP无法上线数字平台，故而在数字平台上以万智牌世界观重新设计，但保持相同的游戏机制。
+          </div>
+        </div>
       </div>
 
       {/* 当前标准系列 */}
@@ -187,6 +201,11 @@ export function Content({ currentSetGroups, futureSets, recentBans }: Props) {
                                   <i className={`ss ss-${set.code.toLowerCase()} ss-fw`} />
                                 )}
                                 <span>{set.code}</span>
+                                {set.universes_beyond && (
+                                  <span className="ml-2 inline-flex items-center rounded-md bg-purple-400/10 px-2 py-1 text-xs font-medium text-purple-500 ring-1 ring-inset ring-purple-400/20 whitespace-nowrap">
+                                    无疆新宇宙
+                                  </span>
+                                )}
                               </div>
                             </div>
                             <div className="text-right">
@@ -195,6 +214,47 @@ export function Content({ currentSetGroups, futureSets, recentBans }: Props) {
                               </div>
                             </div>
                           </div>
+                          
+                          {set.digital_name && set.digital_code && (
+                            <div className="mt-3 pt-3 border-t border-[--border] relative">
+                              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[--card] px-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" className="text-[--muted-foreground]">
+                                  <path d="M10,17.55,8.23,19.27a2.47,2.47,0,0,1-3.5-3.5l4.54-4.55a2.46,2.46,0,0,1,3.39-.09l.12.1a1,1,0,0,0,1.4-1.43A2.75,2.75,0,0,0,14,9.59a4.46,4.46,0,0,0-6.09.22L3.31,14.36a4.48,4.48,0,0,0,6.33,6.33L11.37,19A1,1,0,0,0,10,17.55ZM20.69,3.31a4.49,4.49,0,0,0-6.33,0L12.63,5A1,1,0,0,0,14,6.45l1.73-1.72a2.47,2.47,0,0,1,3.5,3.5l-4.54,4.55a2.46,2.46,0,0,1-3.39.09l-.12-.1a1,1,0,0,0-1.4,1.43,2.75,2.75,0,0,0,.23.21,4.47,4.47,0,0,0,6.09-.22l4.55-4.55A4.49,4.49,0,0,0,20.69,3.31Z" />
+                                </svg>
+                              </div>
+                              <div className="flex items-start justify-between gap-4">
+                                <div>
+                                  <div className="flex items-center gap-2">
+                                    <h4 className="font-medium text-[--foreground] flex items-center gap-1">
+                                      <a
+                                        href={`https://www.sbwsz.com/set/${set.digital_code}?utm_source=shiqidi`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-[--foreground] hover:opacity-70 transition-opacity"
+                                      >
+                                        {set.digital_code && chineseSetNames[set.digital_code] 
+                                          ? chineseSetNames[set.digital_code] 
+                                          : set.digital_name}
+                                      </a>
+                                      <ExternalLinkIcon className="opacity-0 group-hover:opacity-50 transition-opacity" />
+                                    </h4>
+                                  </div>
+                                  <div className="text-sm text-[--muted-foreground] mt-1 flex items-center gap-1.5">
+                                    <i className={`ss ss-${set.digital_code.toLowerCase()} ss-fw`} />
+                                    <span>{set.digital_code}</span>
+                                    <span className="ml-2 inline-flex items-center rounded-md bg-emerald-400/10 px-2 py-1 text-xs font-medium text-emerald-500 ring-1 ring-inset ring-emerald-400/20 whitespace-nowrap">
+                                      穿越预兆路
+                                    </span>
+                                  </div>
+                                </div>
+                                <div className="text-right">
+                                  <div className="text-sm text-[--muted-foreground]">
+                                    数字平台同期发售
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          )}
                         </div>
                       </div>
                     ))}
@@ -238,6 +298,11 @@ export function Content({ currentSetGroups, futureSets, recentBans }: Props) {
                           <div className="text-sm text-[--muted-foreground] mt-1 flex items-center gap-1.5">
                             <i className={`ss ss-${set.code.toLowerCase()} ss-fw`} />
                             <span>{set.code}</span>
+                            {set.universes_beyond && (
+                              <span className="ml-2 inline-flex items-center rounded-md bg-purple-400/10 px-2 py-1 text-xs font-medium text-purple-500 ring-1 ring-inset ring-purple-400/20 whitespace-nowrap">
+                                无疆新宇宙
+                              </span>
+                            )}
                           </div>
                         )}
                       </div>
@@ -250,6 +315,47 @@ export function Content({ currentSetGroups, futureSets, recentBans }: Props) {
                         </div>
                       </div>
                     </div>
+                    
+                    {set.digital_name && set.digital_code && (
+                      <div className="mt-3 pt-3 border-t border-[--border] relative">
+                        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[--card] px-2">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" className="text-[--muted-foreground]">
+                            <path d="M10,17.55,8.23,19.27a2.47,2.47,0,0,1-3.5-3.5l4.54-4.55a2.46,2.46,0,0,1,3.39-.09l.12.1a1,1,0,0,0,1.4-1.43A2.75,2.75,0,0,0,14,9.59a4.46,4.46,0,0,0-6.09.22L3.31,14.36a4.48,4.48,0,0,0,6.33,6.33L11.37,19A1,1,0,0,0,10,17.55ZM20.69,3.31a4.49,4.49,0,0,0-6.33,0L12.63,5A1,1,0,0,0,14,6.45l1.73-1.72a2.47,2.47,0,0,1,3.5,3.5l-4.54,4.55a2.46,2.46,0,0,1-3.39.09l-.12-.1a1,1,0,0,0-1.4,1.43,2.75,2.75,0,0,0,.23.21,4.47,4.47,0,0,0,6.09-.22l4.55-4.55A4.49,4.49,0,0,0,20.69,3.31Z" />
+                          </svg>
+                        </div>
+                        <div className="flex items-start justify-between gap-4">
+                          <div>
+                            <div className="flex items-center gap-2">
+                              <h4 className="font-medium text-[--foreground] flex items-center gap-1">
+                                <a
+                                  href={`https://www.sbwsz.com/set/${set.digital_code}?utm_source=shiqidi`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-[--foreground] hover:opacity-70 transition-opacity"
+                                >
+                                  {set.digital_code && chineseSetNames[set.digital_code] 
+                                    ? chineseSetNames[set.digital_code] 
+                                    : set.digital_name}
+                                </a>
+                                <ExternalLinkIcon className="opacity-0 group-hover:opacity-50 transition-opacity" />
+                              </h4>
+                            </div>
+                            <div className="text-sm text-[--muted-foreground] mt-1 flex items-center gap-1.5">
+                              <i className={`ss ss-${set.digital_code.toLowerCase()} ss-fw`} />
+                              <span>{set.digital_code}</span>
+                              <span className="ml-2 inline-flex items-center rounded-md bg-emerald-400/10 px-2 py-1 text-xs font-medium text-emerald-500 ring-1 ring-inset ring-emerald-400/20 whitespace-nowrap">
+                                穿越预兆路
+                              </span>
+                            </div>
+                          </div>
+                          <div className="text-right">
+                            <div className="text-sm text-[--muted-foreground]">
+                              数字平台同期发售
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}
