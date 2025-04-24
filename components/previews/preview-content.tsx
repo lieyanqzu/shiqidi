@@ -9,11 +9,11 @@ import type { PreviewSet } from '@/types/previews';
 interface PreviewContentProps {
   previewData: PreviewSet;
   setName: string;
+  isReleased: boolean;
 }
 
-export function PreviewContent({ previewData, setName }: PreviewContentProps) {
+export function PreviewContent({ previewData, setName, isReleased }: PreviewContentProps) {
   const [isEnglish, setIsEnglish] = useState(false);
-  const isReleased = new Date() > new Date(previewData.release_date);
 
   return (
     <div className="container mx-auto px-4 py-8">

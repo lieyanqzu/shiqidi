@@ -8,6 +8,8 @@ import { SliderField } from './slider-field';
 import { calculateCurrentXP, calculateExpectedDailyWinsXP, calculateExpectedWeeklyWinsXP, calculateExpectedDailyQuestsXP, calculateExpectedLevel, calculateDaysLeft, getLocalRefreshTimeString, getLocalRefreshTimeStringWithWeekday } from './utils';
 import { masteryConfig } from '@/data/mastery';
 import digitalSets from '@/data/digital-sets.json';
+import { parseISO, format, isValid } from 'date-fns';
+import { zhCN } from 'date-fns/locale';
 
 interface MasteryState {
   // 基础信息
@@ -95,7 +97,19 @@ export function MasteryCalculator() {
               <span>{currentSet?.name}</span>
             </div>
             <div className="text-sm text-[--muted-foreground]">
-              时间：{new Date(masteryConfig.startDate).toLocaleDateString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit' })} ~ {new Date(masteryConfig.endDate).toLocaleDateString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit' })}
+              时间：
+              {(() => {
+                const startDate = parseISO(masteryConfig.startDate);
+                const endDate = parseISO(masteryConfig.endDate);
+                const formatString = 'yyyy/MM/dd';
+                return (
+                  <>
+                    {isValid(startDate) ? format(startDate, formatString, { locale: zhCN }) : '无效开始日期'}
+                    {' ~ '}
+                    {isValid(endDate) ? format(endDate, formatString, { locale: zhCN }) : '无效结束日期'}
+                  </>
+                );
+              })()}
             </div>
           </div>
         }

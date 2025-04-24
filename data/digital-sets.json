@@ -13,7 +13,7 @@
     {
       "name": "乙太飘移",
       "code": "DFT",
-      "releaseDate": "2025-2-12",
+      "releaseDate": "2025-02-12",
       "wikiUrl": "https://mtg.wiki/page/Aetherdrift?utm_source=shiqidi",
       "preview": {
         "title": "扣紧护带",
@@ -42,7 +42,7 @@
     {
       "name": "炼金：乙太飘移",
       "code": "YDFT",
-      "releaseDate": "2025-3-5",
+      "releaseDate": "2025-03-05",
       "wikiUrl": "https://mtg.wiki/page/Alchemy:_Aetherdrift?utm_source=shiqidi",
       "preview": {
         "title": "炼金预览",
@@ -62,7 +62,7 @@
     {
       "name": "鞑契龙岚录",
       "code": "TDM",
-      "releaseDate": "2025-4-9",
+      "releaseDate": "2025-04-09",
       "wikiUrl": "https://mtg.wiki/page/Tarkir:_Dragonstorm?utm_source=shiqidi",
       "preview": {
         "title": "冲破风暴",
@@ -91,7 +91,7 @@
     {
       "name": "炼金：鞑契",
       "code": "YTDM",
-      "releaseDate": "2025-4-30",
+      "releaseDate": "2025-04-30",
       "wikiUrl": "https://mtg.wiki/page/Alchemy:_Tarkir?utm_source=shiqidi",
       "preview": {
         "title": "炼金预览",
@@ -111,7 +111,7 @@
     {
       "name": "万智牌～最终幻想",
       "code": "FIN",
-      "releaseDate": "2025-6-11",
+      "releaseDate": "2025-06-11",
       "wikiUrl": "https://mtg.wiki/page/Final_Fantasy?utm_source=shiqidi"
     }
   ]

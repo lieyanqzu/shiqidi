@@ -2,6 +2,7 @@ import { generateMetadata } from '../metadata';
 import rotationData from '@/data/rotation.json';
 import { Content } from '@/components/rotation/content';
 import type { Set, Ban } from '@/types/rotation';
+import { parseISO, isValid } from 'date-fns';
 
 export const metadata = generateMetadata(
   "十七地 - 标准轮替日程",
@@ -48,20 +49,23 @@ export default function RotationPage() {
     .filter(set => {
       if (!set.exit_date && !set.rough_exit_date) return false;
       if (!set.exit_date) return true;
-      const exitDate = new Date(set.exit_date);
-      return exitDate > now;
+      const exitDate = parseISO(set.exit_date);
+      return isValid(exitDate) && exitDate > now;
     })
     .sort((a, b) => {
-      const dateA = a.exit_date ? new Date(a.exit_date).getTime() : Number.MAX_SAFE_INTEGER;
-      const dateB = b.exit_date ? new Date(b.exit_date).getTime() : Number.MAX_SAFE_INTEGER;
-      return dateA - dateB;
+      const dateA = a.exit_date ? parseISO(a.exit_date) : null;
+      const dateB = b.exit_date ? parseISO(b.exit_date) : null;
+      const timeA = dateA && isValid(dateA) ? dateA.getTime() : Number.MAX_SAFE_INTEGER;
+      const timeB = dateB && isValid(dateB) ? dateB.getTime() : Number.MAX_SAFE_INTEGER;
+      return timeA - timeB;
     });
 
   // 按轮替时间分组
   const currentSetGroups = sets
     .filter(set => {
       if (!set.enter_date) return false;
-      return new Date(set.enter_date) <= now;
+      const enterDate = parseISO(set.enter_date);
+      return isValid(enterDate) && enterDate <= now;
     })
     .reduce<SetGroup[]>((groups, set) => {
       const existingGroup = groups.find(
@@ -79,14 +83,17 @@ export default function RotationPage() {
       return groups;
     }, [])
     .sort((a, b) => {
-      const dateA = a.exitDate ? new Date(a.exitDate).getTime() : Number.MAX_SAFE_INTEGER;
-      const dateB = b.exitDate ? new Date(b.exitDate).getTime() : Number.MAX_SAFE_INTEGER;
-      return dateA - dateB;
+      const dateA = a.exitDate ? parseISO(a.exitDate) : null;
+      const dateB = b.exitDate ? parseISO(b.exitDate) : null;
+      const timeA = dateA && isValid(dateA) ? dateA.getTime() : Number.MAX_SAFE_INTEGER;
+      const timeB = dateB && isValid(dateB) ? dateB.getTime() : Number.MAX_SAFE_INTEGER;
+      return timeA - timeB;
     });
 
   const futureSets = sets.filter(set => {
     if (!set.enter_date) return true;
-    return new Date(set.enter_date) > now;
+    const enterDate = parseISO(set.enter_date);
+    return !isValid(enterDate) || enterDate > now;
   });
 
   // 获取当前标准系列的代码列表
