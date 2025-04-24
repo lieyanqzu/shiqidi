@@ -4,6 +4,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useSetStore } from '@/lib/store';
 import type { Set, Ban } from '@/types/rotation';
+import { parseISO, isValid } from 'date-fns';
 
 interface SetGroup {
   exitDate: string | null;
@@ -19,12 +20,16 @@ interface Props {
 
 function formatDate(dateStr: string | null, roughDate: string | null): string {
   if (dateStr) {
-    const date = new Date(dateStr);
-    return new Intl.DateTimeFormat('zh-CN', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    }).format(date);
+    const date = parseISO(dateStr);
+    if (isValid(date)) {
+      return new Intl.DateTimeFormat('zh-CN', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      }).format(date);
+    } else {
+      console.warn(`Invalid date string passed to formatDate: ${dateStr}`);
+    }
   }
   return roughDate || '待定';
 }
@@ -32,8 +37,8 @@ function formatDate(dateStr: string | null, roughDate: string | null): string {
 function getTimeLeft(dateStr: string | null, roughDate: string | null): string {
   if (!dateStr && !roughDate) return '待定';
   
-  const date = dateStr ? new Date(dateStr) : null;
-  if (!date) {
+  const date = dateStr ? parseISO(dateStr) : null;
+  if (!date || !isValid(date)) {
     return roughDate || '待定';
   }
 
@@ -59,15 +64,16 @@ function getTimeSpan(sets: Set[]): string {
   const validDates = sets
     .map(set => set.enter_date)
     .filter((date): date is string => date !== null)
-    .map(date => new Date(date));
+    .map(date => parseISO(date))
+    .filter(date => isValid(date));
 
   if (validDates.length === 0) return '';
 
   const earliestDate = new Date(Math.min(...validDates.map(d => d.getTime())));
-  const exitDate = sets[0].exit_date ? new Date(sets[0].exit_date) : null;
+  const exitDate = sets[0].exit_date ? parseISO(sets[0].exit_date) : null;
 
   const startYear = earliestDate.getFullYear();
-  const endYear = exitDate ? exitDate.getFullYear() : (
+  const endYear = (exitDate && isValid(exitDate)) ? exitDate.getFullYear() : (
     sets[0].rough_exit_date?.match(/\d{4}/)?.[0] || ''
   );
 

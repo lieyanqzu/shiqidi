@@ -4,6 +4,7 @@ import type { PreviewSet } from '@/types/previews';
 import fs from 'fs';
 import path from 'path';
 import { PreviewContent } from '@/components/previews/preview-content';
+import { parseISO, isValid } from 'date-fns';
 
 // 获取预览数据
 async function getPreviewData(code: string): Promise<PreviewSet | null> {
@@ -60,13 +61,14 @@ export async function generateMetadata(props: PreviewPageProps) {
     );
   }
 
-  const isReleased = new Date() > new Date(previewData.release_date);
+  const releaseDate = parseISO(previewData.release_date);
+  const isReleased = isValid(releaseDate) ? new Date() > releaseDate : false;
   const releaseStatus = isReleased ? "已上线" : "预览中";
 
   return baseGenerateMetadata(
     `十七地 - ${previewData.name}预览`,
     `${previewData.name}（${releaseStatus}）${previewData.description}`,
-    `/previews/${code}`,
+    `/previews/${code.toLowerCase()}`,
     {
       keywords: ["MTGA", "万智牌", previewData.name, "预览", "卡牌预览", "新卡", "中文", "炼金系列"],
     }
@@ -81,5 +83,9 @@ export default async function PreviewPage(props: PreviewPageProps) {
     notFound();
   }
 
-  return <PreviewContent previewData={previewData} setName={previewData.name} />;
-} 
+  // 在父组件中计算 isReleased
+  const releaseDate = parseISO(previewData.release_date);
+  const isReleased = isValid(releaseDate) ? new Date() > releaseDate : false;
+
+  return <PreviewContent previewData={previewData} setName={previewData.name} isReleased={isReleased} />;
+}

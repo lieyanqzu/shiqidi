@@ -6,9 +6,15 @@ import { useStatusStore } from '@/lib/store';
 import { ComponentGroup, StatusIcon, StatusText } from "@/components/status";
 import statusText from '@/data/status-text.json';
 import { Incident, IncidentUpdate } from '@/lib/store/status';
+import { parseISO, isValid } from 'date-fns';
 
 function formatDateTime(dateStr: string) {
-  return new Date(dateStr).toLocaleString('zh-CN', {
+  const date = parseISO(dateStr);
+  if (!isValid(date)) {
+    console.warn(`Invalid date string passed to formatDateTime: ${dateStr}`);
+    return '无效日期';
+  }
+  return date.toLocaleString('zh-CN', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',

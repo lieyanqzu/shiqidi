@@ -1,3 +1,5 @@
+import { parseISO } from 'date-fns';
+
 // 每日胜场经验值（每天09:00 UTC刷新）
 const DAILY_WIN_XP = 25;  // 每场胜利获得25经验值
 const DAILY_WIN_COUNT = 10;  // 每天最多10场胜利
@@ -148,8 +150,12 @@ export function calculateExpectedLevel(currentXP: number, expectedXP: number): n
  * @returns 剩余天数（向上取整）
  */
 export function calculateDaysLeft(currentDate: string, endDate: string): number {
-  const now = new Date(currentDate);
-  const end = new Date(endDate);
+  const now = parseISO(currentDate);
+  const end = parseISO(endDate);
+  if (!now || isNaN(now.getTime()) || !end || isNaN(end.getTime())) {
+    console.error('Invalid date provided to calculateDaysLeft', { currentDate, endDate });
+    return 0;
+  }
   end.setUTCHours(REFRESH_HOUR_UTC, 0, 0, 0);  // 设置为刷新时间
   return Math.ceil((end.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
 } 
