@@ -415,7 +415,8 @@
       "enter_date": "2025-06-13T00:00:00.000",
       "rough_enter_date": "Q2 2025",
       "exit_date": null,
-      "rough_exit_date": "Q1 2028"
+      "rough_exit_date": "Q1 2028",
+      "universes_beyond": true
     },
     {
       "name": "Edge of Eternities",
@@ -435,7 +436,10 @@
       "enter_date": "2025-09-26T00:00:00.000",
       "rough_enter_date": "Q4 2025",
       "exit_date": null,
-      "rough_exit_date": "Q1 2028"
+      "rough_exit_date": "Q1 2028",
+      "digital_name": "暂未公布",
+      "digital_code": "???",
+      "universes_beyond": true
     },
     {
       "name": "Avatar: The Last Airbender",
@@ -445,7 +449,8 @@
       "enter_date": "2025-11-21T00:00:00.000",
       "rough_enter_date": "Q4 2025",
       "exit_date": null,
-      "rough_exit_date": "Q1 2028"
+      "rough_exit_date": "Q1 2028",
+      "universes_beyond": true
     },
     {
       "name": null,
