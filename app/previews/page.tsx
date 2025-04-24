@@ -3,6 +3,7 @@ import path from 'path';
 import Link from 'next/link';
 import type { PreviewSet } from '@/types/previews';
 import { generateMetadata as baseGenerateMetadata } from '../metadata';
+import { parseISO, isValid } from 'date-fns';
 
 export const metadata = baseGenerateMetadata(
   "十七地 - 炼金系列预览",
@@ -44,9 +45,11 @@ async function getPreviewSets(): Promise<PreviewSet[]> {
 
   // 按照发售日期倒序排序，最新的系列显示在前面
   return validPreviewSets.sort((a, b) => {
-    const dateA = new Date(a.release_date);
-    const dateB = new Date(b.release_date);
-    return dateB.getTime() - dateA.getTime();
+    const dateA = parseISO(a.release_date);
+    const dateB = parseISO(b.release_date);
+    const timeA = isValid(dateA) ? dateA.getTime() : -Infinity;
+    const timeB = isValid(dateB) ? dateB.getTime() : Infinity;
+    return timeB - timeA;
   });
 }
 
@@ -59,7 +62,8 @@ export default async function PreviewsPage() {
         <h1 className="text-2xl font-semibold mb-6">炼金系列预览</h1>
         <div className="grid gap-4">
           {previewSets.map(set => {
-            const isReleased = new Date() > new Date(set.release_date);
+            const releaseDate = parseISO(set.release_date);
+            const isReleased = isValid(releaseDate) ? new Date() > releaseDate : false;
             return (
               <Link
                 key={set.code}

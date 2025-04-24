@@ -7,6 +7,7 @@ import { useMediaQuery } from '@/hooks/use-media-query';
 import { Select } from "@/components/ui/select";
 import { DateRangePicker } from "@/components/ui/date-range-picker";
 import { Popper } from "@/components/ui/popper";
+import { parseISO } from 'date-fns';
 import { 
   expansionOptions, 
   formatOptions, 
@@ -37,8 +38,8 @@ export function CardFilters({
   onSearchFilter,
   searchText,
 }: CardFiltersProps) {
-  const startDate = new Date(params.start_date);
-  const endDate = new Date(params.end_date);
+  const startDate = parseISO(params.start_date);
+  const endDate = parseISO(params.end_date);
   const isMobile = useMediaQuery('(max-width: 1024px)');
   const [showFilters, setShowFilters] = useState(false);
   const filterButtonRef = useRef<HTMLButtonElement>(null);
@@ -227,8 +228,8 @@ export function CardFilters({
         >
           <div className="space-y-4">
             <DateRangePicker
-              startDate={new Date(tempParams.start_date)}
-              endDate={new Date(tempParams.end_date)}
+              startDate={parseISO(tempParams.start_date)}
+              endDate={parseISO(tempParams.end_date)}
               onStartDateChange={(date) => setTempParams({ 
                 ...tempParams, 
                 start_date: date.toISOString().split('T')[0] 

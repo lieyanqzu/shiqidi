@@ -8,6 +8,7 @@ import digitalSets from '@/data/digital-sets.json';
 import { useStatusStore, StatusData } from '@/lib/store';
 import { usePWAInstall } from '@/hooks/use-pwa-install';
 import { Tooltip } from "@/components/ui/tooltip"
+import { parseISO, isValid } from 'date-fns';
 
 interface MenuItem {
   label: string;
@@ -33,9 +34,11 @@ function getCurrentAndNextSet(): { current: DigitalSet | null; next: DigitalSet 
   const now = new Date();
   const sets = digitalSets.sets
     .sort((a, b) => {
-      const dateA = new Date(a.releaseDate.replace('~', ''));
-      const dateB = new Date(b.releaseDate.replace('~', ''));
-      return dateA.getTime() - dateB.getTime();
+      const dateA = parseISO(a.releaseDate.replace('~', ''));
+      const dateB = parseISO(b.releaseDate.replace('~', ''));
+      const timeA = isValid(dateA) ? dateA.getTime() : -Infinity;
+      const timeB = isValid(dateB) ? dateB.getTime() : Infinity;
+      return timeA - timeB;
     });
 
   let current: DigitalSet | null = null;
@@ -43,8 +46,8 @@ function getCurrentAndNextSet(): { current: DigitalSet | null; next: DigitalSet 
 
   for (let i = sets.length - 1; i >= 0; i--) {
     const set = sets[i];
-    const releaseDate = new Date(set.releaseDate.replace('~', ''));
-    if (releaseDate <= now) {
+    const releaseDate = parseISO(set.releaseDate.replace('~', ''));
+    if (isValid(releaseDate) && releaseDate <= now) {
       current = set;
       next = sets[i + 1] || null;
       break;
@@ -56,7 +59,11 @@ function getCurrentAndNextSet(): { current: DigitalSet | null; next: DigitalSet 
 
 function formatDate(dateStr: string): string {
   const prefix = dateStr.includes('~') ? '约' : '';
-  const date = new Date(dateStr.replace('~', ''));
+  const date = parseISO(dateStr.replace('~', ''));
+  if (!isValid(date)) {
+    console.error(`Invalid date string passed to formatDate: ${dateStr}`);
+    return '无效日期';
+  }
   return prefix + new Intl.DateTimeFormat('zh-CN', {
     month: 'long',
     day: 'numeric',
@@ -69,11 +76,9 @@ function SetInfo({ className = "" }: { className?: string }) {
   const [isMobile, setIsMobile] = useState(false);
   
   useEffect(() => {
-    // 检查是否应该显示提示，并且确保有预览信息
     const lastShownDate = localStorage.getItem('previewTooltipLastShown');
     const now = new Date().getTime();
     
-    // 如果从未显示过，或者距离上次显示超过5天，并且有预览信息
     if ((!lastShownDate || now - parseInt(lastShownDate) > 5 * 24 * 60 * 60 * 1000) && next?.preview) {
       setShowTooltip(true);
       localStorage.setItem('previewTooltipLastShown', now.toString());
@@ -184,7 +189,7 @@ function ServerStatusInfo({ className = "" }: { className?: string }) {
 
   useEffect(() => {
     fetchStatus();
-    const interval = setInterval(() => fetchStatus(), 60000); // 每分钟更新一次
+    const interval = setInterval(() => fetchStatus(), 60000);
     return () => clearInterval(interval);
   }, [fetchStatus]);
 
@@ -232,9 +237,12 @@ function ServerStatusInfo({ className = "" }: { className?: string }) {
   );
 
   if (hasScheduledMaintenance && nextMaintenance) {
-    const startTime = new Date(nextMaintenance.scheduled_for);
-    const endTime = new Date(nextMaintenance.scheduled_until);
+    const startTime = parseISO(nextMaintenance.scheduled_for);
+    const endTime = parseISO(nextMaintenance.scheduled_until);
     const formatTime = (date: Date) => {
+      if (!isValid(date)) {
+        return '无效时间';
+      }
       return new Intl.DateTimeFormat('zh-CN', {
         month: 'long',
         day: 'numeric',
