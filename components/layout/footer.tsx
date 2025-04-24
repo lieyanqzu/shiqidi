@@ -22,7 +22,7 @@ export function Footer() {
           </div>
         </div>
         <div className="text-xs text-[--foreground-muted] opacity-75 mt-2">
-          © {yearDisplay} 十七地 · 万智牌<sup>®</sup>是美国威世智公司的注册商标。除另有注明外，本站提供的万智牌图片和文本均为威世智版权所有。
+          © {yearDisplay} 十七地 · 万智牌<sup>®</sup>是美国海滨之巫师有限责任公司的注册商标。除另有注明外，万智牌图片和文本均归其版权所有。
         </div>
       </div>
     </footer>
