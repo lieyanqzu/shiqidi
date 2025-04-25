@@ -205,10 +205,26 @@
   },
   {
     "name": "显化",
-    "text": "显化某张牌的流程，是将该牌面朝下地放进战场，当成 2/2 生物。如果该牌是生物牌，则可随时支付其法术力费用使其翻回正面。 "
+    "text": "显化某张牌的流程，是将该牌面朝下地放进战场，当成 2/2 生物。如果该牌是生物牌，则可随时支付其法术力费用使其翻回正面。"
   },
   {
     "name": "Manifest",
     "text": "To manifest a card, put it onto the battlefield face down as a 2/2 creature. Turn it face up any time for its mana cost if it's a creature card."
+  },
+  {
+    "name": "延缓",
+    "text": "除了从你手上施放此牌，你可以支付延缓费用并将它放逐，且上面有X个计时指示物。在你的维持开始时，从其上移去一个计时指示物。当移去最后一个时，你可以施放它且不需支付其法术力费用。"
+  },
+  {
+    "name": "Suspend",
+    "text": "Rather than cast this card from your hand, you may pay suspend cost and exile it with X time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, you may cast it without paying its mana cost."
+  },
+  {
+    "name": "刺探",
+    "text": "检视你牌库顶的X张牌，然后将其中任意数量置入你坟墓场，其余则以任意顺序置于你牌库顶。"
+  },
+  {
+    "name": "Surveil",
+    "text": "Look at the top X cards of your library, then put any number of them into your graveyard and the rest on top of your library in any order."
   }
 ]
