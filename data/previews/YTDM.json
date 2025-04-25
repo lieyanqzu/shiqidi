@@ -32,7 +32,7 @@
       "zhs_text": "`双打`\n连咒～每当你施放每回合中你的第二个咒语时，直到回合结束，此生物的基础力量与防御力为4/4且获得`飞行`异能。",
       "artist": "Bram Sels",
       "image_url_en": "https://gladiatormtga.com/assets/cards/ytdm/Y25-DragonbloodTwins-DA.png",
-      "image_url_zh": "https://gladiatormtga.com/assets/cards/ytdm/Y25-DragonbloodTwins-DA.png",
+      "image_url_zh": "/image/alchemy/ytdm/龙血双子.png",
       "rarity": "uncommon",
       "pow_tough": "2/2"
     },
@@ -47,9 +47,85 @@
       "zhs_text": "霆绊先锋的力量和防御力各等同于由你操控的生物数量。\n每个由你操控的衍生生物均当成此生物的复制品来进场。",
       "artist": "Carlos Palma Cruchaga",
       "image_url_en": "https://gladiatormtga.com/assets/cards/ytdm/Y25-ThunderbondVanguard-DA.png",
-      "image_url_zh": "https://gladiatormtga.com/assets/cards/ytdm/Y25-ThunderbondVanguard-DA.png",
+      "image_url_zh": "/image/alchemy/ytdm/霆绊先锋.png",
       "rarity": "rare",
       "pow_tough": "*/*"
+    },
+    {
+      "id": "ytdm-4",
+      "name": "Pampered Loamfrill",
+      "zhs_name": "娇养壤褶蜥",
+      "mana_cost": "{G}",
+      "type": "Creature — Lizard",
+      "zhs_type": "生物～蜥蜴",
+      "text": "`Deathtouch`\nRenew — {1}{G}, Exile this card from your graveyard: `Conjure` a duplicate of another target creature card in your graveyard onto the top of your library. The duplicate `perpetually` gets +1/+1 and gains `deathtouch`. Activate only as a sorcery.",
+      "zhs_text": "`死触`\n复新～{1}{G}，从你坟墓场放逐此牌：将另一个目标你坟墓场中之生物牌的一张副本`幻变`进你的牌库顶。该副本`永久`得+1/+1且获得`死触`异能。只能于法术时机起动。",
+      "artist": "Diana Franco",
+      "image_url_en": "/image/alchemy/ytdm/PamperedLoamfrill.png",
+      "image_url_zh": "/image/alchemy/ytdm/娇养壤褶蜥.png",
+      "rarity": "rare",
+      "pow_tough": "1/1"
+    },
+    {
+      "id": "ytdm-5",
+      "name": "Call the Crash",
+      "zhs_name": "坏蹄召集",
+      "mana_cost": "{3}{W}{B}{G}",
+      "type": "Sorcery",
+      "zhs_type": "法术",
+      "text": "`Suspend` 2—{1}{W}{B}{G}\n`Conjure` two cards named `Siege Rhino:0` onto the battlefield.",
+      "zhs_text": "`延缓`2～{1}{W}{B}{G}\n将两张名称为`攻城犀牛:0`的牌`幻变`进战场。",
+      "artist": "Carlos Palma Cruchaga",
+      "image_url_en": "/image/alchemy/ytdm/CalltheCrash.png",
+      "image_url_zh": "/image/alchemy/ytdm/坏蹄召集.png",
+      "rarity": "rare",
+      "related": [
+        "KTK:200"
+      ]
+    },
+    {
+      "id": "ytdm-6",
+      "name": "シブシグの職工",
+      "zhs_name": "尸虏工匠",
+      "mana_cost": "{1}{B}",
+      "type": "Creature — Human Artificer",
+      "zhs_type": "生物～人类／神器师",
+      "text": "Renew — {1}{B}{B}, Exile this card from your graveyard: Put three +1/+1 counters on target creature you control. That creature `perpetually` gain this ability. Activate only as a sorcery.",
+      "zhs_text": "复新～{1}{B}{B}，从你坟墓场放逐此牌：在目标由你操控的生物上放置三个+1/+1指示物。该生物`永久`获得此异能。只能于法术时机起动。",
+      "artist": "Josh Hass",
+      "image_url_en": "/image/alchemy/ytdm/シブシグの職工.png",
+      "image_url_zh": "/image/alchemy/ytdm/尸虏工匠.png",
+      "rarity": "rare",
+      "pow_tough": "3/2"
+    },
+    {
+      "id": "ytdm-7",
+      "name": "大胆な拳刃",
+      "zhs_name": "斗胆指套剑手",
+      "mana_cost": "{G}{U}{R}",
+      "type": "Creature — Ogre Warrior Wizard",
+      "zhs_type": "生物～食人魔 / 战士 / 法术师",
+      "text": "`Exhaust` — {2}{G}: `Seek` a card named 大胆な拳刃, put it onto battlefield tapped.\n`Exhaust` — {1}{U}: `Surveil` 2. Then untap this creature.\n`Exhaust` — {R}: Creatures you control gain `haste` until end of turn.\n",
+      "zhs_text": "`竭绝`～{2}{G}：`取出`一张名称为斗胆指套剑手的牌，将它横置放进战场。\n`竭绝`～{1}{U}：`刺探`2。然后重置此生物.\n`竭绝`～{R}：由你操控的生物获得`敏捷`异能直到回合结束。",
+      "artist": "Arif Wijaya",
+      "image_url_en": "/image/alchemy/ytdm/大胆な拳刃.png",
+      "image_url_zh": "/image/alchemy/ytdm/斗胆指套剑手.png",
+      "rarity": "rare",
+      "pow_tough": "4/4"
+    },
+    {
+      "id": "ytdm-8",
+      "name": "Oasis of Renewal",
+      "zhs_name": "复新绿洲",
+      "mana_cost": "{B}{G}{U}",
+      "type": "Legendary Enchantment",
+      "zhs_type": "传奇结界",
+      "text": "When Oasis of Renewal enters and whenever a land card leaves your graveyard, `seek` a land card. This ability triggers only once each turn.\nWhen Oasis of Renewal enters and whenever a nonland card leaves your graveyard, `seek` a nonland card. This ability triggers only once each turn.",
+      "zhs_text": "当复新绿洲进场和每当一张地牌离开你的坟墓场时，`取出`一张地牌。此异能每回合只会触发一次。\n当复新绿洲进场和每当一张非地牌离开你的坟墓场时，`取出`一张非地牌。此异能每回合只会触发一次。",
+      "artist": "Steven Belledin",
+      "image_url_en": "/image/alchemy/ytdm/OasisofRenewal.png",
+      "image_url_zh": "/image/alchemy/ytdm/复新绿洲.png",
+      "rarity": "rare"
     }
   ]
 }
