@@ -478,7 +478,7 @@
     {
       "id": "ytdm-30",
       "name": "Desert Cenote",
-      "zhs_name": "岩洞沙漠",
+      "zhs_name": "沙漠岩洞",
       "mana_cost": "",
       "type": "Land — Desert",
       "zhs_type": "地～沙漠",
@@ -486,7 +486,7 @@
       "zhs_text": "如果你是先手牌手，则此地须横置进场。\n于此地进场时，从你的手牌中选出至多两种颜色。\n{T}：加{C}。\n{T}：加一点所选颜色的法术力。",
       "artist": "Chris Ostrowski",
       "image_url_en": "/image/alchemy/ytdm/DesertCenote.png",
-      "image_url_zh": "/image/alchemy/ytdm/岩洞沙漠.png",
+      "image_url_zh": "/image/alchemy/ytdm/沙漠岩洞.png",
       "rarity": "rare"
     }
   ]
