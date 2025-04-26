@@ -479,7 +479,7 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
                     fetch(`https://api.sbwsz.com/card/${hoveredCard.setCode}/${hoveredCard.number}`)
                       .then(res => res.json())
                       .then(data => {
-                        if (data.type === 'normal' && data.data?.[0]?.scryfallId) {
+                        if (data.data?.[0]?.scryfallId) {
                           const scryfallId = data.data[0].scryfallId;
                           img.src = `https://cards.scryfall.io/large/front/${scryfallId.slice(0, 1)}/${scryfallId.slice(1, 2)}/${scryfallId}.jpg`;
                         } else {

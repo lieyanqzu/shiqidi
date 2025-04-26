@@ -226,5 +226,61 @@
   {
     "name": "Surveil",
     "text": "Look at the top X cards of your library, then put any number of them into your graveyard and the rest on top of your library in any order."
+  },
+  {
+    "name": "灵技",
+    "text": "每当你施放非生物咒语时，此生物得+1/+1直到回合结束。"
+  },
+  {
+    "name": "Prowess",
+    "text": "Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn."
+  },
+  {
+    "name": "谐颂",
+    "text": "你可以从你坟墓场中施放此牌，并支付其谐颂费用。你可以横置一个由你操控的生物，来依其力量减少该费用所需的一般法术力。然后放逐此咒语。"
+  },
+  {
+    "name": "Harmonize",
+    "text": "You may cast this card from your graveyard for its harmonize cost. You may tap a creature you control to reduce that cost by an amount of generic mana equal to its power. Then exile this spell."
+  },
+  {
+    "name": "闪现",
+    "text": "你可以于你能够施放瞬间的时机下施放此咒语。"
+  },
+  {
+    "name": "Flash",
+    "text": "You may cast this spell any time you could cast an instant."
+  },
+  {
+    "name": "请援",
+    "text": "你可以选择一个由你操控且具有特定特征的永久物，或从手上展示一张具有该特征的牌。"
+  },
+  {
+    "name": "Behold",
+    "text": "You may choose a permanent you control of a particular quality or reveal a card of that quality from your hand"
+  },
+  {
+    "name": "动员",
+    "text": "每当此生物攻击时，派出X个已横置且正进行攻击的1/1红色战士衍生生物。在下一个结束步骤开始时将它们牺牲。"
+  },
+  {
+    "name": "Mobilize",
+    "text": "Whenever this creature attacks, create X tapped and attacking 1/1 red Warrior creature tokens. Sacrifice them at the beginning of the next end step."
+  },
+  {
+    "name": "系命",
+    "text": "此生物所造成的伤害会让你获得等量的生命。"
+  },
+  {
+    "name": "Lifelink",
+    "text": "Damage dealt by this creature also causes you to gain that much life."
+  },
+  {
+    "name": "佩带",
+    "text": "贴附在目标由你操控的生物上。只能于法术时机佩带。"
+  },
+  {
+    "name": "Equip",
+    "text": "Attach to target creature you control. Equip only as a sorcery."
   }
 ]
