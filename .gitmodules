@@ -1,0 +1,3 @@
+[submodule "public/image/alchemy"]
+	path = public/image/alchemy
+	url = https://github.com/lieyanqzu/shiqidi-alchemy-images.git
