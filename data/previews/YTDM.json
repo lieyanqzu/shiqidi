@@ -156,7 +156,7 @@
       "zhs_text": "`飞行`，`警戒`，`敏捷`\n当许才进场时，你施放的下一个非生物咒语减少{1}来施放。\n连咒～每当你施放每回合中你的第二个咒语时，放逐至多一个目标由你操控的生物，然后将它在其拥有者的操控下移回战场。",
       "artist": "Jake Murray",
       "image_url_en": "https://media.wizards.com/2025/y25-tdm/en_7RBqs9xJEv4H.webp",
-      "image_url_zh": "/image/alchemy/ytdm/明灭利爪许才.png",
+      "image_url_zh": "/image/alchemy/ytdm/明灭利爪许才+.png",
       "rarity": "mythic",
       "pow_tough": "2/3"
     },
@@ -423,7 +423,7 @@
       "type": "Enchantment",
       "zhs_type": "结界",
       "text": "Whenever a +1/+1 counter is put on a creature you control, `seek` a creature card. That card `perpetually` gets +1/+1. This ability triggers only once each turn.",
-      "zhs_text": "每当在一个由你操控的生物上放置+1/+1指示物时，`取出`一张生物牌。该牌`永久`+1/+1。此异能每回合只会触发一次。",
+      "zhs_text": "每当在一个由你操控的生物上放置+1/+1指示物时，`取出`一张生物牌。该牌`永久`得+1/+1。此异能每回合只会触发一次。",
       "artist": "Xavier Ribeiro",
       "image_url_en": "https://media.wizards.com/2025/y25-tdm/en_yc5DrDO2GdtH.webp",
       "image_url_zh": "/image/alchemy/ytdm/坚固羁绊.png",
