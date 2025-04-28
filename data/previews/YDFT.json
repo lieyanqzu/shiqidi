@@ -429,7 +429,7 @@
       "type": "Creature — Merfolk",
       "zhs_type": "生物～人鱼",
       "text": "{4}{U}: Draw a card.\n`Exhaust` — {U}: `Conjure` a card named `Training Grounds:0` onto the battlefield.",
-      "zhs_text": "{4}{U}：抓一张牌。\n`竭绝`～{U}：将一张名称为训练场的牌`幻变`进战场。",
+      "zhs_text": "{4}{U}：抓一张牌。\n`竭绝`～{U}：将一张名称为`训练场:0`的牌`幻变`进战场。",
       "image_url_en": "https://cards.scryfall.io/normal/front/2/8/28a718f3-fb8d-433a-95ab-a35a11ee41a0.jpg",
       "image_url_zh": "/image/alchemy/ydft/护道员训练师.png",
       "pow_tough": "1/1",

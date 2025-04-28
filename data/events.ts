@@ -20,14 +20,6 @@ export const calendarMetadata: CalendarMetadata = {
 const midweekMagicEvents: Event[] = [
   {
     type: 'midweek_magic',
-    title: '剑走偏锋 - 万智牌：基石构筑',
-    startTime: new Date('2025-04-22T14:00:00-07:00'),
-    endTime: new Date('2025-04-24T14:00:00-07:00'),
-    format: '标准',
-    description: '只能使用万智牌：基石构筑、暮悲邸：鬼屋惊魂、乙太飘移和鞑契龙岚录中的牌',
-  },
-  {
-    type: 'midweek_magic',
     title: '步入未来',
     startTime: new Date('2025-04-29T14:00:00-07:00'),
     endTime: new Date('2025-05-01T14:00:00-07:00'),
@@ -46,6 +38,14 @@ const midweekMagicEvents: Event[] = [
     startTime: new Date('2025-05-13T14:00:00-07:00'),
     endTime: new Date('2025-05-15T14:00:00-07:00'),
     format: '争锋'
+  },
+  {
+    type: 'midweek_magic',
+    title: '角斗聚焦',
+    startTime: new Date('2025-05-20T14:00:00-07:00'),
+    endTime: new Date('2025-05-22T14:00:00-07:00'),
+    format: '角斗',
+    description: '几乎无禁的BO3争锋，可能全卡'
   },
 ];
 
@@ -69,16 +69,9 @@ const premierDraftEvents: Event[] = [
 const quickDraftEvents: Event[] = [
   {
     type: 'quick_draft',
-    title: '鞑契龙岚录',
-    startTime: new Date('2025-04-17T08:00:00-07:00'),
-    endTime: new Date('2025-04-27T08:00:00-07:00'),
-    format: '快速轮抽',
-  },
-  {
-    type: 'quick_draft',
     title: '暮悲邸：鬼屋惊魂',
     startTime: new Date('2025-04-27T08:00:00-07:00'),
-    endTime: new Date('2025-05-08T08:00:00-07:00'),
+    endTime: new Date('2025-05-07T08:00:00-07:00'),
     format: '快速轮抽',
   },
   {
@@ -86,6 +79,20 @@ const quickDraftEvents: Event[] = [
     title: '鞑契龙岚录',
     startTime: new Date('2025-05-08T08:00:00-07:00'),
     endTime: new Date('2025-05-20T08:00:00-07:00'),
+    format: '快速轮抽',
+  },
+  {
+    type: 'quick_draft',
+    title: '依夏兰迷窟',
+    startTime: new Date('2025-05-20T08:00:00-07:00'),
+    endTime: new Date('2025-06-03T08:00:00-07:00'),
+    format: '快速轮抽',
+  },
+  {
+    type: 'quick_draft',
+    title: '乙太飘移',
+    startTime: new Date('2025-06-03T08:00:00-07:00'),
+    endTime: new Date('2025-06-19T08:00:00-07:00'),
     format: '快速轮抽',
   },
 ];
@@ -106,6 +113,20 @@ const otherEvents: Event[] = [
     endTime: new Date('2025-05-05T08:00:00-07:00'),
     format: '现开',
     description: '门票改为 6,000 宝石，增加宝石奖励。六胜：一盒常规补充包，七胜：两盒常规补充包。'
+  },
+  {
+    type: 'other',
+    title: '先驱展览',
+    startTime: new Date('2025-05-10T08:00:00-07:00'),
+    endTime: new Date('2025-05-13T08:00:00-07:00'),
+    format: '先驱',
+  },
+  {
+    type: 'other',
+    title: '竞技场直邮赛 - ？？？',
+    startTime: new Date('2025-05-17T08:00:00-07:00'),
+    endTime: new Date('2025-05-19T08:00:00-07:00'),
+    format: '现开',
   }
 ];
 
