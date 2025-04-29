@@ -55,8 +55,6 @@ export interface Card {
   number: string;
   name?: string;
   zhs_name?: string;
-  officialName?: string;
-  translatedName?: string;
   scryfallId?: string;
   rarity?: string;
 }
@@ -70,25 +68,6 @@ export interface PackStatistics {
   bySheet: {
     [sheet: string]: number;
   };
-}
-
-// 卡牌信息响应
-export interface CardInfoResponse {
-  type: string;
-  data: CardInfo[];
-  rulings: any[];
-}
-
-export interface CardInfo {
-  name: string;
-  zhs_name: string;
-  officialName?: string;
-  translatedName?: string;
-  scryfallId: string;
-  rarity: string;
-  setCode: string;
-  number: string;
-  [key: string]: any;  // 其他字段
 }
 
 export interface Set {

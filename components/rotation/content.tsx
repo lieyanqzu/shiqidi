@@ -190,7 +190,7 @@ export function Content({ currentSetGroups, futureSets, recentBans }: Props) {
                               <div className="flex items-center gap-2">
                                 <h3 className="font-medium text-[--foreground] flex items-center gap-1">
                                   <a
-                                    href={set.code ? `https://www.sbwsz.com/set/${set.code}?utm_source=shiqidi` : '#'}
+                                    href={set.code ? `https://www.sbwsz.com/set/${set.code}?utm_source=shiqidi&order=released_at` : '#'}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className={`text-[--foreground] ${set.code ? 'hover:opacity-70 transition-opacity' : ''}`}
@@ -233,7 +233,7 @@ export function Content({ currentSetGroups, futureSets, recentBans }: Props) {
                                   <div className="flex items-center gap-2">
                                     <h4 className="font-medium text-[--foreground] flex items-center gap-1">
                                       <a
-                                        href={`https://www.sbwsz.com/set/${set.digital_code}?utm_source=shiqidi`}
+                                        href={`https://www.sbwsz.com/set/${set.digital_code}?utm_source=shiqidi&order=released_at`}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="text-[--foreground] hover:opacity-70 transition-opacity"
@@ -286,7 +286,7 @@ export function Content({ currentSetGroups, futureSets, recentBans }: Props) {
                         <div className="flex items-center gap-2">
                           <h3 className="font-medium text-[--foreground] flex items-center gap-1">
                             <a
-                              href={set.code ? `https://www.sbwsz.com/set/${set.code}?utm_source=shiqidi` : '#'}
+                              href={set.code ? `https://www.sbwsz.com/set/${set.code}?utm_source=shiqidi&order=released_at` : '#'}
                               target="_blank"
                               rel="noopener noreferrer"
                               className={`text-[--foreground] ${set.code ? 'hover:opacity-70 transition-opacity' : ''}`}
@@ -334,7 +334,7 @@ export function Content({ currentSetGroups, futureSets, recentBans }: Props) {
                             <div className="flex items-center gap-2">
                               <h4 className="font-medium text-[--foreground] flex items-center gap-1">
                                 <a
-                                  href={`https://www.sbwsz.com/set/${set.digital_code}?utm_source=shiqidi`}
+                                  href={`https://www.sbwsz.com/set/${set.digital_code}?utm_source=shiqidi&order=released_at`}
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   className="text-[--foreground] hover:opacity-70 transition-opacity"

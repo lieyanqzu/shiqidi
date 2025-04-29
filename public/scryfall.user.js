@@ -5,7 +5,7 @@
 // @license      GPL
 // @namespace    http://github.com/lieyanqzu
 // @icon         https://scryfall.com/favicon.ico
-// @version      1.4
+// @version      1.5
 // @match        *://scryfall.com/*
 // @grant        GM_xmlhttpRequest
 // @grant        GM_getValue
@@ -26,6 +26,25 @@
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
+        }
+
+        .ruling-source-badge {
+            display: inline-block;
+            padding: 1px 4px;
+            border-radius: 3px;
+            font-size: 0.8em;
+            color: #fff;
+            background-color: #666;
+            vertical-align: middle;
+            margin-left: 4px;
+        }
+
+        .ruling-source-badge.official {
+            background-color: #2196F3;
+        }
+
+        .ruling-source-badge.gpt {
+            background-color: #4CAF50;
         }
 
         @media screen and (max-width: 768px) {
@@ -86,10 +105,8 @@
         }
     `);
 
-    const API_BASE_URL = 'https://api.sbwsz.com/card';
-    const TYPE_NAME_TRANSLATIONS_URL = 'https://sbwsz.com/static/typeName.json';
-    let typeNameTranslations = null;
-    const cardLanguageStates = new Map();
+    const API_BASE_URL = 'https://www.sbwsz.com/api/v1/card';
+    let cardLanguageStates = new Map();
 
     GM_registerMenuCommand('默认显示中文: ' + (GM_getValue('defaultToChinese', false) ? '开' : '关'), toggleDefaultLanguage);
 
@@ -117,7 +134,7 @@
             const cardInfo = getCardInfoFromDOM(parent);
             if (cardInfo) {
                 setTimeout(() => {
-                    const sbwszUrl = `https://sbwsz.com/card/${cardInfo.setCode}/${cardInfo.collectorNumber}`;
+                    const sbwszUrl = `https://www.sbwsz.com/card/${cardInfo.setCode.toUpperCase()}/${cardInfo.collectorNumber}`;
                     GM_openInTab(sbwszUrl, false);
                 }, 0);
             }
@@ -132,26 +149,28 @@
     }
 
     async function getChineseCardData(setCode, collectorNumber) {
+        setCode = setCode.toUpperCase();
         const apiUrl = `${API_BASE_URL}/${setCode}/${collectorNumber}`;
+        console.log("call apiUrl: ",apiUrl);
         try {
             const response = await makeRequest('GET', apiUrl);
             const data = JSON.parse(response.responseText);
             const scryfallFaceCount = document.querySelectorAll('.card-text-title').length || 1;
 
-            const cardName = data.data[0]?.zhs_faceName || data.data[0]?.translatedName 
-            || data.data[0]?.zhs_name || data.data[0]?.officialName || data.data[0]?.name;
-            if (data.rulings) {
-                await saveRulings(data.rulings, cardName);
+            const cardData = data;
+            const cardName = cardData.atomic_official_name || cardData.atomic_translated_name || cardData.zhs_name || cardData.name;
+            
+            if (cardData.rulings) {
+                await saveRulings(cardData.rulings, cardName, cardData);
             }
 
             if (scryfallFaceCount === 1) {
-                return processSingleFacedCard(data.data[0]);
-            } else if (data.type === 'double' && data.data.length === 2) {
-                return processDoubleFacedCard(data.data);
-            } else if (data.type === 'normal' && data.data.length > 0) {
-                return processSingleFacedCard(data.data[0]);
+                return processSingleFacedCard(cardData);
+            } else if (cardData.other_faces?.length > 0) {
+                return processDoubleFacedCard([cardData, ...cardData.other_faces]);
+            } else {
+                return processSingleFacedCard(cardData);
             }
-            throw new Error('无法取中文卡牌数据');
         } catch (error) {
             console.error('获取中文卡牌数据失败:', error);
             throw error;
@@ -159,12 +178,13 @@
     }
 
     function processCardFace(cardData) {
-        const name = cardData.zhs_faceName || cardData.translatedName || cardData.zhs_name || cardData.officialName || cardData.name;
+        const name = cardData.atomic_official_name || cardData.atomic_translated_name || cardData.zhs_name || cardData.name;
         return {
             name,
-            flavorName: cardData.zhs_flavorName || cardData.faceFlavorName || cardData.flavorName,
-            text: processText(cardData.translatedText || cardData.zhs_text || cardData.officialText || cardData.text, name),
-            flavorText: processText(cardData.zhs_flavorText || cardData.translatedFlavorText || cardData.flavorText)
+            flavorName: cardData.atomic_translated_flavor_name || cardData.zhs_flavor_name || cardData.flavor_name,
+            text: processText(cardData.atomic_translated_text || cardData.zhs_text || cardData.oracle_text, name),
+            flavorText: processText(cardData.atomic_translated_flavor_text || cardData.zhs_flavor_text || cardData.flavor_text),
+            cardData
         };
     }
 
@@ -180,46 +200,6 @@
         text = text.replace(/\\n/g, '\n');
         return cardName ? text.replace(/CARDNAME/g, cardName) : text;
     }
-
-    async function getTypeNameTranslations() {
-        if (typeNameTranslations) return typeNameTranslations;
-        try {
-            const response = await makeRequest('GET', TYPE_NAME_TRANSLATIONS_URL);
-            typeNameTranslations = JSON.parse(response.responseText);
-            return typeNameTranslations;
-        } catch (error) {
-            console.error('获取类别翻译数据失败:', error);
-            throw error;
-        }
-    }
-
-    async function translateType(englishType) {
-        const translations = await getTypeNameTranslations();
-        return englishType.trim().split('—').map((part, index) => {
-            const words = part.trim().split(/\s+/);
-            let i = 0;
-            const translatedWords = [];
-            
-            while (i < words.length) {
-                let found = false;
-                if (i < words.length - 1) {
-                    const combinedWord = words[i] + words[i + 1];
-                    if (translations[combinedWord]) {
-                        translatedWords.push(translations[combinedWord]);
-                        i += 2;
-                        found = true;
-                        continue;
-                    }
-                }
-                if (!found) {
-                    translatedWords.push(translations[words[i]] || words[i]);
-                    i++;
-                }
-            }
-            
-            return index === 0 ? translatedWords.map(w => w.replace(/[<>]/g, '')).join('') : translatedWords.map(w => w.replace(/[<>]/g, '')).join('／');
-        }).join('～');
-    }    
 
     async function main() {
         const cardProfiles = document.querySelectorAll('.card-profile');
@@ -321,6 +301,7 @@
             } else {
                 toggleLink.addEventListener('click', (e) => toggleLanguage(e, cardId));
             }
+
         }
     }
 
@@ -400,7 +381,7 @@
         await Promise.all([
             saveElementText('.card-text-card-name', faceData.name, cardFace),
             faceData.flavorName ? saveElementText('.card-text-flavor-name', faceData.flavorName, cardFace) : Promise.resolve(),
-            saveType(cardTextDiv.querySelectorAll('.card-text-type-line')[faceIndex], faceData.name),
+            saveType(cardTextDiv.querySelectorAll('.card-text-type-line')[faceIndex], faceData.cardData),
             saveCardText('.card-text-oracle', faceData.text, cardTextDiv, faceIndex),
             faceData.flavorText ? saveCardText('.card-text-flavor', faceData.flavorText, cardTextDiv, faceIndex) : Promise.resolve(),
             saveLegality(cardTextDiv)
@@ -414,19 +395,21 @@
         }
     }
 
-    async function saveType(typeLineElement, cardName) {
+    async function saveType(typeLineElement, cardData) {
         if (!typeLineElement) return;
-        const colorIndicator = typeLineElement.querySelector('.color-indicator');
-        const typeText = typeLineElement.textContent.replace(colorIndicator ? colorIndicator.textContent.trim() : '', '').trim();
+        const typeText = cardData.atomic_translated_type || cardData.zhs_type_line;
 
-        try {
-            const translatedType = await translateType(typeText);
+        if (typeText) {
+            const colorIndicator = typeLineElement.querySelector('.color-indicator');
+            const cleanedType = cleanTypeText(typeText);
             typeLineElement.dataset.chineseContent = colorIndicator
-                ? `${colorIndicator.outerHTML} ${translatedType}`
-            : translatedType;
-        } catch (error) {
-            console.error('翻译类型时出错:', error);
+                ? `${colorIndicator.outerHTML} ${cleanedType}`
+                : cleanedType;
         }
+    }
+
+    function cleanTypeText(text) {
+        return text ? text.replace(/<([^>]+)>/g, '$1') : text;
     }
 
     async function saveCardText(selector, text, parent = document, index = 0) {
@@ -499,6 +482,7 @@
 
     const LEGALITY_TRANSLATIONS = {
         'Legal': '合法',
+        'Legal/GC': '合法/主宰牌',
         'Not Legal': '不合法',
         'Banned': '禁用',
         'Restrict.': '限制'
@@ -520,14 +504,24 @@
         });
     }
 
-    async function saveRulings(rulings, cardName) {
+    async function saveRulings(rulings, cardName, cardData) {
         const rulingsContainer = document.querySelector('#rulings');
         if (!rulingsContainer) {
             return;
         }
 
-        const rulingsItems = rulingsContainer.querySelectorAll('.rulings-item');
+        // 合并主面和其他面的规则，过滤掉没有翻译的规则
+        const allRulings = rulings.filter(ruling => ruling.translation);
+        if (cardData.other_faces) {
+            for (const face of cardData.other_faces) {
+                if (face.rulings) {
+                    const faceRulings = face.rulings.filter(ruling => ruling.translation);
+                    allRulings.push(...faceRulings);
+                }
+            }
+        }
 
+        const rulingsItems = rulingsContainer.querySelectorAll('.rulings-item');
         for (const item of rulingsItems) {
             const dateSpan = item.querySelector('.rulings-item-date');
             const date = dateSpan ? dateSpan.textContent.replace(/[()]/g, '') : '';
@@ -541,17 +535,17 @@
                 abbrTags.push(abbr.outerHTML);
             });
 
-            const matchingRuling = rulings.find(r => {
+            const matchingRuling = allRulings.find(r => {
                 const tempApiDiv = document.createElement('div');
-                tempApiDiv.textContent = r.text;
+                tempApiDiv.textContent = r.comment;
                 const normalizedApiText = tempApiDiv.textContent.trim().replace(/[\u0021-\u002F\u003A-\u003F\u2000-\u206F\u3000-\u303F\uFF00-\uFFEF]/g, '');
                 const normalizedEnglishText = englishText.replace(/[\u0021-\u002F\u003A-\u003F\u2000-\u206F\u3000-\u303F\uFF00-\uFFEF]/g, '');
                 return normalizedApiText === normalizedEnglishText;
             });
 
-            if (matchingRuling && matchingRuling.zhs_text) {                
+            if (matchingRuling && matchingRuling.translation) {                
                 item.dataset.originalContent = item.innerHTML;
-                let translatedText = processText(matchingRuling.zhs_text, cardName);
+                let translatedText = processText(matchingRuling.translation, cardName);
                 const matches = translatedText.match(/\{[^}]+\}/g) || [];
 
                 matches.forEach((match, index) => {
@@ -559,9 +553,11 @@
                         translatedText = translatedText.replace(match, abbrTags[index]);
                     }
                 });
+
+                const sourceBadge = `<span class="ruling-source-badge ${matchingRuling.source}">${matchingRuling.source.toUpperCase()}</span>`;
                 const newHtml = dateSpan 
-                ? translatedText + dateSpan.outerHTML
-                : translatedText;
+                    ? `${translatedText}<span class="rulings-item-date">${dateSpan.textContent}${sourceBadge}</span>`
+                    : `${translatedText}${sourceBadge}`;
                 item.dataset.chineseContent = newHtml;
             }
         }

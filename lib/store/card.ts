@@ -34,8 +34,8 @@ export const useCardStore = create<CardStore>((set) => ({
     const chineseCards = { ...state.chineseCards };
     cards.forEach(card => {
       chineseCards[card.name] = card;
-      if (card.faceName) {
-        chineseCards[card.faceName] = card;
+      if (card.face_name) {
+        chineseCards[card.face_name] = card;
       }
     });
     return { chineseCards };
