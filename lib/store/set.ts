@@ -1,5 +1,10 @@
 import { create } from 'zustand';
 
+interface SetData {
+  code: string;
+  translated_name?: string;
+}
+
 interface SetStore {
   chineseSetNames: { [key: string]: string };
   isLoading: boolean;
@@ -26,7 +31,7 @@ export const useSetStore = create<SetStore>((set) => ({
         throw new Error('获取系列中文名称失败');
       }
       const data = await response.json();
-      const chineseNames = data.reduce((acc: { [key: string]: string }, set: any) => {
+      const chineseNames = data.reduce((acc: { [key: string]: string }, set: SetData) => {
         if (set.translated_name) {
           acc[set.code] = set.translated_name;
         }
