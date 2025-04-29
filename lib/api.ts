@@ -9,23 +9,6 @@ export interface CardDataParams {
   colors?: string;           // 套牌颜色筛选
 }
 
-interface SearchQuery {
-  type: string;
-  key: string;
-  operator: string;
-  value: string;
-}
-
-interface SearchElement {
-  type: string;
-  elements: SearchQuery[];
-}
-
-interface SearchRequest {
-  type: string;
-  elements: SearchElement[];
-}
-
 export async function fetchCardData(params: CardDataParams): Promise<CardData[]> {
   const searchParams = new URLSearchParams({
     expansion: params.expansion,
