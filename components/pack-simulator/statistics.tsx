@@ -165,7 +165,7 @@ export function Statistics({ cards, setCode, boosterCode, packCount }: Statistic
                     {card.rarity === 'mythic' ? '[秘稀]' : '[稀有]'}
                   </span>
                   <span className="truncate text-sm">
-                    {card.zhs_name || card.officialName || card.translatedName || card.name || card.id}
+                    {card.zhs_name || card.name || card.id}
                   </span>
                   {card.id.includes('foil') && (
                     <span className="text-xs rainbow-text shrink-0">闪</span>

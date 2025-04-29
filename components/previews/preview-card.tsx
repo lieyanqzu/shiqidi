@@ -15,8 +15,6 @@ interface CardRef {
   setCode: string;
   number: string;
   zhs_name?: string;
-  officialName?: string;
-  translatedName?: string;
 }
 
 export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
@@ -449,7 +447,7 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
             <div className="w-[300px] aspect-[488/680]">
               <Image
                 src={getCardImageUrl(hoveredCard.setCode, hoveredCard.number)}
-                alt={hoveredCard.zhs_name || hoveredCard.officialName || hoveredCard.translatedName || `${hoveredCard.setCode}:${hoveredCard.number}`}
+                alt={hoveredCard.zhs_name || `${hoveredCard.setCode}:${hoveredCard.number}`}
                 fill
                 className="object-contain"
                 unoptimized
