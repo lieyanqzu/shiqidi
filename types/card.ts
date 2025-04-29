@@ -23,28 +23,13 @@ export interface CardData {
 
 export interface ChineseCardData {
   name: string;               // 英文名
-  faceName: string | null;    // 英文面名（双面牌）
-  flavorName: string | null;  // 英文风味名
-  type: string;              // 英文类型
+  face_name: string | null;    // 英文面名（双面牌）
   zhs_name: string;          // 中文名
-  zhs_faceName: string | null; // 中文面名
-  zhs_flavorName: string | null; // 中文风味名
-  zhs_type: string;          // 中文类型
-  zhs_language: string;      // 中文语言来源
-  officialName: string | null; // 官方名称
-  translatedName: string;    // 翻译名称
-  setCode: string;           // 系列代码
-  keyruneCode: string;       // Keyrune代码
-  number: string;            // 收藏编号
-  int_number: number;        // 数字编号
-  manaCost: string;          // 法术力费用
-  rarity: string;            // 稀有度
-  releaseDate: string;       // 发布日期
-  release_date: string;      // 发布日期（重复）
-  side: string | null;       // 牌面（双面牌）
-  scryfallId: string;        // Scryfall ID
-  multiverseid: string | null; // 万智牌多重宇宙ID
-  layout: string;            // 版面布局
+  atomic_official_name: string | null; // 官方名称
+  atomic_translated_name: string;    // 翻译名称
+  set: string;           // 系列代码
+  collector_number: string;            // 收藏编号
+  id: string;        // Scryfall ID
 }
 
 export interface ChineseCardMap {

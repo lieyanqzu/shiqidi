@@ -4,12 +4,12 @@ import boosterConfig from '@/data/booster-config.json';
 
 interface CardSearchResult {
   name: string;
-  zhs_name: string;
-  officialName: string;
-  translatedName: string | null;
-  setCode: string;
-  number: string;
-  scryfallId: string;
+  zhs_name?: string;
+  atomic_official_name?: string;
+  atomic_translated_name?: string | null;
+  set: string;
+  collector_number: string;
+  id: string;
   rarity: string;
 }
 
@@ -88,78 +88,21 @@ async function simulateBoosterPack(boosterData: BoosterData): Promise<Pack> {
   // 获取卡牌信息
   try {
     // 构建查询条件
-    const elements = cards.map(card => {
+    const query = cards.map(card => {
       // 检查编号是否包含字母后缀
       const hasLetterSuffix = /\d+[a-z]$/i.test(card.number);
       const baseNumber = hasLetterSuffix ? card.number.slice(0, -1) : card.number;
 
       if (hasLetterSuffix) {
         // 如果有字母后缀，同时搜索完整编号和基础编号
-        return {
-          type: "or" as const,
-          elements: [
-            {
-              type: "and" as const,
-              elements: [
-                {
-                  type: "basic" as const,
-                  key: "setCode",
-                  operator: "=",
-                  value: card.setCode,
-                },
-                {
-                  type: "basic" as const,
-                  key: "number",
-                  operator: "=",
-                  value: card.number,
-                },
-              ],
-            },
-            {
-              type: "and" as const,
-              elements: [
-                {
-                  type: "basic" as const,
-                  key: "setCode",
-                  operator: "=",
-                  value: card.setCode,
-                },
-                {
-                  type: "basic" as const,
-                  key: "number",
-                  operator: "=",
-                  value: baseNumber,
-                },
-              ],
-            },
-          ],
-        };
+        return `(s=${card.setCode} number=${card.number}) or (s=${card.setCode} number=${baseNumber})`;
       } else {
-        // 如果没有字母后缀，使用原来的搜索条件
-        return {
-          type: "and" as const,
-          elements: [
-            {
-              type: "basic" as const,
-              key: "setCode",
-              operator: "=",
-              value: card.setCode,
-            },
-            {
-              type: "basic" as const,
-              key: "number",
-              operator: "=",
-              value: card.number,
-            },
-          ],
-        };
+        return `(s=${card.setCode} number=${card.number})`;
       }
-    });
+    }).join(' or ');
 
     const response = await fetch(
-      `https://api.sbwsz.com/search?page=1&page_size=100&get_total=1&q=${encodeURIComponent(
-        JSON.stringify({ type: "or", elements })
-      )}`
+      `https://www.sbwsz.com/api/v1/result?q=${encodeURIComponent(query)}&page=1&page_size=100&unique=oracle_id&priority_chinese=true`
     );
 
     if (!response.ok) {
@@ -167,13 +110,13 @@ async function simulateBoosterPack(boosterData: BoosterData): Promise<Pack> {
     }
 
     const data = await response.json();
-    const cardResults = data.results;
+    const cardResults = data.items;
 
     // 记录未找到的卡牌
     const notFoundCards = cards.filter(card => 
       !cardResults.some((info: CardSearchResult) => 
-        info.setCode.toLowerCase() === card.setCode.toLowerCase() && 
-        info.number.toString() === card.number.toString()
+        info.set.toLowerCase() === card.setCode.toLowerCase() && 
+        info.collector_number.toString() === card.number.toString()
       )
     );
 
@@ -184,28 +127,17 @@ async function simulateBoosterPack(boosterData: BoosterData): Promise<Pack> {
       // 对每张未找到的卡牌进行单独搜索
       const additionalResults = await Promise.all(
         notFoundCards.map(async card => {
-          const query = {
-            type: "and" as const,
-            elements: [
-              {
-                type: "basic" as const,
-                key: "setCode",
-                operator: "=",
-                value: card.setCode,
-              },
-              {
-                type: "basic" as const,
-                key: "number",
-                operator: "=",
-                value: card.number,
-              },
-            ],
-          };
-
+          // 检查编号是否包含字母后缀
+          const hasLetterSuffix = /\d+[a-z]$/i.test(card.number);
+          const baseNumber = hasLetterSuffix ? card.number.slice(0, -1) : card.number;
+          
+          let query = `(s=${card.setCode} number=${card.number})`;
+          if (hasLetterSuffix) {
+            query += ` or (s=${card.setCode} number=${baseNumber})`;
+          }
+          
           const retryResponse = await fetch(
-            `https://api.sbwsz.com/search?page=1&page_size=1&get_total=1&q=${encodeURIComponent(
-              JSON.stringify(query)
-            )}`
+            `https://www.sbwsz.com/api/v1/result?q=${encodeURIComponent(query)}&page=1&page_size=1&unique=oracle_id&priority_chinese=true`
           );
 
           if (!retryResponse.ok) {
@@ -214,7 +146,7 @@ async function simulateBoosterPack(boosterData: BoosterData): Promise<Pack> {
           }
 
           const retryData = await retryResponse.json();
-          return retryData.results[0];
+          return retryData.items[0];
         })
       );
 
@@ -230,15 +162,15 @@ async function simulateBoosterPack(boosterData: BoosterData): Promise<Pack> {
 
       // 首先尝试匹配完整编号
       let cardInfo = cardResults.find(
-        (info: CardSearchResult) => info.setCode.toLowerCase() === card.setCode.toLowerCase() && 
-          info.number.toString() === card.number.toString()
+        (info: CardSearchResult) => info.set.toLowerCase() === card.setCode.toLowerCase() && 
+          info.collector_number.toString() === card.number.toString()
       );
 
       // 如果有字母后缀且找不到完整编号的卡牌，尝试匹配基础编号
       if (!cardInfo && hasLetterSuffix) {
         cardInfo = cardResults.find(
-          (info: CardSearchResult) => info.setCode.toLowerCase() === card.setCode.toLowerCase() && 
-            info.number.toString() === baseNumber.toString()
+          (info: CardSearchResult) => info.set.toLowerCase() === card.setCode.toLowerCase() && 
+            info.collector_number.toString() === baseNumber.toString()
         );
       }
 
@@ -248,10 +180,8 @@ async function simulateBoosterPack(boosterData: BoosterData): Promise<Pack> {
       }
 
       card.name = cardInfo.name;
-      card.zhs_name = cardInfo.zhs_name;
-      card.officialName = cardInfo.officialName;
-      card.translatedName = cardInfo.translatedName;
-      card.scryfallId = cardInfo.scryfallId;
+      card.zhs_name = cardInfo.atomic_official_name || cardInfo.atomic_translated_name || cardInfo.zhs_name || cardInfo.name;
+      card.scryfallId = cardInfo.id;
       card.rarity = cardInfo.rarity?.toLowerCase();
     });
   } catch (error) {

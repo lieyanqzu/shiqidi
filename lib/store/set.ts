@@ -21,16 +21,22 @@ export const useSetStore = create<SetStore>((set) => ({
 
     try {
       set({ isLoading: true });
-      const response = await fetch('https://sbwsz.com/static/setName.json');
+      const response = await fetch('https://www.sbwsz.com/api/v1/sets/');
       if (!response.ok) {
         throw new Error('获取系列中文名称失败');
       }
       const data = await response.json();
-      set({ chineseSetNames: data, error: null, hasLoaded: true });
+      const chineseNames = data.reduce((acc: { [key: string]: string }, set: any) => {
+        if (set.translated_name) {
+          acc[set.code] = set.translated_name;
+        }
+        return acc;
+      }, {});
+      set({ chineseSetNames: chineseNames, error: null, hasLoaded: true });
     } catch (err) {
       set({ error: err instanceof Error ? err : new Error('获取系列中文名称失败') });
     } finally {
       set({ isLoading: false });
     }
   }
-})); 
+}));

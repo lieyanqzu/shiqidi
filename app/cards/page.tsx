@@ -36,7 +36,7 @@ export default function CardsPage() {
         const englishMatch = card.name.toLowerCase().includes(searchLower);
         // 中文名匹配
         const chineseCard = chineseCards[card.name];
-        const chineseName = chineseCard?.zhs_name || chineseCard?.officialName || chineseCard?.translatedName;
+        const chineseName = chineseCard?.atomic_official_name || chineseCard?.atomic_translated_name || chineseCard?.zhs_name;
         const chineseMatch = chineseName?.toLowerCase().includes(searchLower);
         
         return englishMatch || chineseMatch;

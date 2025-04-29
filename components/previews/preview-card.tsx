@@ -35,31 +35,13 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
 
     try {
       // 构建搜索条件
-      const elements = cardRefs.map(ref => {
+      const query = cardRefs.map(ref => {
         const [setCode, number] = ref.split(':');
-        return {
-          type: "and" as const,
-          elements: [
-            {
-              type: "basic" as const,
-              key: "setCode",
-              operator: "=",
-              value: setCode,
-            },
-            {
-              type: "basic" as const,
-              key: "number",
-              operator: "=",
-              value: number,
-            },
-          ],
-        };
-      });
+        return `(s=${setCode} number=${number})`;
+      }).join(' or ');
 
       const response = await fetch(
-        `https://api.sbwsz.com/search?page=1&page_size=100&get_total=1&q=${encodeURIComponent(
-          JSON.stringify({ type: "or", elements })
-        )}`
+        `https://www.sbwsz.com/api/v1/result?q=${encodeURIComponent(query)}&page=1&page_size=100&unique=oracle_id&priority_chinese=true`
       );
 
       if (!response.ok) {
@@ -67,18 +49,17 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
       }
 
       const data = await response.json();
-      return data.results.map((result: {
-        setCode: string;
-        number: string;
+      return data.items.map((result: {
+        set: string;
+        collector_number: string;
+        name: string;
         zhs_name?: string;
-        officialName?: string;
-        translatedName?: string;
+        atomic_official_name?: string;
+        atomic_translated_name?: string;
       }) => ({
-        setCode: result.setCode,
-        number: result.number,
-        zhs_name: result.zhs_name,
-        officialName: result.officialName,
-        translatedName: result.translatedName
+        setCode: result.set,
+        number: result.collector_number,
+        zhs_name: result.atomic_official_name || result.atomic_translated_name || result.zhs_name || result.name
       }));
     } catch (error) {
       console.error('Failed to fetch card names:', error);
@@ -186,12 +167,12 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
   const getCardDetailUrl = (setCode: string, number: string): string => {
     // 如果卡牌号带有 a 或 b 后缀，使用基础卡牌号
     const baseNumber = /^(\d+)[ab]$/.test(number) ? number.slice(0, -1) : number;
-    return `https://sbwsz.com/card/${setCode}/${baseNumber}`;
+    return `https://www.sbwsz.com/card/${setCode.toUpperCase()}/${baseNumber}?utm_source=shiqidi`;
   };
 
   // 获取卡图URL
   const getCardImageUrl = (setCode: string, number: string): string => {
-    return `https://sbwsz.com/image/large/${setCode.toUpperCase()}/${setCode.toUpperCase()}_${number}.jpg`;
+    return `https://www.sbwsz.com/image/large/${setCode.toUpperCase()}/${setCode.toUpperCase()}_${number}.jpg`;
   };
 
   // 处理鼠标事件
@@ -269,7 +250,7 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
               onMouseLeave={handleMouseLeave}
               onMouseMove={handleMouseMove}
             >
-              {card.zhs_name || card.officialName || card.translatedName || `${card.setCode}:${card.number}`}
+              {card.zhs_name || `${card.setCode}:${card.number}`}
             </a>
           ))}
         </div>
@@ -476,11 +457,11 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
                   const img = e.target as HTMLImageElement;
                   if (!img.src.includes('scryfall.io')) {
                     // 尝试从API获取scryfallId
-                    fetch(`https://api.sbwsz.com/card/${hoveredCard.setCode}/${hoveredCard.number}`)
+                    fetch(`https://www.sbwsz.com/api/v1/card/${hoveredCard.setCode.toUpperCase()}/${hoveredCard.number}`)
                       .then(res => res.json())
                       .then(data => {
-                        if (data.data?.[0]?.scryfallId) {
-                          const scryfallId = data.data[0].scryfallId;
+                        if (data?.id) {
+                          const scryfallId = data.id;
                           img.src = `https://cards.scryfall.io/large/front/${scryfallId.slice(0, 1)}/${scryfallId.slice(1, 2)}/${scryfallId}.jpg`;
                         } else {
                           img.src = '/image/back.png';

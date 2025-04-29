@@ -58,38 +58,13 @@ export async function fetchCardData(params: CardDataParams): Promise<CardData[]>
   return response.json();
 }
 
-// 转换系列代号，处理年份前缀
-function convertSetCode(setCode: string): string {
-  // 匹配 Y + 两位数字 + 剩余字符 的模式
-  const match = setCode.match(/^Y\d{2}(.+)$/);
-  if (match) {
-    // 如果匹配成功，返回 Y + 剩余字符
-    return 'Y' + match[1];
-  }
-  return setCode;
-}
-
 interface ChineseCardResponse {
-  results: ChineseCardData[];
+  items: ChineseCardData[];
 }
 
 export async function fetchChineseCardData(setCode: string): Promise<ChineseCardResponse> {
-  const query: SearchQuery = {
-    type: "basic",
-    key: "setCode",
-    operator: "=",
-    value: convertSetCode(setCode)
-  };
-
-  const searchParams = new URLSearchParams({
-    page: "1",
-    page_size: "9999",
-    get_total: "1",
-    q: JSON.stringify(query)
-  });
-
   const response = await fetch(
-    `https://api.sbwsz.com/search?${searchParams}`,
+    `https://www.sbwsz.com/api/v1/set/${setCode}/cards/?unique=oracle_id&priority_chinese=true`,
     {
       headers: {
         'accept': 'application/json',
@@ -104,40 +79,24 @@ export async function fetchChineseCardData(setCode: string): Promise<ChineseCard
   return response.json();
 }
 
-// 构建卡牌名称的搜索查询
-function buildCardNameQuery(cardName: string): SearchElement {
-  const words = cardName.split(' ');
-  return {
-    type: "and",
-    elements: words.map(word => ({
-      type: "basic",
-      key: "name",
-      operator: ":",
-      value: word
-    }))
-  };
-}
-
 // 批量搜索卡牌，支持回调函数
 export async function searchChineseCards(
   cardNames: string[],
   onResults?: (results: ChineseCardData[]) => void
 ): Promise<ChineseCardResponse> {
   // 构建搜索查询
-  const searchQuery: SearchRequest = {
-    type: "or",
-    elements: cardNames.map(buildCardNameQuery)
-  };
+  const searchQuery = cardNames.map(name => `name:"${name}"`).join(' or ');
 
   const searchParams = new URLSearchParams({
     page: '1',
-    page_size: '9999',
-    get_total: '1',
-    q: JSON.stringify(searchQuery)
+    page_size: '100',
+    unique: 'oracle_id',
+    priority_chinese: 'true',
+    q: searchQuery
   });
 
   const response = await fetch(
-    `https://api.sbwsz.com/search?${searchParams}`,
+    `https://www.sbwsz.com/api/v1/result?${searchParams}`,
     {
       headers: {
         'accept': 'application/json',
@@ -180,45 +139,45 @@ export async function fetchAllChineseCardData(
     // 获取当前系列的数据（优先从缓存获取）
     let currentSetData: ChineseCardResponse;
     if (setDataCache[setCode]) {
-      currentSetData = { results: setDataCache[setCode] };
+      currentSetData = { items: setDataCache[setCode] };
     } else {
       currentSetData = await fetchChineseCardData(setCode);
-      if (currentSetData.results) {
-        setDataCache[setCode] = currentSetData.results;
+      if (currentSetData.items) {
+        setDataCache[setCode] = currentSetData.items;
       }
     }
 
     // 如果是 YXXX 系列，也获取 XXX 系列的数据（优先从缓存获取）
-    let originalSetData: ChineseCardResponse = { results: [] };
+    let originalSetData: ChineseCardResponse = { items: [] };
     if (setCode.startsWith('Y')) {
       const originalSetCode = setCode.replace(/^Y\d{0,2}/, '');
       if (setDataCache[originalSetCode]) {
-        originalSetData = { results: setDataCache[originalSetCode] };
+        originalSetData = { items: setDataCache[originalSetCode] };
       } else {
         originalSetData = await fetchChineseCardData(originalSetCode);
-        if (originalSetData.results) {
-          setDataCache[originalSetCode] = originalSetData.results;
+        if (originalSetData.items) {
+          setDataCache[originalSetCode] = originalSetData.items;
         }
       }
     }
 
     // 获取 SPG 数据（优先从缓存获取）
-    let spgData: ChineseCardResponse = { results: [] };
+    let spgData: ChineseCardResponse = { items: [] };
     if (!spgLoaded) {
       spgData = await fetchChineseCardData('SPG');
-      if (spgData.results?.length > 0) {
-        setDataCache['SPG'] = spgData.results;
+      if (spgData.items?.length > 0) {
+        setDataCache['SPG'] = spgData.items;
         spgLoaded = true;
       }
     } else if (setDataCache['SPG']) {
-      spgData = { results: setDataCache['SPG'] };
+      spgData = { items: setDataCache['SPG'] };
     }
 
     // 合并所有系列数据
     const allResults = [
-      ...(currentSetData.results || []),
-      ...(originalSetData.results || []),
-      ...(spgData.results || [])
+      ...(currentSetData.items || []),
+      ...(originalSetData.items || []),
+      ...(spgData.items || [])
     ];
 
     // 如果有回调函数，先返回已有数据
@@ -228,8 +187,8 @@ export async function fetchAllChineseCardData(
 
     // 创建一个映射来快速查找已有的中文数据
     const existingCards = new Map(allResults.flatMap(card => 
-      card.faceName 
-        ? [[card.name, card], [card.faceName, card]]
+      card.face_name 
+        ? [[card.name, card], [card.face_name, card]]
         : [[card.name, card]]
     ));
 
@@ -246,15 +205,15 @@ export async function fetchAllChineseCardData(
         const group = cardGroups[i];
         try {
           const result = await searchChineseCards(group.map(card => card.name));
-          if (result.results) {
+          if (result.items) {
             // 将搜索到的卡牌加入结果和缓存
-            allResults.push(...result.results);
-            result.results.forEach(card => {
-              if (card.setCode && !setDataCache[card.setCode]) {
-                setDataCache[card.setCode] = [];
+            allResults.push(...result.items);
+            result.items.forEach(card => {
+              if (card.set && !setDataCache[card.set]) {
+                setDataCache[card.set] = [];
               }
-              if (card.setCode && !setDataCache[card.setCode].some(c => c.name === card.name)) {
-                setDataCache[card.setCode].push(card);
+              if (card.set && !setDataCache[card.set].some(c => c.name === card.name)) {
+                setDataCache[card.set].push(card);
               }
             });
 

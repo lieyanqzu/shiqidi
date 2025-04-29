@@ -14,14 +14,14 @@ interface CardNameCellProps {
 export function CardNameCell({ card, expansion }: CardNameCellProps) {
   const { chineseCards } = useCardStore();
   const chineseCard = chineseCards[card.name];
-  const chineseName = chineseCard?.zhs_name || chineseCard?.officialName || chineseCard?.translatedName;
+  const chineseName = chineseCard?.atomic_official_name || chineseCard?.atomic_translated_name || chineseCard?.zhs_name;
   const isMobile = useMediaQuery("(max-width: 1024px)");
   
   const [tooltipVisible, setTooltipVisible] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
-  const cardImageUrl = card.url || (chineseCard?.scryfallId 
-    ? `https://cards.scryfall.io/normal/front/${chineseCard.scryfallId.slice(0, 1)}/${chineseCard.scryfallId.slice(1, 2)}/${chineseCard.scryfallId}.jpg`
+  const cardImageUrl = card.url || (chineseCard?.id 
+    ? `https://cards.scryfall.io/normal/front/${chineseCard.id.slice(0, 1)}/${chineseCard.id.slice(1, 2)}/${chineseCard.id}.jpg`
     : null);
 
   // 在移动端，点击时阻止事件冒泡
@@ -54,8 +54,8 @@ export function CardNameCell({ card, expansion }: CardNameCellProps) {
         y: rect.top + window.scrollY 
       });
       setTooltipVisible(!tooltipVisible);
-    } else if (chineseCard?.setCode && chineseCard?.number) {
-      window.open(`https://www.sbwsz.com/card/${chineseCard.setCode}/${chineseCard.number}?utm_source=shiqidi`, '_blank');
+    } else if (chineseCard?.set && chineseCard?.collector_number) {
+      window.open(`https://www.sbwsz.com/card/${chineseCard.set.toUpperCase()}/${chineseCard.collector_number}?utm_source=shiqidi`, '_blank');
     }
   };
 

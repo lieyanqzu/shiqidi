@@ -14,31 +14,32 @@ interface CardTooltipProps {
 }
 
 interface CardApiResponse {
-  type: 'normal' | 'double'
-  data: Array<{
-    zhs_type: string
-    zhs_text?: string
-    translatedText?: string
-    side?: 'a' | 'b'
-    zhs_faceName?: string
-  }>
+  atomic_official_name?: string
+  atomic_translated_name?: string
+  zhs_name?: string
+  name: string
+  atomic_translated_text?: string
+  zhs_text?: string
+  oracle_text?: string
+  zhs_faceName?: string
+  atomic_translated_type?: string
+  zhs_type_line?: string
+  other_faces?: Array<CardApiResponse>
 }
 
 interface CardDetails {
   type: 'normal' | 'double'
   data: Array<{
-    zhs_type: string
+    zhs_type?: string
     zhs_text?: string
-    translatedText?: string
-    side?: 'a' | 'b'
-    zhs_faceName?: string
+    zhs_name?: string
   }>
 }
 
 const CardTooltip: FC<CardTooltipProps> = ({ card, visible, x, y, expansion, isMobile }) => {
   const { chineseCards } = useCardStore();
   const chineseCard = chineseCards[card.name];
-  const chineseName = chineseCard?.zhs_name || chineseCard?.officialName || chineseCard?.translatedName;
+  const chineseName = chineseCard?.atomic_official_name || chineseCard?.atomic_translated_name || chineseCard?.zhs_name;
   const [cardDetails, setCardDetails] = useState<CardDetails | null>(null);
 
   // 处理文本替换
@@ -88,26 +89,30 @@ const CardTooltip: FC<CardTooltipProps> = ({ card, visible, x, y, expansion, isM
       return;
     }
 
-    if (visible && chineseCard?.setCode && chineseCard?.number) {
-      fetch(`https://api.sbwsz.com/card/${chineseCard.setCode}/${chineseCard.number}`)
+    if (visible && chineseCard?.set && chineseCard?.collector_number) {
+      fetch(`https://www.sbwsz.com/api/v1/card/${chineseCard.set.toUpperCase()}/${chineseCard.collector_number}`)
         .then(res => res.json())
         .then((json: CardApiResponse) => {
-          if ((json.type === 'normal' || json.type === 'double') && json.data?.[0]) {
-            setCardDetails({
-              type: json.type,
-              data: json.data.map(card => ({
-                zhs_type: card.zhs_type,
-                zhs_text: card.zhs_text,
-                translatedText: card.translatedText,
-                side: card.side,
-                zhs_faceName: card.zhs_faceName
-              }))
-            });
-          }
+          const mainFace = {
+            zhs_type: json.atomic_translated_type || json.zhs_type_line,
+            zhs_text: json.atomic_translated_text || json.zhs_text || json.oracle_text,
+            zhs_name: json.atomic_official_name || json.atomic_translated_name || json.zhs_name || json.name
+          };
+
+          setCardDetails({
+            type: json.other_faces && json.other_faces.length > 0 ? 'double' : 'normal',
+            data: json.other_faces && json.other_faces.length > 0
+              ? [mainFace, {
+                  zhs_type: json.other_faces[0].atomic_translated_type || json.other_faces[0].zhs_type_line,
+                  zhs_text: json.other_faces[0].atomic_translated_text || json.other_faces[0].zhs_text || json.other_faces[0].oracle_text,
+                  zhs_name: json.other_faces[0].atomic_official_name || json.other_faces[0].atomic_translated_name || json.other_faces[0].zhs_name || json.other_faces[0].name
+                }]
+              : [mainFace]
+          });
         })
         .catch(console.error);
     }
-  }, [visible, chineseCard?.setCode, chineseCard?.number]);
+  }, [visible, chineseCard?.set, chineseCard?.collector_number]);
 
   if (!visible) return null
 
@@ -119,8 +124,8 @@ const CardTooltip: FC<CardTooltipProps> = ({ card, visible, x, y, expansion, isM
     : expansion.toLowerCase()
 
   // 获取卡图URL
-  const cardImageUrl = card.url || (chineseCard?.scryfallId 
-    ? `https://cards.scryfall.io/normal/front/${chineseCard.scryfallId.slice(0, 1)}/${chineseCard.scryfallId.slice(1, 2)}/${chineseCard.scryfallId}.jpg`
+  const cardImageUrl = card.url || (chineseCard?.id 
+    ? `https://cards.scryfall.io/normal/front/${chineseCard.id.slice(0, 1)}/${chineseCard.id.slice(1, 2)}/${chineseCard.id}.jpg`
     : null);
 
   const handleClose = () => {
@@ -153,8 +158,8 @@ const CardTooltip: FC<CardTooltipProps> = ({ card, visible, x, y, expansion, isM
               <button 
                 onClick={(e) => {
                   e.stopPropagation();
-                  if (chineseCard?.setCode && chineseCard?.number) {
-                    window.open(`https://www.sbwsz.com/card/${chineseCard.setCode}/${chineseCard.number}?utm_source=shiqidi`, '_blank');
+                  if (chineseCard?.set && chineseCard?.collector_number) {
+                    window.open(`https://www.sbwsz.com/card/${chineseCard.set.toUpperCase()}/${chineseCard.collector_number}?utm_source=shiqidi`, '_blank');
                   }
                 }}
                 className="text-sm text-blue-500 hover:text-blue-600"
@@ -209,21 +214,21 @@ const CardTooltip: FC<CardTooltipProps> = ({ card, visible, x, y, expansion, isM
                     // 单面卡显示
                     <div className="whitespace-pre-wrap break-words max-w-[300px]">
                       <div className="font-medium mb-1">{cardDetails.data[0]?.zhs_type}</div>
-                      <div>{processText(cardDetails.data[0]?.zhs_text || cardDetails.data[0]?.translatedText)}</div>
+                      <div>{processText(cardDetails.data[0]?.zhs_text)}</div>
                     </div>
                   ) : (
                     // 双面卡显示
                     <div className="flex gap-4 max-w-[450px]">
                       <div className="flex-1 min-w-0 whitespace-pre-wrap break-words">
-                        <div className="font-medium mb-1">{cardDetails.data[0]?.zhs_faceName}</div>
+                        <div className="font-medium mb-1">{cardDetails.data[0]?.zhs_name}</div>
                         <div className="font-medium text-sm text-gray-600 dark:text-gray-400 mb-1">{cardDetails.data[0]?.zhs_type}</div>
-                        <div>{processText(cardDetails.data[0]?.zhs_text || cardDetails.data[0]?.translatedText)}</div>
+                        <div>{processText(cardDetails.data[0]?.zhs_text)}</div>
                       </div>
                       <div className="w-px bg-gray-200 dark:bg-gray-700 mx-2 shrink-0" />
                       <div className="flex-1 min-w-0 whitespace-pre-wrap break-words">
-                        <div className="font-medium mb-1">{cardDetails.data[1]?.zhs_faceName}</div>
+                        <div className="font-medium mb-1">{cardDetails.data[1]?.zhs_name}</div>
                         <div className="font-medium text-sm text-gray-600 dark:text-gray-400 mb-1">{cardDetails.data[1]?.zhs_type}</div>
-                        <div>{processText(cardDetails.data[1]?.zhs_text || cardDetails.data[1]?.translatedText)}</div>
+                        <div>{processText(cardDetails.data[1]?.zhs_text)}</div>
                       </div>
                     </div>
                   )}
