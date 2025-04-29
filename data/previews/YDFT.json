@@ -45,7 +45,7 @@
       "type": "Artifact — Vehicle",
       "zhs_type": "神器～载具",
       "text": "`Flying`, `Vigilance`\nWhen this Vehicle enters, create four 1/1 colorless Servo artifact creature tokens.\nWhenever this Vehicle attacks, `draft` a card from Support Skyforge's spellbook. That card `perpetually` becomes an artifact creature.\n`Crew` 4",
-      "zhs_text": "`飞行`，`警戒`\n当此载具进场时，派出四个1/1无色自动机衍生神器生物。\n每当此载具攻击时，从支援空锻机的咒语书中`抽选`一张牌。该牌`永久`成为神器生物。\n`搭载`4",
+      "zhs_text": "`飞行`，`警戒`\n当此载具进场时，派出四个1/1无色自动机衍生神器生物。\n每当此载具攻击时，从支援空锻机的法术书中`抽选`一张牌。该牌`永久`成为神器生物。\n`搭载`4",
       "image_url_en": "https://cards.scryfall.io/normal/front/5/e/5eff53fa-5f8a-4de4-909b-116f9f606849.jpg",
       "image_url_zh": "/image/alchemy/ydft/支援空锻机.png",
       "spellbook": [
