@@ -367,7 +367,7 @@ export function PackDisplay({ packs, onFlippedCardsChange, autoFlipCommon }: Pac
                                   )}
                                   <Image
                                     src={getCardImageUrl(card.scryfallId!, card.setCode, card.number)}
-                                    alt={card.zhs_name || card.officialName || card.translatedName || card.name || card.id}
+                                    alt={card.zhs_name || card.name || card.id}
                                     width={300}
                                     height={420}
                                     className="w-full h-full object-contain rounded-lg"
@@ -424,7 +424,7 @@ export function PackDisplay({ packs, onFlippedCardsChange, autoFlipCommon }: Pac
                                 )}
                                 <Image
                                   src={getCardImageUrl(card.scryfallId!, card.setCode, card.number)}
-                                  alt={card.zhs_name || card.officialName || card.translatedName || card.name || card.id}
+                                  alt={card.zhs_name || card.name || card.id}
                                   width={300}
                                   height={420}
                                   className="w-full h-full object-contain rounded-lg"
@@ -483,7 +483,7 @@ export function PackDisplay({ packs, onFlippedCardsChange, autoFlipCommon }: Pac
                                 className={`truncate hover:opacity-80 transition-opacity ${card.rarity ? getRarityColor(card.rarity) : ''}`}
                               >
                                 <div className="text-sm truncate max-w-full">
-                                  {card.zhs_name || card.officialName || card.translatedName || card.name || card.id}
+                                  {card.zhs_name || card.name || card.id}
                                 </div>
                               </a>
                               {card.id.includes('foil') && (

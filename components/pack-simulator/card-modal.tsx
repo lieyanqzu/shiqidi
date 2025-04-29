@@ -279,7 +279,7 @@ export function CardModal({ card, onClose, imageUrl, allCards, onCardChange }: C
                 className={`text-lg font-medium hover:opacity-80 transition-opacity ${card.rarity ? getRarityColor(card.rarity) : ''}`}
                 onClick={e => e.stopPropagation()}
               >
-                {card.zhs_name || card.officialName || card.translatedName || card.name || card.id}
+                {card.zhs_name || card.name || card.id}
               </a>
               {card.id.includes('foil') && (
                 <span className="text-sm rainbow-text">闪卡</span>
@@ -371,7 +371,7 @@ export function CardModal({ card, onClose, imageUrl, allCards, onCardChange }: C
           >
             <Image
               src={currentImageUrl}
-              alt={card.zhs_name || card.officialName || card.translatedName || card.name || card.id}
+              alt={card.zhs_name || card.name || card.id}
               width={600}
               height={840}
               className="w-auto h-auto max-w-full max-h-[calc(90vh-4rem)] rounded-b-lg"
