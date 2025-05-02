@@ -156,7 +156,7 @@
       "zhs_text": "`飞行`，`警戒`，`敏捷`\n当许才进场时，你施放的下一个非生物咒语减少{1}来施放。\n连咒～每当你施放每回合中你的第二个咒语时，放逐至多一个目标由你操控的生物，然后将它在其拥有者的操控下移回战场。",
       "artist": "Jake Murray",
       "image_url_en": "https://cards.scryfall.io/large/front/b/5/b56080b1-f174-4bb2-85af-7a01bd2c77e6.jpg",
-      "image_url_zh": "/image/alchemy/ytdm/明灭利爪许才+.png",
+      "image_url_zh": "/image/alchemy/ytdm/明灭利爪许才.png",
       "rarity": "mythic",
       "pow_tough": "2/3"
     },
@@ -329,7 +329,7 @@
       "zhs_text": "每当你施放龙或非生物咒语时，从聚龙台风的法术书中`抽选`一张牌并将之放进战场。\n魂力～{2}{R}{R}，弃掉此牌：派出一个4/4红色，具`飞行`异能的龙衍生生物。",
       "artist": "Zoltan Boros",
       "image_url_en": "https://cards.scryfall.io/large/front/2/7/27b5910b-67eb-4c35-98fa-ed8cc59ded12.jpg",
-      "image_url_zh": "/image/alchemy/ytdm/聚龙台风+.png",
+      "image_url_zh": "/image/alchemy/ytdm/聚龙台风.png",
       "rarity": "rare",
       "pow_tough": "",
       "spellbook": [
