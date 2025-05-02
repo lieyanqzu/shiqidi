@@ -64,6 +64,20 @@ const premierDraftEvents: Event[] = [
     endTime: new Date('2025-05-13T08:00:00-07:00'),
     format: '竞技轮抽',
   },
+  {
+    type: 'premier_draft',
+    title: '鞑契可汗',
+    startTime: new Date('2025-05-20T08:00:00-07:00'),
+    endTime: new Date('2025-05-27T08:00:00-07:00'),
+    format: '竞技轮抽',
+  },
+  {
+    type: 'premier_draft',
+    title: '核心系列2021',
+    startTime: new Date('2025-05-27T08:00:00-07:00'),
+    endTime: new Date('2025-06-03T08:00:00-07:00'),
+    format: '竞技轮抽',
+  },
 ];
 
 const quickDraftEvents: Event[] = [
@@ -120,13 +134,6 @@ const otherEvents: Event[] = [
     startTime: new Date('2025-05-10T08:00:00-07:00'),
     endTime: new Date('2025-05-13T08:00:00-07:00'),
     format: '先驱',
-  },
-  {
-    type: 'other',
-    title: '竞技场直邮赛 - ？？？',
-    startTime: new Date('2025-05-17T08:00:00-07:00'),
-    endTime: new Date('2025-05-19T08:00:00-07:00'),
-    format: '现开',
   }
 ];
 
@@ -237,7 +244,15 @@ const premierPlayEvents: Event[] = [
   },
 ];
 
-const arenaOpenEvents: Event[] = [];
+const arenaOpenEvents: Event[] = [
+  {
+    type: 'arena_open',
+    title: '竞技场公开赛 - ？？？',
+    startTime: new Date('2025-05-17T08:00:00-07:00'),
+    endTime: new Date('2025-05-19T08:00:00-07:00'),
+    format: '限制',
+  },
+];
 
 const arenaChampionshipEvents: Event[] = [];
 
