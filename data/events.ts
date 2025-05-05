@@ -13,18 +13,11 @@ export interface Event {
 }
 
 export const calendarMetadata: CalendarMetadata = {
-  lastUpdated: '2025/04/28',
-  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-april-28-2025#schedule',
+  lastUpdated: '2025/05/05',
+  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-may-5-2025#schedule',
 };
 
 const midweekMagicEvents: Event[] = [
-  {
-    type: 'midweek_magic',
-    title: '步入未来',
-    startTime: new Date('2025-04-29T14:00:00-07:00'),
-    endTime: new Date('2025-05-01T14:00:00-07:00'),
-    format: '炼金预组'
-  },
   {
     type: 'midweek_magic',
     title: '史迹全铁',
@@ -46,6 +39,20 @@ const midweekMagicEvents: Event[] = [
     endTime: new Date('2025-05-22T14:00:00-07:00'),
     format: '角斗',
     description: '几乎无禁的BO3争锋，可能全卡'
+  },
+  {
+    type: 'midweek_magic',
+    title: '垫脚石现开',
+    startTime: new Date('2025-05-27T14:00:00-07:00'),
+    endTime: new Date('2025-05-29T14:00:00-07:00'),
+    format: '现开'
+  },
+  {
+    type: 'midweek_magic',
+    title: '鞑契龙岚录幻影快速轮抽',
+    startTime: new Date('2025-06-03T14:00:00-07:00'),
+    endTime: new Date('2025-06-05T14:00:00-07:00'),
+    format: '快速轮抽'
   },
 ];
 
@@ -76,6 +83,20 @@ const premierDraftEvents: Event[] = [
     title: '核心系列2021',
     startTime: new Date('2025-05-27T08:00:00-07:00'),
     endTime: new Date('2025-06-03T08:00:00-07:00'),
+    format: '竞技轮抽',
+  },
+  {
+    type: 'premier_draft',
+    title: '神河霓朝纪',
+    startTime: new Date('2025-06-03T08:00:00-07:00'),
+    endTime: new Date('2025-06-10T08:00:00-07:00'),
+    format: '竞技轮抽',
+  },
+  {
+    type: 'premier_draft',
+    title: '混合轮抽',
+    startTime: new Date('2025-05-27T08:00:00-07:00'),
+    endTime: new Date('2025-06-10T08:00:00-07:00'),
     format: '竞技轮抽',
   },
 ];
@@ -116,17 +137,8 @@ const otherEvents: Event[] = [
     type: 'other',
     title: '鞑契龙岚录现开赛',
     startTime: new Date('2025-04-08T08:00:00-07:00'),
-    endTime: new Date('2025-05-01T08:00:00-07:00'),
+    endTime: new Date('2025-05-11T08:00:00-07:00'),
     format: '现开',
-    description: '除常规现开赛外，额外有五个部族主题现开赛',
-  },
-  {
-    type: 'other',
-    title: '竞技场直邮赛 - 鞑契龙岚录',
-    startTime: new Date('2025-05-02T08:00:00-07:00'),
-    endTime: new Date('2025-05-05T08:00:00-07:00'),
-    format: '现开',
-    description: '门票改为 6,000 宝石，增加宝石奖励。六胜：一盒常规补充包，七胜：两盒常规补充包。'
   },
   {
     type: 'other',
@@ -134,7 +146,28 @@ const otherEvents: Event[] = [
     startTime: new Date('2025-05-10T08:00:00-07:00'),
     endTime: new Date('2025-05-13T08:00:00-07:00'),
     format: '先驱',
-  }
+  },
+  {
+    type: 'other',
+    title: '竞技场直邮赛 - 依夏兰迷窟（系列补充包）',
+    startTime: new Date('2025-05-23T08:00:00-07:00'),
+    endTime: new Date('2025-05-26T08:00:00-07:00'),
+    format: '现开',
+  },  
+  {
+    type: 'other',
+    title: '依夏兰迷窟现开',
+    startTime: new Date('2025-06-03T08:00:00-07:00'),
+    endTime: new Date('2025-06-19T08:00:00-07:00'),
+    format: '现开',
+  },
+  {
+    type: 'other',
+    title: '史迹环境挑战赛',
+    startTime: new Date('2025-06-06T08:00:00-07:00'),
+    endTime: new Date('2025-06-09T08:00:00-07:00'),
+    format: '史迹',
+  },
 ];
 
 const premierPlayEvents: Event[] = [
@@ -247,10 +280,10 @@ const premierPlayEvents: Event[] = [
 const arenaOpenEvents: Event[] = [
   {
     type: 'arena_open',
-    title: '竞技场公开赛 - ？？？',
-    startTime: new Date('2025-05-17T08:00:00-07:00'),
-    endTime: new Date('2025-05-19T08:00:00-07:00'),
-    format: '限制',
+    title: '竞技场公开赛 - 鞑契龙岚录',
+    startTime: new Date('2025-05-17T07:00:00-07:00'),
+    endTime: new Date('2025-05-18T04:00:00-07:00'),
+    format: '限制'
   },
 ];
 
