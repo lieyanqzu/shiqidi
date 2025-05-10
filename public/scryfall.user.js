@@ -13,6 +13,8 @@
 // @grant        GM_registerMenuCommand
 // @grant        GM_addStyle
 // @grant        GM_openInTab
+// @downloadURL https://shiqidi.lenitatis.com/scryfall.user.js
+// @updateURL https://shiqidi.lenitatis.com/scryfall.user.js
 // ==/UserScript==
 
 (function() {

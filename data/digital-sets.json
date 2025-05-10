@@ -112,7 +112,30 @@
       "name": "万智牌～最终幻想",
       "code": "FIN",
       "releaseDate": "2025-06-11",
-      "wikiUrl": "https://mtg.wiki/page/Final_Fantasy?utm_source=shiqidi"
+      "wikiUrl": "https://mtg.wiki/page/Final_Fantasy?utm_source=shiqidi",
+      "preview": {
+        "title": "史诗聚集于此",
+        "description": "施放强大的咒语，唤出经典的召唤兽，还可以乘在陆行鸟背上前往你最爱的地方。用数不胜数的原游戏的元素来创造你自己的故事！",
+        "backgroundImage": "/image/background/FIN_sma_key_1920x1080.jpg",
+        "links": [
+          {
+            "name": "大学院废墟（中文）",
+            "url": "https://sbwsz.com/previews/FIN/?utm_source=shiqidi"
+          },
+          {
+            "name": "官网牌图集合",
+            "url": "https://magic.wizards.com/en/products/final-fantasy/card-image-gallery"
+          },
+          {
+            "name": "Scryfall",
+            "url": "https://scryfall.com/sets/fin?order=spoiled&utm_source=shiqidi"
+          },
+          {
+            "name": "Untapped.gg",
+            "url": "https://mtga.untapped.gg/codex/sets/final-fantasy?sortBy=spoilerDate&utm_source=shiqidi"
+          }
+        ]
+      }
     }
   ]
 }
