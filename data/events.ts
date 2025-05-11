@@ -20,32 +20,26 @@ export const calendarMetadata: CalendarMetadata = {
 const midweekMagicEvents: Event[] = [
   {
     type: 'midweek_magic',
-    title: '史迹全铁',
-    startTime: new Date('2025-05-06T14:00:00-07:00'),
-    endTime: new Date('2025-05-08T14:00:00-07:00'),
-    format: '史迹'
-  },
-  {
-    type: 'midweek_magic',
     title: '争锋构筑挑战赛',
     startTime: new Date('2025-05-13T14:00:00-07:00'),
     endTime: new Date('2025-05-15T14:00:00-07:00'),
-    format: '争锋'
+    format: '争锋',
+    description: '只能使用鞑契龙岚录系列的指挥官'
   },
   {
     type: 'midweek_magic',
     title: '角斗聚焦',
     startTime: new Date('2025-05-20T14:00:00-07:00'),
     endTime: new Date('2025-05-22T14:00:00-07:00'),
-    format: '角斗',
-    description: '几乎无禁的BO3争锋，可能全卡'
+    format: '角斗'
   },
   {
     type: 'midweek_magic',
     title: '垫脚石现开',
     startTime: new Date('2025-05-27T14:00:00-07:00'),
     endTime: new Date('2025-05-29T14:00:00-07:00'),
-    format: '现开'
+    format: '现开',
+    description: '22张固定卡池+一张随机金牌+5包补充包'
   },
   {
     type: 'midweek_magic',
@@ -87,28 +81,21 @@ const premierDraftEvents: Event[] = [
   },
   {
     type: 'premier_draft',
-    title: '神河霓朝纪',
-    startTime: new Date('2025-06-03T08:00:00-07:00'),
+    title: '混合轮抽',
+    startTime: new Date('2025-05-27T08:00:00-07:00'),
     endTime: new Date('2025-06-10T08:00:00-07:00'),
     format: '竞技轮抽',
   },
   {
     type: 'premier_draft',
-    title: '混合轮抽',
-    startTime: new Date('2025-05-27T08:00:00-07:00'),
+    title: '神河霓朝纪',
+    startTime: new Date('2025-06-03T08:00:00-07:00'),
     endTime: new Date('2025-06-10T08:00:00-07:00'),
     format: '竞技轮抽',
   },
 ];
 
 const quickDraftEvents: Event[] = [
-  {
-    type: 'quick_draft',
-    title: '暮悲邸：鬼屋惊魂',
-    startTime: new Date('2025-04-27T08:00:00-07:00'),
-    endTime: new Date('2025-05-07T08:00:00-07:00'),
-    format: '快速轮抽',
-  },
   {
     type: 'quick_draft',
     title: '鞑契龙岚录',
@@ -133,13 +120,6 @@ const quickDraftEvents: Event[] = [
 ];
 
 const otherEvents: Event[] = [
-  {
-    type: 'other',
-    title: '鞑契龙岚录现开赛',
-    startTime: new Date('2025-04-08T08:00:00-07:00'),
-    endTime: new Date('2025-05-11T08:00:00-07:00'),
-    format: '现开',
-  },
   {
     type: 'other',
     title: '先驱展览',
@@ -171,22 +151,6 @@ const otherEvents: Event[] = [
 ];
 
 const premierPlayEvents: Event[] = [
-  {
-    type: 'premier_play',
-    title: '资格赛入围赛BO1',
-    startTime: new Date('2025-05-03T06:00:00-07:00'),
-    endTime: new Date('2025-05-04T09:00:00-07:00'),
-    format: '炼金',
-    description: '单日赛事，玩家将竞争获得5月10-11日资格赛周末的参赛资格。',
-  },
-  {
-    type: 'premier_play',
-    title: '资格赛入围赛BO3',
-    startTime: new Date('2025-05-09T06:00:00-07:00'),
-    endTime: new Date('2025-05-10T07:00:00-07:00'),
-    format: '炼金',
-    description: '单日赛事，玩家将竞争获得5月10-11日资格赛周末的参赛资格。',
-  },
   {
     type: 'premier_play',
     title: '资格赛周末',
