@@ -13,8 +13,8 @@ export interface Event {
 }
 
 export const calendarMetadata: CalendarMetadata = {
-  lastUpdated: '2025/05/05',
-  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-may-5-2025#schedule',
+  lastUpdated: '2025/05/12',
+  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-may-12-2025#schedule',
 };
 
 const midweekMagicEvents: Event[] = [
@@ -117,6 +117,13 @@ const quickDraftEvents: Event[] = [
     endTime: new Date('2025-06-19T08:00:00-07:00'),
     format: '快速轮抽',
   },
+  {
+    type: 'quick_draft',
+    title: '万智牌～最终幻想',
+    startTime: new Date('2025-06-19T08:00:00-07:00'),
+    endTime: new Date('2025-06-30T08:00:00-07:00'),
+    format: '快速轮抽',
+  },
 ];
 
 const otherEvents: Event[] = [
@@ -129,18 +136,18 @@ const otherEvents: Event[] = [
   },
   {
     type: 'other',
+    title: '依夏兰迷窟现开',
+    startTime: new Date('2025-06-19T08:00:00-07:00'),
+    endTime: new Date('2025-06-27T08:00:00-07:00'),
+    format: '现开',
+  },
+  {
+    type: 'other',
     title: '竞技场直邮赛 - 依夏兰迷窟（系列补充包）',
     startTime: new Date('2025-05-23T08:00:00-07:00'),
     endTime: new Date('2025-05-26T08:00:00-07:00'),
     format: '现开',
   },  
-  {
-    type: 'other',
-    title: '依夏兰迷窟现开',
-    startTime: new Date('2025-06-03T08:00:00-07:00'),
-    endTime: new Date('2025-06-19T08:00:00-07:00'),
-    format: '现开',
-  },
   {
     type: 'other',
     title: '史迹环境挑战赛',
@@ -151,14 +158,6 @@ const otherEvents: Event[] = [
 ];
 
 const premierPlayEvents: Event[] = [
-  {
-    type: 'premier_play',
-    title: '资格赛周末',
-    startTime: new Date('2025-05-10T06:00:00-07:00'),
-    endTime: new Date('2025-05-11T16:00:00-07:00'),
-    format: '炼金',
-    description: '两日赛事，获胜者将获得参加竞技场冠军赛10的资格。',
-  },
   {
     type: 'premier_play',
     title: '资格赛入围赛BO1',
