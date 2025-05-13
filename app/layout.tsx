@@ -1,6 +1,6 @@
 import '@/app/globals.css';
 import '@/styles/mana-symbols.css';
-import 'keyrune/css/keyrune.css';
+import '@mtgzh/keyrune/css/keyrune.css';
 import 'mana-font/css/mana.css';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
