@@ -48,6 +48,7 @@ export const formatSpeedOptions: Option[] = [
 
 // 系列选项
 export const expansionOptions: Option[] = [
+  { label: "FIN", value: "FIN" },
   { label: "TDM", value: "TDM" },
   { label: "Y25TDM", value: "Y25TDM" },
   { label: "DFT", value: "DFT" },
