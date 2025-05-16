@@ -188,31 +188,37 @@ export function CardFilters({
             <div className="flex items-center gap-2">
               <span className="text-sm text-[--component-foreground-muted] whitespace-nowrap">稀有度:</span>
               <div className="flex gap-1">
-                {rarityOptions.map((rarity) => (
-                  <button
-                    key={rarity.value}
-                    className={`
-                      w-8 h-8 rounded-full flex items-center justify-center
-                      ${selectedRarities.includes(rarity.value)
-                        ? 'ring-2 ring-[#FFB000] ring-opacity-80' 
-                        : 'hover:ring-2 hover:ring-[#FFB000] hover:ring-opacity-50 brightness-75'}
-                      transition-all
-                    `}
-                    onClick={() => {
-                      const newRarities = selectedRarities.includes(rarity.value)
-                        ? selectedRarities.filter(r => r !== rarity.value)
-                        : [...selectedRarities, rarity.value];
-                      onRarityFilter(newRarities);
-                    }}
-                    title={rarity.label}
-                  >
-                    <i 
-                      className={`keyrune ss ss-${params.expansion.toLowerCase()} ss-${rarity.value} ss-2x`}
-                      aria-hidden="true"
-                      style={{ backgroundColor: 'transparent' }}
-                    />
-                  </button>
-                ))}
+                {rarityOptions.map((rarity) => {
+                  const expansion = params.expansion;
+                  const processedSet = expansion.toLowerCase().startsWith('y') 
+                    ? `y${expansion.slice(expansion.match(/Y\d{0,2}/)![0].length)}`.toLowerCase() 
+                    : expansion.toLowerCase();
+                  return (
+                    <button
+                      key={rarity.value}
+                      className={`
+                        w-8 h-8 rounded-full flex items-center justify-center
+                        ${selectedRarities.includes(rarity.value)
+                          ? 'ring-2 ring-[#FFB000] ring-opacity-80' 
+                          : 'hover:ring-2 hover:ring-[#FFB000] hover:ring-opacity-50 brightness-75'}
+                        transition-all
+                      `}
+                      onClick={() => {
+                        const newRarities = selectedRarities.includes(rarity.value)
+                          ? selectedRarities.filter(r => r !== rarity.value)
+                          : [...selectedRarities, rarity.value];
+                        onRarityFilter(newRarities);
+                      }}
+                      title={rarity.label}
+                    >
+                      <i 
+                        className={`keyrune ss ss-${processedSet} ss-${rarity.value} ss-2x`}
+                        aria-hidden="true"
+                        style={{ backgroundColor: 'transparent' }}
+                      />
+                    </button>
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -294,31 +300,37 @@ export function CardFilters({
             <div className="space-y-2">
               <span className="text-sm text-[--component-foreground-muted] whitespace-nowrap">稀有度:</span>
               <div className="flex flex-wrap gap-1">
-                {rarityOptions.map((rarity) => (
-                  <button
-                    key={rarity.value}
-                    className={`
-                      w-8 h-8 rounded-full flex items-center justify-center
-                      ${tempRarities.includes(rarity.value)
-                        ? 'ring-2 ring-[#FFB000] ring-opacity-80' 
-                        : 'hover:ring-2 hover:ring-[#FFB000] hover:ring-opacity-50 brightness-75'}
-                      transition-all
-                    `}
-                    onClick={() => {
-                      const newRarities = tempRarities.includes(rarity.value)
-                        ? tempRarities.filter(r => r !== rarity.value)
-                        : [...tempRarities, rarity.value];
-                      setTempRarities(newRarities);
-                    }}
-                    title={rarity.label}
-                  >
-                    <i 
-                      className={`keyrune ss ss-${params.expansion.toLowerCase()} ss-${rarity.value} ss-2x`}
-                      aria-hidden="true"
-                      style={{ backgroundColor: 'transparent' }}
-                    />
-                  </button>
-                ))}
+                {rarityOptions.map((rarity) => {
+                  const expansion = params.expansion;
+                  const processedSet = expansion.toLowerCase().startsWith('y') 
+                    ? `y${expansion.slice(expansion.match(/Y\d{0,2}/)![0].length)}`.toLowerCase() 
+                    : expansion.toLowerCase();
+                  return (
+                    <button
+                      key={rarity.value}
+                      className={`
+                        w-8 h-8 rounded-full flex items-center justify-center
+                        ${tempRarities.includes(rarity.value)
+                          ? 'ring-2 ring-[#FFB000] ring-opacity-80' 
+                          : 'hover:ring-2 hover:ring-[#FFB000] hover:ring-opacity-50 brightness-75'}
+                        transition-all
+                      `}
+                      onClick={() => {
+                        const newRarities = tempRarities.includes(rarity.value)
+                          ? tempRarities.filter(r => r !== rarity.value)
+                          : [...tempRarities, rarity.value];
+                        setTempRarities(newRarities);
+                      }}
+                      title={rarity.label}
+                    >
+                      <i 
+                        className={`keyrune ss ss-${processedSet} ss-${rarity.value} ss-2x`}
+                        aria-hidden="true"
+                        style={{ backgroundColor: 'transparent' }}
+                      />
+                    </button>
+                  );
+                })}
               </div>
             </div>
 
