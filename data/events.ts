@@ -122,8 +122,8 @@ const otherEvents: Event[] = [
   {
     type: 'other',
     title: '依夏兰迷窟现开',
-    startTime: new Date('2025-06-19T08:00:00-07:00'),
-    endTime: new Date('2025-06-27T08:00:00-07:00'),
+    startTime: new Date('2025-05-19T08:00:00-07:00'),
+    endTime: new Date('2025-05-27T08:00:00-07:00'),
     format: '现开',
   },
   {
