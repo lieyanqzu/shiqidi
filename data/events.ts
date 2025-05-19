@@ -13,19 +13,11 @@ export interface Event {
 }
 
 export const calendarMetadata: CalendarMetadata = {
-  lastUpdated: '2025/05/12',
-  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-may-12-2025#schedule',
+  lastUpdated: '2025/05/19',
+  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-may-19-2025#schedule',
 };
 
 const midweekMagicEvents: Event[] = [
-  {
-    type: 'midweek_magic',
-    title: '争锋构筑挑战赛',
-    startTime: new Date('2025-05-13T14:00:00-07:00'),
-    endTime: new Date('2025-05-15T14:00:00-07:00'),
-    format: '争锋',
-    description: '只能使用鞑契龙岚录系列的指挥官'
-  },
   {
     type: 'midweek_magic',
     title: '角斗聚焦',
@@ -48,6 +40,13 @@ const midweekMagicEvents: Event[] = [
     endTime: new Date('2025-06-05T14:00:00-07:00'),
     format: '快速轮抽'
   },
+  {
+    type: 'midweek_magic',
+    title: 'MTG竞技场纯铁',
+    startTime: new Date('2025-06-10T14:00:00-07:00'),
+    endTime: new Date('2025-06-12T14:00:00-07:00'),
+    format: '纯铁'
+  },
 ];
 
 const premierDraftEvents: Event[] = [
@@ -56,13 +55,6 @@ const premierDraftEvents: Event[] = [
     title: '鞑契龙岚录',
     startTime: new Date('2025-04-08T08:00:00-07:00'),
     endTime: new Date('2025-06-10T08:00:00-07:00'),
-    format: '竞技轮抽',
-  },
-  {
-    type: 'premier_draft',
-    title: '炼金：鞑契',
-    startTime: new Date('2025-04-29T08:00:00-07:00'),
-    endTime: new Date('2025-05-13T08:00:00-07:00'),
     format: '竞技轮抽',
   },
   {
@@ -127,13 +119,6 @@ const quickDraftEvents: Event[] = [
 ];
 
 const otherEvents: Event[] = [
-  {
-    type: 'other',
-    title: '先驱展览',
-    startTime: new Date('2025-05-10T08:00:00-07:00'),
-    endTime: new Date('2025-05-13T08:00:00-07:00'),
-    format: '先驱',
-  },
   {
     type: 'other',
     title: '依夏兰迷窟现开',
