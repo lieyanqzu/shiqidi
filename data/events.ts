@@ -13,18 +13,11 @@ export interface Event {
 }
 
 export const calendarMetadata: CalendarMetadata = {
-  lastUpdated: '2025/05/19',
-  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-may-19-2025#schedule',
+  lastUpdated: '2025/05/27',
+  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-may-27-2025#schedule',
 };
 
 const midweekMagicEvents: Event[] = [
-  {
-    type: 'midweek_magic',
-    title: '角斗聚焦',
-    startTime: new Date('2025-05-20T14:00:00-07:00'),
-    endTime: new Date('2025-05-22T14:00:00-07:00'),
-    format: '角斗'
-  },
   {
     type: 'midweek_magic',
     title: '垫脚石现开',
@@ -46,6 +39,13 @@ const midweekMagicEvents: Event[] = [
     startTime: new Date('2025-06-10T14:00:00-07:00'),
     endTime: new Date('2025-06-12T14:00:00-07:00'),
     format: '纯铁'
+  },
+  {
+    type: 'midweek_magic',
+    title: '万智牌～最终幻想构筑',
+    startTime: new Date('2025-06-17T14:00:00-07:00'),
+    endTime: new Date('2025-06-19T14:00:00-07:00'),
+    format: '万智牌～最终幻想'
   },
 ];
 
@@ -90,13 +90,6 @@ const premierDraftEvents: Event[] = [
 const quickDraftEvents: Event[] = [
   {
     type: 'quick_draft',
-    title: '鞑契龙岚录',
-    startTime: new Date('2025-05-08T08:00:00-07:00'),
-    endTime: new Date('2025-05-20T08:00:00-07:00'),
-    format: '快速轮抽',
-  },
-  {
-    type: 'quick_draft',
     title: '依夏兰迷窟',
     startTime: new Date('2025-05-20T08:00:00-07:00'),
     endTime: new Date('2025-06-03T08:00:00-07:00'),
@@ -113,7 +106,14 @@ const quickDraftEvents: Event[] = [
     type: 'quick_draft',
     title: '万智牌～最终幻想',
     startTime: new Date('2025-06-19T08:00:00-07:00'),
-    endTime: new Date('2025-06-30T08:00:00-07:00'),
+    endTime: new Date('2025-06-29T08:00:00-07:00'),
+    format: '快速轮抽',
+  },
+  {
+    type: 'quick_draft',
+    title: '光雷驿镖客',
+    startTime: new Date('2025-06-29T08:00:00-07:00'),
+    endTime: new Date('2025-07-07T08:00:00-07:00'),
     format: '快速轮抽',
   },
 ];
@@ -121,24 +121,17 @@ const quickDraftEvents: Event[] = [
 const otherEvents: Event[] = [
   {
     type: 'other',
-    title: '依夏兰迷窟现开',
-    startTime: new Date('2025-05-19T08:00:00-07:00'),
-    endTime: new Date('2025-05-27T08:00:00-07:00'),
-    format: '现开',
-  },
-  {
-    type: 'other',
-    title: '竞技场直邮赛 - 依夏兰迷窟（系列补充包）',
-    startTime: new Date('2025-05-23T08:00:00-07:00'),
-    endTime: new Date('2025-05-26T08:00:00-07:00'),
-    format: '现开',
-  },  
-  {
-    type: 'other',
     title: '史迹环境挑战赛',
     startTime: new Date('2025-06-06T08:00:00-07:00'),
     endTime: new Date('2025-06-09T08:00:00-07:00'),
     format: '史迹',
+  },
+  {
+    type: 'other',
+    title: '速学！万智牌～最终幻想',
+    startTime: new Date('2025-06-10T08:00:00-07:00'),
+    endTime: new Date('2025-06-15T08:00:00-07:00'),
+    format: '速学！',
   },
 ];
 
@@ -225,15 +218,7 @@ const premierPlayEvents: Event[] = [
   },
 ];
 
-const arenaOpenEvents: Event[] = [
-  {
-    type: 'arena_open',
-    title: '竞技场公开赛 - 鞑契龙岚录',
-    startTime: new Date('2025-05-17T07:00:00-07:00'),
-    endTime: new Date('2025-05-18T04:00:00-07:00'),
-    format: '限制'
-  },
-];
+const arenaOpenEvents: Event[] = [];
 
 const arenaChampionshipEvents: Event[] = [];
 
