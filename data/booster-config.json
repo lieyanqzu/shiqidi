@@ -1,6 +1,15 @@
 {
   "sets": [
     {
+      "code": "FIN",
+      "boosters": [
+        {
+          "code": "fin-play",
+          "name": "常规补充包"
+        }
+      ]
+    },
+    {
       "code": "TDM",
       "boosters": [
         {
