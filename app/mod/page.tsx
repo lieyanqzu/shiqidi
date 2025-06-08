@@ -62,19 +62,12 @@ export default function ModPage() {
             </div>
 
             <div className="border-t border-[--border] pt-4">
-              <h3 className="font-medium text-[--foreground] mb-2">最新MOD版本：v2.7</h3>
+              <h3 className="font-medium text-[--foreground] mb-2">最新MOD版本：v2.8</h3>
               <div className="text-sm text-[--muted-foreground]">
                 <p className="mb-2">更新内容：</p>
                 <ul className="list-disc list-inside space-y-1">
-                  <li>新增配置项PlayerNameReplacement，可根据配置更改对局中玩家名称显示，用于匿名截图/直播等需求，具体使用方法见配置说明</li>
-                  <li>新增配置项QuickActionMode（实验性功能），点击卡牌时如果只有一个选项就直接执行，具体实例如：
-                    <ul className="list-[circle] list-inside ml-4 mt-1">
-                      <li>点击场上的死冥权能：开启前需要再次点击起动效果来确认起动；开启后会直接起动效果</li>
-                      <li>使用手牌中费用不够施放但足够起动循环异能的卡牌：开启前会弹出页面选择施放还是循环；开启后直接起动循环</li>
-                    </ul>
-                  </li>
-                  <li>（以上配置项可通过更新器的修改配置功能或手动编辑配置文件BepInEx/config/MtgaMod.cfg更改）</li>
-                  <li>帮wsz修复BO3对局掉线重启游戏后无法换备的问题</li>
+                  <li>给FCA和japan showcase牌框文本增加描边防止看不清</li>
+                  <li>修复别名卡的原名看不见的问题</li>
                 </ul>
               </div>
             </div>
