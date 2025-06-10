@@ -13,18 +13,11 @@ export interface Event {
 }
 
 export const calendarMetadata: CalendarMetadata = {
-  lastUpdated: '2025/06/02',
-  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-june-2-2025#schedule',
+  lastUpdated: '2025/06/09',
+  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-june-9-2025#schedule',
 };
 
 const midweekMagicEvents: Event[] = [
-  {
-    type: 'midweek_magic',
-    title: '鞑契龙岚录幻影快速轮抽',
-    startTime: new Date('2025-06-03T14:00:00-07:00'),
-    endTime: new Date('2025-06-05T14:00:00-07:00'),
-    format: '快速轮抽'
-  },
   {
     type: 'midweek_magic',
     title: 'MTG竞技场纯铁',
@@ -46,37 +39,16 @@ const midweekMagicEvents: Event[] = [
     endTime: new Date('2025-06-27T14:00:00-07:00'),
     format: '争锋'
   },
+  {
+    type: 'midweek_magic',
+    title: '倾曳争锋',
+    startTime: new Date('2025-07-01T14:00:00-07:00'),
+    endTime: new Date('2025-07-03T14:00:00-07:00'),
+    format: '争锋'
+  },
 ];
 
 const premierDraftEvents: Event[] = [
-  {
-    type: 'premier_draft',
-    title: '鞑契龙岚录',
-    startTime: new Date('2025-04-08T08:00:00-07:00'),
-    endTime: new Date('2025-06-10T08:00:00-07:00'),
-    format: '竞技轮抽',
-  },
-  {
-    type: 'premier_draft',
-    title: '核心系列2021',
-    startTime: new Date('2025-05-27T08:00:00-07:00'),
-    endTime: new Date('2025-06-03T08:00:00-07:00'),
-    format: '竞技轮抽',
-  },
-  {
-    type: 'premier_draft',
-    title: '混合轮抽',
-    startTime: new Date('2025-05-27T08:00:00-07:00'),
-    endTime: new Date('2025-06-10T08:00:00-07:00'),
-    format: '竞技轮抽',
-  },
-  {
-    type: 'premier_draft',
-    title: '神河霓朝纪',
-    startTime: new Date('2025-06-03T08:00:00-07:00'),
-    endTime: new Date('2025-06-10T08:00:00-07:00'),
-    format: '竞技轮抽',
-  },
   {
     type: 'premier_draft',
     title: '万智牌～最终幻想',
@@ -87,13 +59,6 @@ const premierDraftEvents: Event[] = [
 ];
 
 const quickDraftEvents: Event[] = [
-  {
-    type: 'quick_draft',
-    title: '依夏兰迷窟',
-    startTime: new Date('2025-05-20T08:00:00-07:00'),
-    endTime: new Date('2025-06-03T08:00:00-07:00'),
-    format: '快速轮抽',
-  },
   {
     type: 'quick_draft',
     title: '乙太飘移',
@@ -127,10 +92,17 @@ const quickDraftEvents: Event[] = [
 const otherEvents: Event[] = [
   {
     type: 'other',
-    title: '史迹环境挑战赛',
-    startTime: new Date('2025-06-06T08:00:00-07:00'),
-    endTime: new Date('2025-06-09T08:00:00-07:00'),
-    format: '史迹',
+    title: '万智牌～最终幻想现开BO1',
+    startTime: new Date('2025-06-10T08:00:00-07:00'),
+    endTime: new Date('2025-07-04T08:00:00-07:00'),
+    format: '现开',
+  },
+  {
+    type: 'other',
+    title: '万智牌～最终幻想现开BO3',
+    startTime: new Date('2025-06-10T08:00:00-07:00'),
+    endTime: new Date('2025-06-23T08:00:00-07:00'),
+    format: '现开',
   },
   {
     type: 'other',
@@ -144,6 +116,13 @@ const otherEvents: Event[] = [
     title: '竞技场直邮赛 - 万智牌～最终幻想现开（聚珍补充包）',
     startTime: new Date('2025-06-20T08:00:00-07:00'),
     endTime: new Date('2025-06-23T08:00:00-07:00'),
+    format: '现开',
+  },
+  {
+    type: 'other',
+    title: '竞技场直邮赛 - 万智牌～最终幻想现开（常规珍补充包）',
+    startTime: new Date('2025-07-04T08:00:00-07:00'),
+    endTime: new Date('2025-07-07T08:00:00-07:00'),
     format: '现开',
   },
 ];
