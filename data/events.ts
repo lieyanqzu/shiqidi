@@ -113,10 +113,31 @@ const otherEvents: Event[] = [
   },
   {
     type: 'other',
+    title: '先驱环境挑战赛',
+    startTime: new Date('2025-06-13T08:00:00-07:00'),
+    endTime: new Date('2025-06-16T08:00:00-07:00'),
+    format: '先驱',
+  },
+  {
+    type: 'other',
+    title: '标准环境挑战赛',
+    startTime: new Date('2025-06-20T08:00:00-07:00'),
+    endTime: new Date('2025-06-23T08:00:00-07:00'),
+    format: '标准',
+  },
+  {
+    type: 'other',
     title: '竞技场直邮赛 - 万智牌～最终幻想现开（聚珍补充包）',
     startTime: new Date('2025-06-20T08:00:00-07:00'),
     endTime: new Date('2025-06-23T08:00:00-07:00'),
     format: '现开',
+  },
+  {
+    type: 'other',
+    title: '永恒环境挑战赛',
+    startTime: new Date('2025-06-27T08:00:00-07:00'),
+    endTime: new Date('2025-06-30T08:00:00-07:00'),
+    format: '永恒',
   },
   {
     type: 'other',
