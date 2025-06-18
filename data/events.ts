@@ -13,18 +13,11 @@ export interface Event {
 }
 
 export const calendarMetadata: CalendarMetadata = {
-  lastUpdated: '2025/06/09',
-  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-june-9-2025#schedule',
+  lastUpdated: '2025/06/16',
+  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-june-16-2025#Schedule',
 };
 
 const midweekMagicEvents: Event[] = [
-  {
-    type: 'midweek_magic',
-    title: 'MTG竞技场纯铁',
-    startTime: new Date('2025-06-10T14:00:00-07:00'),
-    endTime: new Date('2025-06-12T14:00:00-07:00'),
-    format: '纯铁'
-  },
   {
     type: 'midweek_magic',
     title: '万智牌～最终幻想构筑',
@@ -45,6 +38,13 @@ const midweekMagicEvents: Event[] = [
     startTime: new Date('2025-07-01T14:00:00-07:00'),
     endTime: new Date('2025-07-03T14:00:00-07:00'),
     format: '争锋'
+  },
+  {
+    type: 'midweek_magic',
+    title: '莫秘维',
+    startTime: new Date('2025-07-08T14:00:00-07:00'),
+    endTime: new Date('2025-07-10T14:00:00-07:00'),
+    format: '莫秘维'
   },
 ];
 
@@ -110,13 +110,6 @@ const otherEvents: Event[] = [
     startTime: new Date('2025-06-10T08:00:00-07:00'),
     endTime: new Date('2025-07-15T08:00:00-07:00'),
     format: '速学！',
-  },
-  {
-    type: 'other',
-    title: '先驱环境挑战赛',
-    startTime: new Date('2025-06-13T08:00:00-07:00'),
-    endTime: new Date('2025-06-16T08:00:00-07:00'),
-    format: '先驱',
   },
   {
     type: 'other',
