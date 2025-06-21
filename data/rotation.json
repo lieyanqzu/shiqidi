@@ -453,11 +453,11 @@
       "universes_beyond": true
     },
     {
-      "name": null,
+      "name": "Lorwyn Eclipsed",
       "codename": "Wrestling",
       "block": null,
-      "code": null,
-      "enter_date": null,
+      "code": "ECL",
+      "enter_date": "2026-01-23T00:00:00.000",
       "rough_enter_date": "Q1 2026",
       "exit_date": null,
       "rough_exit_date": "Q1 2029"
