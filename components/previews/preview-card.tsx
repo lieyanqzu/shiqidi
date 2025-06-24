@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Fragment } from 'react';
 import type { PreviewCard } from '@/types/previews';
 import { ManaText } from '@/components/mana-text';
 
@@ -16,6 +16,39 @@ interface CardRef {
   number: string;
   zhs_name?: string;
 }
+
+const StationAbility = ({
+  level,
+  textLines,
+  pt,
+  renderCardRef,
+}: {
+  level: string;
+  textLines: string[];
+  pt: string;
+  renderCardRef: (text: string, index: number) => React.ReactNode;
+}) => {
+  return (
+    <div className="mt-2 flex items-center border-t border-[--border] pt-2">
+      <div className="mr-4 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-zinc-200/50 font-bold dark:bg-zinc-800/50">
+        {level}
+      </div>
+      <div className="flex-grow">
+        {textLines.map((line, index) => (
+          <Fragment key={index}>
+            <ManaText text={line} renderCardRef={renderCardRef} />
+            {index < textLines.length - 1 && <br />}
+          </Fragment>
+        ))}
+      </div>
+      {pt && (
+        <div className="ml-4 flex-shrink-0 rounded-md bg-zinc-200/50 px-3 py-1 font-semibold dark:bg-zinc-800/50">
+          {pt}
+        </div>
+      )}
+    </div>
+  );
+};
 
 export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
   const [spellbookCards, setSpellbookCards] = useState<CardRef[]>([]);
@@ -109,6 +142,34 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
     }
   }, [card.related, card.text, card.zhs_text, relatedCards, isEnglish]);
 
+  const renderCardRef = (text: string, index: number) => {
+    // 检查是否是卡牌引用格式 卡名:索引
+    const match = text.match(/([^:]+):(\d+)/);
+    if (match) {
+      const [, cardName, cardIndex] = match;
+      const cardIdx = parseInt(cardIndex, 10);
+      const refCard = relatedCards[cardIdx];
+      
+      if (refCard) {
+        return (
+          <a
+            key={index}
+            href={getCardDetailUrl(refCard.setCode, refCard.number)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[--primary] transition-opacity hover:opacity-80"
+            onMouseEnter={() => handleMouseEnter(refCard)}
+            onMouseLeave={handleMouseLeave}
+            onMouseMove={handleMouseMove}
+          >
+            {cardName}
+          </a>
+        );
+      }
+    }
+    return null;
+  };
+
   const getRarityIcon = (rarity: string): string => {
     switch (rarity) {
       case 'mythic':
@@ -124,41 +185,46 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
 
   // 处理文本，保持换行的同时渲染法术力符号
   const renderText = (text: string) => {
-    return text.split('\n').map((line, index, array) => (
+    const stationSplit = text.split(/\n(?=STATION )/);
+    const normalText = stationSplit[0];
+    const stationTexts = stationSplit.slice(1);
+
+    const normalTextElements = normalText.split('\n').map((line, index, array) => (
       <div key={index} className="inline-block w-full">
-        <ManaText 
-          text={line} 
-          renderCardRef={(text, index) => {
-            // 检查是否是卡牌引用格式 卡名:索引
-            const match = text.match(/([^:]+):(\d+)/);
-            if (match) {
-              const [, cardName, cardIndex] = match;
-              const cardIdx = parseInt(cardIndex, 10);
-              const refCard = relatedCards[cardIdx];
-              
-              if (refCard) {
-                return (
-                  <a
-                    key={index}
-                    href={getCardDetailUrl(refCard.setCode, refCard.number)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[--primary] hover:opacity-80 transition-opacity"
-                    onMouseEnter={() => handleMouseEnter(refCard)}
-                    onMouseLeave={handleMouseLeave}
-                    onMouseMove={handleMouseMove}
-                  >
-                    {cardName}
-                  </a>
-                );
-              }
-            }
-            return null;
-          }}
-        />
+        <ManaText text={line} renderCardRef={renderCardRef} />
         {index < array.length - 1 && <br />}
       </div>
     ));
+
+    const stationElements = stationTexts.map((stationText, index) => {
+      const lines = stationText.split('\n');
+      const level = lines[0].replace('STATION ', '');
+      const textLines = lines.slice(1);
+      let pt = '';
+
+      if (textLines.length > 0) {
+        const lastLine = textLines[textLines.length - 1];
+        if (/^\d+\/\d+$/.test(lastLine)) {
+          pt = textLines.pop()!;
+        }
+      }
+      return (
+        <StationAbility
+          key={index}
+          level={level}
+          textLines={textLines}
+          pt={pt}
+          renderCardRef={renderCardRef}
+        />
+      );
+    });
+
+    return (
+      <>
+        {normalTextElements}
+        {stationElements}
+      </>
+    );
   };
 
   // 获取卡牌详情页面URL

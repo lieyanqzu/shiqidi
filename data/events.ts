@@ -13,18 +13,11 @@ export interface Event {
 }
 
 export const calendarMetadata: CalendarMetadata = {
-  lastUpdated: '2025/06/16',
-  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-june-16-2025#Schedule',
+  lastUpdated: '2025/06/23',
+  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-june-23-2025#Schedule',
 };
 
 const midweekMagicEvents: Event[] = [
-  {
-    type: 'midweek_magic',
-    title: '万智牌～最终幻想构筑',
-    startTime: new Date('2025-06-17T14:00:00-07:00'),
-    endTime: new Date('2025-06-19T14:00:00-07:00'),
-    format: '万智牌～最终幻想'
-  },
   {
     type: 'midweek_magic',
     title: '万智牌～最终幻想争锋构筑',
@@ -61,13 +54,6 @@ const premierDraftEvents: Event[] = [
 const quickDraftEvents: Event[] = [
   {
     type: 'quick_draft',
-    title: '乙太飘移',
-    startTime: new Date('2025-06-03T08:00:00-07:00'),
-    endTime: new Date('2025-06-19T08:00:00-07:00'),
-    format: '快速轮抽',
-  },
-  {
-    type: 'quick_draft',
     title: '万智牌～最终幻想',
     startTime: new Date('2025-06-19T08:00:00-07:00'),
     endTime: new Date('2025-06-29T08:00:00-07:00'),
@@ -99,13 +85,6 @@ const otherEvents: Event[] = [
   },
   {
     type: 'other',
-    title: '万智牌～最终幻想现开BO3',
-    startTime: new Date('2025-06-10T08:00:00-07:00'),
-    endTime: new Date('2025-06-23T08:00:00-07:00'),
-    format: '现开',
-  },
-  {
-    type: 'other',
     title: '投身万智牌～最终幻想',
     startTime: new Date('2025-06-10T08:00:00-07:00'),
     endTime: new Date('2025-07-15T08:00:00-07:00'),
@@ -113,24 +92,11 @@ const otherEvents: Event[] = [
   },
   {
     type: 'other',
-    title: '标准环境挑战赛',
-    startTime: new Date('2025-06-20T08:00:00-07:00'),
-    endTime: new Date('2025-06-23T08:00:00-07:00'),
-    format: '标准',
-  },
-  {
-    type: 'other',
-    title: '竞技场直邮赛 - 万智牌～最终幻想现开（聚珍补充包）',
-    startTime: new Date('2025-06-20T08:00:00-07:00'),
-    endTime: new Date('2025-06-23T08:00:00-07:00'),
-    format: '现开',
-  },
-  {
-    type: 'other',
-    title: '永恒环境挑战赛',
+    title: '永恒？环境挑战赛',
     startTime: new Date('2025-06-27T08:00:00-07:00'),
     endTime: new Date('2025-06-30T08:00:00-07:00'),
-    format: '永恒',
+    format: '永恒？',
+    description: '公告为标准，但是活动日程里为永恒。'
   },
   {
     type: 'other',
@@ -145,16 +111,16 @@ const premierPlayEvents: Event[] = [
   {
     type: 'premier_play',
     title: '资格赛入围赛BO1',
-    startTime: new Date('2025-06-21T06:00:00-07:00'),
-    endTime: new Date('2025-06-22T09:00:00-07:00'),
+    startTime: new Date('2025-06-27T06:00:00-07:00'),
+    endTime: new Date('2025-06-28T03:00:00-07:00'),
     format: '史迹',
-    description: '单日赛事，玩家将竞争获得6月28-29日资格赛周末的参赛资格。',
+    description: '上周史迹赛事错误配置为先驱，加赛一轮史迹。',
   },
   {
     type: 'premier_play',
     title: '资格赛入围赛BO3',
     startTime: new Date('2025-06-27T06:00:00-07:00'),
-    endTime: new Date('2025-06-28T07:00:00-07:00'),
+    endTime: new Date('2025-06-28T03:00:00-07:00'),
     format: '史迹',
     description: '单日赛事，玩家将竞争获得6月28-29日资格赛周末的参赛资格。',
   },
@@ -170,7 +136,7 @@ const premierPlayEvents: Event[] = [
     type: 'premier_play',
     title: '资格赛入围赛BO1',
     startTime: new Date('2025-07-12T06:00:00-07:00'),
-    endTime: new Date('2025-07-13T09:00:00-07:00'),
+    endTime: new Date('2025-07-13T03:00:00-07:00'),
     format: '标准',
     description: '单日赛事，玩家将竞争获得7月19-20日资格赛周末的参赛资格。',
   },
@@ -178,7 +144,7 @@ const premierPlayEvents: Event[] = [
     type: 'premier_play',
     title: '资格赛入围赛BO1（加赛）',
     startTime: new Date('2025-07-13T06:00:00-07:00'),
-    endTime: new Date('2025-07-14T09:00:00-07:00'),
+    endTime: new Date('2025-07-14T03:00:00-07:00'),
     format: '现开',
     description: '单日赛事，玩家将竞争获得7月19-20日资格赛周末的参赛资格。',
   },
@@ -186,7 +152,7 @@ const premierPlayEvents: Event[] = [
     type: 'premier_play',
     title: '资格赛入围赛BO3',
     startTime: new Date('2025-07-18T06:00:00-07:00'),
-    endTime: new Date('2025-07-19T07:00:00-07:00'),
+    endTime: new Date('2025-07-19T03:00:00-07:00'),
     format: '标准',
     description: '单日赛事，玩家将竞争获得7月19-20日资格赛周末的参赛资格。',
   },
@@ -202,7 +168,7 @@ const premierPlayEvents: Event[] = [
     type: 'premier_play',
     title: '资格赛入围赛BO1',
     startTime: new Date('2025-08-16T06:00:00-07:00'),
-    endTime: new Date('2025-08-17T09:00:00-07:00'),
+    endTime: new Date('2025-08-17T03:00:00-07:00'),
     format: '现开',
     description: '单日赛事，玩家将竞争获得8月23-24日资格赛周末的参赛资格。',
   },
@@ -210,7 +176,7 @@ const premierPlayEvents: Event[] = [
     type: 'premier_play',
     title: '资格赛入围赛BO3',
     startTime: new Date('2025-08-22T06:00:00-07:00'),
-    endTime: new Date('2025-08-23T07:00:00-07:00'),
+    endTime: new Date('2025-08-23T03:00:00-07:00'),
     format: '现开',
     description: '单日赛事，玩家将竞争获得8月23-24日资格赛周末的参赛资格。',
   },
