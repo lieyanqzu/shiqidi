@@ -370,35 +370,75 @@ export function Content({ currentSetGroups, futureSets, recentBans }: Props) {
         </section>
       )}
 
-      {/* 最近禁牌 */}
+      {/* 标准环境禁牌 */}
       {recentBans.length > 0 && (
         <section className="mb-8">
-          <h2 className="text-xl font-semibold mb-4">最近禁牌</h2>
+          <h2 className="text-xl font-semibold mb-4">标准环境禁牌</h2>
           <div className="bg-[--card] rounded-lg p-4">
-            <div className="space-y-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {recentBans.map((ban, index) => (
                 <div key={index} className="border border-[--border] rounded-lg p-4">
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <h3 className="font-medium text-[--foreground]">{ban.card_name}</h3>
-                      <div className="text-sm text-[--muted-foreground] mt-1 flex items-center gap-1.5">
-                        <i className={`ss ss-${ban.set_code.toLowerCase()} ss-fw`} />
-                        <span>{chineseSetNames[ban.set_code] || ban.set_code}</span>
+                  <div className="flex flex-row items-start gap-4">
+                    {ban.card_image_url && (
+                      <div className="flex-shrink-0 w-20 sm:w-28">
+                        {ban.set_code && ban.set_code.includes(':') ? (
+                          <a 
+                            href={`https://sbwsz.com/card/${ban.set_code.split(':')[0]}/${ban.set_code.split(':')[1]}/`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <img 
+                              src={ban.card_image_url} 
+                              alt={ban.card_name} 
+                              className="w-full h-auto rounded-lg shadow-md hover:shadow-lg transition-shadow"
+                              loading="lazy"
+                            />
+                          </a>
+                        ) : (
+                          <img 
+                            src={ban.card_image_url} 
+                            alt={ban.card_name} 
+                            className="w-full h-auto rounded-lg shadow-md hover:shadow-lg transition-shadow"
+                            loading="lazy"
+                          />
+                        )}
                       </div>
-                      <div className="text-sm text-[--muted-foreground] mt-2">
-                        {ban.reason}
-                      </div>
-                    </div>
-                    {ban.announcement_url && (
-                      <a
-                        href={`${ban.announcement_url}${ban.announcement_url.includes('?') ? '&' : '?'}utm_source=shiqidi`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-sm text-[--primary] hover:underline"
-                      >
-                        公告
-                      </a>
                     )}
+                    <div className="flex-grow">
+                      <div className="flex items-start justify-between">
+                        <div>
+                          <h3 className="font-medium text-[--foreground]">
+                            {ban.set_code && ban.set_code.includes(':') ? (
+                              <a 
+                                href={`https://sbwsz.com/card/${ban.set_code.split(':')[0]}/${ban.set_code.split(':')[1]}?utm_source=shiqidi`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="hover:underline"
+                              >
+                                {ban.card_name}
+                              </a>
+                            ) : (
+                              ban.card_name
+                            )}
+                          </h3>
+                          <div className="text-sm text-[--muted-foreground] mt-1 flex items-center gap-1.5">
+                            <i className={`ss ss-${ban.set_code.split(':')[0].toLowerCase()} ss-fw`} />
+                            <span>{chineseSetNames[ban.set_code.split(':')[0]] || ban.set_code.split(':')[0]}</span>
+                          </div>
+                        </div>
+                        {ban.announcement_url && (
+                          <a
+                            href={`${ban.announcement_url}${ban.announcement_url.includes('?') ? '&' : '?'}utm_source=shiqidi`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-sm text-[--primary] hover:underline whitespace-nowrap flex-shrink-0 min-w-[3rem] text-center"
+                          >
+                            公告
+                          </a>
+                        )}
+                      </div>
+                      <p className="text-sm text-[--muted-foreground] mt-3">{ban.reason}</p>
+                    </div>
                   </div>
                 </div>
               ))}
