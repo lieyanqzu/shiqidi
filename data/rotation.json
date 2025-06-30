@@ -485,109 +485,53 @@
   ],
   "bans": [
     {
-      "card_name": "Oko, Thief of Crowns",
-      "card_image_url": "https://img.scryfall.com/cards/png/front/3/4/3462a3d0-5552-49fa-9eb7-100960c55891.png",
-      "set_code": "ELD",
-      "reason": "Banned for its power level being higher than is healthy for current and future Standard metagame environments.",
-      "announcement_url": "https://magic.wizards.com/en/articles/archive/news/november-18-2019-banned-and-restricted-announcement"
+      "card_name": "科黎钢介刀",
+      "card_image_url": "https://cards.scryfall.io/large/front/4/9/490eb213-9ae2-4b45-abec-6f1dfc83792a.jpg",
+      "set_code": "TDM",
+      "reason": "因其强度过高、难以有效互动，并对标准赛环境造成了负面影响和扭曲，为了环境多样性而被禁用。",
+      "announcement_url": "https://magic.wizards.com/en/news/announcements/banned-and-restricted-june-30-2025"
     },
     {
-      "card_name": "Once Upon a Time",
-      "card_image_url": "https://img.scryfall.com/cards/png/front/4/0/4034e5ba-9974-43e3-bde7-8d9b4586c3a4.png",
-      "set_code": "ELD",
-      "reason": "Banned for contributing to a high consistency of strong starts for green, providing a level of early mana fixing that other colors don't have access to.",
-      "announcement_url": "https://magic.wizards.com/en/articles/archive/news/november-18-2019-banned-and-restricted-announcement"
+      "card_name": "先父觉醒",
+      "card_image_url": "https://sbwsz.com/image/large/LCI/LCI_1.jpg",
+      "set_code": "LCI",
+      "reason": "因为它促成的蓝白全知全能组合技套牌过于强大和稳定，扭曲了环境，减少了可行的套牌数量。",
+      "announcement_url": "https://magic.wizards.com/en/news/announcements/banned-and-restricted-june-30-2025"
     },
     {
-      "card_name": "Fires of Invention",
-      "card_image_url": "https://img.scryfall.com/cards/png/front/a/1/a12b16b0-f75f-42d8-9b24-947c1908e0f7.png",
-      "set_code": "ELD",
-      "reason": "Banned for introducing too many risks and design constraints to the future of Standard.",
-      "announcement_url": "https://magic.wizards.com/en/articles/archive/news/june-1-2020-banned-and-restricted-announcement"
+      "card_name": "怪物狂怒",
+      "card_image_url": "https://sbwsz.com/image/large/WOE/WOE_142.jpg",
+      "set_code": "WOE",
+      "reason": "因为它促成了过于强势的组合技式快攻，降低了赛制的基础回合数，并因赋予践踏而削弱了阻挡的作用，导致了不良的游戏体验。",
+      "announcement_url": "https://magic.wizards.com/en/news/announcements/banned-and-restricted-june-30-2025"
     },
     {
-      "card_name": "Cauldron Familiar",
-      "card_image_url": "https://img.scryfall.com/cards/png/front/9/a/9a539a23-8383-4525-82dd-acfe1d219fe9.png",
-      "set_code": "ELD",
-      "reason": "Banned for reducing metagame diversity and for being cumbersome to play against.",
-      "announcement_url": "https://magic.wizards.com/en/articles/archive/news/august-8-2020-banned-and-restricted-announcement"
+      "card_name": "心火勇士",
+      "card_image_url": "https://cards.scryfall.io/large/front/4/8/48ace959-66b2-40c8-9bff-fd7ed9c99a82.jpg",
+      "set_code": "BLB",
+      "reason": "作为红色快攻的关键，其过强的爆发力和韧性给对手施加了巨大压力，迫使环境向早期互动倾斜。",
+      "announcement_url": "https://magic.wizards.com/en/news/announcements/banned-and-restricted-june-30-2025"
     },
     {
-      "card_name": "Uro, Titan of Nature's Wrath",
-      "card_image_url": "https://c1.scryfall.com/file/scryfall-cards/png/front/a/0/a0b6a71e-56cb-4d25-8f2b-7a4f1b60900d.png",
-      "set_code": "THB",
-      "reason": "Banned for weakening four-colour ramp decks.",
-      "announcement_url": "https://magic.wizards.com/en/articles/archive/news/september-28-2020-banned-and-restricted-announcement-2020-09-28"
+      "card_name": "爬上豆茎",
+      "card_image_url": "https://sbwsz.com/image/large/WOE/WOE_195.jpg",
+      "set_code": "WOE",
+      "reason": "作为慢速套牌顶级的牌张优势来源，难以有效互动，且限制了环境多样性。",
+      "announcement_url": "https://magic.wizards.com/en/news/announcements/banned-and-restricted-june-30-2025"
     },
     {
-      "card_name": "Omnath, Locus of Creation",
-      "card_image_url": "https://c1.scryfall.com/file/scryfall-cards/large/front/4/e/4e4fb50c-a81f-44d3-93c5-fa9a0b37f617.jpg?1602499748",
-      "set_code": "ZNR",
-      "reason": "Banned for being too strong in four-color ramp decks.",
-      "announcement_url": "https://magic.wizards.com/en/articles/archive/news/october-12-2020-banned-and-restricted-announcement?adf"
+      "card_name": "无望梦魇",
+      "card_image_url": "https://sbwsz.com/image/large/WOE/WOE_95.jpg",
+      "set_code": "WOE",
+      "reason": "作为自回手套牌的核心，其持续的弃牌模式创造了不良游戏体验，并使对局变得难以逆转。",
+      "announcement_url": "https://magic.wizards.com/en/news/announcements/banned-and-restricted-june-30-2025"
     },
     {
-      "card_name": "Lucky Clover",
-      "card_image_url": "https://c1.scryfall.com/file/scryfall-cards/large/front/4/b/4b5d23a6-3a23-4169-aea1-f10bf5153180.jpg?1602499760",
-      "set_code": "ELD",
-      "reason": "Banned for being a powerful and difficult-to-interact-with part of Adventure decks.",
-      "announcement_url": "https://magic.wizards.com/en/articles/archive/news/october-12-2020-banned-and-restricted-announcement?adf"
-    },
-    {
-      "card_name": "Escape to the Wilds",
-      "card_image_url": "https://c1.scryfall.com/file/scryfall-cards/large/front/3/e/3e26c10b-179f-4a6e-bc8d-3ec1d6783fb9.jpg?1602499769",
-      "set_code": "ELD",
-      "reason": "Banned for being a unique and powerful bridge between strong ramp enablers and powerful payoffs.",
-      "announcement_url": "https://magic.wizards.com/en/articles/archive/news/october-12-2020-banned-and-restricted-announcement?adf"
-    },
-    {
-      "card_name": "Alrund's Epiphany",
-      "card_image_url": "https://c1.scryfall.com/file/scryfall-cards/large/front/c/9/c94fcb53-a7bd-4a80-a536-9fb0eb24261a.jpg?1643112377",
-      "set_code": "KHM",
-      "reason": "Banned for being too strong in blue control decks and reducing format diversity.",
-      "announcement_url": "https://magic.wizards.com/en/articles/archive/news/january-25-2022-banned-and-restricted-announcement"
-    },
-    {
-      "card_name": "Divide by Zero",
-      "card_image_url": "https://c1.scryfall.com/file/scryfall-cards/large/front/1/9/1958d96e-ec44-48ab-80b1-5b01a24ac7b8.jpg?1643112390",
-      "set_code": "STX",
-      "reason": "Banned for being too strong in blue control decks and reducing format diversity.",
-      "announcement_url": "https://magic.wizards.com/en/articles/archive/news/january-25-2022-banned-and-restricted-announcement"
-    },
-    {
-      "card_name": "Faceless Haven",
-      "card_image_url": "https://c1.scryfall.com/file/scryfall-cards/large/front/e/3/e3cd82e5-6072-4334-a493-01ca4ad6b4eb.jpg?1643112401",
-      "set_code": "KHM",
-      "reason": "Banned for being too efficient in monocolor aggro decks.",
-      "announcement_url": "https://magic.wizards.com/en/articles/archive/news/january-25-2022-banned-and-restricted-announcement"
-    },
-    {
-      "card_name": "The Meathook Massacre",
-      "card_image_url": "https://cards.scryfall.io/large/front/0/8/08950015-eee5-4327-888c-82dfd13bb9ad.jpg",
-      "set_code": "MID",
-      "reason": "Banned to destabilize black as a prolific foundation for competitive decks.",
-      "announcement_url": "https://magic.wizards.com/en/articles/archive/news/october-10-2022-banned-and-restricted-announcement"
-    },
-    {
-      "card_name": "Fable of the Mirror-Breaker // Reflection of Kiki-Jiki",
-      "card_image_url": "https://cards.scryfall.io/large/front/2/4/24c0d87b-0049-4beb-b9cb-6f813b7aa7dc.jpg?1685368758",
-      "set_code": "NEO",
-      "reason": "Banned to increase low-mana counterplay options against black-red decks.",
-      "announcement_url": "https://magic.wizards.com/en/news/announcements/may-29-2023-banned-and-restricted-announcement"
-    },
-    {
-      "card_name": "Invoke Despair",
-      "card_image_url": "https://cards.scryfall.io/large/front/3/5/35af9d5c-4449-4549-b549-c3ba4a67dee0.jpg?1685368727",
-      "set_code": "NEO",
-      "reason": "Banned to increase diversity in black decks and increase counterplay options against removal.",
-      "announcement_url": "https://magic.wizards.com/en/news/announcements/may-29-2023-banned-and-restricted-announcement"
-    },
-    {
-      "card_name": "Reckoner Bankbuster",
-      "card_image_url": "https://cards.scryfall.io/large/front/2/7/279acd17-6c17-427b-a69d-fc02442ff4a3.jpg?1685368706",
-      "set_code": "NEO",
-      "reason": "Banned to increase diversity of card advantage options among the colors.",
-      "announcement_url": "https://magic.wizards.com/en/news/announcements/may-29-2023-banned-and-restricted-announcement"
+      "card_name": "一镇难容二虎",
+      "card_image_url": "https://sbwsz.com/image/large/OTJ/OTJ_74.jpg",
+      "set_code": "OTJ",
+      "reason": "因为它能在推进自身游戏计划的同时与永久物互动，尤其与逐风客才能的配合降低了游戏乐趣。",
+      "announcement_url": "https://magic.wizards.com/en/news/announcements/banned-and-restricted-june-30-2025"
     }
   ]
 }
