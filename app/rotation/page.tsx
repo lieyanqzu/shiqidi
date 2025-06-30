@@ -103,8 +103,12 @@ export default function RotationPage() {
 
   // 只显示当前标准系列的禁牌
   const recentBans = data.bans
-    .filter(ban => ban.set_code && standardSetCodes.has(ban.set_code))
-    .slice(0, 5);
+    .filter(ban => {
+      if (!ban.set_code) return false;
+      // 处理新格式的 set_code（如 "OTJ:74"）
+      const setCode = ban.set_code.includes(':') ? ban.set_code.split(':')[0] : ban.set_code;
+      return standardSetCodes.has(setCode);
+    });
 
   return (
     <div className="container mx-auto px-4 py-8">
