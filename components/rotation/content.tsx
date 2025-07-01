@@ -383,7 +383,7 @@ export function Content({ currentSetGroups, futureSets, recentBans }: Props) {
                       <div className="flex-shrink-0 w-20 sm:w-28">
                         {ban.set_code && ban.set_code.includes(':') ? (
                           <a 
-                            href={`https://sbwsz.com/card/${ban.set_code.split(':')[0]}/${ban.set_code.split(':')[1]}/`}
+                            href={`https://sbwsz.com/card/${ban.set_code.split(':')[0]}/${ban.set_code.split(':')[1]}?utm_source=shiqidi`}
                             target="_blank"
                             rel="noopener noreferrer"
                           >

@@ -13,18 +13,11 @@ export interface Event {
 }
 
 export const calendarMetadata: CalendarMetadata = {
-  lastUpdated: '2025/06/23',
-  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-june-23-2025#Schedule',
+  lastUpdated: '2025/06/30',
+  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-june-30-2025#Schedule',
 };
 
 const midweekMagicEvents: Event[] = [
-  {
-    type: 'midweek_magic',
-    title: '万智牌～最终幻想争锋构筑',
-    startTime: new Date('2025-06-25T14:00:00-07:00'),
-    endTime: new Date('2025-06-27T14:00:00-07:00'),
-    format: '争锋'
-  },
   {
     type: 'midweek_magic',
     title: '倾曳争锋',
@@ -39,6 +32,20 @@ const midweekMagicEvents: Event[] = [
     endTime: new Date('2025-07-10T14:00:00-07:00'),
     format: '莫秘维'
   },
+  {
+    type: 'midweek_magic',
+    title: '幻影黄金现开',
+    startTime: new Date('2025-07-15T14:00:00-07:00'),
+    endTime: new Date('2025-07-17T14:00:00-07:00'),
+    format: '黄金现开'
+  },
+  {
+    type: 'midweek_magic',
+    title: '万智牌～最终幻想幻影快速轮抽',
+    startTime: new Date('2025-07-22T14:00:00-07:00'),
+    endTime: new Date('2025-07-24T14:00:00-07:00'),
+    format: '快速轮抽'
+  },
 ];
 
 const premierDraftEvents: Event[] = [
@@ -49,16 +56,30 @@ const premierDraftEvents: Event[] = [
     endTime: new Date('2025-07-29T08:00:00-07:00'),
     format: '竞技轮抽',
   },
+  {
+    type: 'premier_draft',
+    title: '效忠拉尼卡',
+    startTime: new Date('2025-07-08T08:00:00-07:00'),
+    endTime: new Date('2025-07-15T08:00:00-07:00'),
+    format: '竞技轮抽',
+  },
+  {
+    type: 'premier_draft',
+    title: '核心系列2019',
+    startTime: new Date('2025-07-15T08:00:00-07:00'),
+    endTime: new Date('2025-07-22T08:00:00-07:00'),
+    format: '竞技轮抽',
+  },
+  {
+    type: 'premier_draft',
+    title: '艾卓王权',
+    startTime: new Date('2025-07-22T08:00:00-07:00'),
+    endTime: new Date('2025-08-08T08:00:00-07:00'),
+    format: '竞技轮抽',
+  },
 ];
 
 const quickDraftEvents: Event[] = [
-  {
-    type: 'quick_draft',
-    title: '万智牌～最终幻想',
-    startTime: new Date('2025-06-19T08:00:00-07:00'),
-    endTime: new Date('2025-06-29T08:00:00-07:00'),
-    format: '快速轮抽',
-  },
   {
     type: 'quick_draft',
     title: '光雷驿镖客',
@@ -71,6 +92,13 @@ const quickDraftEvents: Event[] = [
     title: '万智牌～最终幻想',
     startTime: new Date('2025-07-08T08:00:00-07:00'),
     endTime: new Date('2025-07-22T08:00:00-07:00'),
+    format: '快速轮抽',
+  },
+  {
+    type: 'quick_draft',
+    title: '鞑契龙岚录',
+    startTime: new Date('2025-07-22T08:00:00-07:00'),
+    endTime: new Date('2025-08-08T08:00:00-07:00'),
     format: '快速轮抽',
   },
 ];
@@ -92,14 +120,6 @@ const otherEvents: Event[] = [
   },
   {
     type: 'other',
-    title: '永恒？环境挑战赛',
-    startTime: new Date('2025-06-27T08:00:00-07:00'),
-    endTime: new Date('2025-06-30T08:00:00-07:00'),
-    format: '永恒？',
-    description: '公告为标准，但是活动日程里为永恒。'
-  },
-  {
-    type: 'other',
     title: '竞技场直邮赛 - 万智牌～最终幻想现开（常规珍补充包）',
     startTime: new Date('2025-07-04T08:00:00-07:00'),
     endTime: new Date('2025-07-07T08:00:00-07:00'),
@@ -108,30 +128,6 @@ const otherEvents: Event[] = [
 ];
 
 const premierPlayEvents: Event[] = [
-  {
-    type: 'premier_play',
-    title: '资格赛入围赛BO1',
-    startTime: new Date('2025-06-27T06:00:00-07:00'),
-    endTime: new Date('2025-06-28T03:00:00-07:00'),
-    format: '史迹',
-    description: '上周史迹赛事错误配置为先驱，加赛一轮史迹。',
-  },
-  {
-    type: 'premier_play',
-    title: '资格赛入围赛BO3',
-    startTime: new Date('2025-06-27T06:00:00-07:00'),
-    endTime: new Date('2025-06-28T03:00:00-07:00'),
-    format: '史迹',
-    description: '单日赛事，玩家将竞争获得6月28-29日资格赛周末的参赛资格。',
-  },
-  {
-    type: 'premier_play',
-    title: '资格赛周末',
-    startTime: new Date('2025-06-28T06:00:00-07:00'),
-    endTime: new Date('2025-06-29T16:00:00-07:00'),
-    format: '史迹',
-    description: '两日赛事，获胜者将获得参加竞技场冠军赛10的资格。',
-  },
   {
     type: 'premier_play',
     title: '资格赛入围赛BO1',
@@ -145,7 +141,7 @@ const premierPlayEvents: Event[] = [
     title: '资格赛入围赛BO1（加赛）',
     startTime: new Date('2025-07-13T06:00:00-07:00'),
     endTime: new Date('2025-07-14T03:00:00-07:00'),
-    format: '现开',
+    format: '万智牌～最终幻想现开',
     description: '单日赛事，玩家将竞争获得7月19-20日资格赛周末的参赛资格。',
   },
   {
