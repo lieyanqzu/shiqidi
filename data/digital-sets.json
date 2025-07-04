@@ -141,7 +141,30 @@
       "name": "虚空边域",
       "code": "EOE",
       "releaseDate": "2025-07-30",
-      "wikiUrl": "https://mtg.wiki/page/Edge_of_Eternities?utm_source=shiqidi"
+      "wikiUrl": "https://mtg.wiki/page/Edge_of_Eternities?utm_source=shiqidi",
+      "preview": {
+        "title": "于群星间寻找魔法",
+        "description": "加速驶入万智牌的太空幻想系列！绘制航线，穿行于索瑟拉星系，探索遥远的行星，使用炫目的魔法，和各种陌生派系开战。",
+        "backgroundImage": "/image/background/EOE_sma_key_1920x1080_en.jpg",
+        "links": [
+          {
+            "name": "大学院废墟（中文）",
+            "url": "https://sbwsz.com/previews/EOE/?utm_source=shiqidi"
+          },
+          {
+            "name": "官网牌图集合",
+            "url": "https://magic.wizards.com/en/products/edge-of-eternities/card-image-gallery"
+          },
+          {
+            "name": "Scryfall",
+            "url": "https://scryfall.com/sets/eoe?order=spoiled&utm_source=shiqidi"
+          },
+          {
+            "name": "Untapped.gg",
+            "url": "https://mtga.untapped.gg/codex/sets/edge-of-eternities?sortBy=spoilerDate&utm_source=shiqidi"
+          }
+        ]
+      }
     }
   ]
 }
