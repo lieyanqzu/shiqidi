@@ -14,7 +14,7 @@ interface PackDisplayProps {
 // 获取卡图URL
 function getCardImageUrl(scryfallId: string, setCode: string, number: string): string {
   // 优先使用 sbwsz.com 的图片源
-  const sbwszUrl = `https://www.sbwsz.com/image/large/${setCode.toUpperCase()}/${setCode.toUpperCase()}_${number}.jpg`;
+  const sbwszUrl = `https://sbwsz.com/image/large/${setCode.toUpperCase()}/${setCode.toUpperCase()}_${number}.jpg`;
 
   return sbwszUrl;
 }
@@ -37,7 +37,7 @@ function getRarityColor(rarity: string): string {
 function getCardDetailUrl(card: Card): string {
   // 如果卡牌号带有 a 或 b 后缀，使用基础卡牌号
   const number = /^(\d+)[ab]$/.test(card.number) ? card.number.slice(0, -1) : card.number;
-  return `https://www.sbwsz.com/card/${card.setCode.toUpperCase()}/${number}?utm_source=shiqidi`;
+  return `https://sbwsz.com/card/${card.setCode.toUpperCase()}/${number}?utm_source=shiqidi`;
 }
 
 export function PackDisplay({ packs, onFlippedCardsChange, autoFlipCommon }: PackDisplayProps) {

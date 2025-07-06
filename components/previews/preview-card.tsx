@@ -72,7 +72,7 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
       }).join(' or ');
 
       const response = await fetch(
-        `https://www.sbwsz.com/api/v1/result?q=${encodeURIComponent(query)}&page=1&page_size=100&unique=oracle_id&priority_chinese=true`
+        `https://sbwsz.com/api/v1/result?q=${encodeURIComponent(query)}&page=1&page_size=100&unique=oracle_id&priority_chinese=true`
       );
 
       if (!response.ok) {
@@ -231,12 +231,12 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
   const getCardDetailUrl = (setCode: string, number: string): string => {
     // 如果卡牌号带有 a 或 b 后缀，使用基础卡牌号
     const baseNumber = /^(\d+)[ab]$/.test(number) ? number.slice(0, -1) : number;
-    return `https://www.sbwsz.com/card/${setCode.toUpperCase()}/${baseNumber}?utm_source=shiqidi`;
+    return `https://sbwsz.com/card/${setCode.toUpperCase()}/${baseNumber}?utm_source=shiqidi`;
   };
 
   // 获取卡图URL
   const getCardImageUrl = (setCode: string, number: string): string => {
-    return `https://www.sbwsz.com/image/large/${setCode.toUpperCase()}/${setCode.toUpperCase()}_${number}.jpg`;
+    return `https://sbwsz.com/image/large/${setCode.toUpperCase()}/${setCode.toUpperCase()}_${number}.jpg`;
   };
 
   // 处理鼠标事件
@@ -521,7 +521,7 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
                   const img = e.target as HTMLImageElement;
                   if (!img.src.includes('scryfall.io')) {
                     // 尝试从API获取scryfallId
-                    fetch(`https://www.sbwsz.com/api/v1/card/${hoveredCard.setCode.toUpperCase()}/${hoveredCard.number}`)
+                    fetch(`https://sbwsz.com/api/v1/card/${hoveredCard.setCode.toUpperCase()}/${hoveredCard.number}`)
                       .then(res => res.json())
                       .then(data => {
                         if (data?.id) {

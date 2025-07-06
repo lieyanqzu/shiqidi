@@ -65,7 +65,7 @@ export function CardModal({ card, onClose, imageUrl, allCards, onCardChange }: C
     if (prevIndex >= 0) {
       const prevCard = allCards[prevIndex];
       if (!prevImageUrl) {
-        setPrevImageUrl(`https://www.sbwsz.com/image/large/${prevCard.setCode.toUpperCase()}/${prevCard.setCode.toUpperCase()}_${prevCard.number}.jpg`);
+        setPrevImageUrl(`https://sbwsz.com/image/large/${prevCard.setCode.toUpperCase()}/${prevCard.setCode.toUpperCase()}_${prevCard.number}.jpg`);
       }
       return prevImageUrl;
     }
@@ -82,7 +82,7 @@ export function CardModal({ card, onClose, imageUrl, allCards, onCardChange }: C
     if (nextIndex < allCards.length) {
       const nextCard = allCards[nextIndex];
       if (!nextImageUrl) {
-        setNextImageUrl(`https://www.sbwsz.com/image/large/${nextCard.setCode.toUpperCase()}/${nextCard.setCode.toUpperCase()}_${nextCard.number}.jpg`);
+        setNextImageUrl(`https://sbwsz.com/image/large/${nextCard.setCode.toUpperCase()}/${nextCard.setCode.toUpperCase()}_${nextCard.number}.jpg`);
       }
       return nextImageUrl;
     }
@@ -207,7 +207,7 @@ export function CardModal({ card, onClose, imageUrl, allCards, onCardChange }: C
   function getCardDetailUrl(card: Card): string {
     // 如果卡牌号带有 a 或 b 后缀，使用基础卡牌号
     const number = /^(\d+)[ab]$/.test(card.number) ? card.number.slice(0, -1) : card.number;
-    return `https://www.sbwsz.com/card/${card.setCode.toUpperCase()}/${number}?utm_source=shiqidi`;
+    return `https://sbwsz.com/card/${card.setCode.toUpperCase()}/${number}?utm_source=shiqidi`;
   }
 
   return (
