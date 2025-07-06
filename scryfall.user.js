@@ -5,7 +5,7 @@
 // @license      GPL
 // @namespace    http://github.com/lieyanqzu
 // @icon         https://scryfall.com/favicon.ico
-// @version      1.5
+// @version      1.6
 // @match        *://scryfall.com/*
 // @grant        GM_xmlhttpRequest
 // @grant        GM_getValue
@@ -107,7 +107,7 @@
         }
     `);
 
-    const API_BASE_URL = 'https://www.sbwsz.com/api/v1/card';
+    const API_BASE_URL = 'https://sbwsz.com/api/v1/card';
     let cardLanguageStates = new Map();
 
     GM_registerMenuCommand('默认显示中文: ' + (GM_getValue('defaultToChinese', false) ? '开' : '关'), toggleDefaultLanguage);
@@ -136,7 +136,7 @@
             const cardInfo = getCardInfoFromDOM(parent);
             if (cardInfo) {
                 setTimeout(() => {
-                    const sbwszUrl = `https://www.sbwsz.com/card/${cardInfo.setCode.toUpperCase()}/${cardInfo.collectorNumber}`;
+                    const sbwszUrl = `https://sbwsz.com/card/${cardInfo.setCode.toUpperCase()}/${cardInfo.collectorNumber}`;
                     GM_openInTab(sbwszUrl, false);
                 }, 0);
             }
