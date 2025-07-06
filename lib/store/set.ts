@@ -26,7 +26,7 @@ export const useSetStore = create<SetStore>((set) => ({
 
     try {
       set({ isLoading: true });
-      const response = await fetch('https://www.sbwsz.com/api/v1/sets/');
+      const response = await fetch('https://sbwsz.com/api/v1/sets/');
       if (!response.ok) {
         throw new Error('获取系列中文名称失败');
       }
