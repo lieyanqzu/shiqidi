@@ -13,18 +13,11 @@ export interface Event {
 }
 
 export const calendarMetadata: CalendarMetadata = {
-  lastUpdated: '2025/06/30',
-  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-june-30-2025#Schedule',
+  lastUpdated: '2025/07/07',
+  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-july-7-2025#Events',
 };
 
 const midweekMagicEvents: Event[] = [
-  {
-    type: 'midweek_magic',
-    title: '倾曳争锋',
-    startTime: new Date('2025-07-01T14:00:00-07:00'),
-    endTime: new Date('2025-07-03T14:00:00-07:00'),
-    format: '争锋'
-  },
   {
     type: 'midweek_magic',
     title: '莫秘维',
@@ -45,6 +38,13 @@ const midweekMagicEvents: Event[] = [
     startTime: new Date('2025-07-22T14:00:00-07:00'),
     endTime: new Date('2025-07-24T14:00:00-07:00'),
     format: '快速轮抽'
+  },
+  {
+    type: 'midweek_magic',
+    title: '投身虚空边域',
+    startTime: new Date('2025-07-29T14:00:00-07:00'),
+    endTime: new Date('2025-07-31T14:00:00-07:00'),
+    format: '速学！'
   },
 ];
 
@@ -101,29 +101,22 @@ const quickDraftEvents: Event[] = [
     endTime: new Date('2025-08-08T08:00:00-07:00'),
     format: '快速轮抽',
   },
+  {
+    type: 'quick_draft',
+    title: '虚空边域',
+    startTime: new Date('2025-08-08T08:00:00-07:00'),
+    endTime: new Date('2025-08-19T08:00:00-07:00'),
+    format: '快速轮抽',
+  },
 ];
 
 const otherEvents: Event[] = [
-  {
-    type: 'other',
-    title: '万智牌～最终幻想现开BO1',
-    startTime: new Date('2025-06-10T08:00:00-07:00'),
-    endTime: new Date('2025-07-04T08:00:00-07:00'),
-    format: '现开',
-  },
   {
     type: 'other',
     title: '投身万智牌～最终幻想',
     startTime: new Date('2025-06-10T08:00:00-07:00'),
     endTime: new Date('2025-07-15T08:00:00-07:00'),
     format: '速学！',
-  },
-  {
-    type: 'other',
-    title: '竞技场直邮赛 - 万智牌～最终幻想现开（常规珍补充包）',
-    startTime: new Date('2025-07-04T08:00:00-07:00'),
-    endTime: new Date('2025-07-07T08:00:00-07:00'),
-    format: '现开',
   },
 ];
 
