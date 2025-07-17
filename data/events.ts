@@ -13,18 +13,11 @@ export interface Event {
 }
 
 export const calendarMetadata: CalendarMetadata = {
-  lastUpdated: '2025/07/07',
-  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-july-7-2025#Events',
+  lastUpdated: '2025/07/14',
+  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-july-14-2025#Events',
 };
 
 const midweekMagicEvents: Event[] = [
-  {
-    type: 'midweek_magic',
-    title: '莫秘维',
-    startTime: new Date('2025-07-08T14:00:00-07:00'),
-    endTime: new Date('2025-07-10T14:00:00-07:00'),
-    format: '莫秘维'
-  },
   {
     type: 'midweek_magic',
     title: '幻影黄金现开',
@@ -69,13 +62,6 @@ const premierDraftEvents: Event[] = [
     startTime: new Date('2025-06-10T08:00:00-07:00'),
     endTime: new Date('2025-07-29T08:00:00-07:00'),
     format: '竞技轮抽 & 三盘轮抽',
-  },
-  {
-    type: 'premier_draft',
-    title: '效忠拉尼卡',
-    startTime: new Date('2025-07-08T08:00:00-07:00'),
-    endTime: new Date('2025-07-15T08:00:00-07:00'),
-    format: '竞技轮抽',
   },
   {
     type: 'premier_draft',
@@ -134,13 +120,6 @@ const quickDraftEvents: Event[] = [
 const otherEvents: Event[] = [
   {
     type: 'other',
-    title: '投身万智牌～最终幻想',
-    startTime: new Date('2025-06-10T08:00:00-07:00'),
-    endTime: new Date('2025-07-15T08:00:00-07:00'),
-    format: '速学！',
-  },
-  {
-    type: 'other',
     title: '五彩方盒轮抽',
     startTime: new Date('2025-07-15T08:00:00-07:00'),
     endTime: new Date('2025-07-29T08:00:00-07:00'),
@@ -184,22 +163,6 @@ const otherEvents: Event[] = [
 ];
 
 const premierPlayEvents: Event[] = [
-  {
-    type: 'premier_play',
-    title: '资格赛入围赛BO1',
-    startTime: new Date('2025-07-12T06:00:00-07:00'),
-    endTime: new Date('2025-07-13T06:00:00-07:00'),
-    format: '标准',
-    description: '单日赛事，玩家将竞争获得7月19-20日资格赛周末的参赛资格。',
-  },
-  {
-    type: 'premier_play',
-    title: '资格赛入围赛BO1（加赛）',
-    startTime: new Date('2025-07-13T07:00:00-07:00'),
-    endTime: new Date('2025-07-14T07:00:00-07:00'),
-    format: '万智牌～最终幻想现开',
-    description: '单日赛事，玩家将竞争获得7月19-20日资格赛周末的参赛资格。',
-  },
   {
     type: 'premier_play',
     title: '资格赛入围赛BO3',
