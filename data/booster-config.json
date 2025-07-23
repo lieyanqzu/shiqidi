@@ -4,6 +4,10 @@
       "code": "FIN",
       "boosters": [
         {
+          "code": "fin-collector",
+          "name": "聚珍补充包"
+        },
+        {
           "code": "fin-play",
           "name": "常规补充包"
         }
@@ -21,6 +25,10 @@
     {
       "code": "DFT",
       "boosters": [
+        {
+          "code": "dft-collector",
+          "name": "聚珍补充包"
+        },
         {
           "code": "dft-play",
           "name": "常规补充包"
