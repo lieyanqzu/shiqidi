@@ -13,18 +13,11 @@ export interface Event {
 }
 
 export const calendarMetadata: CalendarMetadata = {
-  lastUpdated: '2025/07/14',
-  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-july-14-2025#Events',
+  lastUpdated: '2025/07/21',
+  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-july-21-2025#Events',
 };
 
 const midweekMagicEvents: Event[] = [
-  {
-    type: 'midweek_magic',
-    title: '幻影黄金现开',
-    startTime: new Date('2025-07-15T14:00:00-07:00'),
-    endTime: new Date('2025-07-17T14:00:00-07:00'),
-    format: '黄金现开'
-  },
   {
     type: 'midweek_magic',
     title: '万智牌～最终幻想幻影快速轮抽',
@@ -65,13 +58,6 @@ const premierDraftEvents: Event[] = [
   },
   {
     type: 'premier_draft',
-    title: '核心系列2019',
-    startTime: new Date('2025-07-15T08:00:00-07:00'),
-    endTime: new Date('2025-07-22T08:00:00-07:00'),
-    format: '竞技轮抽',
-  },
-  {
-    type: 'premier_draft',
     title: '艾卓王权',
     startTime: new Date('2025-07-22T08:00:00-07:00'),
     endTime: new Date('2025-07-29T08:00:00-07:00'),
@@ -87,13 +73,6 @@ const premierDraftEvents: Event[] = [
 ];
 
 const quickDraftEvents: Event[] = [
-  {
-    type: 'quick_draft',
-    title: '万智牌～最终幻想',
-    startTime: new Date('2025-07-08T08:00:00-07:00'),
-    endTime: new Date('2025-07-22T08:00:00-07:00'),
-    format: '快速轮抽',
-  },
   {
     type: 'quick_draft',
     title: '鞑契龙岚录',
@@ -127,13 +106,6 @@ const otherEvents: Event[] = [
   },
   {
     type: 'other',
-    title: '万智牌～最终幻想全知全能快速轮抽',
-    startTime: new Date('2025-07-18T08:00:00-07:00'),
-    endTime: new Date('2025-07-22T08:00:00-07:00'),
-    format: '全知全能快速轮抽'
-  },
-  {
-    type: 'other',
     title: '虚空边域现开',
     startTime: new Date('2025-07-29T08:00:00-07:00'),
     endTime: new Date('2025-08-22T08:00:00-07:00'),
@@ -163,22 +135,6 @@ const otherEvents: Event[] = [
 ];
 
 const premierPlayEvents: Event[] = [
-  {
-    type: 'premier_play',
-    title: '资格赛入围赛BO3',
-    startTime: new Date('2025-07-18T06:00:00-07:00'),
-    endTime: new Date('2025-07-19T03:00:00-07:00'),
-    format: '标准',
-    description: '单日赛事，玩家将竞争获得7月19-20日资格赛周末的参赛资格。',
-  },
-  {
-    type: 'premier_play',
-    title: '资格赛周末',
-    startTime: new Date('2025-07-19T06:00:00-07:00'),
-    endTime: new Date('2025-07-20T08:05:00-07:00'),
-    format: '标准',
-    description: '两日赛事，获胜者将获得参加竞技场冠军赛10的资格。',
-  },
   {
     type: 'premier_play',
     title: '资格赛入围赛BO1',
@@ -215,7 +171,15 @@ const arenaOpenEvents: Event[] = [
   }
 ];
 
-const arenaChampionshipEvents: Event[] = [];
+const arenaChampionshipEvents: Event[] = [
+  {
+    type: 'arena_championship',
+    title: '竞技场冠军赛9',
+    startTime: new Date('2025-08-09T10:00:00-07:00'),
+    endTime: new Date('2025-08-10T20:00:00-07:00'),
+    format: '标准',
+  }
+];
 
 export const events: Event[] = [
   ...midweekMagicEvents,
