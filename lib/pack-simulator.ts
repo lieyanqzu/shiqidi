@@ -102,7 +102,7 @@ async function simulateBoosterPack(boosterData: BoosterData): Promise<Pack> {
     }).join(' or ');
 
     const response = await fetch(
-      `https://sbwsz.com/api/v1/result?q=${encodeURIComponent(query)}&page=1&page_size=100&unique=oracle_id&priority_chinese=true`
+      `https://mtgzh.com/api/v1/result?q=${encodeURIComponent(query)}&page=1&page_size=100&unique=oracle_id&priority_chinese=true`
     );
 
     if (!response.ok) {
@@ -137,7 +137,7 @@ async function simulateBoosterPack(boosterData: BoosterData): Promise<Pack> {
           }
           
           const retryResponse = await fetch(
-            `https://sbwsz.com/api/v1/result?q=${encodeURIComponent(query)}&page=1&page_size=1&unique=oracle_id&priority_chinese=true`
+            `https://mtgzh.com/api/v1/result?q=${encodeURIComponent(query)}&page=1&page_size=1&unique=oracle_id&priority_chinese=true`
           );
 
           if (!retryResponse.ok) {
