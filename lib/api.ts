@@ -47,7 +47,7 @@ interface ChineseCardResponse {
 
 export async function fetchChineseCardData(setCode: string): Promise<ChineseCardResponse> {
   const response = await fetch(
-    `https://mtgzh.com/api/v1/set/${setCode}/cards/?unique=oracle_id&priority_chinese=true`,
+    `https://mtgch.com/api/v1/set/${setCode}/cards/?unique=oracle_id&priority_chinese=true`,
     {
       headers: {
         'accept': 'application/json',
@@ -79,7 +79,7 @@ export async function searchChineseCards(
   });
 
   const response = await fetch(
-    `https://mtgzh.com/api/v1/result?${searchParams}`,
+    `https://mtgch.com/api/v1/result?${searchParams}`,
     {
       headers: {
         'accept': 'application/json',

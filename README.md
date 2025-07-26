@@ -40,7 +40,7 @@
 ## 数据来源
 
 - [17Lands](https://www.17lands.com) - 提供轮抽数据分析的核心数据
-- [大学院废墟](https://mtgzh.com) - 提供万智牌的中文翻译数据
+- [大学院废墟](https://mtgch.com) - 提供万智牌的中文翻译数据
 - [What's in Standard](https://github.com/glacials/whatsinstandard) - 提供标准赛制轮替数据
 - [magic-sealed-data](https://github.com/taw/magic-sealed-data) - 提供补充包开包出率模拟数据
 

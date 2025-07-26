@@ -63,7 +63,7 @@ export default function ScriptPage() {
           <h2 className="text-xl font-semibold mb-4">功能介绍</h2>
           <div className="space-y-4 text-sm text-[--muted-foreground]">
             <p className="leading-relaxed">
-              这个用户脚本为 Scryfall 网站上没有中文翻译的万智牌卡牌添加汉化功能。所有的汉化数据均来自中文卡查网站 mtgzh.com。
+              这个用户脚本为 Scryfall 网站上没有中文翻译的万智牌卡牌添加汉化功能。所有的汉化数据均来自中文卡查网站 mtgch.com。
             </p>
             <div>
               <p className="font-medium text-[--foreground] mb-2">主要功能：</p>

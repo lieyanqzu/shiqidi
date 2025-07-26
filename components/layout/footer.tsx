@@ -14,7 +14,7 @@ export function Footer() {
           </div>
           <div className="w-px h-3 bg-[--border]" />
           <div className="flex items-center gap-1">
-            中文数据来源于 <a href="https://mtgzh.com" target="_blank" rel="noopener noreferrer" className="hover:text-[--foreground] transition-colors">大学院废墟</a>
+            中文数据来源于 <a href="https://mtgch.com" target="_blank" rel="noopener noreferrer" className="hover:text-[--foreground] transition-colors">大学院废墟</a>
           </div>
           <div className="w-px h-3 bg-[--border]" />
           <div className="flex items-center gap-1">

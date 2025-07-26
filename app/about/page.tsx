@@ -22,7 +22,7 @@ export default function AboutPage() {
         {
           name: "大学院废墟",
           description: "提供万智牌的中文翻译数据",
-          url: "https://mtgzh.com"
+          url: "https://mtgch.com"
         }
       ]
     }
