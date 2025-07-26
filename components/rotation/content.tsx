@@ -190,7 +190,7 @@ export function Content({ currentSetGroups, futureSets, recentBans }: Props) {
                               <div className="flex items-center gap-2">
                                 <h3 className="font-medium text-[--foreground] flex items-center gap-1">
                                   <a
-                                    href={set.code ? `https://mtgzh.com/set/${set.code}?utm_source=shiqidi&order=released_at` : '#'}
+                                    href={set.code ? `https://mtgch.com/set/${set.code}?utm_source=shiqidi&order=released_at` : '#'}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className={`text-[--foreground] ${set.code ? 'hover:opacity-70 transition-opacity' : ''}`}
@@ -233,7 +233,7 @@ export function Content({ currentSetGroups, futureSets, recentBans }: Props) {
                                   <div className="flex items-center gap-2">
                                     <h4 className="font-medium text-[--foreground] flex items-center gap-1">
                                       <a
-                                        href={`https://mtgzh.com/set/${set.digital_code}?utm_source=shiqidi&order=released_at`}
+                                        href={`https://mtgch.com/set/${set.digital_code}?utm_source=shiqidi&order=released_at`}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="text-[--foreground] hover:opacity-70 transition-opacity"
@@ -286,7 +286,7 @@ export function Content({ currentSetGroups, futureSets, recentBans }: Props) {
                         <div className="flex items-center gap-2">
                           <h3 className="font-medium text-[--foreground] flex items-center gap-1">
                             <a
-                              href={set.code ? `https://mtgzh.com/set/${set.code}?utm_source=shiqidi&order=released_at` : '#'}
+                              href={set.code ? `https://mtgch.com/set/${set.code}?utm_source=shiqidi&order=released_at` : '#'}
                               target="_blank"
                               rel="noopener noreferrer"
                               className={`text-[--foreground] ${set.code ? 'hover:opacity-70 transition-opacity' : ''}`}
@@ -334,7 +334,7 @@ export function Content({ currentSetGroups, futureSets, recentBans }: Props) {
                             <div className="flex items-center gap-2">
                               <h4 className="font-medium text-[--foreground] flex items-center gap-1">
                                 <a
-                                  href={`https://mtgzh.com/set/${set.digital_code}?utm_source=shiqidi&order=released_at`}
+                                  href={`https://mtgch.com/set/${set.digital_code}?utm_source=shiqidi&order=released_at`}
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   className="text-[--foreground] hover:opacity-70 transition-opacity"
@@ -383,7 +383,7 @@ export function Content({ currentSetGroups, futureSets, recentBans }: Props) {
                       <div className="flex-shrink-0 w-20 sm:w-28">
                         {ban.set_code && ban.set_code.includes(':') ? (
                           <a 
-                            href={`https://mtgzh.com/card/${ban.set_code.split(':')[0]}/${ban.set_code.split(':')[1]}?utm_source=shiqidi`}
+                            href={`https://mtgch.com/card/${ban.set_code.split(':')[0]}/${ban.set_code.split(':')[1]}?utm_source=shiqidi`}
                             target="_blank"
                             rel="noopener noreferrer"
                           >
@@ -410,7 +410,7 @@ export function Content({ currentSetGroups, futureSets, recentBans }: Props) {
                           <h3 className="font-medium text-[--foreground]">
                             {ban.set_code && ban.set_code.includes(':') ? (
                               <a 
-                                href={`https://mtgzh.com/card/${ban.set_code.split(':')[0]}/${ban.set_code.split(':')[1]}?utm_source=shiqidi`}
+                                href={`https://mtgch.com/card/${ban.set_code.split(':')[0]}/${ban.set_code.split(':')[1]}?utm_source=shiqidi`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="hover:underline"
