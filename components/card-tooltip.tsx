@@ -90,7 +90,7 @@ const CardTooltip: FC<CardTooltipProps> = ({ card, visible, x, y, expansion, isM
     }
 
     if (visible && chineseCard?.set && chineseCard?.collector_number) {
-      fetch(`https://sbwsz.com/api/v1/card/${chineseCard.set.toUpperCase()}/${chineseCard.collector_number}`)
+      fetch(`https://mtgzh.com/api/v1/card/${chineseCard.set.toUpperCase()}/${chineseCard.collector_number}`)
         .then(res => res.json())
         .then((json: CardApiResponse) => {
           const mainFace = {
@@ -159,7 +159,7 @@ const CardTooltip: FC<CardTooltipProps> = ({ card, visible, x, y, expansion, isM
                 onClick={(e) => {
                   e.stopPropagation();
                   if (chineseCard?.set && chineseCard?.collector_number) {
-                    window.open(`https://sbwsz.com/card/${chineseCard.set.toUpperCase()}/${chineseCard.collector_number}?utm_source=shiqidi`, '_blank');
+                    window.open(`https://mtgzh.com/card/${chineseCard.set.toUpperCase()}/${chineseCard.collector_number}?utm_source=shiqidi`, '_blank');
                   }
                 }}
                 className="text-sm text-blue-500 hover:text-blue-600"

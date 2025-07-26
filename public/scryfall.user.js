@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name         Scryfall卡牌汉化
-// @description  为Scryfall没有中文的卡牌添加汉化，所有汉化数据均来自中文卡查sbwsz.com
+// @description  为Scryfall没有中文的卡牌添加汉化，所有汉化数据均来自中文卡查mtgzh.com
 // @author       lieyanqzu
 // @license      GPL
 // @namespace    http://github.com/lieyanqzu
 // @icon         https://scryfall.com/favicon.ico
-// @version      1.6
+// @version      1.7
 // @match        *://scryfall.com/*
 // @grant        GM_xmlhttpRequest
 // @grant        GM_getValue
@@ -107,7 +107,7 @@
         }
     `);
 
-    const API_BASE_URL = 'https://sbwsz.com/api/v1/card';
+    const API_BASE_URL = 'https://mtgzh.com/api/v1/card';
     let cardLanguageStates = new Map();
 
     GM_registerMenuCommand('默认显示中文: ' + (GM_getValue('defaultToChinese', false) ? '开' : '关'), toggleDefaultLanguage);
@@ -136,7 +136,7 @@
             const cardInfo = getCardInfoFromDOM(parent);
             if (cardInfo) {
                 setTimeout(() => {
-                    const sbwszUrl = `https://sbwsz.com/card/${cardInfo.setCode.toUpperCase()}/${cardInfo.collectorNumber}`;
+                    const sbwszUrl = `https://mtgzh.com/card/${cardInfo.setCode.toUpperCase()}/${cardInfo.collectorNumber}`;
                     GM_openInTab(sbwszUrl, false);
                 }, 0);
             }

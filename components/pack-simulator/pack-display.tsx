@@ -13,8 +13,8 @@ interface PackDisplayProps {
 
 // 获取卡图URL
 function getCardImageUrl(scryfallId: string, setCode: string, number: string): string {
-  // 优先使用 sbwsz.com 的图片源
-  const sbwszUrl = `https://sbwsz.com/image/large/${setCode.toUpperCase()}/${setCode.toUpperCase()}_${number}.jpg`;
+  // 优先使用 mtgzh.com 的图片源
+  const sbwszUrl = `https://mtgzh.com/image/large/${setCode.toUpperCase()}/${setCode.toUpperCase()}_${number}.jpg`;
 
   return sbwszUrl;
 }
@@ -37,7 +37,7 @@ function getRarityColor(rarity: string): string {
 function getCardDetailUrl(card: Card): string {
   // 如果卡牌号带有 a 或 b 后缀，使用基础卡牌号
   const number = /^(\d+)[ab]$/.test(card.number) ? card.number.slice(0, -1) : card.number;
-  return `https://sbwsz.com/card/${card.setCode.toUpperCase()}/${number}?utm_source=shiqidi`;
+  return `https://mtgzh.com/card/${card.setCode.toUpperCase()}/${number}?utm_source=shiqidi`;
 }
 
 export function PackDisplay({ packs, onFlippedCardsChange, autoFlipCommon }: PackDisplayProps) {
@@ -394,7 +394,7 @@ export function PackDisplay({ packs, onFlippedCardsChange, autoFlipCommon }: Pac
                                       });
                                     }}
                                     onError={(e) => {
-                                      // 如果 sbwsz.com 的图片加载失败，切换到 scryfall 的图片
+                                      // 如果 mtgzh.com 的图片加载失败，切换到 scryfall 的图片
                                       const img = e.target as HTMLImageElement;
                                       if (!img.src.includes('scryfall.io')) {
                                         if (card.scryfallId) {
@@ -451,7 +451,7 @@ export function PackDisplay({ packs, onFlippedCardsChange, autoFlipCommon }: Pac
                                     });
                                   }}
                                   onError={(e) => {
-                                    // 如果 sbwsz.com 的图片加载失败，切换到 scryfall 的图片
+                                    // 如果 mtgzh.com 的图片加载失败，切换到 scryfall 的图片
                                     const img = e.target as HTMLImageElement;
                                     if (!img.src.includes('scryfall.io')) {
                                       if (card.scryfallId) {
