@@ -1,6 +1,15 @@
 {
   "sets": [
     {
+      "code": "EOE",
+      "boosters": [
+        {
+          "code": "eoe-play",
+          "name": "常规补充包"
+        }
+      ]
+    },
+    {
       "code": "FIN",
       "boosters": [
         {

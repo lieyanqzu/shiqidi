@@ -13,18 +13,11 @@ export interface Event {
 }
 
 export const calendarMetadata: CalendarMetadata = {
-  lastUpdated: '2025/07/21',
-  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-july-21-2025#Events',
+  lastUpdated: '2025/07/28',
+  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-july-28-2025#Events',
 };
 
 const midweekMagicEvents: Event[] = [
-  {
-    type: 'midweek_magic',
-    title: '万智牌～最终幻想幻影快速轮抽',
-    startTime: new Date('2025-07-22T14:00:00-07:00'),
-    endTime: new Date('2025-07-24T14:00:00-07:00'),
-    format: '快速轮抽'
-  },
   {
     type: 'midweek_magic',
     title: '投身虚空边域',
@@ -46,23 +39,16 @@ const midweekMagicEvents: Event[] = [
     endTime: new Date('2025-08-14T14:00:00-07:00'),
     format: '虚空边域'
   },
+  {
+    type: 'midweek_magic',
+    title: '步入未来',
+    startTime: new Date('2025-08-19T14:00:00-07:00'),
+    endTime: new Date('2025-08-21T14:00:00-07:00'),
+    format: '炼金：虚空边域预组'
+  }
 ];
 
 const premierDraftEvents: Event[] = [
-  {
-    type: 'premier_draft',
-    title: '万智牌～最终幻想',
-    startTime: new Date('2025-06-10T08:00:00-07:00'),
-    endTime: new Date('2025-07-29T08:00:00-07:00'),
-    format: '竞技轮抽 & 三盘轮抽',
-  },
-  {
-    type: 'premier_draft',
-    title: '艾卓王权',
-    startTime: new Date('2025-07-22T08:00:00-07:00'),
-    endTime: new Date('2025-07-29T08:00:00-07:00'),
-    format: '竞技轮抽',
-  },
   {
     type: 'premier_draft',
     title: '虚空边域',
@@ -94,16 +80,16 @@ const quickDraftEvents: Event[] = [
     endTime: new Date('2025-09-02T08:00:00-07:00'),
     format: '快速轮抽',
   },
+  {
+    type: 'quick_draft',
+    title: '虚空边域',
+    startTime: new Date('2025-09-02T08:00:00-07:00'),
+    endTime: new Date('2025-09-12T08:00:00-07:00'),
+    format: '快速轮抽',
+  }
 ];
 
 const otherEvents: Event[] = [
-  {
-    type: 'other',
-    title: '五彩方盒轮抽',
-    startTime: new Date('2025-07-15T08:00:00-07:00'),
-    endTime: new Date('2025-07-29T08:00:00-07:00'),
-    format: '轮抽 & 三盘轮抽'
-  },
   {
     type: 'other',
     title: '虚空边域现开',
