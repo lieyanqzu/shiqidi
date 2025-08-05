@@ -13,18 +13,11 @@ export interface Event {
 }
 
 export const calendarMetadata: CalendarMetadata = {
-  lastUpdated: '2025/07/28',
-  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-july-28-2025#Events',
+  lastUpdated: '2025/08/04',
+  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-august-4-2025',
 };
 
 const midweekMagicEvents: Event[] = [
-  {
-    type: 'midweek_magic',
-    title: '投身虚空边域',
-    startTime: new Date('2025-07-29T14:00:00-07:00'),
-    endTime: new Date('2025-07-31T14:00:00-07:00'),
-    format: '速学！'
-  },
   {
     type: 'midweek_magic',
     title: '剑走偏锋',
@@ -41,10 +34,10 @@ const midweekMagicEvents: Event[] = [
   },
   {
     type: 'midweek_magic',
-    title: '步入未来',
+    title: '炼金构筑',
     startTime: new Date('2025-08-19T14:00:00-07:00'),
     endTime: new Date('2025-08-21T14:00:00-07:00'),
-    format: '炼金：虚空边域预组'
+    format: '炼金'
   }
 ];
 
