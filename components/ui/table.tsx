@@ -1,4 +1,4 @@
-import { useEffect, useRef, useCallback, useMemo } from 'react';
+import { useEffect, useRef, useCallback, useMemo, useState } from 'react';
 
 interface Column<T> {
   header: string;
@@ -31,6 +31,18 @@ export function Table<T>({
 }: TableProps<T>) {
   const headerRef = useRef<HTMLDivElement>(null);
   const bodyRef = useRef<HTMLDivElement>(null);
+  const [headerEl, setHeaderEl] = useState<HTMLDivElement | null>(null);
+  const [bodyEl, setBodyEl] = useState<HTMLDivElement | null>(null);
+
+  const setHeaderRef = useCallback((node: HTMLDivElement | null) => {
+    headerRef.current = node;
+    setHeaderEl(node);
+  }, []);
+
+  const setBodyRef = useCallback((node: HTMLDivElement | null) => {
+    bodyRef.current = node;
+    setBodyEl(node);
+  }, []);
 
   // 缓存计算列宽的函数
   const calculateColumnWidths = useCallback(() => {
@@ -104,21 +116,18 @@ export function Table<T>({
 
   // 同步水平滚动
   useEffect(() => {
-    const headerScrollEl = headerRef.current;
-    const bodyScrollEl = bodyRef.current;
+    if (!headerEl || !bodyEl) return;
 
-    if (!headerScrollEl || !bodyScrollEl) return;
+    const scrollHandler = handleScroll(headerEl, bodyEl);
 
-    const scrollHandler = handleScroll(headerScrollEl, bodyScrollEl);
-
-    headerScrollEl.addEventListener('scroll', scrollHandler);
-    bodyScrollEl.addEventListener('scroll', scrollHandler);
+    headerEl.addEventListener('scroll', scrollHandler);
+    bodyEl.addEventListener('scroll', scrollHandler);
 
     return () => {
-      headerScrollEl.removeEventListener('scroll', scrollHandler);
-      bodyScrollEl.removeEventListener('scroll', scrollHandler);
+      headerEl.removeEventListener('scroll', scrollHandler);
+      bodyEl.removeEventListener('scroll', scrollHandler);
     };
-  }, [handleScroll, headerRef.current, bodyRef.current]);
+  }, [handleScroll, headerEl, bodyEl]);
 
   // 计算并同步列宽
   useEffect(() => {
@@ -143,7 +152,7 @@ export function Table<T>({
       window.removeEventListener('resize', calculateColumnWidths);
       resizeObserver.disconnect();
     };
-  }, [data, calculateColumnWidths]);
+  }, [data, calculateColumnWidths, columns.length]);
 
   if (isLoading) {
     return (
@@ -165,7 +174,7 @@ export function Table<T>({
     <div className="w-full relative">
       {/* 表头容器 */}
       <div 
-        ref={headerRef}
+        ref={setHeaderRef}
         className="w-full overflow-x-auto border-b border-[--table-border] bg-[--background]"
         style={{ position: 'sticky', top: '64px', zIndex: 1 }}
       >
@@ -178,7 +187,7 @@ export function Table<T>({
 
       {/* 表体容器 */}
       <div 
-        ref={bodyRef}
+        ref={setBodyRef}
         className="w-full overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
       >
         <table className="min-w-full w-max border-collapse">

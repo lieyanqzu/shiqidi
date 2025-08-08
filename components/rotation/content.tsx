@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { useSetStore } from '@/lib/store';
 import type { Set, Ban } from '@/types/rotation';
 import { parseISO, isValid } from 'date-fns';
+import Image from 'next/image';
 
 interface SetGroup {
   exitDate: string | null;
@@ -387,17 +388,21 @@ export function Content({ currentSetGroups, futureSets, recentBans }: Props) {
                             target="_blank"
                             rel="noopener noreferrer"
                           >
-                            <img 
-                              src={ban.card_image_url} 
-                              alt={ban.card_name} 
+                            <Image
+                              src={ban.card_image_url}
+                              alt={ban.card_name}
+                              width={320}
+                              height={448}
                               className="w-full h-auto rounded-lg shadow-md hover:shadow-lg transition-shadow"
                               loading="lazy"
                             />
                           </a>
                         ) : (
-                          <img 
-                            src={ban.card_image_url} 
-                            alt={ban.card_name} 
+                          <Image
+                            src={ban.card_image_url}
+                            alt={ban.card_name}
+                            width={320}
+                            height={448}
                             className="w-full h-auto rounded-lg shadow-md hover:shadow-lg transition-shadow"
                             loading="lazy"
                           />

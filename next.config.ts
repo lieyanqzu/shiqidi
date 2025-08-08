@@ -9,6 +9,9 @@ const nextConfig: NextConfig = withPWA({
   maximumFileSizeToCacheInBytes: 5 * 1024 * 1024
 })({
   output: 'export',
+  images: {
+    unoptimized: true,
+  },
   env: {
     NEXT_PUBLIC_ICP_NUMBER: process.env.ICP_NUMBER,
     NEXT_PUBLIC_LEANCLOUD_APP_ID: process.env.LEANCLOUD_APP_ID,
