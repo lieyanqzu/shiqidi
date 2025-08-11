@@ -1,0 +1,43 @@
+{
+  "code": "YEOE",
+  "name": "炼金：虚空边域",
+  "total_cards": 30,
+  "logo_code": "y25",
+  "release_date": "2025-08-20",
+  "description": "炼金：乙太飘移预计共30张卡牌，将于2025年8月20日上线万智牌：竞技场。感谢轻脚翻译并制作中文卡图。",
+  "cards": [
+    {
+      "id": "yeoe-1",
+      "name": "Val, Marooned Surveyor",
+      "zhs_name": "受困勘察员瓦尔",
+      "mana_cost": "{R}{G/W}",
+      "type": "Legendary Creature — Human Scout",
+      "zhs_type": "传奇生物～人类／斥候",
+      "text": "`Vigilance`\nWhenever you `discover`, `investigate`, `scry`, `surveil`, or `seek` one or more cards, Val deals 1 damage to each opponent and you gain 1 life.",
+      "zhs_text": "`警戒`\n每当你`倾探`，`探查`，`占卜`，`刺探`或`取出`一张或数张牌时，瓦尔向每位对手各造成1点伤害且你获得1点生命。",
+      "artist": "Cristi Balanescu",
+      "image_url_en": "https://media.wizards.com/2025/y25-eoe/en_1wk9LVMWMoXM.webp",
+      "image_url_zh": "/image/alchemy/yeoe/受困勘察员瓦尔.png",
+      "rarity": "uncommon",
+      "pow_tough": "2/3"
+    },
+    {
+      "id": "yeoe-2",
+      "name": "Thendar, the Overminer",
+      "zhs_name": "窃矿者森达",
+      "mana_cost": "{2}{R}{R}",
+      "type": "Legendary Creature — Kavu Pirate",
+      "zhs_type": "传奇生物～卡甫／海盗",
+      "text": "`Menace`\nWhenever a nonbasic land is put into a graveyard from the battlefield, its controller `conjures` a card named `Wastes:0` onto the battlefield tapped.\nAt the beginning of your end step, if you control two or more tapped creatures, destroy up to one target nonbasic land.",
+      "zhs_text": "`威慑`\n每当一个非基本地从战场进入坟墓场时，其操控者将一张名称为`荒野:0`的牌横置`幻变`进战场。\n在你的结束步骤开始时，若你操控两个或更多已横置的生物，则消灭至多一个目标非基本地。",
+      "artist": "Lius Lasahido",
+      "image_url_en": "https://media.wizards.com/2025/y25-eoe/en_FZTHaKe0TAgW.webp",
+      "image_url_zh": "/image/alchemy/yeoe/窃矿者森达.png",
+      "rarity": "rare",
+      "pow_tough": "4/4",
+      "related": [
+        "J22:834"
+      ]
+    }
+  ]
+}

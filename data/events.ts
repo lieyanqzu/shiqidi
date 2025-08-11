@@ -13,18 +13,11 @@ export interface Event {
 }
 
 export const calendarMetadata: CalendarMetadata = {
-  lastUpdated: '2025/08/04',
-  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-august-4-2025',
+  lastUpdated: '2025/08/11',
+  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-august-11-2025',
 };
 
 const midweekMagicEvents: Event[] = [
-  {
-    type: 'midweek_magic',
-    title: '剑走偏锋',
-    startTime: new Date('2025-08-05T14:00:00-07:00'),
-    endTime: new Date('2025-08-07T14:00:00-07:00'),
-    format: '特殊标准'
-  },
   {
     type: 'midweek_magic',
     title: '虚空边域构筑',
@@ -38,6 +31,20 @@ const midweekMagicEvents: Event[] = [
     startTime: new Date('2025-08-19T14:00:00-07:00'),
     endTime: new Date('2025-08-21T14:00:00-07:00'),
     format: '炼金'
+  },
+  {
+    type: 'midweek_magic',
+    title: '选两张轮抽：万智牌基石构筑',
+    startTime: new Date('2025-08-26T14:00:00-07:00'),
+    endTime: new Date('2025-08-28T14:00:00-07:00'),
+    format: '选两张轮抽'
+  },
+  {
+    type: 'midweek_magic',
+    title: '争锋构筑挑战',
+    startTime: new Date('2025-09-02T14:00:00-07:00'),
+    endTime: new Date('2025-09-04T14:00:00-07:00'),
+    format: '争锋'
   }
 ];
 
@@ -52,13 +59,6 @@ const premierDraftEvents: Event[] = [
 ];
 
 const quickDraftEvents: Event[] = [
-  {
-    type: 'quick_draft',
-    title: '鞑契龙岚录',
-    startTime: new Date('2025-07-22T08:00:00-07:00'),
-    endTime: new Date('2025-08-08T08:00:00-07:00'),
-    format: '快速轮抽',
-  },
   {
     type: 'quick_draft',
     title: '虚空边域',
@@ -79,6 +79,13 @@ const quickDraftEvents: Event[] = [
     startTime: new Date('2025-09-02T08:00:00-07:00'),
     endTime: new Date('2025-09-12T08:00:00-07:00'),
     format: '快速轮抽',
+  },
+  {
+    type: 'quick_draft',
+    title: '万智牌基石构筑',
+    startTime: new Date('2025-09-11T08:00:00-07:00'),
+    endTime: new Date('2025-09-24T08:00:00-07:00'),
+    format: '快速轮抽',
   }
 ];
 
@@ -96,21 +103,7 @@ const otherEvents: Event[] = [
     startTime: new Date('2025-07-29T08:00:00-07:00'),
     endTime: new Date('2025-08-12T08:00:00-07:00'),
     format: '三盘现开',
-  },
-  {
-    type: 'other',
-    title: '史迹环境挑战',
-    startTime: new Date('2025-08-01T08:00:00-07:00'),
-    endTime: new Date('2025-08-04T08:00:00-07:00'),
-    format: '三盘史迹'
-  },
-  {
-    type: 'other',
-    title: '竞技场直邮赛 - 虚空边域现开（聚珍补充包）',
-    startTime: new Date('2025-08-08T09:00:00-07:00'),
-    endTime: new Date('2025-08-11T09:00:00-07:00'),
-    format: '现开',
-  },
+  }
 ];
 
 const premierPlayEvents: Event[] = [
@@ -150,15 +143,7 @@ const arenaOpenEvents: Event[] = [
   }
 ];
 
-const arenaChampionshipEvents: Event[] = [
-  {
-    type: 'arena_championship',
-    title: '竞技场冠军赛9',
-    startTime: new Date('2025-08-09T10:00:00-07:00'),
-    endTime: new Date('2025-08-10T20:00:00-07:00'),
-    format: '标准',
-  }
-];
+const arenaChampionshipEvents: Event[] = [];
 
 export const events: Event[] = [
   ...midweekMagicEvents,

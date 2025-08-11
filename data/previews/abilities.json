@@ -282,5 +282,29 @@
   {
     "name": "Equip",
     "text": "Attach to target creature you control. Equip only as a sorcery."
+  },
+  {
+    "name": "倾探",
+    "text": "从你的牌库顶开始放逐牌，直到放逐一张法术力值等于或小于X的非地牌为止。施放之且不需支付其法术力费用，或将之置于你手上。将其余的牌以随机顺序置于你牌库底。"
+  },
+  {
+    "name": "Discover",
+    "text": "Exile cards from the top of your library until you exile a nonland card with mana value X or less. Cast it without paying its mana cost or put it into your hand. Put the rest on the bottom in a random order."
+  },
+  {
+    "name": "探查",
+    "text": "派出一个线索衍生物。它是具有「{2}，牺牲此衍生物：抓一张牌」的神器。"
+  },
+  {
+    "name": "Investigate",
+    "text": "Create a Clue token. It's an artifact with \"{2}, Sacrifice this token: Draw a card.\""
+  },
+  {
+    "name": "占卜",
+    "text": "检视你牌库顶的X张牌，然后将其中任意数量的牌以任意顺序置于你牌库底，其余则以任意顺序置于你牌库顶。"
+  },
+  {
+    "name": "Scry",
+    "text": "Look at the top X cards of your library, then put any number of them on the bottom and the rest on top in any order."
   }
 ]
