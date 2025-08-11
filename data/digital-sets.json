@@ -170,7 +170,21 @@
       "name": "炼金：虚空边域",
       "code": "YEOE",
       "releaseDate": "2025-08-20",
-      "wikiUrl": "https://mtg.wiki/page/Alchemy:_Edge_of_Eternities?utm_source=shiqidi"
+      "wikiUrl": "https://mtg.wiki/page/Alchemy:_Edge_of_Eternities?utm_source=shiqidi",
+      "preview": {
+        "title": "炼金预览",
+        "description": "最新炼金系列将于2025年8月20日上线万智牌：竞技场，即日起开始预览。",
+        "links": [
+          {
+            "name": "十七地（中文）",
+            "url": "/previews/yeoe"
+          },
+          {
+            "name": "Scryfall",
+            "url": "https://scryfall.com/sets/yeoe?order=spoiled&utm_source=shiqidi"
+          }
+        ]
+      }
     },
     {
       "name": "漫威的蜘蛛侠",
