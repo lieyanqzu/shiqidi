@@ -38,6 +38,21 @@
       "related": [
         "J22:834"
       ]
+    },
+    {
+      "id": "yeoe-3",
+      "name": "Axavar, Fate Thief",
+      "zhs_name": "窃命师亚夏瓦",
+      "mana_cost": "{2}{B}{R}",
+      "type": "Legendary Creature — Drix Pirate",
+      "zhs_type": "传奇生物～卓兹人／海盗",
+      "text": "Void - At the beginning of your end step, if a nonland permanent left the battlefield this turn or a spell was warped this turn, discard a card, then `heist` target opponent's library.\n`Warp`{B/R}",
+      "zhs_text": "空洞～在你的结束步骤开始时，若本回合有非地永久物离开战场或本回合有咒语跃迁，则弃一张牌，然后`偷窃`目标对手的牌库。\n`跃迁`{B/R}",
+      "artist": "Tianxing Xu",
+      "image_url_en": "/image/alchemy/yeoe/Axavar_FateThief.png",
+      "image_url_zh": "/image/alchemy/yeoe/窃命师亚夏瓦.png",
+      "rarity": "rare",
+      "pow_tough": "4/3"
     }
   ]
 }
