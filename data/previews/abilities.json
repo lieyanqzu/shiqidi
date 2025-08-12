@@ -306,5 +306,21 @@
   {
     "name": "Scry",
     "text": "Look at the top X cards of your library, then put any number of them on the bottom and the rest on top in any order."
+  },
+  {
+    "name": "偷窃",
+    "text": "检视目标对手牌库中的随机三张非地牌。将其中一张牌面朝下地放逐。于其持续放逐的时段内，你可以施放该牌，且你可以将法术力视同任意种类的法术力来施放。"
+  },
+  {
+    "name": "Heist",
+    "text": "Look at three random nonland cards from target opponent's library. Exile one of them face down. You may cast that card for as long as it remains exiled, and you may spend mana as though it were mana of any type to cast that spell."
+  },
+  {
+    "name": "跃迁",
+    "text": "你可以支付跃迁费用来从手上施放此牌。在下一个结束步骤开始时将其放逐，过了该回合后，便可再从放逐区施放之。"
+  },
+  {
+    "name": "Warp",
+    "text": "You may cast this card from your hand for its warp cost. Exile it at the beginning of the next end step, then you may cast it from exile on a later turn."
   }
 ]
