@@ -17,7 +17,7 @@
       "zhs_text": "`警戒`\n每当你`倾探`，`探查`，`占卜`，`刺探`或`取出`一张或数张牌时，瓦尔向每位对手各造成1点伤害且你获得1点生命。",
       "artist": "Cristi Balanescu",
       "image_url_en": "https://media.wizards.com/2025/y25-eoe/en_1wk9LVMWMoXM.webp",
-      "image_url_zh": "/image/alchemy/yeoe/受困勘察员瓦尔.png",
+      "image_url_zh": "/image/alchemy/yeoe/受困勘察员瓦尔-2.png",
       "rarity": "uncommon",
       "pow_tough": "2/3"
     },
@@ -46,13 +46,56 @@
       "mana_cost": "{2}{B}{R}",
       "type": "Legendary Creature — Drix Pirate",
       "zhs_type": "传奇生物～卓兹人／海盗",
-      "text": "Void - At the beginning of your end step, if a nonland permanent left the battlefield this turn or a spell was warped this turn, discard a card, then `heist` target opponent's library.\n`Warp`{B/R}",
+      "text": "Void - At the beginning of your end step, if a nonland permanent left the battlefield this turn or a spell was warped this turn, discard a card, then `heist` target opponent's library.\n`Warp` {B/R}",
       "zhs_text": "空洞～在你的结束步骤开始时，若本回合有非地永久物离开战场或本回合有咒语跃迁，则弃一张牌，然后`偷窃`目标对手的牌库。\n`跃迁`{B/R}",
       "artist": "Tianxing Xu",
       "image_url_en": "/image/alchemy/yeoe/Axavar_FateThief.png",
       "image_url_zh": "/image/alchemy/yeoe/窃命师亚夏瓦.png",
       "rarity": "rare",
       "pow_tough": "4/3"
+    },
+    {
+      "id": "yeoe-4",
+      "name": "Thought Partition",
+      "zhs_name": "分离思绪",
+      "mana_cost": "{W}",
+      "type": "Sorcery",
+      "zhs_type": "法术",
+      "text": "Target opponent reveals all nonland cards in their hand. You may choose one of those cards. If you do, it `perpetually` becomes white and its mana cost `perpetually` becomes {5}.",
+      "zhs_text": "目标对手展示其手上所有的非地牌。你可以选择其中一张牌。若你如此作，则其`永久`成为白色，且其法术力费用`永久`成为{5}。",
+      "artist": "Michele Giorgi",
+      "image_url_en": "/image/alchemy/yeoe/ThoughtPartition.png",
+      "image_url_zh": "/image/alchemy/yeoe/分离思绪.png",
+      "rarity": "uncommon"
+    },
+    {
+      "id": "yeoe-5",
+      "name": "Worldweave",
+      "zhs_name": "织世咒",
+      "mana_cost": "{2}{G}",
+      "type": "Enchantment",
+      "zhs_type": "结界",
+      "text": "Whenever you cast a creature spell, `seek` a land card and put it onto the battlefield tapped.",
+      "zhs_text": "每当你施放生物咒语时，`取出`一张地牌并将它横置放进战场。",
+      "artist": "Yohann Schepacz",
+      "image_url_en": "/image/alchemy/yeoe/Worldweave.png",
+      "image_url_zh": "/image/alchemy/yeoe/织世咒.png",
+      "rarity": "mythic"
+    },
+    {
+      "id": "yeoe-6",
+      "name": "Network Marauder",
+      "zhs_name": "网络劫掠者",
+      "mana_cost": "{2}{U}",
+      "type": "Artifact Creature — Robot Pirate",
+      "zhs_type": "神器生物～机器人／海盗",
+      "text": "When this creature enters and whenever another artifact you control with mana value 3 or greater enters, all artifact creature cards and Spacecraft cards you own `perpetually` get +1/+0.\n`Warp` {1}{U}",
+      "zhs_text": "当此生物进场和每当另一个由你操控且法术力值等于或大于3的神器进场时，所有由你拥有的神器生物牌和太空船牌均`永久`得+1/+0。\n`跃迁`{1}{U}",
+      "artist": "Diana Franco",
+      "image_url_en": "/image/alchemy/yeoe/NetworkMarauder.jpg",
+      "image_url_zh": "/image/alchemy/yeoe/网络劫掠者.png",
+      "rarity": "rare",
+      "pow_tough": "1/2"
     }
   ]
 }
