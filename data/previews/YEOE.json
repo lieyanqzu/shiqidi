@@ -24,7 +24,7 @@
     {
       "id": "yeoe-2",
       "name": "Thendar, the Overminer",
-      "zhs_name": "窃矿者森达",
+      "zhs_name": "盗掠矿工森达",
       "mana_cost": "{2}{R}{R}",
       "type": "Legendary Creature — Kavu Pirate",
       "zhs_type": "传奇生物～卡甫／海盗",
@@ -32,7 +32,7 @@
       "zhs_text": "`威慑`\n每当一个非基本地从战场进入坟墓场时，其操控者将一张名称为`荒野:0`的牌横置`幻变`进战场。\n在你的结束步骤开始时，若你操控两个或更多已横置的生物，则消灭至多一个目标非基本地。",
       "artist": "Lius Lasahido",
       "image_url_en": "https://media.wizards.com/2025/y25-eoe/en_FZTHaKe0TAgW.webp",
-      "image_url_zh": "/image/alchemy/yeoe/窃矿者森达.png",
+      "image_url_zh": "/image/alchemy/yeoe/盗掠矿工森达.png",
       "rarity": "rare",
       "pow_tough": "4/4",
       "related": [
@@ -71,7 +71,7 @@
     {
       "id": "yeoe-5",
       "name": "Worldweave",
-      "zhs_name": "织世咒",
+      "zhs_name": "寰宇织构",
       "mana_cost": "{2}{G}",
       "type": "Enchantment",
       "zhs_type": "结界",
@@ -79,7 +79,7 @@
       "zhs_text": "每当你施放生物咒语时，`取出`一张地牌并将它横置放进战场。",
       "artist": "Yohann Schepacz",
       "image_url_en": "/image/alchemy/yeoe/Worldweave.png",
-      "image_url_zh": "/image/alchemy/yeoe/织世咒.png",
+      "image_url_zh": "/image/alchemy/yeoe/寰宇织构.png",
       "rarity": "mythic"
     },
     {
@@ -96,6 +96,21 @@
       "image_url_zh": "/image/alchemy/yeoe/网络劫掠者.png",
       "rarity": "rare",
       "pow_tough": "1/2"
+    },
+    {
+      "id": "yeoe-7",
+      "name": "Mutable Pupa",
+      "zhs_name": "易变蛹",
+      "mana_cost": "{G}",
+      "type": "Creature — Insect",
+      "zhs_type": "生物～昆虫",
+      "text": "`Evolve`\nWhenever another creature you control enters, this creature `perpetually` gains `flying` if that creature has `flying`. The same is true for `first strike`, `double strike`, `deathtouch`, `haste`, `hexproof`, `indestructible`, `lifelink`, `menace`, `reach`, `trample`, and `vigilance`.",
+      "zhs_text": "`进化`\n每当另一个由你操控的生物进场时，如果该生物具有`飞行`异能，则此生物`永久`获得`飞行`异能。且`先攻`、`连击`、`死触`、`敏捷`、`辟邪`、`不灭`、`系命`、`威慑`、`延势`、`践踏`与`警戒`异能亦比照办理。",
+      "artist": "Nicholas Gregory",
+      "image_url_en": "/image/alchemy/yeoe/MutablePupa.jpg",
+      "image_url_zh": "/image/alchemy/yeoe/易变蛹.png",
+      "rarity": "uncommon",
+      "pow_tough": "1/1"
     }
   ]
 }
