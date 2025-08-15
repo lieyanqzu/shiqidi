@@ -322,5 +322,37 @@
   {
     "name": "Warp",
     "text": "You may cast this card from your hand for its warp cost. Exile it at the beginning of the next end step, then you may cast it from exile on a later turn."
+  },
+  {
+    "name": "进化",
+    "text": "每当一个由你操控的生物进场时，若该生物的力量或防御力大于此生物，则在后者上放置一个+1/+1指示物。"
+  },
+  {
+    "name": "Evolve",
+    "text": "Whenever a creature you control enters, if that creature has greater power or toughness than this creature, put a +1/+1 counter on this creature."
+  },
+  {
+    "name": "辟邪",
+    "text": "它不能成为由对手操控之咒语或异能的目标。"
+  },
+  {
+    "name": "Hexproof",
+    "text": "It can't be the target of spells or abilities your opponents control."
+  },
+  {
+    "name": "不灭",
+    "text": "伤害与注明「消灭」的效应不会将它消灭。"
+  },
+  {
+    "name": "Indestructible",
+    "text": "Damage and effects that say \"destroy\" don't destroy it."
+  },
+  {
+    "name": "延势",
+    "text": "此生物能阻挡具飞行异能的生物。"
+  },
+  {
+    "name": "Reach",
+    "text": "This creature can block creatures with flying."
   }
 ]
