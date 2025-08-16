@@ -183,9 +183,16 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
     }
   };
 
-  // 处理文本，保持换行的同时渲染法术力符号
+  // 处理文本，保持换行的同时渲染法术力符号，并识别风味文本（FLAVOR）
   const renderText = (text: string) => {
-    const stationSplit = text.split(/\n(?=STATION )/);
+    // 拆分风味文本：按独立一行的 FLAVOR 进行分割
+    const lines = text.split('\n');
+    const flavorIndex = lines.findIndex(line => line.trim() === 'FLAVOR');
+    const rulesText = flavorIndex >= 0 ? lines.slice(0, flavorIndex).join('\n') : text;
+    const flavorLines = flavorIndex >= 0 ? lines.slice(flavorIndex + 1) : [];
+
+    // 对规则叙述部分继续处理 STATION 分段
+    const stationSplit = rulesText.split(/\n(?=STATION )/);
     const normalText = stationSplit[0];
     const stationTexts = stationSplit.slice(1);
 
@@ -219,10 +226,22 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
       );
     });
 
+    const flavorElement = flavorLines.length > 0 ? (
+      <div className="mt-2 pt-2 border-t border-[--border] text-[--muted-foreground] italic">
+        {flavorLines.map((line, index) => (
+          <Fragment key={`flavor-${index}`}>
+            <ManaText text={line} renderCardRef={renderCardRef} />
+            {index < flavorLines.length - 1 && <br />}
+          </Fragment>
+        ))}
+      </div>
+    ) : null;
+
     return (
       <>
         {normalTextElements}
         {stationElements}
+        {flavorElement}
       </>
     );
   };
