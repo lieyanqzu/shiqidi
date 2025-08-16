@@ -1691,6 +1691,24 @@
       ]
     },
     {
+      "code": "REN",
+      "boosters": [
+        {
+          "code": "ren",
+          "name": "补充包"
+        }
+      ]
+    },
+    {
+      "code": "RIN",
+      "boosters": [
+        {
+          "code": "rin",
+          "name": "补充包"
+        }
+      ]
+    },
+    {
       "code": "CHR",
       "boosters": [
         {
