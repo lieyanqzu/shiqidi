@@ -354,5 +354,22 @@
   {
     "name": "Reach",
     "text": "This creature can block creatures with flying."
+  },
+  {
+    "name": "蓄势",
+    "text": "横置另一个由你操控的生物：依其力量在此永久物上放置等量的充电指示物。蓄势的时机视同法术。"
+  },
+  {
+    "name": "Station",
+    "alias": ["stations"],
+    "text": "Tap another creature you control: Put charge counters on this permanent equal to its power. Station only as a sorcery"
+  },
+  {
+    "name": "后盾指示物",
+    "text": "如果其上有后盾指示物的永久物将受到伤害或将被消灭，则改为从其上移去一个后盾指示物。"
+  },
+  {
+    "name": "Shield counter",
+    "text": "If a permanent with a shield counter would be dealt damage or destroyed, remove a shield counter from it instead."
   }
 ]
