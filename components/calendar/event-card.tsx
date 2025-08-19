@@ -2,7 +2,7 @@
 
 import { format as formatDate, differenceInDays, isBefore, isAfter, differenceInHours } from 'date-fns';
 import { zhCN } from 'date-fns/locale';
-import { Trophy, Swords, Scroll, Crown, Sparkles, Gamepad2 } from 'lucide-react';
+import { Trophy, Swords, Scroll, Crown, Sparkles, Gamepad2, Package } from 'lucide-react';
 
 interface EventCardProps {
   title: string;
@@ -10,7 +10,7 @@ interface EventCardProps {
   endTime: Date;
   format?: string;
   description?: string;
-  type: 'midweek_magic' | 'premier_draft' | 'quick_draft' | 'other' | 'premier_play' | 'arena_open' | 'arena_championship';
+  type: 'midweek_magic' | 'premier_draft' | 'quick_draft' | 'other' | 'premier_play' | 'arena_open' | 'arena_direct' | 'arena_championship';
 }
 
 export function EventCard({ title, startTime, endTime, format: eventFormat, description, type }: EventCardProps) {
@@ -34,6 +34,8 @@ export function EventCard({ title, startTime, endTime, format: eventFormat, desc
         return <Trophy className="w-5 h-5" />;
       case 'arena_open':
         return <Swords className="w-5 h-5" />;
+      case 'arena_direct':
+        return <Package className="w-5 h-5" />;
       case 'arena_championship':
         return <Crown className="w-5 h-5" />;
       default:
@@ -72,6 +74,12 @@ export function EventCard({ title, startTime, endTime, format: eventFormat, desc
           gradient: 'from-red-500/20 to-pink-500/20 dark:from-red-500/10 dark:to-pink-500/10',
           border: 'hover:border-red-500/50',
           icon: 'text-red-500'
+        };
+      case 'arena_direct':
+        return {
+          gradient: 'from-violet-500/20 to-fuchsia-500/20 dark:from-violet-500/10 dark:to-fuchsia-500/10',
+          border: 'hover:border-violet-500/50',
+          icon: 'text-violet-500'
         };
       case 'arena_championship':
         return {
