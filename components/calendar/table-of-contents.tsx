@@ -54,6 +54,12 @@ export function DesktopTableOfContents() {
             </div>
             <div
               className="cursor-pointer hover:text-[--primary] transition-colors"
+              onClick={() => scrollToSection('arena-direct')}
+            >
+              直邮赛
+            </div>
+            <div
+              className="cursor-pointer hover:text-[--primary] transition-colors"
               onClick={() => scrollToSection('qualifier')}
             >
               资格赛
@@ -142,6 +148,12 @@ export function MobileTableOfContents() {
               onClick={() => scrollToSection('arena-open')}
             >
               · 公开赛
+            </div>
+            <div
+              className="text-sm cursor-pointer hover:text-[--primary] transition-colors whitespace-nowrap opacity-80"
+              onClick={() => scrollToSection('arena-direct')}
+            >
+              · 直邮赛
             </div>
             <div
               className="text-sm cursor-pointer hover:text-[--primary] transition-colors whitespace-nowrap opacity-80"

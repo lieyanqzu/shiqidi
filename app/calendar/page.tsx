@@ -20,6 +20,7 @@ export default function CalendarPage() {
   const otherEvents = events.filter(event => event.type === 'other');
   const premierPlayEvents = events.filter(event => event.type === 'premier_play');
   const arenaOpenEvents = events.filter(event => event.type === 'arena_open');
+  const arenaDirectEvents = events.filter(event => event.type === 'arena_direct');
   const arenaChampionshipEvents = events.filter(event => event.type === 'arena_championship');
 
   return (
@@ -61,7 +62,7 @@ export default function CalendarPage() {
                   <h2 className="text-xl font-semibold mb-4">周中万智牌</h2>
                   <div className="bg-[--card] rounded-lg p-4">
                     <p className="text-sm text-[--muted-foreground] mb-4 leading-relaxed">
-                      周中万智牌活动在每周三凌晨 6 点开放，周五凌晨 6 点停止参加（UTC+08:00）。
+                      周中万智牌活动在每周三凌晨 5-6 点开放，周五凌晨 5-6 点停止参加（UTC+08:00）。
                     </p>
                     <div className="space-y-3">
                       {midweekMagicEvents.map((event, index) => (
@@ -77,6 +78,9 @@ export default function CalendarPage() {
                 <section id="premier-draft" className="mb-8 scroll-mt-24">
                   <h2 className="text-xl font-semibold mb-4">竞技轮抽</h2>
                   <div className="bg-[--card] rounded-lg p-4">
+                    <p className="text-sm text-[--muted-foreground] mb-4 leading-relaxed">
+                      与 7 位其他牌手一同进行轮抽，有抽选时间限制。
+                    </p>
                     <div className="space-y-3">
                       {premierDraftEvents.map((event, index) => (
                         <EventCard key={index} {...event} />
@@ -91,6 +95,9 @@ export default function CalendarPage() {
                 <section id="quick-draft" className="mb-8 scroll-mt-24">
                   <h2 className="text-xl font-semibold mb-4">快速轮抽</h2>
                   <div className="bg-[--card] rounded-lg p-4">
+                    <p className="text-sm text-[--muted-foreground] mb-4 leading-relaxed">
+                      与 AI 一同进行轮抽，无需等待，没有抽选时间限制。
+                    </p>
                     <div className="space-y-3">
                       {quickDraftEvents.map((event, index) => (
                         <EventCard key={index} {...event} />
@@ -115,7 +122,7 @@ export default function CalendarPage() {
               )}
 
               {/* 竞技比赛日程 */}
-              {(premierPlayEvents.length > 0 || arenaOpenEvents.length > 0 || arenaChampionshipEvents.length > 0) && (
+              {(premierPlayEvents.length > 0 || arenaOpenEvents.length > 0 || arenaDirectEvents.length > 0 || arenaChampionshipEvents.length > 0) && (
                 <section id="competitive-events" className="mb-8 scroll-mt-24">
                   <h2 className="text-xl font-semibold mb-4">竞技赛程</h2>
                   <div className="bg-[--card] rounded-lg p-4">
@@ -124,10 +131,25 @@ export default function CalendarPage() {
                       <div id="arena-open" className="mb-8 scroll-mt-24">
                         <h3 className="text-lg font-medium mb-4">竞技场公开赛</h3>
                         <p className="text-sm text-[--muted-foreground] mb-4 leading-relaxed">
-                          第一天报名窗口从晚上 22 点开始，第二天下午 19 点结束（UTC+08:00）。第二天报名窗口仅 2 小时，从晚上 22 点到 0 点（UTC+08:00）。
+                          参加赛事，竞夺奖金！在第 2 天赛事中取得优异成绩，能够获得现金奖励！
                         </p>
                         <div className="space-y-3">
                           {arenaOpenEvents.map((event, index) => (
+                            <EventCard key={index} {...event} />
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* 竞技场直邮赛 */}
+                    {arenaDirectEvents.length > 0 && (
+                      <div id="arena-direct" className="mb-8 scroll-mt-24">
+                        <h3 className="text-lg font-medium mb-4">竞技场直邮赛</h3>
+                        <p className="text-sm text-[--muted-foreground] mb-4 leading-relaxed">
+                          参加赛事，竞夺卡盒！赢取实体奖励直邮到家（限制部分地区，以官方公告为准）。
+                        </p>
+                        <div className="space-y-3">
+                          {arenaDirectEvents.map((event, index) => (
                             <EventCard key={index} {...event} />
                           ))}
                         </div>
@@ -151,7 +173,7 @@ export default function CalendarPage() {
                       <div id="championship" className="scroll-mt-24">
                         <h3 className="text-lg font-medium mb-4">竞技场冠军赛</h3>
                         <p className="text-sm text-[--muted-foreground] mb-4 leading-relaxed">
-                          竞技场冠军赛是一个为期两天的虚拟邀请赛，参赛资格通过资格赛周末活动获得。
+                          竞技场冠军赛是一个为期两天的线上邀请赛，参赛资格通过资格赛周末活动获得。
                         </p>
                         <div className="space-y-3">
                           {arenaChampionshipEvents.map((event, index) => (
