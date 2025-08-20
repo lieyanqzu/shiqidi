@@ -475,7 +475,7 @@
       "type": "Legendary Creature — Jellyfish Advisor",
       "zhs_type": "传奇生物～水母／参谋",
       "text": "`Flying`, `Vigilance`\nWhen Vv'viza enters, `conjure` a card of your choice from the Planets Spellbook onto the battlefield.\nWhenever you attack, create a Lander token. It becomes a 2/1 artifact creature and gains `flying`.",
-      "zhs_text": "`飞行`，`警戒`\n当卫维扎进场时，从行星法术书中选择一张牌。将该牌`幻变`进战场。\n每当卫维扎攻击时，派出一个探地器衍生物。它成为2/1的神器生物，且获得`飞行`异能。",
+      "zhs_text": "`飞行`，`警戒`\n当卫维扎进场时，从行星法术书中选择一张牌。将该牌`幻变`进战场。\n每当你攻击时，派出一个探地器衍生物。它成为2/1的神器生物，且获得`飞行`异能。",
       "artist": "Cristi Balanescu",
       "image_url_en": "https://media.wizards.com/2025/y25-eoe/en_1ZSDQSUukfej.webp",
       "image_url_zh": "/image/alchemy/yeoe/轨道监管卫维扎.png",
@@ -519,4 +519,5 @@
       "pow_tough": "2/1"
     }
   ]
+
 }
