@@ -506,7 +506,7 @@
     {
       "id": "yeoe-30",
       "name": "Spirited Simulacrum",
-      "zhs_name": "奋励拟像械",
+      "zhs_name": "灿色幻影",
       "mana_cost": "{4}",
       "type": "Artifact Creature — Robot",
       "zhs_type": "神器生物～机器人",
@@ -521,3 +521,4 @@
   ]
 
 }
+
