@@ -190,7 +190,30 @@
       "name": "漫威的蜘蛛侠",
       "code": "SPM",
       "releaseDate": "2025-09-24",
-      "wikiUrl": "https://mtg.wiki/page/Marvel%27s_Spider-Man?utm_source=shiqidi"
+      "wikiUrl": "https://mtg.wiki/page/Marvel%27s_Spider-Man?utm_source=shiqidi",
+      "preview": {
+        "title": "友好。超凡。神奇。",
+        "description": "咻的一下进入我们的新系列！万智牌 | 漫威的蜘蛛侠从整个蜘蛛侠宇宙将牌张射入你最爱的套牌。",
+        "backgroundImage": "/image/background/SPM_sma_key_1920x1080_en.jpg",
+        "links": [
+          {
+            "name": "大学院废墟（中文）",
+            "url": "https://mtgch.com/previews/SPM/?utm_source=shiqidi"
+          },
+          {
+            "name": "官网牌图集合",
+            "url": "https://magic.wizards.com/en/products/marvel/spider-man/card-image-gallery"
+          },
+          {
+            "name": "Scryfall",
+            "url": "https://scryfall.com/sets/spm?order=spoiled&utm_source=shiqidi"
+          },
+          {
+            "name": "Untapped.gg",
+            "url": "https://mtga.untapped.gg/codex/sets/marvels-spider-man?sortBy=spoilerDate&utm_source=shiqidi"
+          }
+        ]
+      }
     }
   ]
 }
