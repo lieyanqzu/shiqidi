@@ -4,6 +4,10 @@
       "code": "EOE",
       "boosters": [
         {
+          "code": "eoe-collector",
+          "name": "聚珍补充包"
+        },
+        {
           "code": "eoe-play",
           "name": "常规补充包"
         }
