@@ -13,18 +13,11 @@ export interface Event {
 }
 
 export const calendarMetadata: CalendarMetadata = {
-  lastUpdated: '2025/09/01',
-  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-september-1-2025',
+  lastUpdated: '2025/09/08',
+  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-september-8-2025',
 };
 
 const midweekMagicEvents: Event[] = [
-  {
-    type: 'midweek_magic',
-    title: '争锋构筑挑战',
-    startTime: new Date('2025-09-02T14:00:00-07:00'),
-    endTime: new Date('2025-09-04T14:00:00-07:00'),
-    format: '争锋'
-  },
   {
     type: 'midweek_magic',
     title: '五彩启动标准',
@@ -45,6 +38,13 @@ const midweekMagicEvents: Event[] = [
     startTime: new Date('2025-09-23T14:00:00-07:00'),
     endTime: new Date('2025-09-25T14:00:00-07:00'),
     format: '争锋'
+  },
+  {
+    type: 'midweek_magic',
+    title: '构筑赛：穿越预兆路 & 万智牌：基石构筑',
+    startTime: new Date('2025-09-30T14:00:00-07:00'),
+    endTime: new Date('2025-10-01T14:00:00-07:00'),
+    format: '构筑'
   }
 ];
 
@@ -55,13 +55,6 @@ const premierDraftEvents: Event[] = [
     startTime: new Date('2025-07-29T08:00:00-07:00'),
     endTime: new Date('2025-09-23T08:00:00-07:00'),
     format: '竞技轮抽 & 三盘轮抽',
-  },
-  {
-    type: 'premier_draft',
-    title: '炼金：虚空边域',
-    startTime: new Date('2025-08-19T08:00:00-07:00'),
-    endTime: new Date('2025-09-02T08:00:00-07:00'),
-    format: '竞技轮抽',
   },
   {
     type: 'premier_draft',
@@ -87,13 +80,6 @@ const premierDraftEvents: Event[] = [
 ];
 
 const quickDraftEvents: Event[] = [
-  {
-    type: 'quick_draft',
-    title: '乙太飘移',
-    startTime: new Date('2025-08-19T08:00:00-07:00'),
-    endTime: new Date('2025-09-02T08:00:00-07:00'),
-    format: '快速轮抽',
-  },
   {
     type: 'quick_draft',
     title: '虚空边域',
@@ -125,44 +111,29 @@ const quickDraftEvents: Event[] = [
 ];
 
 const otherEvents: Event[] = [
-  // {
-  //   type: 'other',
-  //   title: '虚空边域现开',
-  //   startTime: new Date('2025-07-29T08:00:00-07:00'),
-  //   endTime: new Date('2025-08-22T08:00:00-07:00'),
-  //   format: 'BO1现开',
-  // }
+  {
+    type: 'other',
+    title: '竞技场方盒轮抽',
+    startTime: new Date('2025-09-09T08:00:00-07:00'),
+    endTime: new Date('2025-09-23T07:00:00-07:00'),
+    format: '方盒轮抽 & 三盘方盒轮抽',
+    description: '公告：https://magic.wizards.com/en/news/mtg-arena/arena-cube-draft',
+  }
 ];
 
 const arenaOpenEvents: Event[] = [];
 
 const arenaDirectEvents: Event[] = [
-  {
-    type: 'arena_direct',
-    title: '竞技场直邮赛 - 虚空边域常规补充包',
-    startTime: new Date('2025-09-05T08:00:00-07:00'),
-    endTime: new Date('2025-09-08T11:00:00-07:00'),
-    format: '虚空边域BO1现开'
-  }
+  // {
+  //   type: 'arena_direct',
+  //   title: '竞技场直邮赛 - 虚空边域常规补充包',
+  //   startTime: new Date('2025-09-05T08:00:00-07:00'),
+  //   endTime: new Date('2025-09-08T11:00:00-07:00'),
+  //   format: '虚空边域BO1现开'
+  // }
 ];
 
 const premierPlayEvents: Event[] = [
-  {
-    type: 'premier_play',
-    title: '资格赛入围赛BO1',
-    startTime: new Date('2025-09-06T06:00:00-07:00'),
-    endTime: new Date('2025-09-07T03:00:00-07:00'),
-    format: '标准',
-    description: '单日赛事，玩家将竞争获得9月13-14日资格赛周末的参赛资格。',
-  },
-  {
-    type: 'premier_play',
-    title: '资格赛入围赛加赛 - 虚空边域现开',
-    startTime: new Date('2025-09-07T06:00:00-07:00'),
-    endTime: new Date('2025-09-08T03:00:00-07:00'),
-    format: '现开',
-    description: '单日赛事，玩家将竞争获得9月13-14日资格赛周末的参赛资格。',
-  },
   {
     type: 'premier_play',
     title: '资格赛入围赛BO3',
