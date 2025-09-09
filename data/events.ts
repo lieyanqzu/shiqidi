@@ -20,7 +20,7 @@ export const calendarMetadata: CalendarMetadata = {
 const midweekMagicEvents: Event[] = [
   {
     type: 'midweek_magic',
-    title: '五彩启动标准',
+    title: '五彩星启标准',
     startTime: new Date('2025-09-09T14:00:00-07:00'),
     endTime: new Date('2025-09-11T14:00:00-07:00'),
     format: '标准'
@@ -164,3 +164,4 @@ export const events: Event[] = [
   ...arenaDirectEvents,
   ...arenaChampionshipEvents,
 ];
+
