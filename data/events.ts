@@ -23,7 +23,8 @@ const midweekMagicEvents: Event[] = [
     title: '五彩星启标准',
     startTime: new Date('2025-09-09T14:00:00-07:00'),
     endTime: new Date('2025-09-11T14:00:00-07:00'),
-    format: '标准'
+    format: '标准',
+    description: '每局游戏开始时将一个五彩星幻变进场',
   },
   {
     type: 'midweek_magic',
@@ -164,4 +165,5 @@ export const events: Event[] = [
   ...arenaDirectEvents,
   ...arenaChampionshipEvents,
 ];
+
 
