@@ -27,6 +27,9 @@ interface DigitalSet {
     description: string;
     links: { name: string; url: string }[];
     backgroundImage?: string;
+    digitalName?: string;
+    digitalCode?: string;
+    digitalLinks?: { name: string; url: string }[];
   };
 }
 
@@ -146,6 +149,8 @@ function SetInfo({ className = "" }: { className?: string }) {
                         </p>
                       </div>
                     </div>
+                    
+                    {/* 原系列预览链接 */}
                     <div className="space-y-1.5">
                       <p className="text-[13px] text-[--muted-foreground] opacity-90">前往以下网站，了解{next.name}最新预览卡牌</p>
                       <div className="grid grid-cols-2 gap-2">
@@ -163,6 +168,33 @@ function SetInfo({ className = "" }: { className?: string }) {
                         ))}
                       </div>
                     </div>
+
+                    {/* 线上替代系列信息 */}
+                    {next.preview?.digitalName && next.preview?.digitalLinks && (
+                      <div className="space-y-1.5 pt-2 border-t border-[--border]">
+                        <div className="flex items-center gap-2">
+                          <span className="text-[13px] text-[--muted-foreground] opacity-90">线上替代系列：</span>
+                          {next.preview.digitalCode && (
+                            <i className={`ss ss-${next.preview.digitalCode.toLowerCase()} ss-fw flex-shrink-0`} />
+                          )}
+                          <span className="text-[13px] font-medium text-[--foreground]">{next.preview.digitalName}</span>
+                        </div>
+                        <div className="grid grid-cols-2 gap-2">
+                          {next.preview.digitalLinks.map((link, index) => (
+                            <a
+                              key={`digital-${index}`}
+                              href={link.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex items-center gap-1.5 text-[13px] text-[--primary] hover:text-[--primary]/80 transition-colors"
+                            >
+                              <ExternalLink className="w-3.5 h-3.5 flex-shrink-0" />
+                              <span className="truncate">{link.name}</span>
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 }
               >

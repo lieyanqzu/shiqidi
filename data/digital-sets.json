@@ -212,6 +212,18 @@
             "name": "Untapped.gg",
             "url": "https://mtga.untapped.gg/codex/sets/marvels-spider-man?sortBy=spoilerDate&utm_source=shiqidi"
           }
+        ],
+        "digitalName": "穿越预兆路",
+        "digitalCode": "OM1",
+        "digitalLinks": [
+          {
+            "name": "大学院废墟（中文）",
+            "url": "https://mtgch.com/previews/OM1/?utm_source=shiqidi"
+          },
+          {
+            "name": "官网牌图集合",
+            "url": "https://magic.wizards.com/en/mtgarena/through-the-omenpaths/card-image-gallery"
+          }
         ]
       }
     },
