@@ -79,7 +79,7 @@ export default function CalendarPage() {
                   <h2 className="text-xl font-semibold mb-4">竞技轮抽</h2>
                   <div className="bg-[--card] rounded-lg p-4">
                     <p className="text-sm text-[--muted-foreground] mb-4 leading-relaxed">
-                      与 7 位其他牌手一同进行轮抽，有抽选时间限制。
+                      与其他牌手一同进行轮抽，有抽选时间限制。
                     </p>
                     <div className="space-y-3">
                       {premierDraftEvents.map((event, index) => (
