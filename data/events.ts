@@ -13,8 +13,8 @@ export interface Event {
 }
 
 export const calendarMetadata: CalendarMetadata = {
-  lastUpdated: '2025/09/13',
-  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-september-8-2025',
+  lastUpdated: '2025/09/16',
+  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-september-15-2025',
 };
 
 const midweekMagicEvents: Event[] = [
@@ -68,7 +68,7 @@ const premierDraftEvents: Event[] = [
     type: 'premier_draft',
     title: '虚空边域',
     startTime: new Date('2025-07-29T08:00:00-07:00'),
-    endTime: new Date('2025-09-23T08:00:00-07:00'),
+    endTime: new Date('2025-09-28T08:00:00-07:00'),
     format: '竞技轮抽 & 三盘轮抽',
   },
   {
@@ -90,7 +90,7 @@ const premierDraftEvents: Event[] = [
     title: '穿越预兆路',
     startTime: new Date('2025-09-23T08:00:00-07:00'),
     endTime: new Date('2025-11-18T08:00:00-07:00'),
-    format: '竞技轮抽 & 三盘轮抽 & 选两张轮抽',
+    format: '选两张轮抽 & 三盘轮抽',
   },
   {
     type: 'premier_draft',

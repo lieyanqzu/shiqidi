@@ -1,6 +1,19 @@
 {
   "sets": [
     {
+      "code": "SPM",
+      "boosters": [
+        {
+          "code": "spm-collector",
+          "name": "聚珍补充包"
+        },
+        {
+          "code": "spm-play",
+          "name": "常规补充包"
+        }
+      ]
+    },
+    {
       "code": "EOE",
       "boosters": [
         {
