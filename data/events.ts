@@ -13,19 +13,11 @@ export interface Event {
 }
 
 export const calendarMetadata: CalendarMetadata = {
-  lastUpdated: '2025/09/16',
-  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-september-15-2025',
+  lastUpdated: '2025/09/22',
+  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-september-22-2025',
 };
 
 const midweekMagicEvents: Event[] = [
-
-  {
-    type: 'midweek_magic',
-    title: '虚空边域幻影现开',
-    startTime: new Date('2025-09-16T14:00:00-07:00'),
-    endTime: new Date('2025-09-18T14:00:00-07:00'),
-    format: '现开'
-  },
   {
     type: 'midweek_magic',
     title: '争锋！',
@@ -42,10 +34,10 @@ const midweekMagicEvents: Event[] = [
   },
   {
     type: 'midweek_magic',
-    title: '速学！',
+    title: '莫秘维',
     startTime: new Date('2025-10-07T14:00:00-07:00'),
     endTime: new Date('2025-10-09T14:00:00-07:00'),
-    format: '速学'
+    format: '莫秘维'
   },
   {
     type: 'midweek_magic',
@@ -70,13 +62,6 @@ const premierDraftEvents: Event[] = [
     startTime: new Date('2025-07-29T08:00:00-07:00'),
     endTime: new Date('2025-09-28T08:00:00-07:00'),
     format: '竞技轮抽 & 三盘轮抽',
-  },
-  {
-    type: 'premier_draft',
-    title: '非瑞克西亚：万界归一',
-    startTime: new Date('2025-09-09T08:00:00-07:00'),
-    endTime: new Date('2025-09-16T08:00:00-07:00'),
-    format: '竞技轮抽',
   },
   {
     type: 'premier_draft',
@@ -142,6 +127,13 @@ const quickDraftEvents: Event[] = [
     title: '虚空边域',
     startTime: new Date('2025-10-14T08:00:00-07:00'),
     endTime: new Date('2025-10-28T08:00:00-07:00'),
+    format: '快速轮抽',
+  },
+  {
+    type: 'quick_draft',
+    title: '穿越预兆路',
+    startTime: new Date('2025-10-28T08:00:00-07:00'),
+    endTime: new Date('2025-11-12T08:00:00-07:00'),
     format: '快速轮抽',
   }
 ];
@@ -219,14 +211,6 @@ const arenaDirectEvents: Event[] = [
 ];
 
 const premierPlayEvents: Event[] = [
-  {
-    type: 'premier_play',
-    title: '资格赛周末',
-    startTime: new Date('2025-09-13T06:00:00-07:00'),
-    endTime: new Date('2025-09-14T17:00:00-07:00'),
-    format: '标准',
-    description: '两日赛事，获胜者将获得参加竞技场冠军赛11的资格。',
-  },
   {
     type: 'premier_play',
     title: '资格赛入围赛BO1',
