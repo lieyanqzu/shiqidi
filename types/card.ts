@@ -23,6 +23,7 @@ export interface CardData {
 
 export interface ChineseCardData {
   name: string;               // 英文名
+  printed_name: string;       // 牌面英文名
   face_name: string | null;    // 英文面名（双面牌）
   zhs_name: string;          // 中文名
   atomic_official_name: string | null; // 官方名称
