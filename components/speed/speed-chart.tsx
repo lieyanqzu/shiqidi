@@ -20,6 +20,7 @@ interface SpeedChartProps {
 // 赛制对应的稀有度
 const formatRarities = {
   'PremierDraft': 'uncommon',
+  'PickTwoDraft': 'uncommon',
   'QuickDraft': 'common',
   'Sealed': 'mythic',
   'TradDraft': 'rare',

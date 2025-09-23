@@ -6,6 +6,7 @@ export interface Option {
 export const formatOptions: Option[] = [
   { label: "真人轮抽", value: "PremierDraft" },
   { label: "真人轮抽BO3", value: "TradDraft" },
+  { label: "选两张轮抽", value: "PickTwoDraft" },
   { label: "快速轮抽", value: "QuickDraft" },
   { label: "现开赛", value: "Sealed" },
   { label: "现开赛BO3", value: "TradSealed" },
@@ -21,6 +22,7 @@ export const formatOptions: Option[] = [
 // 赛制选项
 export const formatSpeedOptions: Option[] = [
   { label: "真人轮抽", value: "PremierDraft" },
+  { label: "选两张轮抽", value: "PickTwoDraft" },
   { label: "快速轮抽", value: "QuickDraft" },
   { label: "现开赛", value: "Sealed" },
   { label: "真人轮抽BO3", value: "TradDraft" },
