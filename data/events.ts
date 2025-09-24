@@ -65,17 +65,10 @@ const premierDraftEvents: Event[] = [
   },
   {
     type: 'premier_draft',
-    title: '艾卓仙踪',
-    startTime: new Date('2025-09-16T08:00:00-07:00'),
-    endTime: new Date('2025-09-23T08:00:00-07:00'),
-    format: '竞技轮抽',
-  },
-  {
-    type: 'premier_draft',
     title: '穿越预兆路',
     startTime: new Date('2025-09-23T08:00:00-07:00'),
     endTime: new Date('2025-11-18T08:00:00-07:00'),
-    format: '选两张轮抽 & 三盘轮抽',
+    format: '选两张轮抽 & 三盘选两张轮抽',
   },
   {
     type: 'premier_draft',
@@ -101,13 +94,6 @@ const premierDraftEvents: Event[] = [
 ];
 
 const quickDraftEvents: Event[] = [
-  {
-    type: 'quick_draft',
-    title: '万智牌：基石构筑',
-    startTime: new Date('2025-09-12T08:00:00-07:00'),
-    endTime: new Date('2025-09-23T08:00:00-07:00'),
-    format: '快速轮抽',
-  },
   {
     type: 'quick_draft',
     title: '班隆洛',
@@ -141,14 +127,6 @@ const quickDraftEvents: Event[] = [
 const otherEvents: Event[] = [
   {
     type: 'other',
-    title: '竞技场方盒轮抽',
-    startTime: new Date('2025-09-09T08:00:00-07:00'),
-    endTime: new Date('2025-09-23T07:00:00-07:00'),
-    format: '方盒轮抽 & 三盘方盒轮抽',
-    description: '公告：https://magic.wizards.com/en/news/mtg-arena/arena-cube-draft',
-  },
-  {
-    type: 'other',
     title: '穿越预兆路三盘现开',
     startTime: new Date('2025-09-23T08:00:00-07:00'),
     endTime: new Date('2025-10-07T08:00:00-07:00'),
@@ -160,13 +138,6 @@ const otherEvents: Event[] = [
     startTime: new Date('2025-09-23T08:00:00-07:00'),
     endTime: new Date('2025-10-17T08:00:00-07:00'),
     format: '现开',
-  },
-  {
-    type: 'other',
-    title: '先驱环境挑战赛',
-    startTime: new Date('2025-09-19T08:00:00-07:00'),
-    endTime: new Date('2025-09-22T16:00:00-07:00'),
-    format: '三盘先驱',
   },
   {
     type: 'other',
