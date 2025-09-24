@@ -467,10 +467,43 @@
       "codename": "Yachting",
       "block": null,
       "code": "SOS",
-      "enter_date": null,
+      "enter_date": "2026-04-17T00:00:00.000",
       "rough_enter_date": "Q2 2026",
       "exit_date": null,
       "rough_exit_date": "Q1 2029"
+    },
+    {
+      "name": "Marvel Super Heroes",
+      "codename": null,
+      "block": null,
+      "code": "MSH",
+      "enter_date": null,
+      "rough_enter_date": "Q2 2026",
+      "exit_date": null,
+      "rough_exit_date": "Q1 2029",
+      "universes_beyond": true
+    },
+    {
+      "name": "The Hobbit",
+      "codename": null,
+      "block": null,
+      "code": "HOB",
+      "enter_date": null,
+      "rough_enter_date": "Q3 2026",
+      "exit_date": null,
+      "rough_exit_date": "Q1 2029",
+      "universes_beyond": true
+    },
+    {
+      "name": "Star Trek",
+      "codename": null,
+      "block": null,
+      "code": "TRK",
+      "enter_date": null,
+      "rough_enter_date": "Q4 2026",
+      "exit_date": null,
+      "rough_exit_date": "Q1 2029",
+      "universes_beyond": true
     },
     {
       "name": null,
