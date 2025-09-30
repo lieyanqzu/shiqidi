@@ -110,7 +110,7 @@ export function SpeedChart({ initialData }: SpeedChartProps) {
   }, [initialData]);
 
   // 默认选中的赛制
-  const defaultFormats = ['PremierDraft', 'QuickDraft', 'Sealed', 'TradDraft', 'TradSealed'];
+  const defaultFormats = ['PremierDraft', 'PickTwoDraft', 'QuickDraft', 'Sealed', 'TradDraft', 'TradSealed'];
 
   // 默认选中所有系列和指定赛制
   const [selectedExpansions, setSelectedExpansions] = useState<string[]>(allExpansions);

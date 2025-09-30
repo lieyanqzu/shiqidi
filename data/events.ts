@@ -13,18 +13,11 @@ export interface Event {
 }
 
 export const calendarMetadata: CalendarMetadata = {
-  lastUpdated: '2025/09/22',
-  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-september-22-2025',
+  lastUpdated: '2025/09/29',
+  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-september-29-2025',
 };
 
 const midweekMagicEvents: Event[] = [
-  {
-    type: 'midweek_magic',
-    title: '争锋！',
-    startTime: new Date('2025-09-23T14:00:00-07:00'),
-    endTime: new Date('2025-09-25T14:00:00-07:00'),
-    format: '争锋'
-  },
   {
     type: 'midweek_magic',
     title: '构筑赛：穿越预兆路 & 万智牌：基石构筑',
@@ -56,13 +49,6 @@ const midweekMagicEvents: Event[] = [
 ];
 
 const premierDraftEvents: Event[] = [
-  {
-    type: 'premier_draft',
-    title: '虚空边域',
-    startTime: new Date('2025-07-29T08:00:00-07:00'),
-    endTime: new Date('2025-09-28T08:00:00-07:00'),
-    format: '竞技轮抽 & 三盘轮抽',
-  },
   {
     type: 'premier_draft',
     title: '穿越预兆路',
@@ -138,13 +124,6 @@ const otherEvents: Event[] = [
     startTime: new Date('2025-09-23T08:00:00-07:00'),
     endTime: new Date('2025-10-17T08:00:00-07:00'),
     format: '现开',
-  },
-  {
-    type: 'other',
-    title: '永恒环境挑战赛',
-    startTime: new Date('2025-09-26T08:00:00-07:00'),
-    endTime: new Date('2025-09-29T16:00:00-07:00'),
-    format: '三盘永恒',
   },
   {
     type: 'other',
