@@ -32,13 +32,74 @@ function formatDate(dateStr: string | null, roughDate: string | null): string {
       console.warn(`Invalid date string passed to formatDate: ${dateStr}`);
     }
   }
-  return roughDate || '待定';
+  
+  // 处理 rough_date：支持季度格式(Q1/Q2/Q3/Q4)和月份格式
+  if (roughDate) {
+    // 匹配季度格式，如 "Q1 2026"
+    const quarterMatch = roughDate.match(/^Q([1-4])\s+(\d{4})$/);
+    if (quarterMatch) {
+      const quarter = parseInt(quarterMatch[1]);
+      const year = quarterMatch[2];
+      const quarterMap: Record<number, string> = { 1: '第一季度', 2: '第二季度', 3: '第三季度', 4: '第四季度' };
+      return `${year}年${quarterMap[quarter]}`;
+    }
+    
+    // 匹配英文月份格式，如 "January 2026"
+    const englishMonthMatch = roughDate.match(/^([A-Za-z]+)\s+(\d{4})$/);
+    if (englishMonthMatch) {
+      const monthName = englishMonthMatch[1];
+      const year = englishMonthMatch[2];
+      const monthMap: Record<string, string> = {
+        'January': '1月', 'February': '2月', 'March': '3月',
+        'April': '4月', 'May': '5月', 'June': '6月',
+        'July': '7月', 'August': '8月', 'September': '9月',
+        'October': '10月', 'November': '11月', 'December': '12月'
+      };
+      return `${year}年${monthMap[monthName] || monthName}`;
+    }
+    
+    // 直接返回原始格式
+    return roughDate;
+  }
+  
+  return '待定';
 }
 
 function getTimeLeft(dateStr: string | null, roughDate: string | null): string {
   if (!dateStr && !roughDate) return '待定';
   
-  const date = dateStr ? parseISO(dateStr) : null;
+  let date = dateStr ? parseISO(dateStr) : null;
+  
+  // 如果没有精确日期，尝试从 roughDate 解析
+  if ((!date || !isValid(date)) && roughDate) {
+    // 匹配季度格式，如 "Q1 2026"
+    const quarterMatch = roughDate.match(/^Q([1-4])\s+(\d{4})$/);
+    if (quarterMatch) {
+      const quarter = parseInt(quarterMatch[1]);
+      const year = parseInt(quarterMatch[2]);
+      // Q1=2月中, Q2=5月中, Q3=8月中, Q4=11月中（每个季度的中间月份的15号）
+      const monthMap: Record<number, number> = { 1: 1, 2: 4, 3: 7, 4: 10 };
+      date = new Date(year, monthMap[quarter], 15);
+    } else {
+      // 匹配英文月份格式，如 "January 2026" 或 "March 2026"
+      const monthMatch = roughDate.match(/^([A-Za-z]+)\s+(\d{4})$/);
+      if (monthMatch) {
+        const monthName = monthMatch[1];
+        const year = parseInt(monthMatch[2]);
+        const monthMap: Record<string, number> = {
+          'January': 0, 'February': 1, 'March': 2,
+          'April': 3, 'May': 4, 'June': 5,
+          'July': 6, 'August': 7, 'September': 8,
+          'October': 9, 'November': 10, 'December': 11
+        };
+        if (monthMap[monthName] !== undefined) {
+          // 使用月份的中间日期（15号）
+          date = new Date(year, monthMap[monthName], 15);
+        }
+      }
+    }
+  }
+  
   if (!date || !isValid(date)) {
     return roughDate || '待定';
   }

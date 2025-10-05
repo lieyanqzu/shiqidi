@@ -463,6 +463,17 @@
       "rough_exit_date": "Q1 2029"
     },
     {
+      "name": "Teenage Mutant Ninja Turtles",
+      "codename": null,
+      "block": null,
+      "code": "???",
+      "enter_date": null,
+      "rough_enter_date": "March 2026",
+      "exit_date": null,
+      "rough_exit_date": "Q1 2029",
+      "universes_beyond": true
+    },
+    {
       "name": "Secrets of Strixhaven",
       "codename": "Yachting",
       "block": null,
@@ -478,7 +489,7 @@
       "block": null,
       "code": "MSH",
       "enter_date": null,
-      "rough_enter_date": "Q2 2026",
+      "rough_enter_date": "June 2026",
       "exit_date": null,
       "rough_exit_date": "Q1 2029",
       "universes_beyond": true
@@ -489,7 +500,7 @@
       "block": null,
       "code": "HOB",
       "enter_date": null,
-      "rough_enter_date": "Q3 2026",
+      "rough_enter_date": "August 2026",
       "exit_date": null,
       "rough_exit_date": "Q1 2029",
       "universes_beyond": true
@@ -500,7 +511,7 @@
       "block": null,
       "code": "FRA",
       "enter_date": null,
-      "rough_enter_date": "Q4 2026",
+      "rough_enter_date": "October 2026",
       "exit_date": null,
       "rough_exit_date": "Q1 2029"
     },
@@ -510,7 +521,7 @@
       "block": null,
       "code": "TRK",
       "enter_date": null,
-      "rough_enter_date": "Q4 2026",
+      "rough_enter_date": "November 2026",
       "exit_date": null,
       "rough_exit_date": "Q1 2029",
       "universes_beyond": true
