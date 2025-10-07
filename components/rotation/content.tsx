@@ -189,7 +189,6 @@ export function Content({ currentSetGroups, futureSets, recentBans }: Props) {
         <div className="space-y-8">
           {currentSetGroups.map((group, groupIndex) => {
             const isFirstGroup = groupIndex === 0;
-            const timeLeft = getTimeLeft(group.exitDate, group.roughExitDate);
 
             // 颜色主题：第一组绿色，其他所有组黄色
             const themeColors = isFirstGroup
