@@ -13,18 +13,11 @@ export interface Event {
 }
 
 export const calendarMetadata: CalendarMetadata = {
-  lastUpdated: '2025/09/29',
-  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-september-29-2025',
+  lastUpdated: '2025/10/06',
+  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-october-6-2025',
 };
 
 const midweekMagicEvents: Event[] = [
-  {
-    type: 'midweek_magic',
-    title: '构筑赛：穿越预兆路 & 万智牌：基石构筑',
-    startTime: new Date('2025-09-30T14:00:00-07:00'),
-    endTime: new Date('2025-10-02T14:00:00-07:00'),
-    format: '构筑'
-  },
   {
     type: 'midweek_magic',
     title: '莫秘维',
@@ -45,6 +38,13 @@ const midweekMagicEvents: Event[] = [
     startTime: new Date('2025-10-21T14:00:00-07:00'),
     endTime: new Date('2025-10-23T14:00:00-07:00'),
     format: '史迹纯普'
+  },
+  {
+    type: 'midweek_magic',
+    title: '全知全能轮抽',
+    startTime: new Date('2025-10-28T14:00:00-07:00'),
+    endTime: new Date('2025-10-30T14:00:00-07:00'),
+    format: '全知全能轮抽'
   }
 ];
 
@@ -80,13 +80,6 @@ const premierDraftEvents: Event[] = [
 ];
 
 const quickDraftEvents: Event[] = [
-  {
-    type: 'quick_draft',
-    title: '班隆洛',
-    startTime: new Date('2025-09-23T08:00:00-07:00'),
-    endTime: new Date('2025-10-03T08:00:00-07:00'),
-    format: '快速轮抽',
-  },
   {
     type: 'quick_draft',
     title: '穿越预兆路',
