@@ -190,10 +190,8 @@ export function Content({ currentSetGroups, futureSets, recentBans }: Props) {
           {currentSetGroups.map((group, groupIndex) => {
             const isFirstGroup = groupIndex === 0;
             const timeLeft = getTimeLeft(group.exitDate, group.roughExitDate);
-            const isUpcoming = timeLeft.includes('个月后') || timeLeft.includes('年后');
-            const isImminent = !isUpcoming && !timeLeft.includes('已过期');
 
-            // 颜色主题
+            // 颜色主题：第一组绿色，其他所有组黄色
             const themeColors = isFirstGroup
               ? {
                   border: 'border-emerald-500',
@@ -207,10 +205,10 @@ export function Content({ currentSetGroups, futureSets, recentBans }: Props) {
                   }
                 }
               : {
-                  border: isImminent ? 'border-yellow-500' : 'border-transparent',
-                  bg: isImminent ? 'bg-yellow-500/10' : 'bg-[--accent]',
-                  text: isImminent ? 'text-yellow-500' : 'text-[--muted-foreground]',
-                  dot: isImminent ? 'bg-yellow-500' : 'bg-[--muted-foreground]',
+                  border: 'border-yellow-500',
+                  bg: 'bg-yellow-500/10',
+                  text: 'text-yellow-500',
+                  dot: 'bg-yellow-500',
                   badge: {
                     bg: 'bg-yellow-400/10',
                     text: 'text-yellow-500',
@@ -225,9 +223,7 @@ export function Content({ currentSetGroups, futureSets, recentBans }: Props) {
               >
                 <div className={`px-4 py-3 flex justify-between items-center ${themeColors.bg}`}>
                   <div className="flex items-center gap-2">
-                    <div className={`w-2 h-2 rounded-full ${themeColors.dot} ${
-                      isImminent || isFirstGroup ? 'animate-pulse' : ''
-                    }`} />
+                    <div className={`w-2 h-2 rounded-full ${themeColors.dot} animate-pulse`} />
                     <div className="text-sm font-medium">
                       {formatDate(group.exitDate, group.roughExitDate)} 轮替
                     </div>
@@ -338,7 +334,7 @@ export function Content({ currentSetGroups, futureSets, recentBans }: Props) {
       {futureSets.length > 0 && (
         <section className="mb-8">
           <h2 className="text-xl font-semibold mb-4">即将发售</h2>
-          <div className="bg-[--card] rounded-lg p-4">
+          <div className="bg-[--card] rounded-lg border-2 border-[--border] p-4">
             <div className="space-y-3">
               {futureSets.map((set, index) => (
                 <div key={set.code || index} className="border border-[--border] rounded-lg p-4 group">
