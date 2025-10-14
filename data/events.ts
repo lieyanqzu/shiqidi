@@ -13,18 +13,11 @@ export interface Event {
 }
 
 export const calendarMetadata: CalendarMetadata = {
-  lastUpdated: '2025/10/06',
-  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-october-6-2025',
+  lastUpdated: '2025/10/13',
+  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-october-13-2025',
 };
 
 const midweekMagicEvents: Event[] = [
-  {
-    type: 'midweek_magic',
-    title: '莫秘维',
-    startTime: new Date('2025-10-07T14:00:00-07:00'),
-    endTime: new Date('2025-10-09T14:00:00-07:00'),
-    format: '莫秘维'
-  },
   {
     type: 'midweek_magic',
     title: '争锋构筑挑战赛：穿越预兆路',
@@ -45,6 +38,13 @@ const midweekMagicEvents: Event[] = [
     startTime: new Date('2025-10-28T14:00:00-07:00'),
     endTime: new Date('2025-10-30T14:00:00-07:00'),
     format: '全知全能轮抽'
+  },
+  {
+    type: 'midweek_magic',
+    title: '巧匠争锋',
+    startTime: new Date('2025-11-04T14:00:00-07:00'),
+    endTime: new Date('2025-11-06T14:00:00-07:00'),
+    format: '争锋'
   }
 ];
 
@@ -100,30 +100,23 @@ const quickDraftEvents: Event[] = [
     startTime: new Date('2025-10-28T08:00:00-07:00'),
     endTime: new Date('2025-11-12T08:00:00-07:00'),
     format: '快速轮抽',
+  },
+  {
+    type: 'quick_draft',
+    title: '鞑契龙岚录',
+    startTime: new Date('2025-11-12T08:00:00-07:00'),
+    endTime: new Date('2025-11-28T08:00:00-07:00'),
+    format: '快速轮抽',
   }
 ];
 
 const otherEvents: Event[] = [
   {
     type: 'other',
-    title: '穿越预兆路三盘现开',
-    startTime: new Date('2025-09-23T08:00:00-07:00'),
-    endTime: new Date('2025-10-07T08:00:00-07:00'),
-    format: '三盘现开',
-  },
-  {
-    type: 'other',
     title: '穿越预兆路现开',
     startTime: new Date('2025-09-23T08:00:00-07:00'),
     endTime: new Date('2025-10-17T08:00:00-07:00'),
     format: '现开',
-  },
-  {
-    type: 'other',
-    title: '标准环境挑战赛',
-    startTime: new Date('2025-10-10T08:00:00-07:00'),
-    endTime: new Date('2025-10-13T16:00:00-07:00'),
-    format: '三盘标准',
   },
   {
     type: 'other',
@@ -154,14 +147,6 @@ const arenaDirectEvents: Event[] = [
 ];
 
 const premierPlayEvents: Event[] = [
-  {
-    type: 'premier_play',
-    title: '资格赛入围赛BO1',
-    startTime: new Date('2025-10-11T06:00:00-07:00'),
-    endTime: new Date('2025-10-12T09:00:00-07:00'),
-    format: '穿越预兆路现开',
-    description: '单日赛事，玩家将竞争获得10月18-19日资格赛周末的参赛资格。',
-  },
   {
     type: 'premier_play',
     title: '资格赛入围赛BO3',
