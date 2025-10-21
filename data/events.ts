@@ -62,6 +62,13 @@ const premierDraftEvents: Event[] = [
     startTime: new Date('2025-10-21T08:00:00-07:00'),
     endTime: new Date('2025-10-28T08:00:00-07:00'),
     format: '竞技轮抽',
+  },
+  {
+    type: 'other',
+    title: '竞技场强化方盒轮抽',
+    startTime: new Date('2025-10-28T08:00:00-07:00'),
+    endTime: new Date('2025-11-18T08:00:00-07:00'),
+    format: '竞技轮抽 & 三盘轮抽',
   }
 ];
 
@@ -96,13 +103,6 @@ const otherEvents: Event[] = [
     startTime: new Date('2025-10-24T08:00:00-07:00'),
     endTime: new Date('2025-10-27T16:00:00-07:00'),
     format: '三盘史迹',
-  },
-  {
-    type: 'other',
-    title: '竞技场强化方盒轮抽',
-    startTime: new Date('2025-10-28T08:00:00-07:00'),
-    endTime: new Date('2025-11-18T08:00:00-07:00'),
-    format: '竞技轮抽 & 三盘轮抽',
   }
 ];
 
