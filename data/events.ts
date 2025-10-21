@@ -64,11 +64,12 @@ const premierDraftEvents: Event[] = [
     format: '竞技轮抽',
   },
   {
-    type: 'other',
+    type: 'premier_draft',
     title: '竞技场强化方盒轮抽',
     startTime: new Date('2025-10-28T08:00:00-07:00'),
     endTime: new Date('2025-11-18T08:00:00-07:00'),
     format: '竞技轮抽 & 三盘轮抽',
+    description: '幻影活动，五胜及以上奖励补充包含有至少两张稀有卡牌',
   }
 ];
 
