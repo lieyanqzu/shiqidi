@@ -13,18 +13,11 @@ export interface Event {
 }
 
 export const calendarMetadata: CalendarMetadata = {
-  lastUpdated: '2025/10/13',
-  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-october-13-2025',
+  lastUpdated: '2025/10/20',
+  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-october-20-2025',
 };
 
 const midweekMagicEvents: Event[] = [
-  {
-    type: 'midweek_magic',
-    title: '争锋构筑挑战赛：穿越预兆路',
-    startTime: new Date('2025-10-14T14:00:00-07:00'),
-    endTime: new Date('2025-10-16T14:00:00-07:00'),
-    format: '争锋'
-  },
   {
     type: 'midweek_magic',
     title: '史迹纯普',
@@ -45,6 +38,13 @@ const midweekMagicEvents: Event[] = [
     startTime: new Date('2025-11-04T14:00:00-07:00'),
     endTime: new Date('2025-11-06T14:00:00-07:00'),
     format: '争锋'
+  },
+  {
+    type: 'midweek_magic',
+    title: '穿越预兆路幻影人机轮抽',
+    startTime: new Date('2025-11-11T14:00:00-07:00'),
+    endTime: new Date('2025-11-13T14:00:00-07:00'),
+    format: '幻影人机轮抽'
   }
 ];
 
@@ -58,20 +58,6 @@ const premierDraftEvents: Event[] = [
   },
   {
     type: 'premier_draft',
-    title: '暮悲邸：鬼屋惊魂',
-    startTime: new Date('2025-10-07T08:00:00-07:00'),
-    endTime: new Date('2025-10-14T08:00:00-07:00'),
-    format: '竞技轮抽',
-  },
-  {
-    type: 'premier_draft',
-    title: '摩登新篇3',
-    startTime: new Date('2025-10-14T08:00:00-07:00'),
-    endTime: new Date('2025-10-21T08:00:00-07:00'),
-    format: '竞技轮抽',
-  },
-  {
-    type: 'premier_draft',
     title: '鞑契龙岚录',
     startTime: new Date('2025-10-21T08:00:00-07:00'),
     endTime: new Date('2025-10-28T08:00:00-07:00'),
@@ -80,13 +66,6 @@ const premierDraftEvents: Event[] = [
 ];
 
 const quickDraftEvents: Event[] = [
-  {
-    type: 'quick_draft',
-    title: '穿越预兆路',
-    startTime: new Date('2025-10-03T08:00:00-07:00'),
-    endTime: new Date('2025-10-14T08:00:00-07:00'),
-    format: '快速轮抽',
-  },
   {
     type: 'quick_draft',
     title: '虚空边域',
@@ -113,56 +92,33 @@ const quickDraftEvents: Event[] = [
 const otherEvents: Event[] = [
   {
     type: 'other',
-    title: '穿越预兆路现开',
-    startTime: new Date('2025-09-23T08:00:00-07:00'),
-    endTime: new Date('2025-10-17T08:00:00-07:00'),
-    format: '现开',
-  },
-  {
-    type: 'other',
-    title: '争锋环境挑战赛',
-    startTime: new Date('2025-10-17T08:00:00-07:00'),
-    endTime: new Date('2025-10-20T16:00:00-07:00'),
-    format: '争锋',
-  },
-  {
-    type: 'other',
     title: '史迹环境挑战赛',
     startTime: new Date('2025-10-24T08:00:00-07:00'),
     endTime: new Date('2025-10-27T16:00:00-07:00'),
     format: '三盘史迹',
+  },
+  {
+    type: 'other',
+    title: '竞技场强化方盒轮抽',
+    startTime: new Date('2025-10-28T08:00:00-07:00'),
+    endTime: new Date('2025-11-18T08:00:00-07:00'),
+    format: '竞技轮抽 & 三盘轮抽',
   }
 ];
 
 const arenaOpenEvents: Event[] = [];
 
 const arenaDirectEvents: Event[] = [
-  {
-    type: 'arena_direct',
-    title: '竞技场直邮赛 - 摩登新篇3现开（日文常规补充包）',
-    startTime: new Date('2025-10-17T08:00:00-07:00'),
-    endTime: new Date('2025-10-20T16:00:00-07:00'),
-    format: '摩登新篇3现开'
-  }
+  // {
+  //   type: 'arena_direct',
+  //   title: '竞技场直邮赛 - 摩登新篇3现开（日文常规补充包）',
+  //   startTime: new Date('2025-10-17T08:00:00-07:00'),
+  //   endTime: new Date('2025-10-20T16:00:00-07:00'),
+  //   format: '摩登新篇3现开'
+  // }
 ];
 
 const premierPlayEvents: Event[] = [
-  {
-    type: 'premier_play',
-    title: '资格赛入围赛BO3',
-    startTime: new Date('2025-10-17T06:00:00-07:00'),
-    endTime: new Date('2025-10-18T07:00:00-07:00'),
-    format: '穿越预兆路现开',
-    description: '单日赛事，玩家将竞争获得10月18-19日资格赛周末的参赛资格。',
-  },
-  {
-    type: 'premier_play',
-    title: '资格赛周末',
-    startTime: new Date('2025-10-18T06:00:00-07:00'),
-    endTime: new Date('2025-10-19T17:00:00-07:00'),
-    format: '穿越预兆路现开',
-    description: '两日赛事，获胜者将获得参加竞技场冠军赛11的资格。',
-  },
   {
     type: 'premier_play',
     title: '资格赛入围赛BO1',
