@@ -63,7 +63,7 @@ export default function RootLayout({
     <html lang="zh-CN" suppressHydrationWarning>
       <head>
         <meta name="baidu-site-verification" content="codeva-KeyiIuwEpJ" />
-        <meta name='impact-site-verification' value='c7bc9df3-4c83-49a6-88ce-7972dfc5ffaf' />
+        <meta name='impact-site-verification' content='c7bc9df3-4c83-49a6-88ce-7972dfc5ffaf' />
         <meta name="application-name" content="十七地" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
