@@ -13,21 +13,14 @@ export interface Event {
 }
 
 export const calendarMetadata: CalendarMetadata = {
-  lastUpdated: '2025/10/20',
-  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-october-20-2025',
+  lastUpdated: '2025/10/27',
+  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-october-27-2025',
 };
 
 const midweekMagicEvents: Event[] = [
   {
     type: 'midweek_magic',
-    title: '史迹纯普',
-    startTime: new Date('2025-10-21T14:00:00-07:00'),
-    endTime: new Date('2025-10-23T14:00:00-07:00'),
-    format: '史迹纯普'
-  },
-  {
-    type: 'midweek_magic',
-    title: '全知全能轮抽',
+    title: '穿越预兆路全知全能轮抽',
     startTime: new Date('2025-10-28T14:00:00-07:00'),
     endTime: new Date('2025-10-30T14:00:00-07:00'),
     format: '全知全能轮抽'
@@ -45,7 +38,7 @@ const midweekMagicEvents: Event[] = [
     startTime: new Date('2025-11-11T14:00:00-07:00'),
     endTime: new Date('2025-11-13T14:00:00-07:00'),
     format: '幻影人机轮抽'
-  }
+  },
 ];
 
 const premierDraftEvents: Event[] = [
@@ -70,6 +63,27 @@ const premierDraftEvents: Event[] = [
     endTime: new Date('2025-11-18T08:00:00-07:00'),
     format: '竞技轮抽 & 三盘轮抽',
     description: '幻影活动，五胜及以上奖励补充包含有至少两张稀有卡牌',
+  },
+  {
+    type: 'premier_draft',
+    title: '光雷驿镖客',
+    startTime: new Date('2025-10-28T08:00:00-07:00'),
+    endTime: new Date('2025-11-04T08:00:00-07:00'),
+    format: '竞技轮抽',
+  },
+  {
+    type: 'premier_draft',
+    title: '万智牌：基石构筑',
+    startTime: new Date('2025-11-04T08:00:00-07:00'),
+    endTime: new Date('2025-11-11T08:00:00-07:00'),
+    format: '竞技轮抽',
+  },
+  {
+    type: 'premier_draft',
+    title: '神河：霓朝纪',
+    startTime: new Date('2025-11-11T08:00:00-07:00'),
+    endTime: new Date('2025-11-18T08:00:00-07:00'),
+    format: '竞技轮抽',
   }
 ];
 
@@ -92,7 +106,14 @@ const quickDraftEvents: Event[] = [
     type: 'quick_draft',
     title: '鞑契龙岚录',
     startTime: new Date('2025-11-12T08:00:00-07:00'),
-    endTime: new Date('2025-11-28T08:00:00-07:00'),
+    endTime: new Date('2025-11-27T08:00:00-07:00'),
+    format: '快速轮抽',
+  },
+  {
+    type: 'quick_draft',
+    title: '降世神通：最后的气宗',
+    startTime: new Date('2025-11-27T08:00:00-07:00'),
+    endTime: new Date('2025-12-10T08:00:00-07:00'),
     format: '快速轮抽',
   }
 ];
@@ -104,30 +125,29 @@ const otherEvents: Event[] = [
     startTime: new Date('2025-10-24T08:00:00-07:00'),
     endTime: new Date('2025-10-27T16:00:00-07:00'),
     format: '三盘史迹',
+  },
+  {
+    type: 'other',
+    title: '先驱环境挑战赛',
+    startTime: new Date('2025-11-14T08:00:00-08:00'),
+    endTime: new Date('2025-11-17T16:00:00-08:00'),
+    format: '三盘先驱',
   }
 ];
 
 const arenaOpenEvents: Event[] = [];
 
 const arenaDirectEvents: Event[] = [
-  // {
-  //   type: 'arena_direct',
-  //   title: '竞技场直邮赛 - 摩登新篇3现开（日文常规补充包）',
-  //   startTime: new Date('2025-10-17T08:00:00-07:00'),
-  //   endTime: new Date('2025-10-20T16:00:00-07:00'),
-  //   format: '摩登新篇3现开'
-  // }
+  {
+    type: 'arena_direct',
+    title: '竞技场直邮赛 - 光雷驿镖客现开（常规补充包）',
+    startTime: new Date('2025-10-31T08:00:00-07:00'),
+    endTime: new Date('2025-11-03T08:00:00-08:00'),
+    format: '光雷驿镖客现开'
+  }
 ];
 
 const premierPlayEvents: Event[] = [
-  {
-    type: 'premier_play',
-    title: '资格赛入围赛BO1',
-    startTime: new Date('2025-10-25T06:00:00-07:00'),
-    endTime: new Date('2025-10-26T09:00:00-07:00'),
-    format: '史迹',
-    description: '单日赛事，玩家将竞争获得11月1-2日资格赛周末的参赛资格。',
-  },
   {
     type: 'premier_play',
     title: '资格赛入围赛BO3',
