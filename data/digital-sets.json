@@ -231,7 +231,36 @@
       "name": "降世神通：最后的气宗",
       "code": "TLA",
       "releaseDate": "2025-11-19",
-      "wikiUrl": "https://mtg.wiki/page/Avatar:_The_Last_Airbender?utm_source=shiqidi"
+      "wikiUrl": "https://mtg.wiki/page/Avatar:_The_Last_Airbender?utm_source=shiqidi",
+      "preview": {
+        "title": "掌控元素",
+        "description": "使用降世神通：最后的气宗的万智牌牌张驾驭战场！掌控元素，和喜爱的角色一起开始新冒险，欣赏经典插画以及前所未有的元素对抗。",
+        "backgroundImage": "/image/background/TLA_sma_key_1920x1080_en.jpg",
+        "links": [
+          {
+            "name": "大学院废墟（中文）",
+            "url": "https://mtgch.com/set/TLA/?utm_source=shiqidi"
+          },
+          {
+            "name": "官网牌图集合",
+            "url": "https://magic.wizards.com/en/products/avatar-the-last-airbender/card-image-gallery"
+          },
+          {
+            "name": "Scryfall",
+            "url": "https://scryfall.com/sets/tla?order=spoiled&utm_source=shiqidi"
+          },
+          {
+            "name": "Untapped.gg",
+            "url": "https://mtga.untapped.gg/codex/sets/avatar-the-last-airbender?sortBy=spoilerDate&utm_source=shiqidi"
+          }
+        ]
+      }
+    },
+    {
+      "name": "洛温晦朔",
+      "code": "ECL",
+      "releaseDate": "2026-01-21",
+      "wikiUrl": "https://mtg.wiki/page/Lorwyn_Eclipsed?utm_source=shiqidi"
     }
   ]
 }
