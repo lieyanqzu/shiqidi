@@ -116,46 +116,67 @@ function chunkArray<T>(array: T[], size: number): T[][] {
   return chunks;
 }
 
+async function loadSetDataWithCache(setCode: string): Promise<ChineseCardResponse> {
+  if (!setCode) {
+    return { items: [] };
+  }
+
+  if (fullyLoadedSets.has(setCode) && setDataCache[setCode]) {
+    return { items: setDataCache[setCode] };
+  }
+
+  const data = await fetchChineseCardData(setCode);
+  if (data.items) {
+    setDataCache[setCode] = data.items;
+    fullyLoadedSets.add(setCode);
+  }
+  return data;
+}
+
+async function loadOptionalSetData(setCode: string): Promise<ChineseCardResponse> {
+  if (!setCode) {
+    return { items: [] };
+  }
+
+  try {
+    return await loadSetDataWithCache(setCode);
+  } catch (error) {
+    console.warn(`Failed to fetch Chinese data for optional set ${setCode}:`, error);
+    return { items: [] };
+  }
+}
+
 export async function fetchAllChineseCardData(
   setCode: string, 
   cards: CardData[],
   onResults?: (results: ChineseCardData[]) => void
 ): Promise<ChineseCardData[]> {
   try {
-    // 获取当前系列的数据（优先从缓存获取）
-    let currentSetData: ChineseCardResponse;
-    if (fullyLoadedSets.has(setCode) && setDataCache[setCode]) {
-      currentSetData = { items: setDataCache[setCode] };
-    } else {
-      currentSetData = await fetchChineseCardData(setCode);
-      if (currentSetData.items) {
-        setDataCache[setCode] = currentSetData.items;
-        fullyLoadedSets.add(setCode);
-      }
-    }
+    // 获取当前系列的数据
+    const currentSetData = await loadSetDataWithCache(setCode);
 
-    // 针对 Y[数字]XXX 的系列，额外尝试获取不带数字的 YXXX 数据
-    let numericVariantSetData: ChineseCardResponse = { items: [] };
+    // 计算需要额外加载的系列
+    const extraSetCodes = new Set<string>();
+
     const numericVariantMatch = setCode.match(/^Y\d{1,2}([A-Z]+)/);
     if (numericVariantMatch) {
       const baseCode = numericVariantMatch[1];
       const canonicalYSetCode = `Y${baseCode}`;
-      if (canonicalYSetCode !== setCode) {
-        if (fullyLoadedSets.has(canonicalYSetCode) && setDataCache[canonicalYSetCode]) {
-          numericVariantSetData = { items: setDataCache[canonicalYSetCode] };
-        } else {
-          try {
-            numericVariantSetData = await fetchChineseCardData(canonicalYSetCode);
-            if (numericVariantSetData.items) {
-              setDataCache[canonicalYSetCode] = numericVariantSetData.items;
-              fullyLoadedSets.add(canonicalYSetCode);
-            }
-          } catch (error) {
-            console.warn(`Failed to fetch canonical Y-set data for ${canonicalYSetCode}:`, error);
-          }
-        }
+      if (canonicalYSetCode && canonicalYSetCode !== setCode) {
+        extraSetCodes.add(canonicalYSetCode);
       }
     }
+
+    if (setCode.startsWith('Y')) {
+      const originalSetCode = setCode.replace(/^Y\d{0,2}/, '');
+      if (originalSetCode && originalSetCode !== setCode) {
+        extraSetCodes.add(originalSetCode);
+      }
+    }
+
+    const extraSetDataResponses = await Promise.all(
+      Array.from(extraSetCodes).map(code => loadOptionalSetData(code))
+    );
 
     // 获取 SPG 数据（优先从缓存获取）
     let spgData: ChineseCardResponse = { items: [] };
@@ -172,7 +193,7 @@ export async function fetchAllChineseCardData(
     // 合并所有系列数据
     const allResults = [
       ...(currentSetData.items || []),
-      ...(numericVariantSetData.items || []),
+      ...extraSetDataResponses.flatMap(data => data.items || []),
       ...(spgData.items || [])
     ];
 
