@@ -11,6 +11,7 @@ interface CardTooltipProps {
   y: number
   expansion: string
   isMobile?: boolean
+  onClose?: () => void
 }
 
 interface CardApiResponse {
@@ -36,7 +37,7 @@ interface CardDetails {
   }>
 }
 
-const CardTooltip: FC<CardTooltipProps> = ({ card, visible, x, y, expansion, isMobile }) => {
+const CardTooltip: FC<CardTooltipProps> = ({ card, visible, x, y, expansion, isMobile, onClose }) => {
   const { chineseCards } = useCardStore();
   const chineseCard = chineseCards[card.name];
   const chineseName = chineseCard?.atomic_official_name || chineseCard?.atomic_translated_name || chineseCard?.zhs_name;
@@ -65,19 +66,36 @@ const CardTooltip: FC<CardTooltipProps> = ({ card, visible, x, y, expansion, isM
       };
     }
 
-    const tooltipHeight = cardDetails?.type === 'normal' ? 300 : 400;
+    // 使用固定的宽度，避免异步加载导致的闪烁和挤压
+    const tooltipHeight = 400; // 使用最大高度
+    const tooltipWidth = 650;  // 使用固定宽度（600px min-width + padding）
     const screenHeight = window.innerHeight;
     const screenWidth = window.innerWidth;
+    const margin = 10;
     
-    let top = y + 10;
-    if (top + tooltipHeight + 10 > screenHeight) {
-      top = y - tooltipHeight - 10;
+    // 垂直位置：优先显示在鼠标下方，如果空间不足则显示在上方
+    let top = y + margin;
+    if (top + tooltipHeight + margin > screenHeight) {
+      top = y - tooltipHeight - margin;
+    }
+    // 确保不超出顶部
+    if (top < margin) {
+      top = margin;
     }
 
-    let left = x + 10;
-    const tooltipWidth = cardDetails?.type === 'normal' ? 300 : 450;
-    if (left + tooltipWidth > screenWidth - 10) {
-      left = screenWidth - tooltipWidth - 10;
+    // 水平位置：优先显示在鼠标右侧，如果空间不足则显示在左侧
+    let left = x + margin;
+    if (left + tooltipWidth + margin > screenWidth) {
+      // 尝试显示在鼠标左侧
+      left = x - tooltipWidth - margin;
+    }
+    // 确保不超出左侧
+    if (left < margin) {
+      left = margin;
+    }
+    // 确保不超出右侧
+    if (left + tooltipWidth > screenWidth - margin) {
+      left = screenWidth - tooltipWidth - margin;
     }
 
     return { top, left };
@@ -129,6 +147,7 @@ const CardTooltip: FC<CardTooltipProps> = ({ card, visible, x, y, expansion, isM
     : null);
 
   const handleClose = () => {
+    onClose?.()
     const event = new MouseEvent('mouseleave');
     document.dispatchEvent(event);
   };
@@ -143,7 +162,7 @@ const CardTooltip: FC<CardTooltipProps> = ({ card, visible, x, y, expansion, isM
       )}
       <div 
         className={`fixed z-50 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 ${
-          isMobile ? 'overflow-y-auto aspect-[3/4]' : 'p-4'
+          isMobile ? 'overflow-y-auto aspect-[3/4]' : 'p-4 min-w-[600px]'
         }`}
         style={position}
         onClick={(e) => e.stopPropagation()}

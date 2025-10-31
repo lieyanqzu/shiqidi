@@ -12,7 +12,7 @@ interface StatTooltipProps {
 }
 
 export function StatTooltip({ rank, total, value, zScore, mean, stdDev, label, isLowerBetter = false }: StatTooltipProps) {
-  const isPercentage = ['% GP', 'GP WR', 'OH WR', 'GD WR', 'GIH WR', 'GNS WR', 'IWD'].includes(label);
+  const isPercentage = ['% GP', 'GP WR', 'OH WR', 'GD WR', 'GIH WR', 'GNS WR', 'IIH'].includes(label);
   const formatValue = (val: number) => {
     if (isPercentage) {
       return `${(val * 100).toFixed(1)}%`;

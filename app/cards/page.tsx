@@ -1,12 +1,16 @@
 'use client';
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, ReactNode } from "react";
 import { CardTable } from "@/components/card-table";
+import { CardGrades } from "@/components/card-grades";
 import { CardFilters } from "@/components/card-filters";
 import { SetSymbol } from "@/components/set-symbol";
 import { useCardStore } from "@/lib/store";
 import { fetchCardData, fetchAllChineseCardData } from "@/lib/api";
 import { BackToTop } from "@/components/back-to-top";
+import { GRADE_METRICS, type GradeMetric } from "@/lib/grades";
+import { Button } from "@/components/ui/button";
+import { GradeMethodologyDialog } from "@/components/grade-methodology-dialog";
 
 export default function CardsPage() {
   const { 
@@ -24,6 +28,9 @@ export default function CardsPage() {
   const [selectedColors, setSelectedColors] = useState<string[]>([]);
   const [selectedRarities, setSelectedRarities] = useState<string[]>([]);
   const [searchText, setSearchText] = useState<string>("");
+  const [viewMode, setViewMode] = useState<'table' | 'grades'>('table');
+  const [gradeMetric, setGradeMetric] = useState<GradeMetric>('ever_drawn_win_rate');
+  const [columnControls, setColumnControls] = useState<ReactNode | null>(null);
 
   const filteredCards = useMemo(() => {
     let result = cards;
@@ -128,6 +135,12 @@ export default function CardsPage() {
     loadData();
   }, [params, setCards, setChineseCards, setIsLoading, setError]);
 
+  useEffect(() => {
+    if (viewMode !== 'table') {
+      setColumnControls(null);
+    }
+  }, [viewMode]);
+
   return (
     <div className="py-8">
       <div className="container mx-auto px-4 mb-8">
@@ -159,12 +172,84 @@ export default function CardsPage() {
           onSearchFilter={setSearchText}
           searchText={searchText}
         />
+
+        {/* 视图切换和指标选择 */}
+        <div className="flex flex-wrap items-center gap-3 mt-6 p-4 bg-[--component-background] rounded-lg border border-[--border]">
+          {/* 视图切换按钮 */}
+          <div className="flex items-center gap-2 shrink-0">
+            <Button
+              variant={viewMode === 'grades' ? 'secondary' : 'ghost'}
+              size="sm"
+              onClick={() => setViewMode('grades')}
+              className="flex items-center gap-2"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
+                <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" />
+              </svg>
+              评分视图
+            </Button>
+            <Button
+              variant={viewMode === 'table' ? 'secondary' : 'ghost'}
+              size="sm"
+              onClick={() => setViewMode('table')}
+              className="flex items-center gap-2"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
+                <rect x="3" y="4" width="18" height="16" rx="2" ry="2" />
+                <path d="M3 9h18" />
+                <path d="M8 3v2" />
+                <path d="M16 3v2" />
+              </svg>
+              表格视图
+            </Button>
+          </div>
+
+          {/* 指标选择器 - 仅在 Grades 视图显示 */}
+          {viewMode === 'grades' && (
+            <div className="flex items-center gap-2 flex-wrap">
+              <div className="flex items-center gap-1 text-sm text-[--foreground-muted]">
+                <span>评分指标：</span>
+                <GradeMethodologyDialog />
+              </div>
+              {GRADE_METRICS.map((metric) => (
+                <Button
+                  key={metric.value}
+                  variant={gradeMetric === metric.value ? 'secondary' : 'ghost'}
+                  size="sm"
+                  onClick={() => setGradeMetric(metric.value)}
+                  title={metric.label}
+                >
+                  {metric.shortLabel}
+                </Button>
+              ))}
+            </div>
+          )}
+
+          {/* 列显示控制 - 仅在 Table 视图显示 */}
+          {viewMode === 'table' && columnControls && (
+            <div className="flex-1 min-w-[240px] ml-auto">
+              {columnControls}
+            </div>
+          )}
+        </div>
       </div>
+
+      {/* 根据视图模式显示不同内容 */}
+      {viewMode === 'table' ? (
       <CardTable 
         data={filteredCards} 
         isLoading={isLoading} 
         expansion={params.expansion}
+        onColumnControlsChange={setColumnControls}
       />
+      ) : (
+        <CardGrades
+          data={filteredCards}
+          allCards={cards}
+          metric={gradeMetric}
+          expansion={params.expansion}
+        />
+      )}
       <BackToTop />
     </div>
   );

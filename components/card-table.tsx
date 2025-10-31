@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo, useCallback, useEffect } from 'react';
+import { useState, useMemo, useCallback, useEffect, ReactNode } from 'react';
 import { Table } from "@/components/ui/table";
 import { CardTableColumns } from "@/components/card-table-columns";
 import { CardNameCell } from "@/components/card-name-cell";
@@ -60,10 +60,16 @@ const getColorWeight = (color: string): number => {
   return singleColorWeight[color] || 0;
 };
 
-export function CardTable({ data, isLoading, expansion }: { 
-  data: CardData[]; 
+export function CardTable({
+  data,
+  isLoading,
+  expansion,
+  onColumnControlsChange,
+}: {
+  data: CardData[];
   isLoading?: boolean;
   expansion: string;
+  onColumnControlsChange?: (controls: ReactNode | null) => void;
 }) {
   // 将 columns 定义移到组件内部
   const columns: Column[] = useMemo(() => [
@@ -255,15 +261,15 @@ export function CardTable({ data, isLoading, expansion }: {
       ),
     },
     {
-      header: "IWD",
+      header: "IIH",
       accessorKey: "drawn_improvement_win_rate",
-      title: "抽到时的胜率提升",
+      title: "在手时的胜率提升",
       sortable: true,
       cell: (value, row, allData) => (
         <StatCell
           value={value as number}
           stats={calculateStats(allData, 'drawn_improvement_win_rate', value as number)}
-          label="IWD"
+          label="IIH"
           formatter={(v) => `${(v * 100).toFixed(1)}%`}
         />
       ),
@@ -310,6 +316,22 @@ export function CardTable({ data, isLoading, expansion }: {
   const visibleColumnsList = useMemo(() => {
     return columns.filter(col => visibleColumns.has(String(col.accessorKey)));
   }, [visibleColumns, columns]);  // 添加 columns 作为依赖
+
+  const columnControlsElement = useMemo(() => (
+    <CardTableColumns
+      columns={columns}
+      visibleColumns={visibleColumns}
+      onColumnToggle={handleColumnToggle}
+    />
+  ), [columns, visibleColumns, handleColumnToggle]);
+
+  useEffect(() => {
+    if (onColumnControlsChange) {
+      onColumnControlsChange(columnControlsElement);
+      return () => onColumnControlsChange(null);
+    }
+    return undefined;
+  }, [columnControlsElement, onColumnControlsChange]);
 
   // 排序数据
   const sortedData = useMemo(() => {
@@ -361,11 +383,11 @@ export function CardTable({ data, isLoading, expansion }: {
   return (
     <div className="space-y-4">
       <div className="w-[calc(100vw-2rem)] lg:w-[calc(100vw-4rem)] xl:w-[calc(100vw-6rem)] mx-auto">
-        <CardTableColumns
-          columns={columns}
-          visibleColumns={visibleColumns}
-          onColumnToggle={handleColumnToggle}
-        />
+        {!onColumnControlsChange && (
+          <div className="mb-4">
+            {columnControlsElement}
+          </div>
+        )}
         <div className="card">
           <Table
             data={sortedData}

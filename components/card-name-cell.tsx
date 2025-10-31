@@ -20,9 +20,9 @@ export function CardNameCell({ card, expansion }: CardNameCellProps) {
   const [tooltipVisible, setTooltipVisible] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
-  const cardImageUrl = card.url || (chineseCard?.id 
-    ? `https://cards.scryfall.io/normal/front/${chineseCard.id.slice(0, 1)}/${chineseCard.id.slice(1, 2)}/${chineseCard.id}.jpg`
-    : null);
+  const cardImageUrl = chineseCard?.id
+    ? `https://cards.scryfall.io/art_crop/front/${chineseCard.id.slice(0, 1)}/${chineseCard.id.slice(1, 2)}/${chineseCard.id}.jpg`
+    : card.url ?? null;
 
   // 在移动端，点击时阻止事件冒泡
   useEffect(() => {
@@ -64,8 +64,8 @@ export function CardNameCell({ card, expansion }: CardNameCellProps) {
       className="relative max-w-[300px] cursor-pointer"
       style={{
         backgroundImage: cardImageUrl ? `url(${cardImageUrl})` : 'none',
-        backgroundSize: '150%',
-        backgroundPosition: '-50px -100px',
+        backgroundSize: 'cover',
+        backgroundPosition: '50% 20%',
       }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -88,6 +88,7 @@ export function CardNameCell({ card, expansion }: CardNameCellProps) {
         y={mousePos.y}
         expansion={expansion}
         isMobile={isMobile}
+        onClose={() => setTooltipVisible(false)}
       />
     </div>
   );
