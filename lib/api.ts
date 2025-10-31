@@ -68,7 +68,7 @@ export async function searchChineseCards(
   onResults?: (results: ChineseCardData[]) => void
 ): Promise<ChineseCardResponse> {
   // 构建搜索查询
-  const searchQuery = cardNames.map(name => `name:"${name}"`).join(' or ');
+  const searchQuery = cardNames.map(name => `name="${name}"`).join(' or ');
 
   const searchParams = new URLSearchParams({
     page: '1',
@@ -181,7 +181,7 @@ export async function fetchAllChineseCardData(
     // 如果有缺失的卡牌，分组搜索获取
     if (missingCards.length > 0) {
       // 将缺失的卡牌分成每组10张
-      const cardGroups = chunkArray(missingCards, 10);
+      const cardGroups = chunkArray(missingCards, 30);
 
       // 依次搜索每组卡牌
       for (let i = 0; i < cardGroups.length; i++) {

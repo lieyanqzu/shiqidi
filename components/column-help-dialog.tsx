@@ -197,13 +197,13 @@ export function ColumnHelpDialog() {
             </div>
 
             {/* 底部按钮 */}
-            <div className="p-4 border-t border-[--border]">
+            <div className="px-4 py-3 border-t border-[--border] flex justify-end">
               <Button
                 variant="secondary"
+                size="sm"
                 onClick={() => setIsOpen(false)}
-                className="w-full"
               >
-                关闭
+                我知道了
               </Button>
             </div>
           </div>
