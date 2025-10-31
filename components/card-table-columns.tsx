@@ -4,6 +4,7 @@ import { useMemo, useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import type { Column } from "@/components/card-table";
+import { ColumnHelpDialog } from "@/components/column-help-dialog";
 
 interface CardTableColumnsProps {
   columns: Column[];
@@ -34,21 +35,23 @@ export function CardTableColumns({
   return (
     <div className="mb-4">
       {/* 移动端折叠按钮 */}
-      <div className="sm:hidden mb-2">
+      <div className="sm:hidden mb-2 flex items-center gap-2">
         <Button
           variant="secondary"
           size="sm"
           onClick={() => setIsExpanded(!isExpanded)}
-          className="w-full flex items-center justify-between bg-[--component-background]"
+          className="flex-1 flex items-center justify-between bg-[--component-background]"
         >
           <span>显示/隐藏列（{visibleCount}/{optionalColumns.length}）</span>
           {isExpanded ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
         </Button>
+        <ColumnHelpDialog />
       </div>
 
       {/* 桌面端标题和列选项 */}
       <div className="hidden sm:flex sm:items-center sm:gap-2 mb-2">
         <span className="text-sm text-[--component-foreground-muted]">显示/隐藏列：</span>
+        <ColumnHelpDialog />
         <div className="flex flex-wrap gap-2">
           {optionalColumns.map((column) => {
             const columnKey = String(column.accessorKey);
