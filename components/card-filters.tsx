@@ -2,7 +2,7 @@
 
 import { Input } from "@/components/ui/input";
 import type { CardDataParams } from "@/lib/api";
-import { useState, useRef } from 'react';
+import { useState, useRef, useMemo } from 'react';
 import { useMediaQuery } from '@/hooks/use-media-query';
 import { Select } from "@/components/ui/select";
 import { DateRangePicker } from "@/components/ui/date-range-picker";
@@ -16,6 +16,7 @@ import {
   cardColorOptions, 
   rarityOptions 
 } from "@/lib/options";
+import { getFormatsForExpansion, getStartDateForExpansion } from "@/lib/filter";
 
 interface CardFiltersProps {
   params: CardDataParams;
@@ -43,6 +44,38 @@ export function CardFilters({
   const isMobile = useMediaQuery('(max-width: 1024px)');
   const [showFilters, setShowFilters] = useState(false);
   const filterButtonRef = useRef<HTMLButtonElement>(null);
+
+  // 根据选择的系列获取可用的赛制
+  const availableFormats = useMemo(() => {
+    const formats = getFormatsForExpansion(params.expansion);
+    // 将赛制代码转换为选项格式，并只保留在formatOptions中有定义的
+    return formatOptions.filter(option => formats.includes(option.value));
+  }, [params.expansion]);
+
+  // 当系列变化时，检查当前选择的赛制是否可用，如果不可用则选择第一个可用的赛制
+  const handleExpansionChange = (expansion: string) => {
+    const formats = getFormatsForExpansion(expansion);
+    const newParams: Partial<CardDataParams> = { expansion };
+    
+    // 如果当前赛制不在新系列的可用赛制列表中，选择第一个可用的赛制
+    if (!formats.includes(params.format) && formats.length > 0) {
+      // 优先选择在 formatOptions 中定义的第一个可用赛制
+      const firstAvailableFormat = formatOptions.find(option => formats.includes(option.value));
+      if (firstAvailableFormat) {
+        newParams.format = firstAvailableFormat.value;
+      } else {
+        newParams.format = formats[0];
+      }
+    }
+    
+    // 获取系列的起始日期
+    const startDate = getStartDateForExpansion(expansion);
+    if (startDate) {
+      newParams.start_date = startDate.split('T')[0];
+    }
+    
+    onParamsChange(newParams);
+  };
 
   // 移动端临时筛选状态
   const [tempParams, setTempParams] = useState<CardDataParams>(params);
@@ -89,7 +122,7 @@ export function CardFilters({
           <Select
             options={expansionOptions}
             value={params.expansion}
-            onChange={(e) => onParamsChange({ expansion: e.target.value })}
+            onChange={(e) => handleExpansionChange(e.target.value)}
             title="系列"
             className="w-32 shrink-0"
           />
@@ -134,12 +167,12 @@ export function CardFilters({
             <Select
               options={expansionOptions}
               value={params.expansion}
-              onChange={(e) => onParamsChange({ expansion: e.target.value })}
+              onChange={(e) => handleExpansionChange(e.target.value)}
               title="系列"
               className="w-full sm:w-32 shrink-0"
             />
             <Select
-              options={formatOptions}
+              options={availableFormats}
               value={params.format}
               onChange={(e) => onParamsChange({ format: e.target.value })}
               title="模式"
@@ -247,7 +280,7 @@ export function CardFilters({
             />
             
             <Select
-              options={formatOptions}
+              options={availableFormats}
               value={tempParams.format}
               onChange={(e) => setTempParams({ ...tempParams, format: e.target.value })}
               title="模式"

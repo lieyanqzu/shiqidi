@@ -255,15 +255,15 @@ export function CardTable({ data, isLoading, expansion }: {
       ),
     },
     {
-      header: "IWD",
+      header: "IIH",
       accessorKey: "drawn_improvement_win_rate",
-      title: "抽到时的胜率提升",
+      title: "在手时的胜率提升",
       sortable: true,
       cell: (value, row, allData) => (
         <StatCell
           value={value as number}
           stats={calculateStats(allData, 'drawn_improvement_win_rate', value as number)}
-          label="IWD"
+          label="IIH"
           formatter={(v) => `${(v * 100).toFixed(1)}%`}
         />
       ),

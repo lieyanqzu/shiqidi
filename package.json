@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "node scripts/fetch-speed-data.js",
+    "prebuild": "node scripts/fetch-speed-data.js && node scripts/fetch-filter-data.js",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"

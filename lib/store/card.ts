@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import type { CardData, ChineseCardData } from '@/types/card';
 import type { CardDataParams } from '@/lib/api';
+import { getStartDateForExpansion } from '@/lib/filter';
 
 interface CardStore {
   cards: CardData[];
@@ -18,13 +19,17 @@ interface CardStore {
 // 获取当前日期的YYYY-MM-DD格式
 const today = new Date().toISOString().split('T')[0];
 
+// 获取默认系列的起始日期
+const defaultExpansion = 'OM1';
+const defaultStartDate = getStartDateForExpansion(defaultExpansion)?.split('T')[0] || '2016-01-01';
+
 export const useCardStore = create<CardStore>((set) => ({
   cards: [],
   chineseCards: {},
   params: {
-    expansion: 'OM1',
+    expansion: defaultExpansion,
     format: 'PickTwoDraft', 
-    start_date: '2016-01-01',
+    start_date: defaultStartDate,
     end_date: today,
   },
   isLoading: false,
