@@ -104,6 +104,9 @@ let spgLoaded = false;
 // 缓存各系列的数据
 const setDataCache: { [key: string]: ChineseCardData[] } = {};
 
+// 记录哪些系列已经完整加载
+const fullyLoadedSets = new Set<string>();
+
 // 将数组分成指定大小的组
 function chunkArray<T>(array: T[], size: number): T[][] {
   const chunks: T[][] = [];
@@ -121,25 +124,35 @@ export async function fetchAllChineseCardData(
   try {
     // 获取当前系列的数据（优先从缓存获取）
     let currentSetData: ChineseCardResponse;
-    if (setDataCache[setCode]) {
+    if (fullyLoadedSets.has(setCode) && setDataCache[setCode]) {
       currentSetData = { items: setDataCache[setCode] };
     } else {
       currentSetData = await fetchChineseCardData(setCode);
       if (currentSetData.items) {
         setDataCache[setCode] = currentSetData.items;
+        fullyLoadedSets.add(setCode);
       }
     }
 
-    // 如果是 YXXX 系列，也获取 XXX 系列的数据（优先从缓存获取）
-    let originalSetData: ChineseCardResponse = { items: [] };
-    if (setCode.startsWith('Y')) {
-      const originalSetCode = setCode.replace(/^Y\d{0,2}/, '');
-      if (setDataCache[originalSetCode]) {
-        originalSetData = { items: setDataCache[originalSetCode] };
-      } else {
-        originalSetData = await fetchChineseCardData(originalSetCode);
-        if (originalSetData.items) {
-          setDataCache[originalSetCode] = originalSetData.items;
+    // 针对 Y[数字]XXX 的系列，额外尝试获取不带数字的 YXXX 数据
+    let numericVariantSetData: ChineseCardResponse = { items: [] };
+    const numericVariantMatch = setCode.match(/^Y\d{1,2}([A-Z]+)/);
+    if (numericVariantMatch) {
+      const baseCode = numericVariantMatch[1];
+      const canonicalYSetCode = `Y${baseCode}`;
+      if (canonicalYSetCode !== setCode) {
+        if (fullyLoadedSets.has(canonicalYSetCode) && setDataCache[canonicalYSetCode]) {
+          numericVariantSetData = { items: setDataCache[canonicalYSetCode] };
+        } else {
+          try {
+            numericVariantSetData = await fetchChineseCardData(canonicalYSetCode);
+            if (numericVariantSetData.items) {
+              setDataCache[canonicalYSetCode] = numericVariantSetData.items;
+              fullyLoadedSets.add(canonicalYSetCode);
+            }
+          } catch (error) {
+            console.warn(`Failed to fetch canonical Y-set data for ${canonicalYSetCode}:`, error);
+          }
         }
       }
     }
@@ -159,7 +172,7 @@ export async function fetchAllChineseCardData(
     // 合并所有系列数据
     const allResults = [
       ...(currentSetData.items || []),
-      ...(originalSetData.items || []),
+      ...(numericVariantSetData.items || []),
       ...(spgData.items || [])
     ];
 

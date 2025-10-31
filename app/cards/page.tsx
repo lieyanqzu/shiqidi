@@ -248,6 +248,7 @@ export default function CardsPage() {
           allCards={cards}
           metric={gradeMetric}
           expansion={params.expansion}
+          isLoading={isLoading}
         />
       )}
       <BackToTop />

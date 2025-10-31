@@ -19,6 +19,7 @@ interface CardGradesProps {
   allCards?: CardData[];
   metric: GradeMetric;
   expansion: string;
+  isLoading?: boolean;
 }
 
 // 颜色顺序定义
@@ -36,7 +37,7 @@ const COLOR_SYMBOL_CLASS: Record<ColorKey, string> = {
   'C': 'C',  // 无色
 };
 
-export function CardGrades({ data, allCards, metric, expansion }: CardGradesProps) {
+export function CardGrades({ data, allCards, metric, expansion, isLoading }: CardGradesProps) {
   // 计算评分
   const cardsWithGrades = useMemo(() => {
     const source = allCards && allCards.length > 0 ? allCards : data;
@@ -54,6 +55,18 @@ export function CardGrades({ data, allCards, metric, expansion }: CardGradesProp
   }, [visibleCardsWithGrades]);
 
   const metricLabel = GRADE_METRICS.find(m => m.value === metric)?.shortLabel || metric;
+
+  if (isLoading) {
+    return (
+      <div className="space-y-4">
+        <div className="w-[calc(100vw-2rem)] lg:w-[calc(100vw-4rem)] xl:w-[calc(100vw-6rem)] mx-auto">
+          <div className="card h-96 flex items-center justify-center text-[--muted-foreground]">
+            加载中...
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-4">
