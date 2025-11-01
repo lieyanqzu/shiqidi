@@ -102,10 +102,16 @@ export function CardFilters({
 
   // 每次打开筛选面板时，初始化临时状态
   const handleOpenFilters = () => {
-    setTempParams(params);
-    setTempColors(selectedColors);
-    setTempRarities(selectedRarities);
-    setShowFilters(true);
+    if (showFilters) {
+      // 如果已经打开，则关闭
+      setShowFilters(false);
+    } else {
+      // 如果关闭，则打开并初始化临时状态
+      setTempParams(params);
+      setTempColors(selectedColors);
+      setTempRarities(selectedRarities);
+      setShowFilters(true);
+    }
   };
 
   return (
@@ -330,47 +336,46 @@ export function CardFilters({
               </div>
             </div>
 
-            <div className="space-y-2">
-              <span className="text-sm text-[--component-foreground-muted] whitespace-nowrap">稀有度:</span>
-              <div className="flex flex-wrap gap-1">
-                {rarityOptions.map((rarity) => {
-                  const expansion = params.expansion;
-                  const processedSet = expansion.toLowerCase().startsWith('y') 
-                    ? `y${expansion.slice(expansion.match(/Y\d{0,2}/)![0].length)}`.toLowerCase() 
-                    : expansion.toLowerCase();
-                  return (
-                    <button
-                      key={rarity.value}
-                      className={`
-                        w-8 h-8 rounded-full flex items-center justify-center
-                        ${tempRarities.includes(rarity.value)
-                          ? 'ring-2 ring-[#FFB000] ring-opacity-80' 
-                          : 'hover:ring-2 hover:ring-[#FFB000] hover:ring-opacity-50 brightness-75'}
-                        transition-all
-                      `}
-                      onClick={() => {
-                        const newRarities = tempRarities.includes(rarity.value)
-                          ? tempRarities.filter(r => r !== rarity.value)
-                          : [...tempRarities, rarity.value];
-                        setTempRarities(newRarities);
-                      }}
-                      title={rarity.label}
-                    >
-                      <i 
-                        className={`keyrune ss ss-${processedSet} ss-${rarity.value} ss-2x`}
-                        aria-hidden="true"
-                        style={{ backgroundColor: 'transparent' }}
-                      />
-                    </button>
-                  );
-                })}
+            <div className="flex items-end justify-between gap-2">
+              <div className="flex-1 space-y-2">
+                <span className="text-sm text-[--component-foreground-muted] whitespace-nowrap">稀有度:</span>
+                <div className="flex flex-wrap gap-1">
+                  {rarityOptions.map((rarity) => {
+                    const expansion = params.expansion;
+                    const processedSet = expansion.toLowerCase().startsWith('y') 
+                      ? `y${expansion.slice(expansion.match(/Y\d{0,2}/)![0].length)}`.toLowerCase() 
+                      : expansion.toLowerCase();
+                    return (
+                      <button
+                        key={rarity.value}
+                        className={`
+                          w-8 h-8 rounded-full flex items-center justify-center
+                          ${tempRarities.includes(rarity.value)
+                            ? 'ring-2 ring-[#FFB000] ring-opacity-80' 
+                            : 'hover:ring-2 hover:ring-[#FFB000] hover:ring-opacity-50 brightness-75'}
+                          transition-all
+                        `}
+                        onClick={() => {
+                          const newRarities = tempRarities.includes(rarity.value)
+                            ? tempRarities.filter(r => r !== rarity.value)
+                            : [...tempRarities, rarity.value];
+                          setTempRarities(newRarities);
+                        }}
+                        title={rarity.label}
+                      >
+                        <i 
+                          className={`keyrune ss ss-${processedSet} ss-${rarity.value} ss-2x`}
+                          aria-hidden="true"
+                          style={{ backgroundColor: 'transparent' }}
+                        />
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
-            </div>
-
-            <div className="flex justify-end pt-4">
               <button
                 onClick={handleConfirm}
-                className="px-4 py-2 bg-[--primary] text-white rounded-md hover:bg-[--primary]/90 transition-colors"
+                className="px-4 py-2 bg-[--primary] text-white rounded-md hover:bg-[--primary]/90 transition-colors shrink-0"
               >
                 确定
               </button>

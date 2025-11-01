@@ -8,9 +8,9 @@ import { SetSymbol } from "@/components/set-symbol";
 import { useCardStore } from "@/lib/store";
 import { fetchCardData, fetchAllChineseCardData } from "@/lib/api";
 import { BackToTop } from "@/components/back-to-top";
-import { GRADE_METRICS, type GradeMetric } from "@/lib/grades";
+import { type GradeMetric } from "@/lib/grades";
 import { Button } from "@/components/ui/button";
-import { GradeMethodologyDialog } from "@/components/grade-methodology-dialog";
+import { CardGradeMetrics } from "@/components/card-grade-metrics";
 
 export default function CardsPage() {
   const { 
@@ -234,28 +234,17 @@ export default function CardsPage() {
 
           {/* 指标选择器 - 仅在 Grades 视图显示 */}
           {viewMode === 'grades' && (
-            <div className="flex items-center gap-2 flex-wrap">
-              <div className="flex items-center gap-1 text-sm text-[--foreground-muted]">
-                <span>评分指标：</span>
-                <GradeMethodologyDialog />
-              </div>
-              {GRADE_METRICS.map((metric) => (
-                <Button
-                  key={metric.value}
-                  variant={gradeMetric === metric.value ? 'secondary' : 'ghost'}
-                  size="sm"
-                  onClick={() => setGradeMetric(metric.value)}
-                  title={metric.label}
-                >
-                  {metric.shortLabel}
-                </Button>
-              ))}
+            <div className="flex-1 min-w-[240px]">
+              <CardGradeMetrics
+                selectedMetric={gradeMetric}
+                onMetricChange={setGradeMetric}
+              />
             </div>
           )}
 
           {/* 列显示控制 - 仅在 Table 视图显示 */}
           {viewMode === 'table' && columnControls && (
-            <div className="flex-1 min-w-[240px] ml-auto">
+            <div className="flex-1 min-w-[240px]">
               {columnControls}
             </div>
           )}
