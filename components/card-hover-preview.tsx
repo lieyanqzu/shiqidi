@@ -27,12 +27,8 @@ export function CardHoverPreview({
   useEffect(() => {
     setImageError(false);
     
-    if (chineseCard?.set && chineseCard?.collector_number) {
-      // 使用 mtgch.com 的图片
-      const url = `https://mtgch.com/image/large/${chineseCard.set.toUpperCase()}/${chineseCard.set.toUpperCase()}_${chineseCard.collector_number}.jpg`;
-      setImageUrl(url);
-    } else if (chineseCard?.id) {
-      // 回退到 Scryfall
+    if (chineseCard?.id) {
+      // 使用 Scryfall 图片
       const url = `https://cards.scryfall.io/normal/front/${chineseCard.id.slice(0, 1)}/${chineseCard.id.slice(1, 2)}/${chineseCard.id}.jpg`;
       setImageUrl(url);
     } else {

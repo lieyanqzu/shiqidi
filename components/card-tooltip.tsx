@@ -1,9 +1,10 @@
 import { CardData } from '@/types/card'
-import { FC, useEffect, useState } from 'react'
+import { FC, useEffect, useState, useRef, memo, useCallback } from 'react'
 import { ManaSymbols } from '@/components/mana-symbols'
 import { useCardStore } from "@/lib/store"
 import Image from 'next/image'
 import { getCardFullImageUrl } from '@/lib/card-images'
+import { extractScryfallIdFromUrl, fetchCardDetailByScryfallId } from '@/lib/api'
 
 interface CardTooltipProps {
   card: CardData
@@ -13,20 +14,8 @@ interface CardTooltipProps {
   expansion: string
   isMobile?: boolean
   onClose?: () => void
-}
-
-interface CardApiResponse {
-  atomic_official_name?: string
-  atomic_translated_name?: string
-  zhs_name?: string
-  name: string
-  atomic_translated_text?: string
-  zhs_text?: string
-  oracle_text?: string
-  zhs_faceName?: string
-  atomic_translated_type?: string
-  zhs_type_line?: string
-  other_faces?: Array<CardApiResponse>
+  onMouseEnter?: () => void
+  onMouseLeave?: () => void
 }
 
 interface CardDetails {
@@ -38,11 +27,28 @@ interface CardDetails {
   }>
 }
 
-const CardTooltip: FC<CardTooltipProps> = ({ card, visible, x, y, expansion, isMobile, onClose }) => {
+interface TooltipPosition {
+  top: number | string
+  left: number | string
+  width?: number | string
+  position?: 'fixed'
+  transform?: string
+  maxWidth?: string
+  maxHeight?: string
+  overflow?: string
+}
+
+const CardTooltip: FC<CardTooltipProps> = ({ card, visible, x, y, expansion, isMobile, onClose, onMouseEnter, onMouseLeave }) => {
   const { chineseCards } = useCardStore();
   const chineseCard = chineseCards[card.name];
   const chineseName = chineseCard?.atomic_official_name || chineseCard?.atomic_translated_name || chineseCard?.zhs_name;
   const [cardDetails, setCardDetails] = useState<CardDetails | null>(null);
+  
+  // 使用 useRef 同步记录初始位置，避免状态更新延迟
+  const initialPositionRef = useRef<{ x: number; y: number } | null>(null);
+  const wasVisibleRef = useRef(false);
+  const tooltipRef = useRef<HTMLDivElement>(null);
+  const [tooltipPosition, setTooltipPosition] = useState<TooltipPosition | null>(null);
 
   // 处理文本替换
   const processText = (text?: string) => {
@@ -50,9 +56,27 @@ const CardTooltip: FC<CardTooltipProps> = ({ card, visible, x, y, expansion, isM
     return text.replace(/\\n/g, '\n').replace(/CARDNAME/g, chineseName || card.name);
   };
 
-  // 计算悬浮窗位置
-  const getTooltipPosition = () => {
-    if (typeof window === 'undefined') return { top: y + 10, left: x + 10 };
+  // 同步记录初始位置（在渲染期间而不是 useEffect 中）
+  if (visible && !wasVisibleRef.current) {
+    initialPositionRef.current = { x, y };
+    wasVisibleRef.current = true;
+  } else if (!visible && wasVisibleRef.current) {
+    initialPositionRef.current = null;
+    wasVisibleRef.current = false;
+  }
+
+  // 计算悬浮窗位置的函数 - 只依赖 visible 和 isMobile，避免鼠标移动时重新计算
+  const calculateTooltipPosition = useCallback((actualHeight?: number) => {
+    // 只在 visible 时计算
+    if (!visible) {
+      return { top: 0, left: 0, width: 650 };
+    }
+    
+    // 必须使用 initialPositionRef，这样位置就固定在tooltip首次显示时的鼠标位置
+    const posX = initialPositionRef.current?.x ?? 0;
+    const posY = initialPositionRef.current?.y ?? 0;
+    
+    if (typeof window === 'undefined') return { top: posY + 10, left: posX + 10 };
 
     if (isMobile) {
       return {
@@ -67,28 +91,35 @@ const CardTooltip: FC<CardTooltipProps> = ({ card, visible, x, y, expansion, isM
       };
     }
 
-    // 使用固定的宽度，避免异步加载导致的闪烁和挤压
-    const tooltipHeight = 400; // 使用最大高度
-    const tooltipWidth = 650;  // 使用固定宽度（600px min-width + padding）
     const screenHeight = window.innerHeight;
     const screenWidth = window.innerWidth;
     const margin = 10;
     
+    // 根据屏幕宽度动态调整tooltip宽度，避免窄屏闪烁
+    const maxTooltipWidth = 650;
+    const tooltipWidth = Math.min(maxTooltipWidth, screenWidth - margin * 4); // 留出足够边距
+    // 使用实际高度或默认高度
+    const tooltipHeight = actualHeight || 400;
+    
     // 垂直位置：优先显示在鼠标下方，如果空间不足则显示在上方
-    let top = y + margin;
+    let top = posY + margin;
     if (top + tooltipHeight + margin > screenHeight) {
-      top = y - tooltipHeight - margin;
+      top = posY - tooltipHeight - margin;
     }
     // 确保不超出顶部
     if (top < margin) {
       top = margin;
     }
+    // 再次确保不超出底部（在高度变化后）
+    if (top + tooltipHeight + margin > screenHeight) {
+      top = screenHeight - tooltipHeight - margin;
+    }
 
     // 水平位置：优先显示在鼠标右侧，如果空间不足则显示在左侧
-    let left = x + margin;
+    let left = posX + margin;
     if (left + tooltipWidth + margin > screenWidth) {
       // 尝试显示在鼠标左侧
-      left = x - tooltipWidth - margin;
+      left = posX - tooltipWidth - margin;
     }
     // 确保不超出左侧
     if (left < margin) {
@@ -99,8 +130,30 @@ const CardTooltip: FC<CardTooltipProps> = ({ card, visible, x, y, expansion, isM
       left = screenWidth - tooltipWidth - margin;
     }
 
-    return { top, left };
-  };
+    return { top, left, width: tooltipWidth };
+  }, [visible, isMobile]); // 移除 x, y 依赖，避免鼠标移动时重新计算
+
+  // 初始化位置
+  useEffect(() => {
+    if (visible) {
+      setTooltipPosition(calculateTooltipPosition());
+    } else {
+      setTooltipPosition(null);
+    }
+  }, [visible, calculateTooltipPosition]);
+
+  // 当 cardDetails 加载后，使用实际高度重新计算位置
+  useEffect(() => {
+    if (visible && cardDetails && tooltipRef.current && !isMobile) {
+      // 延迟一帧以确保 DOM 已更新
+      requestAnimationFrame(() => {
+        if (tooltipRef.current) {
+          const actualHeight = tooltipRef.current.offsetHeight;
+          setTooltipPosition(calculateTooltipPosition(actualHeight));
+        }
+      });
+    }
+  }, [cardDetails, visible, isMobile, calculateTooltipPosition]);
 
   useEffect(() => {
     if (!visible) {
@@ -108,34 +161,50 @@ const CardTooltip: FC<CardTooltipProps> = ({ card, visible, x, y, expansion, isM
       return;
     }
 
-    if (visible && chineseCard?.set && chineseCard?.collector_number) {
-      fetch(`https://mtgch.com/api/v1/card/${chineseCard.set.toUpperCase()}/${chineseCard.collector_number}`)
-        .then(res => res.json())
-        .then((json: CardApiResponse) => {
-          const mainFace = {
-            zhs_type: json.atomic_translated_type || json.zhs_type_line,
-            zhs_text: json.atomic_translated_text || json.zhs_text || json.oracle_text,
-            zhs_name: json.atomic_official_name || json.atomic_translated_name || json.zhs_name || json.name
-          };
+    // 从card.url提取scryfallId并查询详细信息
+    if (visible && card.url) {
+      const scryfallId = extractScryfallIdFromUrl(card.url);
+      if (scryfallId) {
+        fetchCardDetailByScryfallId(scryfallId)
+          .then((json) => {
+            if (!json) return;
+            
+            // 处理HTML文本，去除HTML标签
+            const stripHtml = (html: string) => {
+              if (!html) return '';
+              return html
+                .replace(/<p>/g, '')
+                .replace(/<\/p>/g, '\n')
+                .replace(/<br\s*\/?>/g, '\n')
+                .replace(/<[^>]+>/g, '')
+                .trim();
+            };
+            
+            const mainFace = {
+              zhs_type: json.display_type_line || '',
+              zhs_text: stripHtml(json.oracle_text_html),
+              zhs_name: json.display_name_zh || json.display_name
+            };
 
-          setCardDetails({
-            type: json.other_faces && json.other_faces.length > 0 ? 'double' : 'normal',
-            data: json.other_faces && json.other_faces.length > 0
-              ? [mainFace, {
-                  zhs_type: json.other_faces[0].atomic_translated_type || json.other_faces[0].zhs_type_line,
-                  zhs_text: json.other_faces[0].atomic_translated_text || json.other_faces[0].zhs_text || json.other_faces[0].oracle_text,
-                  zhs_name: json.other_faces[0].atomic_official_name || json.other_faces[0].atomic_translated_name || json.other_faces[0].zhs_name || json.other_faces[0].name
-                }]
-              : [mainFace]
-          });
-        })
-        .catch(console.error);
+            setCardDetails({
+              type: json.other_faces && json.other_faces.length > 0 ? 'double' : 'normal',
+              data: json.other_faces && json.other_faces.length > 0
+                ? [mainFace, {
+                    zhs_type: json.other_faces[0].display_type_line || '',
+                    zhs_text: stripHtml(json.other_faces[0].oracle_text_html),
+                    zhs_name: json.other_faces[0].display_name_zh || json.other_faces[0].display_name
+                  }]
+                : [mainFace]
+            });
+          })
+          .catch(console.error);
+      }
     }
-  }, [visible, chineseCard?.set, chineseCard?.collector_number]);
+  }, [visible, card.url]);
 
-  if (!visible) return null
+  if (!visible || !tooltipPosition) return null
 
-  const position = getTooltipPosition();
+  const position = tooltipPosition;
 
   // 处理稀有度图标的系列代码
   const processedSet = expansion.startsWith('Y')
@@ -160,11 +229,17 @@ const CardTooltip: FC<CardTooltipProps> = ({ card, visible, x, y, expansion, isM
         />
       )}
       <div 
+        ref={tooltipRef}
         className={`fixed z-50 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 ${
-          isMobile ? 'overflow-y-auto aspect-[3/4]' : 'p-4 min-w-[600px]'
+          isMobile ? 'overflow-y-auto aspect-[3/4]' : 'p-4'
         }`}
-        style={position}
+        style={{
+          ...position,
+          ...(isMobile ? {} : { minWidth: '400px', maxWidth: '650px' })
+        }}
         onClick={(e) => e.stopPropagation()}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
       >
         {isMobile && (
           <div className="sticky top-0 z-10 bg-white dark:bg-gray-800 p-4 border-b border-gray-200 dark:border-gray-700">
@@ -176,8 +251,9 @@ const CardTooltip: FC<CardTooltipProps> = ({ card, visible, x, y, expansion, isM
               <button 
                 onClick={(e) => {
                   e.stopPropagation();
-                  if (chineseCard?.set && chineseCard?.collector_number) {
-                    window.open(`https://mtgch.com/card/${chineseCard.set.toUpperCase()}/${chineseCard.collector_number}?utm_source=shiqidi`, '_blank');
+                  const scryfallId = chineseCard?.id || (card.url ? extractScryfallIdFromUrl(card.url) : null);
+                  if (scryfallId) {
+                    window.open(`https://mtgch.com/result?q=id=${scryfallId}&utm_source=shiqidi`, '_blank');
                   }
                 }}
                 className="text-sm text-blue-500 hover:text-blue-600"
@@ -230,13 +306,13 @@ const CardTooltip: FC<CardTooltipProps> = ({ card, visible, x, y, expansion, isM
                 <div className="text-sm p-3 bg-gray-50 dark:bg-gray-900 rounded">
                   {cardDetails.type === 'normal' ? (
                     // 单面卡显示
-                    <div className="whitespace-pre-wrap break-words max-w-[300px]">
+                    <div className="whitespace-pre-wrap break-words w-full">
                       <div className="font-medium mb-1">{cardDetails.data[0]?.zhs_type}</div>
                       <div>{processText(cardDetails.data[0]?.zhs_text)}</div>
                     </div>
                   ) : (
                     // 双面卡显示
-                    <div className="flex gap-4 max-w-[450px]">
+                    <div className="flex gap-4 w-full">
                       <div className="flex-1 min-w-0 whitespace-pre-wrap break-words">
                         <div className="font-medium mb-1">{cardDetails.data[0]?.zhs_name}</div>
                         <div className="font-medium text-sm text-gray-600 dark:text-gray-400 mb-1">{cardDetails.data[0]?.zhs_type}</div>
@@ -330,4 +406,18 @@ const CardTooltip: FC<CardTooltipProps> = ({ card, visible, x, y, expansion, isM
   )
 }
 
-export default CardTooltip 
+// 使用 memo 避免不必要的重新渲染
+export default memo(CardTooltip, (prevProps, nextProps) => {
+  // 当 visible 状态变化时，总是需要重新渲染
+  if (prevProps.visible !== nextProps.visible) {
+    return false;
+  }
+  
+  // 只在这些属性变化时才重新渲染（不包括 x 和 y，因为位置固定在首次显示时）
+  const shouldNotUpdate = 
+    prevProps.card.name === nextProps.card.name &&
+    prevProps.expansion === nextProps.expansion &&
+    prevProps.isMobile === nextProps.isMobile;
+  
+  return shouldNotUpdate;
+}) 

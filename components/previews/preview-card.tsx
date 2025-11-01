@@ -72,7 +72,7 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
       }).join(' or ');
 
       const response = await fetch(
-        `https://mtgch.com/api/v1/result?q=${encodeURIComponent(query)}&page=1&page_size=100&unique=oracle_id&priority_chinese=true`
+        `https://mtgch.com/api/v1/result?q=${encodeURIComponent(query)}&page=1&page_size=100&unique=oracle_id&priority_chinese=true&view=1`
       );
 
       if (!response.ok) {
@@ -83,14 +83,12 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
       return data.items.map((result: {
         set: string;
         collector_number: string;
-        name: string;
-        zhs_name?: string;
-        atomic_official_name?: string;
-        atomic_translated_name?: string;
+        display_name: string;
+        display_name_zh: string;
       }) => ({
         setCode: result.set,
         number: result.collector_number,
-        zhs_name: result.atomic_official_name || result.atomic_translated_name || result.zhs_name || result.name
+        zhs_name: result.display_name_zh || result.display_name
       }));
     } catch (error) {
       console.error('Failed to fetch card names:', error);

@@ -31,6 +31,7 @@ export default function CardsPage() {
   const [viewMode, setViewMode] = useState<'table' | 'grades'>('table');
   const [gradeMetric, setGradeMetric] = useState<GradeMetric>('ever_drawn_win_rate');
   const [columnControls, setColumnControls] = useState<ReactNode | null>(null);
+  const [mounted, setMounted] = useState(false);
 
   const filteredCards = useMemo(() => {
     let result = cards;
@@ -135,11 +136,38 @@ export default function CardsPage() {
     loadData();
   }, [params, setCards, setChineseCards, setIsLoading, setError]);
 
+  // 初始化：从localStorage读取保存的偏好设置
   useEffect(() => {
+    setMounted(true);
+    
+    const savedViewMode = localStorage.getItem('viewMode') as 'table' | 'grades' | null;
+    if (savedViewMode) {
+      setViewMode(savedViewMode);
+    }
+    
+    const savedMetric = localStorage.getItem('gradeMetric') as GradeMetric | null;
+    if (savedMetric) {
+      setGradeMetric(savedMetric);
+    }
+  }, []);
+
+  // 保存视图模式到localStorage
+  useEffect(() => {
+    if (mounted) {
+      localStorage.setItem('viewMode', viewMode);
+    }
+    
     if (viewMode !== 'table') {
       setColumnControls(null);
     }
-  }, [viewMode]);
+  }, [viewMode, mounted]);
+
+  // 保存评分指标到localStorage
+  useEffect(() => {
+    if (mounted) {
+      localStorage.setItem('gradeMetric', gradeMetric);
+    }
+  }, [gradeMetric, mounted]);
 
   return (
     <div className="py-8">
