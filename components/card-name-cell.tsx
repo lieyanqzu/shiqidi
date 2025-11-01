@@ -5,6 +5,7 @@ import { useCardStore } from "@/lib/store";
 import type { CardData } from "@/types/card";
 import CardTooltip from '@/components/card-tooltip';
 import { useMediaQuery } from "@/hooks/use-media-query";
+import { getCardArtCropUrl } from '@/lib/card-images';
 
 interface CardNameCellProps {
   card: CardData;
@@ -20,9 +21,7 @@ export function CardNameCell({ card, expansion }: CardNameCellProps) {
   const [tooltipVisible, setTooltipVisible] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
-  const cardImageUrl = chineseCard?.id
-    ? `https://cards.scryfall.io/art_crop/front/${chineseCard.id.slice(0, 1)}/${chineseCard.id.slice(1, 2)}/${chineseCard.id}.jpg`
-    : card.url ?? null;
+  const cardImageUrl = getCardArtCropUrl(card.url, chineseCard?.id);
 
   // 在移动端，点击时阻止事件冒泡
   useEffect(() => {

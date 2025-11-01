@@ -13,6 +13,7 @@ import {
 import CardTooltip from '@/components/card-tooltip';
 import { useCardStore } from '@/lib/store';
 import { useMediaQuery } from '@/hooks/use-media-query';
+import { getCardArtCropUrl } from '@/lib/card-images';
 
 interface CardGradesProps {
   data: CardData[];
@@ -281,10 +282,7 @@ function CardGradeItem({ card, metricLabel, expansion }: CardGradeItemProps) {
   const chineseCard = chineseCards[card.name];
   const chineseName = chineseCard?.atomic_official_name || chineseCard?.atomic_translated_name || chineseCard?.zhs_name;
   
-  const artCropUrl = chineseCard?.id
-    ? `https://cards.scryfall.io/art_crop/front/${chineseCard.id.slice(0, 1)}/${chineseCard.id.slice(1, 2)}/${chineseCard.id}.jpg`
-    : undefined;
-  const cardImageUrl = artCropUrl ?? card.url ?? null;
+  const cardImageUrl = getCardArtCropUrl(card.url, chineseCard?.id);
   
   // 在移动端，锁定 body 滚动
   useEffect(() => {

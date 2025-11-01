@@ -3,6 +3,7 @@ import { FC, useEffect, useState } from 'react'
 import { ManaSymbols } from '@/components/mana-symbols'
 import { useCardStore } from "@/lib/store"
 import Image from 'next/image'
+import { getCardFullImageUrl } from '@/lib/card-images'
 
 interface CardTooltipProps {
   card: CardData
@@ -142,9 +143,7 @@ const CardTooltip: FC<CardTooltipProps> = ({ card, visible, x, y, expansion, isM
     : expansion.toLowerCase()
 
   // 获取卡图URL
-  const cardImageUrl = card.url || (chineseCard?.id 
-    ? `https://cards.scryfall.io/normal/front/${chineseCard.id.slice(0, 1)}/${chineseCard.id.slice(1, 2)}/${chineseCard.id}.jpg`
-    : null);
+  const cardImageUrl = getCardFullImageUrl(card.url, chineseCard?.id, 'normal');
 
   const handleClose = () => {
     onClose?.()
@@ -266,7 +265,7 @@ const CardTooltip: FC<CardTooltipProps> = ({ card, visible, x, y, expansion, isM
                 </div>
                 <div className="text-center">
                   <div className="font-medium text-lg">{(card.drawn_improvement_win_rate ? (card.drawn_improvement_win_rate * 100).toFixed(1) : '-') + '%'}</div>
-                  <div className="text-gray-500">抽到胜率提升</div>
+                  <div className="text-gray-500">在手胜率提升</div>
                 </div>
               </div>
 
