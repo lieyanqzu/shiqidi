@@ -22,15 +22,11 @@ export interface CardData {
 }
 
 export interface ChineseCardData {
-  name: string;               // 英文名
-  printed_name: string;       // 牌面英文名
-  face_name: string | null;    // 英文面名（双面牌）
-  zhs_name: string;          // 中文名
-  atomic_official_name: string | null; // 官方名称
-  atomic_translated_name: string;    // 翻译名称
-  set: string;           // 系列代码
-  collector_number: string;            // 收藏编号
-  id: string;        // Scryfall ID
+  name: string;                        // 英文名
+  zhs_name: string;                    // 中文名
+  atomic_official_name: string | null; // 官方名称（优先使用）
+  atomic_translated_name: string;      // 翻译名称（备用）
+  id: string;                          // Scryfall ID（核心字段，用于查询详情和图片）
 }
 
 export interface ChineseCardMap {

@@ -1,11 +1,12 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useCardStore } from "@/lib/store";
 import type { CardData } from "@/types/card";
 import CardTooltip from '@/components/card-tooltip';
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { getCardArtCropUrl } from '@/lib/card-images';
+import { extractScryfallIdFromUrl } from '@/lib/api';
 
 interface CardNameCellProps {
   card: CardData;
@@ -20,6 +21,8 @@ export function CardNameCell({ card, expansion }: CardNameCellProps) {
   
   const [tooltipVisible, setTooltipVisible] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const hideTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const showTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const cardImageUrl = getCardArtCropUrl(card.url, chineseCard?.id);
 
@@ -32,14 +35,72 @@ export function CardNameCell({ card, expansion }: CardNameCellProps) {
     }
     return () => {
       document.body.style.overflow = 'unset';
+      if (hideTimeoutRef.current) {
+        clearTimeout(hideTimeoutRef.current);
+      }
+      if (showTimeoutRef.current) {
+        clearTimeout(showTimeoutRef.current);
+      }
     };
   }, [isMobile, tooltipVisible]);
 
-  const handleMouseEnter = () => !isMobile && setTooltipVisible(true);
-  const handleMouseLeave = () => !isMobile && setTooltipVisible(false);
+  const handleMouseEnter = () => {
+    if (!isMobile) {
+      // 清除可能存在的隐藏计时器
+      if (hideTimeoutRef.current) {
+        clearTimeout(hideTimeoutRef.current);
+        hideTimeoutRef.current = null;
+      }
+      
+      // 如果tooltip已经显示，不需要延迟
+      if (tooltipVisible) {
+        return;
+      }
+      
+      // 延迟300ms显示，避免快速扫过时弹出
+      showTimeoutRef.current = setTimeout(() => {
+        setTooltipVisible(true);
+        showTimeoutRef.current = null;
+      }, 300);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (!isMobile) {
+      // 清除显示计时器
+      if (showTimeoutRef.current) {
+        clearTimeout(showTimeoutRef.current);
+        showTimeoutRef.current = null;
+      }
+      
+      // 如果tooltip没有显示，不需要隐藏
+      if (!tooltipVisible) {
+        return;
+      }
+      
+      // 延迟200ms隐藏，给鼠标时间移动到tooltip上
+      hideTimeoutRef.current = setTimeout(() => {
+        setTooltipVisible(false);
+      }, 200);
+    }
+  };
+
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!isMobile) {
       setMousePos({ x: e.clientX, y: e.clientY });
+    }
+  };
+
+  const handleTooltipMouseEnter = () => {
+    if (!isMobile && hideTimeoutRef.current) {
+      clearTimeout(hideTimeoutRef.current);
+      hideTimeoutRef.current = null;
+    }
+  };
+
+  const handleTooltipMouseLeave = () => {
+    if (!isMobile) {
+      setTooltipVisible(false);
     }
   };
 
@@ -53,8 +114,11 @@ export function CardNameCell({ card, expansion }: CardNameCellProps) {
         y: rect.top + window.scrollY 
       });
       setTooltipVisible(!tooltipVisible);
-    } else if (chineseCard?.set && chineseCard?.collector_number) {
-      window.open(`https://mtgch.com/card/${chineseCard.set.toUpperCase()}/${chineseCard.collector_number}?utm_source=shiqidi`, '_blank');
+    } else {
+      const scryfallId = chineseCard?.id || (card.url ? extractScryfallIdFromUrl(card.url) : null);
+      if (scryfallId) {
+        window.open(`https://mtgch.com/result?q=id=${scryfallId}&utm_source=shiqidi`, '_blank');
+      }
     }
   };
 
@@ -88,6 +152,8 @@ export function CardNameCell({ card, expansion }: CardNameCellProps) {
         expansion={expansion}
         isMobile={isMobile}
         onClose={() => setTooltipVisible(false)}
+        onMouseEnter={handleTooltipMouseEnter}
+        onMouseLeave={handleTooltipMouseLeave}
       />
     </div>
   );

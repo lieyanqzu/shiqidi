@@ -39,10 +39,6 @@ export const useCardStore = create<CardStore>((set) => ({
     const chineseCards = { ...state.chineseCards };
     cards.forEach(card => {
       chineseCards[card.name] = card;
-      chineseCards[card.printed_name] = card;
-      if (card.face_name) {
-        chineseCards[card.face_name] = card;
-      }
     });
     return { chineseCards };
   }),

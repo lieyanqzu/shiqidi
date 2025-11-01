@@ -3,10 +3,8 @@ import sealedData from '@/data/sealed_basic_data.json';
 import boosterConfig from '@/data/booster-config.json';
 
 interface CardSearchResult {
-  name: string;
-  zhs_name?: string;
-  atomic_official_name?: string;
-  atomic_translated_name?: string | null;
+  display_name: string;
+  display_name_zh: string;
   set: string;
   collector_number: string;
   id: string;
@@ -102,7 +100,7 @@ async function simulateBoosterPack(boosterData: BoosterData): Promise<Pack> {
     }).join(' or ');
 
     const response = await fetch(
-      `https://mtgch.com/api/v1/result?q=${encodeURIComponent(query)}&page=1&page_size=100&unique=oracle_id&priority_chinese=true`
+      `https://mtgch.com/api/v1/result?q=${encodeURIComponent(query)}&page=1&page_size=100&unique=oracle_id&priority_chinese=true&view=1`
     );
 
     if (!response.ok) {
@@ -137,7 +135,7 @@ async function simulateBoosterPack(boosterData: BoosterData): Promise<Pack> {
           }
           
           const retryResponse = await fetch(
-            `https://mtgch.com/api/v1/result?q=${encodeURIComponent(query)}&page=1&page_size=1&unique=oracle_id&priority_chinese=true`
+            `https://mtgch.com/api/v1/result?q=${encodeURIComponent(query)}&page=1&page_size=1&unique=oracle_id&priority_chinese=true&view=1`
           );
 
           if (!retryResponse.ok) {
@@ -179,8 +177,8 @@ async function simulateBoosterPack(boosterData: BoosterData): Promise<Pack> {
         return;
       }
 
-      card.name = cardInfo.name;
-      card.zhs_name = cardInfo.atomic_official_name || cardInfo.atomic_translated_name || cardInfo.zhs_name || cardInfo.name;
+      card.name = cardInfo.display_name;
+      card.zhs_name = cardInfo.display_name_zh || cardInfo.display_name;
       card.scryfallId = cardInfo.id;
       card.rarity = cardInfo.rarity?.toLowerCase();
     });
