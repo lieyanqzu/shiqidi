@@ -11,22 +11,26 @@ export const GRADE_METRICS = [
   {
     value: 'ever_drawn_win_rate' as GradeMetric,
     label: '在手胜率（起手或抽到）',
-    shortLabel: 'GIH WR'
+    shortLabel: '在手胜率',
+    englishShortLabel: 'GIH WR'
   },
   {
     value: 'opening_hand_win_rate' as GradeMetric,
     label: '起手胜率',
-    shortLabel: 'OH WR'
+    shortLabel: '起手胜率',
+    englishShortLabel: 'OH WR'
   },
   {
     value: 'drawn_win_rate' as GradeMetric,
     label: '抽到胜率（第一回合或之后）',
-    shortLabel: 'GD WR'
+    shortLabel: '抽到胜率',
+    englishShortLabel: 'GD WR'
   },
   {
     value: 'drawn_improvement_win_rate' as GradeMetric,
     label: '在手胜率提升',
-    shortLabel: 'IIH'
+    shortLabel: '在手胜率提升',
+    englishShortLabel: 'IIH'
   }
 ] as const;
 

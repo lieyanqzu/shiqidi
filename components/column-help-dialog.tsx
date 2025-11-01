@@ -145,7 +145,7 @@ export function ColumnHelpDialog() {
                     {columnDescriptions.slice(0, 4).map((col, index) => (
                       <div 
                         key={index}
-                        className="p-3 rounded-md bg-[--background-subtle] hover:bg-[--background-hover] transition-colors"
+                        className="p-3 rounded-md bg-[--background-subtle]"
                       >
                         <div className="flex items-baseline gap-2 mb-1.5">
                           <span className="font-semibold text-[--foreground] text-sm whitespace-nowrap">
@@ -174,7 +174,7 @@ export function ColumnHelpDialog() {
                     {columnDescriptions.slice(4).map((col, index) => (
                       <div 
                         key={index}
-                        className="p-3 rounded-md bg-[--background-subtle] hover:bg-[--background-hover] transition-colors"
+                        className="p-3 rounded-md bg-[--background-subtle]"
                       >
                         <div className="flex items-baseline gap-2 mb-1.5">
                           <span className="font-semibold text-[--foreground] text-sm whitespace-nowrap">
