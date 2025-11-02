@@ -489,15 +489,15 @@ function BannedCardsCarousel({ bans, chineseSetNames }: BannedCardsCarouselProps
   
   // 根据容器高度计算完整图片应该占的宽度百分比
   const getSelectedWidthPercent = () => {
-    if (!containerRef.current) return 75; // 默认值增加到75
+    if (!containerRef.current) return 70; // 默认值70%，最大不超过70%
     
     const containerHeight = containerRef.current.offsetHeight;
     const containerWidth = containerRef.current.offsetWidth;
     const fullImageWidth = containerHeight * CARD_ASPECT_RATIO;
     const widthPercent = (fullImageWidth / containerWidth) * 100;
     
-    // 确保在合理范围内（45%-90%），进一步增加选中卡图宽度
-    return Math.max(45, Math.min(90, widthPercent * 1.4)); // 乘以1.4进一步增加宽度
+    // 确保在合理范围内（45%-70%），最大不超过70%，防止在小尺寸手机上占满
+    return Math.max(45, Math.min(70, widthPercent * 1.4)); // 乘以1.4进一步增加宽度，但最大不超过70%
   };
 
   // 切换到上一张
