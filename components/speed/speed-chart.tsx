@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState, useMemo, useEffect, useRef } from "react";
 import { SpeedFilters } from "./speed-filters";
 import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { useMediaQuery } from "@/hooks/use-media-query";
@@ -106,19 +106,19 @@ const CustomTooltip = ({ active, payload, isMobile, selectedPoint }: CustomToolt
   return null;
 };
 
+// 默认选中的赛制（移到组件外部，避免每次渲染都是新引用）
+const defaultFormats = ['PremierDraft', 'PickTwoDraft', 'QuickDraft', 'Sealed', 'TradDraft', 'TradSealed'];
+
 export function SpeedChart({ initialData }: SpeedChartProps) {
   const isMobile = useMediaQuery("(max-width: 1024px)");
   const [selectedPoint, setSelectedPoint] = useState<SpeedData | null>(null);
   const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
   const [tooltipAlign, setTooltipAlign] = useState<'center' | 'left' | 'right'>('center');
-  
+
   // 获取所有可用的系列
   const allExpansions = useMemo(() => {
     return Array.from(new Set(initialData.map(item => item.expansion))).sort();
   }, [initialData]);
-
-  // 默认选中的赛制
-  const defaultFormats = ['PremierDraft', 'PickTwoDraft', 'QuickDraft', 'Sealed', 'TradDraft', 'TradSealed'];
 
   // 从 localStorage 读取保存的选择
   const loadFromStorage = (key: string, defaultValue: string[], validValues?: string[]): string[] => {
@@ -144,18 +144,11 @@ export function SpeedChart({ initialData }: SpeedChartProps) {
   };
 
   // 初始化状态，从 localStorage 读取或使用默认值
-  const [selectedExpansions, setSelectedExpansions] = useState<string[]>(allExpansions);
-  const [selectedFormats, setSelectedFormats] = useState<string[]>(defaultFormats);
-
-  // 初始化时从 localStorage 加载
-  useEffect(() => {
-    const loadedExpansions = loadFromStorage(STORAGE_KEY_SELECTED_EXPANSIONS, allExpansions, allExpansions);
-    const loadedFormats = loadFromStorage(STORAGE_KEY_SELECTED_FORMATS, defaultFormats, defaultFormats);
-    
-    setSelectedExpansions(loadedExpansions);
-    setSelectedFormats(loadedFormats);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // 只在组件挂载时执行一次
+  const [selectedExpansions, setSelectedExpansions] = useState<string[]>([]);
+  const [selectedFormats, setSelectedFormats] = useState<string[]>([]);
+  const [isInitialized, setIsInitialized] = useState(false);
+  // 用于跟踪上一次的 allExpansions 字符串，避免不必要的更新
+  const prevAllExpansionsStrRef = useRef<string>('');
 
   // 保存到 localStorage
   const saveToStorage = (key: string, value: string[]) => {
@@ -167,29 +160,68 @@ export function SpeedChart({ initialData }: SpeedChartProps) {
     }
   };
 
-  // 当选择改变时，保存到 localStorage
+  // 初始化时从 localStorage 加载（只执行一次）
   useEffect(() => {
+    if (allExpansions.length === 0 || isInitialized) return; // 等待 allExpansions 准备好，且只初始化一次
+    
+    const loadedExpansions = loadFromStorage(STORAGE_KEY_SELECTED_EXPANSIONS, allExpansions, allExpansions);
+    const loadedFormats = loadFromStorage(STORAGE_KEY_SELECTED_FORMATS, defaultFormats, defaultFormats);
+    
+    // 在初始化时，同时设置 ref，避免后续的更新逻辑触发
+    prevAllExpansionsStrRef.current = JSON.stringify(allExpansions);
+    
+    setSelectedExpansions(loadedExpansions);
+    setSelectedFormats(loadedFormats);
+    setIsInitialized(true);
+  }, [allExpansions, isInitialized]);
+
+  // 当选择改变时，保存到 localStorage（只在初始化完成后保存）
+  useEffect(() => {
+    if (!isInitialized) return;
+    // 只要初始化完成，就保存用户的选择（包括空数组）
     saveToStorage(STORAGE_KEY_SELECTED_EXPANSIONS, selectedExpansions);
-  }, [selectedExpansions]);
+  }, [selectedExpansions, isInitialized]);
 
   useEffect(() => {
+    if (!isInitialized) return;
+    // 移除 length === 0 的检查，允许保存空数组
     saveToStorage(STORAGE_KEY_SELECTED_FORMATS, selectedFormats);
-  }, [selectedFormats]);
+  }, [selectedFormats, isInitialized]);
 
   // 当所有系列列表更新时，更新选中状态（处理新系列添加的情况）
+  // 只在初始化完成后执行，避免覆盖 localStorage 加载的值
   useEffect(() => {
+    if (!isInitialized || allExpansions.length === 0) return;
+    
+    // 检查 allExpansions 是否真的变化了（通过字符串比较）
+    const currentAllExpansionsStr = JSON.stringify(allExpansions);
+    if (currentAllExpansionsStr === prevAllExpansionsStrRef.current) {
+      // 没有变化，不执行更新
+      return;
+    }
+    
+    // 更新 ref
+    prevAllExpansionsStrRef.current = currentAllExpansionsStr;
+    
     // 如果有新的系列，添加到选中列表中
     setSelectedExpansions(prev => {
+      if (prev.length === 0) return prev; // 如果还没初始化完成，不执行
+      
       const newExpansions = allExpansions.filter(exp => !prev.includes(exp));
       if (newExpansions.length > 0) {
+        // 有新系列，添加到选中列表
         return [...prev, ...newExpansions];
       } else {
-        // 移除不再存在的系列
+        // 移除不再存在的系列，但保持其他选择不变
         const validExpansions = prev.filter(exp => allExpansions.includes(exp));
-        return validExpansions.length > 0 ? validExpansions : allExpansions;
+        // 只有当有无效系列被移除时才更新，否则保持原样
+        if (validExpansions.length !== prev.length) {
+          return validExpansions.length > 0 ? validExpansions : allExpansions;
+        }
+        return prev; // 没有变化，保持原样
       }
     });
-  }, [allExpansions]);
+  }, [allExpansions, isInitialized]);
 
   // 根据选择的系列和赛制筛选数据
   const filteredSpeedData = useMemo(() => {
