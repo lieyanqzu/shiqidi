@@ -2,10 +2,10 @@
 
 import { useState, useMemo, useCallback, useEffect, ReactNode } from 'react';
 import { Table } from "@/components/ui/table";
-import { CardTableColumns } from "@/components/card-table-columns";
-import { CardNameCell } from "@/components/card-name-cell";
-import { StatCell } from "@/components/stat-cell";
-import { ManaSymbols } from "@/components/mana-symbols";
+import { CardTableColumns } from "@/components/card/card-table-columns";
+import { CardNameCell } from "@/components/card/card-name-cell";
+import { StatCell } from "@/components/card/stat-cell";
+import { ManaSymbols } from "@/components/mana/mana-symbols";
 import { calculateStats } from "@/lib/stats";
 import type { CardData } from "@/types/card";
 

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { AbilityTooltip } from './ability-tooltip';
+import { AbilityTooltip } from '@/components/common/ability-tooltip';
 
 interface ManaTextProps {
   text: string;

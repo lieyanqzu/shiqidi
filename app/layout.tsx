@@ -5,7 +5,7 @@ import 'mana-font/css/mana.css';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { Metadata } from 'next';
-import { AnalyticsTracker } from '@/components/analytics-tracker';
+import { AnalyticsTracker } from '@/components/common/analytics-tracker';
 
 export const metadata: Metadata = {
   title: {

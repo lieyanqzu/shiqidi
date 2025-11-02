@@ -4,7 +4,43 @@ import type { CardData } from "@/types/card";
 export type Grade = 'A+' | 'A' | 'A-' | 'B+' | 'B' | 'B-' | 'C+' | 'C' | 'C-' | 'D+' | 'D' | 'D-' | 'F' | '-';
 
 // 评分指标类型
-export type GradeMetric = 'ever_drawn_win_rate' | 'opening_hand_win_rate' | 'drawn_win_rate' | 'drawn_improvement_win_rate';
+export type GradeMetric = 'ever_drawn_win_rate' | 'opening_hand_win_rate' | 'drawn_win_rate' | 'drawn_improvement_win_rate' | 'custom';
+
+// 自定义指标配置
+export interface CustomMetricConfig {
+  formula: string;              // 计算公式，例如 "win_rate * 0.7 + play_rate * 0.3"
+  stdDevPerHalfGrade: number;    // 每个半级的标准差间隔，默认 0.33
+}
+
+// 获取默认的自定义指标配置
+export function getDefaultCustomMetricConfig(): CustomMetricConfig {
+  return {
+    formula: 'ever_drawn_win_rate',
+    stdDevPerHalfGrade: 0.33
+  };
+}
+
+// 从 localStorage 加载自定义指标配置
+export function loadCustomMetricConfig(): CustomMetricConfig | null {
+  try {
+    const saved = localStorage.getItem('customMetricConfig');
+    if (saved) {
+      return JSON.parse(saved);
+    }
+  } catch (e) {
+    console.error('Failed to load custom metric config:', e);
+  }
+  return null;
+}
+
+// 保存自定义指标配置到 localStorage
+export function saveCustomMetricConfig(config: CustomMetricConfig): void {
+  try {
+    localStorage.setItem('customMetricConfig', JSON.stringify(config));
+  } catch (e) {
+    console.error('Failed to save custom metric config:', e);
+  }
+}
 
 // 评分指标选项
 export const GRADE_METRICS = [
@@ -31,6 +67,12 @@ export const GRADE_METRICS = [
     label: '在手胜率提升',
     shortLabel: '在手胜率提升',
     englishShortLabel: 'IIH'
+  },
+  {
+    value: 'custom' as GradeMetric,
+    label: '自定义指标',
+    shortLabel: '自定义',
+    englishShortLabel: 'Custom'
   }
 ] as const;
 
@@ -68,13 +110,38 @@ function calculateStats(values: number[]): { mean: number; stdDev: number } {
 }
 
 // 根据标准差获取评分
-function getGradeFromStdDev(stdDevFromMean: number): Grade {
-  for (const threshold of GRADE_THRESHOLDS) {
+function getGradeFromStdDev(stdDevFromMean: number, stdDevPerHalfGrade: number = 0.33): Grade {
+  // 计算自定义阈值或使用默认阈值
+  const thresholds = generateGradeThresholds(stdDevPerHalfGrade);
+  
+  for (const threshold of thresholds) {
     if (stdDevFromMean >= threshold.minStdDev) {
       return threshold.grade;
     }
   }
   return 'F';
+}
+
+// 生成评分阈值（基于标准差间隔）
+function generateGradeThresholds(stdDevPerHalfGrade: number): Array<{ grade: Grade; minStdDev: number }> {
+  const centerOffset = stdDevPerHalfGrade / 2;  // C 等级的中心偏移（0.165 for 0.33）
+  
+  return [
+    { grade: 'A+' as Grade, minStdDev: centerOffset + stdDevPerHalfGrade * 6 },     // 0.165 + 0.33 * 6 = 2.145
+    { grade: 'A' as Grade, minStdDev: centerOffset + stdDevPerHalfGrade * 5 },      // 0.165 + 0.33 * 5 = 1.815
+    { grade: 'A-' as Grade, minStdDev: centerOffset + stdDevPerHalfGrade * 4 },     // 0.165 + 0.33 * 4 = 1.485
+    { grade: 'B+' as Grade, minStdDev: centerOffset + stdDevPerHalfGrade * 3 },     // 0.165 + 0.33 * 3 = 1.155
+    { grade: 'B' as Grade, minStdDev: centerOffset + stdDevPerHalfGrade * 2 },       // 0.165 + 0.33 * 2 = 0.825
+    { grade: 'B-' as Grade, minStdDev: centerOffset + stdDevPerHalfGrade * 1 },      // 0.165 + 0.33 * 1 = 0.495
+    { grade: 'C+' as Grade, minStdDev: centerOffset },                               // 0.165
+    { grade: 'C' as Grade, minStdDev: -centerOffset },                               // -0.165
+    { grade: 'C-' as Grade, minStdDev: -(centerOffset + stdDevPerHalfGrade * 1) },    // -0.495
+    { grade: 'D+' as Grade, minStdDev: -(centerOffset + stdDevPerHalfGrade * 2) },   // -0.825
+    { grade: 'D' as Grade, minStdDev: -(centerOffset + stdDevPerHalfGrade * 3) },   // -1.155
+    { grade: 'D-' as Grade, minStdDev: -(centerOffset + stdDevPerHalfGrade * 4) },   // -1.485
+    { grade: 'F' as Grade, minStdDev: -Infinity },
+    { grade: '-' as Grade, minStdDev: -Infinity },
+  ];
 }
 
 // 为所有卡牌计算评分
@@ -85,19 +152,142 @@ export interface CardWithGrade extends CardData {
   hasData: boolean;
 }
 
+// 解析公式并计算自定义指标值
+// 支持的字段：win_rate, play_rate, avg_seen, avg_pick, opening_hand_win_rate 等
+export function evaluateCustomFormula(formula: string, card: CardData): number | null {
+  try {
+    // 定义所有可用字段及其在卡牌数据中的对应关系
+    const fieldMap: Record<string, keyof CardData> = {
+      win_rate: 'win_rate',
+      play_rate: 'play_rate',
+      avg_seen: 'avg_seen',
+      avg_pick: 'avg_pick',
+      opening_hand_win_rate: 'opening_hand_win_rate',
+      drawn_win_rate: 'drawn_win_rate',
+      ever_drawn_win_rate: 'ever_drawn_win_rate',
+      never_drawn_win_rate: 'never_drawn_win_rate',
+      drawn_improvement_win_rate: 'drawn_improvement_win_rate',
+      seen_count: 'seen_count',
+      pick_count: 'pick_count',
+      game_count: 'game_count',
+      opening_hand_game_count: 'opening_hand_game_count',
+      drawn_game_count: 'drawn_game_count',
+      ever_drawn_game_count: 'ever_drawn_game_count',
+      never_drawn_game_count: 'never_drawn_game_count',
+    };
+
+    // 创建计算上下文和原始数据映射
+    const context: Record<string, number> = {};
+    const rawData: Record<string, number | undefined> = {};
+
+    Object.keys(fieldMap).forEach(key => {
+      const cardKey = fieldMap[key];
+      const rawValue = card[cardKey];
+      // 只处理数字类型的值
+      if (typeof rawValue === 'number') {
+        rawData[key] = rawValue;
+        context[key] = (!isNaN(rawValue) && isFinite(rawValue)) ? rawValue : 0;
+      } else {
+        rawData[key] = undefined;
+        context[key] = 0;
+      }
+    });
+
+    // 如果公式是单个字段名，直接返回该值
+    const trimmedFormula = formula.trim();
+    if (fieldMap.hasOwnProperty(trimmedFormula)) {
+      const rawValue = rawData[trimmedFormula];
+      if (rawValue === undefined || rawValue === null || isNaN(rawValue) || !isFinite(rawValue)) {
+        return null;
+      }
+      return rawValue;
+    }
+
+    // 提取公式中使用的所有变量名
+    const usedVariables = new Set<string>();
+    Object.keys(fieldMap).forEach(key => {
+      const regex = new RegExp(`\\b${key}\\b`, 'g');
+      if (regex.test(trimmedFormula)) {
+        usedVariables.add(key);
+      }
+    });
+
+    // 检查所有使用的变量是否都有有效数据
+    for (const varName of usedVariables) {
+      const rawValue = rawData[varName];
+      if (rawValue === undefined || rawValue === null || isNaN(rawValue) || !isFinite(rawValue)) {
+        // 如果任何变量缺失数据，返回 null
+        return null;
+      }
+    }
+
+    // 替换变量名和运算符
+    let expression = trimmedFormula;
+    
+    // 先替换幂运算符 ^ 为 Math.pow
+    expression = expression.replace(/\^/g, '**');
+    
+    // 然后替换变量名
+    Object.keys(context).forEach(key => {
+      const regex = new RegExp(`\\b${key}\\b`, 'g');
+      expression = expression.replace(regex, `context.${key}`);
+    });
+
+    // 使用 Function 构造函数安全地计算表达式
+    // 注意：** 是 JavaScript 的幂运算符（ES2016）
+    const func = new Function('context', `return ${expression}`);
+    const result = func(context);
+
+    // 检查结果是否有效
+    if (typeof result !== 'number' || !isFinite(result) || isNaN(result)) {
+      return null;
+    }
+
+    return result;
+  } catch (error) {
+    console.error('Error evaluating custom formula:', error);
+    return null;
+  }
+}
+
 export function calculateGrades(
   cards: CardData[],
-  metric: GradeMetric
+  metric: GradeMetric,
+  customConfig?: CustomMetricConfig
 ): CardWithGrade[] {
-  // 分离有数据和无数据的卡牌
-  const validCards = cards.filter(card => {
-    const value = card[metric];
-    return value !== undefined && value !== null && !isNaN(value);
-  });
+  // 如果是自定义指标，使用自定义配置
+  const config = metric === 'custom' 
+    ? (customConfig || loadCustomMetricConfig() || getDefaultCustomMetricConfig())
+    : null;
 
-  const noDataCards = cards.filter(card => {
-    const value = card[metric];
-    return value === undefined || value === null || isNaN(value);
+  const stdDevPerHalfGrade = config?.stdDevPerHalfGrade ?? 0.33;
+
+  // 分离有数据和无数据的卡牌
+  const validCards: CardData[] = [];
+  const noDataCards: CardData[] = [];
+
+  cards.forEach(card => {
+    let value: number | null = null;
+    
+    if (metric === 'custom' && config) {
+      // 使用自定义公式计算
+      value = evaluateCustomFormula(config.formula, card);
+    } else {
+      // 使用标准指标
+      const metricKey = metric as keyof CardData;
+      const rawValue = card[metricKey];
+      if (typeof rawValue === 'number' && !isNaN(rawValue)) {
+        value = rawValue;
+      } else {
+        value = null;
+      }
+    }
+
+    if (value !== null && isFinite(value) && !isNaN(value)) {
+      validCards.push(card);
+    } else {
+      noDataCards.push(card);
+    }
   });
 
   const cardsWithGrades: CardWithGrade[] = [];
@@ -105,16 +295,33 @@ export function calculateGrades(
   // 处理有数据的卡牌
   if (validCards.length > 0) {
     // 提取指标值
-    const values = validCards.map(card => card[metric] as number);
+    const values = validCards.map(card => {
+      if (metric === 'custom' && config) {
+        return evaluateCustomFormula(config.formula, card) ?? 0;
+      } else {
+        const metricKey = metric as keyof CardData;
+        const rawValue = card[metricKey];
+        return typeof rawValue === 'number' ? rawValue : 0;
+      }
+    });
 
     // 计算统计数据
     const { mean, stdDev } = calculateStats(values);
 
     // 为每张卡分配评分
     validCards.forEach(card => {
-      const metricValue = card[metric] as number;
+      let metricValue: number;
+      
+      if (metric === 'custom' && config) {
+        metricValue = evaluateCustomFormula(config.formula, card) ?? 0;
+      } else {
+        const metricKey = metric as keyof CardData;
+        const rawValue = card[metricKey];
+        metricValue = typeof rawValue === 'number' ? rawValue : 0;
+      }
+
       const stdDevFromMean = stdDev > 0 ? (metricValue - mean) / stdDev : 0;
-      const grade = getGradeFromStdDev(stdDevFromMean);
+      const grade = getGradeFromStdDev(stdDevFromMean, stdDevPerHalfGrade);
 
       cardsWithGrades.push({
         ...card,
@@ -147,11 +354,12 @@ export interface GradeGroup {
   cards: CardWithGrade[];
 }
 
-export function groupCardsByGrade(cards: CardWithGrade[]): GradeGroup[] {
+export function groupCardsByGrade(cards: CardWithGrade[], stdDevPerHalfGrade: number = 0.33): GradeGroup[] {
   const gradeMap = new Map<Grade, CardWithGrade[]>();
+  const thresholds = generateGradeThresholds(stdDevPerHalfGrade);
 
   // 初始化所有评分组
-  GRADE_THRESHOLDS.forEach(({ grade }) => {
+  thresholds.forEach(({ grade }) => {
     gradeMap.set(grade, []);
   });
 

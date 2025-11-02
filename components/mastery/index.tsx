@@ -67,14 +67,104 @@ export function MasteryCalculator() {
 
   // 处理日期变化
   const handleDateChange = (field: 'currentDate' | 'endDate', value: string) => {
+    // 验证日期格式是否完整（YYYY-MM-DD格式）
+    const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+    if (value && !dateRegex.test(value)) {
+      // 如果日期格式不完整，不更新状态
+      return;
+    }
+
     setValues(prev => {
       const newValues = {
         ...prev,
-        [field]: value,
+        [field]: value || prev[field], // 如果为空，保持原值
       };
-      // 更新剩余天数
-      newValues.daysLeft = calculateDaysLeft(newValues.currentDate, newValues.endDate);
+      
+      // 只有在两个日期都有效时才更新剩余天数
+      if (newValues.currentDate && newValues.endDate) {
+        try {
+          const currentDateValid = parseISO(newValues.currentDate);
+          const endDateValid = parseISO(newValues.endDate);
+          if (isValid(currentDateValid) && isValid(endDateValid)) {
+            newValues.daysLeft = calculateDaysLeft(newValues.currentDate, newValues.endDate);
+          }
+        } catch (error) {
+          // 日期解析失败时，不更新剩余天数
+          console.warn('Date parsing failed:', error);
+        }
+      }
+      
       return newValues;
+    });
+  };
+
+  // 处理日期输入框失焦
+  const handleDateBlur = (field: 'currentDate' | 'endDate') => {
+    setValues(prev => {
+      const value = prev[field];
+      if (!value) {
+        // 如果日期为空，恢复为默认值
+        if (field === 'currentDate') {
+          const defaultDate = new Date().toISOString().split('T')[0];
+          const newValues = {
+            ...prev,
+            currentDate: defaultDate,
+          };
+          newValues.daysLeft = calculateDaysLeft(newValues.currentDate, newValues.endDate);
+          return newValues;
+        } else if (field === 'endDate') {
+          const newValues = {
+            ...prev,
+            endDate: masteryConfig.endDate,
+          };
+          newValues.daysLeft = calculateDaysLeft(newValues.currentDate, newValues.endDate);
+          return newValues;
+        }
+      }
+      
+      // 验证日期是否有效
+      try {
+        const dateValid = parseISO(value);
+        if (!isValid(dateValid)) {
+          // 如果日期无效，恢复为默认值
+          if (field === 'currentDate') {
+            const defaultDate = new Date().toISOString().split('T')[0];
+            const newValues = {
+              ...prev,
+              currentDate: defaultDate,
+            };
+            newValues.daysLeft = calculateDaysLeft(newValues.currentDate, newValues.endDate);
+            return newValues;
+          } else if (field === 'endDate') {
+            const newValues = {
+              ...prev,
+              endDate: masteryConfig.endDate,
+            };
+            newValues.daysLeft = calculateDaysLeft(newValues.currentDate, newValues.endDate);
+            return newValues;
+          }
+        }
+      } catch (error) {
+        // 日期解析失败，恢复为默认值
+        if (field === 'currentDate') {
+          const defaultDate = new Date().toISOString().split('T')[0];
+          const newValues = {
+            ...prev,
+            currentDate: defaultDate,
+          };
+          newValues.daysLeft = calculateDaysLeft(newValues.currentDate, newValues.endDate);
+          return newValues;
+        } else if (field === 'endDate') {
+          const newValues = {
+            ...prev,
+            endDate: masteryConfig.endDate,
+          };
+          newValues.daysLeft = calculateDaysLeft(newValues.currentDate, newValues.endDate);
+          return newValues;
+        }
+      }
+      
+      return prev;
     });
   };
 
@@ -121,6 +211,7 @@ export function MasteryCalculator() {
               type="date"
               value={values.currentDate}
               onChange={(e) => handleDateChange('currentDate', e.target.value)}
+              onBlur={() => handleDateBlur('currentDate')}
               min={masteryConfig.startDate}
               max={values.endDate}
               className="bg-[--input] font-mono text-center"
@@ -133,6 +224,7 @@ export function MasteryCalculator() {
               type="date"
               value={values.endDate}
               onChange={(e) => handleDateChange('endDate', e.target.value)}
+              onBlur={() => handleDateBlur('endDate')}
               min={values.currentDate}
               max={masteryConfig.endDate}
               className="bg-[--input] font-mono text-center"
@@ -141,32 +233,23 @@ export function MasteryCalculator() {
 
           <div className="space-y-1.5">
             <Label className="text-base font-medium">剩余天数</Label>
-            <Input
-              type="text"
-              value={values.daysLeft}
-              readOnly
-              className="bg-[--input] font-mono text-center text-lg"
-            />
+            <div className="bg-[--background-subtle] border-2 border-dashed border-[--border] rounded-md px-4 py-2 font-mono text-center text-lg text-[--foreground] cursor-not-allowed opacity-75">
+              {values.daysLeft}
+            </div>
           </div>
 
           <div className="space-y-1.5">
             <Label className="text-base font-medium">最高等级</Label>
-            <Input
-              type="text"
-              value={values.maxLevel}
-              readOnly
-              className="bg-[--input] font-mono text-center text-lg"
-            />
+            <div className="bg-[--background-subtle] border-2 border-dashed border-[--border] rounded-md px-4 py-2 font-mono text-center text-lg text-[--foreground] cursor-not-allowed opacity-75">
+              {values.maxLevel}
+            </div>
           </div>
 
           <div className="space-y-1.5">
             <Label className="text-base font-medium">预期等级</Label>
-            <Input
-              type="text"
-              value={expectedLevel}
-              readOnly
-              className="bg-[--input] font-mono text-center text-lg"
-            />
+            <div className="bg-[--background-subtle] border-2 border-dashed border-[--border] rounded-md px-4 py-2 font-mono text-center text-lg text-[--foreground] cursor-not-allowed opacity-75">
+              {expectedLevel}
+            </div>
           </div>
         </div>
       </InfoCard>
@@ -181,12 +264,9 @@ export function MasteryCalculator() {
                 <div className="text-sm text-gray-500 mb-2">
                   包含当前等级经验、额外经验和未完成任务经验
                 </div>
-                <Input
-                  type="text"
-                  value={calculateCurrentXP(values).toLocaleString()}
-                  readOnly
-                  className="bg-[--input] font-mono text-center text-lg"
-                />
+                <div className="bg-[--background-subtle] border-2 border-dashed border-[--border] rounded-md px-4 py-2 font-mono text-center text-lg text-[--foreground] cursor-not-allowed opacity-75">
+                  {calculateCurrentXP(values).toLocaleString()}
+                </div>
               </div>
             </div>
 
@@ -270,12 +350,9 @@ export function MasteryCalculator() {
                 <div className="text-sm text-gray-500 mb-2">
                   预计可获得的每日胜场总经验
                 </div>
-                <Input
-                  type="text"
-                  value={totalDailyWinXP.toLocaleString()}
-                  readOnly
-                  className="bg-[--input] font-mono text-center text-lg"
-                />
+                <div className="bg-[--background-subtle] border-2 border-dashed border-[--border] rounded-md px-4 py-2 font-mono text-center text-lg text-[--foreground] cursor-not-allowed opacity-75">
+                  {totalDailyWinXP.toLocaleString()}
+                </div>
               </div>
             </div>
 
@@ -302,12 +379,9 @@ export function MasteryCalculator() {
                   <div className="text-sm text-gray-500 mb-2">
                     预计可获得的每日任务总经验
                   </div>
-                  <Input
-                    type="text"
-                    value={totalDailyQuestXP.toLocaleString()}
-                    readOnly
-                    className="bg-[--input] font-mono text-center text-lg"
-                  />
+                  <div className="bg-[--background-subtle] border-2 border-dashed border-[--border] rounded-md px-4 py-2 font-mono text-center text-lg text-[--foreground] cursor-not-allowed opacity-75">
+                    {totalDailyQuestXP.toLocaleString()}
+                  </div>
                 </div>
               </div>
             </div>
@@ -335,12 +409,9 @@ export function MasteryCalculator() {
                   <div className="text-sm text-gray-500 mb-2">
                     预计可获得的每周胜场总经验
                   </div>
-                  <Input
-                    type="text"
-                    value={totalWeeklyWinsXP.toLocaleString()}
-                    readOnly
-                    className="bg-[--input] font-mono text-center text-lg"
-                  />
+                  <div className="bg-[--background-subtle] border-2 border-dashed border-[--border] rounded-md px-4 py-2 font-mono text-center text-lg text-[--foreground] cursor-not-allowed opacity-75">
+                    {totalWeeklyWinsXP.toLocaleString()}
+                  </div>
                 </div>
               </div>
             </div>

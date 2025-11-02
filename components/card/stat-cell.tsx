@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { StatTooltip } from '@/components/stat-tooltip';
+import { StatTooltip } from '@/components/card/stat-tooltip';
 import { ArrowUpRight, ArrowDown, ArrowDownRight, ArrowUp } from 'lucide-react';
 import type { Stats } from '@/lib/stats';
 

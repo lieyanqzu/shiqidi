@@ -1,6 +1,6 @@
 import { CardData } from '@/types/card'
 import { FC, useEffect, useState, useRef, memo, useCallback } from 'react'
-import { ManaSymbols } from '@/components/mana-symbols'
+import { ManaSymbols } from '@/components/mana/mana-symbols'
 import { useCardStore } from "@/lib/store"
 import Image from 'next/image'
 import { getCardFullImageUrl } from '@/lib/card-images'

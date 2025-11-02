@@ -2,8 +2,8 @@
 
 import { useMemo, useState } from 'react';
 import { Button } from "@/components/ui/button";
-import type { Column } from "@/components/card-table";
-import { ColumnHelpDialog } from "@/components/column-help-dialog";
+import type { Column } from "@/components/card/card-table";
+import { ColumnHelpDialog } from "@/components/card/column-help-dialog";
 
 interface CardTableColumnsProps {
   columns: Column[];

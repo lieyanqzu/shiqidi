@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { useState, useEffect, Fragment } from 'react';
 import type { PreviewCard } from '@/types/previews';
-import { ManaText } from '@/components/mana-text';
+import { ManaText } from '@/components/mana/mana-text';
 
 interface PreviewCardProps {
   card: PreviewCard;
