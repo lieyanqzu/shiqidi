@@ -76,26 +76,6 @@ export const GRADE_METRICS = [
   }
 ] as const;
 
-// 评分等级映射（基于标准差）
-// 正态分布以 C 为中心（C 本身跨越 0.33 SD，从 -0.165 到 +0.165）
-// 每个半级（如 C 到 C+）代表 0.33 标准差的间隔
-const GRADE_THRESHOLDS = [
-  { grade: 'A+' as Grade, minStdDev: 2.145 },     // > 2.145 SD
-  { grade: 'A' as Grade, minStdDev: 1.815 },      // 1.815 - 2.145 SD
-  { grade: 'A-' as Grade, minStdDev: 1.485 },     // 1.485 - 1.815 SD
-  { grade: 'B+' as Grade, minStdDev: 1.155 },     // 1.155 - 1.485 SD
-  { grade: 'B' as Grade, minStdDev: 0.825 },      // 0.825 - 1.155 SD
-  { grade: 'B-' as Grade, minStdDev: 0.495 },     // 0.495 - 0.825 SD
-  { grade: 'C+' as Grade, minStdDev: 0.165 },     // 0.165 - 0.495 SD
-  { grade: 'C' as Grade, minStdDev: -0.165 },     // -0.165 - 0.165 SD (均值 0 在此)
-  { grade: 'C-' as Grade, minStdDev: -0.495 },    // -0.495 - -0.165 SD
-  { grade: 'D+' as Grade, minStdDev: -0.825 },    // -0.825 - -0.495 SD
-  { grade: 'D' as Grade, minStdDev: -1.155 },     // -1.155 - -0.825 SD
-  { grade: 'D-' as Grade, minStdDev: -1.485 },    // -1.485 - -1.155 SD
-  { grade: 'F' as Grade, minStdDev: -Infinity },  // < -1.485 SD
-  { grade: '-' as Grade, minStdDev: -Infinity },  // No data
-];
-
 // 计算标准差和均值
 function calculateStats(values: number[]): { mean: number; stdDev: number } {
   if (values.length === 0) {

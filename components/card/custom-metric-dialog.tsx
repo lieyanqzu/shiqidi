@@ -206,7 +206,7 @@ export function CustomMetricDialog({
                       </li>
                       <li className="flex items-start gap-1.5">
                         <span className="text-[--accent] mt-0.5">•</span>
-                        <span>如果公式中使用的任何参量为空（无数据），则计算结果为空，该卡牌将被标记为"-"等级</span>
+                        <span>如果公式中使用的任何参量为空（无数据），则计算结果为空，该卡牌将被标记为&quot;-&quot;评分</span>
                       </li>
                     </ul>
                   </div>

@@ -144,7 +144,7 @@ export function MasteryCalculator() {
             return newValues;
           }
         }
-      } catch (error) {
+      } catch {
         // 日期解析失败，恢复为默认值
         if (field === 'currentDate') {
           const defaultDate = new Date().toISOString().split('T')[0];
