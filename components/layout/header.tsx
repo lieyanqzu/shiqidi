@@ -1,7 +1,7 @@
 'use client'
 
 import Link from "next/link";
-import { ThemeToggle } from "@/components/theme-toggle";
+import { ThemeToggle } from "@/components/common/theme-toggle";
 import { Github, ChevronDown, ExternalLink, Menu, X, Calendar, Activity, Download } from "lucide-react";
 import { useState, useEffect } from "react";
 import digitalSets from '@/data/digital-sets.json';

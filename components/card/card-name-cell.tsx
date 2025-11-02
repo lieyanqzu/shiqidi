@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useCardStore } from "@/lib/store";
 import type { CardData } from "@/types/card";
-import CardTooltip from '@/components/card-tooltip';
+import CardTooltip from '@/components/card/card-tooltip';
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { getCardArtCropUrl } from '@/lib/card-images';
 import { extractScryfallIdFromUrl } from '@/lib/api';

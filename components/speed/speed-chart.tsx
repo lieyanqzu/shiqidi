@@ -1,10 +1,13 @@
 'use client';
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { SpeedFilters } from "./speed-filters";
 import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { formatLabels } from "@/lib/options";
+
+const STORAGE_KEY_SELECTED_EXPANSIONS = 'speed-chart-selected-expansions';
+const STORAGE_KEY_SELECTED_FORMATS = 'speed-chart-selected-formats';
 
 interface SpeedData {
   expansion: string;
@@ -72,6 +75,11 @@ interface CustomTooltipProps {
   selectedPoint?: SpeedData | null;
 }
 
+// 格式化为一位小数
+const formatToOneDecimal = (value: number): string => {
+  return value.toFixed(1);
+};
+
 const CustomTooltip = ({ active, payload, isMobile, selectedPoint }: CustomTooltipProps) => {
   if ((!isMobile && active && payload?.length) || (isMobile && selectedPoint)) {
     const data = isMobile ? selectedPoint! : payload![0].payload;
@@ -90,7 +98,7 @@ const CustomTooltip = ({ active, payload, isMobile, selectedPoint }: CustomToolt
           先手胜率: {(data.win_rate_on_play * 100).toFixed(1)}%
         </p>
         <p className="text-sm text-[--muted-foreground]">
-          平均回合数: {data.average_game_length.toFixed(1)}
+          平均回合数: {formatToOneDecimal(data.average_game_length)}
         </p>
       </div>
     );
@@ -112,9 +120,76 @@ export function SpeedChart({ initialData }: SpeedChartProps) {
   // 默认选中的赛制
   const defaultFormats = ['PremierDraft', 'PickTwoDraft', 'QuickDraft', 'Sealed', 'TradDraft', 'TradSealed'];
 
-  // 默认选中所有系列和指定赛制
+  // 从 localStorage 读取保存的选择
+  const loadFromStorage = (key: string, defaultValue: string[], validValues?: string[]): string[] => {
+    if (typeof window === 'undefined') return defaultValue;
+    try {
+      const stored = localStorage.getItem(key);
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        // 验证数据有效性，确保所有值都在可用列表中
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          if (validValues) {
+            // 验证值是否在有效列表中
+            const valid = parsed.filter((item: string) => validValues.includes(item));
+            return valid.length > 0 ? valid : defaultValue;
+          }
+          return parsed;
+        }
+      }
+    } catch (e) {
+      console.error(`Failed to load ${key} from localStorage:`, e);
+    }
+    return defaultValue;
+  };
+
+  // 初始化状态，从 localStorage 读取或使用默认值
   const [selectedExpansions, setSelectedExpansions] = useState<string[]>(allExpansions);
   const [selectedFormats, setSelectedFormats] = useState<string[]>(defaultFormats);
+
+  // 初始化时从 localStorage 加载
+  useEffect(() => {
+    const loadedExpansions = loadFromStorage(STORAGE_KEY_SELECTED_EXPANSIONS, allExpansions, allExpansions);
+    const loadedFormats = loadFromStorage(STORAGE_KEY_SELECTED_FORMATS, defaultFormats, defaultFormats);
+    
+    setSelectedExpansions(loadedExpansions);
+    setSelectedFormats(loadedFormats);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // 只在组件挂载时执行一次
+
+  // 保存到 localStorage
+  const saveToStorage = (key: string, value: string[]) => {
+    if (typeof window === 'undefined') return;
+    try {
+      localStorage.setItem(key, JSON.stringify(value));
+    } catch (e) {
+      console.error(`Failed to save ${key} to localStorage:`, e);
+    }
+  };
+
+  // 当选择改变时，保存到 localStorage
+  useEffect(() => {
+    saveToStorage(STORAGE_KEY_SELECTED_EXPANSIONS, selectedExpansions);
+  }, [selectedExpansions]);
+
+  useEffect(() => {
+    saveToStorage(STORAGE_KEY_SELECTED_FORMATS, selectedFormats);
+  }, [selectedFormats]);
+
+  // 当所有系列列表更新时，更新选中状态（处理新系列添加的情况）
+  useEffect(() => {
+    // 如果有新的系列，添加到选中列表中
+    setSelectedExpansions(prev => {
+      const newExpansions = allExpansions.filter(exp => !prev.includes(exp));
+      if (newExpansions.length > 0) {
+        return [...prev, ...newExpansions];
+      } else {
+        // 移除不再存在的系列
+        const validExpansions = prev.filter(exp => allExpansions.includes(exp));
+        return validExpansions.length > 0 ? validExpansions : allExpansions;
+      }
+    });
+  }, [allExpansions]);
 
   // 根据选择的系列和赛制筛选数据
   const filteredSpeedData = useMemo(() => {
@@ -126,6 +201,65 @@ export function SpeedChart({ initialData }: SpeedChartProps) {
     
     return filtered;
   }, [initialData, selectedExpansions, selectedFormats]);
+
+  // 计算数据范围，用于优化图表显示
+  const dataRange = useMemo(() => {
+    if (filteredSpeedData.length === 0) {
+      return {
+        xMin: 0.48,
+        xMax: 0.56,
+        yMin: 6,
+        yMax: 11,
+        xTicks: [],
+        yTicks: [],
+      };
+    }
+
+    const xValues = filteredSpeedData.map(d => d.win_rate_on_play);
+    const yValues = filteredSpeedData.map(d => d.average_game_length);
+    
+    const xMin = Math.min(...xValues);
+    const xMax = Math.max(...xValues);
+    const yMin = Math.min(...yValues);
+    const yMax = Math.max(...yValues);
+    
+    // 添加5%的边距，但不要添加太多空白
+    const xRange = xMax - xMin;
+    const yRange = yMax - yMin;
+    
+    const finalXMin = Math.max(0.47, xMin - xRange * 0.05);
+    const finalXMax = Math.min(0.57, xMax + xRange * 0.05);
+    const finalYMin = Math.max(6, yMin - yRange * 0.05);
+    const finalYMax = Math.min(11, yMax + yRange * 0.05);
+    
+    // 生成更多的刻度点（根据尺寸决定）
+    const xStep = (finalXMax - finalXMin) / (isMobile ? 6 : 10);
+    const yStep = (finalYMax - finalYMin) / (isMobile ? 6 : 8);
+    
+    const xTicks: number[] = [];
+    const yTicks: number[] = [];
+    
+    // 生成X轴刻度
+    for (let i = 0; i <= (isMobile ? 6 : 10); i++) {
+      const tick = finalXMin + i * xStep;
+      xTicks.push(Math.round(tick * 1000) / 1000); // 保留3位小数精度
+    }
+    
+    // 生成Y轴刻度
+    for (let i = 0; i <= (isMobile ? 6 : 8); i++) {
+      const tick = finalYMin + i * yStep;
+      yTicks.push(Math.round(tick * 10) / 10); // 保留1位小数
+    }
+    
+    return {
+      xMin: finalXMin,
+      xMax: finalXMax,
+      yMin: finalYMin,
+      yMax: finalYMax,
+      xTicks,
+      yTicks,
+    };
+  }, [filteredSpeedData, isMobile]);
 
   const handlePointClick = (cx: number, cy: number, data: SpeedData) => {
     if (isMobile) {
@@ -173,7 +307,7 @@ export function SpeedChart({ initialData }: SpeedChartProps) {
           <ResponsiveContainer width="100%" height="100%">
             <ScatterChart
               margin={isMobile 
-                ? { top: 10, right: 5, bottom: 40, left: -20 }
+                ? { top: 10, right: 5, bottom: 40, left: 12 }
                 : { top: 20, right: 20, bottom: 50, left: 50 }
               }
             >
@@ -182,7 +316,8 @@ export function SpeedChart({ initialData }: SpeedChartProps) {
                 type="number"
                 dataKey="win_rate_on_play"
                 name="先手胜率"
-                domain={['auto', 'auto']}
+                domain={[dataRange.xMin, dataRange.xMax]}
+                ticks={dataRange.xTicks}
                 tickFormatter={(value) => `${(value * 100).toFixed(1)}%`}
                 label={{ 
                   value: '先手胜率', 
@@ -199,18 +334,21 @@ export function SpeedChart({ initialData }: SpeedChartProps) {
                 type="number"
                 dataKey="average_game_length"
                 name="平均回合数"
-                domain={['auto', 'auto']}
+                domain={[dataRange.yMin, dataRange.yMax]}
+                ticks={dataRange.yTicks}
+                tickFormatter={(value) => formatToOneDecimal(value)}
                 label={{ 
                   value: '平均回合数', 
                   angle: -90, 
                   position: 'left',
-                  offset: isMobile ? -30 : 30,
+                  offset: isMobile ? 5 : 30,
                   style: { 
                     fill: 'var(--foreground)',
                     fontSize: isMobile ? 12 : 14
                   }
                 }}
                 tick={{ fontSize: isMobile ? 10 : 12 }}
+                width={isMobile ? 40 : 50}
               />
               {!isMobile && <Tooltip content={<CustomTooltip />} />}
               <Scatter 

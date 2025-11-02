@@ -1,11 +1,11 @@
 'use client';
 
-import React from 'react';
-import { useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSetStore } from '@/lib/store';
 import type { Set, Ban } from '@/types/rotation';
 import { parseISO, isValid } from 'date-fns';
 import Image from 'next/image';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface SetGroup {
   exitDate: string | null;
@@ -429,84 +429,274 @@ export function Content({ currentSetGroups, futureSets, recentBans }: Props) {
 
       {/* 标准环境禁牌 */}
       {recentBans.length > 0 && (
-        <section className="mb-8">
-          <h2 className="text-xl font-semibold mb-4">标准环境禁牌</h2>
-          <div className="bg-[--card] rounded-lg p-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              {recentBans.map((ban, index) => (
-                <div key={index} className="border border-[--border] rounded-lg p-4">
-                  <div className="flex flex-row items-start gap-4">
-                    {ban.card_image_url && (
-                      <div className="flex-shrink-0 w-20 sm:w-28">
-                        {ban.set_code && ban.set_code.includes(':') ? (
-                          <a 
-                            href={`https://mtgch.com/card/${ban.set_code.split(':')[0]}/${ban.set_code.split(':')[1]}?utm_source=shiqidi`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <Image
-                              src={ban.card_image_url}
-                              alt={ban.card_name}
-                              width={320}
-                              height={448}
-                              className="w-full h-auto rounded-lg shadow-md hover:shadow-lg transition-shadow"
-                              loading="lazy"
-                            />
-                          </a>
-                        ) : (
-                          <Image
-                            src={ban.card_image_url}
-                            alt={ban.card_name}
-                            width={320}
-                            height={448}
-                            className="w-full h-auto rounded-lg shadow-md hover:shadow-lg transition-shadow"
-                            loading="lazy"
-                          />
-                        )}
-                      </div>
-                    )}
-                    <div className="flex-grow">
-                      <div className="flex items-start justify-between">
-                        <div>
-                          <h3 className="font-medium text-[--foreground]">
-                            {ban.set_code && ban.set_code.includes(':') ? (
-                              <a 
-                                href={`https://mtgch.com/card/${ban.set_code.split(':')[0]}/${ban.set_code.split(':')[1]}?utm_source=shiqidi`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="hover:underline"
-                              >
-                                {ban.card_name}
-                              </a>
-                            ) : (
-                              ban.card_name
-                            )}
-                          </h3>
-                          <div className="text-sm text-[--muted-foreground] mt-1 flex items-center gap-1.5">
-                            <i className={`ss ss-${ban.set_code.split(':')[0].toLowerCase()} ss-fw`} />
-                            <span>{chineseSetNames[ban.set_code.split(':')[0]] || ban.set_code.split(':')[0]}</span>
-                          </div>
-                        </div>
-                        {ban.announcement_url && (
-                          <a
-                            href={`${ban.announcement_url}${ban.announcement_url.includes('?') ? '&' : '?'}utm_source=shiqidi`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-sm text-[--primary] hover:underline whitespace-nowrap flex-shrink-0 min-w-[3rem] text-center"
-                          >
-                            公告
-                          </a>
-                        )}
-                      </div>
-                      <p className="text-sm text-[--muted-foreground] mt-3">{ban.reason}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <BannedCardsCarousel bans={recentBans} chineseSetNames={chineseSetNames} />
       )}
     </div>
+  );
+}
+
+// 禁牌滑动窗口组件
+interface BannedCardsCarouselProps {
+  bans: Ban[];
+  chineseSetNames: Record<string, string>;
+}
+
+function BannedCardsCarousel({ bans, chineseSetNames }: BannedCardsCarouselProps) {
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [progress, setProgress] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const progressIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const AUTO_SWITCH_INTERVAL = 5000; // 5秒自动切换
+  const PROGRESS_UPDATE_INTERVAL = 50; // 进度条更新间隔（50ms，100次更新完成5秒）
+
+  // 进度条更新和自动切换
+  useEffect(() => {
+    if (bans.length <= 1) return;
+
+    // 重置进度
+    setProgress(0);
+
+    // 进度条更新
+    progressIntervalRef.current = setInterval(() => {
+      setProgress((prev) => {
+        const newProgress = prev + (100 / (AUTO_SWITCH_INTERVAL / PROGRESS_UPDATE_INTERVAL));
+        if (newProgress >= 100) {
+          // 进度到100%时切换到下一张
+          setSelectedIndex((prevIndex) => (prevIndex + 1) % bans.length);
+          return 0; // 重置进度
+        }
+        return newProgress;
+      });
+    }, PROGRESS_UPDATE_INTERVAL);
+
+    return () => {
+      if (progressIntervalRef.current) {
+        clearInterval(progressIntervalRef.current);
+      }
+    };
+  }, [bans.length, selectedIndex]);
+
+  // 当选中索引改变时，重置进度
+  useEffect(() => {
+    setProgress(0);
+  }, [selectedIndex]);
+
+  const selectedBan = bans[selectedIndex];
+  const setCode = selectedBan.set_code.includes(':') ? selectedBan.set_code.split(':')[0] : selectedBan.set_code;
+
+  // 卡牌图片宽高比（320:448，约0.714）
+  const CARD_ASPECT_RATIO = 320 / 448;
+  
+  // 根据容器高度计算完整图片应该占的宽度百分比
+  const getSelectedWidthPercent = () => {
+    if (!containerRef.current) return 75; // 默认值增加到75
+    
+    const containerHeight = containerRef.current.offsetHeight;
+    const containerWidth = containerRef.current.offsetWidth;
+    const fullImageWidth = containerHeight * CARD_ASPECT_RATIO;
+    const widthPercent = (fullImageWidth / containerWidth) * 100;
+    
+    // 确保在合理范围内（45%-90%），进一步增加选中卡图宽度
+    return Math.max(45, Math.min(90, widthPercent * 1.4)); // 乘以1.4进一步增加宽度
+  };
+
+  // 切换到上一张
+  const handlePrev = () => {
+    setSelectedIndex((prev) => (prev - 1 + bans.length) % bans.length);
+    setProgress(0);
+  };
+
+  // 切换到下一张
+  const handleNext = () => {
+    setSelectedIndex((prev) => (prev + 1) % bans.length);
+    setProgress(0);
+  };
+
+  return (
+    <section className="mb-8">
+      <h2 className="text-xl font-semibold mb-4">标准环境禁牌</h2>
+      
+      {/* 滑动窗口 - 所有卡图在一个矩形里 */}
+      <div className="bg-[--card] rounded-lg p-4">
+        <div 
+          ref={containerRef}
+          className="relative w-full h-[280px] sm:h-[320px] md:h-[360px] overflow-hidden rounded-lg border-2 border-[--border] bg-black"
+        >
+          {/* 左右切换按钮 */}
+          <button
+            onClick={handlePrev}
+            className="absolute left-2 top-1/2 -translate-y-1/2 z-20 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-colors"
+            aria-label="上一张"
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </button>
+          <button
+            onClick={handleNext}
+            className="absolute right-2 top-1/2 -translate-y-1/2 z-20 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-colors"
+            aria-label="下一张"
+          >
+            <ChevronRight className="h-5 w-5" />
+          </button>
+
+          {bans.map((ban, index) => {
+            const isSelected = index === selectedIndex;
+            
+            // 根据容器高度和图片宽高比计算选中卡图的宽度
+            const selectedWidthPercent = getSelectedWidthPercent();
+            const unselectedWidthPercent = (100 - selectedWidthPercent) / (bans.length - 1);
+            
+            // 计算每个卡图的左侧位置
+            let leftPercent = 0;
+            if (index < selectedIndex) {
+              // 在选中卡图左边的卡图
+              leftPercent = index * unselectedWidthPercent;
+            } else if (index === selectedIndex) {
+              // 选中卡图
+              leftPercent = selectedIndex * unselectedWidthPercent;
+            } else {
+              // 在选中卡图右边的卡图
+              leftPercent = selectedIndex * unselectedWidthPercent + selectedWidthPercent + (index - selectedIndex - 1) * unselectedWidthPercent;
+            }
+            
+            return (
+              <div
+                key={index}
+                onClick={() => {
+                  setSelectedIndex(index);
+                  setProgress(0);
+                }}
+                className="absolute top-0 bottom-0 transition-all duration-500 ease-in-out cursor-pointer overflow-hidden"
+                style={{
+                  left: `${leftPercent}%`,
+                  width: isSelected ? `${selectedWidthPercent}%` : `${unselectedWidthPercent}%`,
+                  zIndex: isSelected ? 10 : 1,
+                  // 让卡图稍微重叠，避免白线
+                  marginRight: index < bans.length - 1 ? '-1px' : '0',
+                }}
+              >
+                {/* 卡牌图片容器 */}
+                <div 
+                  className={`
+                    relative w-full h-full overflow-hidden transition-all duration-500
+                    ${isSelected ? 'brightness-100' : 'brightness-50'}
+                  `}
+                  style={{
+                    // 确保图片覆盖完整，没有间隙
+                    width: 'calc(100% + 2px)',
+                    marginLeft: '-1px',
+                    marginRight: '-1px',
+                  }}
+                >
+                  {ban.card_image_url && (
+                    <Image
+                      src={ban.card_image_url}
+                      alt={ban.card_name}
+                      width={320}
+                      height={448}
+                      className="absolute inset-0 w-full h-full object-cover"
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                      }}
+                      loading="lazy"
+                    />
+                  )}
+                  
+                  {/* 未选中时的暗遮罩 */}
+                  {!isSelected && (
+                    <div className="absolute inset-0 bg-black/60 transition-opacity duration-500" />
+                  )}
+                  
+                  {/* 选中指示器 - 顶部条 */}
+                  {isSelected && (
+                    <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-[--primary] to-[--accent] opacity-90 z-20" />
+                  )}
+                </div>
+              </div>
+            );
+          })}
+          
+          {/* 底部进度条 - 在图片容器内，紧贴边缘 */}
+          <div 
+            className="absolute z-50" 
+            style={{ 
+              bottom: 0,
+              left: 0,
+              right: 0,
+              width: '100%',
+              height: '2px',
+              margin: 0,
+              padding: 0,
+              transform: 'translateZ(0)',
+            }}
+          >
+            <div 
+              className="absolute inset-0 bg-black/50" 
+              style={{ 
+                borderRadius: 0,
+                margin: 0,
+                padding: 0,
+                width: '100%',
+                height: '100%',
+              }}
+            >
+              <div
+                className="absolute inset-y-0 left-0 bg-white transition-all duration-50 ease-linear"
+                style={{
+                  width: `${Math.max(0, Math.min(100, progress))}%`,
+                  borderRadius: 0,
+                  margin: 0,
+                  padding: 0,
+                  height: '100%',
+                }}
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* 选中卡牌的详细信息 */}
+        {selectedBan && (
+          <div className="mt-1 p-4 bg-[--card] rounded-lg border border-[--border]">
+            <div className="flex items-start justify-between gap-4 mb-3">
+              <div className="flex-1">
+                <div className="flex items-center gap-2 mb-2">
+                  <h3 className="text-lg font-semibold text-[--foreground]">
+                    {selectedBan.card_name}
+                  </h3>
+                  {selectedBan.set_code.includes(':') && (
+                    <a
+                      href={`https://mtgch.com/card/${selectedBan.set_code.split(':')[0]}/${selectedBan.set_code.split(':')[1]}?utm_source=shiqidi`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[--muted-foreground] hover:text-[--primary] transition-colors"
+                      aria-label="跳转到卡片详情"
+                    >
+                      <ExternalLinkIcon className="w-4 h-4" />
+                    </a>
+                  )}
+                </div>
+                <div className="flex items-center gap-2 text-sm text-[--muted-foreground]">
+                  <i className={`ss ss-${setCode.toLowerCase()} ss-fw`} />
+                  <span>{chineseSetNames[setCode] || setCode}</span>
+                </div>
+              </div>
+              {selectedBan.announcement_url && (
+                <a
+                  href={`${selectedBan.announcement_url}${selectedBan.announcement_url.includes('?') ? '&' : '?'}utm_source=shiqidi`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-4 py-2 text-sm text-[--primary] hover:text-[--primary-hover] bg-[--primary]/10 hover:bg-[--primary]/20 rounded-md transition-colors whitespace-nowrap flex-shrink-0"
+                >
+                  查看公告
+                </a>
+              )}
+            </div>
+            <div className="mt-3">
+              <p className="text-sm text-[--foreground] leading-relaxed">{selectedBan.reason}</p>
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
   );
 } 

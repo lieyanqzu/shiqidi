@@ -1,16 +1,16 @@
 'use client';
 
 import { useEffect, useMemo, useState, ReactNode } from "react";
-import { CardTable } from "@/components/card-table";
-import { CardGrades } from "@/components/card-grades";
-import { CardFilters } from "@/components/card-filters";
-import { SetSymbol } from "@/components/set-symbol";
+import { CardTable } from "@/components/card/card-table";
+import { CardGrades } from "@/components/card/card-grades";
+import { CardFilters } from "@/components/card/card-filters";
+import { SetSymbol } from "@/components/set/set-symbol";
 import { useCardStore } from "@/lib/store";
 import { fetchCardData, fetchAllChineseCardData } from "@/lib/api";
-import { BackToTop } from "@/components/back-to-top";
-import { type GradeMetric } from "@/lib/grades";
+import { BackToTop } from "@/components/common/back-to-top";
+import { type GradeMetric, type CustomMetricConfig, loadCustomMetricConfig } from "@/lib/grades";
 import { Button } from "@/components/ui/button";
-import { CardGradeMetrics } from "@/components/card-grade-metrics";
+import { CardGradeMetrics } from "@/components/card/card-grade-metrics";
 
 export default function CardsPage() {
   const { 
@@ -30,6 +30,7 @@ export default function CardsPage() {
   const [searchText, setSearchText] = useState<string>("");
   const [viewMode, setViewMode] = useState<'table' | 'grades'>('table');
   const [gradeMetric, setGradeMetric] = useState<GradeMetric>('ever_drawn_win_rate');
+  const [customConfig, setCustomConfig] = useState<CustomMetricConfig | null>(null);
   const [columnControls, setColumnControls] = useState<ReactNode | null>(null);
   const [mounted, setMounted] = useState(false);
 
@@ -149,6 +150,12 @@ export default function CardsPage() {
     if (savedMetric) {
       setGradeMetric(savedMetric);
     }
+
+    // 加载自定义配置
+    const savedCustomConfig = loadCustomMetricConfig();
+    if (savedCustomConfig) {
+      setCustomConfig(savedCustomConfig);
+    }
   }, []);
 
   // 保存视图模式到localStorage
@@ -238,6 +245,7 @@ export default function CardsPage() {
               <CardGradeMetrics
                 selectedMetric={gradeMetric}
                 onMetricChange={setGradeMetric}
+                onCustomConfigChange={setCustomConfig}
               />
             </div>
           )}
@@ -266,6 +274,7 @@ export default function CardsPage() {
           metric={gradeMetric}
           expansion={params.expansion}
           isLoading={isLoading}
+          customConfig={customConfig || undefined}
         />
       )}
       <BackToTop />

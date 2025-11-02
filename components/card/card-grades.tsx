@@ -8,9 +8,10 @@ import {
   type GradeMetric,
   type CardWithGrade,
   type Grade,
+  type CustomMetricConfig,
   GRADE_METRICS
 } from '@/lib/grades';
-import CardTooltip from '@/components/card-tooltip';
+import CardTooltip from '@/components/card/card-tooltip';
 import { useCardStore } from '@/lib/store';
 import { useMediaQuery } from '@/hooks/use-media-query';
 import { getCardArtCropUrl } from '@/lib/card-images';
@@ -22,6 +23,7 @@ interface CardGradesProps {
   metric: GradeMetric;
   expansion: string;
   isLoading?: boolean;
+  customConfig?: CustomMetricConfig;
 }
 
 // 颜色顺序定义
@@ -39,12 +41,12 @@ const COLOR_SYMBOL_CLASS: Record<ColorKey, string> = {
   'C': 'C',  // 无色
 };
 
-export function CardGrades({ data, allCards, metric, expansion, isLoading }: CardGradesProps) {
+export function CardGrades({ data, allCards, metric, expansion, isLoading, customConfig }: CardGradesProps) {
   // 计算评分
   const cardsWithGrades = useMemo(() => {
     const source = allCards && allCards.length > 0 ? allCards : data;
-    return calculateGrades(source, metric);
-  }, [data, allCards, metric]);
+    return calculateGrades(source, metric, customConfig);
+  }, [data, allCards, metric, customConfig]);
 
   const visibleCardsWithGrades = useMemo(() => {
     const visibleNames = new Set(data.map(card => card.name));
@@ -53,10 +55,29 @@ export function CardGrades({ data, allCards, metric, expansion, isLoading }: Car
 
   // 按评分分组
   const gradeGroups = useMemo(() => {
-    return groupCardsByGrade(visibleCardsWithGrades);
-  }, [visibleCardsWithGrades]);
+    const stdDevPerHalfGrade = customConfig?.stdDevPerHalfGrade ?? 0.33;
+    return groupCardsByGrade(visibleCardsWithGrades, stdDevPerHalfGrade);
+  }, [visibleCardsWithGrades, customConfig]);
 
   const metricLabel = GRADE_METRICS.find(m => m.value === metric)?.shortLabel || metric;
+  
+  // 判断是否为胜率指标（需要转换为百分比显示）
+  const isWinRateMetric = useMemo(() => {
+    // 自定义指标永远不显示百分比
+    if (metric === 'custom') {
+      return false;
+    }
+    
+    // 标准胜率指标
+    const winRateMetrics: GradeMetric[] = [
+      'ever_drawn_win_rate',
+      'opening_hand_win_rate',
+      'drawn_win_rate',
+      'drawn_improvement_win_rate'
+    ];
+    
+    return winRateMetrics.includes(metric);
+  }, [metric]);
 
   if (isLoading) {
     return (
@@ -106,6 +127,7 @@ export function CardGrades({ data, allCards, metric, expansion, isLoading }: Car
                 cards={gradeGroup.cards}
                   metricLabel={metricLabel}
                   expansion={expansion}
+                  isWinRateMetric={isWinRateMetric}
                 />
               ))}
             </div>
@@ -121,6 +143,7 @@ export function CardGrades({ data, allCards, metric, expansion, isLoading }: Car
               cards={gradeGroup.cards}
               metricLabel={metricLabel}
               expansion={expansion}
+              isWinRateMetric={isWinRateMetric}
             />
           ))}
         </div>
@@ -134,9 +157,10 @@ interface GradeRowProps {
   cards: CardWithGrade[];
   metricLabel: string;
   expansion: string;
+  isWinRateMetric: boolean;
 }
 
-function GradeRow({ grade, cards, metricLabel, expansion }: GradeRowProps) {
+function GradeRow({ grade, cards, metricLabel, expansion, isWinRateMetric }: GradeRowProps) {
   // 按颜色分组卡牌
   const cardsByColor = useMemo(() => {
     const colorMap: Record<ColorKey, CardWithGrade[]> = {
@@ -192,6 +216,7 @@ function GradeRow({ grade, cards, metricLabel, expansion }: GradeRowProps) {
                 grade={grade}
                 metricLabel={metricLabel}
                 expansion={expansion}
+                isWinRateMetric={isWinRateMetric}
               />
             ))}
           </div>
@@ -206,9 +231,10 @@ interface MobileGradeSectionProps {
   cards: CardWithGrade[];
   metricLabel: string;
   expansion: string;
+  isWinRateMetric: boolean;
 }
 
-function MobileGradeSection({ grade, cards, metricLabel, expansion }: MobileGradeSectionProps) {
+function MobileGradeSection({ grade, cards, metricLabel, expansion, isWinRateMetric }: MobileGradeSectionProps) {
   // 按胜率降序排序所有卡牌
   const sortedCards = useMemo(() => {
     return [...cards].sort((a, b) => b.metricValue - a.metricValue);
@@ -232,6 +258,7 @@ function MobileGradeSection({ grade, cards, metricLabel, expansion }: MobileGrad
             grade={grade}
             metricLabel={metricLabel}
             expansion={expansion}
+            isWinRateMetric={isWinRateMetric}
           />
         ))}
       </div>
@@ -244,16 +271,35 @@ interface CardGradeItemProps {
   grade: Grade;
   metricLabel: string;
   expansion: string;
+  isWinRateMetric: boolean;  // 是否为胜率指标（需要转换为百分比）
 }
 
-function CardGradeItem({ card, metricLabel, expansion }: CardGradeItemProps) {
+function CardGradeItem({ card, metricLabel, expansion, isWinRateMetric }: CardGradeItemProps) {
   const { chineseCards } = useCardStore();
   const [tooltipVisible, setTooltipVisible] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const hideTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const showTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const isMobile = useMediaQuery("(max-width: 1024px)");
-  const winRatePercent = (card.metricValue * 100).toFixed(1);
+  
+  // 根据指标类型格式化显示值
+  const displayValue = useMemo(() => {
+    if (isWinRateMetric) {
+      // 胜率指标：转换为百分比
+      return (card.metricValue * 100).toFixed(1) + '%';
+    } else {
+      // 非胜率指标：直接显示数值，保留适当的小数位
+      if (card.metricValue >= 1000) {
+        return card.metricValue.toFixed(0);
+      } else if (card.metricValue >= 100) {
+        return card.metricValue.toFixed(1);
+      } else if (card.metricValue >= 10) {
+        return card.metricValue.toFixed(2);
+      } else {
+        return card.metricValue.toFixed(3);
+      }
+    }
+  }, [card.metricValue, isWinRateMetric]);
   const rarityStyles: Record<string, { border: string; gradient: string; glow: string }> = {
     mythic: {
       border: 'rgba(191, 68, 39, 0.9)',
@@ -395,7 +441,7 @@ function CardGradeItem({ card, metricLabel, expansion }: CardGradeItemProps) {
           borderLeftWidth: '4px',
           borderLeftStyle: 'solid'
         }}
-        title={card.hasData ? `${metricLabel}: ${winRatePercent}% | Z-Score: ${card.stdDevFromMean.toFixed(2)}` : '无数据'}
+        title={card.hasData ? `${metricLabel}: ${displayValue} | Z-Score: ${card.stdDevFromMean.toFixed(2)}` : '无数据'}
         onMouseEnter={handleMouseEnter}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
@@ -416,7 +462,7 @@ function CardGradeItem({ card, metricLabel, expansion }: CardGradeItemProps) {
               </div>
               {card.hasData && (
                 <div className="flex-shrink-0 flex items-center text-xs font-bold text-white" style={{ height: 'calc(1em * 1.2 + 0.625rem)' }}>
-                  {winRatePercent}%
+                  {displayValue}
                 </div>
               )}
             </div>

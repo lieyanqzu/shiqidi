@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { ManaText } from './mana-text';
+import { ManaText } from '@/components/mana/mana-text';
 
 interface Ability {
   name: string;
