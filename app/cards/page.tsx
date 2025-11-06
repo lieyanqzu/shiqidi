@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState, ReactNode } from "react";
 import { CardTable } from "@/components/card/card-table";
 import { CardGrades } from "@/components/card/card-grades";
 import { CardFilters } from "@/components/card/card-filters";
-import { SetSymbol } from "@/components/set/set-symbol";
+import { SetSymbol } from "@/components/logo/set-symbol";
 import { useCardStore } from "@/lib/store";
 import { fetchCardData, fetchAllChineseCardData } from "@/lib/api";
 import { BackToTop } from "@/components/common/back-to-top";
