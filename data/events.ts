@@ -13,18 +13,11 @@ export interface Event {
 }
 
 export const calendarMetadata: CalendarMetadata = {
-  lastUpdated: '2025/11/03',
-  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-november-3-2025',
+  lastUpdated: '2025/11/10',
+  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-november-10-2025#Events',
 };
 
 const midweekMagicEvents: Event[] = [
-  {
-    type: 'midweek_magic',
-    title: '巧匠争锋',
-    startTime: new Date('2025-11-04T14:00:00-08:00'),
-    endTime: new Date('2025-11-06T14:00:00-08:00'),
-    format: '争锋'
-  },
   {
     type: 'midweek_magic',
     title: '穿越预兆路幻影人机轮抽',
@@ -46,6 +39,13 @@ const midweekMagicEvents: Event[] = [
     endTime: new Date('2025-11-27T14:00:00-08:00'),
     format: '构筑'
   },
+  {
+    type: 'midweek_magic',
+    title: '万智牌丨降世神通：最后的气宗',
+    startTime: new Date('2025-12-02T14:00:00-08:00'),
+    endTime: new Date('2025-12-04T14:00:00-08:00'),
+    format: '构筑(?)'
+  },
 ];
 
 const premierDraftEvents: Event[] = [
@@ -63,13 +63,6 @@ const premierDraftEvents: Event[] = [
     endTime: new Date('2025-11-18T08:00:00-08:00'),
     format: '竞技轮抽 & 三盘轮抽',
     description: '幻影活动，五胜及以上奖励补充包含有至少两张稀有卡牌',
-  },
-  {
-    type: 'premier_draft',
-    title: '光雷驿镖客',
-    startTime: new Date('2025-10-28T08:00:00-07:00'),
-    endTime: new Date('2025-11-04T08:00:00-08:00'),
-    format: '竞技轮抽',
   },
   {
     type: 'premier_draft',
@@ -114,6 +107,13 @@ const quickDraftEvents: Event[] = [
     title: '降世神通：最后的气宗',
     startTime: new Date('2025-11-27T08:00:00-08:00'),
     endTime: new Date('2025-12-09T08:00:00-08:00'),
+    format: '快速轮抽',
+  },
+  {
+    type: 'quick_draft',
+    title: '依夏兰迷窟',
+    startTime: new Date('2025-12-09T08:00:00-08:00'),
+    endTime: new Date('2026-12-15T08:00:00-08:00'),
     format: '快速轮抽',
   }
 ];

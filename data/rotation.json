@@ -578,6 +578,27 @@
       "set_code": "OTJ:74",
       "reason": "因为它能在推进自身游戏计划的同时与永久物互动，尤其与逐风客才能的配合降低了游戏乐趣。",
       "announcement_url": "https://magic.wizards.com/en/news/announcements/banned-and-restricted-june-30-2025"
+    },
+    {
+      "card_name": "比比·奥尼提尔",
+      "card_image_url": "https://cards.scryfall.io/art_crop/front/e/c/ecc1027a-8c07-44a0-bdde-fa2844cff694.jpg",
+      "set_code": "FIN:248",
+      "reason": "与阿加莎的灵魂鼎镬搭配所形成的组合技压制了标准赛环境，提升了伊捷套牌的强度与稳定性，影响环境多样性。",
+      "announcement_url": "https://magic.wizards.com/en/news/announcements/banned-and-restricted-november-10-2025"
+    },
+    {
+      "card_name": "尖鸣宿敌",
+      "card_image_url": "https://cards.scryfall.io/art_crop/front/c/e/ce35e6fb-ff54-44c4-a216-7ddd37f46882.jpg",
+      "set_code": "DSK:157",
+      "reason": "其强力单卡能力削弱了对快攻红套牌的克制，带来过高胜率，不利于赛制平衡和环境健康。",
+      "announcement_url": "https://magic.wizards.com/en/news/announcements/banned-and-restricted-november-10-2025"
+    },
+    {
+      "card_name": "波费的清晰记忆",
+      "card_image_url": "https://cards.scryfall.io/art_crop/front/a/f/af5b29b3-974c-4200-8df8-b072c11e1600.jpg",
+      "set_code": "MKM:67",
+      "reason": "作为牌张优势引擎，几乎无对应手段，助长了顶级套牌强度，抑制了创新和多样性。",
+      "announcement_url": "https://magic.wizards.com/en/news/announcements/banned-and-restricted-november-10-2025"
     }
   ]
 }

@@ -175,11 +175,29 @@ export function KeyruneReplacer() {
     // 初始替换（延迟一点，等 React 渲染完成）
     setTimeout(replaceAll, 100);
     
-    // 使用 MutationObserver 监听新添加的图标
+    // 使用 MutationObserver 监听新添加的图标以及 class 变更（系列切换）
     const observer = new MutationObserver((mutations) => {
       // 使用 requestAnimationFrame 延迟处理，避免与 React 冲突
       requestAnimationFrame(() => {
         mutations.forEach((mutation) => {
+          // 处理 class 变更：当 <i class="ss ss-xxx"> 的系列类变化时，清理并重新替换
+          if (mutation.type === 'attributes' && mutation.target instanceof HTMLElement) {
+            const el = mutation.target as HTMLElement;
+            if ((el.classList.contains('keyrune') || el.classList.contains('ss'))) {
+              // 清理可能存在的跟随 SVG
+              const nextSvg = el.nextElementSibling as HTMLElement | null;
+              if (nextSvg && nextSvg.tagName === 'svg' && (nextSvg.dataset.replaced === 'true' || nextSvg.dataset.setIcon === 'true')) {
+                nextSvg.remove();
+              }
+              // 取消隐藏与标记，使其可以被重新处理
+              el.style.display = '';
+              el.removeAttribute('data-replaced');
+              if (!el.dataset.setIconManaged) {
+                replaceKeyruneIcon(el);
+              }
+            }
+          }
+
           mutation.addedNodes.forEach((node) => {
             if (node instanceof HTMLElement) {
               // 如果新节点是 SetIcon 创建的 SVG，检查前面的兄弟节点是否有 keyrune 图标需要隐藏
@@ -224,6 +242,8 @@ export function KeyruneReplacer() {
     observer.observe(document.body, {
       childList: true,
       subtree: true,
+      attributes: true,
+      attributeFilter: ['class'],
     });
     
     return () => {
