@@ -3,11 +3,11 @@
  */
 export const masteryConfig = {
   // 系列代号
-  setCode: 'OM1',
+  setCode: 'TLA',
   // 当前赛季开始日期（UTC）
-  startDate: '2025-09-23',
+  startDate: '2025-11-18',
   // 当前赛季结束日期（UTC）
-  endDate: '2025-11-18',
+  endDate: '2026-01-20',
   // 最高等级
   maxLevel: 60,
   // 默认每日胜场数
