@@ -20,7 +20,8 @@ interface CardStore {
 const today = new Date().toISOString().split('T')[0];
 
 // 获取默认系列的起始日期
-const defaultExpansion = 'OM1';
+const defaultExpansion = 'TLA';
+const defaultFormat = 'PremierDraft';
 const defaultStartDate = getStartDateForExpansion(defaultExpansion)?.split('T')[0] || '2016-01-01';
 
 export const useCardStore = create<CardStore>((set) => ({
@@ -28,7 +29,7 @@ export const useCardStore = create<CardStore>((set) => ({
   chineseCards: {},
   params: {
     expansion: defaultExpansion,
-    format: 'PickTwoDraft', 
+    format: defaultFormat, 
     start_date: defaultStartDate,
     end_date: today,
   },
