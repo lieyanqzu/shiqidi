@@ -16,7 +16,7 @@ import {
   cardColorOptions, 
   rarityOptions 
 } from "@/lib/options";
-import { getFormatsForExpansion, getStartDateForExpansion } from "@/lib/filter";
+import { getFormatsForExpansion, getStartDateForExpansion, getLiveExpansions } from "@/lib/filter";
 
 interface CardFiltersProps {
   params: CardDataParams;
@@ -44,6 +44,17 @@ export function CardFilters({
   const isMobile = useMediaQuery('(max-width: 1024px)');
   const [showFilters, setShowFilters] = useState(false);
   const filterButtonRef = useRef<HTMLButtonElement>(null);
+  const liveExpansions = useMemo(() => new Set(getLiveExpansions()), []);
+
+  const expansionGroups = useMemo(() => {
+    const activeOptions = expansionOptions.filter(option => liveExpansions.has(option.value));
+    const inactiveOptions = expansionOptions.filter(option => !liveExpansions.has(option.value));
+
+    return [
+      { label: '进行中', options: activeOptions },
+      { label: '未进行', options: inactiveOptions },
+    ];
+  }, [liveExpansions]);
 
   // 根据选择的系列获取可用的赛制
   const availableFormats = useMemo(() => {
@@ -126,7 +137,7 @@ export function CardFilters({
             className="flex-1"
           />
           <Select
-            options={expansionOptions}
+            groups={expansionGroups}
             value={params.expansion}
             onChange={(e) => handleExpansionChange(e.target.value)}
             title="系列"
@@ -171,7 +182,7 @@ export function CardFilters({
           {/* 桌面端：第二行 - 其他筛选选项 */}
           <div className="flex flex-wrap gap-2 sm:gap-4">
             <Select
-              options={expansionOptions}
+              groups={expansionGroups}
               value={params.expansion}
               onChange={(e) => handleExpansionChange(e.target.value)}
               title="系列"
