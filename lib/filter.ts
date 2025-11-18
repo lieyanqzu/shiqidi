@@ -5,6 +5,7 @@ export interface ExpansionMetadata {
   expansions: string[];
   formats: string[];
   formats_by_expansion: Record<string, string[]>;
+  live_formats_by_expansion: Record<string, string[]>;
   groups: (string | null)[];
   ranked_formats: string[];
   start_dates: Record<string, string>;
@@ -49,6 +50,12 @@ export function getAllFormats(): string[] {
 export function isFormatSupportedByExpansion(expansion: string, format: string): boolean {
   const formats = getFormatsForExpansion(expansion);
   return formats.includes(format);
+}
+
+// 获取当前进行中的系列列表
+export function getLiveExpansions(): string[] {
+  const data = getMetadata();
+  return Object.keys(data.live_formats_by_expansion || {});
 }
 
 // 获取所有排位赛制

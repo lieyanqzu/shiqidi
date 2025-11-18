@@ -1,19 +1,31 @@
+interface SelectOption {
+  label: string;
+  value: string;
+  disabled?: boolean;
+}
+
+interface SelectGroup {
+  label: string;
+  options: SelectOption[];
+}
+
 interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   label?: string;
   error?: string;
-  options: {
-    label: string;
-    value: string;
-  }[];
+  options?: SelectOption[];
+  groups?: SelectGroup[];
 }
 
 export function Select({ 
   label, 
   error, 
-  options,
+  options = [],
+  groups,
   className, 
   ...props 
 }: SelectProps) {
+  const hasGroups = groups && groups.length > 0;
+
   return (
     <div className="space-y-2">
       {label && (
@@ -32,11 +44,31 @@ export function Select({
           `}
           {...props}
         >
-          {options.map((option) => (
-            <option key={option.value} value={option.value} className="bg-[--component-background]">
-              {option.label}
-            </option>
-          ))}
+          {hasGroups
+            ? groups!.map(group => (
+                <optgroup key={group.label} label={group.label}>
+                  {group.options.map(option => (
+                    <option
+                      key={option.value}
+                      value={option.value}
+                      className="bg-[--component-background]"
+                      disabled={option.disabled}
+                    >
+                      {option.label}
+                    </option>
+                  ))}
+                </optgroup>
+              ))
+            : options.map((option) => (
+                <option
+                  key={option.value}
+                  value={option.value}
+                  className="bg-[--component-background]"
+                  disabled={option.disabled}
+                >
+                  {option.label}
+                </option>
+              ))}
         </select>
         <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2">
           <svg className="h-4 w-4 fill-current text-[--component-foreground-muted]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">

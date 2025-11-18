@@ -48,12 +48,6 @@ export function DesktopTableOfContents() {
           <div className="ml-3 pl-3 space-y-3 border-l border-[--muted] opacity-80 mt-3">
             <div
               className="cursor-pointer hover:text-[--primary] transition-colors"
-              onClick={() => scrollToSection('arena-open')}
-            >
-              公开赛
-            </div>
-            <div
-              className="cursor-pointer hover:text-[--primary] transition-colors"
               onClick={() => scrollToSection('arena-direct')}
             >
               直邮赛
@@ -142,12 +136,6 @@ export function MobileTableOfContents() {
               onClick={() => scrollToSection('competitive-events')}
             >
               竞技赛程
-            </div>
-            <div
-              className="text-sm cursor-pointer hover:text-[--primary] transition-colors whitespace-nowrap opacity-80"
-              onClick={() => scrollToSection('arena-open')}
-            >
-              · 公开赛
             </div>
             <div
               className="text-sm cursor-pointer hover:text-[--primary] transition-colors whitespace-nowrap opacity-80"

@@ -4,7 +4,15 @@ import React, { useState, useMemo, useEffect, useRef } from "react";
 import { SpeedFilters } from "./speed-filters";
 import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { useMediaQuery } from "@/hooks/use-media-query";
+import { SetIcon } from "@/components/logo/set-icon";
 import { formatLabels } from "@/lib/options";
+
+type Rarity = 'common' | 'uncommon' | 'rare' | 'mythic' | 'timeshifted';
+
+const getRarity = (eventType: string): Rarity => {
+  const value = formatRarities[eventType as keyof typeof formatRarities];
+  return (value ?? 'timeshifted') as Rarity;
+};
 
 const STORAGE_KEY_SELECTED_EXPANSIONS = 'speed-chart-selected-expansions';
 const STORAGE_KEY_SELECTED_FORMATS = 'speed-chart-selected-formats';
@@ -42,27 +50,32 @@ const CustomScatter = (props: CustomScatterProps) => {
   const { cx, cy, payload, onClick } = props;
   if (!cx || !cy || !payload) return null;
   
-  const processedSet = payload.expansion.startsWith('Y') 
-    ? `y${payload.expansion.slice(payload.expansion.match(/Y\d{0,2}/)![0].length)}`.toLowerCase()
-    : payload.expansion.toLowerCase();
-  
-  return (
-    <foreignObject x={cx - 12} y={cy - 12} width={24} height={24}>
-      <i
-        className={`keyrune ss ss-${processedSet} ss-${formatRarities[payload.event_type as keyof typeof formatRarities] || 'timeshifted'}`}
-        style={{
-          fontSize: '24px',
-          display: 'block',
-          lineHeight: '24px',
-          textAlign: 'center',
-          cursor: 'pointer'
-        }}
-        onClick={(e) => {
-          e.stopPropagation();
-          onClick?.(cx, cy, payload);
-        }}
+  const foProps = { x: cx - 16, y: cy - 16, width: 32, height: 32 } as unknown as React.SVGProps<SVGElement>;
+  return React.createElement(
+    'foreignObject',
+    foProps,
+    <div
+      style={{
+        width: '28px',
+        height: '28px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        cursor: 'pointer',
+        overflow: 'visible',
+      }}
+      onClick={(e) => {
+        e.stopPropagation();
+        onClick?.(cx, cy, payload);
+      }}
+    >
+      <SetIcon
+        set={payload.expansion}
+        size="2x"
+        rarity={getRarity(payload.event_type)}
+        style={{ width: '24px', height: '24px' }}
       />
-    </foreignObject>
+    </div>
   );
 };
 
@@ -83,16 +96,16 @@ const formatToOneDecimal = (value: number): string => {
 const CustomTooltip = ({ active, payload, isMobile, selectedPoint }: CustomTooltipProps) => {
   if ((!isMobile && active && payload?.length) || (isMobile && selectedPoint)) {
     const data = isMobile ? selectedPoint! : payload![0].payload;
-    const processedSet = data.expansion.startsWith('Y') 
-      ? `y${data.expansion.slice(data.expansion.match(/Y\d{0,2}/)![0].length)}`.toLowerCase()
-      : data.expansion.toLowerCase();
 
     return (
       <div className="bg-[--background] border border-[--border] rounded-lg p-3 shadow-lg whitespace-nowrap">
-        <p className="font-medium">
-          <i 
-            className={`keyrune ss ss-2x ss-${processedSet} ss-${formatRarities[data.event_type as keyof typeof formatRarities] || 'uncommon'}`}
-          /> {data.expansion} - {formatLabels[data.event_type] || data.event_type}
+        <p className="font-medium flex items-center gap-1.5">
+          <SetIcon
+            set={data.expansion}
+            size="2x"
+            rarity={getRarity(data.event_type)}
+          />
+          {data.expansion} - {formatLabels[data.event_type] || data.event_type}
         </p>
         <p className="text-sm text-[--muted-foreground]">
           先手胜率: {(data.win_rate_on_play * 100).toFixed(1)}%
