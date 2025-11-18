@@ -4,7 +4,7 @@ export interface CalendarMetadata {
 }
 
 export interface Event {
-  type: 'midweek_magic' | 'premier_draft' | 'quick_draft' | 'other' | 'premier_play' | 'arena_open' | 'arena_direct' | 'arena_championship';
+  type: 'midweek_magic' | 'premier_draft' | 'quick_draft' | 'other' | 'premier_play' | 'arena_direct' | 'arena_championship';
   title: string;
   startTime: Date;
   endTime: Date;
@@ -99,8 +99,6 @@ const otherEvents: Event[] = [
   },
 ];
 
-const arenaOpenEvents: Event[] = [];
-
 const arenaDirectEvents: Event[] = [
   // {
   //   type: 'arena_direct',
@@ -114,23 +112,23 @@ const arenaDirectEvents: Event[] = [
 const premierPlayEvents: Event[] = [
   {
     type: 'premier_play',
-    title: '资格赛入围赛BO1',
+    title: '冠军赛资格赛 - 入围赛BO1',
     startTime: new Date('2025-12-06T06:00:00-08:00'),
     endTime: new Date('2025-12-07T09:00:00-08:00'),
     format: '降世神通：最后的气宗现开',
-    description: '单日赛事，玩家将竞争获得12月12-13日资格赛周末的参赛资格。',
+    description: '单日赛事，玩家将竞争获得12月12-13日冠军赛资格赛周末的参赛资格。',
   },
   {
     type: 'premier_play',
-    title: '资格赛入围赛BO3',
+    title: '冠军赛资格赛 - 入围赛BO3',
     startTime: new Date('2025-12-12T06:00:00-08:00'),
     endTime: new Date('2025-12-13T07:00:00-08:00'),
     format: '降世神通：最后的气宗现开',
-    description: '单日赛事，玩家将竞争获得12月12-13日资格赛周末的参赛资格。',
+    description: '单日赛事，玩家将竞争获得12月12-13日冠军赛资格赛周末的参赛资格。',
   },
   {
     type: 'premier_play',
-    title: '资格赛周末',
+    title: '冠军赛资格赛周末',
     startTime: new Date('2025-12-12T06:00:00-08:00'),
     endTime: new Date('2025-12-13T17:00:00-08:00'),
     format: '降世神通：最后的气宗现开',
@@ -146,7 +144,6 @@ export const events: Event[] = [
   ...quickDraftEvents,
   ...otherEvents,
   ...premierPlayEvents,
-  ...arenaOpenEvents,
   ...arenaDirectEvents,
   ...arenaChampionshipEvents,
 ];

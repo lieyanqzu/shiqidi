@@ -19,7 +19,6 @@ export default function CalendarPage() {
   const quickDraftEvents = events.filter(event => event.type === 'quick_draft');
   const otherEvents = events.filter(event => event.type === 'other');
   const premierPlayEvents = events.filter(event => event.type === 'premier_play');
-  const arenaOpenEvents = events.filter(event => event.type === 'arena_open');
   const arenaDirectEvents = events.filter(event => event.type === 'arena_direct');
   const arenaChampionshipEvents = events.filter(event => event.type === 'arena_championship');
 
@@ -122,25 +121,10 @@ export default function CalendarPage() {
               )}
 
               {/* 竞技比赛日程 */}
-              {(premierPlayEvents.length > 0 || arenaOpenEvents.length > 0 || arenaDirectEvents.length > 0 || arenaChampionshipEvents.length > 0) && (
+              {(premierPlayEvents.length > 0 || arenaDirectEvents.length > 0 || arenaChampionshipEvents.length > 0) && (
                 <section id="competitive-events" className="mb-8 scroll-mt-24">
                   <h2 className="text-xl font-semibold mb-4">竞技赛程</h2>
                   <div className="bg-[--card] rounded-lg p-4">
-                    {/* 竞技场公开赛 */}
-                    {arenaOpenEvents.length > 0 && (
-                      <div id="arena-open" className="mb-8 scroll-mt-24">
-                        <h3 className="text-lg font-medium mb-4">竞技场公开赛</h3>
-                        <p className="text-sm text-[--muted-foreground] mb-4 leading-relaxed">
-                          参加赛事，竞夺奖金！在第 2 天赛事中取得优异成绩，能够获得现金奖励！
-                        </p>
-                        <div className="space-y-3">
-                          {arenaOpenEvents.map((event, index) => (
-                            <EventCard key={index} {...event} />
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
                     {/* 竞技场直邮赛 */}
                     {arenaDirectEvents.length > 0 && (
                       <div id="arena-direct" className="mb-8 scroll-mt-24">
