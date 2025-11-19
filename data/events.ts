@@ -100,13 +100,13 @@ const otherEvents: Event[] = [
 ];
 
 const arenaDirectEvents: Event[] = [
-  // {
-  //   type: 'arena_direct',
-  //   title: '竞技场直邮赛 - 神河：霓朝纪现开（轮抽补充包）',
-  //   startTime: new Date('2025-11-14T08:00:00-07:00'),
-  //   endTime: new Date('2025-11-17T08:00:00-08:00'),
-  //   format: '神河：霓朝纪现开'
-  // }
+  {
+    type: 'arena_direct',
+    title: '竞技场直邮赛 - 降世神通：最后的气宗现开（聚珍补充包）',
+    startTime: new Date('2025-11-28T08:00:00-08:00'),
+    endTime: new Date('2025-11-31T08:00:00-08:00'),
+    format: '降世神通：最后的气宗现开'
+  }
 ];
 
 const premierPlayEvents: Event[] = [

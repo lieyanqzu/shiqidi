@@ -1,6 +1,19 @@
 {
   "sets": [
     {
+      "code": "TLA",
+      "boosters": [
+        {
+          "code": "tla-collector",
+          "name": "聚珍补充包"
+        },
+        {
+          "code": "tla-play",
+          "name": "常规补充包"
+        }
+      ]
+    },
+    {
       "code": "SPM",
       "boosters": [
         {
