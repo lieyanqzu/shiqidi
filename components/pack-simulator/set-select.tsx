@@ -56,7 +56,7 @@ export function SetSelect({ value, onChange, disabled, iconSize = '1x' }: SetSel
       >
         {value && (
           <>
-            <SetIcon set={value} size={mapIconSize(iconSize)} className="w-[1.5em]" />
+            <SetIcon set={value} size={mapIconSize(iconSize)} />
             <span className="truncate">{chineseSetNames[value] || value}</span>
           </>
         )}
@@ -84,7 +84,7 @@ export function SetSelect({ value, onChange, disabled, iconSize = '1x' }: SetSel
                   ${value === set.code ? 'bg-[--accent]' : ''}
                 `}
               >
-                <SetIcon set={set.code} size={mapIconSize(iconSize)} className="w-[1.5em]" />
+                <SetIcon set={set.code} size={mapIconSize(iconSize)} />
                 <span className="whitespace-nowrap">{chineseSetNames[set.code] || set.code}</span>
               </button>
             ))}
