@@ -3,11 +3,15 @@
 import React, { useState, useEffect } from 'react';
 import { DYNAMIC_SETS } from './dynamic-sets';
 
+// 导出类型供其他组件使用
+export type SetIconSize = 'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2x' | '3x' | '4x';
+export type SetIconRarity = 'common' | 'uncommon' | 'rare' | 'mythic' | 'timeshifted';
+
 interface SetIconProps {
   set: string;
   className?: string;
-  size?: 'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2x' | '3x' | '4x';
-  rarity?: 'common' | 'uncommon' | 'rare' | 'mythic' | 'timeshifted';
+  size?: SetIconSize;
+  rarity?: SetIconRarity;
   style?: React.CSSProperties;
 }
 
@@ -85,11 +89,6 @@ export function SetIcon({
       });
   }, [processedSet]);
 
-  const sizeMap = {
-    'xs': '0.75em', 'sm': '0.875em', 'base': '1em', 'lg': '1.25em',
-    'xl': '1.5em', '2x': '2em', '3x': '3em', '4x': '4em',
-  };
-
   const rarityColors = {
     common: '#1a1818', uncommon: '#707883', rare: '#a58e4a',
     mythic: '#bf4427', timeshifted: '#652978',
@@ -108,31 +107,30 @@ export function SetIcon({
       }
     };
     
-    // 解析 viewBox 获取宽高比
-    const viewBoxMatch = svgData.viewBox.match(/(\d+(?:\.\d+)?)\s+(\d+(?:\.\d+)?)\s+(\d+(?:\.\d+)?)\s+(\d+(?:\.\d+)?)/);
+    const sizeMap: Record<SetIconSize, string> = {
+      'xs': '0.75em',
+      'sm': '0.875em',
+      'base': '1em',
+      'lg': '1.25em',
+      'xl': '1.5em',
+      '2x': '2em',
+      '3x': '3em',
+      '4x': '4em',
+    };
+    
     const height = sizeMap[size];
-    let width = height;
-    if (viewBoxMatch) {
-      const viewBoxWidth = parseFloat(viewBoxMatch[3]);
-      const viewBoxHeight = parseFloat(viewBoxMatch[4]);
-      if (viewBoxHeight > 0) {
-        // 保持 viewBox 的宽高比，高度为指定值，宽度按比例计算
-        const aspectRatio = viewBoxWidth / viewBoxHeight;
-        // 将高度值转换为数字，然后乘以宽高比
-        const heightValue = parseFloat(height);
-        const heightUnit = height.replace(/[\d.]+/, '');
-        width = `${heightValue * aspectRatio}${heightUnit}`;
-      }
-    }
+    // keyrune 字体图标的实际宽高比约为 1.5:1 (21px:14px)
+    const width = `${parseFloat(height) * 1.5}${height.replace(/[\d.]+/, '')}`;
     
     return (
       <svg
         ref={svgRef}
-        className={`inline-block align-middle ${className}`}
+        className={`inline-block ${className}`}
         style={{
           width,
           height,
           fill: rarity ? rarityColors[rarity] : 'currentColor',
+          verticalAlign: '-0.125em', // 与 keyrune 字体图标对齐
           ...style,
         }}
         viewBox={svgData.viewBox}

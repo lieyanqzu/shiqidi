@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useSetStore } from '@/lib/store';
 import { getAvailableSets } from '@/lib/pack-simulator';
 import type { Set } from '@/types/pack-simulator';
+import { SetIcon, type SetIconSize } from '@/components/logo/set-icon';
 
 interface SetSelectProps {
   value: string;
@@ -12,6 +13,13 @@ interface SetSelectProps {
   title?: string;
   iconSize?: '1x' | '2x' | '3x' | '4x' | '5x' | '6x';
 }
+
+// 将 pack-simulator 的尺寸格式转换为 SetIcon 支持的格式
+const mapIconSize = (size: '1x' | '2x' | '3x' | '4x' | '5x' | '6x'): SetIconSize => {
+  if (size === '1x') return 'base';
+  if (size === '5x' || size === '6x') return '4x';
+  return size as SetIconSize;
+};
 
 export function SetSelect({ value, onChange, disabled, iconSize = '1x' }: SetSelectProps) {
   const { chineseSetNames } = useSetStore();
@@ -48,7 +56,7 @@ export function SetSelect({ value, onChange, disabled, iconSize = '1x' }: SetSel
       >
         {value && (
           <>
-            <i className={`keyrune ss ss-${iconSize} ss-${value.toLowerCase()} w-[1.5em] text-center`} />
+            <SetIcon set={value} size={mapIconSize(iconSize)} className="w-[1.5em]" />
             <span className="truncate">{chineseSetNames[value] || value}</span>
           </>
         )}
@@ -76,7 +84,7 @@ export function SetSelect({ value, onChange, disabled, iconSize = '1x' }: SetSel
                   ${value === set.code ? 'bg-[--accent]' : ''}
                 `}
               >
-                <i className={`keyrune ss ss-${iconSize} ss-${set.code.toLowerCase()} w-[1.5em] text-center`} />
+                <SetIcon set={set.code} size={mapIconSize(iconSize)} className="w-[1.5em]" />
                 <span className="whitespace-nowrap">{chineseSetNames[set.code] || set.code}</span>
               </button>
             ))}

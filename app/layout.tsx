@@ -6,7 +6,6 @@ import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { Metadata } from 'next';
 import { AnalyticsTracker } from '@/components/common/analytics-tracker';
-import { KeyruneReplacer } from '@/components/logo/keyrune-replacer';
 
 export const metadata: Metadata = {
   title: {
@@ -89,7 +88,6 @@ export default function RootLayout({
           <Header />
           <main className="flex-1">
             <AnalyticsTracker />
-            <KeyruneReplacer />
             {children}
           </main>
           <Footer />

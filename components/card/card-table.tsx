@@ -8,6 +8,7 @@ import { StatCell } from "@/components/card/stat-cell";
 import { ManaSymbols } from "@/components/mana/mana-symbols";
 import { calculateStats } from "@/lib/stats";
 import type { CardData } from "@/types/card";
+import { SetIcon, type SetIconRarity } from '@/components/logo/set-icon';
 
 // 导出 Column 类型供其他组件使用
 export type Column = {
@@ -20,14 +21,6 @@ export type Column = {
 
 // 添加排序方向类型
 type SortDirection = 'asc' | 'desc';
-
-// 稀有度映射
-const rarityMap: Record<string, string> = {
-  'common': '普通',
-  'uncommon': '非普通',
-  'rare': '稀有',
-  'mythic': '秘稀',
-};
 
 // 稀有度排序权重
 const rarityWeight: Record<string, number> = {
@@ -100,10 +93,10 @@ export function CardTable({
           : expansion.toLowerCase();
         
         return (
-          <i 
-            className={`keyrune ss ss-${processedSet} ss-${rarity} ss-2x`}
-            aria-hidden="true"
-            title={String(rarityMap[rarity] || value)}
+          <SetIcon
+            set={processedSet}
+            rarity={rarity as SetIconRarity}
+            size="2x"
           />
         );
       },

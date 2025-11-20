@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useState, useEffect, Fragment } from 'react';
 import type { PreviewCard } from '@/types/previews';
 import { ManaText } from '@/components/mana/mana-text';
+import { SetIcon, type SetIconRarity } from '@/components/logo/set-icon';
 
 interface PreviewCardProps {
   card: PreviewCard;
@@ -168,16 +169,16 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
     return null;
   };
 
-  const getRarityIcon = (rarity: string): string => {
+  const getRarityIcon = (rarity: string): SetIconRarity => {
     switch (rarity) {
       case 'mythic':
-        return 'ss-mythic';
+        return 'mythic';
       case 'rare':
-        return 'ss-rare';
+        return 'rare';
       case 'uncommon':
-        return 'ss-uncommon';
+        return 'uncommon';
       default:
-        return 'ss-common';
+        return 'common';
     }
   };
 
@@ -446,7 +447,7 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
             <div className="mt-1 divide-y divide-[--border]">
               <div className="text-sm flex items-center justify-between">
                 <ManaText text={isEnglish ? currentCard.type : currentCard.zhs_type} />
-                <i className={`ss ${getRarityIcon(currentCard.rarity)} ss-fw ss-3x ss-${logoCode}`} />
+                <SetIcon set={logoCode} rarity={getRarityIcon(currentCard.rarity)} size="3x" className="ss-fw" />
               </div>
               <div className="text-sm whitespace-pre-wrap pt-1 leading-normal">
                 {renderText(isEnglish ? currentCard.text : currentCard.zhs_text)}
@@ -483,7 +484,7 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
               <div className="mt-1 divide-y divide-[--border]">
                 <div className="text-sm flex items-center justify-between">
                   <ManaText text={isEnglish ? (currentCard.type2 || '') : (currentCard.zhs_type2 || '')} />
-                  <i className={`ss ss-fw ss-3x ss-${logoCode} invisible`} />
+                  <SetIcon set={logoCode} size="3x" className="ss-fw invisible" />
                 </div>
                 <div className="text-sm whitespace-pre-wrap pt-1 leading-normal">
                   {renderText(isEnglish ? (currentCard.text2 || '') : (currentCard.zhs_text2 || ''))}

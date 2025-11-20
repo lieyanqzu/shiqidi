@@ -8,6 +8,7 @@ import { Select } from "@/components/ui/select";
 import { DateRangePicker } from "@/components/ui/date-range-picker";
 import { Popper } from "@/components/ui/popper";
 import { parseISO } from 'date-fns';
+import { SetIcon, type SetIconRarity } from '@/components/logo/set-icon';
 import { 
   expansionOptions, 
   formatOptions, 
@@ -261,9 +262,10 @@ export function CardFilters({
                       }}
                       title={rarity.label}
                     >
-                      <i 
-                        className={`keyrune ss ss-${processedSet} ss-${rarity.value} ss-2x`}
-                        aria-hidden="true"
+                      <SetIcon
+                        set={processedSet}
+                        rarity={rarity.value as SetIconRarity}
+                        size="2x"
                         style={{ backgroundColor: 'transparent' }}
                       />
                     </button>
@@ -374,9 +376,10 @@ export function CardFilters({
                         }}
                         title={rarity.label}
                       >
-                        <i 
-                          className={`keyrune ss ss-${processedSet} ss-${rarity.value} ss-2x`}
-                          aria-hidden="true"
+                        <SetIcon
+                          set={processedSet}
+                          rarity={rarity.value as SetIconRarity}
+                          size="2x"
                           style={{ backgroundColor: 'transparent' }}
                         />
                       </button>

@@ -5,6 +5,7 @@ import { useCardStore } from "@/lib/store"
 import Image from 'next/image'
 import { getCardFullImageUrl } from '@/lib/card-images'
 import { extractScryfallIdFromUrl, fetchCardDetailByScryfallId } from '@/lib/api'
+import { SetIcon, type SetIconRarity } from '@/components/logo/set-icon'
 
 interface CardTooltipProps {
   card: CardData
@@ -293,9 +294,10 @@ const CardTooltip: FC<CardTooltipProps> = ({ card, visible, x, y, expansion, isM
                     <div className="w-20 flex justify-end">
                       <ManaSymbols color={card.color} />
                     </div>
-                    <i 
-                      className={`keyrune ss ss-${processedSet} ss-${card.rarity.toLowerCase()} ss-2x`}
-                      title={card.rarity}
+                    <SetIcon
+                      set={processedSet}
+                      rarity={card.rarity.toLowerCase() as SetIconRarity}
+                      size="2x"
                     />
                   </div>
                 </div>

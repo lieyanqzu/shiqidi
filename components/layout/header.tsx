@@ -9,6 +9,7 @@ import { useStatusStore, StatusData } from '@/lib/store';
 import { usePWAInstall } from '@/hooks/use-pwa-install';
 import { Tooltip } from "@/components/ui/tooltip"
 import { parseISO, isValid } from 'date-fns';
+import { SetIcon } from '@/components/logo/set-icon';
 
 interface MenuItem {
   label: string;
@@ -101,7 +102,7 @@ function SetInfo({ className = "" }: { className?: string }) {
     <div className={`flex items-center gap-4 px-3 py-1.5 text-sm text-[--muted-foreground] ${className}`}>
       <div className="grid md:flex grid-cols-2 w-full md:w-auto gap-4 md:gap-4">
         <div className="flex items-center gap-1.5 min-w-0">
-          <i className={`ss ss-${current.code.toLowerCase()} ss-fw flex-shrink-0`} />
+          <SetIcon set={current.code} className="ss-fw flex-shrink-0" />
           <span className="break-words">最新系列：{current.name}</span>
         </div>
         {next && (
@@ -122,7 +123,7 @@ function SetInfo({ className = "" }: { className?: string }) {
                         <div className="flex items-center gap-2">
                           <h3 className="font-medium text-[--foreground] flex items-center gap-2">
                             <span className="text-[13px] text-[--muted-foreground]">新系列：</span>
-                            <i className={`ss ss-${next.code.toLowerCase()} ss-2x opacity-80 flex-shrink-0`} />
+                            <SetIcon set={next.code} size="2x" className="opacity-80 flex-shrink-0" />
                             {next.name}
                             {next.wikiUrl && (
                               <a
@@ -175,7 +176,7 @@ function SetInfo({ className = "" }: { className?: string }) {
                         <div className="flex items-center gap-2">
                           <span className="text-[13px] text-[--muted-foreground] opacity-90">线上替代系列：</span>
                           {next.preview.digitalCode && (
-                            <i className={`ss ss-${next.preview.digitalCode.toLowerCase()} ss-fw flex-shrink-0`} />
+                            <SetIcon set={next.preview.digitalCode} className="ss-fw flex-shrink-0" />
                           )}
                           <span className="text-[13px] font-medium text-[--foreground]">{next.preview.digitalName}</span>
                         </div>

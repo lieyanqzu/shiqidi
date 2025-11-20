@@ -50,14 +50,15 @@ const CustomScatter = (props: CustomScatterProps) => {
   const { cx, cy, payload, onClick } = props;
   if (!cx || !cy || !payload) return null;
   
-  const foProps = { x: cx - 16, y: cy - 16, width: 32, height: 32 } as unknown as React.SVGProps<SVGElement>;
+  // 图标宽高比为 1.5:1,高度 32px,宽度需要 48px
+  const foProps = { x: cx - 24, y: cy - 16, width: 48, height: 32 } as unknown as React.SVGProps<SVGElement>;
   return React.createElement(
     'foreignObject',
     foProps,
     <div
       style={{
-        width: '28px',
-        height: '28px',
+        width: '48px',
+        height: '32px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -73,7 +74,6 @@ const CustomScatter = (props: CustomScatterProps) => {
         set={payload.expansion}
         size="2x"
         rarity={getRarity(payload.event_type)}
-        style={{ width: '24px', height: '24px' }}
       />
     </div>
   );
