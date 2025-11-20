@@ -17,6 +17,8 @@ interface SetIconProps {
 
 // 简单的内存缓存
 const svgCache = new Map<string, { paths: string[]; viewBox: string } | null>();
+// Promise 缓存，用于防止重复请求
+const pendingRequests = new Map<string, Promise<{ paths: string[]; viewBox: string } | null>>();
 
 /**
  * 系列图标组件
@@ -49,8 +51,17 @@ export function SetIcon({
       return;
     }
 
-    // 从 Scryfall 获取
-    fetch(`https://api.scryfall.com/sets/${processedSet}`)
+    // 检查是否有正在进行的请求
+    if (pendingRequests.has(processedSet)) {
+      // 等待现有请求完成
+      pendingRequests.get(processedSet)!.then(data => {
+        setSvgData(data);
+      });
+      return;
+    }
+
+    // 创建新请求
+    const fetchPromise = fetch(`https://api.scryfall.com/sets/${processedSet}`)
       .then(res => res.json())
       .then(data => {
         if (data.icon_svg_uri) {
@@ -76,17 +87,29 @@ export function SetIcon({
         if (paths.length > 0) {
           const data = { paths, viewBox };
           svgCache.set(processedSet, data);
-          setSvgData(data);
+          return data;
         } else {
           svgCache.set(processedSet, null);
-          setSvgData(null);
+          return null;
         }
       })
       .catch((error) => {
         console.error(`[SetIcon] ${processedSet} 加载失败:`, error);
         svgCache.set(processedSet, null);
-        setSvgData(null);
+        return null;
+      })
+      .finally(() => {
+        // 请求完成后清理 pendingRequests
+        pendingRequests.delete(processedSet);
       });
+
+    // 存储 Promise
+    pendingRequests.set(processedSet, fetchPromise);
+
+    // 等待请求完成
+    fetchPromise.then(data => {
+      setSvgData(data);
+    });
   }, [processedSet]);
 
   const rarityColors = {
@@ -119,8 +142,18 @@ export function SetIcon({
     };
     
     const height = sizeMap[size];
-    // keyrune 字体图标的实际宽高比约为 1.5:1 (21px:14px)
-    const width = `${parseFloat(height) * 1.5}${height.replace(/[\d.]+/, '')}`;
+
+    
+    // Calculate width based on viewBox aspect ratio
+    let aspectRatio = 1.5; // Default fallback
+    if (svgData.viewBox) {
+      const parts = svgData.viewBox.split(/\s+/).map(Number);
+      if (parts.length === 4 && parts[3] > 0) {
+        aspectRatio = parts[2] / parts[3];
+      }
+    }
+    
+    const width = `${parseFloat(height) * aspectRatio}${height.replace(/[\d.]+/, '')}`;
     
     return (
       <svg
@@ -130,7 +163,6 @@ export function SetIcon({
           width,
           height,
           fill: rarity ? rarityColors[rarity] : 'currentColor',
-          verticalAlign: '-0.125em', // 与 keyrune 字体图标对齐
           ...style,
         }}
         viewBox={svgData.viewBox}
