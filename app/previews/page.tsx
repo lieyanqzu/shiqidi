@@ -4,6 +4,7 @@ import Link from 'next/link';
 import type { PreviewSet } from '@/types/previews';
 import { generateMetadata as baseGenerateMetadata } from '../metadata';
 import { parseISO, isValid } from 'date-fns';
+import { SetIcon } from '@/components/logo/set-icon';
 
 export const metadata = baseGenerateMetadata(
   "十七地 - 炼金系列预览",
@@ -71,7 +72,7 @@ export default async function PreviewsPage() {
                 className="bg-[--card] rounded-lg p-4 border border-[--border] hover:border-[--primary] transition-colors"
               >
                 <div className="flex items-center gap-3">
-                  <i className={`ss ss-${set.logo_code} ss-2x opacity-80`} />
+                  <SetIcon set={set.logo_code} size="2x" className="opacity-80" />
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
                       <h2 className="font-medium truncate">{set.name}</h2>

@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import type { Card } from '@/types/pack-simulator';
 import boosterConfig from '@/data/booster-config.json';
 import { useSetStore } from '@/lib/store';
+import { SetIcon } from '@/components/logo/set-icon';
 
 interface StatisticsProps {
   cards: Card[];
@@ -90,7 +91,7 @@ export function Statistics({ cards, setCode, boosterCode, packCount }: Statistic
           获得卡牌统计
           {setName && boosterName && (
             <span className="ml-2 text-sm text-[--muted-foreground] inline-flex items-center gap-1">
-              （<i className={`keyrune ss ss-${setCode.toLowerCase()}`} />{setName} - {boosterName}）
+              （<SetIcon set={setCode} />{setName} - {boosterName}）
             </span>
           )}
         </h3>

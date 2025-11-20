@@ -7,6 +7,7 @@ import { InfoCard } from './info-card';
 import { SliderField } from './slider-field';
 import { calculateCurrentXP, calculateExpectedDailyWinsXP, calculateExpectedWeeklyWinsXP, calculateExpectedDailyQuestsXP, calculateExpectedLevel, calculateDaysLeft, getLocalRefreshTimeString, getLocalRefreshTimeStringWithWeekday } from './utils';
 import { masteryConfig } from '@/data/mastery';
+import { SetIcon } from '@/components/logo/set-icon';
 import digitalSets from '@/data/digital-sets.json';
 import { parseISO, format, isValid } from 'date-fns';
 import { zhCN } from 'date-fns/locale';
@@ -183,7 +184,7 @@ export function MasteryCalculator() {
         extra={
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
-              <i className={`keyrune ss ss-2x ss-${masteryConfig.setCode.toLowerCase()}`} />
+              <SetIcon set={masteryConfig.setCode} size="2x" />
               <span>{currentSet?.name}</span>
             </div>
             <div className="text-sm text-[--muted-foreground]">

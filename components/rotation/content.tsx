@@ -6,6 +6,7 @@ import type { Set, Ban } from '@/types/rotation';
 import { parseISO, isValid } from 'date-fns';
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { SetIcon } from '@/components/logo/set-icon';
 
 interface SetGroup {
   exitDate: string | null;
@@ -261,7 +262,7 @@ export function Content({ currentSetGroups, futureSets, recentBans }: Props) {
                               </div>
                               <div className="text-sm text-[--muted-foreground] mt-1 flex items-center gap-1.5">
                                 {set.code && (
-                                  <i className={`ss ss-${set.code.toLowerCase()} ss-fw`} />
+                                  <SetIcon set={set.code} className="ss-fw" />
                                 )}
                                 <span>{set.code}</span>
                                 {set.universes_beyond && (
@@ -303,7 +304,7 @@ export function Content({ currentSetGroups, futureSets, recentBans }: Props) {
                                     </h4>
                                   </div>
                                   <div className="text-sm text-[--muted-foreground] mt-1 flex items-center gap-1.5">
-                                    <i className={`ss ss-${set.digital_code.toLowerCase()} ss-fw`} />
+                                    <SetIcon set={set.digital_code} className="ss-fw" />
                                     <span>{set.digital_code}</span>
                                     <span className="ml-2 inline-flex items-center rounded-md bg-emerald-400/10 px-2 py-1 text-xs font-medium text-emerald-500 ring-1 ring-inset ring-emerald-400/20 whitespace-nowrap">
                                       穿越预兆路
@@ -359,7 +360,7 @@ export function Content({ currentSetGroups, futureSets, recentBans }: Props) {
                         </div>
                         {set.code && (
                           <div className="text-sm text-[--muted-foreground] mt-1 flex items-center gap-1.5">
-                            <i className={`ss ss-${set.code.toLowerCase()} ss-fw`} />
+                            <SetIcon set={set.code} className="ss-fw" />
                             <span>{set.code}</span>
                             {set.universes_beyond && (
                               <span className="ml-2 inline-flex items-center rounded-md bg-purple-400/10 px-2 py-1 text-xs font-medium text-purple-500 ring-1 ring-inset ring-purple-400/20 whitespace-nowrap">
@@ -404,7 +405,7 @@ export function Content({ currentSetGroups, futureSets, recentBans }: Props) {
                               </h4>
                             </div>
                             <div className="text-sm text-[--muted-foreground] mt-1 flex items-center gap-1.5">
-                              <i className={`ss ss-${set.digital_code.toLowerCase()} ss-fw`} />
+                              <SetIcon set={set.digital_code} className="ss-fw" />
                               <span>{set.digital_code}</span>
                               <span className="ml-2 inline-flex items-center rounded-md bg-emerald-400/10 px-2 py-1 text-xs font-medium text-emerald-500 ring-1 ring-inset ring-emerald-400/20 whitespace-nowrap">
                                 穿越预兆路
@@ -676,7 +677,7 @@ function BannedCardsCarousel({ bans, chineseSetNames }: BannedCardsCarouselProps
                   )}
                 </div>
                 <div className="flex items-center gap-2 text-sm text-[--muted-foreground]">
-                  <i className={`ss ss-${setCode.toLowerCase()} ss-fw`} />
+                  <SetIcon set={setCode} className="ss-fw" />
                   <span>{chineseSetNames[setCode] || setCode}</span>
                 </div>
               </div>
