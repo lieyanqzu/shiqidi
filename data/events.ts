@@ -13,18 +13,11 @@ export interface Event {
 }
 
 export const calendarMetadata: CalendarMetadata = {
-  lastUpdated: '2025/11/17',
-  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-november-17-2025#Events',
+  lastUpdated: '2025/11/24',
+  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-november-24-2025#Events',
 };
 
 const midweekMagicEvents: Event[] = [
-  {
-    type: 'midweek_magic',
-    title: '投身万智牌丨降世神通：最后的气宗',
-    startTime: new Date('2025-11-18T14:00:00-08:00'),
-    endTime: new Date('2025-11-20T14:00:00-08:00'),
-    format: '速学！'
-  },
   {
     type: 'midweek_magic',
     title: '基石构筑 + 万智牌丨降世神通：最后的气宗',
@@ -41,10 +34,17 @@ const midweekMagicEvents: Event[] = [
   },
   {
     type: 'midweek_magic',
-    title: '万智牌～最终幻想',
+    title: '基石构筑 + 万智牌～最终幻想',
     startTime: new Date('2025-12-09T14:00:00-08:00'),
     endTime: new Date('2025-12-11T14:00:00-08:00'),
-    format: '构筑(?)'
+    format: '构筑'
+  },
+  {
+    type: 'midweek_magic',
+    title: '万智牌～最终幻想争锋构筑挑战',
+    startTime: new Date('2025-12-16T14:00:00-08:00'),
+    endTime: new Date('2025-12-18T14:00:00-08:00'),
+    format: '争锋'
   },
 ];
 
@@ -62,7 +62,7 @@ const quickDraftEvents: Event[] = [
   {
     type: 'quick_draft',
     title: '鞑契龙岚录',
-    startTime: new Date('2025-11-11T08:00:00-08:00'),
+    startTime: new Date('2025-11-12T08:00:00-08:00'),
     endTime: new Date('2025-11-27T08:00:00-08:00'),
     format: '快速轮抽',
   },
@@ -77,7 +77,14 @@ const quickDraftEvents: Event[] = [
     type: 'quick_draft',
     title: '依夏兰迷窟',
     startTime: new Date('2025-12-09T08:00:00-08:00'),
-    endTime: new Date('2026-12-15T08:00:00-08:00'),
+    endTime: new Date('2026-12-16T08:00:00-08:00'),
+    format: '快速轮抽',
+  },
+  {
+    type: 'quick_draft',
+    title: '万智牌～最终幻想',
+    startTime: new Date('2025-12-16T08:00:00-08:00'),
+    endTime: new Date('2026-12-19T08:00:00-08:00'),
     format: '快速轮抽',
   }
 ];
@@ -104,7 +111,7 @@ const arenaDirectEvents: Event[] = [
     type: 'arena_direct',
     title: '竞技场直邮赛 - 降世神通：最后的气宗现开（聚珍补充包）',
     startTime: new Date('2025-11-28T08:00:00-08:00'),
-    endTime: new Date('2025-11-31T08:00:00-08:00'),
+    endTime: new Date('2025-12-01T08:00:00-08:00'),
     format: '降世神通：最后的气宗现开'
   }
 ];

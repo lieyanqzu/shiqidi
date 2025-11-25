@@ -25,9 +25,9 @@
     "zustand": "^5.0.8"
   },
   "devDependencies": {
-    "@types/node": "^22.19.0",
-    "@types/react": "^19.2.2",
-    "@types/react-dom": "^19.2.2",
+    "@types/node": "^22.19.1",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
     "@types/recharts": "^1.8.29",
     "eslint": "^9.39.1",
     "eslint-config-next": "15.1.0",
