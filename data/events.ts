@@ -13,18 +13,11 @@ export interface Event {
 }
 
 export const calendarMetadata: CalendarMetadata = {
-  lastUpdated: '2025/11/24',
-  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-november-24-2025#Events',
+  lastUpdated: '2025/12/01',
+  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-december-01-2025#Events',
 };
 
 const midweekMagicEvents: Event[] = [
-  {
-    type: 'midweek_magic',
-    title: '基石构筑 + 万智牌丨降世神通：最后的气宗',
-    startTime: new Date('2025-11-25T14:00:00-08:00'),
-    endTime: new Date('2025-11-27T14:00:00-08:00'),
-    format: '构筑'
-  },
   {
     type: 'midweek_magic',
     title: '万智牌丨降世神通：最后的气宗争锋构筑挑战',
@@ -46,6 +39,13 @@ const midweekMagicEvents: Event[] = [
     endTime: new Date('2025-12-18T14:00:00-08:00'),
     format: '争锋'
   },
+  {
+    type: 'midweek_magic',
+    title: '万智牌丨降世神通：最后的气宗全知全能轮抽',
+    startTime: new Date('2025-12-23T14:00:00-08:00'),
+    endTime: new Date('2025-12-25T14:00:00-08:00'),
+    format: '全知全能轮抽'
+  },
 ];
 
 const premierDraftEvents: Event[] = [
@@ -55,17 +55,24 @@ const premierDraftEvents: Event[] = [
     startTime: new Date('2025-11-18T08:00:00-08:00'),
     endTime: new Date('2026-01-20T08:00:00-08:00'),
     format: '竞技轮抽 & 三盘轮抽',
-  }
+  },
+  {
+    type: 'premier_draft',
+    title: '万智牌～最终幻想',
+    startTime: new Date('2025-12-09T08:00:00-08:00'),
+    endTime: new Date('2025-12-30T08:00:00-08:00'),
+    format: '竞技轮抽',
+  },
+  {
+    type: 'premier_draft',
+    title: '混合轮抽：标准',
+    startTime: new Date('2025-12-11T08:00:00-08:00'),
+    endTime: new Date('2025-12-15T08:00:00-08:00'),
+    format: '竞技轮抽',
+  },
 ];
 
 const quickDraftEvents: Event[] = [
-  {
-    type: 'quick_draft',
-    title: '鞑契龙岚录',
-    startTime: new Date('2025-11-12T08:00:00-08:00'),
-    endTime: new Date('2025-11-27T08:00:00-08:00'),
-    format: '快速轮抽',
-  },
   {
     type: 'quick_draft',
     title: '降世神通：最后的气宗',
@@ -84,8 +91,15 @@ const quickDraftEvents: Event[] = [
     type: 'quick_draft',
     title: '万智牌～最终幻想',
     startTime: new Date('2025-12-16T08:00:00-08:00'),
-    endTime: new Date('2026-12-19T08:00:00-08:00'),
+    endTime: new Date('2026-12-30T08:00:00-08:00'),
     format: '快速轮抽',
+  },
+  {
+    type: 'quick_draft',
+    title: '万智牌丨降世神通：最后的气宗全知全能快速轮抽',
+    startTime: new Date('2025-12-26T08:00:00-08:00'),
+    endTime: new Date('2025-12-30T08:00:00-08:00'),
+    format: '全知全能快速轮抽',
   }
 ];
 
@@ -104,14 +118,21 @@ const otherEvents: Event[] = [
     endTime: new Date('2025-12-02T08:00:00-08:00'),
     format: '三盘现开',
   },
+  {
+    type: 'other',
+    title: '全卡争锋环境挑战赛',
+    startTime: new Date('2025-12-16T08:00:00-08:00'),
+    endTime: new Date('2026-01-06T08:00:00-08:00'),
+    format: '争锋',
+  }
 ];
 
 const arenaDirectEvents: Event[] = [
   {
     type: 'arena_direct',
-    title: '竞技场直邮赛 - 降世神通：最后的气宗现开（聚珍补充包）',
-    startTime: new Date('2025-11-28T08:00:00-08:00'),
-    endTime: new Date('2025-12-01T08:00:00-08:00'),
+    title: '竞技场直邮赛 - 降世神通：最后的气宗现开（常规补充包）',
+    startTime: new Date('2025-12-12T08:00:00-08:00'),
+    endTime: new Date('2025-12-15T08:00:00-08:00'),
     format: '降世神通：最后的气宗现开'
   }
 ];
