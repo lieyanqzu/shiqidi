@@ -151,7 +151,7 @@ export function SealedDeckImporter({ onImport, onClear, hasImportedDeck, cardNam
                   现开模式
                 </h2>
                 <p className="text-sm text-[--foreground-muted] mt-1">
-                  粘贴你的现开牌表内容。每行一张卡牌，支持 "数量 卡牌名称" 格式。
+                  粘贴你的现开牌表内容。每行一张卡牌，支持 &quot;数量 卡牌名称&quot; 格式。
                 </p>
               </div>
               <button
