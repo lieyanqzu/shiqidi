@@ -29,7 +29,7 @@ export const useCardStore = create<CardStore>((set) => ({
   chineseCards: {},
   params: {
     expansion: defaultExpansion,
-    format: defaultFormat, 
+    event_type: defaultFormat, 
     start_date: defaultStartDate,
     end_date: today,
   },

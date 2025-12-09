@@ -70,13 +70,13 @@ export function CardFilters({
     const newParams: Partial<CardDataParams> = { expansion };
     
     // 如果当前赛制不在新系列的可用赛制列表中，选择第一个可用的赛制
-    if (!formats.includes(params.format) && formats.length > 0) {
+    if (!formats.includes(params.event_type) && formats.length > 0) {
       // 优先选择在 formatOptions 中定义的第一个可用赛制
       const firstAvailableFormat = formatOptions.find(option => formats.includes(option.value));
       if (firstAvailableFormat) {
-        newParams.format = firstAvailableFormat.value;
+        newParams.event_type = firstAvailableFormat.value;
       } else {
-        newParams.format = formats[0];
+        newParams.event_type = formats[0];
       }
     }
     
@@ -191,8 +191,8 @@ export function CardFilters({
             />
             <Select
               options={availableFormats}
-              value={params.format}
-              onChange={(e) => onParamsChange({ format: e.target.value })}
+              value={params.event_type}
+              onChange={(e) => onParamsChange({ event_type: e.target.value })}
               title="模式"
               className="w-full sm:w-auto sm:min-w-[140px]"
             />
@@ -300,8 +300,8 @@ export function CardFilters({
             
             <Select
               options={availableFormats}
-              value={tempParams.format}
-              onChange={(e) => setTempParams({ ...tempParams, format: e.target.value })}
+              value={tempParams.event_type}
+              onChange={(e) => setTempParams({ ...tempParams, event_type: e.target.value })}
               title="模式"
               className="w-full"
             />
