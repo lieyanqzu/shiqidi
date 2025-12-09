@@ -58,11 +58,13 @@ export function CardTable({
   isLoading,
   expansion,
   onColumnControlsChange,
+  deckQuantities,
 }: {
   data: CardData[];
   isLoading?: boolean;
   expansion: string;
   onColumnControlsChange?: (controls: ReactNode | null) => void;
+  deckQuantities?: Map<string, number>;
 }) {
   // 将 columns 定义移到组件内部
   const columns: Column[] = useMemo(() => [
@@ -70,7 +72,13 @@ export function CardTable({
       header: "卡牌名称",
       accessorKey: "name",
       sortable: true,
-      cell: (_, row) => <CardNameCell card={row as CardData} expansion={expansion} />,
+      cell: (_, row) => (
+        <CardNameCell 
+          card={row as CardData} 
+          expansion={expansion} 
+          quantity={deckQuantities?.get(row.name)}
+        />
+      ),
     },
     {
       header: "颜色",
@@ -267,7 +275,7 @@ export function CardTable({
         />
       ),
     },
-  ], [expansion]);  // 添加 expansion 作为依赖
+  ], [expansion, deckQuantities]);  // 添加 deckQuantities 作为依赖
 
   // 排序状态
   const [sortConfig, setSortConfig] = useState<{

@@ -24,6 +24,7 @@ interface CardGradesProps {
   expansion: string;
   isLoading?: boolean;
   customConfig?: CustomMetricConfig;
+  deckQuantities?: Map<string, number>;
 }
 
 // 颜色顺序定义
@@ -41,7 +42,7 @@ const COLOR_SYMBOL_CLASS: Record<ColorKey, string> = {
   'C': 'C',  // 无色
 };
 
-export function CardGrades({ data, allCards, metric, expansion, isLoading, customConfig }: CardGradesProps) {
+export function CardGrades({ data, allCards, metric, expansion, isLoading, customConfig, deckQuantities }: CardGradesProps) {
   // 计算评分
   const cardsWithGrades = useMemo(() => {
     const source = allCards && allCards.length > 0 ? allCards : data;
@@ -94,7 +95,7 @@ export function CardGrades({ data, allCards, metric, expansion, isLoading, custo
   return (
     <div className="space-y-4">
       <div className="w-[calc(100vw-2rem)] lg:w-[calc(100vw-4rem)] xl:w-[calc(100vw-6rem)] mx-auto space-y-4">
-        {/* 桌面端：表格视图（按颜色分列） */}
+            {/* 桌面端：表格视图（按颜色分列） */}
         <div className="hidden md:block overflow-x-auto">
           <div className="min-w-[1200px]">
             <div className="card">
@@ -124,10 +125,11 @@ export function CardGrades({ data, allCards, metric, expansion, isLoading, custo
                 <GradeRow
                   key={gradeGroup.grade}
                   grade={gradeGroup.grade}
-                cards={gradeGroup.cards}
+                  cards={gradeGroup.cards}
                   metricLabel={metricLabel}
                   expansion={expansion}
                   isWinRateMetric={isWinRateMetric}
+                  deckQuantities={deckQuantities}
                 />
               ))}
             </div>
@@ -144,6 +146,7 @@ export function CardGrades({ data, allCards, metric, expansion, isLoading, custo
               metricLabel={metricLabel}
               expansion={expansion}
               isWinRateMetric={isWinRateMetric}
+              deckQuantities={deckQuantities}
             />
           ))}
         </div>
@@ -158,9 +161,10 @@ interface GradeRowProps {
   metricLabel: string;
   expansion: string;
   isWinRateMetric: boolean;
+  deckQuantities?: Map<string, number>;
 }
 
-function GradeRow({ grade, cards, metricLabel, expansion, isWinRateMetric }: GradeRowProps) {
+function GradeRow({ grade, cards, metricLabel, expansion, isWinRateMetric, deckQuantities }: GradeRowProps) {
   // 按颜色分组卡牌
   const cardsByColor = useMemo(() => {
     const colorMap: Record<ColorKey, CardWithGrade[]> = {
@@ -217,6 +221,7 @@ function GradeRow({ grade, cards, metricLabel, expansion, isWinRateMetric }: Gra
                 metricLabel={metricLabel}
                 expansion={expansion}
                 isWinRateMetric={isWinRateMetric}
+                quantity={deckQuantities?.get(card.name)}
               />
             ))}
           </div>
@@ -232,9 +237,10 @@ interface MobileGradeSectionProps {
   metricLabel: string;
   expansion: string;
   isWinRateMetric: boolean;
+  deckQuantities?: Map<string, number>;
 }
 
-function MobileGradeSection({ grade, cards, metricLabel, expansion, isWinRateMetric }: MobileGradeSectionProps) {
+function MobileGradeSection({ grade, cards, metricLabel, expansion, isWinRateMetric, deckQuantities }: MobileGradeSectionProps) {
   // 按胜率降序排序所有卡牌
   const sortedCards = useMemo(() => {
     return [...cards].sort((a, b) => b.metricValue - a.metricValue);
@@ -259,6 +265,7 @@ function MobileGradeSection({ grade, cards, metricLabel, expansion, isWinRateMet
             metricLabel={metricLabel}
             expansion={expansion}
             isWinRateMetric={isWinRateMetric}
+            quantity={deckQuantities?.get(card.name)}
           />
         ))}
       </div>
@@ -272,9 +279,10 @@ interface CardGradeItemProps {
   metricLabel: string;
   expansion: string;
   isWinRateMetric: boolean;  // 是否为胜率指标（需要转换为百分比）
+  quantity?: number;
 }
 
-function CardGradeItem({ card, metricLabel, expansion, isWinRateMetric }: CardGradeItemProps) {
+function CardGradeItem({ card, metricLabel, expansion, isWinRateMetric, quantity }: CardGradeItemProps) {
   const { chineseCards } = useCardStore();
   const [tooltipVisible, setTooltipVisible] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -453,8 +461,13 @@ function CardGradeItem({ card, metricLabel, expansion, isWinRateMetric }: CardGr
           }}>
             <div className="flex items-start justify-between gap-1">
               <div className="flex-1 min-w-0">
-                <div className="text-xs font-medium text-white truncate leading-tight">
-                  {chineseName || card.name}
+                <div className="text-xs font-medium text-white truncate leading-tight flex items-center gap-1">
+                  <span>{chineseName || card.name}</span>
+                  {quantity && quantity > 1 && (
+                    <span className="text-[10px] bg-yellow-500/80 text-black px-1 rounded-sm font-bold">
+                      x{quantity}
+                    </span>
+                  )}
                 </div>
                 <div className="text-[10px] text-gray-300 truncate leading-tight">
                   {card.name}
@@ -469,6 +482,7 @@ function CardGradeItem({ card, metricLabel, expansion, isWinRateMetric }: CardGr
           </div>
         </div>
       </div>
+
       <CardTooltip
         card={card}
         visible={tooltipVisible}
