@@ -135,6 +135,13 @@ const arenaDirectEvents: Event[] = [
     startTime: new Date('2025-12-12T08:00:00-08:00'),
     endTime: new Date('2025-12-15T08:00:00-08:00'),
     format: '降世神通：最后的气宗现开'
+  },
+  {
+    type: 'arena_direct',
+    title: '竞技场直邮赛 - 降世神通：最后的气宗现开（常规补充包）',
+    startTime: new Date('2025-12-26T08:00:00-08:00'),
+    endTime: new Date('2025-12-29T08:00:00-08:00'),
+    format: '降世神通：最后的气宗现开'
   }
 ];
 
