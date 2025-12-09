@@ -2,7 +2,7 @@ import { CardData, ChineseCardData } from "@/types/card";
 
 export interface CardDataParams {
   expansion: string;           // 系列代码，如 "FDN"
-  format: string;             // 游戏格式，如 "PremierDraft"
+  event_type: string;         // 游戏格式，如 "PremierDraft"
   user_group?: string;        // 玩家分组，如 "middle"，为空时表示所有用户
   start_date: string;         // 开始日期，如 "2016-01-01"
   end_date: string;           // 结束日期，如 "2024-03-14"
@@ -72,7 +72,7 @@ const cardDetailCache = new LRUCache<string, DetailedCardData>(100);
 export async function fetchCardData(params: CardDataParams): Promise<CardData[]> {
   const searchParams = new URLSearchParams({
     expansion: params.expansion,
-    format: params.format,
+    event_type: params.event_type,
     start_date: params.start_date,
     end_date: params.end_date,
   });

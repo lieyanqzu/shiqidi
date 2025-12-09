@@ -13,18 +13,11 @@ export interface Event {
 }
 
 export const calendarMetadata: CalendarMetadata = {
-  lastUpdated: '2025/12/01',
-  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-december-01-2025#Events',
+  lastUpdated: '2025/12/08',
+  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-december-8-2025#Events',
 };
 
 const midweekMagicEvents: Event[] = [
-  {
-    type: 'midweek_magic',
-    title: '万智牌丨降世神通：最后的气宗争锋构筑挑战',
-    startTime: new Date('2025-12-02T14:00:00-08:00'),
-    endTime: new Date('2025-12-04T14:00:00-08:00'),
-    format: '争锋'
-  },
   {
     type: 'midweek_magic',
     title: '基石构筑 + 万智牌～最终幻想',
@@ -46,6 +39,14 @@ const midweekMagicEvents: Event[] = [
     endTime: new Date('2025-12-25T14:00:00-08:00'),
     format: '全知全能轮抽'
   },
+  {
+    type: 'midweek_magic',
+    title: '慢启动标准',
+    startTime: new Date('2025-12-30T14:00:00-08:00'),
+    endTime: new Date('2026-01-01T14:00:00-08:00'),
+    format: '标准',
+    description: '先手的牌手的第一块地须横置进入战场'
+  }
 ];
 
 const premierDraftEvents: Event[] = [
@@ -100,6 +101,13 @@ const quickDraftEvents: Event[] = [
     startTime: new Date('2025-12-26T08:00:00-08:00'),
     endTime: new Date('2025-12-30T08:00:00-08:00'),
     format: '全知全能快速轮抽',
+  },
+  {
+    type: 'quick_draft',
+    title: '万智牌丨降世神通：最后的气宗',
+    startTime: new Date('2025-12-30T08:00:00-08:00'),
+    endTime: new Date('2026-01-16T08:00:00-08:00'),
+    format: '快速轮抽',
   }
 ];
 
@@ -110,13 +118,6 @@ const otherEvents: Event[] = [
     startTime: new Date('2025-11-18T08:00:00-08:00'),
     endTime: new Date('2025-12-12T08:00:00-08:00'),
     format: '现开',
-  },
-  {
-    type: 'other',
-    title: '万智牌丨降世神通：最后的气宗三盘现开',
-    startTime: new Date('2025-11-18T08:00:00-08:00'),
-    endTime: new Date('2025-12-02T08:00:00-08:00'),
-    format: '三盘现开',
   },
   {
     type: 'other',
@@ -140,14 +141,6 @@ const arenaDirectEvents: Event[] = [
 const premierPlayEvents: Event[] = [
   {
     type: 'premier_play',
-    title: '冠军赛资格赛 - 入围赛BO1',
-    startTime: new Date('2025-12-06T06:00:00-08:00'),
-    endTime: new Date('2025-12-07T09:00:00-08:00'),
-    format: '降世神通：最后的气宗现开',
-    description: '单日赛事，玩家将竞争获得12月12-13日冠军赛资格赛周末的参赛资格。',
-  },
-  {
-    type: 'premier_play',
     title: '冠军赛资格赛 - 入围赛BO3',
     startTime: new Date('2025-12-12T06:00:00-08:00'),
     endTime: new Date('2025-12-13T07:00:00-08:00'),
@@ -161,10 +154,42 @@ const premierPlayEvents: Event[] = [
     endTime: new Date('2025-12-13T17:00:00-08:00'),
     format: '降世神通：最后的气宗现开',
     description: '两日赛事，获胜者将获得参加竞技场冠军赛11的资格。',
+  },
+  {
+    type: 'premier_play',
+    title: '冠军赛资格赛 - 入围赛BO1',
+    startTime: new Date('2026-01-03T06:00:00-08:00'),
+    endTime: new Date('2026-01-04T09:00:00-08:00'),
+    format: '先驱',
+    description: '单日赛事，玩家将竞争获得1月10-11日冠军赛资格赛周末的参赛资格。',
+  },
+  {
+    type: 'premier_play',
+    title: '冠军赛资格赛 - 入围赛BO3',
+    startTime: new Date('2026-01-09T06:00:00-08:00'),
+    endTime: new Date('2026-01-10T07:00:00-08:00'),
+    format: '先驱',
+    description: '单日赛事，玩家将竞争获得1月10-11日冠军赛资格赛周末的参赛资格。',
+  },
+  {
+    type: 'premier_play',
+    title: '冠军赛资格赛周末',
+    startTime: new Date('2026-01-10T06:00:00-08:00'),
+    endTime: new Date('2026-01-11T17:00:00-08:00'),
+    format: '先驱',
+    description: '两日赛事，获胜者将获得参加竞技场冠军赛11的资格。',
   }
 ];
 
-const arenaChampionshipEvents: Event[] = [];
+const arenaChampionshipEvents: Event[] = [
+  {
+    type: 'arena_championship',
+    title: '竞技场冠军赛10',
+    startTime: new Date('2025-12-20T09:00:00-08:00'),
+    endTime: new Date('2025-12-21T17:00:00-08:00'),
+    format: '永恒(?)',
+  },
+];
 
 export const events: Event[] = [
   ...midweekMagicEvents,
