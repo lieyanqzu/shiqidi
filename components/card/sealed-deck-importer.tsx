@@ -131,7 +131,8 @@ export function SealedDeckImporter({ onImport, onClear, hasImportedDeck, cardNam
         }`}
       >
         <Upload className="w-4 h-4" />
-        {hasImportedDeck ? '现开模式 √' : '现开模式'}
+        <span className="hidden sm:inline">{hasImportedDeck ? '现开模式 √' : '现开模式'}</span>
+        {hasImportedDeck && <span className="sm:hidden">√</span>}
       </Button>
 
       {open && (
