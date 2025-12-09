@@ -12,6 +12,8 @@ import { type GradeMetric, type CustomMetricConfig, loadCustomMetricConfig } fro
 import { Button } from "@/components/ui/button";
 import { CardGradeMetrics } from "@/components/card/card-grade-metrics";
 
+import { SealedDeckImporter } from "@/components/card/sealed-deck-importer";
+
 export default function CardsPage() {
   const { 
     cards, 
@@ -33,9 +35,15 @@ export default function CardsPage() {
   const [customConfig, setCustomConfig] = useState<CustomMetricConfig | null>(null);
   const [columnControls, setColumnControls] = useState<ReactNode | null>(null);
   const [mounted, setMounted] = useState(false);
+  const [importedDeck, setImportedDeck] = useState<Map<string, number> | null>(null);
 
   const filteredCards = useMemo(() => {
     let result = cards;
+
+    // 现开牌表筛选
+    if (importedDeck) {
+      result = result.filter(card => importedDeck.has(card.name));
+    }
 
     // 搜索筛选
     if (searchText) {
@@ -105,7 +113,7 @@ export default function CardsPage() {
     }
 
     return result;
-  }, [cards, searchText, selectedColors, selectedRarities, chineseCards]);
+  }, [cards, searchText, selectedColors, selectedRarities, chineseCards, importedDeck]);
 
   // 加载卡牌数据
   useEffect(() => {
@@ -176,6 +184,47 @@ export default function CardsPage() {
     }
   }, [gradeMetric, mounted]);
 
+  // 构建卡牌名称映射表 (用于现开导入)
+  // key: 小写名称 (支持中文和英文)
+  // value: 标准英文名称
+  const cardNameMap = useMemo(() => {
+    const map = new Map<string, string>();
+    
+    cards.forEach(card => {
+      // 添加英文名
+      map.set(card.name.toLowerCase(), card.name);
+      
+      // 添加中文名
+      const chineseCard = chineseCards[card.name];
+      if (chineseCard) {
+        if (chineseCard.zhs_name) {
+          map.set(chineseCard.zhs_name.toLowerCase(), card.name);
+        }
+        if (chineseCard.atomic_official_name) {
+          map.set(chineseCard.atomic_official_name.toLowerCase(), card.name);
+        }
+        if (chineseCard.atomic_translated_name) {
+          map.set(chineseCard.atomic_translated_name.toLowerCase(), card.name);
+        }
+      }
+    });
+    
+    return map;
+  }, [cards, chineseCards]);
+
+  // 当系列改变时，清空导入的牌表
+  useEffect(() => {
+    setImportedDeck(null);
+  }, [params.expansion]);
+
+  const handleDeckImport = (deck: Map<string, number>) => {
+    setImportedDeck(deck);
+  };
+
+  const handleDeckClear = () => {
+    setImportedDeck(null);
+  };
+
   return (
     <div className="py-8">
       <div className="container mx-auto px-4 mb-8">
@@ -211,7 +260,7 @@ export default function CardsPage() {
         {/* 视图切换和指标选择 */}
         <div className="flex flex-wrap items-center gap-3 mt-6 p-4 bg-[--component-background] rounded-lg border border-[--border]">
           {/* 视图切换按钮 */}
-          <div className="flex items-center gap-2 shrink-0">
+          <div className="flex items-center gap-2 shrink-0 order-1">
             <Button
               variant={viewMode === 'grades' ? 'secondary' : 'ghost'}
               size="sm"
@@ -241,7 +290,7 @@ export default function CardsPage() {
 
           {/* 指标选择器 - 仅在 Grades 视图显示 */}
           {viewMode === 'grades' && (
-            <div className="flex-1 min-w-[240px]">
+            <div className="w-full md:w-auto md:flex-1 min-w-[240px] order-3 md:order-2">
               <CardGradeMetrics
                 selectedMetric={gradeMetric}
                 onMetricChange={setGradeMetric}
@@ -252,10 +301,21 @@ export default function CardsPage() {
 
           {/* 列显示控制 - 仅在 Table 视图显示 */}
           {viewMode === 'table' && columnControls && (
-            <div className="flex-1 min-w-[240px]">
+            <div className="w-full md:w-auto md:flex-1 min-w-[240px] order-3 md:order-2">
               {columnControls}
             </div>
           )}
+
+          {/* 现开牌表导入按钮 */}
+          <div className="shrink-0 flex items-center order-2 md:order-3 ml-auto md:ml-0">
+            <SealedDeckImporter
+              key={params.expansion}
+              onImport={handleDeckImport}
+              onClear={handleDeckClear}
+              hasImportedDeck={!!importedDeck}
+              cardNameMap={cardNameMap}
+            />
+          </div>
         </div>
       </div>
 
@@ -266,6 +326,7 @@ export default function CardsPage() {
         isLoading={isLoading} 
         expansion={params.expansion}
         onColumnControlsChange={setColumnControls}
+        deckQuantities={importedDeck || undefined}
       />
       ) : (
         <CardGrades
@@ -275,6 +336,7 @@ export default function CardsPage() {
           expansion={params.expansion}
           isLoading={isLoading}
           customConfig={customConfig || undefined}
+          deckQuantities={importedDeck || undefined}
         />
       )}
       <BackToTop />

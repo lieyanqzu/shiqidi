@@ -11,9 +11,10 @@ import { extractScryfallIdFromUrl } from '@/lib/api';
 interface CardNameCellProps {
   card: CardData;
   expansion: string;
+  quantity?: number;
 }
 
-export function CardNameCell({ card, expansion }: CardNameCellProps) {
+export function CardNameCell({ card, expansion, quantity }: CardNameCellProps) {
   const { chineseCards } = useCardStore();
   const chineseCard = chineseCards[card.name];
   const chineseName = chineseCard?.atomic_official_name || chineseCard?.atomic_translated_name || chineseCard?.zhs_name;
@@ -136,8 +137,13 @@ export function CardNameCell({ card, expansion }: CardNameCellProps) {
       onClick={handleClick}
     >
       <div className="relative z-1 bg-black/50 p-1 rounded hover:bg-black/60 transition-colors">
-        <div className="font-medium text-white truncate">
-          {chineseName || card.name}
+        <div className="font-medium text-white truncate flex items-center gap-1">
+          <span>{chineseName || card.name}</span>
+          {quantity && quantity > 1 && (
+            <span className="text-[10px] bg-yellow-500/80 text-black px-1 rounded-sm font-bold">
+              x{quantity}
+            </span>
+          )}
         </div>
         <div className="text-sm text-gray-300 truncate">
           {card.name}
@@ -157,4 +163,4 @@ export function CardNameCell({ card, expansion }: CardNameCellProps) {
       />
     </div>
   );
-} 
+}
