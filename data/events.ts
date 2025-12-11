@@ -41,7 +41,7 @@ const midweekMagicEvents: Event[] = [
   },
   {
     type: 'midweek_magic',
-    title: '慢启动标准',
+    title: '慢热启动标准',
     startTime: new Date('2025-12-30T14:00:00-08:00'),
     endTime: new Date('2026-01-01T14:00:00-08:00'),
     format: '标准',
@@ -85,14 +85,14 @@ const quickDraftEvents: Event[] = [
     type: 'quick_draft',
     title: '依夏兰迷窟',
     startTime: new Date('2025-12-09T08:00:00-08:00'),
-    endTime: new Date('2026-12-16T08:00:00-08:00'),
+    endTime: new Date('2025-12-16T08:00:00-08:00'),
     format: '快速轮抽',
   },
   {
     type: 'quick_draft',
     title: '万智牌～最终幻想',
     startTime: new Date('2025-12-16T08:00:00-08:00'),
-    endTime: new Date('2026-12-30T08:00:00-08:00'),
+    endTime: new Date('2025-12-30T08:00:00-08:00'),
     format: '快速轮抽',
   },
   {
@@ -121,7 +121,7 @@ const otherEvents: Event[] = [
   },
   {
     type: 'other',
-    title: '全卡争锋环境挑战赛',
+    title: '全卡争锋改禁环境挑战赛',
     startTime: new Date('2025-12-16T08:00:00-08:00'),
     endTime: new Date('2026-01-06T08:00:00-08:00'),
     format: '争锋',
@@ -194,7 +194,7 @@ const arenaChampionshipEvents: Event[] = [
     title: '竞技场冠军赛10',
     startTime: new Date('2025-12-20T09:00:00-08:00'),
     endTime: new Date('2025-12-21T17:00:00-08:00'),
-    format: '永恒(?)',
+    format: '永恒',
   },
 ];
 
