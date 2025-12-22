@@ -190,11 +190,24 @@ const premierPlayEvents: Event[] = [
 const arenaChampionshipEvents: Event[] = [
   {
     type: 'arena_championship',
-    title: '竞技场冠军赛10',
-    startTime: new Date('2025-12-20T09:00:00-08:00'),
-    endTime: new Date('2025-12-21T17:00:00-08:00'),
-    format: '永恒',
-    description: '直播地址：twitch.tv/magic'
+    title: '竞技场冠军赛11',
+    startTime: new Date('2026-02-21T09:00:00-08:00'),
+    endTime: new Date('2026-02-22T17:00:00-08:00'),
+    format: '标准',
+  },
+  {
+    type: 'arena_championship',
+    title: '竞技场冠军赛12',
+    startTime: new Date('2026-05-23T09:00:00-08:00'),
+    endTime: new Date('2026-05-24T17:00:00-08:00'),
+    format: '史迹',
+  },
+  {
+    type: 'arena_championship',
+    title: '竞技场冠军赛13',
+    startTime: new Date('2026-10-24T09:00:00-08:00'),
+    endTime: new Date('2026-10-25T17:00:00-08:00'),
+    format: '标准',
   },
 ];
 

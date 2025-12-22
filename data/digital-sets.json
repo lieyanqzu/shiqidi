@@ -260,7 +260,35 @@
       "name": "洛温：暗影笼罩",
       "code": "ECL",
       "releaseDate": "2026-01-21",
-      "wikiUrl": "https://mtg.wiki/page/Lorwyn_Eclipsed?utm_source=shiqidi"
+      "wikiUrl": "https://mtg.wiki/page/Lorwyn_Eclipsed?utm_source=shiqidi",
+      "preview": {
+        "title": "回到光与影的土地",
+        "description": "拥抱暗影荒原扭曲的地貌和狂野的魔法，这是永夜的世界，充斥着更加混乱的生物。在这个双面时空的恒久月光下找到真实的自己。",
+        "backgroundImage": "/image/background/ECL_sma_key_1920x1080_en.jpg",
+        "links": [
+          {
+            "name": "大学院废墟（中文）",
+            "url": "https://mtgch.com/previews/ECL/?utm_source=shiqidi"
+          },
+          {
+            "name": "官网牌图集合",
+            "url": "https://magic.wizards.com/en/products/lorwyn-eclipsed/card-image-gallery"
+          },
+          {
+            "name": "Scryfall",
+            "url": "https://scryfall.com/sets/ecl?order=spoiled&utm_source=shiqidi"
+          },
+          {
+            "name": "Untapped.gg",
+            "url": "https://mtga.untapped.gg/codex/sets/lorwyn-eclipsed?sortBy=spoilerDate&utm_source=shiqidi"
+          }
+        ]
+      }
+    },
+    {
+      "name": "炼金：洛温",
+      "code": "YECL",
+      "releaseDate": "2026-02-11"
     }
   ]
 }
