@@ -22,11 +22,11 @@
     "react-datepicker": "^7.6.0",
     "react-dom": "^19.2.3",
     "recharts": "^2.15.4",
-    "zustand": "^5.0.9"
+    "zustand": "^5.0.10"
   },
   "devDependencies": {
-    "@types/node": "^22.19.3",
-    "@types/react": "^19.2.7",
+    "@types/node": "^22.19.5",
+    "@types/react": "^19.2.8",
     "@types/react-dom": "^19.2.3",
     "@types/recharts": "^1.8.29",
     "eslint": "^9.39.2",
