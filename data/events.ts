@@ -13,18 +13,11 @@ export interface Event {
 }
 
 export const calendarMetadata: CalendarMetadata = {
-  lastUpdated: '2026/01/05',
-  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-january-5-2026#Events',
+  lastUpdated: '2026/01/12',
+  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-january-12-2026#Events',
 };
 
 const midweekMagicEvents: Event[] = [
-  {
-    type: 'midweek_magic',
-    title: '莫秘维',
-    startTime: new Date('2026-01-06T14:00:00-08:00'),
-    endTime: new Date('2026-01-08T14:00:00-08:00'),
-    format: '莫秘维'
-  },
   {
     type: 'midweek_magic',
     title: '万智牌丨降世神通：最后的气宗现开',
@@ -46,6 +39,13 @@ const midweekMagicEvents: Event[] = [
     endTime: new Date('2026-01-29T14:00:00-08:00'),
     format: '构筑',
     description: '仅可使用基石构筑和最近几个标准系列'
+  },
+  {
+    type: 'midweek_magic',
+    title: '史迹纯普',
+    startTime: new Date('2026-02-03T14:00:00-08:00'),
+    endTime: new Date('2026-02-05T14:00:00-08:00'),
+    format: '史迹'
   }
 ];
 
@@ -56,13 +56,6 @@ const premierDraftEvents: Event[] = [
     startTime: new Date('2025-11-18T08:00:00-08:00'),
     endTime: new Date('2026-01-20T08:00:00-08:00'),
     format: '竞技轮抽 & 三盘轮抽',
-  },
-  {
-    type: 'premier_draft',
-    title: '依尼翠：黯夜猎踪',
-    startTime: new Date('2025-12-30T08:00:00-08:00'),
-    endTime: new Date('2026-01-06T08:00:00-08:00'),
-    format: '竞技轮抽',
   },
   {
     type: 'premier_draft',
@@ -132,30 +125,21 @@ const otherEvents: Event[] = [
 const arenaDirectEvents: Event[] = [
   {
     type: 'arena_direct',
-    title: '竞技场直邮赛 - 洛温：暗影笼罩现开（？？补充包）',
+    title: '竞技场直邮赛 - 洛温：暗影笼罩现开（聚珍补充包）',
     startTime: new Date('2026-01-30T08:00:00-08:00'),
     endTime: new Date('2026-02-02T08:00:00-08:00'),
+    format: '洛温：暗影笼罩现开'
+  },
+  {
+    type: 'arena_direct',
+    title: '竞技场直邮赛 - 洛温：暗影笼罩现开（常规补充包）',
+    startTime: new Date('2026-02-13T08:00:00-08:00'),
+    endTime: new Date('2026-02-16T08:00:00-08:00'),
     format: '洛温：暗影笼罩现开'
   }
 ];
 
 const premierPlayEvents: Event[] = [
-  {
-    type: 'premier_play',
-    title: '冠军赛资格赛 - 入围赛BO3',
-    startTime: new Date('2026-01-09T06:00:00-08:00'),
-    endTime: new Date('2026-01-10T07:00:00-08:00'),
-    format: '先驱',
-    description: '单日赛事，玩家将竞争获得1月10-11日冠军赛资格赛周末的参赛资格。',
-  },
-  {
-    type: 'premier_play',
-    title: '冠军赛资格赛周末',
-    startTime: new Date('2026-01-10T06:00:00-08:00'),
-    endTime: new Date('2026-01-11T17:00:00-08:00'),
-    format: '先驱',
-    description: '两日赛事，获胜者将获得参加竞技场冠军赛的资格。',
-  },
   {
     type: 'premier_play',
     title: '冠军赛资格赛 - 入围赛BO1',
