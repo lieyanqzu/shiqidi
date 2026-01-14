@@ -114,11 +114,17 @@ const quickDraftEvents: Event[] = [
 const otherEvents: Event[] = [
   {
     type: 'other',
-    title: '全卡争锋改禁环境挑战赛',
-    startTime: new Date('2025-12-16T08:00:00-08:00'),
-    endTime: new Date('2026-01-06T08:00:00-08:00'),
-    format: '争锋',
-    description: '公告：https://magic.wizards.com/en/news/mtg-arena/brawl-our-plans'
+    title: '洛温：暗影笼罩现开',
+    startTime: new Date('2026-01-20T08:00:00-08:00'),
+    endTime: new Date('2026-02-13T08:00:00-08:00'),
+    format: '现开'
+  },
+  {
+    type: 'other',
+    title: '洛温：暗影笼罩三盘现开',
+    startTime: new Date('2026-01-20T08:00:00-08:00'),
+    endTime: new Date('2026-02-03T08:00:00-08:00'),
+    format: '三盘现开'
   }
 ];
 
