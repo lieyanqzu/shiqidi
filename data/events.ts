@@ -13,8 +13,8 @@ export interface Event {
 }
 
 export const calendarMetadata: CalendarMetadata = {
-  lastUpdated: '2026/01/12',
-  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-january-12-2026#Events',
+  lastUpdated: '2026/01/19',
+  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-january-19-2026#Events',
 };
 
 const midweekMagicEvents: Event[] = [
