@@ -1,6 +1,19 @@
 {
   "sets": [
     {
+      "code": "ECL",
+      "boosters": [
+        {
+          "code": "ecl-collector",
+          "name": "聚珍补充包"
+        },
+        {
+          "code": "ecl-play",
+          "name": "常规补充包"
+        }
+      ]
+    },
+    {
       "code": "TLA",
       "boosters": [
         {

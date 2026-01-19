@@ -20,13 +20,6 @@ export const calendarMetadata: CalendarMetadata = {
 const midweekMagicEvents: Event[] = [
   {
     type: 'midweek_magic',
-    title: '万智牌丨降世神通：最后的气宗现开',
-    startTime: new Date('2026-01-13T14:00:00-08:00'),
-    endTime: new Date('2026-01-15T14:00:00-08:00'),
-    format: '现开'
-  },
-  {
-    type: 'midweek_magic',
     title: '投身洛温：暗影笼罩',
     startTime: new Date('2026-01-20T14:00:00-08:00'),
     endTime: new Date('2026-01-22T14:00:00-08:00'),
@@ -46,6 +39,13 @@ const midweekMagicEvents: Event[] = [
     startTime: new Date('2026-02-03T14:00:00-08:00'),
     endTime: new Date('2026-02-05T14:00:00-08:00'),
     format: '史迹'
+  },
+  {
+    type: 'midweek_magic',
+    title: '洛温：暗影笼罩争锋构筑挑战',
+    startTime: new Date('2026-02-10T14:00:00-08:00'),
+    endTime: new Date('2026-02-12T14:00:00-08:00'),
+    format: '争锋'
   }
 ];
 
@@ -62,13 +62,6 @@ const premierDraftEvents: Event[] = [
     title: '强化方盒轮抽',
     startTime: new Date('2026-01-06T08:00:00-08:00'),
     endTime: new Date('2026-01-20T08:00:00-08:00'),
-    format: '竞技轮抽',
-  },
-  {
-    type: 'premier_draft',
-    title: '卡洛夫庄园谋杀案',
-    startTime: new Date('2026-01-06T08:00:00-08:00'),
-    endTime: new Date('2026-01-13T08:00:00-08:00'),
     format: '竞技轮抽',
   },
   {
@@ -90,13 +83,6 @@ const premierDraftEvents: Event[] = [
 const quickDraftEvents: Event[] = [
   {
     type: 'quick_draft',
-    title: '万智牌丨降世神通：最后的气宗',
-    startTime: new Date('2025-12-30T08:00:00-08:00'),
-    endTime: new Date('2026-01-16T08:00:00-08:00'),
-    format: '快速轮抽',
-  },
-  {
-    type: 'quick_draft',
     title: '暮悲邸：鬼屋惊魂',
     startTime: new Date('2026-01-16T08:00:00-08:00'),
     endTime: new Date('2026-01-29T08:00:00-08:00'),
@@ -107,6 +93,13 @@ const quickDraftEvents: Event[] = [
     title: '洛温：暗影笼罩',
     startTime: new Date('2026-01-29T08:00:00-08:00'),
     endTime: new Date('2026-02-09T08:00:00-08:00'),
+    format: '快速轮抽',
+  },
+  {
+    type: 'quick_draft',
+    title: '穿越预兆路',
+    startTime: new Date('2026-02-09T08:00:00-08:00'),
+    endTime: new Date('2026-02-22T08:00:00-08:00'),
     format: '快速轮抽',
   }
 ];
@@ -125,6 +118,20 @@ const otherEvents: Event[] = [
     startTime: new Date('2026-01-20T08:00:00-08:00'),
     endTime: new Date('2026-02-03T08:00:00-08:00'),
     format: '三盘现开'
+  },
+  {
+    type: 'other',
+    title: '标准环境挑战赛',
+    startTime: new Date('2026-01-23T08:00:00-08:00'),
+    endTime: new Date('2026-01-26T08:00:00-08:00'),
+    format: '标准'
+  },
+  {
+    type: 'other',
+    title: '改禁争锋环境挑战赛',
+    startTime: new Date('2026-01-26T08:00:00-08:00'),
+    endTime: new Date('2026-02-10T08:00:00-08:00'),
+    format: '争锋'
   }
 ];
 
