@@ -371,5 +371,21 @@
   {
     "name": "Shield counter",
     "text": "If a permanent with a shield counter would be dealt damage or destroyed, remove a shield counter from it instead."
+  },
+  {
+    "name": "反单色保护",
+    "text": "不能被单色的东西阻挡，指定为目标，造成伤害，结附或是装备。"
+  },
+  {
+    "name": "Protection from monocolored",
+    "text": "It can't be blocked, targeted, dealt damage, enchanted, or equipped by anything monocolored."
+  },
+  {
+    "name": "山羊共鸣",
+    "text": "你每操控一个山羊，此咒语便减少{1}来施放。"
+  },
+  {
+    "name": "affinity for Goats",
+    "text": "This spell costs {1} less to cast for each Goat you control."
   }
 ]
