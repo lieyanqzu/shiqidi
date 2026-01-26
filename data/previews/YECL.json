@@ -1,0 +1,43 @@
+{
+  "code": "YECL",
+  "name": "炼金：洛温暗影笼罩",
+  "logo_code": "y26",
+  "release_date": "2026-02-04",
+  "description": "炼金：洛温暗影笼罩共30张卡牌，将于2026年2月4日上线万智牌：竞技场。感谢轻脚翻译并制作中文卡图。",
+  "total_cards": 30,
+  "cards": [
+    {
+      "id": "yecl-1",
+      "name": "The Grand Goatnapper",
+      "zhs_name": "The Grand Goatnapper",
+      "mana_cost": "{2}{B}{R}",
+      "type": "Legendary Creature — Goblin Rogue",
+      "zhs_type": "传奇生物～鬼怪／浪客",
+      "text": "Spells you cast have `affinity for Goats`.\n{T}: Target non-Goat creature `perpetually` becomes a Goat in addition to its other types. Then `conjure` a card named `Goatnap:0` into your hand. Activate only as a sorcery.\nFLAVOR\n\"Fear the boggart in sheep's clothing\"\n—Emerging kithkin proverb",
+      "zhs_text": "Spells you cast have affinity for Goats.\n{T}: Target non-Goat creature perpetually becomes a Goat in addition to its other types. Then conjure a card named Goatnap into your hand. Activate only as a sorcery.\nFLAVOR\n\"Fear the boggart in sheep's clothing\"\n—Emerging kithkin proverb",
+      "artist": "Edgar Sánchez Hidalgo",
+      "image_url_en": "https://media.wizards.com/2025/ecl/y26/en_8FBfVszzlq.webp",
+      "image_url_zh": "https://media.wizards.com/2025/ecl/y26/en_8FBfVszzlq.webp",
+      "rarity": "rare",
+      "pow_tough": "3/4",
+      "related": [
+        "ECL:142"
+      ]
+    },
+    {
+      "id": "yecl-2",
+      "name": "Providence of Night",
+      "zhs_name": "Providence of Night",
+      "mana_cost": "{W/U}{U/B}{B/R}{R/G}{G/W}",
+      "type": "Legendary Creature — Spirit Avatar",
+      "zhs_type": "传奇生物～精怪／圣者",
+      "text": "`Protection from monocolored`\nWhenever you cast a spell with hybrid mana in its mana cost, copy it. You may choose new targets for the copy.\nFLAVOR\n\"I have seen beyond the moonlight. I have seen the infinite night. It does not creep, it has no need. It is already here.\"\n—The Listener's Lament",
+      "zhs_text": "Protection from monocolored\nWhenever you cast a spell with hybrid mana in its mana cost, copy it. You may choose new targets for the copy.\nFLAVOR\n\"I have seen beyond the moonlight. I have seen the infinite night. It does not creep, it has no need. It is already here.\"\n—The Listener's Lament",
+      "artist": "Justin Gerard",
+      "image_url_en": "https://media.wizards.com/2025/ecl/y26/en_RHbxyma5w7.webp",
+      "image_url_zh": "https://media.wizards.com/2025/ecl/y26/en_RHbxyma5w7.webp",
+      "rarity": "mythic",
+      "pow_tough": "5/5"
+    }
+  ]
+}

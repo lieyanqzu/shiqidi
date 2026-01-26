@@ -286,9 +286,30 @@
       }
     },
     {
-      "name": "炼金：洛温",
+      "name": "炼金：洛温暗影笼罩",
       "code": "YECL",
-      "releaseDate": "2026-02-11"
+      "releaseDate": "2026-02-04",
+      "wikiUrl": "https://mtg.wiki/page/Alchemy:_Lorwyn_Eclipsed?utm_source=shiqidi",
+      "preview": {
+        "title": "炼金预览",
+        "description": "最新炼金系列将于2026年2月4日上线万智牌：竞技场，即日起开始预览。",
+        "links": [
+          {
+            "name": "十七地（中文）",
+            "url": "/previews/yecl"
+          },
+          {
+            "name": "Scryfall",
+            "url": "https://scryfall.com/sets/yecl?order=spoiled&utm_source=shiqidi"
+          }
+        ]
+      }
+    },
+    {
+      "name": "忍者神龟",
+      "code": "TMT",
+      "releaseDate": "2026-03-04",
+      "wikiUrl": "https://mtg.wiki/page/Teenage_Mutant_Ninja_Turtles?utm_source=shiqidi"
     }
   ]
 }
