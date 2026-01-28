@@ -387,5 +387,13 @@
   {
     "name": "affinity for Goats",
     "text": "This spell costs {1} less to cast for each Goat you control."
+  },
+  {
+    "name": "风暴",
+    "text": "当施放此咒语时，本回合于它之前每施放过一个咒语，便将此咒语复制一次。"
+  },
+  {
+    "name": "Storm",
+    "text": "When you cast this spell, copy it for each spell cast before it this turn."
   }
 ]
