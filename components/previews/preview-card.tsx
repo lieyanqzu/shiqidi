@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useState, useEffect, Fragment } from 'react';
+import { useState, useEffect, useLayoutEffect, useMemo, useRef, Fragment } from 'react';
 import type { PreviewCard } from '@/types/previews';
 import { ManaText } from '@/components/mana/mana-text';
 import { SetIcon, type SetIconRarity } from '@/components/logo/set-icon';
@@ -51,6 +51,156 @@ const StationAbility = ({
   );
 };
 
+interface CardRefsSectionProps {
+  title: string;
+  cards: CardRef[];
+  getCardDetailUrl: (setCode: string, number: string) => string;
+  onMouseEnter: (card: CardRef) => void;
+  onMouseLeave: () => void;
+  onMouseMove: (e: React.MouseEvent) => void;
+  isLoading?: boolean;
+  excludeIndices?: Set<number>;
+  enableCollapse?: boolean;
+  collapseRows?: number;
+}
+
+const CardRefsSection = ({
+  title,
+  cards,
+  getCardDetailUrl,
+  onMouseEnter,
+  onMouseLeave,
+  onMouseMove,
+  isLoading = false,
+  excludeIndices,
+  enableCollapse = false,
+  collapseRows = 3,
+}: CardRefsSectionProps) => {
+  const listRef = useRef<HTMLDivElement>(null);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [isOverflowing, setIsOverflowing] = useState(false);
+  const [collapsedHeight, setCollapsedHeight] = useState<number | null>(null);
+
+  const displayCards = useMemo(() => {
+    if (!excludeIndices || excludeIndices.size === 0) {
+      return cards;
+    }
+    return cards.filter((_, index) => !excludeIndices.has(index));
+  }, [cards, excludeIndices]);
+
+  useLayoutEffect(() => {
+    if (!enableCollapse) {
+      setIsOverflowing(false);
+      setCollapsedHeight(null);
+      return;
+    }
+
+    const container = listRef.current;
+    if (!container) return;
+
+    const measureRows = () => {
+      const children = Array.from(container.children) as HTMLElement[];
+      if (children.length === 0) {
+        setIsOverflowing(false);
+        setCollapsedHeight(null);
+        return;
+      }
+
+      const rowMap = new Map<number, number>();
+      children.forEach(child => {
+        const top = Math.round(child.offsetTop);
+        const bottom = child.offsetTop + child.offsetHeight;
+        const existing = rowMap.get(top);
+        rowMap.set(top, existing ? Math.max(existing, bottom) : bottom);
+      });
+
+      const rows = Array.from(rowMap.entries()).sort((a, b) => a[0] - b[0]);
+      if (rows.length > collapseRows) {
+        const targetRow = rows[collapseRows - 1];
+        setIsOverflowing(true);
+        setCollapsedHeight(targetRow ? targetRow[1] : null);
+      } else {
+        setIsOverflowing(false);
+        setCollapsedHeight(null);
+      }
+    };
+
+    measureRows();
+    window.addEventListener('resize', measureRows);
+    return () => window.removeEventListener('resize', measureRows);
+  }, [displayCards, enableCollapse, collapseRows]);
+
+  useEffect(() => {
+    if (!enableCollapse) {
+      setIsExpanded(false);
+    }
+  }, [enableCollapse, displayCards]);
+
+  if (displayCards.length === 0 && !isLoading) {
+    return null;
+  }
+
+  const shouldCollapse = enableCollapse && isOverflowing && collapsedHeight !== null;
+  const listStyle = shouldCollapse && !isExpanded ? { maxHeight: `${collapsedHeight}px` } : undefined;
+
+  return (
+    <div className="mt-4 pt-2 border-t border-[--border]">
+      <div className="flex items-center justify-between gap-2 mb-2">
+        <div className="text-sm font-medium">{title}</div>
+        <div className="flex items-center gap-2">
+          {isLoading && (
+            <div className="flex items-center gap-1 text-xs text-[--muted-foreground]">
+              <span className="h-3 w-3 rounded-full border-2 border-[--primary] border-t-transparent animate-spin" />
+              <span>加载中</span>
+            </div>
+          )}
+          {enableCollapse && isOverflowing && (
+            <button
+              type="button"
+              className="text-xs text-[--primary] hover:opacity-80 transition-opacity"
+              onClick={() => setIsExpanded(prev => !prev)}
+              aria-expanded={isExpanded}
+            >
+              {isExpanded ? '收起' : '展开'}
+            </button>
+          )}
+        </div>
+      </div>
+      <div className="relative">
+        {displayCards.length > 0 ? (
+          <>
+            <div
+              ref={listRef}
+              className={`flex flex-wrap gap-2 ${shouldCollapse && !isExpanded ? 'overflow-hidden' : ''} ${enableCollapse ? 'transition-[max-height] duration-200' : ''}`}
+              style={listStyle}
+            >
+              {displayCards.map((card, index) => (
+                <a
+                  key={index}
+                  href={getCardDetailUrl(card.setCode, card.number)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-[--primary] hover:opacity-80 transition-opacity"
+                  onMouseEnter={() => onMouseEnter(card)}
+                  onMouseLeave={onMouseLeave}
+                  onMouseMove={onMouseMove}
+                >
+                  {card.zhs_name || `${card.setCode}:${card.number}`}
+                </a>
+              ))}
+            </div>
+            {enableCollapse && isOverflowing && !isExpanded && (
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-6 bg-gradient-to-t from-[--card] to-transparent" />
+            )}
+          </>
+        ) : (
+          <div className="text-sm text-[--muted-foreground]">正在获取卡牌信息...</div>
+        )}
+      </div>
+    </div>
+  );
+};
+
 export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
   const [spellbookCards, setSpellbookCards] = useState<CardRef[]>([]);
   const [relatedCards, setRelatedCards] = useState<CardRef[]>([]);
@@ -60,6 +210,8 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
   const [hoveredCard, setHoveredCard] = useState<CardRef | null>(null);
   const [renderedRelatedCardIndices, setRenderedRelatedCardIndices] = useState<Set<number>>(new Set());
   const [showBackface, setShowBackface] = useState(false);
+  const [isSpellbookLoading, setIsSpellbookLoading] = useState(false);
+  const [isRelatedLoading, setIsRelatedLoading] = useState(false);
 
   // 获取卡牌中文名的通用函数
   const fetchCardNames = async (cardRefs: string[]) => {
@@ -101,15 +253,45 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
   };
 
   useEffect(() => {
+    let isActive = true;
+
     if (card.spellbook && card.spellbook.length > 0) {
-      fetchCardNames(card.spellbook).then(setSpellbookCards);
+      setIsSpellbookLoading(true);
+      setSpellbookCards([]);
+      fetchCardNames(card.spellbook).then(cards => {
+        if (!isActive) return;
+        setSpellbookCards(cards);
+        setIsSpellbookLoading(false);
+      });
+    } else {
+      setSpellbookCards([]);
+      setIsSpellbookLoading(false);
     }
+
+    return () => {
+      isActive = false;
+    };
   }, [card.spellbook]);
 
   useEffect(() => {
+    let isActive = true;
+
     if (card.related && card.related.length > 0) {
-      fetchCardNames(card.related).then(setRelatedCards);
+      setIsRelatedLoading(true);
+      setRelatedCards([]);
+      fetchCardNames(card.related).then(cards => {
+        if (!isActive) return;
+        setRelatedCards(cards);
+        setIsRelatedLoading(false);
+      });
+    } else {
+      setRelatedCards([]);
+      setIsRelatedLoading(false);
     }
+
+    return () => {
+      isActive = false;
+    };
   }, [card.related]);
 
   // 使用useEffect来处理相关卡牌引用的检测
@@ -307,39 +489,6 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
     setMousePos({ x, y });
   };
 
-  // 渲染卡牌引用列表，只显示未在文本中渲染的卡牌
-  const renderCardRefs = (cards: CardRef[], title: string) => {
-    // 过滤出未在文本中渲染的卡牌
-    const unreferencedCards = cards.filter((_, index) => !renderedRelatedCardIndices.has(index));
-    
-    // 如果没有未渲染的卡牌，不显示区域
-    if (unreferencedCards.length === 0) {
-      return null;
-    }
-    
-    return (
-      <div className="mt-4 pt-2 border-t border-[--border]">
-        <div className="text-sm font-medium mb-2">{title}</div>
-        <div className="flex flex-wrap gap-2">
-          {unreferencedCards.map((card, index) => (
-            <a
-              key={index}
-              href={getCardDetailUrl(card.setCode, card.number)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm text-[--primary] hover:opacity-80 transition-opacity"
-              onMouseEnter={() => handleMouseEnter(card)}
-              onMouseLeave={handleMouseLeave}
-              onMouseMove={handleMouseMove}
-            >
-              {card.zhs_name || `${card.setCode}:${card.number}`}
-            </a>
-          ))}
-        </div>
-      </div>
-    );
-  };
-
   // 获取当前显示的卡牌数据
   const currentCard = showBackface && card.backface ? card.backface : card;
 
@@ -494,14 +643,37 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
           )}
 
           <div className="mt-auto">
-            {currentCard.spellbook && currentCard.spellbook.length > 0 && renderCardRefs(spellbookCards, '法术书')}
+            {currentCard.spellbook && currentCard.spellbook.length > 0 && (
+              <CardRefsSection
+                title="法术书"
+                cards={spellbookCards}
+                getCardDetailUrl={getCardDetailUrl}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+                onMouseMove={handleMouseMove}
+                isLoading={isSpellbookLoading}
+                enableCollapse
+              />
+            )}
             {currentCard.spellbook && currentCard.spellbook.length === 0 && (
               <div className="mt-4 pt-2 border-t border-[--border]">
                 <div className="text-sm font-medium mb-2">法术书</div>
                 <div className="text-sm text-[--muted-foreground]">暂未公布</div>
               </div>
             )}
-            {currentCard.related && currentCard.related.length > 0 && renderCardRefs(relatedCards, '相关卡牌')}
+            {currentCard.related && currentCard.related.length > 0 && (
+              <CardRefsSection
+                title="相关卡牌"
+                cards={relatedCards}
+                getCardDetailUrl={getCardDetailUrl}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+                onMouseMove={handleMouseMove}
+                isLoading={isRelatedLoading}
+                excludeIndices={renderedRelatedCardIndices}
+                enableCollapse
+              />
+            )}
 
             <div className="flex items-center justify-between gap-1 mt-4 pt-2 border-t border-[--border]">
               <div className="text-xs text-[--muted-foreground] flex items-center gap-1">
