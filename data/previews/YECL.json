@@ -125,14 +125,14 @@
       "zhs_text": "索娜与枝牙进场时上面有两个-1/-1指示物。\n每当索娜与枝牙攻击时，从目标由你操控的生物上移去所有指示物。每位对手各失去X点生命，你获得X点生命，且你牌库最顶上的生物牌`永久`得+X/+X，X为以此法移去的指示物数量。",
       "artist": "Pete Venters",
       "image_url_en": "/image/alchemy/yecl/ThornaAndTwigtooth.png",
-      "image_url_zh": "/image/alchemy/yecl/ThornaAndTwigtooth.png",
+      "image_url_zh": "/image/alchemy/yecl/索娜与枝牙.png",
       "rarity": "rare",
       "pow_tough": "6/7"
     },
     {
       "id": "yecl-5",
       "name": "Aquatic Subtlety",
-      "zhs_name": "水底奥秘",
+      "zhs_name": "锐敏水相",
       "mana_cost": "{U}{U}{U}",
       "type": "Sorcery",
       "zhs_type": "法术",
@@ -140,7 +140,7 @@
       "zhs_text": "抓两张牌，然后弃两张牌。你手上的蓝色生物牌`永久`获得「`呼魂`～从你手上放逐一张蓝色牌。」",
       "artist": "Margaret Organ-Kean",
       "image_url_en": "/image/alchemy/yecl/AquaticSubtlety.png",
-      "image_url_zh": "/image/alchemy/yecl/AquaticSubtlety.png",
+      "image_url_zh": "/image/alchemy/yecl/锐敏水相.png",
       "rarity": "mythic"
     },
     {
@@ -151,10 +151,10 @@
       "type": "Legendary Creature — Noggle Rogue",
       "zhs_type": "传奇生物～诺格／浪客",
       "text": "`Trample`, `Haste`\nWhenever a creature you control deals combat damage to a player, exile the top card of that player's library. It `perpetually` becomes an artifact if it's a nonland permanent card. Until end of turn, you may play the exiled card.\n{T}, Sacrifice an artifact: Add three mana of any one color.",
-      "zhs_text": "`践踏`，`敏捷`\n每当一个由你操控的生物对牌手造成战斗伤害时，放逐该牌手的牌库顶牌。若它是非地永久物牌，则它`永久`成为神器。直到回合结束，你可以施放该牌。\n{T}：牺牲一个神器：加三点任意颜色的单色法术力。",
+      "zhs_text": "`践踏`，`敏捷`\n每当一个由你操控的生物对牌手造成战斗伤害时，放逐该牌手的牌库顶牌。若它是非地永久物牌，则它`永久`成为神器。直到回合结束，你可以施放所放逐的牌。\n{T}，牺牲一个神器：加三点任意颜色的单色法术力。",
       "artist": "Heather Hudson",
       "image_url_en": "/image/alchemy/yecl/PepRaucousRaider.png",
-      "image_url_zh": "/image/alchemy/yecl/PepRaucousRaider.png",
+      "image_url_zh": "/image/alchemy/yecl/喧嚣劫徒皮普.png",
       "rarity": "rare",
       "pow_tough": "3/3"
     },
@@ -169,7 +169,7 @@
       "zhs_text": "`干枯`\n当此生物进场时，将一张名称为`绿蝇侵扰:0`的牌`幻变`进战场。然后在每个生物上各放置一个-1/-1指示物。\n`呼魂`～{2}{B}{B}，支付2点生命。",
       "artist": "John Tedrick",
       "image_url_en": "/image/alchemy/yecl/Infestation.png",
-      "image_url_zh": "/image/alchemy/yecl/Infestation.png",
+      "image_url_zh": "/image/alchemy/yecl/侵扰.png",
       "rarity": "mythic",
       "pow_tough": "6/5",
       "related": [
