@@ -395,5 +395,21 @@
   {
     "name": "Storm",
     "text": "When you cast this spell, copy it for each spell cast before it this turn."
+  },
+  {
+    "name": "呼魂",
+    "text": "可以支付此咒语的呼魂费用来施放它。若你如此作，当它进场时便牺牲之。"
+  },
+  {
+    "name": "Evoke",
+    "text": "You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters."
+  },
+  {
+    "name": "干枯",
+    "text": "此生物会以-1/-1指示物的方式对生物造成伤害。"
+  },
+  {
+    "name": "Wither",
+    "text": "This deals damage to creatures in the form of -1/-1 counters."
   }
 ]
