@@ -14,10 +14,10 @@
       "type": "Legendary Creature — Goblin Rogue",
       "zhs_type": "传奇生物～鬼怪／浪客",
       "text": "Spells you cast have `affinity for Goats`.\n{T}: Target non-Goat creature `perpetually` becomes a Goat in addition to its other types. Then `conjure` a card named `Goatnap:0` into your hand. Activate only as a sorcery.\nFLAVOR\n\"Fear the boggart in sheep's clothing\"\n—Emerging kithkin proverb",
-      "zhs_text": "你施放的咒语具有`山羊共鸣`。\n{T}：目标非山羊生物`永久`成为山羊，且仍具有原本类别。然后将一张名称为`顺手牵羊:0`的牌`幻变`进你的手牌。只能于法术时机起动。\nFLAVOR\n「小心披着羊皮的波尬」\n～洁英新谚",
+      "zhs_text": "你施放的咒语具有`山羊共鸣`异能。\n{T}：目标非山羊生物`永久`成为山羊，且仍具有原本类别。然后将一张名称为`顺手牵羊:0`的牌`幻变`进你的手牌。只能于法术时机起动。\nFLAVOR\n「小心披着羊皮的波尬。」\n～洁英新谚",
       "artist": "Edgar Sánchez Hidalgo",
       "image_url_en": "https://media.wizards.com/2025/ecl/y26/en_8FBfVszzlq.webp",
-      "image_url_zh": "https://media.wizards.com/2025/ecl/y26/en_8FBfVszzlq.webp",
+      "image_url_zh": "/image/alchemy/yecl/羊场大盗.png",
       "rarity": "rare",
       "pow_tough": "3/4",
       "related": [
@@ -35,7 +35,7 @@
       "zhs_text": "`反单色保护`\n每当你施放法术力费用中包含混血法术力的咒语时，将它复制。你可以为该复制品选择新的目标。\nFLAVOR\n「我已窥透月华，也已望穿永夜。它不匍行，无需匍行。它已降临。」\n～聆者悲歌",
       "artist": "Justin Gerard",
       "image_url_en": "https://media.wizards.com/2025/ecl/y26/en_RHbxyma5w7.webp",
-      "image_url_zh": "https://media.wizards.com/2025/ecl/y26/en_RHbxyma5w7.webp",
+      "image_url_zh": "/image/alchemy/yecl/长夜恩眷.png",
       "rarity": "mythic",
       "pow_tough": "5/5"
     },
@@ -47,10 +47,10 @@
       "type": "Kindred Sorcery — Elemental",
       "zhs_type": "亲缘法术～元素",
       "text": "`Conjure` a random instant or sorcery card from the Lorwyn Eclipsed expansion into exile. Until end of turn, you may cast that card without paying its mana cost.\n`Storm`",
-      "zhs_text": "`幻变`一张来自洛温：暗影笼罩系列的随机瞬间或法术牌并放逐之。直到回合结束，你可以施放该牌，且不需支付其法术力费用。\n`风暴`",
+      "zhs_text": "将一张来自洛温：暗影笼罩系列的随机瞬间或法术牌`幻变`进放逐区。直到回合结束，你可以施放该牌，且不需支付其法术力费用。\n`风暴`",
       "artist": "Tiffany Turrill",
       "image_url_en": "https://ncuainzogfrrrjxlrkcs.supabase.co/storage/v1/object/public/card-images/yecl-3/1769590601034_2zv6vk.png",
-      "image_url_zh": "https://ncuainzogfrrrjxlrkcs.supabase.co/storage/v1/object/public/card-images/yecl-3/1769590601034_2zv6vk.png",
+      "image_url_zh": "/image/alchemy/yecl/瀚力复燃.png",
       "rarity": "mythic",
       "related": [
         "ECL:5",
@@ -112,6 +112,68 @@
         "ECL:228",
         "ECL:244",
         "ECL:247"
+      ]
+    },
+    {
+      "id": "yecl-4",
+      "name": "Thorna and Twigtooth",
+      "zhs_name": "索娜与枝牙",
+      "mana_cost": "{1}{R}{W}{B}",
+      "type": "Legendary Creature — Giant Treefolk",
+      "zhs_type": "传奇生物～巨人／树妖",
+      "text": "Thorna and Twigtooth enters with two -1/-1 counters on it.\nWhenever Thorna and Twigtooth attacks, remove all counters from target creature you control. Each opponent loses X life, you gain X life, and the topmost creature card in your library `perpetually` gets +X/+X, where X is the number of counters removed this way.",
+      "zhs_text": "索娜与枝牙进场时上面有两个-1/-1指示物。\n每当索娜与枝牙攻击时，从目标由你操控的生物上移去所有指示物。每位对手各失去X点生命，你获得X点生命，且你牌库最顶上的生物牌`永久`得+X/+X，X为以此法移去的指示物数量。",
+      "artist": "Pete Venters",
+      "image_url_en": "/image/alchemy/yecl/ThornaAndTwigtooth.png",
+      "image_url_zh": "/image/alchemy/yecl/ThornaAndTwigtooth.png",
+      "rarity": "rare",
+      "pow_tough": "6/7"
+    },
+    {
+      "id": "yecl-5",
+      "name": "Aquatic Subtlety",
+      "zhs_name": "水底奥秘",
+      "mana_cost": "{U}{U}{U}",
+      "type": "Sorcery",
+      "zhs_type": "法术",
+      "text": "Draw two cards, then discard two cards. Blue creature cards in your hand `perpetually` gain \"`Evoke`—Exile a blue card from your hand.\"",
+      "zhs_text": "抓两张牌，然后弃两张牌。你手上的蓝色生物牌`永久`获得「`呼魂`～从你手上放逐一张蓝色牌。」",
+      "artist": "Margaret Organ-Kean",
+      "image_url_en": "/image/alchemy/yecl/AquaticSubtlety.png",
+      "image_url_zh": "/image/alchemy/yecl/AquaticSubtlety.png",
+      "rarity": "mythic"
+    },
+    {
+      "id": "yecl-6",
+      "name": "Pep, Raucous Raider",
+      "zhs_name": "喧嚣劫徒皮普",
+      "mana_cost": "{2}{R}{G}",
+      "type": "Legendary Creature — Noggle Rogue",
+      "zhs_type": "传奇生物～诺格／浪客",
+      "text": "`Trample`, `Haste`\nWhenever a creature you control deals combat damage to a player, exile the top card of that player's library. It `perpetually` becomes an artifact if it's a nonland permanent card. Until end of turn, you may play the exiled card.\n{T}, Sacrifice an artifact: Add three mana of any one color.",
+      "zhs_text": "`践踏`，`敏捷`\n每当一个由你操控的生物对牌手造成战斗伤害时，放逐该牌手的牌库顶牌。若它是非地永久物牌，则它`永久`成为神器。直到回合结束，你可以施放该牌。\n{T}：牺牲一个神器：加三点任意颜色的单色法术力。",
+      "artist": "Heather Hudson",
+      "image_url_en": "/image/alchemy/yecl/PepRaucousRaider.png",
+      "image_url_zh": "/image/alchemy/yecl/PepRaucousRaider.png",
+      "rarity": "rare",
+      "pow_tough": "3/3"
+    },
+    {
+      "id": "yecl-7",
+      "name": "Infestation",
+      "zhs_name": "侵扰",
+      "mana_cost": "{3}{B}{B}",
+      "type": "Creature — Elemental Incarnation",
+      "zhs_type": "生物～元素／化身",
+      "text": "`Wither`\nWhen this creature enters, `conjure` a card named `Blowfly Infestation:0` onto the battlefield. Then put a -1/-1 counter on each creature.\n`Evoke`—{2}{B}{B}, Pay 2 life.",
+      "zhs_text": "`干枯`\n当此生物进场时，将一张名称为`绿蝇侵扰:0`的牌`幻变`进战场。然后在每个生物上各放置一个-1/-1指示物。\n`呼魂`～{2}{B}{B}，支付2点生命。",
+      "artist": "John Tedrick",
+      "image_url_en": "/image/alchemy/yecl/Infestation.png",
+      "image_url_zh": "/image/alchemy/yecl/Infestation.png",
+      "rarity": "mythic",
+      "pow_tough": "6/5",
+      "related": [
+        "SHM:58"
       ]
     }
   ]
