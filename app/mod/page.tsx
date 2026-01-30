@@ -1,4 +1,5 @@
 import { ModDownloadButton } from '@/components/mod/mod-download-button';
+import { GeiliRedeemPanel } from '@/components/mod/geili-redeem-panel';
 import { generateMetadata } from '../metadata';
 
 export const metadata = generateMetadata(
@@ -39,6 +40,27 @@ export default function ModPage() {
           </div>
         </div>
 
+        {/* 给梨加速器广告 */}
+        <div className="relative overflow-hidden rounded-lg border border-[--border] bg-[linear-gradient(135deg,_#0f172a,_#111827)] text-slate-100 p-4 mb-8 dark:border-slate-700/80 dark:bg-[linear-gradient(135deg,_#1f2937,_#0b1220)] dark:shadow-[0_18px_40px_rgba(2,6,23,0.55)]">
+          <div className="absolute inset-0 opacity-50 bg-[radial-gradient(circle_at_top,_rgba(250,204,21,0.25),_transparent_55%)] dark:opacity-70 dark:bg-[radial-gradient(circle_at_top,_rgba(250,204,21,0.18),_transparent_60%)]" />
+          <div className="relative flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex items-center gap-3">
+              <div className="space-y-1.5">
+                <div className="flex flex-wrap items-center gap-2">
+                  <img src="/geili-logo.svg" alt="给梨加速器" className="h-7 w-auto" />
+                  <span className="text-xs px-2 py-0.5 rounded-full bg-[#facc15] text-black font-medium">永久免费</span>
+                  <span className="text-xs px-2 py-0.5 rounded-full bg-[#22c55e] text-black font-medium">电竞级专线</span>
+                </div>
+                <p className="text-sm text-slate-200 leading-relaxed max-w-md">
+                  专为游戏玩家打造的稳定加速服务，动态多线智能选路，降低延迟与丢包，让您轮抽手更稳，打牌不掉线。
+                </p>
+              </div>
+            </div>
+
+            <GeiliRedeemPanel />
+          </div>
+        </div>
+
         {/* 下载区域 */}
         <div className="bg-[--card] rounded-lg p-4">
           <div className="space-y-4">
@@ -71,7 +93,14 @@ export default function ModPage() {
                 </ul>
               </div>
             </div>
+
           </div>
+        </div>
+
+        <div className="mt-2 text-[11px] text-[--muted-foreground] leading-snug opacity-70">
+          <p>
+            * 推广内容仅用于支持开发维护，本站与相关服务商无隶属或合作关系。您可自由选择下载/加速服务，相关服务问题请联系对应服务商，本站不对其负责。
+          </p>
         </div>
       </div>
     </div>
