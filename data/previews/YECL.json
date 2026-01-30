@@ -175,6 +175,40 @@
       "related": [
         "SHM:58"
       ]
+    },
+    {
+      "id": "yecl-8",
+      "name": "Kithkin Brinefarer",
+      "zhs_name": "渡涩洁英",
+      "mana_cost": "{1}{G}{W}",
+      "type": "Creature — Kithkin Warrior Bard",
+      "zhs_type": "生物～洁英／战士／诗人",
+      "text": "Whenever a Kithkin card is put into your hand from your library, `conjure` a duplicate of that card into your hand.\nWhenever you attack, Kithkin creature cards in your hand `perpetually` get +1/+1.",
+      "zhs_text": "每当一张洁英牌从你的牌库置于你手上时，将该牌的一张副本`幻变`进你手上。\n每当你攻击时，你手上的洁英生物牌`永久`得+1/+1。",
+      "artist": "Randy Gallegos",
+      "image_url_en": "/image/alchemy/yecl/KithkinBrinefarer.png",
+      "image_url_zh": "/image/alchemy/yecl/KithkinBrinefarer.png",
+      "rarity": "rare",
+      "pow_tough": "3/3"
+    },
+    {
+      "id": "yecl-9",
+      "name": "Salacinder and Soot, Rascals",
+      "zhs_name": "Salacinder and Soot, Rascals",
+      "mana_cost": "{2}{U}{R}",
+      "type": "Legendary Creature — Elemental",
+      "zhs_type": "传奇生物～元素",
+      "text": "`Prowess`, `Trample`\nWhen Salacinder and Soot enters and whenever you cast an Elemental spell, choose one —\n• `Conjure` a card named `Rite of Flame:0` into your hand.\n• `Conjure` a card named `Take Inventory:1` into your hand.",
+      "zhs_text": "`Prowess`, `Trample`\nWhen Salacinder and Soot enters and whenever you cast an Elemental spell, choose one —\n• `Conjure` a card named `Rite of Flame:0` into your hand.\n• `Conjure` a card named `Take Inventory:1` into your hand.",
+      "artist": "Iris Compiet",
+      "image_url_en": "/image/alchemy/yecl/SalacinderAndSootRascals.png",
+      "image_url_zh": "/image/alchemy/yecl/SalacinderAndSootRascals.png",
+      "rarity": "mythic",
+      "pow_tough": "3/3",
+      "related": [
+        "CSP:96",
+        "EMN:76"
+      ]
     }
   ]
 }
