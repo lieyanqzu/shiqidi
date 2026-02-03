@@ -233,7 +233,7 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
       }
 
       const data = await response.json();
-      return data.items.map((result: {
+      const results = data.items.map((result: {
         set: string;
         collector_number: string;
         display_name: string;
@@ -243,6 +243,16 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
         number: result.collector_number,
         zhs_name: result.display_name_zh || result.display_name
       }));
+
+      // 按照原始 cardRefs 的顺序进行重排容器，确保索引映射正确
+      return cardRefs.map(ref => {
+        const [refSet, refNum] = ref.split(':');
+        const found = results.find((r: { setCode: string; number: string; zhs_name: string }) => 
+          r.setCode.toLowerCase() === refSet.toLowerCase() && 
+          r.number === refNum
+        );
+        return found || { setCode: refSet, number: refNum };
+      });
     } catch (error) {
       console.error('Failed to fetch card names:', error);
       return cardRefs.map(ref => {
