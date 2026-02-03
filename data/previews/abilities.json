@@ -411,5 +411,21 @@
   {
     "name": "Wither",
     "text": "This deals damage to creatures in the form of -1/-1 counters."
+  },
+  {
+    "name": "召集",
+    "text": "此咒语能用你的生物来协助施放。你于施放此咒语时每横置一个生物，就能为其支付{1}或一点该生物颜色之法术力。"
+  },
+  {
+    "name": "Convoke",
+    "text": "Your creatures can help cast this spell. Each creature you tap while casting this spell pays for {1} or one mana of that creature's color."
+  },
+  {
+    "name": "衰萎",
+    "text": "衰萎X的流程是在一个由你操控的生物上放置X个-1/-1指示物。"
+  },
+  {
+    "name": "Blight",
+    "text": "To blight X, put X -1/-1 counters on a creature you control."
   }
 ]

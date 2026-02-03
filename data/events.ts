@@ -13,19 +13,11 @@ export interface Event {
 }
 
 export const calendarMetadata: CalendarMetadata = {
-  lastUpdated: '2026/01/26',
-  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-january-26-2026#Events',
+  lastUpdated: '2026/02/02',
+  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-february-2-2026#Events',
 };
 
 const midweekMagicEvents: Event[] = [
-  {
-    type: 'midweek_magic',
-    title: '剑走偏锋',
-    startTime: new Date('2026-01-27T14:00:00-08:00'),
-    endTime: new Date('2026-01-29T14:00:00-08:00'),
-    format: '构筑',
-    description: '仅可使用基石构筑和最近几个标准系列'
-  },
   {
     type: 'midweek_magic',
     title: '史迹纯普',
@@ -55,18 +47,39 @@ const premierDraftEvents: Event[] = [
     title: '洛温：暗影笼罩',
     startTime: new Date('2026-01-20T08:00:00-08:00'),
     endTime: new Date('2026-03-03T08:00:00-08:00'),
-    format: '竞技轮抽 & 三盘轮抽 & 选两张轮抽',
+    format: '竞技轮抽 & 三盘轮抽',
+  },
+  {
+    type: 'premier_draft',
+    title: '炼金：洛温',
+    startTime: new Date('2026-02-02T08:00:00-08:00'),
+    endTime: new Date('2026-02-17T08:00:00-08:00'),
+    format: '竞技轮抽',
+  },
+  {
+    type: 'premier_draft',
+    title: '万智牌～最终幻想',
+    startTime: new Date('2026-02-10T08:00:00-08:00'),
+    endTime: new Date('2026-02-17T08:00:00-08:00'),
+    format: '竞技轮抽',
+  },
+  {
+    type: 'premier_draft',
+    title: '鞑契龙岚录',
+    startTime: new Date('2026-02-17T08:00:00-08:00'),
+    endTime: new Date('2026-02-24T08:00:00-08:00'),
+    format: '竞技轮抽',
+  },
+  {
+    type: 'premier_draft',
+    title: '降世神通：最后的气宗',
+    startTime: new Date('2026-02-24T08:00:00-08:00'),
+    endTime: new Date('2026-03-02T08:00:00-08:00'),
+    format: '竞技轮抽',
   }
 ];
 
 const quickDraftEvents: Event[] = [
-  {
-    type: 'quick_draft',
-    title: '暮悲邸：鬼屋惊魂',
-    startTime: new Date('2026-01-16T08:00:00-08:00'),
-    endTime: new Date('2026-01-29T08:00:00-08:00'),
-    format: '快速轮抽',
-  },
   {
     type: 'quick_draft',
     title: '洛温：暗影笼罩',
@@ -100,13 +113,6 @@ const otherEvents: Event[] = [
   },
   {
     type: 'other',
-    title: '洛温：暗影笼罩三盘现开',
-    startTime: new Date('2026-01-20T08:00:00-08:00'),
-    endTime: new Date('2026-02-03T08:00:00-08:00'),
-    format: '三盘现开'
-  },
-  {
-    type: 'other',
     title: '改禁争锋环境挑战赛',
     startTime: new Date('2026-01-26T08:00:00-08:00'),
     endTime: new Date('2026-02-10T08:00:00-08:00'),
@@ -117,13 +123,6 @@ const otherEvents: Event[] = [
 const arenaDirectEvents: Event[] = [
   {
     type: 'arena_direct',
-    title: '竞技场直邮赛 - 洛温：暗影笼罩现开（聚珍补充包）',
-    startTime: new Date('2026-01-30T08:00:00-08:00'),
-    endTime: new Date('2026-02-02T08:00:00-08:00'),
-    format: '洛温：暗影笼罩现开'
-  },
-  {
-    type: 'arena_direct',
     title: '竞技场直邮赛 - 洛温：暗影笼罩现开（常规补充包）',
     startTime: new Date('2026-02-13T08:00:00-08:00'),
     endTime: new Date('2026-02-16T08:00:00-08:00'),
@@ -132,22 +131,6 @@ const arenaDirectEvents: Event[] = [
 ];
 
 const premierPlayEvents: Event[] = [
-  {
-    type: 'premier_play',
-    title: '冠军赛资格赛 - 入围赛BO1',
-    startTime: new Date('2026-01-31T06:00:00-08:00'),
-    endTime: new Date('2026-02-01T09:00:00-08:00'),
-    format: '标准',
-    description: '单日赛事，玩家将竞争获得2月7-8日冠军赛资格赛周末的参赛资格。',
-  },
-  {
-    type: 'premier_play',
-    title: '冠军赛资格赛 - 入围赛（现开）',
-    startTime: new Date('2026-02-01T06:00:00-08:00'),
-    endTime: new Date('2026-02-02T09:00:00-08:00'),
-    format: '现开',
-    description: '额外加赛，玩家将竞争获得2月7-8日冠军赛资格赛周末的参赛资格。',
-  },
   {
     type: 'premier_play',
     title: '冠军赛资格赛 - 入围赛BO3',
