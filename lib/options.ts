@@ -80,6 +80,7 @@ export const formatSpeedOptions: Option[] = [
 // 系列选项
 export const expansionOptions: Option[] = [
   { label: "ECL", value: "ECL" },
+  { label: "Y26ECL", value: "Y26ECL" },
   { label: "TLA", value: "TLA" },
   { label: "OM1", value: "OM1" },
   { label: "EOE", value: "EOE" },
