@@ -20,13 +20,6 @@ export const calendarMetadata: CalendarMetadata = {
 const midweekMagicEvents: Event[] = [
   {
     type: 'midweek_magic',
-    title: '史迹纯普',
-    startTime: new Date('2026-02-03T14:00:00-08:00'),
-    endTime: new Date('2026-02-05T14:00:00-08:00'),
-    format: '史迹'
-  },
-  {
-    type: 'midweek_magic',
     title: '洛温：暗影笼罩争锋构筑挑战',
     startTime: new Date('2026-02-10T14:00:00-08:00'),
     endTime: new Date('2026-02-12T14:00:00-08:00'),
