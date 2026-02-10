@@ -69,7 +69,7 @@ class LRUCache<K, V> {
 // 卡牌详细信息缓存 - 使用LRU策略，最多缓存100张卡
 const cardDetailCache = new LRUCache<string, DetailedCardData>(100);
 
-export async function fetchCardData(params: CardDataParams): Promise<CardData[]> {
+export async function fetchCardData(params: CardDataParams, signal?: AbortSignal): Promise<CardData[]> {
   const searchParams = new URLSearchParams({
     expansion: params.expansion,
     event_type: params.event_type,
@@ -90,7 +90,8 @@ export async function fetchCardData(params: CardDataParams): Promise<CardData[]>
     {
       headers: {
         'accept': 'application/json',
-      }
+      },
+      signal
     }
   );
 

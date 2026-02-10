@@ -16,6 +16,7 @@ import { useCardStore } from '@/lib/store';
 import { useMediaQuery } from '@/hooks/use-media-query';
 import { getCardArtCropUrl } from '@/lib/card-images';
 import { extractScryfallIdFromUrl } from '@/lib/api';
+import { Loading } from "@/components/common/loading";
 
 interface CardGradesProps {
   data: CardData[];
@@ -84,8 +85,8 @@ export function CardGrades({ data, allCards, metric, expansion, isLoading, custo
     return (
       <div className="space-y-4">
         <div className="w-[calc(100vw-2rem)] lg:w-[calc(100vw-4rem)] xl:w-[calc(100vw-6rem)] mx-auto">
-          <div className="card h-96 flex items-center justify-center text-[--muted-foreground]">
-            加载中...
+          <div className="card h-96 flex items-center justify-center">
+            <Loading text="正在加载轮抽数据..." />
           </div>
         </div>
       </div>
@@ -93,6 +94,8 @@ export function CardGrades({ data, allCards, metric, expansion, isLoading, custo
   }
 
   return (
+    // ... existing return
+
     <div className="space-y-4">
       <div className="w-[calc(100vw-2rem)] lg:w-[calc(100vw-4rem)] xl:w-[calc(100vw-6rem)] mx-auto space-y-4">
             {/* 桌面端：表格视图（按颜色分列） */}
