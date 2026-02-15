@@ -116,12 +116,17 @@ export default function CardsPage() {
   }, [cards, searchText, selectedColors, selectedRarities, chineseCards, importedDeck]);
 
   // 加载卡牌数据
+  // 加载卡牌数据
   useEffect(() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
+
     async function loadData() {
       try {
         setIsLoading(true);
         // 加载17lands数据
-        const data = await fetchCardData(params);
+        const data = await fetchCardData(params, signal);
+        if (signal.aborted) return;
         setCards(data);
         setIsLoading(false);
 
@@ -130,19 +135,27 @@ export default function CardsPage() {
           params.expansion, 
           data,
           (results) => {
+            if (signal.aborted) return;
             // 每次有新的中文数据就更新
             setChineseCards(results);
           }
         ).catch(error => {
-          console.error('Failed to load Chinese card data:', error);
+          if (!signal.aborted) {
+            console.error('Failed to load Chinese card data:', error);
+          }
         });
       } catch (error) {
+        if (signal.aborted) return;
         setError(error as Error);
         setIsLoading(false);
       }
     }
 
     loadData();
+
+    return () => {
+      controller.abort();
+    };
   }, [params, setCards, setChineseCards, setIsLoading, setError]);
 
   // 初始化：从localStorage读取保存的偏好设置

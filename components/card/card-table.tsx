@@ -1,5 +1,7 @@
 'use client';
 
+import { Loading } from "@/components/common/loading";
+
 import { useState, useMemo, useCallback, useEffect, ReactNode } from 'react';
 import { Table } from "@/components/ui/table";
 import { CardTableColumns } from "@/components/card/card-table-columns";
@@ -390,16 +392,22 @@ export function CardTable({
           </div>
         )}
         <div className="card">
-          <Table
-            data={sortedData}
-            columns={visibleColumnsList}
-            isLoading={isLoading}
-            emptyText="暂无卡牌数据"
-            sortColumn={sortConfig.column}
-            sortDirection={sortConfig.direction}
-            onSort={handleSort}
-            expansion={expansion}
-          />
+          {isLoading ? (
+            <div className="h-96 flex items-center justify-center">
+              <Loading text="正在加载轮抽数据..." />
+            </div>
+          ) : (
+            <Table
+              data={sortedData}
+              columns={visibleColumnsList}
+              isLoading={false}
+              emptyText="暂无卡牌数据"
+              sortColumn={sortConfig.column}
+              sortDirection={sortConfig.direction}
+              onSort={handleSort}
+              expansion={expansion}
+            />
+          )}
         </div>
       </div>
     </div>
