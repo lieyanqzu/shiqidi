@@ -13,18 +13,11 @@ export interface Event {
 }
 
 export const calendarMetadata: CalendarMetadata = {
-  lastUpdated: '2026/02/09',
-  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-february-9-2026#Events',
+  lastUpdated: '2026/02/16',
+  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-february-16-2026#Events',
 };
 
 const midweekMagicEvents: Event[] = [
-  {
-    type: 'midweek_magic',
-    title: '洛温：暗影笼罩争锋构筑挑战',
-    startTime: new Date('2026-02-10T14:00:00-08:00'),
-    endTime: new Date('2026-02-12T14:00:00-08:00'),
-    format: '争锋'
-  },
   {
     type: 'midweek_magic',
     title: '幻影黄金补充包现开',
@@ -45,6 +38,13 @@ const midweekMagicEvents: Event[] = [
     startTime: new Date('2026-03-03T14:00:00-08:00'),
     endTime: new Date('2026-03-05T14:00:00-08:00'),
     format: '速学！'
+  },
+  {
+    type: 'midweek_magic',
+    title: '剑走偏锋',
+    startTime: new Date('2026-03-10T14:00:00-07:00'),
+    endTime: new Date('2026-03-12T14:00:00-07:00'),
+    format: '构筑'
   }
 ];
 
@@ -108,42 +108,42 @@ const quickDraftEvents: Event[] = [
     startTime: new Date('2026-02-23T08:00:00-08:00'),
     endTime: new Date('2026-03-12T08:00:00-07:00'),
     format: '快速轮抽',
+  },
+  {
+    type: 'quick_draft',
+    title: '忍者神龟',
+    startTime: new Date('2026-03-12T08:00:00-07:00'),
+    endTime: new Date('2026-03-23T08:00:00-07:00'),
+    format: '快速轮抽',
   }
 ];
 
 const otherEvents: Event[] = [
-  {
-    type: 'other',
-    title: '洛温：暗影笼罩现开',
-    startTime: new Date('2026-01-20T08:00:00-08:00'),
-    endTime: new Date('2026-02-13T08:00:00-08:00'),
-    format: '现开'
-  },
-  {
-    type: 'other',
-    title: '改禁争锋环境挑战赛',
-    startTime: new Date('2026-01-26T08:00:00-08:00'),
-    endTime: new Date('2026-02-10T08:00:00-08:00'),
-    format: '争锋'
-  }
+  // {
+  //   type: 'other',
+  //   title: '洛温：暗影笼罩现开',
+  //   startTime: new Date('2026-01-20T08:00:00-08:00'),
+  //   endTime: new Date('2026-02-13T08:00:00-08:00'),
+  //   format: '现开'
+  // },
 ];
 
 const arenaDirectEvents: Event[] = [
-  {
-    type: 'arena_direct',
-    title: '竞技场直邮赛 - 洛温：暗影笼罩现开（常规补充包）',
-    startTime: new Date('2026-02-13T08:00:00-08:00'),
-    endTime: new Date('2026-02-16T08:00:00-08:00'),
-    format: '洛温：暗影笼罩现开'
-  }
+  // {
+  //   type: 'arena_direct',
+  //   title: '竞技场直邮赛 - 洛温：暗影笼罩现开（常规补充包）',
+  //   startTime: new Date('2026-02-13T08:00:00-08:00'),
+  //   endTime: new Date('2026-02-16T08:00:00-08:00'),
+  //   format: '洛温：暗影笼罩现开'
+  // }
 ];
 
 const premierPlayEvents: Event[] = [
   {
     type: 'premier_play',
     title: '限制冠军赛资格赛',
-    startTime: new Date('2026-02-20T06:00:00-08:00'),
-    endTime: new Date('2026-02-22T09:00:00-08:00'),
+    startTime: new Date('2026-02-20T08:00:00-08:00'),
+    endTime: new Date('2026-02-23T10:00:00-08:00'),
     format: '洛温：暗影笼罩轮抽',
     description: '两日赛事，获胜者将获得参加竞技场限制冠军赛的资格。',
   },

@@ -309,7 +309,42 @@
       "name": "忍者神龟",
       "code": "TMT",
       "releaseDate": "2026-03-04",
-      "wikiUrl": "https://mtg.wiki/page/Teenage_Mutant_Ninja_Turtles?utm_source=shiqidi"
+      "wikiUrl": "https://mtg.wiki/page/Teenage_Mutant_Ninja_Turtles?utm_source=shiqidi",
+      "preview": {
+        "title": "神龟之力",
+        "description": "忍者神龟一个后空翻来到万智牌，使用神龟的力量和防御力来保护街道免遭施瑞德和突变人的破坏。",
+        "backgroundImage": "/image/background/TMT_sma_key_1920x1080.jpg",
+        "links": [
+          {
+            "name": "大学院废墟（中文）",
+            "url": "https://mtgch.com/previews/TMT/?utm_source=shiqidi"
+          },
+          {
+            "name": "官网牌图集合",
+            "url": "https://magic.wizards.com/en/products/teenage-mutant-ninja-turtles/card-image-gallery"
+          },
+          {
+            "name": "Scryfall",
+            "url": "https://scryfall.com/sets/tmt?order=spoiled&utm_source=shiqidi"
+          },
+          {
+            "name": "Untapped.gg",
+            "url": "https://mtga.untapped.gg/codex/sets/teenage-mutant-ninja-turtles?sortBy=spoilerDate&utm_source=shiqidi"
+          }
+        ]
+      }
+    },
+    {
+      "name": "斯翠海文的秘密",
+      "code": "SOS",
+      "releaseDate": "2026-04-22",
+      "wikiUrl": "https://mtg.wiki/page/Secrets_of_Strixhaven?utm_source=shiqidi"
+    },
+    {
+      "name": "炼金：斯翠海文",
+      "code": "YSOS",
+      "releaseDate": "2026-05-06",
+      "wikiUrl": "https://mtg.wiki/page/Alchemy:_Strixhaven?utm_source=shiqidi"
     }
   ]
 }
