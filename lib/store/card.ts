@@ -20,8 +20,8 @@ interface CardStore {
 const today = new Date().toISOString().split('T')[0];
 
 // 获取默认系列的起始日期
-const defaultExpansion = 'ECL';
-const defaultFormat = 'PremierDraft';
+const defaultExpansion = 'TMT';
+const defaultFormat = 'PickTwoDraft';
 const defaultStartDate = getStartDateForExpansion(defaultExpansion)?.split('T')[0] || '2016-01-01';
 
 export const useCardStore = create<CardStore>((set) => ({
