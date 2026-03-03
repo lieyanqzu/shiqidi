@@ -13,31 +13,25 @@ export interface Event {
 }
 
 export const calendarMetadata: CalendarMetadata = {
-  lastUpdated: '2026/02/23',
-  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/announcements-february-23-2026#Events',
+  lastUpdated: '2026/03/03',
+  announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/teenage-mutant-ninja-turtles-event-schedule',
 };
 
 const midweekMagicEvents: Event[] = [
   {
     type: 'midweek_magic',
-    title: '洛温：暗影笼罩幻影现开',
-    startTime: new Date('2026-02-24T14:00:00-08:00'),
-    endTime: new Date('2026-02-26T14:00:00-08:00'),
-    format: '现开'
-  },
-  {
-    type: 'midweek_magic',
-    title: '投身忍者神龟',
+    title: '标准纯铁',
     startTime: new Date('2026-03-03T14:00:00-08:00'),
     endTime: new Date('2026-03-05T14:00:00-08:00'),
-    format: '速学！'
+    format: '标准纯铁'
   },
   {
     type: 'midweek_magic',
     title: '剑走偏锋',
     startTime: new Date('2026-03-10T14:00:00-07:00'),
     endTime: new Date('2026-03-12T14:00:00-07:00'),
-    format: '构筑'
+    format: '构筑',
+    description: '最近三个标准系列加基石构筑'
   },
   {
     type: 'midweek_magic',
@@ -45,62 +39,110 @@ const midweekMagicEvents: Event[] = [
     startTime: new Date('2026-03-17T14:00:00-07:00'),
     endTime: new Date('2026-03-19T14:00:00-07:00'),
     format: '争锋'
+  },
+  {
+    type: 'midweek_magic',
+    title: '慢启动炼金',
+    startTime: new Date('2026-03-24T14:00:00-07:00'),
+    endTime: new Date('2026-03-26T14:00:00-07:00'),
+    format: '炼金'
+  },
+  {
+    type: 'midweek_magic',
+    title: '茁壮仪式争锋',
+    startTime: new Date('2026-03-31T14:00:00-07:00'),
+    endTime: new Date('2026-04-02T14:00:00-07:00'),
+    format: '争锋'
+  },
+  {
+    type: 'midweek_magic',
+    title: '忍者神龟人机轮抽',
+    startTime: new Date('2026-04-07T14:00:00-07:00'),
+    endTime: new Date('2026-04-09T14:00:00-07:00'),
+    format: '人机轮抽'
+  },
+  {
+    type: 'midweek_magic',
+    title: '莫秘维',
+    startTime: new Date('2026-04-14T14:00:00-07:00'),
+    endTime: new Date('2026-04-16T14:00:00-07:00'),
+    format: '莫秘维'
   }
 ];
 
 const premierDraftEvents: Event[] = [
   {
     type: 'premier_draft',
-    title: '洛温：暗影笼罩',
-    startTime: new Date('2026-01-20T08:00:00-08:00'),
-    endTime: new Date('2026-03-03T08:00:00-08:00'),
-    format: '竞技轮抽 & 三盘轮抽',
+    title: '忍者神龟',
+    startTime: new Date('2026-03-03T08:00:00-08:00'),
+    endTime: new Date('2026-04-21T08:00:00-07:00'),
+    format: '竞技轮抽 & 三盘轮抽 & 选两张轮抽'
+  },
+  {
+    type: 'premier_draft',
+    title: '邪军压境：终战回响',
+    startTime: new Date('2026-03-17T08:00:00-07:00'),
+    endTime: new Date('2026-03-24T08:00:00-07:00'),
+    format: '竞技轮抽'
+  },
+  {
+    type: 'premier_draft',
+    title: '神器混合轮抽',
+    startTime: new Date('2026-03-24T08:00:00-07:00'),
+    endTime: new Date('2026-03-31T08:00:00-07:00'),
+    format: '竞技轮抽'
   },
   {
     type: 'premier_draft',
     title: '强化方盒轮抽',
-    startTime: new Date('2026-02-10T08:00:00-08:00'),
-    endTime: new Date('2026-03-03T08:00:00-08:00'),
-    format: '竞技轮抽 & 三盘轮抽',
-    description: '更新日志：https://magic.wizards.com/en/news/mtg-arena/arena-powered-cube-draft'
+    startTime: new Date('2026-03-31T08:00:00-07:00'),
+    endTime: new Date('2026-04-21T08:00:00-07:00'),
+    format: '竞技轮抽 & 三盘轮抽'
   },
   {
     type: 'premier_draft',
-    title: '鞑契龙岚录',
-    startTime: new Date('2026-02-17T08:00:00-08:00'),
-    endTime: new Date('2026-02-24T08:00:00-08:00'),
-    format: '竞技轮抽',
+    title: '班隆洛',
+    startTime: new Date('2026-03-31T08:00:00-07:00'),
+    endTime: new Date('2026-04-07T08:00:00-07:00'),
+    format: '竞技轮抽'
   },
   {
     type: 'premier_draft',
-    title: '降世神通：最后的气宗',
-    startTime: new Date('2026-02-24T08:00:00-08:00'),
-    endTime: new Date('2026-03-03T08:00:00-08:00'),
-    format: '竞技轮抽',
+    title: '万智牌：基石构筑',
+    startTime: new Date('2026-04-07T08:00:00-07:00'),
+    endTime: new Date('2026-04-14T08:00:00-07:00'),
+    format: '竞技轮抽'
   },
   {
     type: 'premier_draft',
-    title: '忍者神龟',
-    startTime: new Date('2026-03-03T08:00:00-08:00'),
-    endTime: new Date('2026-04-21T08:00:00-08:00'),
-    format: '选两张竞技轮抽 & 选两张三盘轮抽',
+    title: '神河：霓朝纪',
+    startTime: new Date('2026-04-14T08:00:00-07:00'),
+    endTime: new Date('2026-04-21T08:00:00-07:00'),
+    format: '竞技轮抽'
   }
 ];
 
 const quickDraftEvents: Event[] = [
   {
     type: 'quick_draft',
-    title: '洛温：暗影笼罩',
-    startTime: new Date('2026-02-23T08:00:00-08:00'),
-    endTime: new Date('2026-03-12T08:00:00-07:00'),
-    format: '快速轮抽',
+    title: '忍者神龟',
+    startTime: new Date('2026-03-12T08:00:00-07:00'),
+    endTime: new Date('2026-03-23T08:00:00-07:00'),
+    format: '快速轮抽'
+  },
+  {
+    type: 'quick_draft',
+    title: '万智牌：基石构筑',
+    startTime: new Date('2026-03-23T08:00:00-07:00'),
+    endTime: new Date('2026-04-07T08:00:00-07:00'),
+    format: '快速轮抽'
   },
   {
     type: 'quick_draft',
     title: '忍者神龟',
-    startTime: new Date('2026-03-12T08:00:00-07:00'),
-    endTime: new Date('2026-03-23T08:00:00-07:00'),
-    format: '选两张快速轮抽',
+    startTime: new Date('2026-04-07T08:00:00-07:00'),
+    endTime: new Date('2026-04-21T08:00:00-07:00'),
+    format: '快速轮抽'
   }
 ];
 
@@ -116,18 +158,67 @@ const otherEvents: Event[] = [
     type: 'other',
     title: '忍者神龟三盘现开',
     startTime: new Date('2026-03-03T08:00:00-08:00'),
-    endTime: new Date('2026-03-20T08:00:00-08:00'),
+    endTime: new Date('2026-03-18T08:00:00-07:00'),
     format: '三盘现开'
+  },
+  {
+    type: 'other',
+    title: '史迹环境挑战赛',
+    startTime: new Date('2026-03-13T08:00:00-07:00'),
+    endTime: new Date('2026-03-16T08:00:00-07:00'),
+    format: '史迹'
+  },
+  {
+    type: 'other',
+    title: '先驱环境挑战赛',
+    startTime: new Date('2026-03-27T08:00:00-07:00'),
+    endTime: new Date('2026-03-30T08:00:00-07:00'),
+    format: '先驱'
+  },
+  {
+    type: 'other',
+    title: '争锋改禁环境挑战赛',
+    startTime: new Date('2026-03-31T08:00:00-07:00'),
+    endTime: new Date('2026-04-21T08:00:00-07:00'),
+    format: '争锋'
+  },
+  {
+    type: 'other',
+    title: '标准环境挑战赛',
+    startTime: new Date('2026-04-03T08:00:00-07:00'),
+    endTime: new Date('2026-04-06T08:00:00-07:00'),
+    format: '标准'
+  },
+  {
+    type: 'other',
+    title: '永恒环境挑战赛',
+    startTime: new Date('2026-04-10T08:00:00-07:00'),
+    endTime: new Date('2026-04-13T08:00:00-07:00'),
+    format: '永恒'
   }
 ];
 
 const arenaDirectEvents: Event[] = [
   {
     type: 'arena_direct',
-    title: '竞技场直邮赛 - 洛温：暗影笼罩现开（常规补充包）',
-    startTime: new Date('2026-02-27T08:00:00-08:00'),
-    endTime: new Date('2026-03-02T08:00:00-08:00'),
-    format: '洛温：暗影笼罩现开'
+    title: '竞技场直邮赛 - 忍者神龟聚珍补充包',
+    startTime: new Date('2026-03-13T08:00:00-07:00'),
+    endTime: new Date('2026-03-16T08:00:00-07:00'),
+    format: '忍者神龟现开'
+  },
+  {
+    type: 'arena_direct',
+    title: '竞技场直邮赛 - 忍者神龟常规补充包',
+    startTime: new Date('2026-03-27T08:00:00-07:00'),
+    endTime: new Date('2026-03-30T08:00:00-07:00'),
+    format: '忍者神龟现开'
+  },
+  {
+    type: 'arena_direct',
+    title: '竞技场直邮赛 - 班隆洛日文常规补充包',
+    startTime: new Date('2026-04-10T08:00:00-07:00'),
+    endTime: new Date('2026-04-13T08:00:00-07:00'),
+    format: '班隆洛现开'
   }
 ];
 
@@ -208,5 +299,3 @@ export const events: Event[] = [
   ...arenaDirectEvents,
   ...arenaChampionshipEvents,
 ];
-
-
