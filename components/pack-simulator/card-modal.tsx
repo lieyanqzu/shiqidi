@@ -1,6 +1,7 @@
 import { useEffect, useState, useCallback, useRef } from 'react';
 import Image from 'next/image';
 import type { Card } from '@/types/pack-simulator';
+import { buildMtgchImageUrl, buildScryfallImageUrl } from '@/lib/card-images';
 
 interface CardModalProps {
   card: Card & { 
@@ -32,6 +33,22 @@ export function CardModal({ card, onClose, imageUrl, allCards, onCardChange }: C
   const [isDragging, setIsDragging] = useState(false);
   const [prevImageUrl, setPrevImageUrl] = useState<string>('');
   const [nextImageUrl, setNextImageUrl] = useState<string>('');
+
+  const getPrimaryImageUrl = useCallback((scryfallId?: string) => {
+    if (!scryfallId) {
+      return '/image/back.png';
+    }
+
+    return buildMtgchImageUrl(scryfallId);
+  }, []);
+
+  const getFallbackImageUrl = useCallback((scryfallId?: string) => {
+    if (!scryfallId) {
+      return '/image/back.png';
+    }
+
+    return buildScryfallImageUrl(scryfallId, 'large');
+  }, []);
 
   // 当imageUrl改变时更新currentImageUrl
   useEffect(() => {
@@ -65,12 +82,12 @@ export function CardModal({ card, onClose, imageUrl, allCards, onCardChange }: C
     if (prevIndex >= 0) {
       const prevCard = allCards[prevIndex];
       if (!prevImageUrl) {
-        setPrevImageUrl(`https://mtgch.com/image/large/${prevCard.setCode.toUpperCase()}/${prevCard.setCode.toUpperCase()}_${prevCard.number}.jpg`);
+        setPrevImageUrl(getPrimaryImageUrl(prevCard.scryfallId));
       }
       return prevImageUrl;
     }
     return '';
-  }, [currentIndex, allCards, prevImageUrl]);
+  }, [currentIndex, allCards, prevImageUrl, getPrimaryImageUrl]);
 
   // 获取下一张卡片的图片URL
   const getNextCardImageUrl = useCallback((): string => {
@@ -82,12 +99,12 @@ export function CardModal({ card, onClose, imageUrl, allCards, onCardChange }: C
     if (nextIndex < allCards.length) {
       const nextCard = allCards[nextIndex];
       if (!nextImageUrl) {
-        setNextImageUrl(`https://mtgch.com/image/large/${nextCard.setCode.toUpperCase()}/${nextCard.setCode.toUpperCase()}_${nextCard.number}.jpg`);
+        setNextImageUrl(getPrimaryImageUrl(nextCard.scryfallId));
       }
       return nextImageUrl;
     }
     return '';
-  }, [currentIndex, allCards, nextImageUrl]);
+  }, [currentIndex, allCards, nextImageUrl, getPrimaryImageUrl]);
 
   // 重置相邻卡片的URL当当前卡片改变时
   useEffect(() => {
@@ -315,11 +332,7 @@ export function CardModal({ card, onClose, imageUrl, allCards, onCardChange }: C
                   if (!img.src.includes('scryfall.io')) {
                     const nextIndex = currentIndex + 1;
                     const nextCard = allCards[nextIndex];
-                    if (nextCard?.scryfallId) {
-                      setNextImageUrl(`https://cards.scryfall.io/large/front/${nextCard.scryfallId.slice(0, 1)}/${nextCard.scryfallId.slice(1, 2)}/${nextCard.scryfallId}.jpg`);
-                    } else {
-                      setNextImageUrl('/image/back.png');
-                    }
+                    setNextImageUrl(getFallbackImageUrl(nextCard?.scryfallId));
                   }
                 }}
               />
@@ -349,11 +362,7 @@ export function CardModal({ card, onClose, imageUrl, allCards, onCardChange }: C
                   if (!img.src.includes('scryfall.io')) {
                     const prevIndex = currentIndex - 1;
                     const prevCard = allCards[prevIndex];
-                    if (prevCard?.scryfallId) {
-                      setPrevImageUrl(`https://cards.scryfall.io/large/front/${prevCard.scryfallId.slice(0, 1)}/${prevCard.scryfallId.slice(1, 2)}/${prevCard.scryfallId}.jpg`);
-                    } else {
-                      setPrevImageUrl('/image/back.png');
-                    }
+                    setPrevImageUrl(getFallbackImageUrl(prevCard?.scryfallId));
                   }
                 }}
               />
@@ -380,11 +389,7 @@ export function CardModal({ card, onClose, imageUrl, allCards, onCardChange }: C
               onError={(e) => {
                 const img = e.target as HTMLImageElement;
                 if (!img.src.includes('scryfall.io')) {
-                  if (card.scryfallId) {
-                    setCurrentImageUrl(`https://cards.scryfall.io/large/front/${card.scryfallId.slice(0, 1)}/${card.scryfallId.slice(1, 2)}/${card.scryfallId}.jpg`);
-                  } else {
-                    setCurrentImageUrl('/image/back.png');
-                  }
+                  setCurrentImageUrl(getFallbackImageUrl(card.scryfallId));
                 }
               }}
             />

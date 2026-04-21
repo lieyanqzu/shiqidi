@@ -3,6 +3,7 @@
 import type { Pack, Card } from '@/types/pack-simulator';
 import Image from 'next/image';
 import { useState, useEffect, useRef, useCallback } from 'react';
+import { buildMtgchImageUrl, buildScryfallImageUrl } from '@/lib/card-images';
 import { CardModal } from './card-modal';
 
 interface PackDisplayProps {
@@ -12,11 +13,13 @@ interface PackDisplayProps {
 }
 
 // 获取卡图URL
-function getCardImageUrl(scryfallId: string, setCode: string, number: string): string {
-  // 优先使用 mtgch.com 的图片源
-  const sbwszUrl = `https://mtgch.com/image/large/${setCode.toUpperCase()}/${setCode.toUpperCase()}_${number}.jpg`;
+function getCardImageUrl(scryfallId?: string): string {
+  if (!scryfallId) {
+    return '/image/back.png';
+  }
 
-  return sbwszUrl;
+  // 优先使用新的 mtgch 图片源
+  return buildMtgchImageUrl(scryfallId);
 }
 
 // 获取稀有度颜色
@@ -90,7 +93,7 @@ export function PackDisplay({ packs, onFlippedCardsChange, autoFlipCommon }: Pac
         packIndex: newCard.packIndex,
         cardIndex: newCard.cardIndex
       },
-      imageUrl: getCardImageUrl(newCard.scryfallId!, newCard.setCode, newCard.number)
+      imageUrl: getCardImageUrl(newCard.scryfallId)
     });
   }, []);
 
@@ -187,7 +190,7 @@ export function PackDisplay({ packs, onFlippedCardsChange, autoFlipCommon }: Pac
     e.stopPropagation();
     setSelectedCard({
       card: { ...card, packIndex, cardIndex },
-      imageUrl: getCardImageUrl(card.scryfallId!, card.setCode, card.number)
+      imageUrl: getCardImageUrl(card.scryfallId)
     });
   };
 
@@ -366,7 +369,7 @@ export function PackDisplay({ packs, onFlippedCardsChange, autoFlipCommon }: Pac
                                     <div className="absolute inset-0 bg-[--card] loading-pulse rounded-lg" />
                                   )}
                                   <Image
-                                    src={getCardImageUrl(card.scryfallId!, card.setCode, card.number)}
+                                    src={getCardImageUrl(card.scryfallId)}
                                     alt={card.zhs_name || card.name || card.id}
                                     width={300}
                                     height={420}
@@ -398,7 +401,7 @@ export function PackDisplay({ packs, onFlippedCardsChange, autoFlipCommon }: Pac
                                       const img = e.target as HTMLImageElement;
                                       if (!img.src.includes('scryfall.io')) {
                                         if (card.scryfallId) {
-                                          img.src = `https://cards.scryfall.io/large/front/${card.scryfallId.slice(0, 1)}/${card.scryfallId.slice(1, 2)}/${card.scryfallId}.jpg`;
+                                          img.src = buildScryfallImageUrl(card.scryfallId, 'large');
                                         } else {
                                           img.src = '/image/back.png';
                                         }
@@ -423,7 +426,7 @@ export function PackDisplay({ packs, onFlippedCardsChange, autoFlipCommon }: Pac
                                   <div className="absolute inset-0 bg-[--card] loading-pulse rounded-lg" />
                                 )}
                                 <Image
-                                  src={getCardImageUrl(card.scryfallId!, card.setCode, card.number)}
+                                  src={getCardImageUrl(card.scryfallId)}
                                   alt={card.zhs_name || card.name || card.id}
                                   width={300}
                                   height={420}
@@ -455,7 +458,7 @@ export function PackDisplay({ packs, onFlippedCardsChange, autoFlipCommon }: Pac
                                     const img = e.target as HTMLImageElement;
                                     if (!img.src.includes('scryfall.io')) {
                                       if (card.scryfallId) {
-                                        img.src = `https://cards.scryfall.io/large/front/${card.scryfallId.slice(0, 1)}/${card.scryfallId.slice(1, 2)}/${card.scryfallId}.jpg`;
+                                        img.src = buildScryfallImageUrl(card.scryfallId, 'large');
                                       } else {
                                         img.src = '/image/back.png';
                                       }

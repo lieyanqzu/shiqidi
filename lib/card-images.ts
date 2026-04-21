@@ -1,9 +1,20 @@
 const SCRYFALL_HOST = 'cards.scryfall.io';
+const MTGCH_IMAGE_HOST = 'images.mtgch.com';
 
 export type ScryfallVariant = 'art_crop' | 'normal' | 'large';
+export type MtgchImageLocale = 'zhs';
+export type MtgchImageVariant = 'large';
 
 export const buildScryfallImageUrl = (id: string, variant: ScryfallVariant = 'normal') => {
   return `https://${SCRYFALL_HOST}/${variant}/front/${id.slice(0, 1)}/${id.slice(1, 2)}/${id}.jpg`;
+};
+
+export const buildMtgchImageUrl = (
+  id: string,
+  locale: MtgchImageLocale = 'zhs',
+  variant: MtgchImageVariant = 'large'
+) => {
+  return `https://${MTGCH_IMAGE_HOST}/${locale}/${variant}/front/${id.slice(0, 1)}/${id.slice(1, 2)}/${id}.webp`;
 };
 
 export const replaceVariantInUrl = (url?: string | null, variant: ScryfallVariant = 'normal') => {
