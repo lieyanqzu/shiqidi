@@ -1621,8 +1621,8 @@ packages:
     resolution: {integrity: sha512-QOSvevhslijgYwRx6Rv7zKdMF8lbRmx+uQGx2+vDc+KI/eBnsy9kit5aj23AgGu3pa4t9AgwbnXWqS+iOY+2aA==}
     engines: {node: '>= 6'}
 
-  caniuse-lite@1.0.30001788:
-    resolution: {integrity: sha512-6q8HFp+lOQtcf7wBK+uEenxymVWkGKkjFpCvw5W25cmMwEDU45p1xQFBQv8JDlMMry7eNxyBaR+qxgmTUZkIRQ==}
+  caniuse-lite@1.0.30001790:
+    resolution: {integrity: sha512-bOoxfJPyYo+ds6W0YfptaCWbFnJYjh2Y1Eow5lRv+vI2u8ganPZqNm1JwNh0t2ELQCqIWg4B3dWEusgAmsoyOw==}
 
   chalk@4.1.2:
     resolution: {integrity: sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==}
@@ -1829,8 +1829,8 @@ packages:
     engines: {node: '>=0.10.0'}
     hasBin: true
 
-  electron-to-chromium@1.5.340:
-    resolution: {integrity: sha512-908qahOGocRMinT2nM3ajCEM99H4iPdv84eagPP3FfZy/1ZGeOy2CZYzjhms81ckOPCXPlW7LkY4XpxD8r1DrA==}
+  electron-to-chromium@1.5.343:
+    resolution: {integrity: sha512-YHnQ3MXI08icvL9ZKnEBy05F2EQ8ob01UaMOuMbM8l+4UcAq6MPPbBTJBbsBUg3H8JeZNt+O4fjsoWth3p6IFg==}
 
   emoji-regex@9.2.2:
     resolution: {integrity: sha512-L18DaJsXSUk2+42pv8mLs5jJT2hqFkFE4j21wOmgbUqsZ2hL72NsUU785g9RXgo3s0ZNgVl42TiHp3ZtOv/Vyg==}
@@ -2616,8 +2616,8 @@ packages:
     resolution: {integrity: sha512-pyFS63ptit/P5WqUkt+UUfe+4oevH+bFeIiPPdfb0pFeYEu/1ELnJu5l+5EcTKYL5M7zaAa7S8ddywgXypqKCw==}
     engines: {node: '>= 0.4'}
 
-  node-releases@2.0.37:
-    resolution: {integrity: sha512-1h5gKZCF+pO/o3Iqt5Jp7wc9rH3eJJ0+nh/CIoiRwjRxde/hAHyLPXYN4V3CqKAbiZPSeJFSWHmJsbkicta0Eg==}
+  node-releases@2.0.38:
+    resolution: {integrity: sha512-3qT/88Y3FbH/Kx4szpQQ4HzUbVrHPKTLVpVocKiLfoYvw9XSGOX2FmD2d6DrXbVYyAQTF2HeF6My8jmzx7/CRw==}
 
   normalize-path@3.0.0:
     resolution: {integrity: sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==}
@@ -3144,8 +3144,8 @@ packages:
     engines: {node: '>=14.0.0'}
     hasBin: true
 
-  tapable@2.3.2:
-    resolution: {integrity: sha512-1MOpMXuhGzGL5TTCZFItxCc0AARf1EZFQkGqMm7ERKj8+Hgr5oLvJOVFcC+lRmR8hCe2S3jC4T5D7Vg/d7/fhA==}
+  tapable@2.3.3:
+    resolution: {integrity: sha512-uxc/zpqFg6x7C8vOE7lh6Lbda8eEL9zmVm/PLeTPBRhh1xCgdWaQ+J1CUieGpIfm2HdtsUpRv+HshiasBMcc6A==}
     engines: {node: '>=6'}
 
   temp-dir@2.0.0:
@@ -5101,9 +5101,9 @@ snapshots:
   browserslist@4.28.2:
     dependencies:
       baseline-browser-mapping: 2.10.20
-      caniuse-lite: 1.0.30001788
-      electron-to-chromium: 1.5.340
-      node-releases: 2.0.37
+      caniuse-lite: 1.0.30001790
+      electron-to-chromium: 1.5.343
+      node-releases: 2.0.38
       update-browserslist-db: 1.2.3(browserslist@4.28.2)
 
   buffer-from@1.1.2: {}
@@ -5131,7 +5131,7 @@ snapshots:
 
   camelcase-css@2.0.1: {}
 
-  caniuse-lite@1.0.30001788: {}
+  caniuse-lite@1.0.30001790: {}
 
   chalk@4.1.2:
     dependencies:
@@ -5323,7 +5323,7 @@ snapshots:
     dependencies:
       jake: 10.9.4
 
-  electron-to-chromium@1.5.340: {}
+  electron-to-chromium@1.5.343: {}
 
   emoji-regex@9.2.2: {}
 
@@ -5332,7 +5332,7 @@ snapshots:
   enhanced-resolve@5.20.1:
     dependencies:
       graceful-fs: 4.2.11
-      tapable: 2.3.2
+      tapable: 2.3.3
 
   es-abstract@1.24.2:
     dependencies:
@@ -6225,7 +6225,7 @@ snapshots:
     dependencies:
       '@next/env': 15.5.15
       '@swc/helpers': 0.5.15
-      caniuse-lite: 1.0.30001788
+      caniuse-lite: 1.0.30001790
       postcss: 8.4.31
       react: 19.2.5
       react-dom: 19.2.5(react@19.2.5)
@@ -6251,7 +6251,7 @@ snapshots:
       object.entries: 1.1.9
       semver: 6.3.1
 
-  node-releases@2.0.37: {}
+  node-releases@2.0.38: {}
 
   normalize-path@3.0.0: {}
 
@@ -6869,7 +6869,7 @@ snapshots:
       - tsx
       - yaml
 
-  tapable@2.3.2: {}
+  tapable@2.3.3: {}
 
   temp-dir@2.0.0: {}
 
@@ -7090,7 +7090,7 @@ snapshots:
       mime-types: 2.1.35
       neo-async: 2.6.2
       schema-utils: 3.3.0
-      tapable: 2.3.2
+      tapable: 2.3.3
       terser-webpack-plugin: 5.4.0(webpack@5.97.1)
       watchpack: 2.5.1
       webpack-sources: 3.3.4
