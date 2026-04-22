@@ -1,6 +1,19 @@
 {
   "sets": [
     {
+      "code": "TMT",
+      "boosters": [
+        {
+          "code": "tmt-collector",
+          "name": "聚珍补充包"
+        },
+        {
+          "code": "tmt-play",
+          "name": "常规补充包"
+        }
+      ]
+    },
+    {
       "code": "ECL",
       "boosters": [
         {

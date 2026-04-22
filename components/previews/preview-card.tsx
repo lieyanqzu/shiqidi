@@ -5,6 +5,7 @@ import { useState, useEffect, useLayoutEffect, useMemo, useRef, Fragment } from 
 import type { PreviewCard } from '@/types/previews';
 import { ManaText } from '@/components/mana/mana-text';
 import { SetIcon, type SetIconRarity } from '@/components/logo/set-icon';
+import { buildMtgchImageUrl, buildScryfallImageUrl } from '@/lib/card-images';
 
 interface PreviewCardProps {
   card: PreviewCard;
@@ -16,6 +17,7 @@ interface CardRef {
   setCode: string;
   number: string;
   zhs_name?: string;
+  scryfallId?: string;
 }
 
 const StationAbility = ({
@@ -238,10 +240,12 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
         collector_number: string;
         display_name: string;
         display_name_zh: string;
+        id: string;
       }) => ({
         setCode: result.set,
         number: result.collector_number,
-        zhs_name: result.display_name_zh || result.display_name
+        zhs_name: result.display_name_zh || result.display_name,
+        scryfallId: result.id
       }));
 
       // 按照原始 cardRefs 的顺序进行重排容器，确保索引映射正确
@@ -445,8 +449,12 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
   };
 
   // 获取卡图URL
-  const getCardImageUrl = (setCode: string, number: string): string => {
-    return `https://mtgch.com/image/large/${setCode.toUpperCase()}/${setCode.toUpperCase()}_${number}.jpg`;
+  const getCardImageUrl = (scryfallId?: string): string => {
+    if (!scryfallId) {
+      return '/image/back.png';
+    }
+
+    return buildMtgchImageUrl(scryfallId);
   };
 
   // 处理鼠标事件
@@ -712,7 +720,7 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
           <div className="relative bg-[--card] rounded-lg overflow-hidden shadow-xl border border-[--border]">
             <div className="w-[300px] aspect-[488/680]">
               <Image
-                src={getCardImageUrl(hoveredCard.setCode, hoveredCard.number)}
+                src={getCardImageUrl(hoveredCard.scryfallId)}
                 alt={hoveredCard.zhs_name || `${hoveredCard.setCode}:${hoveredCard.number}`}
                 fill
                 className="object-contain"
@@ -720,20 +728,9 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
                 onError={(e) => {
                   const img = e.target as HTMLImageElement;
                   if (!img.src.includes('scryfall.io')) {
-                    // 尝试从API获取scryfallId
-                    fetch(`https://mtgch.com/api/v1/card/${hoveredCard.setCode.toUpperCase()}/${hoveredCard.number}`)
-                      .then(res => res.json())
-                      .then(data => {
-                        if (data?.id) {
-                          const scryfallId = data.id;
-                          img.src = `https://cards.scryfall.io/large/front/${scryfallId.slice(0, 1)}/${scryfallId.slice(1, 2)}/${scryfallId}.jpg`;
-                        } else {
-                          img.src = '/image/back.png';
-                        }
-                      })
-                      .catch(() => {
-                        img.src = '/image/back.png';
-                      });
+                    img.src = hoveredCard.scryfallId
+                      ? buildScryfallImageUrl(hoveredCard.scryfallId, 'large')
+                      : '/image/back.png';
                   }
                 }}
               />

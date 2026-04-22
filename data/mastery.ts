@@ -3,13 +3,13 @@
  */
 export const masteryConfig = {
   // 系列代号
-  setCode: 'TMT',
+  setCode: 'SOS',
   // 当前赛季开始日期（UTC）
-  startDate: '2026-03-03',
+  startDate: '2026-04-21',
   // 当前赛季结束日期（UTC）
-  endDate: '2026-04-21',
+  endDate: '2026-06-23',
   // 最高等级
-  maxLevel: 50,
+  maxLevel: 60,
   // 默认每日胜场数
   defaultDailyWins: 4,
   // 默认每周胜场数
