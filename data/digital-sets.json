@@ -343,8 +343,28 @@
     {
       "name": "炼金：斯翠海文",
       "code": "YSOS",
-      "releaseDate": "2026-05-06",
-      "wikiUrl": "https://mtg.wiki/page/Alchemy:_Strixhaven?utm_source=shiqidi"
+      "releaseDate": "2026-05-20",
+      "wikiUrl": "https://mtg.wiki/page/Alchemy:_Strixhaven?utm_source=shiqidi",
+      "preview": {
+        "title": "炼金预览",
+        "description": "最新炼金系列将于2026年5月20日上线万智牌：竞技场，即日起开始预览。",
+        "links": [
+          {
+            "name": "十七地（中文）",
+            "url": "/previews/ysos"
+          },
+          {
+            "name": "Scryfall",
+            "url": "https://scryfall.com/sets/ysos?order=spoiled&utm_source=shiqidi"
+          }
+        ]
+      }
+    },
+    {
+      "name": "漫威超级英雄",
+      "code": "MSH",
+      "releaseDate": "2026-06-24",
+      "wikiUrl": "https://mtg.wiki/page/Marvel_Super_Heroes?utm_source=shiqidi"
     }
   ]
 }

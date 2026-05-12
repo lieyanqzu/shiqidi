@@ -1,0 +1,64 @@
+{
+  "code": "YSOS",
+  "name": "炼金：斯翠海文",
+  "logo_code": "y26",
+  "release_date": "2026-05-20",
+  "description": "炼金：斯翠海文共30张卡牌，将于2026年5月20日上线万智牌：竞技场。感谢六宜散人翻译，以及轻脚翻译并制作中文卡图。",
+  "total_cards": 30,
+  "cards": [
+    {
+      "id": "ysos-1",
+      "name": "Summitfest Closing Ceremony",
+      "zhs_name": "顶峰节闭幕盛典",
+      "mana_cost": "{3}{U}{R}",
+      "type": "Instant",
+      "zhs_type": "瞬间",
+      "text": "Starting `intensity` 3\n`Covercast` — Whenever you cast another instant or sorcery spell, if five or more mana was spent to cast it, this card intensifies.\nAdd X {U} and X {R}, where X is this spell's intensity.\nDraw a card.\nFLAVOR\nPaint the sky purple\n—Prismari expression meaning \"hold nothing back\"",
+      "zhs_text": "起始`强度`3\n`笼咒` ~ 每当你施放另一个瞬间或法术咒语时，若施放该咒语时支付过五点或更多法术力，则`强化`此牌。\n加X点{U}和X点{R}，X为此咒语的强度。\n抓一张牌。\nFLAVOR\n紫染长空\n～粹丽用语，意指「全力以赴」",
+      "artist": "Anastasia Ovchinnikova",
+      "image_url_en": "https://media.wizards.com/2026/sos/Lag23xc2fN/en_dmeAiPcKlR.webp",
+      "image_url_zh": "/image/alchemy/ysos/顶峰节闭幕盛典.png",
+      "rarity": "rare"
+    },
+    {
+      "id": "ysos-2",
+      "name": "Variable Solutions",
+      "zhs_name": "变数解集",
+      "mana_cost": "{X}{G}",
+      "type": "Sorcery",
+      "zhs_type": "法术",
+      "text": "If X is 1, `seek` a basic land card and put it onto the battlefield tapped.\nIf X is 2, each opponent sacrifices an artifact of their choice.\nIf X is 3, `conjure` a random creature card with mana value X onto the battlefield.\nIf X is 4 or more, you gain 2 life. Then do all of the above.",
+      "zhs_text": "如果X为1，则`取出`一张地牌并将之横置放进战场。\n如果X为2，则每位对手各牺牲一个依其选择的神器。\n如果X为3，则将一张法术力值为X的随机生物牌`幻变`进战场。\n如果X等于或大于4，则你获得2点生命。然后以上皆作。",
+      "artist": "Anastasia Ovchinnikova",
+      "image_url_en": "https://media.wizards.com/2026/sos/Lag23xc2fN/en_WwpzVCc3C2.webp",
+      "image_url_zh": "/image/alchemy/ysos/变数解集.png",
+      "rarity": "rare"
+    },
+    {
+      "id": "ysos-3",
+      "name": "Blood Age Muster",
+      "zhs_name": "血腥时代集军",
+      "mana_cost": "{R}{W}",
+      "type": "Enchantment",
+      "zhs_type": "结界",
+      "text": "Whenever one or more cards leave your graveyard, `conjure` a random card from Blood Age Muster's spellbook onto the battlefield. Its base power and toughness `perpetually` become 2/2. This ability triggers only once each turn.\nFLAVOR\nShouts from the Lost Barracks ring out across the Fields of Strife, tempting students to explore the off-limits location.",
+      "zhs_text": "每当一张或数张牌离开你坟墓场时，从血腥时代集军的法术书中将一张随机牌`幻变`进战场。其基础力量与防御力`永久`成为2/2。此异能每回合只会触发一次。\nFLAVOR\n失落兵营喊杀声响彻争斗战场, 诱引学生深入禁地探索究竟。",
+      "artist": "Antonio José Manzanedo",
+      "image_url_en": "https://media.wizards.com/2026/sos/Lag23xc2fN/en_PDn72Hn8xh.webp",
+      "image_url_zh": "/image/alchemy/ysos/血腥时代集军.png",
+      "rarity": "rare",
+      "spellbook": [
+        "STX:93",
+        "SOS:110",
+        "STX:103",
+        "STX:112",
+        "SOS:230",
+        "SOS:36",
+        "STX:31",
+        "STX:239",
+        "STX:32",
+        "SOS:37"
+      ]
+    }
+  ]
+}
