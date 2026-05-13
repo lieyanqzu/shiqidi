@@ -7,6 +7,35 @@ import { ManaText } from '@/components/mana/mana-text';
 import { SetIcon, type SetIconRarity } from '@/components/logo/set-icon';
 import { buildMtgchImageUrl, buildScryfallImageUrl } from '@/lib/card-images';
 
+// 解析卡名中的拼音注音，将 "字(pinyin)" 渲染为 ruby 注音
+function PinyinName({ text }: { text: string }) {
+  const parts: React.ReactNode[] = [];
+  const regex = /([一-鿿])\(([a-zA-ZÀ-ÿ]+)\)/gu;
+  let lastIndex = 0;
+  let match;
+
+  while ((match = regex.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      parts.push(text.slice(lastIndex, match.index));
+    }
+    parts.push(
+      <ruby key={match.index}>
+        {match[1]}
+        <rp>(</rp>
+        <rt className="text-[0.6em] font-normal">{match[2]}</rt>
+        <rp>)</rp>
+      </ruby>
+    );
+    lastIndex = regex.lastIndex;
+  }
+
+  if (lastIndex < text.length) {
+    parts.push(text.slice(lastIndex));
+  }
+
+  return <>{parts}</>;
+}
+
 interface PreviewCardProps {
   card: PreviewCard;
   isEnglish: boolean;
@@ -592,15 +621,15 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
               <div className="flex items-center gap-1.5 min-w-0 flex-1">
                 <div className="font-medium break-words leading-none pt-0.5">
                   {currentCard.zhs_name === currentCard.name ? (
-                    <h3>{currentCard.name}</h3>
+                    <h3><PinyinName text={currentCard.name} /></h3>
                   ) : isEnglish ? (
                     <>
                       <h3>{currentCard.name}</h3>
-                      <div className="text-xs font-light text-[--muted-foreground] mt-1">{currentCard.zhs_name}</div>
+                      <div className="text-xs font-light text-[--muted-foreground] mt-1"><PinyinName text={currentCard.zhs_name} /></div>
                     </>
                   ) : (
                     <>
-                      <h3>{currentCard.zhs_name}</h3>
+                      <h3><PinyinName text={currentCard.zhs_name} /></h3>
                       <div className="text-xs font-light text-[--muted-foreground] mt-1">{currentCard.name}</div>
                     </>
                   )}
@@ -629,15 +658,15 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
                 <div className="flex items-center gap-1.5 min-w-0 flex-1">
                   <div className="font-medium break-words leading-none pt-0.5">
                     {currentCard.zhs_name2 === currentCard.name2 ? (
-                      <h3>{currentCard.name2}</h3>
+                      <h3><PinyinName text={currentCard.name2} /></h3>
                     ) : isEnglish ? (
                       <>
                         <h3>{currentCard.name2}</h3>
-                        <div className="text-xs font-light text-[--muted-foreground] mt-1">{currentCard.zhs_name2}</div>
+                        <div className="text-xs font-light text-[--muted-foreground] mt-1"><PinyinName text={currentCard.zhs_name2 || ''} /></div>
                       </>
                     ) : (
                       <>
-                        <h3>{currentCard.zhs_name2}</h3>
+                        <h3><PinyinName text={currentCard.zhs_name2 || ''} /></h3>
                         <div className="text-xs font-light text-[--muted-foreground] mt-1">{currentCard.name2}</div>
                       </>
                     )}

@@ -429,11 +429,20 @@
     "text": "To blight X, put X -1/-1 counters on a creature you control."
   },
   {
-    "name": "笼咒",
-    "text": "笼咒异能会在任何区域触发，且不使用堆叠。"
+    "name": "协奏",
+    "text": "协奏异能会在任何区域触发，且不使用堆叠。"
   },
   {
     "name": "Covercast",
     "text": "Covercast means that the ability triggers from any zone and does not use the stack."
+  },
+  {
+    "name": "备法",
+    "alias": ["已备法"],
+    "text": "于其已备法期间，你可以施放其上咒语的复制品。施放之后其便撤法。"
+  },
+  {
+    "name": "Prepared",
+    "text": "While this is prepared, you may cast a copy of its spell. Doing so unprepares it."
   }
 ]
