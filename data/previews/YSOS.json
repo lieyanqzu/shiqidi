@@ -9,15 +9,15 @@
     {
       "id": "ysos-1",
       "name": "Summitfest Closing Ceremony",
-      "zhs_name": "顶峰节闭幕盛典",
+      "zhs_name": "顶峰节闭幕式",
       "mana_cost": "{3}{U}{R}",
       "type": "Instant",
       "zhs_type": "瞬间",
       "text": "Starting `intensity` 3\n`Covercast` — Whenever you cast another instant or sorcery spell, if five or more mana was spent to cast it, this card intensifies.\nAdd X {U} and X {R}, where X is this spell's intensity.\nDraw a card.\nFLAVOR\nPaint the sky purple\n—Prismari expression meaning \"hold nothing back\"",
-      "zhs_text": "起始`强度`3\n`笼咒` ~ 每当你施放另一个瞬间或法术咒语时，若施放该咒语时支付过五点或更多法术力，则`强化`此牌。\n加X点{U}和X点{R}，X为此咒语的强度。\n抓一张牌。\nFLAVOR\n紫染长空\n～粹丽用语，意指「全力以赴」",
+      "zhs_text": "起始强度3\n`协奏`~每当你施放另一个瞬间或法术咒语时，若施放该咒语时支付过五点或更多法术力，则`强化`此牌。\n加X点{U}和X点{R}，X为此咒语的强度。\n抓一张牌。\nFLAVOR\n紫染长空\n～粹丽用语，意指「全力以赴」",
       "artist": "Anastasia Ovchinnikova",
       "image_url_en": "https://media.wizards.com/2026/sos/Lag23xc2fN/en_dmeAiPcKlR.webp",
-      "image_url_zh": "/image/alchemy/ysos/顶峰节闭幕盛典.png",
+      "image_url_zh": "/image/alchemy/ysos/顶峰节闭幕式.png",
       "rarity": "rare"
     },
     {
@@ -59,6 +59,68 @@
         "STX:32",
         "SOS:37"
       ]
+    },
+    {
+      "id": "ysos-4",
+      "name": "Paradigm Shifter",
+      "zhs_name": "定式抟(tuán)幻家（暂译）",
+      "mana_cost": "{1}{U}{R}",
+      "type": "Creature — Human Wizard",
+      "zhs_type": "生物～人类／法术师",
+      "text": "（暂无英文原文，翻译自日文文本）\nWhen this creature enters, conjure a card of your choice from Paradigm's spellbook into your hand.\n{T}: Add two mana in any combination of colors. Spend this mana only to cast instant or sorcery spells.",
+      "zhs_text": "（暂无英文原文，翻译自日文文本）\n当此生物进场时，从定式法术书中选择一张牌。将该牌`幻变`进你手上。\n{T}：加两点法术力，其颜色组合由你选择。此法术力只能用来施放瞬间或法术咒语。",
+      "artist": "Jessica Liu",
+      "image_url_en": "/image/alchemy/ysos/Paradigm Shifter.png",
+      "image_url_zh": "/image/alchemy/ysos/定式抟幻家.png",
+      "rarity": "mythic",
+      "pow_tough": "2/2",
+      "spellbook": [
+        "SOS:30",
+        "SOS:44",
+        "SOS:78",
+        "SOS:120",
+        "SOS:149"
+      ]
+    },
+    {
+      "id": "ysos-5",
+      "name": "Iterating Phoenix",
+      "zhs_name": "迭变凤凰（暂译）",
+      "mana_cost": "{U}{R}",
+      "type": "Creature — Elemental Phoenix",
+      "zhs_type": "生物～元素／凤凰",
+      "text": "（暂无英文原文，翻译自日文文本）\n`Flying`\nOpus — Whenever you cast an instant or sorcery spell, Iterating Phoenix perpetually gets +1/+1. If five or more mana was spent to cast that spell, you may exile Iterating Phoenix. Then return it to the battlefield tapped under its owner's control. This ability also triggers if Iterating Phoenix is in your graveyard.",
+      "zhs_text": "（暂无英文原文，翻译自日文文本）\n`飞行`\n`炫示`～每当你施放瞬间或法术咒语时，迭变凤凰`永久`得+1/+1。若施放该咒语时支付过五点或更多法术力，则你可以放逐迭变凤凰。然后将它在其拥有者的操控下横置移回战场。此异能于此牌在你坟墓场中时亦可以触发。",
+      "artist": "Andrey Kuzinskiy",
+      "image_url_en": "/image/alchemy/ysos/Iterating Phoenix.png",
+      "image_url_zh": "/image/alchemy/ysos/迭变凤凰.png",
+      "rarity": "rare",
+      "pow_tough": "2/1"
+    },
+    {
+      "id": "ysos-6",
+      "name": "Ursine Guide",
+      "zhs_name": "熊身向导",
+      "mana_cost": "{2}{G}",
+      "type": "Creature — Bear Druid",
+      "zhs_type": "生物~熊／德鲁伊",
+      "text": "This creature enters `prepared`.\nWhenever you cast a spell that isn't from your starting deck, conjure a card named `Bear Cub:0` onto the battlefield. This creature becomes `prepared`.",
+      "zhs_text": "此生物进场时`已备法`。\n每当你施放来自你起始套牌之外的咒语时，将一张名称为`幼熊:0`的牌`幻变`进战场。此生物成为`已备法`。",
+      "artist": "Tomas Duchek",
+      "image_url_en": "/image/alchemy/ysos/Ursine Guide.png",
+      "image_url_zh": "/image/alchemy/ysos/熊身向导.png",
+      "rarity": "mythic",
+      "pow_tough": "3/3",
+      "related": [
+        "FDN:552"
+      ],
+      "name2": "Ranger's Merit",
+      "zhs_name2": "护林人的嘉许",
+      "mana_cost2": "{3}{G}{G}",
+      "type2": "Sorcery",
+      "zhs_type2": "法术",
+      "text2": "Put a +1/+1 counter on each Bear you control. They gain trample until end of turn.",
+      "zhs_text2": "在每个由你操控的熊上各放置一个+1/+1指示物。它们获得践踏异能直到回合结束。"
     }
   ]
 }
