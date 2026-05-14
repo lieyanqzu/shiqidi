@@ -49,6 +49,41 @@ interface CardRef {
   scryfallId?: string;
 }
 
+const ClassLevel = ({
+  levelLabel,
+  cost,
+  textLines,
+  renderCardRef,
+}: {
+  levelLabel: string;
+  cost: string;
+  textLines: string[];
+  renderCardRef: (text: string, index: number) => React.ReactNode;
+}) => {
+  return (
+    <div className="mt-1.5 border-t border-[--border] pt-1.5">
+      <div className="mb-0.5 flex items-center justify-between">
+        {cost ? (
+          <span className="text-sm text-[--muted-foreground]">
+            <ManaText text={cost} renderCardRef={renderCardRef} />{cost.endsWith('：') ? '' : ':'}
+          </span>
+        ) : <span />}
+        <span className="text-sm font-medium text-[--muted-foreground]">
+          {levelLabel}
+        </span>
+      </div>
+      <div>
+        {textLines.map((line, index) => (
+          <Fragment key={index}>
+            <ManaText text={line} renderCardRef={renderCardRef} />
+            {index < textLines.length - 1 && <br />}
+          </Fragment>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 const StationAbility = ({
   level,
   textLines,
@@ -415,6 +450,12 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
     const rulesText = flavorIndex >= 0 ? lines.slice(0, flavorIndex).join('\n') : text;
     const flavorLines = flavorIndex >= 0 ? lines.slice(flavorIndex + 1) : [];
 
+    // 检测是否为 CLASS 卡牌
+    const hasClass = /^CLASS /m.test(rulesText);
+    if (hasClass) {
+      return renderClassText(rulesText, flavorLines);
+    }
+
     // 对规则叙述部分继续处理 STATION 分段
     const stationSplit = rulesText.split(/\n(?=STATION )/);
     const normalText = stationSplit[0];
@@ -465,6 +506,90 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
       <>
         {normalTextElements}
         {stationElements}
+        {flavorElement}
+      </>
+    );
+  };
+
+  // 处理 CLASS 卡牌的文本渲染
+  const renderClassText = (rulesText: string, flavorLines: string[]) => {
+    // 按 "CLASS " 前缀分段
+    const classSplit = rulesText.split(/\n(?=CLASS )/);
+    const baseText = classSplit[0];
+    const classSections = classSplit.slice(1);
+
+    // 解析 baseText 中的 Class 提示行（以括号包裹的行）和 Level 1 能力
+    const baseLines = baseText.split('\n');
+    const reminderLines: string[] = [];
+    const level1Lines: string[] = [];
+    let passedReminder = false;
+    for (const line of baseLines) {
+      if (!passedReminder && /^\(.*\)$/.test(line)) {
+        reminderLines.push(line);
+      } else {
+        passedReminder = true;
+        level1Lines.push(line);
+      }
+    }
+
+    // 解析每个 CLASS 分段：提取升级费用、等级标签和效果文本
+    const classLevels: { levelLabel: string; cost: string; textLines: string[] }[] = [];
+    for (const section of classSections) {
+      const lines = section.split('\n');
+      const headerLine = lines[0];
+      const headerText = headerLine.replace(/^CLASS\s+/, '').trim();
+      const headerMatch = headerText.match(/^(?:(.+?)(?:[:：])\s*)?(.+)$/);
+
+      if (headerMatch) {
+        classLevels.push({
+          cost: headerMatch[1]?.trim() ?? '',
+          levelLabel: headerMatch[2].trim(),
+          textLines: lines.slice(1),
+        });
+      }
+    }
+
+    const flavorElement = flavorLines.length > 0 ? (
+      <div className="mt-2 pt-2 border-t border-[--border] text-[--muted-foreground] italic">
+        {flavorLines.map((line, index) => (
+          <Fragment key={`flavor-${index}`}>
+            <ManaText text={line} renderCardRef={renderCardRef} />
+            {index < flavorLines.length - 1 && <br />}
+          </Fragment>
+        ))}
+      </div>
+    ) : null;
+
+    return (
+      <>
+        {/* Level 1 区域：提示文本 + 等级 1 能力 */}
+        <div>
+          <div>
+            {reminderLines.map((line, index) => (
+              <div key={`r-${index}`} className="text-[--muted-foreground] italic">
+                <ManaText text={line} renderCardRef={renderCardRef} />
+              </div>
+            ))}
+            {level1Lines.map((line, index) => (
+              <Fragment key={`l1-${index}`}>
+                <ManaText text={line} renderCardRef={renderCardRef} />
+                {index < level1Lines.length - 1 && <br />}
+              </Fragment>
+            ))}
+          </div>
+        </div>
+
+        {/* Level 2/3 区域 */}
+        {classLevels.map(({ levelLabel, cost, textLines }) => (
+          <ClassLevel
+            key={levelLabel}
+            levelLabel={levelLabel}
+            cost={cost}
+            textLines={textLines}
+            renderCardRef={renderCardRef}
+          />
+        ))}
+
         {flavorElement}
       </>
     );
