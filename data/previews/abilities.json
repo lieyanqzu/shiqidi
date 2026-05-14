@@ -444,5 +444,13 @@
   {
     "name": "Prepared",
     "text": "While this is prepared, you may cast a copy of its spell. Doing so unprepares it."
+  },
+  {
+    "name": "终命指示物",
+    "text": "如果其上有终命指示物的生物将死去，则改为放逐之。"
+  },
+  {
+    "name": "Finality counter",
+    "text": "If a creature with a finality counter on it would die, exile it instead."
   }
 ]

@@ -121,6 +121,38 @@
       "zhs_type2": "法术",
       "text2": "Put a +1/+1 counter on each Bear you control. They gain trample until end of turn.",
       "zhs_text2": "在每个由你操控的熊上各放置一个+1/+1指示物。它们获得践踏异能直到回合结束。"
+    },
+    {
+      "id": "ysos-7",
+      "name": "Advanced Floral Invocations",
+      "zhs_name": "高等祈花学",
+      "mana_cost": "{B/G}",
+      "type": "Enchantment — Class",
+      "zhs_type": "结界～职业",
+      "text": "(Gain the next level as a sorcery to add its ability.)\nLandfall — Whenever a land you control enters, mill two cards.\nCLASS {B/G}: Level 2\nWhenever a land you control enters, creature cards in your graveyard `perpetually` get +1/+1.\nCLASS {4}{B/G}{B/G}: Level 3\nYou may play lands and cast creature spells from your graveyard. If you cast a spell this way, that creature enters with a `finality counter` on it.",
+      "zhs_text": "（获得下一等级便能新增相应异能；只能于法术时机如此作。）\n地落～每当一个由你操控的地进场时，磨两张牌。\nCLASS {B/G}：等级2\n每当一个由你操控的地进场时，你坟墓场中的生物牌`永久`得+1/+1。\nCLASS {4}{B/G}{B/G}：等级3\n你可以从你坟墓场中使用地和施放生物咒语。如果你以此法施放咒语，则该生物进场时上面有一个`终命指示物`。",
+      "artist": "Filip Burburan",
+      "image_url_en": "/image/alchemy/ysos/Advanced Floral Invocations.png",
+      "image_url_zh": "/image/alchemy/ysos/高等祈花学.png",
+      "rarity": "rare"
+    },
+    {
+      "id": "ysos-8",
+      "name": "Corpseweaver Prodigy",
+      "zhs_name": "纺尸逸才",
+      "mana_cost": "{2}{B}",
+      "type": "Creature — Treefolk Warlock",
+      "zhs_type": "生物～树妖／邪术师",
+      "text": "`Deathtouch`\nIf a creature an opponent controls would die, exile it instead.\nInfusion — At the beginning of your second main phase, if you gained life this turn, conjure a card named `Bridge from Below:0` into your graveyard.",
+      "zhs_text": "`死触`\n如果某个由对手操控的生物将死去，则改为将它放逐。\n输注～在你的第二个行动阶段开始时，若你本回合中获得过生命，则将一张名称为`阴界渡桥:0`的牌`幻变`进你的坟墓场。",
+      "artist": "Filip Burburan",
+      "image_url_en": "/image/alchemy/ysos/Corpseweaver Prodigy.png",
+      "image_url_zh": "/image/alchemy/ysos/纺尸逸才.png",
+      "rarity": "mythic",
+      "pow_tough": "2/4",
+      "related": [
+        "SPG:3"
+      ]
     }
   ]
 }
