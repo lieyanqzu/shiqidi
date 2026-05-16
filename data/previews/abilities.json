@@ -452,5 +452,13 @@
   {
     "name": "Finality counter",
     "text": "If a creature with a finality counter on it would die, exile it instead."
+  },
+  {
+    "name": "递增",
+    "text": "每当你施放咒语时，若你支付的法术力数量大于此生物的力量或防御力，则在此生物上放置一个+1/+1指示物。"
+  },
+  {
+    "name": "Increment",
+    "text": "Whenever you cast a spell, if the amount of mana you spent is greater than this creature's power or toughness, put a +1/+1 counter on this creature."
   }
 ]
