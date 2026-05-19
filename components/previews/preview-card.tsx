@@ -52,11 +52,13 @@ interface CardRef {
 const ClassLevel = ({
   levelLabel,
   cost,
+  colon,
   textLines,
   renderCardRef,
 }: {
   levelLabel: string;
   cost: string;
+  colon: string;
   textLines: string[];
   renderCardRef: (text: string, index: number) => React.ReactNode;
 }) => {
@@ -65,7 +67,7 @@ const ClassLevel = ({
       <div className="mb-0.5 flex items-center justify-between">
         {cost ? (
           <span className="text-sm text-[--muted-foreground]">
-            <ManaText text={cost} renderCardRef={renderCardRef} />{cost.endsWith('：') ? '' : ':'}
+            <ManaText text={cost} renderCardRef={renderCardRef} />{colon}
           </span>
         ) : <span />}
         <span className="text-sm font-medium text-[--muted-foreground]">
@@ -376,30 +378,35 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
   useEffect(() => {
     if (card.related && card.related.length > 0 && relatedCards.length > 0) {
       const newRenderedIndices = new Set<number>();
-      const text = isEnglish ? card.text : card.zhs_text;
-      
+      const texts = [
+        isEnglish ? card.text : card.zhs_text,
+        isEnglish ? card.text2 : card.zhs_text2,
+      ].filter((t): t is string => typeof t === 'string' && t.length > 0);
+
       // 检查文本中的所有行
-      text.split('\n').forEach(line => {
-        // 使用正则表达式匹配反引号中的卡牌引用
-        const regex = /`([^`]+)`/g;
-        let match;
-        
-        while ((match = regex.exec(line)) !== null) {
-          const cardRefText = match[1];
-          const cardRefMatch = cardRefText.match(/([^:]+):(\d+)/);
-          
-          if (cardRefMatch) {
-            const cardIdx = parseInt(cardRefMatch[2], 10);
-            if (relatedCards[cardIdx]) {
-              newRenderedIndices.add(cardIdx);
+      texts.forEach(text => {
+        text.split('\n').forEach(line => {
+          // 使用正则表达式匹配反引号中的卡牌引用
+          const regex = /`([^`]+)`/g;
+          let match;
+
+          while ((match = regex.exec(line)) !== null) {
+            const cardRefText = match[1];
+            const cardRefMatch = cardRefText.match(/([^:]+):(\d+)/);
+
+            if (cardRefMatch) {
+              const cardIdx = parseInt(cardRefMatch[2], 10);
+              if (relatedCards[cardIdx]) {
+                newRenderedIndices.add(cardIdx);
+              }
             }
           }
-        }
+        });
       });
-      
+
       setRenderedRelatedCardIndices(newRenderedIndices);
     }
-  }, [card.related, card.text, card.zhs_text, relatedCards, isEnglish]);
+  }, [card.related, card.text, card.zhs_text, card.text2, card.zhs_text2, relatedCards, isEnglish]);
 
   const renderCardRef = (text: string, index: number) => {
     // 检查是否是卡牌引用格式 卡名:索引
@@ -533,17 +540,18 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
     }
 
     // 解析每个 CLASS 分段：提取升级费用、等级标签和效果文本
-    const classLevels: { levelLabel: string; cost: string; textLines: string[] }[] = [];
+    const classLevels: { levelLabel: string; cost: string; colon: string; textLines: string[] }[] = [];
     for (const section of classSections) {
       const lines = section.split('\n');
       const headerLine = lines[0];
       const headerText = headerLine.replace(/^CLASS\s+/, '').trim();
-      const headerMatch = headerText.match(/^(?:(.+?)(?:[:：])\s*)?(.+)$/);
+      const headerMatch = headerText.match(/^(?:(.+?)([:：])\s*)?(.+)$/);
 
       if (headerMatch) {
         classLevels.push({
           cost: headerMatch[1]?.trim() ?? '',
-          levelLabel: headerMatch[2].trim(),
+          colon: headerMatch[2] ?? ':',
+          levelLabel: headerMatch[3].trim(),
           textLines: lines.slice(1),
         });
       }
@@ -580,11 +588,12 @@ export function PreviewCard({ card, isEnglish, logoCode }: PreviewCardProps) {
         </div>
 
         {/* Level 2/3 区域 */}
-        {classLevels.map(({ levelLabel, cost, textLines }) => (
+        {classLevels.map(({ levelLabel, cost, colon, textLines }) => (
           <ClassLevel
             key={levelLabel}
             levelLabel={levelLabel}
             cost={cost}
+            colon={colon}
             textLines={textLines}
             renderCardRef={renderCardRef}
           />
