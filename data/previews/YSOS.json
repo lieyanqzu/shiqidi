@@ -370,7 +370,7 @@
     {
       "id": "ysos-23",
       "name": "Paradigm Shifter",
-      "zhs_name": "定式抟幻家",
+      "zhs_name": "定式抟(tuán)幻家",
       "mana_cost": "{1}{U}{R}",
       "type": "Creature — Human Wizard",
       "zhs_type": "生物～人类／法术师",
@@ -480,7 +480,7 @@
     {
       "id": "ysos-30",
       "name": "The Mystical Archive",
-      "zhs_name": "秘典宬",
+      "zhs_name": "秘典宬(chéng)",
       "mana_cost": "",
       "type": "Land",
       "zhs_type": "地",
