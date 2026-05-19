@@ -429,8 +429,8 @@
     "text": "To blight X, put X -1/-1 counters on a creature you control."
   },
   {
-    "name": "协奏",
-    "text": "协奏异能会在任何区域触发，且不使用堆叠。"
+    "name": "附咏",
+    "text": "附咏异能会在任何区域触发，且不使用堆叠。"
   },
   {
     "name": "Covercast",
@@ -460,5 +460,72 @@
   {
     "name": "Increment",
     "text": "Whenever you cast a spell, if the amount of mana you spent is greater than this creature's power or toughness, put a +1/+1 counter on this creature."
+  },
+  {
+    "name": "逸脱",
+    "text": "你可以从你坟墓场中施放此牌，并支付其逸脱费用。"
+  },
+  {
+    "name": "Escape",
+    "text": "You may cast this card from your graveyard for its escape cost."
+  },
+  {
+    "name": "温习",
+    "text": "你可以从游戏外展示一张由你拥有的课程牌并置于你手上，或弃一张牌来抓一张牌。"
+  },
+  {
+    "name": "Learn",
+    "text": "You may reveal a Lesson card you own from outside the game and put it into your hand, or discard a card to draw a card."
+  },
+  {
+    "name": "覆诵",
+    "text": "当你施放此咒语时，每支付一次覆诵费用，便将它复制一次。你可以为每个复制品选择新的目标。"
+  },
+  {
+    "name": "Replicate",
+    "text": "When you cast this spell, copy it for each time you paid its replicate cost. You may choose new targets for the copies."
+  },
+  {
+    "name": "互斗",
+    "text": "它们各向对方造成等同于本身力量的伤害。"
+  },
+  {
+    "name": "Fight",
+    "alias": ["fights"],
+    "text": "Each deals damage equal to its power to the other."
+  },
+  {
+    "name": "磨",
+    "text": "将你牌库顶的X张牌置入你的坟墓场。"
+  },
+  {
+    "name": "Mill",
+    "text": "Put the top X cards of your library into your graveyard."
+  },
+  {
+    "name": "返照",
+    "text": "你可以从你坟墓场施放此牌，并支付其返照费用。然后将它放逐。"
+  },
+  {
+    "name": "Flashback",
+    "text": "You may cast this card from your graveyard for its flashback cost. Then exile it."
+  },
+  {
+    "name": "颂威",
+    "text": "每当一个由你操控的生物单独攻击时，该生物得+1/+1直到回合结束。"
+  },
+  {
+    "name": "Exalted",
+    "text": "Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn."
+  },
+  {
+    "name": "添补",
+    "alias": ["永久添补"],
+    "text": "以此法添补的牌张需要更多法术力来施放，获得添补的颜色，且仍具有原本颜色。"
+  },
+  {
+    "name": "Incorporate",
+    "alias": ["Incorporates", "perpetually incorporate", "perpetually incorporates"],
+    "text": "A card incorporated this way costs more mana to cast, gains the incorporated color in addition to its other colors"
   }
 ]
