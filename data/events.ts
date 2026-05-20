@@ -13,7 +13,7 @@ export interface Event {
 }
 
 export const calendarMetadata: CalendarMetadata = {
-  lastUpdated: '2026/04/22',
+  lastUpdated: '2026/05/20',
   announcementUrl: 'https://magic.wizards.com/en/news/mtg-arena/secrets-of-strixhaven-event-schedule',
 };
 
@@ -103,7 +103,7 @@ const premierDraftEvents: Event[] = [
   {
     type: 'premier_draft',
     title: '炼金：斯翠海文',
-    startTime: new Date('2026-05-26T08:00:00-07:00'),
+    startTime: new Date('2026-05-19T08:00:00-07:00'),
     endTime: new Date('2026-06-02T08:00:00-07:00'),
     format: '竞技轮抽'
   },
@@ -226,6 +226,14 @@ const otherEvents: Event[] = [
     endTime: new Date('2026-06-23T08:00:00-07:00'),
     format: '方盒轮抽'
   },
+  {
+    type: 'other',
+    title: '万智牌：基石构筑幻影轮抽',
+    startTime: new Date('2026-06-10T08:00:00-07:00'),
+    endTime: new Date('2026-06-13T08:00:00-07:00'),
+    format: '幻影轮抽',
+    description: '免门票，庆祝国际游戏日'
+  },
 ];
 
 const arenaDirectEvents: Event[] = [
@@ -246,8 +254,8 @@ const arenaDirectEvents: Event[] = [
   {
     type: 'arena_direct',
     title: '竞技场直邮赛 - 斯翠海文的秘密常规补充包',
-    startTime: new Date('2026-05-29T08:00:00-07:00'),
-    endTime: new Date('2026-06-01T08:00:00-07:00'),
+    startTime: new Date('2026-05-27T08:00:00-07:00'),
+    endTime: new Date('2026-05-31T08:00:00-07:00'),
     format: '斯翠海文的秘密现开'
   },
   {

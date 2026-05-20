@@ -432,13 +432,11 @@
       "name": "Marvel’s Spider-Man",
       "codename": null,
       "block": null,
-      "code": "SPM", 
+      "code": "SPM",
       "enter_date": "2025-09-19T00:00:00.000",
       "rough_enter_date": "Q4 2025",
       "exit_date": null,
       "rough_exit_date": "Q1 2028",
-      "digital_name": "Through the Omenpaths",
-      "digital_code": "OM1",
       "universes_beyond": true
     },
     {
