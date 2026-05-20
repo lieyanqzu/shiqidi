@@ -175,12 +175,12 @@ export function Content({ currentSetGroups, futureSets, recentBans }: Props) {
             </span>
             与其他IP跨界联动的系列，如魔戒：中洲传说™、最终幻想™等，引入了万智牌以外的世界观和角色。
           </div>
-          <div className="text-sm text-[--muted-foreground]">
+          {/* <div className="text-sm text-[--muted-foreground]">
             <span className="inline-flex items-center rounded-md bg-emerald-400/10 px-2 py-1 text-xs font-medium text-emerald-500 ring-1 ring-inset ring-emerald-400/20 whitespace-nowrap mr-2">
               穿越预兆路
             </span>
             部分联动IP无法上线数字平台，故而在数字平台上以万智牌世界观重新设计，但保持相同的游戏机制。
-          </div>
+          </div> */}
         </div>
       </div>
 
