@@ -7,28 +7,28 @@
   --background-subtle: #ece9e5;
   --foreground: #4a4a4a;
   --foreground-muted: #737373;
-  
+
   /* 组件背景 */
   --component-background: #fcfbf9;
   --component-background-hover: #ffffff;
-  
+
   /* 文本颜色 */
   --component-foreground: #4a4a4a;
   --component-foreground-muted: #737373;
-  
+
   /* 边框 */
   --border: #e7e5e4;
-  
+
   /* 主题色 */
   --primary: #3b82f6;
   --primary-foreground: #ffffff;
-  
+
   /* 表格专用 */
   --table-header-background: var(--component-background);
   --table-header-foreground: var(--component-foreground);
   --table-border: var(--border);
   --table-row-hover: var(--component-background-hover);
-  
+
   /* 卡片专用 */
   --card: var(--component-background);
 }
@@ -38,28 +38,28 @@
   --background-subtle: #172033;
   --foreground: #e2e8f0;
   --foreground-muted: #94a3b8;
-  
+
   /* 组件背景 */
   --component-background: #1e293b;
   --component-background-hover: #2d3a4f;
-  
+
   /* 文本颜色 */
   --component-foreground: #e2e8f0;
   --component-foreground-muted: #94a3b8;
-  
+
   /* 边框 */
   --border: #334155;
-  
+
   /* 主题色 */
   --primary: #60a5fa;
   --primary-foreground: #ffffff;
-  
+
   /* 表格专用 */
   --table-header-background: var(--component-background);
   --table-header-foreground: var(--component-foreground);
   --table-border: var(--border);
   --table-row-hover: var(--component-background-hover);
-  
+
   /* 卡片专用 */
   --card: var(--component-background);
 }
@@ -68,7 +68,7 @@
 body {
   color: var(--foreground);
   background-color: var(--background);
-  background-image: 
+  background-image:
     linear-gradient(to bottom, var(--background-subtle) 1px, transparent 1px),
     linear-gradient(to right, var(--background-subtle) 1px, transparent 1px);
   background-size: 32px 32px;
@@ -162,15 +162,13 @@ tr:hover td {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    115deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0) 25%,
-    rgba(255, 255, 255, 0.7) 45%,
-    rgba(255, 255, 255, 0.9) 50%,
-    rgba(255, 255, 255, 0.7) 55%,
-    rgba(255, 255, 255, 0) 75%
-  );
+  background: linear-gradient(115deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0) 25%,
+      rgba(255, 255, 255, 0.7) 45%,
+      rgba(255, 255, 255, 0.9) 50%,
+      rgba(255, 255, 255, 0.7) 55%,
+      rgba(255, 255, 255, 0) 75%);
   animation: shine 2.5s ease-in-out infinite;
   z-index: 2;
   mix-blend-mode: soft-light;
@@ -180,16 +178,14 @@ tr:hover td {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    45deg,
-    rgba(255, 0, 0, 0.8),
-    rgba(255, 165, 0, 0.8),
-    rgba(255, 255, 0, 0.8),
-    rgba(0, 255, 0, 0.8),
-    rgba(0, 0, 255, 0.8),
-    rgba(75, 0, 130, 0.8),
-    rgba(238, 130, 238, 0.8)
-  );
+  background: linear-gradient(45deg,
+      rgba(255, 0, 0, 0.8),
+      rgba(255, 165, 0, 0.8),
+      rgba(255, 255, 0, 0.8),
+      rgba(0, 255, 0, 0.8),
+      rgba(0, 0, 255, 0.8),
+      rgba(75, 0, 130, 0.8),
+      rgba(238, 130, 238, 0.8));
   opacity: 0.25;
   mix-blend-mode: hard-light;
   animation: rainbow 4s linear infinite;
@@ -197,24 +193,22 @@ tr:hover td {
 }
 
 /* 添加额外的彩虹层 */
-.foil-effect > div {
+.foil-effect>div {
   position: relative;
 }
 
-.foil-effect > div::after {
+.foil-effect>div::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    -45deg,
-    rgba(255, 0, 0, 0.6),
-    rgba(255, 255, 0, 0.6),
-    rgba(0, 255, 0, 0.6),
-    rgba(0, 255, 255, 0.6),
-    rgba(0, 0, 255, 0.6),
-    rgba(255, 0, 255, 0.6),
-    rgba(255, 0, 0, 0.6)
-  );
+  background: linear-gradient(-45deg,
+      rgba(255, 0, 0, 0.6),
+      rgba(255, 255, 0, 0.6),
+      rgba(0, 255, 0, 0.6),
+      rgba(0, 255, 255, 0.6),
+      rgba(0, 0, 255, 0.6),
+      rgba(255, 0, 255, 0.6),
+      rgba(255, 0, 0, 0.6));
   opacity: 0.2;
   mix-blend-mode: color-dodge;
   animation: rainbow-reverse 6s linear infinite;
@@ -227,16 +221,20 @@ tr:hover td {
     transform: translateX(-200%) rotate(0deg);
     opacity: 0;
   }
+
   15% {
     opacity: 1;
   }
+
   35% {
     opacity: 1;
   }
+
   50% {
     transform: translateX(200%) rotate(0deg);
     opacity: 0;
   }
+
   100% {
     transform: translateX(-200%) rotate(0deg);
     opacity: 0;
@@ -247,6 +245,7 @@ tr:hover td {
   0% {
     filter: hue-rotate(0deg);
   }
+
   100% {
     filter: hue-rotate(360deg);
   }
@@ -256,7 +255,38 @@ tr:hover td {
   0% {
     filter: hue-rotate(360deg);
   }
+
   100% {
     filter: hue-rotate(0deg);
   }
+}
+
+/* 复仇者字标：随 currentColor 上色，外层 span 负责画删除线 */
+.avengers-strike {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  line-height: 1;
+}
+
+.avengers-strike::after {
+  content: '';
+  position: absolute;
+  left: -2px;
+  right: -2px;
+  top: 50%;
+  height: 1.5px;
+  background: currentColor;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.avengers-logo {
+  display: inline-block;
+  width: 4em;
+  height: 1.2em;
+  background-color: currentColor;
+  -webkit-mask: url(/image/avengers-wordmark.svg) center/contain no-repeat;
+  mask: url(/image/avengers-wordmark.svg) center/contain no-repeat;
 }
