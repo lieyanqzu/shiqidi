@@ -142,9 +142,9 @@ function SetInfo({ className = "" }: { className?: string }) {
                         <p className="text-sm leading-relaxed">
                           {next.preview?.title && next.preview?.description && (
                             <>
-                              <span className="text-[--foreground]">{next.preview.title}</span>
+                              <span className="text-[--foreground]" dangerouslySetInnerHTML={{ __html: next.preview.title }} />
                               <span className="mx-2 text-[--muted-foreground] opacity-30">|</span>
-                              <span className="text-[--muted-foreground]">{next.preview.description}</span>
+                              <span className="text-[--muted-foreground]" dangerouslySetInnerHTML={{ __html: next.preview.description }} />
                             </>
                           )}
                         </p>

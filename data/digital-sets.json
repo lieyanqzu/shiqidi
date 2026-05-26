@@ -364,7 +364,30 @@
       "name": "漫威超级英雄",
       "code": "MSH",
       "releaseDate": "2026-06-24",
-      "wikiUrl": "https://mtg.wiki/page/Marvel_Super_Heroes?utm_source=shiqidi"
+      "wikiUrl": "https://mtg.wiki/page/Marvel_Super_Heroes?utm_source=shiqidi",
+      "preview": {
+        "title": "<span class=\"avengers-strike\"><span class=\"avengers-logo\" role=\"img\" aria-label=\"复仇者\"></span></span> 牌手们，集结",
+        "description": "漫威宇宙全力出击！全明星豪华阵容走出漫画，加入战场，世界的命运悬而未决。",
+        "backgroundImage": "/image/background/MSH_sma_key_1920x1080.jpg",
+        "links": [
+          {
+            "name": "大学院废墟（中文）",
+            "url": "https://mtgch.com/previews/MSH/?utm_source=shiqidi"
+          },
+          {
+            "name": "官网牌图集合",
+            "url": "https://magic.wizards.com/en/products/marvel/marvel-super-heroes/card-image-gallery"
+          },
+          {
+            "name": "Scryfall",
+            "url": "https://scryfall.com/sets/msh?order=spoiled&utm_source=shiqidi"
+          },
+          {
+            "name": "Untapped.gg",
+            "url": "https://mtga.untapped.gg/codex/sets/marvel-super-heroes?sortBy=spoilerDate&utm_source=shiqidi"
+          }
+        ]
+      }
     }
   ]
 }
