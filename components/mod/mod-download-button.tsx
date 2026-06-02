@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import { ChevronDown } from "lucide-react"
 
-const quarkDownloadUrl = 'https://pan.quark.cn/s/fcc3d825e126'
+const quarkDownloadUrl = 'https://pan.quark.cn/s/d2784f942261'
 const directDownloadUrl = '/mod-updater.zip'
 
 export function ModDownloadButton() {
