@@ -16,7 +16,7 @@ export default function ModPage() {
     <div className="container mx-auto px-4 py-8">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-2xl font-bold mb-6">MTGA 汉化MOD</h1>
-        
+
         {/* 重要声明 */}
         <div className="bg-red-500/10 text-red-500 rounded-lg p-4 mb-8 border-2 border-red-500">
           <p className="font-bold mb-2">重要声明</p>
@@ -66,7 +66,7 @@ export default function ModPage() {
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="font-medium text-[--foreground]">汉化MOD更新器 v0.4</h3>
+                <h3 className="font-medium text-[--foreground]">汉化MOD更新器 v0.5</h3>
               </div>
               <ModDownloadButton />
             </div>
@@ -84,12 +84,12 @@ export default function ModPage() {
             </div>
 
             <div className="border-t border-[--border] pt-4">
-              <h3 className="font-medium text-[--foreground] mb-2">最新MOD版本：v2.8</h3>
+              <h3 className="font-medium text-[--foreground] mb-2">最新MOD版本：v2.9</h3>
               <div className="text-sm text-[--muted-foreground]">
                 <p className="mb-2">更新内容：</p>
                 <ul className="list-disc list-inside space-y-1">
-                  <li>给FCA和japan showcase牌框文本增加描边防止看不清</li>
-                  <li>修复别名卡的原名看不见的问题</li>
+                  <li>修复显示BO1对局中双方剩余时间功能失效的问题</li>
+                  <li>迁移自动更新版本信息接口和CDN</li>
                 </ul>
               </div>
             </div>
