@@ -1,0 +1,34 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/cards/index",
+    "pages/colors/index",
+    "pages/status/index",
+    "pages/hypergeometric/index",
+    "pages/mastery/index",
+    "pages/speed/index",
+    "pages/calendar/index",
+    "pages/rotation/index",
+    "pages/previews/index",
+    "pages/simulator/index",
+    "pages/info/index"
+  ],
+  "window": {
+    "navigationBarTitleText": "十七地",
+    "navigationBarBackgroundColor": "#f5f7fb",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f5f7fb"
+  },
+  "usingComponents": {
+    "bottom-nav": "/components/bottom-nav/index"
+  },
+  "networkTimeout": {
+    "request": 60000,
+    "downloadFile": 60000,
+    "connectSocket": 60000,
+    "uploadFile": 60000
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

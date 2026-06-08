@@ -1,0 +1,130 @@
+<view class="page">
+  <view class="hero">
+    <view class="eyebrow">轮抽数据</view>
+    <view class="title">赛制速度</view>
+  </view>
+
+  <view class="speed-summary">
+    <view class="speed-summary-main">
+      <view class="speed-summary-title">{{selectedExpansions.length}} 个系列 · {{selectedFormats.length}} 个赛制</view>
+      <view class="speed-summary-meta">{{summary.count}} 条记录 · 平均 {{summary.averageLength}} 回合 · 先手 {{summary.averageWinRate}}</view>
+    </view>
+    <view class="speed-summary-actions">
+      <view class="text-action" bindtap="toggleFilterPanel">{{filterPanelOpen ? '收起' : '筛选'}}</view>
+    </view>
+  </view>
+
+  <view wx:if="{{loading}}" class="speed-loading-banner">
+    <view class="speed-spinner banner-spinner"></view>
+    <view>正在加载赛制速度数据</view>
+  </view>
+
+  <view wx:if="{{filterPanelOpen}}" class="card filter-panel">
+    <view class="filter-head">
+      <view class="section-title compact-title">筛选系列</view>
+      <view class="filter-actions">
+        <view class="text-action" bindtap="selectRecentExpansions">最近</view>
+        <view class="text-action" bindtap="selectAllExpansions">{{expansionSelectAllText}}</view>
+      </view>
+    </view>
+    <view class="chip-row">
+      <block wx:for="{{expansionOptions}}" wx:key="value">
+        <view class="chip {{item.active ? 'active' : ''}}" data-value="{{item.value}}" bindtap="toggleExpansion">{{item.label}}</view>
+      </block>
+    </view>
+
+    <view class="filter-head format-head">
+      <view class="section-title compact-title">赛制</view>
+      <view class="filter-actions">
+        <view class="text-action" bindtap="selectAllFormats">{{formatSelectAllText}}</view>
+      </view>
+    </view>
+    <view class="chip-row compact-chip-row">
+      <block wx:for="{{formatOptions}}" wx:key="value">
+        <view class="chip {{item.active ? 'active' : ''}}" data-value="{{item.value}}" bindtap="toggleFormat">{{item.label}}</view>
+      </block>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="row">
+      <view class="section-title">速度散点图</view>
+      <view class="chart-actions">
+        <view class="pill">{{summary.count}}</view>
+      </view>
+    </view>
+    <scroll-view class="legend-scroll" scroll-x="true" enhanced="true" show-scrollbar="false">
+    <view class="legend-row">
+      <block wx:for="{{legendItems}}" wx:key="value">
+        <view class="legend-item">
+          <view class="legend-marker {{item.shape}}" style="color: {{item.color}};"></view>
+          <view>{{item.label}}</view>
+        </view>
+      </block>
+    </view>
+    </scroll-view>
+    <view class="muted small chart-hint">点按图中的标记可查看对应系列与赛制。</view>
+    <view class="chart-wrap">
+      <view id="speedChartPlot" class="chart-plot" bindtouchend="onChartTouch">
+        <block wx:for="{{yAxisTicks}}" wx:key="key">
+          <view class="chart-grid-line chart-grid-line-y" style="left: {{chartFrame.left}}px; right: {{chartFrame.right}}px; top: {{item.top}}px;"></view>
+          <view class="chart-y-label" style="top: {{item.top}}px; width: {{chartFrame.labelWidth}}px;">{{item.label}}</view>
+        </block>
+        <block wx:for="{{xAxisTicks}}" wx:key="key">
+          <view class="chart-grid-line chart-grid-line-x" style="top: {{chartFrame.top}}px; bottom: {{chartFrame.bottom}}px; left: {{item.left}}px;"></view>
+          <view class="chart-x-label" style="left: {{item.left}}px;">{{item.label}}</view>
+        </block>
+        <view class="chart-axis chart-axis-y" style="left: {{chartFrame.left}}px; top: {{chartFrame.top}}px; bottom: {{chartFrame.bottom}}px;"></view>
+        <view class="chart-axis chart-axis-x" style="left: {{chartFrame.left}}px; right: {{chartFrame.right}}px; bottom: {{chartFrame.bottom}}px;"></view>
+        <view class="chart-axis-title chart-y-title" style="top: {{chartFrame.yTitleTop}}px;">平均回合数</view>
+        <view class="chart-axis-title chart-x-title" style="left: {{chartFrame.xTitleLeft}}px;">先手胜率</view>
+        <view class="chart-marker-layer">
+          <block wx:for="{{chartOverlayPoints}}" wx:key="key">
+            <view class="chart-set-marker {{item.selected ? 'selected' : ''}}" data-key="{{item.key}}" style="left: {{item.left}}px; top: {{item.top}}px;" catchtap="onMarkerTap">
+              <view class="chart-point-halo" style="border-color: {{item.color}}; background: {{item.color}};"></view>
+              <text wx:if="{{setIconFontReady && item.setGlyph}}" class="set-glyph chart-set-glyph" style="color: {{item.color}};">{{item.setGlyph}}</text>
+              <view wx:if="{{!setIconFontReady || !item.setGlyph}}" class="legend-marker {{item.shape}}" style="color: {{item.color}};"></view>
+            </view>
+          </block>
+        </view>
+      </view>
+      <view wx:if="{{loading}}" class="chart-loading-overlay">
+        <view class="speed-spinner"></view>
+        <view class="chart-loading-text">正在加载赛制速度数据</view>
+      </view>
+    </view>
+    <view wx:if="{{!loading && chartStatus}}" class="empty">{{chartStatus}}</view>
+    <view wx:if="{{chartTooltip}}" class="chart-tooltip">
+      <view class="chart-tooltip-head">
+        <text wx:if="{{setIconFontReady && chartTooltip.setGlyph}}" class="set-glyph tooltip-glyph" style="color: {{chartTooltip.color}};">{{chartTooltip.setGlyph}}</text>
+        <view wx:if="{{!setIconFontReady || !chartTooltip.setGlyph}}" class="legend-marker {{chartTooltip.shape}}" style="color: {{chartTooltip.color}};"></view>
+        <view class="chart-tooltip-title">{{chartTooltip.title}}</view>
+      </view>
+      <view class="muted small">先手胜率：{{chartTooltip.winRate}} · 平均回合数：{{chartTooltip.length}}</view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="row list-head">
+      <view class="section-title">数据列表</view>
+      <view class="pill">前 {{items.length}} 条</view>
+    </view>
+    <block wx:for="{{items}}" wx:key="key">
+      <view class="speed-row">
+        <view class="speed-main">
+          <view class="speed-title-line">
+            <text wx:if="{{setIconFontReady && item.setGlyph}}" class="set-glyph" style="color: {{item.markerColor}};">{{item.setGlyph}}</text>
+            <view wx:if="{{!setIconFontReady || !item.setGlyph}}" class="legend-marker {{item.markerShape}}" style="color: {{item.markerColor}};"></view>
+            <view class="speed-title">{{item.expansion}}</view>
+          </view>
+          <view class="muted small">{{item.eventTypeText}}</view>
+        </view>
+        <view class="speed-stats">
+          <view>{{item.winRateText}}</view>
+          <view class="muted small">{{item.lengthText}} 回合</view>
+        </view>
+      </view>
+    </block>
+  </view>
+  <bottom-nav />
+</view>

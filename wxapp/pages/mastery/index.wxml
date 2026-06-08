@@ -1,0 +1,171 @@
+<view class="page">
+  <view class="hero">
+    <view class="eyebrow">其他工具</view>
+    <view class="title">精研通行证计算器</view>
+  </view>
+
+  <view wx:if="{{loading}}" class="card">
+    <view class="empty">正在加载通行证配置...</view>
+  </view>
+
+  <view wx:if="{{!loading && error}}" class="card">
+    <view class="empty">{{error}}</view>
+  </view>
+
+  <block wx:if="{{!loading && !error}}">
+  <view class="card">
+    <view class="section-title">赛季信息</view>
+    <view class="pass-head">
+      <view class="set-pill" aria-label="{{config.setCode}} 系列标识">
+        <text class="set-pill-glyph">{{config.setGlyph}}</text>
+      </view>
+      <view class="pass-main">
+        <view class="pass-name">{{config.setName}}</view>
+        <view class="muted small">{{config.setCode}}</view>
+        <view class="muted small">时间：{{seasonText}}</view>
+      </view>
+    </view>
+    <view class="stat-grid">
+      <view class="stat"><view class="stat-label">开始日期</view><view class="stat-value small">{{config.startDate}}</view></view>
+      <view class="stat"><view class="stat-label">结束日期</view><view class="stat-value small">{{values.endDate}}</view></view>
+      <view class="stat"><view class="stat-label">剩余天数</view><view class="stat-value">{{result.daysLeft}}</view></view>
+      <view class="stat"><view class="stat-label">当前经验</view><view class="stat-value small">{{result.currentXPText}}</view></view>
+      <view class="stat"><view class="stat-label">最高等级</view><view class="stat-value">{{result.maxLevel}}</view></view>
+      <view class="stat"><view class="stat-label">预期等级</view><view class="stat-value">{{result.expectedLevel}}</view></view>
+    </view>
+    <view class="summary-box">
+      <view class="summary-title">{{result.completionText}}</view>
+      <view class="muted small">每日胜场与任务刷新：{{result.dailyRefreshText}}；每周胜场刷新：{{result.weeklyRefreshText}}</view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">经验汇总</view>
+    <view class="stat-grid">
+      <view class="stat"><view class="stat-label">预期新增经验</view><view class="stat-value small">{{result.expectedXPText}}</view></view>
+      <view class="stat"><view class="stat-label">最终总经验</view><view class="stat-value small">{{result.finalXPText}}</view></view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">当前进度</view>
+    <view class="field">
+      <view class="label">当前日期</view>
+      <picker mode="date" value="{{values.currentDate}}" data-field="currentDate" bindchange="updateDate">
+        <view class="select">{{values.currentDate}}</view>
+      </picker>
+    </view>
+    <view class="field">
+      <view class="label">结束日期</view>
+      <picker mode="date" value="{{values.endDate}}" data-field="endDate" bindchange="updateDate">
+        <view class="select">{{values.endDate}}</view>
+      </picker>
+    </view>
+    <view class="field">
+      <view class="control-head">
+        <view class="label">当前等级</view>
+        <view class="stepper">
+          <view class="stepper-action" data-field="currentLevel" data-min="1" data-max="{{config.maxLevel}}" data-step="1" data-direction="-1" bindtap="adjustValue">-</view>
+          <picker class="stepper-picker" mode="selector" range="{{numberOptions.currentLevel}}" value="{{numberOptionIndexes.currentLevel}}" data-field="currentLevel" bindchange="pickValue">
+            <view class="stepper-input">{{values.currentLevel}}</view>
+          </picker>
+          <view class="stepper-action" data-field="currentLevel" data-min="1" data-max="{{config.maxLevel}}" data-step="1" data-direction="1" bindtap="adjustValue">+</view>
+        </view>
+      </view>
+    </view>
+    <view class="field">
+      <view class="control-head">
+        <view class="label">额外经验</view>
+        <view class="stepper">
+          <view class="stepper-action" data-field="excessXP" data-min="0" data-max="1000" data-step="25" data-direction="-1" bindtap="adjustValue">-</view>
+          <picker class="stepper-picker" mode="selector" range="{{numberOptions.excessXP}}" value="{{numberOptionIndexes.excessXP}}" data-field="excessXP" bindchange="pickValue">
+            <view class="stepper-input">{{values.excessXP}}</view>
+          </picker>
+          <view class="stepper-action" data-field="excessXP" data-min="0" data-max="1000" data-step="25" data-direction="1" bindtap="adjustValue">+</view>
+        </view>
+      </view>
+    </view>
+    <view class="field">
+      <view class="control-head">
+        <view class="label">未完成每日胜场</view>
+        <view class="stepper">
+          <view class="stepper-action" data-field="incompleteDailyWins" data-min="0" data-max="10" data-step="1" data-direction="-1" bindtap="adjustValue">-</view>
+          <picker class="stepper-picker" mode="selector" range="{{numberOptions.incompleteDailyWins}}" value="{{numberOptionIndexes.incompleteDailyWins}}" data-field="incompleteDailyWins" bindchange="pickValue">
+            <view class="stepper-input">{{values.incompleteDailyWins}}</view>
+          </picker>
+          <view class="stepper-action" data-field="incompleteDailyWins" data-min="0" data-max="10" data-step="1" data-direction="1" bindtap="adjustValue">+</view>
+        </view>
+      </view>
+    </view>
+    <view class="field">
+      <view class="control-head">
+        <view class="label">未完成每日任务</view>
+        <view class="stepper">
+          <view class="stepper-action" data-field="incompleteDailyQuests" data-min="0" data-max="3" data-step="1" data-direction="-1" bindtap="adjustValue">-</view>
+          <picker class="stepper-picker" mode="selector" range="{{numberOptions.incompleteDailyQuests}}" value="{{numberOptionIndexes.incompleteDailyQuests}}" data-field="incompleteDailyQuests" bindchange="pickValue">
+            <view class="stepper-input">{{values.incompleteDailyQuests}}</view>
+          </picker>
+          <view class="stepper-action" data-field="incompleteDailyQuests" data-min="0" data-max="3" data-step="1" data-direction="1" bindtap="adjustValue">+</view>
+        </view>
+      </view>
+    </view>
+    <view class="field">
+      <view class="control-head">
+        <view class="label">未完成每周胜场</view>
+        <view class="stepper">
+          <view class="stepper-action" data-field="incompleteWeeklyWins" data-min="0" data-max="15" data-step="1" data-direction="-1" bindtap="adjustValue">-</view>
+          <picker class="stepper-picker" mode="selector" range="{{numberOptions.incompleteWeeklyWins}}" value="{{numberOptionIndexes.incompleteWeeklyWins}}" data-field="incompleteWeeklyWins" bindchange="pickValue">
+            <view class="stepper-input">{{values.incompleteWeeklyWins}}</view>
+          </picker>
+          <view class="stepper-action" data-field="incompleteWeeklyWins" data-min="0" data-max="15" data-step="1" data-direction="1" bindtap="adjustValue">+</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">预期进度</view>
+    <view class="field">
+      <view class="control-head">
+        <view class="label">每日胜场数</view>
+        <view class="stepper">
+          <view class="stepper-action" data-field="dailyWinsPerDay" data-min="0" data-max="10" data-step="1" data-direction="-1" bindtap="adjustValue">-</view>
+          <picker class="stepper-picker" mode="selector" range="{{numberOptions.dailyWinsPerDay}}" value="{{numberOptionIndexes.dailyWinsPerDay}}" data-field="dailyWinsPerDay" bindchange="pickValue">
+            <view class="stepper-input">{{values.dailyWinsPerDay}}</view>
+          </picker>
+          <view class="stepper-action" data-field="dailyWinsPerDay" data-min="0" data-max="10" data-step="1" data-direction="1" bindtap="adjustValue">+</view>
+        </view>
+      </view>
+      <view class="muted small">预计每日胜场经验：{{result.dailyWinXPText}}</view>
+    </view>
+    <view class="field">
+      <view class="control-head">
+        <view class="label">预计每日任务总数</view>
+        <view class="stepper">
+          <view class="stepper-action" data-field="dailyQuestsLeft" data-min="0" data-max="{{result.daysLeft}}" data-step="1" data-direction="-1" bindtap="adjustValue">-</view>
+          <picker class="stepper-picker" mode="selector" range="{{numberOptions.dailyQuestsLeft}}" value="{{numberOptionIndexes.dailyQuestsLeft}}" data-field="dailyQuestsLeft" bindchange="pickValue">
+            <view class="stepper-input">{{values.dailyQuestsLeft}}</view>
+          </picker>
+          <view class="stepper-action" data-field="dailyQuestsLeft" data-min="0" data-max="{{result.daysLeft}}" data-step="1" data-direction="1" bindtap="adjustValue">+</view>
+        </view>
+      </view>
+      <view class="muted small">预计每日任务经验：{{result.questXPText}}</view>
+    </view>
+    <view class="field">
+      <view class="control-head">
+        <view class="label">每周胜场数</view>
+        <view class="stepper">
+          <view class="stepper-action" data-field="weeklyWinsPerWeek" data-min="0" data-max="15" data-step="1" data-direction="-1" bindtap="adjustValue">-</view>
+          <picker class="stepper-picker" mode="selector" range="{{numberOptions.weeklyWinsPerWeek}}" value="{{numberOptionIndexes.weeklyWinsPerWeek}}" data-field="weeklyWinsPerWeek" bindchange="pickValue">
+            <view class="stepper-input">{{values.weeklyWinsPerWeek}}</view>
+          </picker>
+          <view class="stepper-action" data-field="weeklyWinsPerWeek" data-min="0" data-max="15" data-step="1" data-direction="1" bindtap="adjustValue">+</view>
+        </view>
+      </view>
+      <view class="muted small">预计每周胜场经验：{{result.weeklyXPText}}</view>
+    </view>
+  </view>
+  </block>
+
+  <bottom-nav />
+</view>

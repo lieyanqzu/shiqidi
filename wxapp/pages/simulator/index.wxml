@@ -1,0 +1,71 @@
+<view class="page">
+  <view class="hero">
+    <view class="eyebrow">其他工具</view>
+    <view class="title">开包模拟器</view>
+  </view>
+
+  <view class="card">
+    <view wx:if="{{dataLoading}}" class="empty">正在加载开包数据...</view>
+    <view class="label">选择系列</view>
+    <picker range="{{sets}}" range-key="displayName" value="{{selectedIndex}}" bindchange="onSetChange">
+      <view class="select">{{sets[selectedIndex].displayName}}</view>
+    </picker>
+    <view class="label booster-label">选择补充包</view>
+    <picker range="{{boosters}}" range-key="name" value="{{boosterIndex}}" bindchange="onBoosterChange">
+      <view class="select">{{boosters[boosterIndex].name}}</view>
+    </picker>
+    <view class="switch-row">
+      <view>
+        <view class="switch-title">自动翻开普通和非普通</view>
+        <view class="muted small">关闭时，点按卡背逐张翻开。</view>
+      </view>
+      <switch checked="{{autoFlipLowRarity}}" bindchange="onAutoFlipChange" />
+    </view>
+    <button class="open-button" type="primary" bindtap="openPack" loading="{{loading || dataLoading}}" disabled="{{dataLoading}}">打开一包</button>
+    <view wx:if="{{error}}" class="empty">{{error}}</view>
+  </view>
+
+  <view class="pack-grid">
+    <block wx:for="{{pack}}" wx:key="uid">
+      <view class="pack-card {{item.flipped ? 'flipped' : 'hidden-card'}}" data-index="{{index}}" bindtap="flipCard">
+        <block wx:if="{{item.flipped}}">
+          <view wx:if="{{item.imageUrl && !item.imageFailed}}" class="pack-image-wrap {{item.isFoil ? 'foil-card' : ''}}">
+            <image
+              wx:if="{{item.imageUrl && !item.imageFailed}}"
+              class="pack-image"
+              mode="aspectFit"
+              webp
+              src="{{item.imageUrl}}"
+              data-index="{{index}}"
+              binderror="handleImageError"
+            />
+            <view wx:if="{{item.isFoil}}" class="foil-spectrum"></view>
+            <view wx:if="{{item.isFoil}}" class="foil-wash"></view>
+            <view wx:if="{{item.isFoil}}" class="foil-scan"></view>
+          </view>
+          <view wx:if="{{!item.imageUrl || item.imageFailed}}" class="pack-placeholder">
+            <view>卡图暂不可用</view>
+            <view class="pack-placeholder-code">{{item.id}}</view>
+          </view>
+          <view class="pack-title">{{item.displayTitle}}</view>
+          <view class="muted small">{{item.setCode}} #{{item.number}} · {{item.rarityOrSheet}}</view>
+        </block>
+        <block wx:if="{{!item.flipped}}">
+          <image class="pack-back" mode="aspectFit" src="/assets/images/card-back.jpg" />
+        </block>
+      </view>
+    </block>
+  </view>
+
+  <view wx:if="{{selectedPreviewCard}}" class="preview-mask" bindtap="closePreviewCard" bindtouchstart="onPreviewTouchStart" bindtouchend="onPreviewTouchEnd">
+    <view class="preview-image-stage {{selectedPreviewCard.isFoil ? 'foil-card-large' : ''}}" catchtap="noop">
+      <view wx:if="{{previewImageLoading}}" class="preview-loading">正在加载图片</view>
+      <image class="preview-image-large" mode="aspectFit" webp src="{{selectedPreviewCard.previewImageUrl}}" bindload="handlePreviewImageLoad" binderror="handlePreviewImageError" />
+      <view wx:if="{{selectedPreviewCard.isFoil}}" class="foil-spectrum"></view>
+      <view wx:if="{{selectedPreviewCard.isFoil}}" class="foil-wash"></view>
+      <view wx:if="{{selectedPreviewCard.isFoil}}" class="foil-scan"></view>
+    </view>
+    <view wx:if="{{pack.length > 1}}" class="preview-hint">左右滑动浏览</view>
+  </view>
+  <bottom-nav />
+</view>

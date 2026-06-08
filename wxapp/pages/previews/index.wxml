@@ -1,0 +1,241 @@
+<view class="page">
+  <view class="hero">
+    <view class="eyebrow">万智日程</view>
+    <view class="title">炼金系列预览</view>
+  </view>
+
+  <view wx:if="{{loading}}" class="card">
+    <view class="empty">正在加载炼金预览...</view>
+  </view>
+
+  <view wx:if="{{!loading && error}}" class="card">
+    <view class="empty">{{error}}</view>
+  </view>
+
+  <view wx:if="{{!loading && !error}}" class="set-panel">
+    <picker range="{{sets}}" range-key="name" value="{{selectedIndex}}" bindchange="onSetChange">
+      <view class="set-picker">
+        <view class="set-logo" aria-label="{{currentSet.code}} 系列标识">
+          <text wx:if="{{currentSet.setGlyph}}" class="set-logo-glyph">{{currentSet.setGlyph}}</text>
+          <text wx:if="{{!currentSet.setGlyph}}" class="set-logo-code">-</text>
+        </view>
+        <view class="set-main">
+          <view class="set-name-row">
+            <view class="set-name">{{currentSet.name}}</view>
+            <view class="release-badge">{{currentSet.releaseText}}</view>
+          </view>
+          <view class="set-meta">{{currentSet.releaseDateText}} · {{currentSet.progressText}}</view>
+        </view>
+        <image class="set-switch-icon" mode="aspectFit" src="../../assets/icons/chevron-right.svg" />
+      </view>
+    </picker>
+
+    <view class="preview-progress">
+      <view class="progress-track"><view class="progress-fill" style="width: {{currentSet.progressWidth}};"></view></view>
+    </view>
+
+    <view class="preview-desc">{{currentSet.description}}</view>
+  </view>
+
+  <view wx:if="{{!loading && !error}}" class="preview-list">
+    <block wx:for="{{cards}}" wx:key="id">
+      <view class="preview-card" data-index="{{index}}" bindtap="showCard">
+        <view wx:if="{{item.imageUrl && !item.imageFailed}}" class="preview-image preview-image-frame">
+          <view wx:if="{{item.imageLoading}}" class="image-loading">加载中</view>
+          <image wx:if="{{item.imageUrl && !item.imageFailed}}" class="preview-image-inner" mode="aspectFit" lazy-load webp src="{{item.imageUrl}}" data-index="{{index}}" bindload="handlePreviewImageLoad" binderror="handlePreviewImageError" />
+        </view>
+        <view wx:if="{{!item.imageUrl || item.imageFailed}}" class="preview-image preview-image-empty">卡图暂不可用</view>
+        <view class="preview-info">
+          <view class="preview-title-row">
+            <view class="preview-title-wrap">
+              <view class="preview-title">{{item.title}}</view>
+            </view>
+            <view wx:if="{{item.manaCostSymbols.length}}" class="mana-row preview-mana">
+              <block wx:for="{{item.manaCostSymbols}}" wx:key="key" wx:for-item="symbol">
+                <view class="mana-symbol mana-{{symbol.tone}} mana-code-{{symbol.className}} {{symbol.split ? 'mana-split' : ''}} {{symbol.phyrexian ? 'mana-phyrexian' : ''}}">
+                  <text wx:if="{{manaFontReady && symbol.glyph}}" class="mana-glyph {{symbol.split ? 'mana-glyph-top' : ''}}">{{symbol.glyph}}</text>
+                  <text wx:if="{{manaFontReady && symbol.secondaryGlyph}}" class="mana-glyph mana-glyph-bottom">{{symbol.secondaryGlyph}}</text>
+                  <text wx:if="{{!manaFontReady || !symbol.glyph}}" class="mana-fallback">{{symbol.text}}</text>
+                </view>
+              </block>
+            </view>
+          </view>
+          <view class="preview-type">{{item.typeText}}</view>
+          <view wx:if="{{item.previewRulesLines.length}}" class="preview-rules">
+            <block wx:for="{{item.previewRulesLines}}" wx:key="*this">
+              <view class="preview-rule-line">{{item}}</view>
+            </block>
+          </view>
+          <view class="preview-meta-row">
+            <text class="set-mini-glyph">{{currentSet.setGlyph}}</text>
+            <text class="rarity-text rarity-{{item.rarityClass}}">{{item.rarityText}}</text>
+            <text>{{item.numberText}}</text>
+            <text wx:if="{{item.powerToughnessText}}">{{item.powerToughnessText}}</text>
+          </view>
+        </view>
+        <image class="card-open-icon" mode="aspectFit" src="../../assets/icons/chevron-right.svg" />
+      </view>
+    </block>
+  </view>
+
+  <view wx:if="{{selectedCard}}" class="modal-mask" bindtap="closeCard" catchtouchmove="noop">
+    <scroll-view class="modal" scroll-y catchtap="noop">
+      <view class="modal-body">
+        <view class="modal-summary">
+          <view wx:if="{{selectedCard.imageUrl && !selectedCard.imageFailed}}" class="modal-image modal-image-frame" bindtap="previewSelectedImage">
+            <view wx:if="{{selectedCard.imageLoading}}" class="image-loading">加载中</view>
+            <image wx:if="{{selectedCard.imageUrl && !selectedCard.imageFailed}}" class="modal-image-inner" mode="aspectFit" src="{{selectedCard.imageUrl}}" bindload="handleSelectedImageLoad" binderror="handleSelectedImageError" />
+          </view>
+          <view wx:if="{{!selectedCard.imageUrl || selectedCard.imageFailed}}" class="modal-image modal-image-empty">卡图暂不可用</view>
+
+          <view class="modal-summary-info">
+            <view class="detail-title-line">
+              <view class="detail-title-wrap detail-title-main">
+                <view class="detail-title">{{selectedCard.title}}</view>
+                <button class="modal-icon-button detail-share-button modal-share-button" open-type="share" aria-label="分享">
+                  <image class="modal-action-icon" mode="aspectFit" src="../../assets/icons/share.svg" />
+                </button>
+              </view>
+              <view class="modal-actions">
+                <view class="modal-icon-button" aria-label="关闭" bindtap="closeCard">
+                  <image class="modal-action-icon" mode="aspectFit" src="../../assets/icons/close.svg" />
+                </view>
+              </view>
+            </view>
+
+            <view wx:if="{{selectedCard.manaCostSymbols.length}}" class="mana-row detail-mana summary-mana">
+              <block wx:for="{{selectedCard.manaCostSymbols}}" wx:key="key" wx:for-item="symbol">
+                <view class="mana-symbol mana-{{symbol.tone}} mana-code-{{symbol.className}} {{symbol.split ? 'mana-split' : ''}} {{symbol.phyrexian ? 'mana-phyrexian' : ''}}">
+                  <text wx:if="{{manaFontReady && symbol.glyph}}" class="mana-glyph {{symbol.split ? 'mana-glyph-top' : ''}}">{{symbol.glyph}}</text>
+                  <text wx:if="{{manaFontReady && symbol.secondaryGlyph}}" class="mana-glyph mana-glyph-bottom">{{symbol.secondaryGlyph}}</text>
+                  <text wx:if="{{!manaFontReady || !symbol.glyph}}" class="mana-fallback">{{symbol.text}}</text>
+                </view>
+              </block>
+            </view>
+            <view wx:if="{{!selectedCard.manaCostSymbols.length && selectedCard.manaCostText}}" class="mono detail-cost-text">{{selectedCard.manaCostText}}</view>
+
+            <view class="detail-type-line summary-type-line">
+              <view class="detail-type">{{selectedCard.typeText}}</view>
+              <view class="detail-set-mark">
+                <text class="set-mini-glyph">{{currentSet.setGlyph}}</text>
+                <text class="rarity-text rarity-{{selectedCard.rarityClass}}">{{selectedCard.rarityText}}</text>
+                <text>{{selectedCard.numberText}}</text>
+                <text wx:if="{{selectedCard.powerToughnessText}}">{{selectedCard.powerToughnessText}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+
+        <view class="card-detail">
+          <view class="rules-block">
+            <block wx:for="{{selectedCard.rulesLines}}" wx:key="text">
+              <view class="rules-line {{item.isClass ? 'rules-class' : ''}} {{item.isStation ? 'rules-station' : ''}}">
+                <block wx:for="{{item.segments}}" wx:key="key" wx:for-item="segment">
+                  <text wx:if="{{segment.type === 'text'}}">{{segment.text}}</text>
+                  <text wx:if="{{segment.type === 'ability'}}" class="inline-ability" data-term="{{segment.text}}" bindtap="showAbilityDescription">{{segment.text}}</text>
+                  <text wx:if="{{segment.type === 'card-ref'}}" class="inline-card-ref" data-ref-index="{{segment.refIndex}}" bindtap="previewInlineReference">{{segment.text}}</text>
+                  <text wx:if="{{segment.type === 'mana'}}" class="mana-symbol inline-mana-symbol mana-{{segment.tone}} mana-code-{{segment.className}} {{segment.split ? 'mana-split' : ''}} {{segment.phyrexian ? 'mana-phyrexian' : ''}}">
+                    <text wx:if="{{manaFontReady && segment.glyph}}" class="mana-glyph {{segment.split ? 'mana-glyph-top' : ''}}">{{segment.glyph}}</text>
+                    <text wx:if="{{manaFontReady && segment.secondaryGlyph}}" class="mana-glyph mana-glyph-bottom">{{segment.secondaryGlyph}}</text>
+                    <text wx:if="{{!manaFontReady || !segment.glyph}}" class="mana-fallback">{{segment.text}}</text>
+                  </text>
+                </block>
+              </view>
+            </block>
+          </view>
+
+          <view wx:if="{{selectedCard.flavorLines.length}}" class="flavor-block">
+            <block wx:for="{{selectedCard.flavorLines}}" wx:key="*this">
+              <view>{{item}}</view>
+            </block>
+          </view>
+
+          <view wx:if="{{selectedCard.powerToughnessText}}" class="pt-line">{{selectedCard.powerToughnessText}}</view>
+
+          <view wx:if="{{selectedCard.title2}}" class="split-card">
+            <view class="detail-title-line">
+              <view class="detail-title-wrap">
+                <view class="detail-title">{{selectedCard.title2}}</view>
+                <view class="detail-subtitle">{{selectedCard.typeText2}}</view>
+              </view>
+              <view wx:if="{{selectedCard.manaCostSymbols2.length}}" class="mana-row detail-mana">
+                <block wx:for="{{selectedCard.manaCostSymbols2}}" wx:key="key" wx:for-item="symbol">
+                  <view class="mana-symbol mana-{{symbol.tone}} mana-code-{{symbol.className}} {{symbol.split ? 'mana-split' : ''}} {{symbol.phyrexian ? 'mana-phyrexian' : ''}}">
+                    <text wx:if="{{manaFontReady && symbol.glyph}}" class="mana-glyph {{symbol.split ? 'mana-glyph-top' : ''}}">{{symbol.glyph}}</text>
+                    <text wx:if="{{manaFontReady && symbol.secondaryGlyph}}" class="mana-glyph mana-glyph-bottom">{{symbol.secondaryGlyph}}</text>
+                    <text wx:if="{{!manaFontReady || !symbol.glyph}}" class="mana-fallback">{{symbol.text}}</text>
+                  </view>
+                </block>
+              </view>
+              <view wx:if="{{!selectedCard.manaCostSymbols2.length && selectedCard.manaCostText2}}" class="mono detail-cost-text">{{selectedCard.manaCostText2}}</view>
+            </view>
+            <view class="rules-block">
+              <block wx:for="{{selectedCard.rulesLines2}}" wx:key="text">
+                <view class="rules-line {{item.isClass ? 'rules-class' : ''}} {{item.isStation ? 'rules-station' : ''}}">
+                  <block wx:for="{{item.segments}}" wx:key="key" wx:for-item="segment">
+                    <text wx:if="{{segment.type === 'text'}}">{{segment.text}}</text>
+                    <text wx:if="{{segment.type === 'ability'}}" class="inline-ability" data-term="{{segment.text}}" bindtap="showAbilityDescription">{{segment.text}}</text>
+                    <text wx:if="{{segment.type === 'card-ref'}}" class="inline-card-ref" data-ref-index="{{segment.refIndex}}" bindtap="previewInlineReference">{{segment.text}}</text>
+                    <text wx:if="{{segment.type === 'mana'}}" class="mana-symbol inline-mana-symbol mana-{{segment.tone}} mana-code-{{segment.className}} {{segment.split ? 'mana-split' : ''}} {{segment.phyrexian ? 'mana-phyrexian' : ''}}">
+                      <text wx:if="{{manaFontReady && segment.glyph}}" class="mana-glyph {{segment.split ? 'mana-glyph-top' : ''}}">{{segment.glyph}}</text>
+                      <text wx:if="{{manaFontReady && segment.secondaryGlyph}}" class="mana-glyph mana-glyph-bottom">{{segment.secondaryGlyph}}</text>
+                      <text wx:if="{{!manaFontReady || !segment.glyph}}" class="mana-fallback">{{segment.text}}</text>
+                    </text>
+                  </block>
+                </view>
+              </block>
+            </view>
+            <view wx:if="{{selectedCard.flavorLines2.length}}" class="flavor-block">
+              <block wx:for="{{selectedCard.flavorLines2}}" wx:key="*this">
+                <view>{{item}}</view>
+              </block>
+            </view>
+          </view>
+
+          <view wx:if="{{selectedCard.hasVisibleReferences || selectedCard.refsLoading || selectedCard.refsError}}" class="reference-panel">
+            <view class="reference-head">
+              <view class="reference-heading">关联卡牌</view>
+              <view wx:if="{{selectedCard.refsLoading}}" class="reference-state">加载中</view>
+              <view wx:if="{{!selectedCard.refsLoading && selectedCard.refsError}}" class="reference-state">{{selectedCard.refsError}}</view>
+            </view>
+
+            <view wx:if="{{selectedCard.visibleSpellbookCards.length}}" class="reference-section">
+              <view class="reference-title-row">
+                <view class="reference-title">法术书</view>
+                <view wx:if="{{selectedCard.spellbookHiddenCount || selectedCard.spellbookExpanded}}" class="text-action" data-section="spellbook" bindtap="toggleReferenceSection">{{selectedCard.spellbookToggleText}}</view>
+              </view>
+              <view class="reference-list">
+                <block wx:for="{{selectedCard.visibleSpellbookCards}}" wx:key="key">
+                  <view class="reference-link" data-image-url="{{item.imageUrl}}" data-fallback-image-url="{{item.fallbackImageUrl}}" data-url="{{item.url}}" bindtap="previewReferenceImage" bindlongpress="copyReferenceLink">
+                    <view class="reference-name">{{item.displayName}}</view>
+                    <view class="reference-code">{{item.codeText}}</view>
+                  </view>
+                </block>
+              </view>
+            </view>
+
+            <view wx:if="{{selectedCard.visibleRelatedCards.length}}" class="reference-section">
+              <view class="reference-title-row">
+                <view class="reference-title">相关卡牌</view>
+                <view wx:if="{{selectedCard.relatedHiddenCount || selectedCard.relatedExpanded}}" class="text-action" data-section="related" bindtap="toggleReferenceSection">{{selectedCard.relatedToggleText}}</view>
+              </view>
+              <view class="reference-list">
+                <block wx:for="{{selectedCard.visibleRelatedCards}}" wx:key="key">
+                  <view class="reference-link" data-image-url="{{item.imageUrl}}" data-fallback-image-url="{{item.fallbackImageUrl}}" data-url="{{item.url}}" bindtap="previewReferenceImage" bindlongpress="copyReferenceLink">
+                    <view class="reference-name">{{item.displayName}}</view>
+                    <view class="reference-code">{{item.codeText}}</view>
+                  </view>
+                </block>
+              </view>
+            </view>
+          </view>
+
+          <view wx:if="{{selectedCard.artistText}}" class="artist-line">{{selectedCard.artistText}}</view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <canvas class="card-share-canvas" canvas-id="cardShareCanvas"></canvas>
+  <bottom-nav />
+</view>

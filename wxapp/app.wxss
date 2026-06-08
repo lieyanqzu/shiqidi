@@ -1,0 +1,548 @@
+page {
+  --glass-bg: #ffffff;
+  --glass-bg-strong: #ffffff;
+  --glass-border: #dbe5f0;
+  --glass-highlight: rgba(255, 255, 255, 0.78);
+  --glass-shadow: 0 8rpx 20rpx rgba(15, 23, 42, 0.06);
+  --glass-blur: 0rpx;
+  --glass-radius: 16rpx;
+  min-height: 100vh;
+  background-color: #f5f7fb;
+  color: #111827;
+  font-family: "MiSans", "HarmonyOS Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+button {
+  min-height: 72rpx;
+  padding: 0 26rpx;
+  border: 1rpx solid #cfdbea;
+  border-radius: 14rpx;
+  background: #ffffff;
+  color: #111827;
+  font-size: 25rpx;
+  font-weight: 800;
+  line-height: 72rpx;
+  box-shadow: none;
+  transition: transform 120ms ease, opacity 120ms ease;
+}
+
+button::after {
+  border: 0;
+}
+
+button[type="primary"] {
+  border-color: #0f5ce8;
+  background: #0f5ce8;
+  color: #ffffff;
+  box-shadow: none;
+}
+
+button:active,
+.primary-action:active,
+.secondary-action:active,
+.text-action:active {
+  opacity: 0.9;
+  transform: scale(0.985);
+}
+
+button[size="mini"] {
+  min-height: 52rpx;
+  padding: 0 18rpx;
+  border-radius: 12rpx;
+  font-size: 22rpx;
+  line-height: 52rpx;
+}
+
+.liquid-glass,
+.liquid-glass-strong,
+.liquid-glass-nav {
+  position: relative;
+  overflow: hidden;
+  border: 1rpx solid var(--glass-border);
+  border-radius: var(--glass-radius);
+  background: var(--glass-bg);
+  box-shadow: var(--glass-shadow);
+}
+
+.liquid-glass-strong {
+  background: var(--glass-bg-strong);
+}
+
+.liquid-glass-nav {
+  border-radius: 0;
+  background: #ffffff;
+}
+
+.liquid-glass::before,
+.liquid-glass-strong::before,
+.liquid-glass-nav::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  pointer-events: none;
+  border-top: 1rpx solid var(--glass-highlight);
+  background: transparent;
+  opacity: 1;
+}
+
+.liquid-glass-button {
+  border-radius: 14rpx;
+  border: 1rpx solid #0f5ce8;
+  background: #0f5ce8;
+  color: #ffffff;
+  box-shadow: none;
+  transition: transform 120ms ease, opacity 120ms ease;
+}
+
+.liquid-glass-button:hover {
+  transform: translateY(-1rpx);
+}
+
+.liquid-glass-button:active {
+  opacity: 0.92;
+  transform: scale(0.98);
+}
+
+.text-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52rpx;
+  padding: 0 16rpx;
+  border: 1rpx solid transparent;
+  border-radius: 10rpx;
+  background: transparent;
+  color: #0f5ce8;
+  font-size: 24rpx;
+  font-weight: 800;
+  line-height: 1;
+  box-shadow: none;
+  transition: transform 120ms ease, opacity 120ms ease;
+}
+
+.text-action.muted-action {
+  color: #64748b;
+}
+
+.primary-action,
+.secondary-action {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 72rpx;
+  padding: 0 26rpx;
+  border-radius: 14rpx;
+  font-size: 25rpx;
+  font-weight: 800;
+  line-height: 1;
+  transition: transform 120ms ease, opacity 120ms ease;
+}
+
+.primary-action {
+  border: 1rpx solid #0f5ce8;
+  background: #0f5ce8;
+  color: #ffffff;
+  box-shadow: none;
+}
+
+.secondary-action {
+  border: 1rpx solid #cfdbea;
+  background: #ffffff;
+  color: #111827;
+  box-shadow: none;
+}
+
+.primary-action.compact,
+.secondary-action.compact {
+  min-height: 52rpx;
+  padding: 0 18rpx;
+  font-size: 22rpx;
+}
+
+.page {
+  box-sizing: border-box;
+  min-height: 100vh;
+  padding: 28rpx 26rpx 156rpx;
+  padding-bottom: calc(156rpx + constant(safe-area-inset-bottom));
+  padding-bottom: calc(156rpx + env(safe-area-inset-bottom));
+}
+
+.hero {
+  position: relative;
+  padding: 22rpx 0 18rpx;
+  border-bottom: 1rpx solid #e2e8f0;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30rpx;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #0f5ce8;
+  font-size: 21rpx;
+  font-weight: 900;
+  letter-spacing: 0;
+  box-shadow: none;
+}
+
+.title {
+  margin-top: 10rpx;
+  color: #111827;
+  font-size: 46rpx;
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+.card {
+  margin-bottom: 22rpx;
+  padding: 24rpx;
+  border: 1rpx solid #dbe5f0;
+  border-radius: var(--glass-radius);
+  background: #ffffff;
+  box-shadow: var(--glass-shadow);
+}
+
+.section-title {
+  margin-bottom: 16rpx;
+  padding-left: 14rpx;
+  border-left: 6rpx solid #18a058;
+  color: #111827;
+  font-size: 31rpx;
+  font-weight: 900;
+  line-height: 1.15;
+}
+
+.muted {
+  color: #667085;
+}
+
+.mono {
+  font-family: "DIN Alternate", "Bahnschrift", "SFMono-Regular", Consolas, monospace;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18rpx;
+}
+
+.grid {
+  display: grid;
+  gap: 18rpx;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 6rpx 14rpx;
+  border-radius: 999rpx;
+  border: 1rpx solid #bfe8d2;
+  background: #eefaf3;
+  color: #087443;
+  font-size: 22rpx;
+  font-weight: 700;
+}
+
+.field {
+  margin-bottom: 18rpx;
+}
+
+.label {
+  display: block;
+  margin-bottom: 8rpx;
+  color: #344054;
+  font-size: 24rpx;
+  font-weight: 700;
+}
+
+.input,
+.select {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 76rpx;
+  padding: 16rpx 18rpx;
+  border: 1rpx solid #cfdbea;
+  border-radius: 12rpx;
+  background: #ffffff;
+  color: #111827;
+  font-size: 28rpx;
+  box-shadow: none;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16rpx;
+}
+
+.stat {
+  padding: 18rpx;
+  border-radius: 14rpx;
+  border: 1rpx solid #dbe5f0;
+  background: #ffffff;
+  box-shadow: none;
+}
+
+.stat-label {
+  color: #667085;
+  font-size: 22rpx;
+}
+
+.stat-value {
+  margin-top: 6rpx;
+  color: #0d3c78;
+  font-size: 34rpx;
+  font-weight: 800;
+}
+
+.empty {
+  padding: 48rpx 20rpx;
+  color: #667085;
+  text-align: center;
+  font-size: 26rpx;
+}
+
+.small {
+  font-size: 24rpx;
+}
+
+.mana-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5rpx;
+  align-items: center;
+}
+
+.mana-symbol {
+  box-sizing: border-box;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34rpx;
+  min-width: 34rpx;
+  height: 34rpx;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 999rpx;
+  background: #beb9b2;
+  color: #111111;
+  font-family: "Mana", "DIN Alternate", "Bahnschrift", sans-serif;
+  font-size: 25rpx;
+  font-weight: 400;
+  line-height: 1;
+  vertical-align: middle;
+  box-shadow: inset 0 0 0 1rpx rgba(17, 24, 39, 0.22), 0 1rpx 0 rgba(255, 255, 255, 0.55);
+}
+
+.mana-glyph {
+  position: relative;
+  z-index: 1;
+  font-family: "Mana";
+  font-size: 1em;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.mana-fallback {
+  position: relative;
+  z-index: 1;
+  font-family: "DIN Alternate", "Bahnschrift", sans-serif;
+  font-size: 0.66em;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.mana-split .mana-glyph {
+  position: absolute;
+  font-size: 0.56em;
+}
+
+.mana-glyph-top {
+  top: 4rpx;
+  left: 8rpx;
+}
+
+.mana-glyph-bottom {
+  right: 6rpx;
+  bottom: 4rpx;
+}
+
+.mana-phyrexian .mana-glyph {
+  transform: scale(1.14);
+}
+
+.mana-phyrexian.mana-split .mana-glyph {
+  transform: scale(1.06);
+}
+
+.inline-mana-symbol {
+  display: inline-flex;
+  width: 28rpx;
+  min-width: 28rpx;
+  height: 28rpx;
+  margin: 0 2rpx;
+  font-size: 21rpx;
+  vertical-align: middle;
+}
+
+.mana-code-w,
+.mana-code-wp {
+  background: #f0f2c0;
+}
+
+.mana-code-u,
+.mana-code-up {
+  background: #b5cde3;
+}
+
+.mana-code-b,
+.mana-code-bp {
+  background: #aca29a;
+}
+
+.mana-code-r,
+.mana-code-rp {
+  background: #db8664;
+}
+
+.mana-code-g,
+.mana-code-gp {
+  background: #93b483;
+}
+
+.mana-code-c,
+.mana-code-s,
+.mana-code-e,
+.mana-generic,
+.mana-variable {
+  background: #d0c6bb;
+}
+
+.mana-code-tap {
+  background: #e5e7eb;
+}
+
+.mana-code-untap {
+  background: #111111;
+  color: #ffffff;
+}
+
+.mana-code-wu,
+.mana-code-wup {
+  background: linear-gradient(135deg, #f0f2c0 0%, #f0f2c0 50%, #b5cde3 50%, #b5cde3 100%);
+}
+
+.mana-code-wb,
+.mana-code-wbp {
+  background: linear-gradient(135deg, #f0f2c0 0%, #f0f2c0 50%, #aca29a 50%, #aca29a 100%);
+}
+
+.mana-code-ub,
+.mana-code-ubp {
+  background: linear-gradient(135deg, #b5cde3 0%, #b5cde3 50%, #aca29a 50%, #aca29a 100%);
+}
+
+.mana-code-ur,
+.mana-code-urp {
+  background: linear-gradient(135deg, #b5cde3 0%, #b5cde3 50%, #db8664 50%, #db8664 100%);
+}
+
+.mana-code-br,
+.mana-code-brp {
+  background: linear-gradient(135deg, #aca29a 0%, #aca29a 50%, #db8664 50%, #db8664 100%);
+}
+
+.mana-code-bg,
+.mana-code-bgp {
+  background: linear-gradient(135deg, #aca29a 0%, #aca29a 50%, #93b483 50%, #93b483 100%);
+}
+
+.mana-code-rw,
+.mana-code-rwp {
+  background: linear-gradient(135deg, #db8664 0%, #db8664 50%, #f0f2c0 50%, #f0f2c0 100%);
+}
+
+.mana-code-rg,
+.mana-code-rgp {
+  background: linear-gradient(135deg, #db8664 0%, #db8664 50%, #93b483 50%, #93b483 100%);
+}
+
+.mana-code-gw,
+.mana-code-gwp {
+  background: linear-gradient(135deg, #93b483 0%, #93b483 50%, #f0f2c0 50%, #f0f2c0 100%);
+}
+
+.mana-code-gu,
+.mana-code-gup {
+  background: linear-gradient(135deg, #93b483 0%, #93b483 50%, #b5cde3 50%, #b5cde3 100%);
+}
+
+.mana-code-2w,
+.mana-code-cw {
+  background: linear-gradient(135deg, #beb9b2 0%, #beb9b2 50%, #f0f2c0 50%, #f0f2c0 100%);
+}
+
+.mana-code-2u,
+.mana-code-cu {
+  background: linear-gradient(135deg, #beb9b2 0%, #beb9b2 50%, #b5cde3 50%, #b5cde3 100%);
+}
+
+.mana-code-2b,
+.mana-code-cb {
+  background: linear-gradient(135deg, #beb9b2 0%, #beb9b2 50%, #aca29a 50%, #aca29a 100%);
+}
+
+.mana-code-2r,
+.mana-code-cr {
+  background: linear-gradient(135deg, #beb9b2 0%, #beb9b2 50%, #db8664 50%, #db8664 100%);
+}
+
+.mana-code-2g,
+.mana-code-cg {
+  background: linear-gradient(135deg, #beb9b2 0%, #beb9b2 50%, #93b483 50%, #93b483 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  button,
+  .primary-action,
+  .secondary-action,
+  .text-action,
+  .liquid-glass-button {
+    transition: none;
+  }
+}
+
+@media (prefers-contrast: more), (prefers-reduced-transparency: reduce) {
+  page {
+    --glass-bg: rgba(255, 255, 255, 0.94);
+    --glass-bg-strong: rgba(255, 255, 255, 0.98);
+    --glass-border: rgba(30, 41, 59, 0.24);
+    --glass-highlight: rgba(255, 255, 255, 1);
+    --glass-shadow: 0 8rpx 20rpx rgba(15, 23, 42, 0.08);
+  }
+
+  button,
+  .primary-action,
+  .secondary-action,
+  .text-action,
+  .card,
+  .stat,
+  .input,
+  .select,
+  .liquid-glass,
+  .liquid-glass-strong,
+  .liquid-glass-button,
+  .liquid-glass-nav {
+    border-color: rgba(30, 41, 59, 0.24);
+  }
+}

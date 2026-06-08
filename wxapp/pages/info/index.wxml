@@ -1,0 +1,51 @@
+<view class="page about-page">
+  <view class="hero">
+    <view class="eyebrow">十七地</view>
+    <view class="title">关于十七地</view>
+  </view>
+
+  <view class="about-intro">
+    <image class="about-logo" mode="aspectFit" src="/assets/images/site-icon.png" />
+    <view class="about-copy">
+      <view class="about-headline">为 MTGA 玩家准备的移动端工具集</view>
+      <view class="about-text">十七地专注于万智牌：竞技场的数据查询、概率计算、赛季规划和活动日程。小程序版本针对微信内使用重新整理，让常用能力更容易在手机上快速打开。</view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">数据来源</view>
+    <view class="source-list">
+      <block wx:for="{{sources}}" wx:key="name">
+        <view class="source-row">
+          <view class="source-name">{{item.name}}</view>
+          <view class="source-detail">{{item.detail}}</view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">更多信息</view>
+    <view class="web-panel" bindtap="copyWebUrl">
+      <view class="web-main">
+        <view class="web-title">访问网页版</view>
+        <view class="web-desc">小程序资源受限，完整功能、更多资料和详细说明可以访问网页版查看。</view>
+        <view class="web-url">{{webUrl}}</view>
+      </view>
+      <view class="web-action">
+        <image class="web-action-icon" mode="aspectFit" src="/assets/icons/copy.svg" />
+      </view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">版权声明</view>
+    <view class="notice-list">
+      <block wx:for="{{notices}}" wx:key="*this">
+        <view class="notice-row">{{item}}</view>
+      </block>
+    </view>
+  </view>
+
+  <bottom-nav />
+</view>

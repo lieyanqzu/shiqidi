@@ -1,0 +1,141 @@
+.about-page {
+  background-color: #f5f7fb;
+}
+
+.about-intro {
+  display: flex;
+  gap: 18rpx;
+  margin: 22rpx 0;
+  padding: 22rpx 0;
+  border-bottom: 1rpx solid #dbe5f0;
+}
+
+.about-logo {
+  width: 76rpx;
+  height: 76rpx;
+  flex-shrink: 0;
+}
+
+.about-copy {
+  min-width: 0;
+  flex: 1;
+}
+
+.about-headline {
+  color: #111827;
+  font-size: 31rpx;
+  font-weight: 900;
+  line-height: 1.25;
+}
+
+.about-text {
+  margin-top: 10rpx;
+  color: #475569;
+  font-size: 25rpx;
+  line-height: 1.55;
+}
+
+.source-list,
+.notice-list {
+  display: grid;
+  gap: 1rpx;
+  overflow: hidden;
+  border: 1rpx solid #dbe5f0;
+  border-radius: 14rpx;
+  background: #dbe5f0;
+}
+
+.source-row,
+.notice-row {
+  min-width: 0;
+  padding: 18rpx;
+  background: #ffffff;
+}
+
+.source-name {
+  color: #0f172a;
+  font-size: 27rpx;
+  font-weight: 900;
+  line-height: 1.25;
+}
+
+.source-detail {
+  margin-top: 7rpx;
+  color: #667085;
+  font-size: 24rpx;
+  line-height: 1.45;
+}
+
+.web-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18rpx;
+  padding: 18rpx;
+  border: 1rpx solid #dbe5f0;
+  border-radius: 14rpx;
+  background: #ffffff;
+  transition: transform 120ms ease, opacity 120ms ease;
+}
+
+.web-panel:active {
+  opacity: 0.86;
+  transform: scale(0.985);
+}
+
+.web-main {
+  min-width: 0;
+  flex: 1;
+}
+
+.web-title {
+  color: #111827;
+  font-size: 27rpx;
+  font-weight: 900;
+  line-height: 1.25;
+}
+
+.web-desc {
+  margin-top: 7rpx;
+  color: #667085;
+  font-size: 24rpx;
+  line-height: 1.45;
+}
+
+.web-url {
+  margin-top: 7rpx;
+  color: #0f5ce8;
+  font-size: 23rpx;
+  font-weight: 750;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+.web-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 58rpx;
+  height: 58rpx;
+  flex-shrink: 0;
+  border: 1rpx solid #cfdbea;
+  border-radius: 12rpx;
+  background: #ffffff;
+}
+
+.web-action-icon {
+  width: 32rpx;
+  height: 32rpx;
+}
+
+.notice-row {
+  color: #475569;
+  font-size: 24rpx;
+  line-height: 1.45;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .web-panel {
+    transition: none;
+  }
+}

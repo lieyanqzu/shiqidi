@@ -1,0 +1,253 @@
+.tabs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8rpx;
+  margin-bottom: 22rpx;
+  padding: 8rpx;
+  border: 1rpx solid #dbe5f0;
+  border-radius: 14rpx;
+  background: #f8fafc;
+  box-shadow: none;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 68rpx;
+  padding: 0 10rpx;
+  border: 1rpx solid transparent;
+  border-radius: 10rpx;
+  color: #64748b;
+  text-align: center;
+  font-size: 25rpx;
+  font-weight: 850;
+  line-height: 1.2;
+  transition: transform 120ms ease, opacity 120ms ease;
+}
+
+.tab:active {
+  opacity: 0.82;
+  transform: scale(0.98);
+}
+
+.tab.active {
+  border-color: #0f5ce8;
+  background: #ffffff;
+  color: #0f5ce8;
+  box-shadow: none;
+}
+
+.quick-row {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 10rpx;
+  margin-top: 10rpx;
+  overflow-x: auto;
+  padding-bottom: 2rpx;
+}
+
+.quick-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 54rpx;
+  height: 44rpx;
+  flex-shrink: 0;
+  padding: 0 14rpx;
+  border: 1rpx solid #dbe5f0;
+  border-radius: 12rpx;
+  background: #ffffff;
+  color: #334155;
+  font-size: 22rpx;
+  font-weight: 800;
+  box-shadow: none;
+  transition: transform 120ms ease, opacity 120ms ease;
+}
+
+.quick-chip:active {
+  opacity: 0.82;
+  transform: scale(0.96);
+}
+
+.target-title {
+  margin-top: 24rpx;
+}
+
+.target-title .section-title {
+  margin-bottom: 0;
+}
+
+.target-card {
+  margin-bottom: 18rpx;
+  padding: 18rpx;
+  border: 1rpx solid #dbe5f0;
+  border-radius: 14rpx;
+  background: #ffffff;
+  box-shadow: none;
+}
+
+.target-head {
+  margin-bottom: 14rpx;
+}
+
+.target-name {
+  color: #0f172a;
+  font-size: 26rpx;
+  font-weight: 900;
+}
+
+.target-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14rpx;
+}
+
+.error-box {
+  padding: 16rpx;
+  border-radius: 14rpx;
+  background: #fee2e2;
+  color: #991b1b;
+  font-size: 24rpx;
+}
+
+.individual-list {
+  margin-top: 20rpx;
+  border-top: 1rpx solid #eef2f7;
+}
+
+.individual-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 18rpx;
+  margin-top: 12rpx;
+  padding: 16rpx;
+  border: 1rpx solid #dbe5f0;
+  border-radius: 12rpx;
+  background: #ffffff;
+}
+
+.individual-name {
+  min-width: 0;
+  color: #334155;
+  font-size: 26rpx;
+}
+
+.individual-value {
+  flex-shrink: 0;
+  color: #0f5ce8;
+  font-size: 28rpx;
+  font-weight: 800;
+}
+
+.legend-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18rpx;
+  margin-top: 18rpx;
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8rpx;
+  color: #475569;
+  font-size: 23rpx;
+  font-weight: 700;
+}
+
+.legend-dot {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 999rpx;
+}
+
+.bo1-dot {
+  background: #0f5ce8;
+}
+
+.normal-dot {
+  background: #ea580c;
+}
+
+.compare-row {
+  display: grid;
+  grid-template-columns: 72rpx minmax(0, 1fr);
+  gap: 12rpx;
+  align-items: start;
+  margin-top: 18rpx;
+  padding: 16rpx;
+  border: 1rpx solid #dbe5f0;
+  border-radius: 14rpx;
+  background: #ffffff;
+  box-shadow: none;
+}
+
+.compare-label,
+.bar-value {
+  color: #475569;
+  font-size: 24rpx;
+}
+
+.compare-label {
+  padding-top: 8rpx;
+}
+
+.compare-bars {
+  display: grid;
+  gap: 8rpx;
+}
+
+.compare-line {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 104rpx;
+  gap: 12rpx;
+  align-items: center;
+}
+
+.bar-value {
+  text-align: right;
+}
+
+.bar-track {
+  height: 20rpx;
+  overflow: hidden;
+  border-radius: 999rpx;
+  background: rgba(226, 234, 243, 0.72);
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 999rpx;
+}
+
+.bo1-fill {
+  background: #0f5ce8;
+}
+
+.normal-fill {
+  background: #ea580c;
+}
+
+.bo1-value {
+  color: #0f5ce8;
+}
+
+.normal-value {
+  color: #c2410c;
+}
+
+.explain-list {
+  display: grid;
+  gap: 12rpx;
+}
+
+.explain-item {
+  padding: 16rpx 16rpx 16rpx 20rpx;
+  border-left: 5rpx solid #18a058;
+  border-radius: 12rpx;
+  background: #ffffff;
+  color: #475569;
+  font-size: 24rpx;
+  line-height: 1.6;
+}

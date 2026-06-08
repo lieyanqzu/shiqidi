@@ -1,0 +1,35 @@
+<view class="bottom-nav-root">
+  <view wx:if="{{menuOpen}}" class="nav-mask" catchtap="closeMenu" catchtouchmove="noop"></view>
+  <view class="nav-panel">
+    <view wx:if="{{menuOpen}}" class="nav-drawer" catchtap="noop" catchtouchmove="noop">
+      <view class="drawer-head">
+        <view class="drawer-title">{{menuGroup.label}}</view>
+        <view class="drawer-close" role="button" aria-label="关闭" bindtap="closeMenu">
+          <image class="drawer-close-icon" mode="aspectFit" src="/assets/icons/close.svg" />
+        </view>
+      </view>
+      <view class="nav-menu-list">
+        <block wx:for="{{menuItems}}" wx:key="url">
+          <view class="nav-menu-item {{item.active ? 'active' : ''}}" data-url="{{item.url}}" bindtap="openMenuItem">
+            <view class="menu-icon-cell">
+              <image class="menu-icon" mode="aspectFit" src="{{item.icon}}" />
+            </view>
+            <view class="menu-title">{{item.title}}</view>
+            <image class="menu-cue" mode="aspectFit" src="/assets/icons/chevron-right.svg" />
+          </view>
+        </block>
+      </view>
+    </view>
+
+    <view class="nav-shell">
+      <view class="nav-grid">
+        <block wx:for="{{groups}}" wx:key="key">
+          <view class="nav-item {{item.active ? 'active' : ''}} {{item.open ? 'open' : ''}}" data-key="{{item.key}}" bindtap="onNavTap">
+            <image class="nav-icon" mode="aspectFit" src="{{item.iconSrc}}" />
+            <view class="nav-label">{{item.label}}</view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+</view>

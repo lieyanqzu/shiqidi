@@ -1,0 +1,122 @@
+.control-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18rpx;
+  min-height: 78rpx;
+  padding: 12rpx 16rpx;
+  border: 1rpx solid #dbe5f0;
+  border-radius: 12rpx;
+  background: #ffffff;
+  box-shadow: none;
+}
+
+.control-head .label {
+  margin-bottom: 0;
+}
+
+.stepper {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  border: 1rpx solid #dbe5f0;
+  border-radius: 12rpx;
+  background: #ffffff;
+  box-shadow: none;
+}
+
+.stepper-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56rpx;
+  height: 56rpx;
+  color: #0f5ce8;
+  font-size: 30rpx;
+  font-weight: 900;
+  transition: transform 120ms ease, opacity 120ms ease;
+}
+
+.stepper-action:active {
+  opacity: 0.78;
+  transform: scale(0.92);
+}
+
+.stepper-picker {
+  flex-shrink: 0;
+}
+
+.stepper-input {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 96rpx;
+  height: 56rpx;
+  min-height: 56rpx;
+  padding: 0 8rpx;
+  border-right: 1rpx solid rgba(214, 226, 241, 0.76);
+  border-left: 1rpx solid rgba(214, 226, 241, 0.76);
+  background: #ffffff;
+  color: #0f172a;
+  text-align: center;
+  font-size: 24rpx;
+  font-weight: 800;
+}
+
+.pass-head {
+  display: flex;
+  align-items: center;
+  gap: 18rpx;
+  margin-bottom: 18rpx;
+  padding: 16rpx;
+  border: 1rpx solid #dbe5f0;
+  border-radius: 14rpx;
+  background: #ffffff;
+  box-shadow: none;
+}
+
+.set-pill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 12rpx;
+  border: 1rpx solid #dbe5f0;
+  background: #f8fafc;
+  color: #0f5ce8;
+  box-shadow: none;
+}
+
+.set-pill-glyph {
+  font-family: Keyrune, sans-serif;
+  font-size: 58rpx;
+  line-height: 1;
+}
+
+.pass-main {
+  min-width: 0;
+}
+
+.pass-name {
+  color: #0f172a;
+  font-size: 30rpx;
+  font-weight: 850;
+}
+
+.summary-box {
+  margin-top: 18rpx;
+  padding: 18rpx;
+  border: 1rpx solid #bfdbfe;
+  border-radius: 14rpx;
+  background: #eff6ff;
+}
+
+.summary-title {
+  margin-bottom: 8rpx;
+  color: #0f3f7a;
+  font-size: 28rpx;
+  font-weight: 800;
+}

@@ -1,0 +1,43 @@
+<view class="page home-page">
+  <view class="hero home-hero">
+    <view class="hero-shell">
+      <view class="hero-copy">
+        <view class="title home-title">十七地</view>
+        <view class="home-slogan">你的万智牌：竞技场坐牢小助手</view>
+        <view class="hero-accent"></view>
+      </view>
+      <view class="mini-program-badge">
+        <image class="mini-program-icon" mode="aspectFit" src="../../assets/icons/wechat.svg" />
+        <view class="mini-program-text">小程序</view>
+      </view>
+    </view>
+  </view>
+
+  <block wx:for="{{sections}}" wx:key="title" wx:for-item="section" wx:for-index="sectionIndex">
+    <view class="section">
+      <view class="section-head">
+        <view>
+          <view class="section-title">{{section.title}}</view>
+          <view class="section-desc">{{section.desc}}</view>
+        </view>
+      </view>
+      <view class="feature-list">
+        <block wx:for="{{section.links}}" wx:key="title" wx:for-item="item">
+          <view class="feature-row" data-url="{{item.url}}" bindtap="openFeature">
+            <view class="feature-icon-cell">
+              <view class="feature-icon-wrap">
+                <image class="feature-icon" mode="aspectFit" src="{{item.icon}}" />
+              </view>
+            </view>
+            <view class="feature-main">
+              <view class="feature-title">{{item.title}}</view>
+              <view class="feature-desc">{{item.desc}}</view>
+            </view>
+            <view class="feature-cue"></view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </block>
+  <bottom-nav />
+</view>
