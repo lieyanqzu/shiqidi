@@ -11,18 +11,20 @@ import { BackToTop } from "@/components/common/back-to-top";
 import { type GradeMetric, type CustomMetricConfig, loadCustomMetricConfig } from "@/lib/grades";
 import { Button } from "@/components/ui/button";
 import { CardGradeMetrics } from "@/components/card/card-grade-metrics";
+import { loadPublicOptions, type PublicOptionsData } from "@/lib/options";
+import { getStartDateForExpansion, loadExpansionMetadata } from "@/lib/filter";
 
 import { SealedDeckImporter } from "@/components/card/sealed-deck-importer";
 
 export default function CardsPage() {
-  const { 
-    cards, 
+  const {
+    cards,
     params,
     chineseCards,
     isLoading,
-    setCards, 
+    setCards,
     setChineseCards,
-    setIsLoading, 
+    setIsLoading,
     setError,
     setParams,
   } = useCardStore();
@@ -36,6 +38,10 @@ export default function CardsPage() {
   const [columnControls, setColumnControls] = useState<ReactNode | null>(null);
   const [mounted, setMounted] = useState(false);
   const [importedDeck, setImportedDeck] = useState<Map<string, number> | null>(null);
+  const [options, setOptions] = useState<PublicOptionsData | null>(null);
+  const [optionsError, setOptionsError] = useState<string | null>(null);
+  const [defaultsApplied, setDefaultsApplied] = useState(false);
+  const titleExpansion = params.expansion || options?.cardDataDefaults?.expansion || '';
 
   const filteredCards = useMemo(() => {
     let result = cards;
@@ -55,7 +61,7 @@ export default function CardsPage() {
         const chineseCard = chineseCards[card.name];
         const chineseName = chineseCard?.atomic_official_name || chineseCard?.atomic_translated_name || chineseCard?.zhs_name;
         const chineseMatch = chineseName?.toLowerCase().includes(searchLower);
-        
+
         return englishMatch || chineseMatch;
       });
     }
@@ -66,23 +72,23 @@ export default function CardsPage() {
         const cardColors = card.color ? card.color.split('') : [];
         const isMulticolor = cardColors.length > 1;
         const isColorless = cardColors.length === 0;
-        
+
         // 检查选中的颜色中是否包含 M（多色）和 C（无色）
         const hasMulticolorSelected = selectedColors.includes('M');
         const hasColorlessSelected = selectedColors.includes('C');
-        
+
         // 如果是无色卡牌且选中了无色，直接返回 true
         if (isColorless && hasColorlessSelected) {
           return true;
         }
-        
+
         // 如果选中了多色按钮，只显示多色卡牌
         if (hasMulticolorSelected) {
           // 如果不是多色卡牌，直接返回 false
           if (!isMulticolor) {
             return false;
           }
-          
+
           // 获取选中的基本颜色（WUBRG）
           const selectedBasicColors = selectedColors.filter(c => 'WUBRG'.includes(c));
           // 如果同时选中了基本颜色，则多色卡必须包含所有选中的基本颜色
@@ -92,22 +98,22 @@ export default function CardsPage() {
           // 如果只选中了多色按钮，显示所有多色卡
           return true;
         }
-        
+
         // 获取选中的基本颜色（WUBRG）
         const selectedBasicColors = selectedColors.filter(c => 'WUBRG'.includes(c));
-        
+
         // 如果选中了基本颜色检查卡牌是否包含任何一个选中的颜色
         if (selectedBasicColors.length > 0) {
           return selectedBasicColors.some(color => cardColors.includes(color));
         }
-        
+
         return false;
       });
     }
 
     // 稀有度筛选
     if (selectedRarities.length > 0) {
-      result = result.filter(card => 
+      result = result.filter(card =>
         selectedRarities.includes(card.rarity.toLowerCase())
       );
     }
@@ -115,9 +121,69 @@ export default function CardsPage() {
     return result;
   }, [cards, searchText, selectedColors, selectedRarities, chineseCards, importedDeck]);
 
-  // 加载卡牌数据
-  // 加载卡牌数据
+  // 加载共享筛选配置
   useEffect(() => {
+    let cancelled = false;
+
+    loadPublicOptions()
+      .then((data) => {
+        if (cancelled) return;
+        setOptions(data);
+      })
+      .catch((error) => {
+        if (cancelled) return;
+        console.error('加载卡牌筛选配置失败:', error);
+        setOptionsError('筛选配置加载失败，请稍后重试');
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  // 从共享配置应用默认筛选条件
+  useEffect(() => {
+    if (!options || defaultsApplied) return;
+
+    let cancelled = false;
+
+    async function applyDefaults() {
+      const defaults = options?.cardDataDefaults;
+      if (!defaults) {
+        setDefaultsApplied(true);
+        return;
+      }
+
+      const expansion = defaults.expansion ?? params.expansion;
+      let startDate = params.start_date;
+
+      try {
+        await loadExpansionMetadata();
+        startDate = getStartDateForExpansion(expansion)?.split('T')[0] ?? startDate;
+      } catch (error) {
+        console.error('加载系列起始日期失败:', error);
+      }
+
+      if (cancelled) return;
+
+      setParams({
+        expansion,
+        event_type: defaults.event_type ?? params.event_type,
+        start_date: startDate,
+      });
+      setDefaultsApplied(true);
+    }
+
+    applyDefaults();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [defaultsApplied, options, params, setParams]);
+
+  useEffect(() => {
+    if (!options || !defaultsApplied) return;
+
     const controller = new AbortController();
     const signal = controller.signal;
 
@@ -132,7 +198,7 @@ export default function CardsPage() {
 
         // 后台加载中文数据，支持增量更新
         fetchAllChineseCardData(
-          params.expansion, 
+          params.expansion,
           data,
           (results) => {
             if (signal.aborted) return;
@@ -156,17 +222,17 @@ export default function CardsPage() {
     return () => {
       controller.abort();
     };
-  }, [params, setCards, setChineseCards, setIsLoading, setError]);
+  }, [defaultsApplied, options, params, setCards, setChineseCards, setIsLoading, setError]);
 
   // 初始化：从localStorage读取保存的偏好设置
   useEffect(() => {
     setMounted(true);
-    
+
     const savedViewMode = localStorage.getItem('viewMode') as 'table' | 'grades' | null;
     if (savedViewMode) {
       setViewMode(savedViewMode);
     }
-    
+
     const savedMetric = localStorage.getItem('gradeMetric') as GradeMetric | null;
     if (savedMetric) {
       setGradeMetric(savedMetric);
@@ -184,7 +250,7 @@ export default function CardsPage() {
     if (mounted) {
       localStorage.setItem('viewMode', viewMode);
     }
-    
+
     if (viewMode !== 'table') {
       setColumnControls(null);
     }
@@ -202,11 +268,11 @@ export default function CardsPage() {
   // value: 标准英文名称
   const cardNameMap = useMemo(() => {
     const map = new Map<string, string>();
-    
+
     cards.forEach(card => {
       // 添加英文名
       map.set(card.name.toLowerCase(), card.name);
-      
+
       // 添加中文名
       const chineseCard = chineseCards[card.name];
       if (chineseCard) {
@@ -221,7 +287,7 @@ export default function CardsPage() {
         }
       }
     });
-    
+
     return map;
   }, [cards, chineseCards]);
 
@@ -242,11 +308,11 @@ export default function CardsPage() {
     <div className="py-8">
       <div className="container mx-auto px-4 mb-8">
         <div className="flex items-center gap-3 mb-8">
-          <SetSymbol set={params.expansion} />
+          {titleExpansion ? <SetSymbol set={titleExpansion} /> : null}
           <h1 className="text-2xl font-semibold">
-            {params.expansion} 轮抽卡牌数据
+            {titleExpansion ? `${titleExpansion} ` : ''}轮抽卡牌数据
           </h1>
-          <a 
+          <a
             href="https://www.17lands.com/card_data?utm_source=shiqidi"
             target="_blank"
             rel="noopener noreferrer"
@@ -259,16 +325,23 @@ export default function CardsPage() {
             17Lands
           </a>
         </div>
-        <CardFilters 
-          params={params} 
-          onParamsChange={setParams}
-          onColorFilter={setSelectedColors}
-          selectedColors={selectedColors}
-          onRarityFilter={setSelectedRarities}
-          selectedRarities={selectedRarities}
-          onSearchFilter={setSearchText}
-          searchText={searchText}
-        />
+        {options ? (
+          <CardFilters
+            params={params}
+            onParamsChange={setParams}
+            onColorFilter={setSelectedColors}
+            selectedColors={selectedColors}
+            onRarityFilter={setSelectedRarities}
+            selectedRarities={selectedRarities}
+            onSearchFilter={setSearchText}
+            searchText={searchText}
+            options={options}
+          />
+        ) : (
+          <div className="rounded-lg border border-[--border] bg-[--component-background] p-4 text-sm text-[--muted-foreground]">
+            {optionsError ?? '正在加载筛选配置...'}
+          </div>
+        )}
 
         {/* 视图切换和指标选择 */}
         <div className="flex flex-wrap items-center gap-3 mt-6 p-4 bg-[--component-background] rounded-lg border border-[--border]">
@@ -334,9 +407,9 @@ export default function CardsPage() {
 
       {/* 根据视图模式显示不同内容 */}
       {viewMode === 'table' ? (
-      <CardTable 
-        data={filteredCards} 
-        isLoading={isLoading} 
+      <CardTable
+        data={filteredCards}
+        isLoading={isLoading}
         expansion={params.expansion}
         onColumnControlsChange={setColumnControls}
         deckQuantities={importedDeck || undefined}
@@ -355,4 +428,4 @@ export default function CardsPage() {
       <BackToTop />
     </div>
   );
-} 
+}

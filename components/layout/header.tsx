@@ -4,12 +4,12 @@ import Link from "next/link";
 import { ThemeToggle } from "@/components/common/theme-toggle";
 import { Github, ChevronDown, ExternalLink, Menu, X, Calendar, Activity, Download } from "lucide-react";
 import { useState, useEffect } from "react";
-import digitalSets from '@/data/digital-sets.json';
 import { useStatusStore, StatusData } from '@/lib/store';
 import { usePWAInstall } from '@/hooks/use-pwa-install';
 import { Tooltip } from "@/components/ui/tooltip"
 import { parseISO, isValid } from 'date-fns';
 import { SetIcon } from '@/components/logo/set-icon';
+import { fetchPublicJson } from '@/lib/public-data-client';
 
 interface MenuItem {
   label: string;
@@ -34,9 +34,10 @@ interface DigitalSet {
   };
 }
 
-function getCurrentAndNextSet(): { current: DigitalSet | null; next: DigitalSet | null } {
+function getCurrentAndNextSet(setsData: DigitalSet[]): { current: DigitalSet | null; next: DigitalSet | null } {
   const now = new Date();
-  const sets = digitalSets.sets
+  const sets = setsData
+    .slice()
     .sort((a, b) => {
       const dateA = parseISO(a.releaseDate.replace('~', ''));
       const dateB = parseISO(b.releaseDate.replace('~', ''));
@@ -75,14 +76,24 @@ function formatDate(dateStr: string): string {
 }
 
 function SetInfo({ className = "" }: { className?: string }) {
-  const { current, next } = getCurrentAndNextSet();
+  const [setsData, setSetsData] = useState<DigitalSet[]>([]);
+  const { current, next } = getCurrentAndNextSet(setsData);
   const [showTooltip, setShowTooltip] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  
+
+  useEffect(() => {
+    fetchPublicJson<{ sets: DigitalSet[] }>('digital-sets.json')
+      .then(data => setSetsData(Array.isArray(data.sets) ? data.sets : []))
+      .catch(error => {
+        console.error('加载系列数据失败:', error);
+        setSetsData([]);
+      });
+  }, []);
+
   useEffect(() => {
     const lastShownDate = localStorage.getItem('previewTooltipLastShown');
     const now = new Date().getTime();
-    
+
     if ((!lastShownDate || now - parseInt(lastShownDate) > 5 * 24 * 60 * 60 * 1000) && next?.preview) {
       setShowTooltip(true);
       localStorage.setItem('previewTooltipLastShown', now.toString());
@@ -97,7 +108,7 @@ function SetInfo({ className = "" }: { className?: string }) {
   }, []);
 
   if (!current) return null;
-  
+
   return (
     <div className={`flex items-center gap-4 px-3 py-1.5 text-sm text-[--muted-foreground] ${className}`}>
       <div className="grid md:flex grid-cols-2 w-full md:w-auto gap-4 md:gap-4">
@@ -150,7 +161,7 @@ function SetInfo({ className = "" }: { className?: string }) {
                         </p>
                       </div>
                     </div>
-                    
+
                     {/* 原系列预览链接 */}
                     <div className="space-y-1.5">
                       <p className="text-[13px] text-[--muted-foreground] opacity-90">前往以下网站，了解{next.name}最新预览卡牌</p>
@@ -306,7 +317,7 @@ function ServerStatusInfo({ className = "" }: { className?: string }) {
         }
         side="bottom"
       >
-        <Link 
+        <Link
           href="/status"
           className={`flex items-center gap-1.5 px-3 py-1.5 text-sm hover:opacity-80 transition-opacity ${className}`}
         >
@@ -317,7 +328,7 @@ function ServerStatusInfo({ className = "" }: { className?: string }) {
   }
 
   return (
-    <Link 
+    <Link
       href="/status"
       className={`flex items-center gap-1.5 px-3 py-1.5 text-sm hover:opacity-80 transition-opacity ${className}`}
     >
@@ -365,8 +376,8 @@ function MobileMenuItem({ item, onClose }: { item: MenuItem; onClose: () => void
 
   if (!item.children) {
     return (
-      <Link 
-        href={item.href!} 
+      <Link
+        href={item.href!}
         className="block px-4 py-2 text-[--foreground-muted] hover:text-[--foreground]"
         onClick={onClose}
       >
@@ -377,7 +388,7 @@ function MobileMenuItem({ item, onClose }: { item: MenuItem; onClose: () => void
 
   return (
     <div>
-      <button 
+      <button
         className="flex items-center justify-between w-full px-4 py-2 text-[--foreground-muted] hover:text-[--foreground]"
         onClick={() => setIsOpen(!isOpen)}
       >
@@ -557,4 +568,4 @@ export function Header() {
       )}
     </header>
   );
-} 
+}

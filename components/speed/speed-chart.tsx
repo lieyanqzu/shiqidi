@@ -5,7 +5,7 @@ import { SpeedFilters } from "./speed-filters";
 import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { SetIcon } from "@/components/logo/set-icon";
-import { formatLabels } from "@/lib/options";
+import { createFormatLabels, type Option } from "@/lib/options";
 
 type Rarity = 'common' | 'uncommon' | 'rare' | 'mythic' | 'timeshifted';
 
@@ -17,7 +17,7 @@ const getRarity = (eventType: string): Rarity => {
 const STORAGE_KEY_SELECTED_EXPANSIONS = 'speed-chart-selected-expansions';
 const STORAGE_KEY_SELECTED_FORMATS = 'speed-chart-selected-formats';
 
-interface SpeedData {
+export interface SpeedData {
   expansion: string;
   event_type: string;
   win_rate_on_play: number;
@@ -26,6 +26,13 @@ interface SpeedData {
 
 interface SpeedChartProps {
   initialData: SpeedData[];
+  expansionOptions: Option[];
+  formatSpeedOptions: Option[];
+  speedDefaults?: {
+    recentExpansionCount?: number;
+    expansions?: string[];
+    event_types?: string[];
+  };
 }
 
 // 赛制对应的稀有度
@@ -49,7 +56,7 @@ interface CustomScatterProps {
 const CustomScatter = (props: CustomScatterProps) => {
   const { cx, cy, payload, onClick } = props;
   if (!cx || !cy || !payload) return null;
-  
+
   // 图标宽高比为 1.5:1,高度 32px,宽度需要 48px
   const foProps = { x: cx - 24, y: cy - 16, width: 48, height: 32 } as unknown as React.SVGProps<SVGElement>;
   return React.createElement(
@@ -93,7 +100,13 @@ const formatToOneDecimal = (value: number): string => {
   return value.toFixed(1);
 };
 
-const CustomTooltip = ({ active, payload, isMobile, selectedPoint }: CustomTooltipProps) => {
+const CustomTooltip = ({
+  active,
+  payload,
+  isMobile,
+  selectedPoint,
+  formatLabels,
+}: CustomTooltipProps & { formatLabels: Record<string, string> }) => {
   if ((!isMobile && active && payload?.length) || (isMobile && selectedPoint)) {
     const data = isMobile ? selectedPoint! : payload![0].payload;
 
@@ -119,19 +132,45 @@ const CustomTooltip = ({ active, payload, isMobile, selectedPoint }: CustomToolt
   return null;
 };
 
-// 默认选中的赛制（移到组件外部，避免每次渲染都是新引用）
-const defaultFormats = ['PremierDraft', 'PickTwoDraft', 'QuickDraft', 'Sealed', 'TradDraft', 'TradSealed'];
+// 配置缺失时的保守兜底，实际默认值优先来自 public/data/options.json。
+const fallbackDefaultFormats = ['PremierDraft', 'Sealed'];
 
-export function SpeedChart({ initialData }: SpeedChartProps) {
+export function SpeedChart({ initialData, expansionOptions, formatSpeedOptions, speedDefaults }: SpeedChartProps) {
   const isMobile = useMediaQuery("(max-width: 1024px)");
   const [selectedPoint, setSelectedPoint] = useState<SpeedData | null>(null);
   const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
   const [tooltipAlign, setTooltipAlign] = useState<'center' | 'left' | 'right'>('center');
+  const formatLabels = useMemo(() => createFormatLabels(formatSpeedOptions), [formatSpeedOptions]);
+  const validFormatValues = useMemo(() => formatSpeedOptions.map(option => option.value), [formatSpeedOptions]);
+  const defaultFormats = useMemo(() => {
+    const configuredFormats = (speedDefaults?.event_types?.length ? speedDefaults.event_types : fallbackDefaultFormats)
+      .filter(format => validFormatValues.includes(format));
+    if (configuredFormats.length) return configuredFormats;
+    const fallbackFormats = fallbackDefaultFormats.filter(format => validFormatValues.includes(format));
+    return fallbackFormats.length ? fallbackFormats : validFormatValues;
+  }, [speedDefaults?.event_types, validFormatValues]);
 
   // 获取所有可用的系列
   const allExpansions = useMemo(() => {
-    return Array.from(new Set(initialData.map(item => item.expansion))).sort();
-  }, [initialData]);
+    const dataExpansions = new Set(initialData.map(item => item.expansion));
+    const orderedExpansions = expansionOptions
+      .map(option => option.value)
+      .filter(expansion => dataExpansions.has(expansion));
+    const missingExpansions = Array.from(dataExpansions).filter(expansion => !orderedExpansions.includes(expansion));
+    return [...orderedExpansions, ...missingExpansions];
+  }, [initialData, expansionOptions]);
+
+  const defaultExpansions = useMemo(() => {
+    const configuredExpansions = speedDefaults?.expansions
+      ?.filter(expansion => allExpansions.includes(expansion)) ?? [];
+    if (configuredExpansions.length) return configuredExpansions;
+
+    const configuredCount = Number(speedDefaults?.recentExpansionCount);
+    const recentCount = Number.isFinite(configuredCount) && configuredCount > 0
+      ? Math.floor(configuredCount)
+      : allExpansions.length;
+    return allExpansions.slice(0, recentCount);
+  }, [allExpansions, speedDefaults?.expansions, speedDefaults?.recentExpansionCount]);
 
   // 从 localStorage 读取保存的选择
   const loadFromStorage = (key: string, defaultValue: string[], validValues?: string[]): string[] => {
@@ -176,17 +215,17 @@ export function SpeedChart({ initialData }: SpeedChartProps) {
   // 初始化时从 localStorage 加载（只执行一次）
   useEffect(() => {
     if (allExpansions.length === 0 || isInitialized) return; // 等待 allExpansions 准备好，且只初始化一次
-    
-    const loadedExpansions = loadFromStorage(STORAGE_KEY_SELECTED_EXPANSIONS, allExpansions, allExpansions);
-    const loadedFormats = loadFromStorage(STORAGE_KEY_SELECTED_FORMATS, defaultFormats, defaultFormats);
-    
+
+    const loadedExpansions = loadFromStorage(STORAGE_KEY_SELECTED_EXPANSIONS, defaultExpansions, allExpansions);
+    const loadedFormats = loadFromStorage(STORAGE_KEY_SELECTED_FORMATS, defaultFormats, validFormatValues);
+
     // 在初始化时，同时设置 ref，避免后续的更新逻辑触发
     prevAllExpansionsStrRef.current = JSON.stringify(allExpansions);
-    
+
     setSelectedExpansions(loadedExpansions);
     setSelectedFormats(loadedFormats);
     setIsInitialized(true);
-  }, [allExpansions, isInitialized]);
+  }, [allExpansions, defaultExpansions, defaultFormats, isInitialized, validFormatValues]);
 
   // 当选择改变时，保存到 localStorage（只在初始化完成后保存）
   useEffect(() => {
@@ -205,21 +244,21 @@ export function SpeedChart({ initialData }: SpeedChartProps) {
   // 只在初始化完成后执行，避免覆盖 localStorage 加载的值
   useEffect(() => {
     if (!isInitialized || allExpansions.length === 0) return;
-    
+
     // 检查 allExpansions 是否真的变化了（通过字符串比较）
     const currentAllExpansionsStr = JSON.stringify(allExpansions);
     if (currentAllExpansionsStr === prevAllExpansionsStrRef.current) {
       // 没有变化，不执行更新
       return;
     }
-    
+
     // 更新 ref
     prevAllExpansionsStrRef.current = currentAllExpansionsStr;
-    
+
     // 如果有新的系列，添加到选中列表中
     setSelectedExpansions(prev => {
       if (prev.length === 0) return prev; // 如果还没初始化完成，不执行
-      
+
       const newExpansions = allExpansions.filter(exp => !prev.includes(exp));
       if (newExpansions.length > 0) {
         // 有新系列，添加到选中列表
@@ -243,7 +282,7 @@ export function SpeedChart({ initialData }: SpeedChartProps) {
       const formatMatch = selectedFormats.includes(item.event_type);
       return expansionMatch && formatMatch;
     });
-    
+
     return filtered;
   }, [initialData, selectedExpansions, selectedFormats]);
 
@@ -262,40 +301,40 @@ export function SpeedChart({ initialData }: SpeedChartProps) {
 
     const xValues = filteredSpeedData.map(d => d.win_rate_on_play);
     const yValues = filteredSpeedData.map(d => d.average_game_length);
-    
+
     const xMin = Math.min(...xValues);
     const xMax = Math.max(...xValues);
     const yMin = Math.min(...yValues);
     const yMax = Math.max(...yValues);
-    
+
     // 添加5%的边距，但不要添加太多空白
     const xRange = xMax - xMin;
     const yRange = yMax - yMin;
-    
+
     const finalXMin = Math.max(0.47, xMin - xRange * 0.05);
     const finalXMax = Math.min(0.57, xMax + xRange * 0.05);
     const finalYMin = Math.max(6, yMin - yRange * 0.05);
     const finalYMax = Math.min(11, yMax + yRange * 0.05);
-    
+
     // 生成更多的刻度点（根据尺寸决定）
     const xStep = (finalXMax - finalXMin) / (isMobile ? 6 : 10);
     const yStep = (finalYMax - finalYMin) / (isMobile ? 6 : 8);
-    
+
     const xTicks: number[] = [];
     const yTicks: number[] = [];
-    
+
     // 生成X轴刻度
     for (let i = 0; i <= (isMobile ? 6 : 10); i++) {
       const tick = finalXMin + i * xStep;
       xTicks.push(Math.round(tick * 1000) / 1000); // 保留3位小数精度
     }
-    
+
     // 生成Y轴刻度
     for (let i = 0; i <= (isMobile ? 6 : 8); i++) {
       const tick = finalYMin + i * yStep;
       yTicks.push(Math.round(tick * 10) / 10); // 保留1位小数
     }
-    
+
     return {
       xMin: finalXMin,
       xMax: finalXMax,
@@ -339,11 +378,13 @@ export function SpeedChart({ initialData }: SpeedChartProps) {
   return (
     <>
       <div className="mb-8">
-        <SpeedFilters 
+        <SpeedFilters
           selectedExpansions={selectedExpansions}
           onExpansionsChange={setSelectedExpansions}
           selectedFormats={selectedFormats}
           onFormatsChange={setSelectedFormats}
+          expansionOptions={expansionOptions}
+          formatSpeedOptions={formatSpeedOptions}
         />
       </div>
 
@@ -351,24 +392,24 @@ export function SpeedChart({ initialData }: SpeedChartProps) {
         <div className="h-[600px] relative" onClick={handleChartClick}>
           <ResponsiveContainer width="100%" height="100%">
             <ScatterChart
-              margin={isMobile 
+              margin={isMobile
                 ? { top: 10, right: 5, bottom: 40, left: 12 }
                 : { top: 20, right: 20, bottom: 50, left: 50 }
               }
             >
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(128, 128, 128, 0.2)" />
-              <XAxis 
+              <XAxis
                 type="number"
                 dataKey="win_rate_on_play"
                 name="先手胜率"
                 domain={[dataRange.xMin, dataRange.xMax]}
                 ticks={dataRange.xTicks}
                 tickFormatter={(value) => `${(value * 100).toFixed(1)}%`}
-                label={{ 
-                  value: '先手胜率', 
+                label={{
+                  value: '先手胜率',
                   position: 'bottom',
                   offset: isMobile ? 15 : 30,
-                  style: { 
+                  style: {
                     fill: 'var(--foreground)',
                     fontSize: isMobile ? 12 : 14
                   }
@@ -382,12 +423,12 @@ export function SpeedChart({ initialData }: SpeedChartProps) {
                 domain={[dataRange.yMin, dataRange.yMax]}
                 ticks={dataRange.yTicks}
                 tickFormatter={(value) => formatToOneDecimal(value)}
-                label={{ 
-                  value: '平均回合数', 
-                  angle: -90, 
+                label={{
+                  value: '平均回合数',
+                  angle: -90,
                   position: 'left',
                   offset: isMobile ? 5 : 30,
-                  style: { 
+                  style: {
                     fill: 'var(--foreground)',
                     fontSize: isMobile ? 12 : 14
                   }
@@ -395,34 +436,34 @@ export function SpeedChart({ initialData }: SpeedChartProps) {
                 tick={{ fontSize: isMobile ? 10 : 12 }}
                 width={isMobile ? 40 : 50}
               />
-              {!isMobile && <Tooltip content={<CustomTooltip />} />}
-              <Scatter 
-                data={filteredSpeedData} 
+              {!isMobile && <Tooltip content={<CustomTooltip formatLabels={formatLabels} />} />}
+              <Scatter
+                data={filteredSpeedData}
                 shape={(props: CustomScatterProps) => (
-                  <CustomScatter 
-                    {...props} 
-                    onClick={handlePointClick} 
+                  <CustomScatter
+                    {...props}
+                    onClick={handlePointClick}
                   />
                 )}
               />
             </ScatterChart>
           </ResponsiveContainer>
           {isMobile && selectedPoint && (
-            <div 
+            <div
               className="absolute pointer-events-none"
-              style={{ 
-                left: `${tooltipPosition.x}px`, 
+              style={{
+                left: `${tooltipPosition.x}px`,
                 top: `${tooltipPosition.y - 24}px`,
                 transform: tooltipAlign === 'center' ? 'translate(-50%, -100%)' :
                           tooltipAlign === 'left' ? 'translate(0, -100%)' :
                           'translate(-100%, -100%)'
               }}
             >
-              <CustomTooltip isMobile selectedPoint={selectedPoint} />
+              <CustomTooltip isMobile selectedPoint={selectedPoint} formatLabels={formatLabels} />
             </div>
           )}
         </div>
       </div>
     </>
   );
-} 
+}

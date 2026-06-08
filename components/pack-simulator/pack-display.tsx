@@ -317,7 +317,7 @@ export function PackDisplay({ packs, onFlippedCardsChange, autoFlipCommon }: Pac
               </div>
               
               {!isCollapsed && (
-                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+                <div className="pack-card-grid grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
                   {pack.cards?.map((card, cardIndex) => {
                     const isFlipped = flippedCards.has(`${packIndex}-${cardIndex}`);
                     const cardKey = `${packIndex}-${cardIndex}`;
@@ -356,7 +356,7 @@ export function PackDisplay({ packs, onFlippedCardsChange, autoFlipCommon }: Pac
                                 <div 
                                   className={`
                                     relative cursor-pointer
-                                    ${card.id.includes('foil') ? 'foil-effect' : ''} 
+                                    ${card.id.includes('foil') ? 'holo-card' : ''}
                                     ${isFlipped && card.rarity === 'rare' ? 'rare-glow' : ''}
                                     ${isFlipped && card.rarity === 'mythic' ? 'mythic-glow' : ''}
                                   `}
@@ -418,7 +418,7 @@ export function PackDisplay({ packs, onFlippedCardsChange, autoFlipCommon }: Pac
                             ) : (
                               <div className={`
                                 relative 
-                                ${card.id.includes('foil') ? 'foil-effect' : ''} 
+                                ${card.id.includes('foil') ? 'holo-card' : ''}
                                 ${isFlipped && card.rarity === 'rare' ? 'rare-glow' : ''}
                                 ${isFlipped && card.rarity === 'mythic' ? 'mythic-glow' : ''}
                               `}>

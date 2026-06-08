@@ -1,16 +1,15 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { InfoCard } from './info-card';
 import { SliderField } from './slider-field';
 import { calculateCurrentXP, calculateExpectedDailyWinsXP, calculateExpectedWeeklyWinsXP, calculateExpectedDailyQuestsXP, calculateExpectedLevel, calculateDaysLeft, getLocalRefreshTimeString, getLocalRefreshTimeStringWithWeekday } from './utils';
-import { masteryConfig } from '@/data/mastery';
 import { SetIcon } from '@/components/logo/set-icon';
-import digitalSets from '@/data/digital-sets.json';
 import { parseISO, format, isValid } from 'date-fns';
 import { zhCN } from 'date-fns/locale';
+import { fetchPublicJson } from '@/lib/public-data-client';
 
 interface MasteryState {
   // 基础信息
@@ -32,7 +31,30 @@ interface MasteryState {
   weeklyWinsPerWeek: number;
 }
 
+interface MasteryConfig {
+  setCode: string;
+  setName?: string;
+  startDate: string;
+  endDate: string;
+  maxLevel: number;
+  defaultDailyWins: number;
+  defaultWeeklyWins: number;
+}
+
+const emptyMasteryConfig: MasteryConfig = {
+  setCode: '',
+  setName: '',
+  startDate: new Date().toISOString().split('T')[0],
+  endDate: new Date().toISOString().split('T')[0],
+  maxLevel: 1,
+  defaultDailyWins: 0,
+  defaultWeeklyWins: 0,
+};
+
 export function MasteryCalculator() {
+  const [masteryConfig, setMasteryConfig] = useState<MasteryConfig>(emptyMasteryConfig);
+  const [currentSetName, setCurrentSetName] = useState('');
+  const [configLoading, setConfigLoading] = useState(true);
   const [values, setValues] = useState<MasteryState>({
     currentDate: new Date().toISOString().split('T')[0],  // 格式：YYYY-MM-DD
     endDate: masteryConfig.endDate,
@@ -48,19 +70,47 @@ export function MasteryCalculator() {
     dailyQuestsLeft: 0,
   });
 
+  useEffect(() => {
+    async function loadConfig() {
+      try {
+        const [config, digitalSets] = await Promise.all([
+          fetchPublicJson<MasteryConfig>('mastery.json'),
+          fetchPublicJson<{ sets: Array<{ code: string; name: string }> }>('digital-sets.json'),
+        ]);
+        const setName = digitalSets.sets.find(set => set.code === config.setCode)?.name || config.setName || config.setCode;
+        setMasteryConfig(config);
+        setCurrentSetName(setName);
+        setValues(prev => ({
+          ...prev,
+          endDate: config.endDate,
+          daysLeft: calculateDaysLeft(prev.currentDate, config.endDate),
+          maxLevel: config.maxLevel,
+          dailyWinsPerDay: config.defaultDailyWins,
+          weeklyWinsPerWeek: config.defaultWeeklyWins,
+        }));
+      } catch (error) {
+        console.error('加载通行证配置失败:', error);
+      } finally {
+        setConfigLoading(false);
+      }
+    }
+    loadConfig();
+  }, []);
+
   // 计算当前总经验值
   const totalXP = calculateCurrentXP(values);
-  
+
   // 计算预期经验值
   const totalDailyWinXP = calculateExpectedDailyWinsXP(values.dailyWinsPerDay, values.daysLeft);
   const totalDailyQuestXP = calculateExpectedDailyQuestsXP(values.dailyQuestsLeft, values.daysLeft);
   const totalWeeklyWinsXP = calculateExpectedWeeklyWinsXP(values.weeklyWinsPerWeek, values.daysLeft);
-  
+
   // 计算预期等级
   const expectedLevel = calculateExpectedLevel(totalXP, totalDailyWinXP + totalDailyQuestXP + totalWeeklyWinsXP);
 
-  // 获取当前系列信息
-  const currentSet = digitalSets.sets.find(set => set.code === masteryConfig.setCode);
+  if (configLoading) {
+    return <div className="max-w-5xl mx-auto text-[--muted-foreground]">正在加载通行证配置...</div>;
+  }
 
   const handleSliderChange = (field: keyof MasteryState, value: number[]) => {
     setValues(prev => ({ ...prev, [field]: value[0] }));
@@ -80,7 +130,7 @@ export function MasteryCalculator() {
         ...prev,
         [field]: value || prev[field], // 如果为空，保持原值
       };
-      
+
       // 只有在两个日期都有效时才更新剩余天数
       if (newValues.currentDate && newValues.endDate) {
         try {
@@ -94,7 +144,7 @@ export function MasteryCalculator() {
           console.warn('Date parsing failed:', error);
         }
       }
-      
+
       return newValues;
     });
   };
@@ -122,7 +172,7 @@ export function MasteryCalculator() {
           return newValues;
         }
       }
-      
+
       // 验证日期是否有效
       try {
         const dateValid = parseISO(value);
@@ -164,7 +214,7 @@ export function MasteryCalculator() {
           return newValues;
         }
       }
-      
+
       return prev;
     });
   };
@@ -179,13 +229,13 @@ export function MasteryCalculator() {
       </div>
 
       {/* 基础信息 */}
-      <InfoCard 
+      <InfoCard
         title="通行证信息"
         extra={
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
               <SetIcon set={masteryConfig.setCode} size="2x" />
-              <span>{currentSet?.name}</span>
+              <span>{currentSetName}</span>
             </div>
             <div className="text-sm text-[--muted-foreground]">
               时间：
@@ -421,4 +471,4 @@ export function MasteryCalculator() {
       </div>
     </div>
   );
-} 
+}

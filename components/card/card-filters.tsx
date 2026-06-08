@@ -2,22 +2,15 @@
 
 import { Input } from "@/components/ui/input";
 import type { CardDataParams } from "@/lib/api";
-import { useState, useRef, useMemo } from 'react';
+import { useEffect, useState, useRef, useMemo } from 'react';
 import { useMediaQuery } from '@/hooks/use-media-query';
 import { Select } from "@/components/ui/select";
 import { DateRangePicker } from "@/components/ui/date-range-picker";
 import { Popper } from "@/components/ui/popper";
 import { parseISO } from 'date-fns';
 import { SetIcon, type SetIconRarity } from '@/components/logo/set-icon';
-import { 
-  expansionOptions, 
-  formatOptions, 
-  userGroupOptions, 
-  deckColorOptions, 
-  cardColorOptions, 
-  rarityOptions 
-} from "@/lib/options";
-import { getFormatsForExpansion, getStartDateForExpansion, getLiveExpansions } from "@/lib/filter";
+import { toExpansionOptions, type PublicOptionsData } from "@/lib/options";
+import { getFormatsForExpansion, getStartDateForExpansion, getLiveExpansions, loadExpansionMetadata } from "@/lib/filter";
 
 interface CardFiltersProps {
   params: CardDataParams;
@@ -28,10 +21,11 @@ interface CardFiltersProps {
   selectedRarities: string[];
   onSearchFilter: (search: string) => void;
   searchText: string;
+  options: PublicOptionsData;
 }
 
-export function CardFilters({ 
-  params, 
+export function CardFilters({
+  params,
   onParamsChange,
   onColorFilter,
   selectedColors,
@@ -39,13 +33,30 @@ export function CardFilters({
   selectedRarities,
   onSearchFilter,
   searchText,
+  options,
 }: CardFiltersProps) {
   const startDate = parseISO(params.start_date);
   const endDate = parseISO(params.end_date);
   const isMobile = useMediaQuery('(max-width: 1024px)');
   const [showFilters, setShowFilters] = useState(false);
+  const [metadataVersion, setMetadataVersion] = useState(0);
   const filterButtonRef = useRef<HTMLButtonElement>(null);
-  const liveExpansions = useMemo(() => new Set(getLiveExpansions()), []);
+  const expansionOptions = useMemo(() => toExpansionOptions(options.expansionOptions), [options.expansionOptions]);
+  const formatOptions = options.formatOptions;
+  const userGroupOptions = options.userGroupOptions;
+  const deckColorOptions = options.deckColorOptions;
+  const cardColorOptions = options.colorOptions;
+  const rarityOptions = options.rarityOptions;
+  const liveExpansions = useMemo(() => {
+    void metadataVersion;
+    return new Set(getLiveExpansions());
+  }, [metadataVersion]);
+
+  useEffect(() => {
+    loadExpansionMetadata()
+      .then(() => setMetadataVersion(version => version + 1))
+      .catch(error => console.error('加载筛选元数据失败:', error));
+  }, []);
 
   const expansionGroups = useMemo(() => {
     const activeOptions = expansionOptions.filter(option => liveExpansions.has(option.value));
@@ -55,20 +66,21 @@ export function CardFilters({
       { label: '进行中', options: activeOptions },
       { label: '未进行', options: inactiveOptions },
     ];
-  }, [liveExpansions]);
+  }, [expansionOptions, liveExpansions]);
 
   // 根据选择的系列获取可用的赛制
   const availableFormats = useMemo(() => {
+    void metadataVersion;
     const formats = getFormatsForExpansion(params.expansion);
     // 将赛制代码转换为选项格式，并只保留在formatOptions中有定义的
     return formatOptions.filter(option => formats.includes(option.value));
-  }, [params.expansion]);
+  }, [formatOptions, params.expansion, metadataVersion]);
 
   // 当系列变化时，检查当前选择的赛制是否可用，如果不可用则选择第一个可用的赛制
   const handleExpansionChange = (expansion: string) => {
     const formats = getFormatsForExpansion(expansion);
     const newParams: Partial<CardDataParams> = { expansion };
-    
+
     // 如果当前赛制不在新系列的可用赛制列表中，选择第一个可用的赛制
     if (!formats.includes(params.event_type) && formats.length > 0) {
       // 优先选择在 formatOptions 中定义的第一个可用赛制
@@ -79,13 +91,13 @@ export function CardFilters({
         newParams.event_type = formats[0];
       }
     }
-    
+
     // 获取系列的起始日期
     const startDate = getStartDateForExpansion(expansion);
     if (startDate) {
       newParams.start_date = startDate.split('T')[0];
     }
-    
+
     onParamsChange(newParams);
   };
 
@@ -149,8 +161,8 @@ export function CardFilters({
             onClick={handleOpenFilters}
             className={`
               p-2 rounded-md transition-colors shrink-0
-              ${showFilters 
-                ? 'bg-[--primary] text-white' 
+              ${showFilters
+                ? 'bg-[--primary] text-white'
                 : 'bg-[--component-background] hover:bg-[--component-background-hover]'}
             `}
             aria-label="显示筛选选项"
@@ -220,8 +232,8 @@ export function CardFilters({
                       w-8 h-8 rounded-full flex items-center justify-center
                       card-symbol-${color.value}
                       bg-no-repeat bg-[length:100%_100%]
-                      ${selectedColors.includes(color.value) 
-                        ? 'ring-2 ring-[#FFB000] ring-opacity-80' 
+                      ${selectedColors.includes(color.value)
+                        ? 'ring-2 ring-[#FFB000] ring-opacity-80'
                         : 'hover:ring-2 hover:ring-[#FFB000] hover:ring-opacity-50 brightness-75'}
                       bg-[--component-background] hover:bg-[--component-background-hover]
                       transition-all
@@ -241,8 +253,8 @@ export function CardFilters({
               <div className="flex gap-1">
                 {rarityOptions.map((rarity) => {
                   const expansion = params.expansion;
-                  const processedSet = expansion.toLowerCase().startsWith('y') 
-                    ? `y${expansion.slice(expansion.match(/Y\d{0,2}/)![0].length)}`.toLowerCase() 
+                  const processedSet = expansion.toLowerCase().startsWith('y')
+                    ? `y${expansion.slice(expansion.match(/Y\d{0,2}/)![0].length)}`.toLowerCase()
                     : expansion.toLowerCase();
                   return (
                     <button
@@ -250,7 +262,7 @@ export function CardFilters({
                       className={`
                         w-8 h-8 rounded-full flex items-center justify-center
                         ${selectedRarities.includes(rarity.value)
-                          ? 'ring-2 ring-[#FFB000] ring-opacity-80' 
+                          ? 'ring-2 ring-[#FFB000] ring-opacity-80'
                           : 'hover:ring-2 hover:ring-[#FFB000] hover:ring-opacity-50 brightness-75'}
                         transition-all
                       `}
@@ -288,16 +300,16 @@ export function CardFilters({
             <DateRangePicker
               startDate={parseISO(tempParams.start_date)}
               endDate={parseISO(tempParams.end_date)}
-              onStartDateChange={(date) => setTempParams({ 
-                ...tempParams, 
-                start_date: date.toISOString().split('T')[0] 
+              onStartDateChange={(date) => setTempParams({
+                ...tempParams,
+                start_date: date.toISOString().split('T')[0]
               })}
-              onEndDateChange={(date) => setTempParams({ 
-                ...tempParams, 
-                end_date: date.toISOString().split('T')[0] 
+              onEndDateChange={(date) => setTempParams({
+                ...tempParams,
+                end_date: date.toISOString().split('T')[0]
               })}
             />
-            
+
             <Select
               options={availableFormats}
               value={tempParams.event_type}
@@ -305,7 +317,7 @@ export function CardFilters({
               title="模式"
               className="w-full"
             />
-            
+
             <Select
               options={userGroupOptions}
               value={tempParams.user_group}
@@ -313,7 +325,7 @@ export function CardFilters({
               title="用户组"
               className="w-full"
             />
-            
+
             <Select
               options={deckColorOptions}
               value={tempParams.colors || ""}
@@ -321,7 +333,7 @@ export function CardFilters({
               title="套牌颜色"
               className="w-full"
             />
-            
+
             <div className="space-y-2">
               <span className="text-sm text-[--component-foreground-muted] whitespace-nowrap">卡牌颜色:</span>
               <div className="flex flex-wrap gap-1">
@@ -332,8 +344,8 @@ export function CardFilters({
                       w-8 h-8 rounded-full flex items-center justify-center
                       card-symbol-${color.value}
                       bg-no-repeat bg-[length:100%_100%]
-                      ${tempColors.includes(color.value) 
-                        ? 'ring-2 ring-[#FFB000] ring-opacity-80' 
+                      ${tempColors.includes(color.value)
+                        ? 'ring-2 ring-[#FFB000] ring-opacity-80'
                         : 'hover:ring-2 hover:ring-[#FFB000] hover:ring-opacity-50 brightness-75'}
                       bg-[--component-background] hover:bg-[--component-background-hover]
                       transition-all
@@ -355,8 +367,8 @@ export function CardFilters({
                 <div className="flex flex-wrap gap-1">
                   {rarityOptions.map((rarity) => {
                     const expansion = params.expansion;
-                    const processedSet = expansion.toLowerCase().startsWith('y') 
-                      ? `y${expansion.slice(expansion.match(/Y\d{0,2}/)![0].length)}`.toLowerCase() 
+                    const processedSet = expansion.toLowerCase().startsWith('y')
+                      ? `y${expansion.slice(expansion.match(/Y\d{0,2}/)![0].length)}`.toLowerCase()
                       : expansion.toLowerCase();
                     return (
                       <button
@@ -364,7 +376,7 @@ export function CardFilters({
                         className={`
                           w-8 h-8 rounded-full flex items-center justify-center
                           ${tempRarities.includes(rarity.value)
-                            ? 'ring-2 ring-[#FFB000] ring-opacity-80' 
+                            ? 'ring-2 ring-[#FFB000] ring-opacity-80'
                             : 'hover:ring-2 hover:ring-[#FFB000] hover:ring-opacity-50 brightness-75'}
                           transition-all
                         `}
@@ -399,4 +411,4 @@ export function CardFilters({
       )}
     </div>
   );
-} 
+}

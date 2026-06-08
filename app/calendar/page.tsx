@@ -1,8 +1,62 @@
 import { EventCard } from '@/components/calendar/event-card';
-import { events, calendarMetadata } from '@/data/events';
 import { ExternalLink } from 'lucide-react';
 import { generateMetadata } from '../metadata';
 import { DesktopTableOfContents, MobileTableOfContents } from '../../components/calendar/table-of-contents';
+import { readPublicJson } from '@/lib/public-data';
+
+interface CalendarEvent {
+  title: string;
+  startTime: string;
+  endTime: string;
+  format?: string;
+  description?: string;
+}
+
+type CalendarEventType = 'midweek_magic' | 'premier_draft' | 'quick_draft' | 'other' | 'premier_play' | 'arena_direct' | 'arena_championship';
+type CalendarGroupId = CalendarEventType | 'competitive_events';
+
+interface CalendarGroup {
+  id: CalendarGroupId;
+  title: string;
+  description?: string;
+  events?: CalendarEvent[];
+  groups?: CalendarGroup[];
+}
+
+interface CalendarData {
+  metadata: {
+    lastUpdated: string;
+    announcementUrl: string;
+  };
+  groups: CalendarGroup[];
+}
+
+const sectionIds: Record<CalendarGroupId, string> = {
+  midweek_magic: 'midweek-magic',
+  premier_draft: 'premier-draft',
+  quick_draft: 'quick-draft',
+  other: 'other-events',
+  competitive_events: 'competitive-events',
+  arena_direct: 'arena-direct',
+  premier_play: 'qualifier',
+  arena_championship: 'championship',
+};
+
+function isEventGroup(group: CalendarGroup): group is CalendarGroup & { id: CalendarEventType; events: CalendarEvent[] } {
+  return group.id !== 'competitive_events' && Array.isArray(group.events) && group.events.length > 0;
+}
+
+function renderEventCards(group: CalendarGroup & { id: CalendarEventType; events: CalendarEvent[] }) {
+  return group.events.map((event, index) => (
+    <EventCard
+      key={`${group.id}-${index}`}
+      {...event}
+      type={group.id}
+      startTime={new Date(event.startTime)}
+      endTime={new Date(event.endTime)}
+    />
+  ));
+}
 
 export const metadata = generateMetadata(
   "十七地 - MTGA活动日历",
@@ -13,14 +67,8 @@ export const metadata = generateMetadata(
   }
 );
 
-export default function CalendarPage() {
-  const midweekMagicEvents = events.filter(event => event.type === 'midweek_magic');
-  const premierDraftEvents = events.filter(event => event.type === 'premier_draft');
-  const quickDraftEvents = events.filter(event => event.type === 'quick_draft');
-  const otherEvents = events.filter(event => event.type === 'other');
-  const premierPlayEvents = events.filter(event => event.type === 'premier_play');
-  const arenaDirectEvents = events.filter(event => event.type === 'arena_direct');
-  const arenaChampionshipEvents = events.filter(event => event.type === 'arena_championship');
+export default async function CalendarPage() {
+  const { groups, metadata: calendarMetadata } = await readPublicJson<CalendarData>('events.json');
 
   return (
     <>
@@ -47,7 +95,7 @@ export default function CalendarPage() {
                   </a>
                 </div>
               </div>
-              
+
               {/* 说明 */}
               <div className="bg-[--card] rounded-lg p-4 mb-8">
                 <p className="text-sm text-[--muted-foreground] leading-relaxed">
@@ -55,120 +103,55 @@ export default function CalendarPage() {
                 </p>
               </div>
 
-              {/* 周中万智牌 */}
-              {midweekMagicEvents.length > 0 && (
-                <section id="midweek-magic" className="mb-8 scroll-mt-24">
-                  <h2 className="text-xl font-semibold mb-4">周中万智牌</h2>
-                  <div className="bg-[--card] rounded-lg p-4">
-                    <p className="text-sm text-[--muted-foreground] mb-4 leading-relaxed">
-                      周中万智牌活动在每周三凌晨 5-6 点开放，周五凌晨 5-6 点停止参加（UTC+08:00）。
-                    </p>
-                    <div className="space-y-3">
-                      {midweekMagicEvents.map((event, index) => (
-                        <EventCard key={index} {...event} />
-                      ))}
-                    </div>
-                  </div>
-                </section>
-              )}
+              {groups.map((group) => {
+                if (group.id === 'competitive_events') {
+                  const subgroups = (group.groups ?? []).filter(isEventGroup);
+                  if (subgroups.length === 0) return null;
 
-              {/* 竞技轮抽 */}
-              {premierDraftEvents.length > 0 && (
-                <section id="premier-draft" className="mb-8 scroll-mt-24">
-                  <h2 className="text-xl font-semibold mb-4">竞技轮抽</h2>
-                  <div className="bg-[--card] rounded-lg p-4">
-                    <p className="text-sm text-[--muted-foreground] mb-4 leading-relaxed">
-                      与其他牌手一同进行轮抽，有抽选时间限制。
-                    </p>
-                    <div className="space-y-3">
-                      {premierDraftEvents.map((event, index) => (
-                        <EventCard key={index} {...event} />
-                      ))}
-                    </div>
-                  </div>
-                </section>
-              )}
+                  return (
+                    <section key={group.id} id={sectionIds[group.id]} className="mb-8 scroll-mt-24">
+                      <h2 className="text-xl font-semibold mb-4">{group.title}</h2>
+                      <div className="bg-[--card] rounded-lg p-4">
+                        {subgroups.map((subgroup, index) => (
+                          <div
+                            key={subgroup.id}
+                            id={sectionIds[subgroup.id]}
+                            className={`${index < subgroups.length - 1 ? 'mb-8' : ''} scroll-mt-24`}
+                          >
+                            <h3 className="text-lg font-medium mb-4">{subgroup.title}</h3>
+                            {subgroup.description && (
+                              <p className="text-sm text-[--muted-foreground] mb-4 leading-relaxed">
+                                {subgroup.description}
+                              </p>
+                            )}
+                            <div className="space-y-3">
+                              {renderEventCards(subgroup)}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </section>
+                  );
+                }
 
-              {/* 快速轮抽 */}
-              {quickDraftEvents.length > 0 && (
-                <section id="quick-draft" className="mb-8 scroll-mt-24">
-                  <h2 className="text-xl font-semibold mb-4">快速轮抽</h2>
-                  <div className="bg-[--card] rounded-lg p-4">
-                    <p className="text-sm text-[--muted-foreground] mb-4 leading-relaxed">
-                      与 AI 一同进行轮抽，无需等待，没有抽选时间限制。
-                    </p>
-                    <div className="space-y-3">
-                      {quickDraftEvents.map((event, index) => (
-                        <EventCard key={index} {...event} />
-                      ))}
-                    </div>
-                  </div>
-                </section>
-              )}
+                if (!isEventGroup(group)) return null;
 
-              {/* 其他活动 */}
-              {otherEvents.length > 0 && (
-                <section id="other-events" className="mb-8 scroll-mt-24">
-                  <h2 className="text-xl font-semibold mb-4">其他活动</h2>
-                  <div className="bg-[--card] rounded-lg p-4">
-                    <div className="space-y-3">
-                      {otherEvents.map((event, index) => (
-                        <EventCard key={index} {...event} />
-                      ))}
-                    </div>
-                  </div>
-                </section>
-              )}
-
-              {/* 竞技比赛日程 */}
-              {(premierPlayEvents.length > 0 || arenaDirectEvents.length > 0 || arenaChampionshipEvents.length > 0) && (
-                <section id="competitive-events" className="mb-8 scroll-mt-24">
-                  <h2 className="text-xl font-semibold mb-4">竞技赛程</h2>
-                  <div className="bg-[--card] rounded-lg p-4">
-                    {/* 竞技场直邮赛 */}
-                    {arenaDirectEvents.length > 0 && (
-                      <div id="arena-direct" className="mb-8 scroll-mt-24">
-                        <h3 className="text-lg font-medium mb-4">竞技场直邮赛</h3>
+                return (
+                  <section key={group.id} id={sectionIds[group.id]} className="mb-8 scroll-mt-24">
+                    <h2 className="text-xl font-semibold mb-4">{group.title}</h2>
+                    <div className="bg-[--card] rounded-lg p-4">
+                      {group.description && (
                         <p className="text-sm text-[--muted-foreground] mb-4 leading-relaxed">
-                          参加赛事，竞夺卡盒！赢取实体奖励直邮到家（限制部分地区，以官方公告为准）。
+                          {group.description}
                         </p>
-                        <div className="space-y-3">
-                          {arenaDirectEvents.map((event, index) => (
-                            <EventCard key={index} {...event} />
-                          ))}
-                        </div>
+                      )}
+                      <div className="space-y-3">
+                        {renderEventCards(group)}
                       </div>
-                    )}
-
-                    {/* 资格赛 */}
-                    {premierPlayEvents.length > 0 && (
-                      <div id="qualifier" className="mb-8 scroll-mt-24">
-                        <h3 className="text-lg font-medium mb-4">资格赛</h3>
-                        <div className="space-y-3">
-                          {premierPlayEvents.map((event, index) => (
-                            <EventCard key={index} {...event} />
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
-                    {/* 竞技场锦标赛 */}
-                    {arenaChampionshipEvents.length > 0 && (
-                      <div id="championship" className="scroll-mt-24">
-                        <h3 className="text-lg font-medium mb-4">竞技场冠军赛</h3>
-                        <p className="text-sm text-[--muted-foreground] mb-4 leading-relaxed">
-                          竞技场冠军赛是一个为期两天的线上邀请赛，参赛资格通过资格赛周末活动获得。
-                        </p>
-                        <div className="space-y-3">
-                          {arenaChampionshipEvents.map((event, index) => (
-                            <EventCard key={index} {...event} />
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </section>
-              )}
+                    </div>
+                  </section>
+                );
+              })}
             </div>
 
             <div className="hidden lg:block">
@@ -181,4 +164,4 @@ export default function CalendarPage() {
       </div>
     </>
   );
-} 
+}

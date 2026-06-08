@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { ManaText } from '@/components/mana/mana-text';
+import { fetchPublicJson } from '@/lib/public-data-client';
 
 interface Ability {
   name: string;
@@ -28,11 +29,10 @@ export function AbilityTooltip({ children, abilityName }: AbilityTooltipProps) {
     async function loadAbility() {
       try {
         if (!abilitiesCache) {
-          const response = await import('@/data/previews/abilities.json');
-          abilitiesCache = response.default;
+          abilitiesCache = await fetchPublicJson<Ability[]>('previews/abilities.json');
         }
 
-        const ability = abilitiesCache.find(a => {
+        const ability = abilitiesCache?.find(a => {
           const nameMatch = a.name.toLowerCase() === abilityName.toLowerCase();
           const aliasMatch = Array.isArray(a.alias) && a.alias.some(alias => alias.toLowerCase() === abilityName.toLowerCase());
           return nameMatch || aliasMatch;
@@ -140,7 +140,7 @@ export function AbilityTooltip({ children, abilityName }: AbilityTooltipProps) {
             opacity: position.x === 0 ? 0 : 1,
           }}
         >
-          <div 
+          <div
             className="rounded-lg bg-[--card] border border-[--border] shadow-lg relative after:absolute after:w-3 after:h-3 after:rotate-45 after:bg-[--card] after:border after:border-[--border]"
             style={{
               '--arrow-offset': `${position.arrowOffset || 0}px`,
@@ -167,4 +167,4 @@ export function AbilityTooltip({ children, abilityName }: AbilityTooltipProps) {
       )}
     </>
   );
-} 
+}

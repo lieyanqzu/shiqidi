@@ -1,8 +1,8 @@
 import { generateMetadata } from '../metadata';
-import rotationData from '@/data/rotation.json';
 import { Content } from '@/components/rotation/content';
 import type { Set, Ban } from '@/types/rotation';
 import { parseISO, isValid } from 'date-fns';
+import { readPublicJson } from '@/lib/public-data';
 
 export const metadata = generateMetadata(
   "十七地 - 标准轮替日程",
@@ -40,9 +40,9 @@ function isValidSet(set: unknown): set is Set {
     (typeof s.exit_date === 'string' || s.rough_exit_date !== null);
 }
 
-export default function RotationPage() {
+export default async function RotationPage() {
   const now = new Date();
-  const data = rotationData as unknown as RotationData;
+  const data = await readPublicJson<RotationData>('rotation.json');
 
   const sets = data.sets
     .filter(isValidSet)
@@ -119,4 +119,4 @@ export default function RotationPage() {
       />
     </div>
   );
-} 
+}

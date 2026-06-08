@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from 'react';
 import { useSetStore } from '@/lib/store';
-import { getAvailableSets } from '@/lib/pack-simulator';
 import type { Set } from '@/types/pack-simulator';
 import { SetIcon, type SetIconSize } from '@/components/logo/set-icon';
 
@@ -12,6 +11,7 @@ interface SetSelectProps {
   disabled?: boolean;
   title?: string;
   iconSize?: '1x' | '2x' | '3x' | '4x' | '5x' | '6x';
+  sets: Set[];
 }
 
 // 将 pack-simulator 的尺寸格式转换为 SetIcon 支持的格式
@@ -21,10 +21,9 @@ const mapIconSize = (size: '1x' | '2x' | '3x' | '4x' | '5x' | '6x'): SetIconSize
   return size as SetIconSize;
 };
 
-export function SetSelect({ value, onChange, disabled, iconSize = '1x' }: SetSelectProps) {
+export function SetSelect({ value, onChange, disabled, iconSize = '1x', sets }: SetSelectProps) {
   const { chineseSetNames } = useSetStore();
   const [isOpen, setIsOpen] = useState(false);
-  const sets = getAvailableSets();
 
   // 点击外部时关闭下拉菜单
   useEffect(() => {
@@ -93,4 +92,4 @@ export function SetSelect({ value, onChange, disabled, iconSize = '1x' }: SetSel
       )}
     </div>
   );
-} 
+}

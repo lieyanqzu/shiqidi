@@ -1,4 +1,4 @@
-import filterData from '@/data/filter.json';
+import { fetchPublicJson } from '@/lib/public-data-client';
 
 export interface ExpansionMetadata {
   colors: (string | null)[];
@@ -16,9 +16,22 @@ let cachedMetadata: ExpansionMetadata | null = null;
 
 function getMetadata(): ExpansionMetadata {
   if (!cachedMetadata) {
-    // 使用 ES6 import 加载 JSON
-    cachedMetadata = filterData as ExpansionMetadata;
+    cachedMetadata = {
+      colors: [],
+      expansions: [],
+      formats: [],
+      formats_by_expansion: {},
+      live_formats_by_expansion: {},
+      groups: [],
+      ranked_formats: [],
+      start_dates: {},
+    };
   }
+  return cachedMetadata;
+}
+
+export async function loadExpansionMetadata(): Promise<ExpansionMetadata> {
+  cachedMetadata = await fetchPublicJson<ExpansionMetadata>('filter.json');
   return cachedMetadata;
 }
 
@@ -79,4 +92,3 @@ export function getAllGroups(): (string | null)[] {
 export function getExpansionMetadata(): ExpansionMetadata {
   return getMetadata();
 }
-

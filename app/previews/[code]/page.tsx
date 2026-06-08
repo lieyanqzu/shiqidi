@@ -1,38 +1,31 @@
 import { notFound } from 'next/navigation';
 import { generateMetadata as baseGenerateMetadata } from '../../metadata';
 import type { PreviewSet } from '@/types/previews';
-import fs from 'fs';
-import path from 'path';
 import { PreviewContent } from '@/components/previews/preview-content';
 import { parseISO, isValid } from 'date-fns';
+import { listPublicDataFiles, readPublicJson } from '@/lib/public-data';
 
 // 获取预览数据
 async function getPreviewData(code: string): Promise<PreviewSet | null> {
   try {
     // 尝试使用大写的代码
     const upperCode = code.toUpperCase();
-    const data = await import(`@/data/previews/${upperCode}.json`);
-    return data.default;
+    return await readPublicJson<PreviewSet>(`previews/${upperCode}.json`);
   } catch {
     return null;
   }
 }
 
 // 获取所有预览系列的代码
-function getPreviewCodes(): string[] {
-  const previewsDir = path.join(process.cwd(), 'data/previews');
-  if (!fs.existsSync(previewsDir)) {
-    fs.mkdirSync(previewsDir, { recursive: true });
-    return [];
-  }
-  const files = fs.readdirSync(previewsDir);
+async function getPreviewCodes(): Promise<string[]> {
+  const files = await listPublicDataFiles('previews');
   return files
-    .filter(file => file.endsWith('.json'))
+    .filter(file => /^Y.+\.json$/.test(file))
     .map(file => file.replace('.json', ''));
 }
 
 export async function generateStaticParams() {
-  const codes = getPreviewCodes();
+  const codes = await getPreviewCodes();
   // 为每个代码生成大写和小写两个版本的参数
   return codes.flatMap(code => [
     { code: code.toLowerCase() },  // 小写版本
@@ -49,7 +42,7 @@ interface PreviewPageProps {
 export async function generateMetadata(props: PreviewPageProps) {
   const { code } = await props.params;
   const previewData = await getPreviewData(code);
-  
+
   if (!previewData) {
     return baseGenerateMetadata(
       "十七地 - 炼金系列预览",
@@ -78,7 +71,7 @@ export async function generateMetadata(props: PreviewPageProps) {
 export default async function PreviewPage(props: PreviewPageProps) {
   const { code } = await props.params;
   const previewData = await getPreviewData(code);
-  
+
   if (!previewData) {
     notFound();
   }

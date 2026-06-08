@@ -1,0 +1,393 @@
+{
+  "sets": [
+    {
+      "name": "万智牌：基石构筑",
+      "code": "FDN",
+      "releaseDate": "2024-11-13"
+    },
+    {
+      "name": "先驱大师",
+      "code": "PIO",
+      "releaseDate": "2024-12-11"
+    },
+    {
+      "name": "乙太飘移",
+      "code": "DFT",
+      "releaseDate": "2025-02-12",
+      "wikiUrl": "https://mtg.wiki/page/Aetherdrift?utm_source=shiqidi",
+      "preview": {
+        "title": "扣紧护带",
+        "description": "甩开对手！上车加入乙太飘移，参与这场跨越三个时空、让肾上腺素飙升的多重宇宙竞速赛。",
+        "backgroundImage": "/image/background/DFT_sma_key_1920x1080_en.jpg",
+        "links": [
+          {
+            "name": "大学院废墟（中文）",
+            "url": "https://mtgch.com/previews/DFT?utm_source=shiqidi"
+          },
+          {
+            "name": "官网牌图集合",
+            "url": "https://magic.wizards.com/en/products/aetherdrift/card-image-gallery"
+          },
+          {
+            "name": "Scryfall",
+            "url": "https://scryfall.com/sets/dft?order=spoiled&utm_source=shiqidi"
+          },
+          {
+            "name": "Untapped.gg",
+            "url": "https://mtga.untapped.gg/codex/spoilers/aetherdrift?sortBy=spoilerDate&utm_source=shiqidi"
+          }
+        ]
+      }
+    },
+    {
+      "name": "炼金：乙太飘移",
+      "code": "YDFT",
+      "releaseDate": "2025-03-05",
+      "wikiUrl": "https://mtg.wiki/page/Alchemy:_Aetherdrift?utm_source=shiqidi",
+      "preview": {
+        "title": "炼金预览",
+        "description": "最新炼金系列将于2025年3月5日上线万智牌：竞技场，即日起开始预览。",
+        "links": [
+          {
+            "name": "十七地（中文）",
+            "url": "/previews/ydft"
+          },
+          {
+            "name": "Scryfall",
+            "url": "https://scryfall.com/sets/ydft?order=spoiled&utm_source=shiqidi"
+          }
+        ]
+      }
+    },
+    {
+      "name": "鞑契龙岚录",
+      "code": "TDM",
+      "releaseDate": "2025-04-09",
+      "wikiUrl": "https://mtg.wiki/page/Tarkir:_Dragonstorm?utm_source=shiqidi",
+      "preview": {
+        "title": "冲破风暴",
+        "description": "鞑契比以往更大更狂放，其中满是电影化的行动、充满活力的部落特色，还有强力的新龙，可以成为加入你收藏的持久火力。",
+        "backgroundImage": "/image/background/TDM_sma_key_1920x1080_en.jpg",
+        "links": [
+          {
+            "name": "大学院废墟（中文）",
+            "url": "https://mtgch.com/previews/TDM?utm_source=shiqidi"
+          },
+          {
+            "name": "官网牌图集合",
+            "url": "https://magic.wizards.com/en/products/tarkir-dragonstorm/card-image-gallery"
+          },
+          {
+            "name": "Scryfall",
+            "url": "https://scryfall.com/sets/tdm?order=spoiled&utm_source=shiqidi"
+          },
+          {
+            "name": "Untapped.gg",
+            "url": "https://mtga.untapped.gg/codex/sets/tarkir-dragonstorm?sortBy=spoilerDate&utm_source=shiqidi"
+          }
+        ]
+      }
+    },
+    {
+      "name": "炼金：鞑契",
+      "code": "YTDM",
+      "releaseDate": "2025-04-30",
+      "wikiUrl": "https://mtg.wiki/page/Alchemy:_Tarkir?utm_source=shiqidi",
+      "preview": {
+        "title": "炼金预览",
+        "description": "最新炼金系列将于2025年4月30日上线万智牌：竞技场，即日起开始预览。",
+        "links": [
+          {
+            "name": "十七地（中文）",
+            "url": "/previews/ytdm"
+          },
+          {
+            "name": "Scryfall",
+            "url": "https://scryfall.com/sets/ytdm?order=spoiled&utm_source=shiqidi"
+          }
+        ]
+      }
+    },
+    {
+      "name": "万智牌～最终幻想",
+      "code": "FIN",
+      "releaseDate": "2025-06-11",
+      "wikiUrl": "https://mtg.wiki/page/Final_Fantasy?utm_source=shiqidi",
+      "preview": {
+        "title": "史诗聚集于此",
+        "description": "施放强大的咒语，唤出经典的召唤兽，还可以乘在陆行鸟背上前往你最爱的地方。用数不胜数的原游戏的元素来创造你自己的故事！",
+        "backgroundImage": "/image/background/FIN_sma_key_1920x1080.jpg",
+        "links": [
+          {
+            "name": "大学院废墟（中文）",
+            "url": "https://mtgch.com/previews/FIN/?utm_source=shiqidi"
+          },
+          {
+            "name": "官网牌图集合",
+            "url": "https://magic.wizards.com/en/products/final-fantasy/card-image-gallery"
+          },
+          {
+            "name": "Scryfall",
+            "url": "https://scryfall.com/sets/fin?order=spoiled&utm_source=shiqidi"
+          },
+          {
+            "name": "Untapped.gg",
+            "url": "https://mtga.untapped.gg/codex/sets/final-fantasy?sortBy=spoilerDate&utm_source=shiqidi"
+          }
+        ]
+      }
+    },
+    {
+      "name": "虚空边域",
+      "code": "EOE",
+      "releaseDate": "2025-07-30",
+      "wikiUrl": "https://mtg.wiki/page/Edge_of_Eternities?utm_source=shiqidi",
+      "preview": {
+        "title": "于群星间寻找魔法",
+        "description": "加速驶入万智牌的太空幻想系列！绘制航线，穿行于索瑟拉星系，探索遥远的行星，使用炫目的魔法，和各种陌生派系开战。",
+        "backgroundImage": "/image/background/EOE_sma_key_1920x1080_en.jpg",
+        "links": [
+          {
+            "name": "大学院废墟（中文）",
+            "url": "https://mtgch.com/previews/EOE/?utm_source=shiqidi"
+          },
+          {
+            "name": "官网牌图集合",
+            "url": "https://magic.wizards.com/en/products/edge-of-eternities/card-image-gallery"
+          },
+          {
+            "name": "Scryfall",
+            "url": "https://scryfall.com/sets/eoe?order=spoiled&utm_source=shiqidi"
+          },
+          {
+            "name": "Untapped.gg",
+            "url": "https://mtga.untapped.gg/codex/sets/edge-of-eternities?sortBy=spoilerDate&utm_source=shiqidi"
+          }
+        ]
+      }
+    },
+    {
+      "name": "炼金：虚空边域",
+      "code": "YEOE",
+      "releaseDate": "2025-08-20",
+      "wikiUrl": "https://mtg.wiki/page/Alchemy:_Edge_of_Eternities?utm_source=shiqidi",
+      "preview": {
+        "title": "炼金预览",
+        "description": "最新炼金系列将于2025年8月20日上线万智牌：竞技场，即日起开始预览。",
+        "links": [
+          {
+            "name": "十七地（中文）",
+            "url": "/previews/yeoe"
+          },
+          {
+            "name": "Scryfall",
+            "url": "https://scryfall.com/sets/yeoe?order=spoiled&utm_source=shiqidi"
+          }
+        ]
+      }
+    },
+    {
+      "name": "漫威的蜘蛛侠",
+      "code": "SPM",
+      "releaseDate": "2025-09-24",
+      "wikiUrl": "https://mtg.wiki/page/Marvel%27s_Spider-Man?utm_source=shiqidi",
+      "preview": {
+        "title": "友好。超凡。神奇。",
+        "description": "咻的一下进入我们的新系列！万智牌 | 漫威的蜘蛛侠从整个蜘蛛侠宇宙将牌张射入你最爱的套牌。",
+        "backgroundImage": "/image/background/SPM_sma_key_1920x1080_en.jpg",
+        "links": [
+          {
+            "name": "大学院废墟（中文）",
+            "url": "https://mtgch.com/previews/SPM/?utm_source=shiqidi"
+          },
+          {
+            "name": "官网牌图集合",
+            "url": "https://magic.wizards.com/en/products/marvel/spider-man/card-image-gallery"
+          },
+          {
+            "name": "Scryfall",
+            "url": "https://scryfall.com/sets/spm?order=spoiled&utm_source=shiqidi"
+          },
+          {
+            "name": "Untapped.gg",
+            "url": "https://mtga.untapped.gg/codex/sets/marvels-spider-man?sortBy=spoilerDate&utm_source=shiqidi"
+          }
+        ],
+        "digitalName": "穿越预兆路",
+        "digitalCode": "OM1",
+        "digitalLinks": [
+          {
+            "name": "大学院废墟（中文）",
+            "url": "https://mtgch.com/previews/OM1/?utm_source=shiqidi"
+          },
+          {
+            "name": "官网牌图集合",
+            "url": "https://magic.wizards.com/en/mtgarena/through-the-omenpaths/card-image-gallery"
+          }
+        ]
+      }
+    },
+    {
+      "name": "降世神通：最后的气宗",
+      "code": "TLA",
+      "releaseDate": "2025-11-19",
+      "wikiUrl": "https://mtg.wiki/page/Avatar:_The_Last_Airbender?utm_source=shiqidi",
+      "preview": {
+        "title": "掌控元素",
+        "description": "使用降世神通：最后的气宗的万智牌牌张驾驭战场！掌控元素，和喜爱的角色一起开始新冒险，欣赏经典插画以及前所未有的元素对抗。",
+        "backgroundImage": "/image/background/TLA_sma_key_1920x1080_EN.jpg",
+        "links": [
+          {
+            "name": "大学院废墟（中文）",
+            "url": "https://mtgch.com/set/TLA/?utm_source=shiqidi"
+          },
+          {
+            "name": "官网牌图集合",
+            "url": "https://magic.wizards.com/en/products/avatar-the-last-airbender/card-image-gallery"
+          },
+          {
+            "name": "Scryfall",
+            "url": "https://scryfall.com/sets/tla?order=spoiled&utm_source=shiqidi"
+          },
+          {
+            "name": "Untapped.gg",
+            "url": "https://mtga.untapped.gg/codex/sets/avatar-the-last-airbender?sortBy=spoilerDate&utm_source=shiqidi"
+          }
+        ]
+      }
+    },
+    {
+      "name": "洛温：暗影笼罩",
+      "code": "ECL",
+      "releaseDate": "2026-01-21",
+      "wikiUrl": "https://mtg.wiki/page/Lorwyn_Eclipsed?utm_source=shiqidi",
+      "preview": {
+        "title": "回到光与影的土地",
+        "description": "拥抱暗影荒原扭曲的地貌和狂野的魔法，这是永夜的世界，充斥着更加混乱的生物。在这个双面时空的恒久月光下找到真实的自己。",
+        "backgroundImage": "/image/background/ECL_sma_key_1920x1080_en.jpg",
+        "links": [
+          {
+            "name": "大学院废墟（中文）",
+            "url": "https://mtgch.com/previews/ECL/?utm_source=shiqidi"
+          },
+          {
+            "name": "官网牌图集合",
+            "url": "https://magic.wizards.com/en/products/lorwyn-eclipsed/card-image-gallery"
+          },
+          {
+            "name": "Scryfall",
+            "url": "https://scryfall.com/sets/ecl?order=spoiled&utm_source=shiqidi"
+          },
+          {
+            "name": "Untapped.gg",
+            "url": "https://mtga.untapped.gg/codex/sets/lorwyn-eclipsed?sortBy=spoilerDate&utm_source=shiqidi"
+          }
+        ]
+      }
+    },
+    {
+      "name": "炼金：洛温",
+      "code": "YECL",
+      "releaseDate": "2026-02-04",
+      "wikiUrl": "https://mtg.wiki/page/Alchemy:_Lorwyn?utm_source=shiqidi",
+      "preview": {
+        "title": "炼金预览",
+        "description": "最新炼金系列将于2026年2月4日上线万智牌：竞技场，即日起开始预览。",
+        "links": [
+          {
+            "name": "十七地（中文）",
+            "url": "/previews/yecl"
+          },
+          {
+            "name": "Scryfall",
+            "url": "https://scryfall.com/sets/yecl?order=spoiled&utm_source=shiqidi"
+          }
+        ]
+      }
+    },
+    {
+      "name": "忍者神龟",
+      "code": "TMT",
+      "releaseDate": "2026-03-04",
+      "wikiUrl": "https://mtg.wiki/page/Teenage_Mutant_Ninja_Turtles?utm_source=shiqidi",
+      "preview": {
+        "title": "神龟之力",
+        "description": "忍者神龟一个后空翻来到万智牌，使用神龟的力量和防御力来保护街道免遭施瑞德和突变人的破坏。",
+        "backgroundImage": "/image/background/TMT_sma_key_1920x1080.jpg",
+        "links": [
+          {
+            "name": "大学院废墟（中文）",
+            "url": "https://mtgch.com/previews/TMT/?utm_source=shiqidi"
+          },
+          {
+            "name": "官网牌图集合",
+            "url": "https://magic.wizards.com/en/products/teenage-mutant-ninja-turtles/card-image-gallery"
+          },
+          {
+            "name": "Scryfall",
+            "url": "https://scryfall.com/sets/tmt?order=spoiled&utm_source=shiqidi"
+          },
+          {
+            "name": "Untapped.gg",
+            "url": "https://mtga.untapped.gg/codex/sets/teenage-mutant-ninja-turtles?sortBy=spoilerDate&utm_source=shiqidi"
+          }
+        ]
+      }
+    },
+    {
+      "name": "斯翠海文的秘密",
+      "code": "SOS",
+      "releaseDate": "2026-04-22",
+      "wikiUrl": "https://mtg.wiki/page/Secrets_of_Strixhaven?utm_source=shiqidi"
+    },
+    {
+      "name": "炼金：斯翠海文",
+      "code": "YSOS",
+      "releaseDate": "2026-05-20",
+      "wikiUrl": "https://mtg.wiki/page/Alchemy:_Strixhaven?utm_source=shiqidi",
+      "preview": {
+        "title": "炼金预览",
+        "description": "最新炼金系列将于2026年5月20日上线万智牌：竞技场，即日起开始预览。",
+        "links": [
+          {
+            "name": "十七地（中文）",
+            "url": "/previews/ysos"
+          },
+          {
+            "name": "Scryfall",
+            "url": "https://scryfall.com/sets/ysos?order=spoiled&utm_source=shiqidi"
+          }
+        ]
+      }
+    },
+    {
+      "name": "漫威超级英雄",
+      "code": "MSH",
+      "releaseDate": "2026-06-24",
+      "wikiUrl": "https://mtg.wiki/page/Marvel_Super_Heroes?utm_source=shiqidi",
+      "preview": {
+        "title": "<span class=\"avengers-strike\"><span class=\"avengers-logo\" role=\"img\" aria-label=\"复仇者\"></span></span> 牌手们，集结",
+        "description": "漫威宇宙全力出击！全明星豪华阵容走出漫画，加入战场，世界的命运悬而未决。",
+        "backgroundImage": "/image/background/MSH_sma_key_1920x1080.jpg",
+        "links": [
+          {
+            "name": "大学院废墟（中文）",
+            "url": "https://mtgch.com/previews/MSH/?utm_source=shiqidi"
+          },
+          {
+            "name": "官网牌图集合",
+            "url": "https://magic.wizards.com/en/products/marvel/marvel-super-heroes/card-image-gallery"
+          },
+          {
+            "name": "Scryfall",
+            "url": "https://scryfall.com/sets/msh?order=spoiled&utm_source=shiqidi"
+          },
+          {
+            "name": "Untapped.gg",
+            "url": "https://mtga.untapped.gg/codex/sets/marvel-super-heroes?sortBy=spoilerDate&utm_source=shiqidi"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -27,11 +27,11 @@ async function fetchFilterData() {
 
 async function main() {
   try {
-    console.log('Fetching expansion metadata...');
+    console.log('Fetching 17Lands filter metadata...');
     const data = await fetchFilterData();
-    
+
     // 确保目录存在
-    const dir = path.join(__dirname, '../data');
+    const dir = path.join(__dirname, '../public/data');
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir, { recursive: true });
     }
@@ -39,15 +39,14 @@ async function main() {
     // 写入数据
     fs.writeFileSync(
       path.join(dir, 'filter.json'),
-      JSON.stringify(data, null, 2)
+      `${JSON.stringify(data, null, 2)}\n`
     );
-    
-    console.log('Expansion metadata has been saved successfully!');
+
+    console.log('Filter metadata has been saved to public/data/filter.json');
   } catch (error) {
-    console.error('Error fetching expansion metadata:', error);
+    console.error('Error fetching filter metadata:', error);
     process.exit(1);
   }
 }
 
 main();
-

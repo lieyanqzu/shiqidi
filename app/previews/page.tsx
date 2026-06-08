@@ -1,10 +1,9 @@
-import { promises as fs } from 'fs';
-import path from 'path';
 import Link from 'next/link';
 import type { PreviewSet } from '@/types/previews';
 import { generateMetadata as baseGenerateMetadata } from '../metadata';
 import { parseISO, isValid } from 'date-fns';
 import { SetIcon } from '@/components/logo/set-icon';
+import { listPublicDataFiles, readPublicJson } from '@/lib/public-data';
 
 export const metadata = baseGenerateMetadata(
   "十七地 - 炼金系列预览",
@@ -16,23 +15,21 @@ export const metadata = baseGenerateMetadata(
 );
 
 async function getPreviewSets(): Promise<PreviewSet[]> {
-  const previewsDir = path.join(process.cwd(), 'data/previews');
-  const files = await fs.readdir(previewsDir);
+  const files = await listPublicDataFiles('previews');
   const jsonFiles = files.filter(file => file.endsWith('.json'));
 
   const previewSets = await Promise.all(
     jsonFiles.map(async file => {
       try {
-        const filePath = path.join(previewsDir, file);
-        const content = await fs.readFile(filePath, 'utf8');
-        const data = JSON.parse(content);
-        
+        if (file === 'abilities.json' || file === 'index.json') return null;
+        const data = await readPublicJson<PreviewSet>(`previews/${file}`);
+
         // 确保这是一个有效的预览集
         if (!data.code || !data.name || !Array.isArray(data.cards)) {
           console.warn(`跳过无效的预览集文件: ${file}`);
           return null;
         }
-        
+
         return data as PreviewSet;
       } catch (error) {
         console.error(`解析预览集文件时出错: ${file}`, error);
@@ -97,4 +94,4 @@ export default async function PreviewsPage() {
       </div>
     </div>
   );
-} 
+}
