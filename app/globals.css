@@ -151,113 +151,164 @@ tr:hover td {
   transform: rotateY(180deg);
 }
 
-/* 闪卡效果 */
+/* 自动流动镭射闪卡效果 */
+.holo-card,
 .foil-effect {
   position: relative;
   overflow: hidden;
+  border-radius: 16px;
   isolation: isolate;
+  --foil-x-start: 18%;
+  --foil-y-start: 22%;
+  --foil-x-mid: 68%;
+  --foil-y-mid: 58%;
+  --foil-x-end: 86%;
+  --foil-y-end: 74%;
+  --foil-move-start: -12%, -8%;
+  --foil-move-mid: 2%, 3%;
+  --foil-move-end: 12%, 9%;
+  --holo-foil-duration: 5.8s;
+  --holo-delay: 0s;
 }
 
+.holo-card img,
+.foil-effect img {
+  display: block;
+}
+
+.holo-card::before,
 .foil-effect::before {
   content: "";
   position: absolute;
-  inset: 0;
-  background: linear-gradient(115deg,
-      transparent 0%,
-      rgba(255, 255, 255, 0) 25%,
-      rgba(255, 255, 255, 0.7) 45%,
-      rgba(255, 255, 255, 0.9) 50%,
-      rgba(255, 255, 255, 0.7) 55%,
-      rgba(255, 255, 255, 0) 75%);
-  animation: shine 2.5s ease-in-out infinite;
-  z-index: 2;
-  mix-blend-mode: soft-light;
-}
-
-.foil-effect::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(45deg,
-      rgba(255, 0, 0, 0.8),
-      rgba(255, 165, 0, 0.8),
-      rgba(255, 255, 0, 0.8),
-      rgba(0, 255, 0, 0.8),
-      rgba(0, 0, 255, 0.8),
-      rgba(75, 0, 130, 0.8),
-      rgba(238, 130, 238, 0.8));
-  opacity: 0.25;
-  mix-blend-mode: hard-light;
-  animation: rainbow 4s linear infinite;
+  inset: -6%;
   z-index: 1;
+  pointer-events: none;
+  background-image: url("/image/holo-foil.png");
+  background-position: 48% 48%;
+  background-repeat: no-repeat;
+  background-size: 165% 165%;
+  filter: grayscale(0) saturate(1.35) contrast(0.96) brightness(0.94);
+  mix-blend-mode: multiply;
+  opacity: 0.3;
+  transform: translate3d(-8%, -6%, 0) scale(1.12);
+  animation: holoFoilDrift var(--holo-foil-duration) ease-in-out infinite alternate;
+  animation-delay: var(--holo-delay);
 }
 
-/* 添加额外的彩虹层 */
-.foil-effect>div {
-  position: relative;
+.pack-card-grid > *:nth-child(6n + 1) .holo-card,
+.pack-card-grid > *:nth-child(6n + 1) .foil-effect {
+  --foil-x-start: 12%;
+  --foil-y-start: 18%;
+  --foil-x-mid: 74%;
+  --foil-y-mid: 42%;
+  --foil-x-end: 88%;
+  --foil-y-end: 78%;
+  --foil-move-start: -14%, -10%;
+  --foil-move-mid: 4%, -1%;
+  --foil-move-end: 13%, 11%;
+  --holo-foil-duration: 5.4s;
+  --holo-delay: -1.1s;
 }
 
-.foil-effect>div::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(-45deg,
-      rgba(255, 0, 0, 0.6),
-      rgba(255, 255, 0, 0.6),
-      rgba(0, 255, 0, 0.6),
-      rgba(0, 255, 255, 0.6),
-      rgba(0, 0, 255, 0.6),
-      rgba(255, 0, 255, 0.6),
-      rgba(255, 0, 0, 0.6));
-  opacity: 0.2;
-  mix-blend-mode: color-dodge;
-  animation: rainbow-reverse 6s linear infinite;
-  z-index: 1;
-  border-radius: 0.5rem;
+.pack-card-grid > *:nth-child(6n + 2) .holo-card,
+.pack-card-grid > *:nth-child(6n + 2) .foil-effect {
+  --foil-x-start: 82%;
+  --foil-y-start: 20%;
+  --foil-x-mid: 34%;
+  --foil-y-mid: 66%;
+  --foil-x-end: 18%;
+  --foil-y-end: 82%;
+  --foil-move-start: 12%, -9%;
+  --foil-move-mid: -3%, 2%;
+  --foil-move-end: -13%, 10%;
+  --holo-foil-duration: 6.2s;
+  --holo-delay: -2.3s;
 }
 
-@keyframes shine {
+.pack-card-grid > *:nth-child(6n + 3) .holo-card,
+.pack-card-grid > *:nth-child(6n + 3) .foil-effect {
+  --foil-x-start: 28%;
+  --foil-y-start: 82%;
+  --foil-x-mid: 68%;
+  --foil-y-mid: 24%;
+  --foil-x-end: 92%;
+  --foil-y-end: 48%;
+  --foil-move-start: -9%, 13%;
+  --foil-move-mid: 3%, -4%;
+  --foil-move-end: 15%, 3%;
+  --holo-foil-duration: 5.9s;
+  --holo-delay: -0.6s;
+}
+
+.pack-card-grid > *:nth-child(6n + 4) .holo-card,
+.pack-card-grid > *:nth-child(6n + 4) .foil-effect {
+  --foil-x-start: 70%;
+  --foil-y-start: 76%;
+  --foil-x-mid: 26%;
+  --foil-y-mid: 34%;
+  --foil-x-end: 14%;
+  --foil-y-end: 54%;
+  --foil-move-start: 10%, 12%;
+  --foil-move-mid: -4%, -2%;
+  --foil-move-end: -14%, 5%;
+  --holo-foil-duration: 6.6s;
+  --holo-delay: -3.2s;
+}
+
+.pack-card-grid > *:nth-child(6n + 5) .holo-card,
+.pack-card-grid > *:nth-child(6n + 5) .foil-effect {
+  --foil-x-start: 42%;
+  --foil-y-start: 14%;
+  --foil-x-mid: 86%;
+  --foil-y-mid: 70%;
+  --foil-x-end: 30%;
+  --foil-y-end: 90%;
+  --foil-move-start: -4%, -14%;
+  --foil-move-mid: 12%, 4%;
+  --foil-move-end: -7%, 14%;
+  --holo-foil-duration: 5.2s;
+  --holo-delay: -1.8s;
+}
+
+.pack-card-grid > *:nth-child(6n) .holo-card,
+.pack-card-grid > *:nth-child(6n) .foil-effect {
+  --foil-x-start: 88%;
+  --foil-y-start: 86%;
+  --foil-x-mid: 46%;
+  --foil-y-mid: 18%;
+  --foil-x-end: 12%;
+  --foil-y-end: 36%;
+  --foil-move-start: 14%, 14%;
+  --foil-move-mid: 0%, -7%;
+  --foil-move-end: -15%, -2%;
+  --holo-foil-duration: 6s;
+  --holo-delay: -2.7s;
+}
+
+@keyframes holoFoilDrift {
   0% {
-    transform: translateX(-200%) rotate(0deg);
-    opacity: 0;
-  }
-
-  15% {
-    opacity: 1;
-  }
-
-  35% {
-    opacity: 1;
+    background-position: var(--foil-x-start) var(--foil-y-start);
+    transform: translate3d(var(--foil-move-start), 0) scale(1.12);
+    opacity: 0.24;
   }
 
   50% {
-    transform: translateX(200%) rotate(0deg);
-    opacity: 0;
+    background-position: var(--foil-x-mid) var(--foil-y-mid);
+    transform: translate3d(var(--foil-move-mid), 0) scale(1.18);
+    opacity: 0.36;
   }
 
   100% {
-    transform: translateX(-200%) rotate(0deg);
-    opacity: 0;
+    background-position: var(--foil-x-end) var(--foil-y-end);
+    transform: translate3d(var(--foil-move-end), 0) scale(1.14);
+    opacity: 0.28;
   }
 }
 
-@keyframes rainbow {
-  0% {
-    filter: hue-rotate(0deg);
-  }
-
-  100% {
-    filter: hue-rotate(360deg);
-  }
-}
-
-@keyframes rainbow-reverse {
-  0% {
-    filter: hue-rotate(360deg);
-  }
-
-  100% {
-    filter: hue-rotate(0deg);
+@media (prefers-reduced-motion: reduce) {
+  .holo-card::before,
+  .foil-effect::before {
+    animation: none;
   }
 }
 

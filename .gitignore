@@ -16,6 +16,8 @@
 # next.js
 /.next/
 /out/
+/public/sw.js
+/public/workbox-*.js
 
 # production
 /build
@@ -28,8 +30,8 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-/app/speed/speed-data.json
-/data/filter.json
+/public/data/speed-data.json
+/public/data/filter.json
 
 # env files (can opt-in for committing if needed)
 .env*
@@ -43,3 +45,6 @@ next-env.d.ts
 
 # cursor
 .cursor/
+
+# wechat miniprogram
+/wxapp/

@@ -4,9 +4,36 @@ import { Activity, XCircle, AlertTriangle } from "lucide-react";
 import { useEffect } from "react";
 import { useStatusStore } from '@/lib/store';
 import { ComponentGroup, StatusIcon, StatusText } from "@/components/status";
-import statusText from '@/data/status-text.json';
 import { Incident, IncidentUpdate } from '@/lib/store/status';
 import { parseISO, isValid } from 'date-fns';
+
+interface StatusTextMap {
+  componentNames: Record<string, string>;
+  componentDescriptions: Record<string, string>;
+}
+
+const statusText: StatusTextMap = {
+  componentNames: {
+    Platform: '平台',
+    Game: '游戏',
+    Logins: '登录',
+    Matches: '对局',
+    Social: '社交',
+    Store: '商店',
+    Windows: 'Windows',
+    macOS: 'macOS',
+    Android: 'Android',
+    iOS: 'iOS',
+  },
+  componentDescriptions: {
+    Platform: '各平台客户端状态',
+    Game: '游戏服务状态',
+    Logins: '登录和认证服务状态',
+    Matches: '对局和活动服务状态',
+    Social: '社交功能状态',
+    Store: '商店和兑换码服务状态',
+  },
+};
 
 function formatDateTime(dateStr: string) {
   const date = parseISO(dateStr);
@@ -56,8 +83,8 @@ export function ClientStatusContent() {
   const translateComponent = (component: typeof data.components[0]) => {
     return {
       ...component,
-      name: statusText.componentNames[component.name as keyof typeof statusText.componentNames] || component.name,
-      description: statusText.componentDescriptions[component.name as keyof typeof statusText.componentDescriptions] || component.description
+      name: statusText.componentNames[component.name] || component.name,
+      description: statusText.componentDescriptions[component.name] || component.description
     };
   };
 
@@ -77,8 +104,8 @@ export function ClientStatusContent() {
         <div className="flex items-center gap-3 text-lg font-medium mb-2">
           <StatusIcon status={data.status.indicator === 'none' ? 'operational' : data.status.indicator === 'maintenance' ? 'maintenance' : 'major_outage'} />
           <span>
-            {data.status.indicator === 'none' 
-              ? '所有服务正常运行' 
+            {data.status.indicator === 'none'
+              ? '所有服务正常运行'
               : data.status.indicator === 'maintenance'
               ? '服务正在维护中'
               : '部分服务出现问题'
@@ -174,12 +201,12 @@ export function ClientStatusContent() {
         <div className="divide-y divide-[--border] border border-[--border] rounded-lg overflow-hidden">
           {/* 平台状态 */}
           {translatedPlatformGroup && (
-            <ComponentGroup 
-              group={translatedPlatformGroup} 
+            <ComponentGroup
+              group={translatedPlatformGroup}
               components={componentsMap}
             />
           )}
-          
+
           {/* 其他服务状态 */}
           {translatedMainComponents.map(component => (
             <div key={component.id} className="bg-[--card] flex items-center justify-between p-4">
@@ -201,4 +228,4 @@ export function ClientStatusContent() {
       </div>
     </>
   );
-} 
+}

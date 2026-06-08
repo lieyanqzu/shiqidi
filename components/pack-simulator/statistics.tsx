@@ -1,10 +1,10 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import type { Card } from '@/types/pack-simulator';
-import boosterConfig from '@/data/booster-config.json';
 import { useSetStore } from '@/lib/store';
 import { SetIcon } from '@/components/logo/set-icon';
+import { fetchPublicJson } from '@/lib/public-data-client';
 
 interface StatisticsProps {
   cards: Card[];
@@ -15,20 +15,31 @@ interface StatisticsProps {
 
 export function Statistics({ cards, setCode, boosterCode, packCount }: StatisticsProps) {
   const { chineseSetNames, fetchChineseSetNames } = useSetStore();
+  const [boosterName, setBoosterName] = useState('');
 
   useEffect(() => {
     fetchChineseSetNames();
   }, [fetchChineseSetNames]);
 
+  useEffect(() => {
+    fetchPublicJson<{ sets: Array<{ code: string; boosters: Array<{ code: string; name: string }> }> }>('booster-config.json')
+      .then(config => {
+        const name = config.sets
+          .find(set => set.code === setCode)
+          ?.boosters.find(booster => booster.code === boosterCode)
+          ?.name || '';
+        setBoosterName(name);
+      })
+      .catch(error => {
+        console.error('加载补充包名称失败:', error);
+        setBoosterName('');
+      });
+  }, [setCode, boosterCode]);
+
   // 获取系列名称
   const setName = chineseSetNames[setCode] || setCode;
 
   // 获取补充包名称
-  const boosterName = boosterConfig.sets
-    .find(set => set.code === setCode)
-    ?.boosters.find(booster => booster.code === boosterCode)
-    ?.name;
-
   // 按稀有度统计
   const rarityStats = cards.reduce((acc, card) => {
     const rarity = card.rarity || 'unknown';
@@ -40,7 +51,7 @@ export function Statistics({ cards, setCode, boosterCode, packCount }: Statistic
   const foilCount = cards.filter(card => card.id.includes('foil')).length;
 
   // 获取稀有和秘稀卡牌
-  const rareAndMythicCards = cards.filter(card => 
+  const rareAndMythicCards = cards.filter(card =>
     card.rarity === 'rare' || card.rarity === 'mythic'
   ).sort((a, b) => {
     // 先按稀有度排序（秘稀在前）
@@ -95,12 +106,12 @@ export function Statistics({ cards, setCode, boosterCode, packCount }: Statistic
             </span>
           )}
         </h3>
-        
+
         <div className="grid grid-cols-4 gap-4 mb-4">
           {/* 稀有度统计卡片 */}
           {['mythic', 'rare', 'uncommon', 'common'].map(rarity => (
-            <div 
-              key={rarity} 
+            <div
+              key={rarity}
               className="bg-[--background] border border-[--border] rounded-lg p-3 flex flex-col items-center"
             >
               <div className={`text-2xl font-bold mb-1 ${getRarityColor(rarity)}`}>
@@ -158,8 +169,8 @@ export function Statistics({ cards, setCode, boosterCode, packCount }: Statistic
           <div className="flex flex-wrap gap-1">
             {rareAndMythicCards.length > 0 ? (
               rareAndMythicCards.map((card, index) => (
-                <div 
-                  key={`${card.id}-${index}`} 
+                <div
+                  key={`${card.id}-${index}`}
                   className="flex items-center gap-1 bg-[--card] border border-[--border] rounded-lg px-2 py-1"
                 >
                   <span className={`${getRarityColor(card.rarity)} shrink-0 text-xs`}>
@@ -181,4 +192,4 @@ export function Statistics({ cards, setCode, boosterCode, packCount }: Statistic
       </div>
     </>
   );
-} 
+}

@@ -2,13 +2,15 @@
 
 import { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
-import { Option, formatSpeedOptions, expansionOptions } from "@/lib/options";
+import type { Option } from "@/lib/options";
 
 interface SpeedFiltersProps {
   selectedExpansions: string[];
   onExpansionsChange: (expansions: string[]) => void;
   selectedFormats: string[];
   onFormatsChange: (formats: string[]) => void;
+  expansionOptions: Option[];
+  formatSpeedOptions: Option[];
 }
 
 export function SpeedFilters({
@@ -16,6 +18,8 @@ export function SpeedFilters({
   onExpansionsChange,
   selectedFormats,
   onFormatsChange,
+  expansionOptions,
+  formatSpeedOptions,
 }: SpeedFiltersProps) {
   const [showAllExpansions, setShowAllExpansions] = useState(false);
   const [showAllFormats, setShowAllFormats] = useState(false);
@@ -62,7 +66,7 @@ export function SpeedFilters({
               {expansion.label}
             </button>
           ))}
-          
+
           {/* 显示未选系列（可展开/收起） */}
           {unselectedExpansionOptions.length > 0 && (
             <>
@@ -114,7 +118,7 @@ export function SpeedFilters({
               {format.label}
             </button>
           ))}
-          
+
           {/* 显示未选赛制（可展开/收起） */}
           {unselectedFormatOptions.length > 0 && (
             <>
@@ -152,4 +156,4 @@ export function SpeedFilters({
       </div>
     </div>
   );
-} 
+}

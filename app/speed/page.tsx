@@ -1,6 +1,8 @@
 import { SpeedChart } from '@/components/speed/speed-chart';
 import { generateMetadata } from '../metadata';
-import speedData from './speed-data.json';
+import { readPublicJson } from '@/lib/public-data';
+import { toExpansionOptions, type PublicOptionsData } from '@/lib/options';
+import type { SpeedData } from '@/components/speed/speed-chart';
 
 export const metadata = generateMetadata(
   "十七地 - 轮抽赛制速度",
@@ -11,7 +13,12 @@ export const metadata = generateMetadata(
   }
 );
 
-export default function SpeedPage() {
+export default async function SpeedPage() {
+  const [speedData, options] = await Promise.all([
+    readPublicJson<SpeedData[]>('speed-data.json'),
+    readPublicJson<PublicOptionsData>('options.json'),
+  ]);
+
   return (
     <div className="py-8">
       <div className="container mx-auto px-4">
@@ -19,7 +26,7 @@ export default function SpeedPage() {
           <h1 className="text-2xl font-semibold">
             赛制速度
           </h1>
-          <a 
+          <a
             href="https://www.17lands.com/format_speed?utm_source=shiqidi"
             target="_blank"
             rel="noopener noreferrer"
@@ -32,8 +39,13 @@ export default function SpeedPage() {
             17Lands
           </a>
         </div>
-        <SpeedChart initialData={speedData} />
+        <SpeedChart
+          initialData={speedData}
+          expansionOptions={toExpansionOptions(options.expansionOptions)}
+          formatSpeedOptions={options.formatSpeedOptions ?? options.formatOptions}
+          speedDefaults={options.speedDefaults}
+        />
       </div>
     </div>
   );
-} 
+}

@@ -34,11 +34,11 @@ async function fetchSpeedData() {
 
 async function main() {
   try {
-    console.log('Fetching speed data...');
+    console.log('Fetching 17Lands speed data...');
     const data = await fetchSpeedData();
-    
+
     // 确保目录存在
-    const dir = path.join(__dirname, '../app/speed');
+    const dir = path.join(__dirname, '../public/data');
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir, { recursive: true });
     }
@@ -46,14 +46,14 @@ async function main() {
     // 写入数据
     fs.writeFileSync(
       path.join(dir, 'speed-data.json'),
-      JSON.stringify(data, null, 2)
+      `${JSON.stringify(data, null, 2)}\n`
     );
-    
-    console.log('Speed data has been saved successfully!');
+
+    console.log('Speed data has been saved to public/data/speed-data.json');
   } catch (error) {
     console.error('Error fetching speed data:', error);
     process.exit(1);
   }
 }
 
-main(); 
+main();

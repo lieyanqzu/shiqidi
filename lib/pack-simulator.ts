@@ -1,6 +1,5 @@
 import type { BoosterData, Sheet, Pack, Card, PackSimulatorResults, PackStatistics, Sheets, Set, BoosterConfig } from '@/types/pack-simulator';
-import sealedData from '@/data/sealed_basic_data.json';
-import boosterConfig from '@/data/booster-config.json';
+import { fetchPublicJson } from '@/lib/public-data-client';
 
 interface CardSearchResult {
   display_name: string;
@@ -11,15 +10,23 @@ interface CardSearchResult {
   rarity: string;
 }
 
-const config = boosterConfig as BoosterConfig;
+let configCache: BoosterConfig | null = null;
+let sealedDataCache: RawBoosterData[] | null = null;
 
-// 支持的补充包类型列表
-const SUPPORTED_BOOSTERS = config.sets.flatMap(set => 
-  set.boosters.map(booster => ({
-    ...booster,
-    setCode: set.code
-  }))
-);
+async function ensurePackData() {
+  if (!configCache || !sealedDataCache) {
+    const [config, sealedData] = await Promise.all([
+      fetchPublicJson<BoosterConfig>('booster-config.json'),
+      fetchPublicJson<RawBoosterData[]>('sealed-basic-data.json'),
+    ]);
+    configCache = config;
+    sealedDataCache = sealedData;
+  }
+  return {
+    config: configCache,
+    sealedData: sealedDataCache,
+  };
+}
 
 // 解析卡牌ID
 function parseCardId(id: string): { setCode: string; number: string } {
@@ -31,14 +38,14 @@ function parseCardId(id: string): { setCode: string; number: string } {
 function weightedRandom<T>(items: T[], weights: number[]): T {
   const totalWeight = weights.reduce((sum, weight) => sum + weight, 0);
   let random = Math.random() * totalWeight;
-  
+
   for (let i = 0; i < items.length; i++) {
     random -= weights[i];
     if (random <= 0) {
       return items[i];
     }
   }
-  
+
   return items[items.length - 1];
 }
 
@@ -47,7 +54,7 @@ function drawFromSheet(sheet: Sheet, count: number): Card[] {
   const cards: Card[] = [];
   const cardIds = Object.keys(sheet.cards);
   const weights = cardIds.map(id => sheet.cards[id]);
-  
+
   for (let i = 0; i < count; i++) {
     const cardId = weightedRandom(cardIds, weights);
     const { setCode, number } = parseCardId(cardId);
@@ -58,7 +65,7 @@ function drawFromSheet(sheet: Sheet, count: number): Card[] {
       number
     });
   }
-  
+
   return cards;
 }
 
@@ -70,7 +77,7 @@ async function simulateBoosterPack(boosterData: BoosterData): Promise<Pack> {
     boosterTypes,
     boosterTypes.map(type => type.weight)
   );
-  
+
   // 从每个表中抽取卡牌
   const cards: Card[] = [];
   for (const [sheetName, count] of Object.entries(boosterType.sheets)) {
@@ -111,9 +118,9 @@ async function simulateBoosterPack(boosterData: BoosterData): Promise<Pack> {
     const cardResults = data.items;
 
     // 记录未找到的卡牌
-    const notFoundCards = cards.filter(card => 
-      !cardResults.some((info: CardSearchResult) => 
-        info.set.toLowerCase() === card.setCode.toLowerCase() && 
+    const notFoundCards = cards.filter(card =>
+      !cardResults.some((info: CardSearchResult) =>
+        info.set.toLowerCase() === card.setCode.toLowerCase() &&
         info.collector_number.toString() === card.number.toString()
       )
     );
@@ -121,19 +128,19 @@ async function simulateBoosterPack(boosterData: BoosterData): Promise<Pack> {
     // 如果有未找到的卡牌，进行单独搜索
     if (notFoundCards.length > 0) {
       console.log('部分卡牌未找到，进行二次搜索:', notFoundCards);
-      
+
       // 对每张未找到的卡牌进行单独搜索
       const additionalResults = await Promise.all(
         notFoundCards.map(async card => {
           // 检查编号是否包含字母后缀
           const hasLetterSuffix = /\d+[a-z]$/i.test(card.number);
           const baseNumber = hasLetterSuffix ? card.number.slice(0, -1) : card.number;
-          
+
           let query = `(s=${card.setCode} number=${card.number})`;
           if (hasLetterSuffix) {
             query += ` or (s=${card.setCode} number=${baseNumber})`;
           }
-          
+
           const retryResponse = await fetch(
             `https://mtgch.com/api/v1/result?q=${encodeURIComponent(query)}&page=1&page_size=1&unique=oracle_id&priority_chinese=true&view=1`
           );
@@ -160,14 +167,14 @@ async function simulateBoosterPack(boosterData: BoosterData): Promise<Pack> {
 
       // 首先尝试匹配完整编号
       let cardInfo = cardResults.find(
-        (info: CardSearchResult) => info.set.toLowerCase() === card.setCode.toLowerCase() && 
+        (info: CardSearchResult) => info.set.toLowerCase() === card.setCode.toLowerCase() &&
           info.collector_number.toString() === card.number.toString()
       );
 
       // 如果有字母后缀且找不到完整编号的卡牌，尝试匹配基础编号
       if (!cardInfo && hasLetterSuffix) {
         cardInfo = cardResults.find(
-          (info: CardSearchResult) => info.set.toLowerCase() === card.setCode.toLowerCase() && 
+          (info: CardSearchResult) => info.set.toLowerCase() === card.setCode.toLowerCase() &&
             info.collector_number.toString() === baseNumber.toString()
         );
       }
@@ -185,7 +192,7 @@ async function simulateBoosterPack(boosterData: BoosterData): Promise<Pack> {
   } catch (error) {
     console.error('批量获取卡牌信息失败:', error);
   }
-  
+
   return {
     cards,
     type: boosterType.sheets.special_guest ? 'special_guest' : 'normal'
@@ -199,35 +206,40 @@ function calculateStatistics(packs: Pack[]): PackStatistics {
     byRarity: {},
     bySheet: {}
   };
-  
+
   if (!packs || packs.length === 0) {
     return stats;
   }
-  
+
   for (const pack of packs) {
     if (!pack.cards) continue;
-    
+
     stats.totalCards += pack.cards.length;
-    
+
     for (const card of pack.cards) {
       // 按表统计
       if (card.sheet) {
         stats.bySheet[card.sheet] = (stats.bySheet[card.sheet] || 0) + 1;
       }
-      
+
       // 按稀有度统计
       if (card.rarity) {
         stats.byRarity[card.rarity] = (stats.byRarity[card.rarity] || 0) + 1;
       }
     }
   }
-  
+
   return stats;
 }
 
 // 获取可用系列
 export function getAvailableSets(): Set[] {
-  return config.sets;
+  return configCache?.sets || [];
+}
+
+export async function loadAvailableSets(): Promise<Set[]> {
+  const { config } = await ensurePackData();
+  return config.sets || [];
 }
 
 interface RawSheet {
@@ -251,14 +263,21 @@ interface RawBoosterData {
 
 // 模拟开包
 export async function simulatePacks(setCode: string, count: number): Promise<PackSimulatorResults> {
+  const { config, sealedData } = await ensurePackData();
+  const supportedBoosters = config.sets.flatMap(set =>
+    set.boosters.map(booster => ({
+      ...booster,
+      setCode: set.code
+    }))
+  );
   // 检查是否是支持的补充包类型
-  const booster = SUPPORTED_BOOSTERS.find(booster => booster.code === setCode);
+  const booster = supportedBoosters.find(booster => booster.code === setCode);
   if (!booster) {
     throw new Error(`不支持的补充包类型: ${setCode}`);
   }
 
   // 找到对应系列的数据
-  const rawBoosterData = (sealedData as unknown as RawBoosterData[]).find((data: RawBoosterData) => data.code === setCode);
+  const rawBoosterData = sealedData.find((data: RawBoosterData) => data.code === setCode);
   if (!rawBoosterData) {
     throw new Error(`找不到系列 ${booster.setCode} 的数据`);
   }
@@ -286,15 +305,15 @@ export async function simulatePacks(setCode: string, count: number): Promise<Pac
       return acc;
     }, {})
   };
-  
+
   // 模拟指定数量的补充包
   const packs: Pack[] = [];
   for (let i = 0; i < count; i++) {
     packs.push(await simulateBoosterPack(boosterData));
   }
-  
+
   // 计算统计信息
   const statistics = calculateStatistics(packs);
-  
+
   return { packs, statistics };
-} 
+}

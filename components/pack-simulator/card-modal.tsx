@@ -371,7 +371,7 @@ export function CardModal({ card, onClose, imageUrl, allCards, onCardChange }: C
 
           {/* 当前卡片 */}
           <div 
-            className={`relative ${card.id.includes('foil') ? 'foil-effect' : ''} z-20`}
+            className={`relative ${card.id.includes('foil') ? 'holo-card' : ''} z-20`}
             style={{
               transform: `translateX(${translateX}px)`,
               transition: isDragging ? 'none' : 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',

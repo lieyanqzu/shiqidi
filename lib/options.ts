@@ -1,226 +1,39 @@
+import { fetchPublicJson } from '@/lib/public-data-client';
+
 export interface Option {
   label: string;
   value: string;
+  disabled?: boolean;
 }
 
-export const formatOptions: Option[] = [
-  { label: "真人轮抽", value: "PremierDraft" },
-  { label: "选两张轮抽", value: "PickTwoDraft" },
-  { label: "快速轮抽", value: "QuickDraft" },
-  { label: "现开赛", value: "Sealed" },
-  { label: "真人轮抽BO3", value: "TradDraft" },
-  { label: "选两张轮抽BO3", value: "PickTwoTradDraft" },
-  { label: "现开赛BO3", value: "TradSealed" },
-  { label: "神器混合真人轮抽", value: "PremierDraftRemixArtifacts" },
-  { label: "竞技场直邮赛轮抽", value: "ArenaDirect_Draft" },
-  { label: "竞技场直邮赛现开", value: "ArenaDirect_Sealed" },
-  { label: "机器轮抽", value: "BotDraft" },
-  { label: "竞技轮抽", value: "CompDraft" },
-  { label: "方盒现开", value: "CubeSealed" },
-  { label: "十项全能决赛2022", value: "DecathlonFinals2022" },
-  { label: "十项全能决赛2023", value: "DecathlonFinals2023" },
-  { label: "十项全能快速轮抽", value: "DecathlonQuickDraft" },
-  { label: "十项全能真人轮抽", value: "DecathlonTradDraft" },
-  { label: "轮抽挑战赛", value: "DraftChallenge" },
-  { label: "徽记快速轮抽", value: "Emblem_QuickDraft" },
-  { label: "电竞资格赛轮抽D1", value: "EsportsQualifierDraft_D1" },
-  { label: "电竞资格赛轮抽D2", value: "EsportsQualifierDraft_D2" },
-  { label: "电竞轮抽", value: "Esports_Draft" },
-  { label: "FIAB现开", value: "FIAB_Sealed" },
-  { label: "周中快速轮抽", value: "MidWeekQuickDraft" },
-  { label: "周中现开", value: "MidWeekSealed" },
-  { label: "全知全能轮抽", value: "Omniscience_Draft" },
-  { label: "公开赛第一日轮抽BO1", value: "OpenDraft_D1_Bo1" },
-  { label: "公开赛第一日轮抽BO3", value: "OpenDraft_D1_Bo3" },
-  { label: "公开赛第二日轮抽BO3", value: "OpenDraft_D2_Bo3" },
-  { label: "公开赛第二日轮抽1 BO3", value: "OpenDraft_D2_Draft1_Bo3" },
-  { label: "公开赛第二日轮抽2B BO3", value: "OpenDraft_D2_Draft2B_Bo3" },
-  { label: "公开赛第二日轮抽2 BO3", value: "OpenDraft_D2_Draft2_Bo3" },
-  { label: "公开赛第一日现开BO1", value: "OpenSealed_D1_Bo1" },
-  { label: "公开赛第一日现开BO3", value: "OpenSealed_D1_Bo3" },
-  { label: "公开赛第二日现开BO3", value: "OpenSealed_D2_Bo3" },
-  { label: "公开赛第二日现开1 BO3", value: "OpenSealed_D2_Sealed1_Bo3" },
-  { label: "公开赛第二日现开2 BO3", value: "OpenSealed_D2_Sealed2_Bo3" },
-  { label: "资格赛预选现开", value: "QualifierPlayInSealed" },
-  { label: "资格赛预选现开BO3", value: "QualifierPlayInTradSealed" },
-  { label: "资格赛第一日现开", value: "Qualifier_D1_Sealed" },
-  { label: "资格赛第二日轮抽", value: "Qualifier_D2_Draft" },
-  { label: "资格赛第二日现开", value: "Qualifier_D2_Sealed" },
-];
+export interface PublicOptionsData {
+  expansionOptions: string[];
+  formatOptions: Option[];
+  formatSpeedOptions?: Option[];
+  cardDataDefaults?: {
+    expansion?: string;
+    event_type?: string;
+  };
+  speedDefaults?: {
+    recentExpansionCount?: number;
+    expansions?: string[];
+    event_types?: string[];
+  };
+  userGroupOptions: Option[];
+  deckColorOptions: Option[];
+  rarityLabels: Record<string, string>;
+  colorOptions: Option[];
+  rarityOptions: Option[];
+}
 
-// 赛制选项
-export const formatSpeedOptions: Option[] = [
-  { label: "真人轮抽", value: "PremierDraft" },
-  { label: "选两张轮抽", value: "PickTwoDraft" },
-  { label: "快速轮抽", value: "QuickDraft" },
-  { label: "现开赛", value: "Sealed" },
-  { label: "真人轮抽BO3", value: "TradDraft" },
-  { label: "现开赛BO3", value: "TradSealed" },
-  { label: "神器混合真人轮抽", value: "PremierDraftRemixArtifacts" },
-  { label: "公开赛第二日现开BO3", value: "OpenSealed_D2_Bo3" },
-  { label: "公开赛第二日轮抽BO3", value: "OpenDraft_D2_Bo3" },
-  { label: "公开赛第一日轮抽BO1", value: "OpenDraft_D1_Bo1" },
-  { label: "公开赛第二日轮抽BO3", value: "OpenDraft_D2_Draft1_Bo3" },
-  { label: "全知轮抽", value: "Omniscience_Draft" },
-  { label: "中周现开", value: "MidWeekSealed" },
-  { label: "中周轮抽", value: "MidWeekQuickDraft" },
-  { label: "轮抽挑战赛", value: "DraftChallenge" },
-  { label: "十项全能真人轮抽", value: "DecathlonTradDraft" },
-  { label: "十项全能快速轮抽", value: "DecathlonQuickDraft" },
-  { label: "十项全能决赛2022", value: "DecathlonFinals2022" },
-  { label: "混沌轮抽", value: "CubeDraft" },
-  { label: "资格赛预选现开", value: "QualifierPlayInSealed" },
-  { label: "资格赛预选现开BO3", value: "QualifierPlayInTradSealed" },
-  { label: "资格赛第一日现开", value: "Qualifier_D1_Sealed" },
-  { label: "公开赛第一日现开BO3", value: "OpenSealed_D1_Bo3" },
-  { label: "公开赛第一日现开BO1", value: "OpenSealed_D1_Bo1" },
-  { label: "竞技场直邮赛现开", value: "ArenaDirect_Sealed" },
-];
+export async function loadPublicOptions(): Promise<PublicOptionsData> {
+  return fetchPublicJson<PublicOptionsData>('options.json');
+}
 
-// 系列选项
-export const expansionOptions: Option[] = [
-  { label: "SOS", value: "SOS" },
-  { label: "Y26SOS", value: "Y26SOS" },
-  { label: "TMT", value: "TMT" },
-  { label: "ECL", value: "ECL" },
-  { label: "Y26ECL", value: "Y26ECL" },
-  { label: "TLA", value: "TLA" },
-  { label: "OM1", value: "OM1" },
-  { label: "EOE", value: "EOE" },
-  { label: "Y25EOE", value: "Y25EOE" },
-  { label: "FIN", value: "FIN" },
-  { label: "TDM", value: "TDM" },
-  { label: "Y25TDM", value: "Y25TDM" },
-  { label: "DFT", value: "DFT" },
-  { label: "Y25DFT", value: "Y25DFT" },
-  { label: "PIO", value: "PIO" },
-  { label: "FDN", value: "FDN" },
-  { label: "DSK", value: "DSK" },
-  { label: "Y25DSK", value: "Y25DSK" },
-  { label: "BLB", value: "BLB" },
-  { label: "Y25BLB", value: "Y25BLB" },
-  { label: "MH3", value: "MH3" },
-  { label: "OTJ", value: "OTJ" },
-  { label: "Y24OTJ", value: "Y24OTJ" },
-  { label: "MKM", value: "MKM" },
-  { label: "Y24MKM", value: "Y24MKM" },
-  { label: "LCI", value: "LCI" },
-  { label: "Y24LCI", value: "Y24LCI" },
-  { label: "WOE", value: "WOE" },
-  { label: "Y24WOE", value: "Y24WOE" },
-  { label: "LTR", value: "LTR" },
-  { label: "MOM", value: "MOM" },
-  { label: "MAT", value: "MAT" },
-  { label: "SIR", value: "SIR" },
-  { label: "ONE", value: "ONE" },
-  { label: "Y23ONE", value: "Y23ONE" },
-  { label: "BRO", value: "BRO" },
-  { label: "Y23BRO", value: "Y23BRO" },
-  { label: "DMU", value: "DMU" },
-  { label: "Y23DMU", value: "Y23DMU" },
-  { label: "HBG", value: "HBG" },
-  { label: "SNC", value: "SNC" },
-  { label: "Y22SNC", value: "Y22SNC" },
-  { label: "NEO", value: "NEO" },
-  { label: "DBL", value: "DBL" },
-  { label: "VOW", value: "VOW" },
-  { label: "RAVM", value: "RAVM" },
-  { label: "MID", value: "MID" },
-  { label: "AFR", value: "AFR" },
-  { label: "STX", value: "STX" },
-  { label: "CORE", value: "CORE" },
-  { label: "KHM", value: "KHM" },
-  { label: "KLR", value: "KLR" },
-  { label: "ZNR", value: "ZNR" },
-  { label: "AKR", value: "AKR" },
-  { label: "M21", value: "M21" },
-  { label: "IKO", value: "IKO" },
-  { label: "THB", value: "THB" },
-  { label: "ELD", value: "ELD" },
-  { label: "Ravnica", value: "Ravnica" },
-  { label: "M20", value: "M20" },
-  { label: "WAR", value: "WAR" },
-  { label: "M19", value: "M19" },
-  { label: "DOM", value: "DOM" },
-  { label: "RIX", value: "RIX" },
-  { label: "GRN", value: "GRN" },
-  { label: "RNA", value: "RNA" },
-  { label: "KTK", value: "KTK" },
-  { label: "XLN", value: "XLN" },
-  { label: "Cube - Powered", value: "Cube - Powered" },
-  { label: "Cube", value: "Cube" },
-  { label: "Chaos", value: "Chaos" }
-];
+export function toExpansionOptions(expansions: string[]): Option[] {
+  return expansions.map((value) => ({ label: value, value }));
+}
 
-// 玩家分组选项
-export const userGroupOptions: Option[] = [
-  { label: "所有用户", value: "" },
-  { label: "低级", value: "bottom" },
-  { label: "中级", value: "middle" },
-  { label: "顶级", value: "top" },
-];
-
-// 套牌颜色选项
-export const deckColorOptions: Option[] = [
-  { label: "全部套牌", value: "" },
-  // 单色
-  { label: "W", value: "W" },
-  { label: "U", value: "U" },
-  { label: "B", value: "B" },
-  { label: "R", value: "R" },
-  { label: "G", value: "G" },
-  // 双色
-  { label: "WU", value: "WU" },
-  { label: "WB", value: "WB" },
-  { label: "WR", value: "WR" },
-  { label: "WG", value: "WG" },
-  { label: "UB", value: "UB" },
-  { label: "UR", value: "UR" },
-  { label: "UG", value: "UG" },
-  { label: "BR", value: "BR" },
-  { label: "BG", value: "BG" },
-  { label: "RG", value: "RG" },
-  // 三色
-  { label: "WUB", value: "WUB" },
-  { label: "WUR", value: "WUR" },
-  { label: "WUG", value: "WUG" },
-  { label: "WBR", value: "WBR" },
-  { label: "WBG", value: "WBG" },
-  { label: "WRG", value: "WRG" },
-  { label: "UBR", value: "UBR" },
-  { label: "UBG", value: "UBG" },
-  { label: "URG", value: "URG" },
-  { label: "BRG", value: "BRG" },
-  // 四色
-  { label: "WUBR", value: "WUBR" },
-  { label: "WUBG", value: "WUBG" },
-  { label: "WURG", value: "WURG" },
-  { label: "WBRG", value: "WBRG" },
-  { label: "UBRG", value: "UBRG" },
-  // 五色
-  { label: "WUBRG", value: "WUBRG" },
-];
-
-// 卡牌颜色选项
-export const cardColorOptions: Option[] = [
-  { label: "W", value: "W" },
-  { label: "U", value: "U" },
-  { label: "B", value: "B" },
-  { label: "R", value: "R" },
-  { label: "G", value: "G" },
-  { label: "M", value: "M" },
-  { label: "C", value: "C" },
-];
-
-// 稀有度选项
-export const rarityOptions: Option[] = [
-  { label: "普通", value: "common" },
-  { label: "非普通", value: "uncommon" },
-  { label: "稀有", value: "rare" },
-  { label: "秘稀", value: "mythic" },
-];
-
-// 创建赛制名称映射
-export const formatLabels = Object.fromEntries(
-  formatOptions.map(option => [option.value, option.label])
-) as Record<string, string>; 
+export function createFormatLabels(options: Option[]): Record<string, string> {
+  return Object.fromEntries(options.map((option) => [option.value, option.label]));
+}

@@ -6,9 +6,9 @@ import { Button } from '@/components/ui/button';
 import { PackDisplay } from './pack-display';
 import { Statistics } from './statistics';
 import { SetSelect } from './set-select';
-import { getAvailableSets, simulatePacks } from '@/lib/pack-simulator';
+import { loadAvailableSets, simulatePacks } from '@/lib/pack-simulator';
 import { useSetStore } from '@/lib/store';
-import type { Card, PackSimulatorResults } from '@/types/pack-simulator';
+import type { Card, PackSimulatorResults, Set } from '@/types/pack-simulator';
 
 export function PackSimulator() {
   const { fetchChineseSetNames } = useSetStore();
@@ -18,12 +18,16 @@ export function PackSimulator() {
   const [results, setResults] = useState<PackSimulatorResults>({ packs: [], statistics: { totalCards: 0, byRarity: {}, bySheet: {} } });
   const [flippedCards, setFlippedCards] = useState<Card[]>([]);
   const [autoFlipCommon, setAutoFlipCommon] = useState(false);
+  const [sets, setSets] = useState<Set[]>([]);
+  const [dataLoading, setDataLoading] = useState(true);
 
   useEffect(() => {
     fetchChineseSetNames();
+    loadAvailableSets()
+      .then(setSets)
+      .catch(error => console.error('加载开包配置失败:', error))
+      .finally(() => setDataLoading(false));
   }, [fetchChineseSetNames]);
-
-  const sets = getAvailableSets();
 
   // 获取当前选中系列的补充包选项
   const boosterOptions = useMemo(() => selectedSetCode
@@ -105,7 +109,8 @@ export function PackSimulator() {
               setSelectedBoosterCode(''); // 重置补充包选择
               handleClear();
             }}
-            disabled={isLoading}
+            disabled={isLoading || dataLoading}
+            sets={sets}
             title="选择系列"
             iconSize="1x"
           />
@@ -118,7 +123,7 @@ export function PackSimulator() {
               handleClear();
             }}
             title="选择补充包"
-            disabled={isLoading || boosterOptions.length === 0}
+            disabled={isLoading || dataLoading || boosterOptions.length === 0}
             options={boosterOptions}
           />
         </div>
@@ -135,7 +140,7 @@ export function PackSimulator() {
           <>
             <Button
               onClick={handleNewPack}
-              disabled={!selectedBoosterCode || isLoading}
+              disabled={!selectedBoosterCode || isLoading || dataLoading}
               className="w-full sm:w-auto"
             >
               {isLoading ? '补充包正在赶来...' : '我现在就要开包'}
@@ -158,8 +163,8 @@ export function PackSimulator() {
 
       {results.packs.length > 0 ? (
         <div className="space-y-4">
-          <PackDisplay 
-            packs={results.packs} 
+          <PackDisplay
+            packs={results.packs}
             onFlippedCardsChange={handleFlippedCardsChange}
             autoFlipCommon={autoFlipCommon}
           />
@@ -174,8 +179,8 @@ export function PackSimulator() {
                 {isLoading ? '补充包正在赶来...' : '再来一包'}
               </Button>
             </div>
-            <Statistics 
-              cards={flippedCards} 
+            <Statistics
+              cards={flippedCards}
               setCode={selectedSetCode}
               boosterCode={selectedBoosterCode}
               packCount={results.packs.length}
@@ -183,8 +188,8 @@ export function PackSimulator() {
           </div>
         </div>
       ) : (
-        <Statistics 
-          cards={[]} 
+        <Statistics
+          cards={[]}
           setCode={selectedSetCode}
           boosterCode={selectedBoosterCode}
           packCount={0}
@@ -192,4 +197,4 @@ export function PackSimulator() {
       )}
     </div>
   );
-} 
+}
