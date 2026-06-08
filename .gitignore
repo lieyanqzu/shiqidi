@@ -47,4 +47,8 @@ next-env.d.ts
 .cursor/
 
 # wechat miniprogram
-/wxapp/
+/wxapp/project.private.config.json
+/wxapp/keys/
+/wxapp/miniprogram_npm/
+/wxapp/node_modules/
+*.wxapkg

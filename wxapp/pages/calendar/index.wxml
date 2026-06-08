@@ -1,0 +1,101 @@
+<view class="page">
+  <view class="hero">
+    <view class="eyebrow">万智日程</view>
+    <view class="title">MTGA 活动日历</view>
+  </view>
+
+  <view class="card">
+    <view class="row">
+      <view>
+        <view class="section-title">活动筛选</view>
+        <view class="muted small">最后更新：{{metadata.lastUpdated}}</view>
+      </view>
+      <view class="pill">{{totalCount}}</view>
+    </view>
+    <scroll-view class="type-scroll" scroll-x enhanced show-scrollbar="{{false}}">
+      <view class="type-strip">
+        <block wx:for="{{typeOptions}}" wx:key="value">
+          <view class="type-chip {{item.active ? 'active' : ''}} type-{{item.tone}}" data-index="{{index}}" bindtap="selectType">
+            <view>
+              <view class="type-label">{{item.label}}</view>
+              <view class="type-count">{{item.count}} 项</view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view wx:if="{{loading}}" class="card">
+    <view class="empty">正在加载活动日历...</view>
+  </view>
+
+  <view wx:if="{{!loading && error}}" class="card">
+    <view class="empty">{{error}}</view>
+  </view>
+
+  <view wx:if="{{!loading && !error && !totalCount}}" class="card">
+    <view class="empty">暂无活动。</view>
+  </view>
+
+  <block wx:for="{{sections}}" wx:key="type" wx:for-item="section" wx:for-index="sectionIndex">
+    <view class="card section-card">
+      <view class="section-head">
+        <view>
+          <view wx:if="{{section.groupText}}" class="event-group">{{section.groupText}}</view>
+          <view class="section-title">{{section.title}}</view>
+          <view wx:if="{{section.description}}" class="muted small section-desc">{{section.description}}</view>
+        </view>
+        <view class="pill">{{section.count}}</view>
+      </view>
+
+      <block wx:for="{{section.events}}" wx:key="key" wx:for-item="event" wx:for-index="eventIndex">
+        <view class="event event-{{event.statusClass}} event-tappable" data-section-index="{{sectionIndex}}" data-event-index="{{eventIndex}}" bindtap="handleEventTap">
+          <view class="event-head">
+            <view class="event-type-line">
+              <view class="event-type">{{event.typeText}}</view>
+            </view>
+            <view class="event-badges">
+              <view class="status-pill status-{{event.statusClass}}">{{event.statusText}}</view>
+              <image class="event-more-icon" src="/assets/icons/chevron-right.svg" mode="aspectFit" />
+            </view>
+          </view>
+          <view class="event-title">{{event.title}}</view>
+          <view class="muted small">{{event.timeHint}}</view>
+          <view wx:if="{{event.format}}" class="format-pill">赛制 · {{event.format}}</view>
+          <view wx:if="{{event.description}}" class="event-desc">{{event.description}}</view>
+        </view>
+      </block>
+    </view>
+  </block>
+
+  <view wx:if="{{actionSheetVisible}}" class="event-action-mask" catchtap="closeEventActions">
+    <view class="event-action-panel" catchtap="noop">
+      <view class="event-action-head">
+        <view class="event-action-title">{{selectedEvent.title}}</view>
+        <view class="muted small">{{selectedEvent.timeText}}</view>
+      </view>
+      <view wx:if="{{selectedEvent.canAddCalendar}}" class="event-action-row" bindtap="addSelectedEventToCalendar">
+        <image class="event-action-icon" src="/assets/icons/calendar.svg" mode="aspectFit" />
+        <view>添加到日历</view>
+      </view>
+      <view wx:if="{{!selectedEvent.canAddCalendar}}" class="event-action-row disabled">
+        <image class="event-action-icon" src="/assets/icons/calendar.svg" mode="aspectFit" />
+        <view>{{selectedEvent.calendarActionText}}</view>
+      </view>
+      <view class="event-action-row" bindtap="copySelectedEventInfo">
+        <image class="event-action-icon" src="/assets/icons/copy.svg" mode="aspectFit" />
+        <view>复制活动信息</view>
+      </view>
+      <view class="event-action-row share-row">
+        <image class="event-action-icon" src="/assets/icons/share.svg" mode="aspectFit" />
+        <view>分享活动</view>
+        <button class="action-share-trigger" open-type="share" hover-class="event-action-hover"></button>
+      </view>
+      <view class="event-action-cancel" bindtap="closeEventActions">取消</view>
+    </view>
+  </view>
+
+  <canvas class="event-share-canvas" canvas-id="eventShareCanvas"></canvas>
+  <bottom-nav />
+</view>

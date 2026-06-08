@@ -1,0 +1,107 @@
+<view class="page">
+  <view class="hero">
+    <view class="eyebrow">轮抽数据</view>
+    <view class="title">色组数据</view>
+  </view>
+
+  <view class="query-strip">
+    <view class="query-main">
+      <view class="query-title">{{params.expansion}} · {{availableFormatOptions[formatIndex].label}}</view>
+      <view class="query-meta">{{params.start_date}} 至 {{params.end_date}} · {{separateSplash ? '区分混色' : '合并混色'}}</view>
+    </view>
+    <view class="query-actions">
+      <view class="icon-action primary-icon-action {{loading ? 'loading' : ''}}" role="button" aria-label="{{loading ? '加载中' : '加载'}}" bindtap="loadColors">
+        <image class="action-icon" mode="aspectFit" src="/assets/icons/refresh-active.svg" />
+      </view>
+      <view class="icon-action" role="button" aria-label="{{queryPanelOpen ? '收起条件' : '展开条件'}}" bindtap="toggleQueryPanel">
+        <image class="action-icon chevron-icon {{queryPanelOpen ? 'expanded' : ''}}" mode="aspectFit" src="/assets/icons/chevron-right.svg" />
+      </view>
+    </view>
+  </view>
+
+  <view hidden="{{!queryPanelOpen}}" class="card control-panel">
+    <view class="section-title">查询条件</view>
+    <view class="field">
+      <view class="label">系列</view>
+      <picker range="{{expansionOptions}}" value="{{expansionIndex}}" bindchange="onExpansionChange">
+        <view class="select">{{params.expansion}}</view>
+      </picker>
+    </view>
+    <view class="field">
+      <view class="label">赛制</view>
+      <picker range="{{availableFormatOptions}}" range-key="label" value="{{formatIndex}}" bindchange="onFormatChange">
+        <view class="select">{{availableFormatOptions[formatIndex].label}}</view>
+      </picker>
+    </view>
+    <view class="date-grid">
+      <view class="field">
+        <view class="label">开始日期</view>
+        <picker mode="date" value="{{params.start_date}}" data-field="start_date" bindchange="onDateChange">
+          <view class="select">{{params.start_date}}</view>
+        </picker>
+      </view>
+      <view class="field">
+        <view class="label">结束日期</view>
+        <picker mode="date" value="{{params.end_date}}" data-field="end_date" bindchange="onDateChange">
+          <view class="select">{{params.end_date}}</view>
+        </picker>
+      </view>
+    </view>
+    <view class="switch-field">
+      <view class="switch-copy">
+        <view class="label">区分混色</view>
+        <view class="switch-hint">{{separateSplash ? '单独统计带混色的套牌' : '把混色套牌合并进主色组'}}</view>
+      </view>
+      <switch checked="{{separateSplash}}" color="#0f5ce8" bindchange="onSplashModeChange" />
+    </view>
+  </view>
+
+  <view wx:if="{{loading}}" class="loading-banner">
+    <view class="loading-spinner"></view>
+    <view>正在加载色组数据</view>
+  </view>
+
+  <view class="card color-result-card">
+    <view class="row result-head">
+      <view class="section-title">色组表现</view>
+      <view class="pill">{{params.expansion}}</view>
+    </view>
+    <view wx:if="{{!loading && error}}" class="empty">{{error}}</view>
+    <view wx:if="{{!loading && !error && !colorGroups.length}}" class="empty">暂无色组数据</view>
+
+    <block wx:for="{{colorGroups}}" wx:key="key" wx:for-item="group">
+      <view class="color-group">
+        <view class="group-head">
+          <view class="group-title">{{group.title}}</view>
+          <view class="group-meta">{{group.winRateText}} · {{group.winsText}} / {{group.gamesText}}</view>
+        </view>
+        <view class="color-row-list">
+          <block wx:for="{{group.rows}}" wx:key="key" wx:for-item="item">
+            <view class="color-row">
+              <view class="color-main">
+                <view class="color-title-row">
+                  <view class="color-symbols">
+                    <block wx:for="{{item.colorSymbols}}" wx:key="key" wx:for-item="symbol">
+                      <view class="mana-symbol color-symbol mana-{{symbol.tone}} mana-code-{{symbol.className}} {{symbol.split ? 'mana-split' : ''}} {{symbol.phyrexian ? 'mana-phyrexian' : ''}}">
+                        <text wx:if="{{manaFontReady && symbol.glyph}}" class="mana-glyph {{symbol.split ? 'mana-glyph-top' : ''}}">{{symbol.glyph}}</text>
+                        <text wx:if="{{manaFontReady && symbol.secondaryGlyph}}" class="mana-glyph mana-glyph-bottom">{{symbol.secondaryGlyph}}</text>
+                        <text wx:if="{{!manaFontReady || !symbol.glyph}}" class="mana-fallback">{{symbol.text}}</text>
+                      </view>
+                    </block>
+                  </view>
+                  <view class="color-title">{{item.title}}</view>
+                </view>
+                <view class="color-raw">{{item.colorName}}</view>
+              </view>
+              <view class="color-stats">
+                <view class="color-rate">{{item.winRateText}}</view>
+                <view class="muted small">{{item.winsText}} / {{item.gamesText}}</view>
+              </view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </block>
+  </view>
+  <bottom-nav />
+</view>

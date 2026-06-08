@@ -1,0 +1,129 @@
+<view class="page">
+  <view class="hero">
+    <view class="eyebrow">万智日程</view>
+    <view class="title">MTGA 服务状态</view>
+  </view>
+
+  <view class="card">
+    <view>
+      <view class="status-title-line">
+        <view class="section-title status-section-title">当前状态</view>
+        <view class="status-refresh-meta">
+          <image class="status-refresh-icon {{refreshing ? 'status-refreshing' : ''}}" mode="aspectFit" src="../../assets/icons/refresh.svg" />
+          <view class="status-refresh-countdown">剩余 {{refreshCountdown}} 秒自动刷新</view>
+        </view>
+      </view>
+      <view wx:if="{{pageStatus}}" class="status-summary status-{{pageStatusClass}}">{{pageStatusText}}</view>
+    </view>
+    <view wx:if="{{error}}" class="empty">{{error}}</view>
+    <view wx:if="{{!error && loading}}" class="empty">正在加载服务状态...</view>
+  </view>
+
+  <view wx:if="{{incidents.length}}" class="card">
+    <view class="section-title">突发事件</view>
+    <block wx:for="{{incidents}}" wx:key="id">
+      <view class="incident">
+        <view class="incident-head">
+          <view class="incident-title-wrap">
+            <view class="incident-title">{{item.name}}</view>
+            <view class="source-tag">官方原文</view>
+          </view>
+          <view class="pill">{{item.statusText}}</view>
+        </view>
+        <view class="muted small">影响：{{item.impactText}}</view>
+        <view class="update-list">
+          <block wx:for="{{item.updates}}" wx:key="id" wx:for-item="update">
+            <view class="update">
+              <view class="update-meta">
+                <view class="update-status">{{update.statusText}}</view>
+                <view class="source-tag">官方原文</view>
+              </view>
+              <view class="update-body">{{update.body}}</view>
+              <view class="muted tiny">发布于：{{update.createdText}}</view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <view wx:if="{{maintenances.length}}" class="card">
+    <view class="section-title">计划维护</view>
+    <block wx:for="{{maintenances}}" wx:key="id">
+      <view class="incident">
+        <view class="incident-head">
+          <view class="incident-title-wrap">
+            <view class="incident-title">{{item.name}}</view>
+            <view class="source-tag">官方原文</view>
+          </view>
+          <view class="pill">{{item.statusText}}</view>
+        </view>
+        <view class="muted small">时间：{{item.scheduledForText}} 至 {{item.scheduledUntilText}}</view>
+        <view class="update-list">
+          <block wx:for="{{item.updates}}" wx:key="id" wx:for-item="update">
+            <view class="update">
+              <view class="update-meta">
+                <view class="update-status">{{update.statusText}}</view>
+                <view class="source-tag">官方原文</view>
+              </view>
+              <view class="update-body">{{update.body}}</view>
+              <view class="muted tiny">发布于：{{update.createdText}}</view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <view wx:if="{{!incidents.length && !maintenances.length && !loading && !error}}" class="card">
+    <view class="section-title">近期事件</view>
+    <view wx:if="{{!incidents.length}}" class="muted">暂无活跃事件。</view>
+  </view>
+
+  <view wx:if="{{componentGroups.length || components.length}}" class="card">
+    <view class="section-title">服务状态</view>
+    <block wx:for="{{componentGroups}}" wx:key="id">
+      <view class="component-group">
+        <view class="component-row group-row" data-index="{{index}}" bindtap="toggleGroup">
+          <view>
+            <view class="component-name">{{item.name}}</view>
+            <view wx:if="{{item.description}}" class="muted small">{{item.description}}</view>
+          </view>
+          <view class="component-right">
+            <view class="status-dot dot-{{item.statusClass}}"></view>
+            <view>{{item.statusText}}</view>
+            <view class="chevron">{{item.expanded ? '收起' : '展开'}}</view>
+          </view>
+        </view>
+        <view wx:if="{{item.expanded}}" class="children">
+          <block wx:for="{{item.children}}" wx:key="id" wx:for-item="child">
+            <view class="component-row child-row">
+              <view>
+                <view class="component-name">{{child.name}}</view>
+                <view wx:if="{{child.description}}" class="muted small">{{child.description}}</view>
+              </view>
+              <view class="component-right">
+                <view class="status-dot dot-{{child.statusClass}}"></view>
+                <view>{{child.statusText}}</view>
+              </view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </block>
+
+    <block wx:for="{{components}}" wx:key="id">
+      <view class="component-row">
+        <view>
+          <view class="component-name">{{item.name}}</view>
+          <view wx:if="{{item.description}}" class="muted small">{{item.description}}</view>
+        </view>
+        <view class="component-right">
+          <view class="status-dot dot-{{item.statusClass}}"></view>
+          <view>{{item.statusText}}</view>
+        </view>
+      </view>
+    </block>
+  </view>
+  <bottom-nav />
+</view>

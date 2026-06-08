@@ -1,0 +1,305 @@
+<view class="page">
+  <view class="hero">
+    <view class="eyebrow">轮抽数据</view>
+    <view class="title">轮抽卡牌数据</view>
+  </view>
+
+  <view class="query-strip">
+    <view class="query-main">
+      <view class="query-title-line">
+        <text wx:if="{{setIconFontReady && currentSetGlyph}}" class="set-rarity query-set-glyph">{{currentSetGlyph}}</text>
+        <view class="query-title">{{params.expansion}} · {{availableFormatOptions[formatIndex].label}}</view>
+      </view>
+      <view class="query-meta">{{params.start_date}} 至 {{params.end_date}} · {{userGroupOptions[userGroupIndex].label}} · {{deckColorOptions[deckColorIndex].label}}</view>
+    </view>
+    <view class="query-actions">
+      <view class="icon-action primary-icon-action {{loading ? 'loading' : ''}}" role="button" aria-label="{{loading ? '加载中' : '加载'}}" bindtap="loadCards">
+        <image class="action-icon" mode="aspectFit" src="/assets/icons/refresh-active.svg" />
+      </view>
+      <view class="icon-action" role="button" aria-label="{{queryPanelOpen ? '收起条件' : '展开条件'}}" bindtap="toggleQueryPanel">
+        <image class="action-icon chevron-icon {{queryPanelOpen ? 'expanded' : ''}}" mode="aspectFit" src="/assets/icons/chevron-right.svg" />
+      </view>
+    </view>
+  </view>
+
+  <view hidden="{{!queryPanelOpen}}" class="card control-panel">
+    <view class="section-title">查询条件</view>
+    <view class="field">
+      <view class="label">系列</view>
+      <picker range="{{expansionOptions}}" value="{{expansionIndex}}" bindchange="onExpansionChange">
+        <view class="select">{{params.expansion}}</view>
+      </picker>
+    </view>
+    <view class="field">
+      <view class="label">赛制</view>
+      <picker range="{{availableFormatOptions}}" range-key="label" value="{{formatIndex}}" bindchange="onFormatChange">
+        <view class="select">{{availableFormatOptions[formatIndex].label}}</view>
+      </picker>
+    </view>
+    <view class="date-grid">
+      <view class="field">
+        <view class="label">用户组</view>
+        <picker range="{{userGroupOptions}}" range-key="label" value="{{userGroupIndex}}" bindchange="onUserGroupChange">
+          <view class="select">{{userGroupOptions[userGroupIndex].label}}</view>
+        </picker>
+      </view>
+      <view class="field">
+        <view class="label">套牌颜色</view>
+        <picker range="{{deckColorOptions}}" range-key="label" value="{{deckColorIndex}}" bindchange="onDeckColorChange">
+          <view class="select">{{deckColorOptions[deckColorIndex].label}}</view>
+        </picker>
+      </view>
+    </view>
+    <view class="date-grid">
+      <view class="field">
+        <view class="label">开始日期</view>
+        <picker mode="date" value="{{params.start_date}}" data-field="start_date" bindchange="onDateChange">
+          <view class="select">{{params.start_date}}</view>
+        </picker>
+      </view>
+      <view class="field">
+        <view class="label">结束日期</view>
+        <picker mode="date" value="{{params.end_date}}" data-field="end_date" bindchange="onDateChange">
+          <view class="select">{{params.end_date}}</view>
+        </picker>
+      </view>
+    </view>
+  </view>
+
+  <view class="card result-controls">
+    <view class="quick-filter-row">
+      <input class="input search-input" placeholder="搜索中文名或英文名" value="{{searchText}}" bindinput="onSearch" />
+      <view class="icon-action" role="button" aria-label="{{filterPanelOpen ? '收起筛选' : '展开筛选'}}" bindtap="toggleFilterPanel">
+        <image class="action-icon" mode="aspectFit" src="/assets/icons/filter.svg" />
+      </view>
+    </view>
+
+    <view hidden="{{!filterPanelOpen}}" class="advanced-panel">
+      <view class="filter-block">
+        <view class="label">颜色</view>
+        <view class="chip-row">
+          <block wx:for="{{colorFilterOptions}}" wx:key="value">
+            <view class="chip {{item.active ? 'active' : ''}}" data-value="{{item.value}}" bindtap="toggleColor">{{item.label}}</view>
+          </block>
+        </view>
+      </view>
+
+      <view class="filter-block">
+        <view class="label">稀有度</view>
+        <view class="chip-row">
+          <block wx:for="{{rarityFilterOptions}}" wx:key="value">
+            <view class="chip {{item.active ? 'active' : ''}}" data-value="{{item.value}}" bindtap="toggleRarity">{{item.label}}</view>
+          </block>
+        </view>
+      </view>
+
+      <view class="filter-actions">
+        <view class="text-action muted-action" bindtap="clearFilters">清空筛选</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="row">
+      <view class="section-title">评分视图</view>
+      <view class="score-head-meta">
+        <picker class="metric-picker" range="{{gradeMetricOptions}}" range-key="shortLabel" value="{{metricIndex}}" bindchange="onMetricChange">
+          <view class="metric-chip metric-chip-select">
+            <text>{{currentMetricLabel}}</text>
+            <image class="metric-chip-icon" mode="aspectFit" src="/assets/icons/chevron-right.svg" />
+          </view>
+        </picker>
+        <view class="pill">{{filteredCount}} / {{cardCount}}</view>
+      </view>
+    </view>
+    <view wx:if="{{loading}}" class="empty">正在加载 17Lands 数据，可能需要数秒...</view>
+    <view wx:if="{{!loading && error}}" class="empty">{{error}}</view>
+    <view wx:if="{{!loading && !error && !filteredCount}}" class="empty">暂无卡牌数据</view>
+
+    <view wx:if="{{!loading && !error && filteredCount}}" class="grade-list">
+      <block wx:for="{{gradeGroups}}" wx:key="grade" wx:for-index="groupIndex">
+        <view class="grade-section">
+          <view class="grade-head">
+            <view class="grade-title">{{item.grade}}</view>
+            <view class="muted small">{{item.count}} 张</view>
+          </view>
+          <view class="grade-card-wrap">
+            <block wx:for="{{item.cards}}" wx:key="name" wx:for-item="card" wx:for-index="cardIndex">
+              <view class="grade-card" data-source="grade" data-grade="{{item.grade}}" data-index="{{cardIndex}}" bindtap="showCard">
+                <image wx:if="{{card.artCropImageUrl && !card.artCropFailed}}" class="grade-card-art" mode="aspectFill" lazy-load="true" src="{{card.artCropImageUrl}}" data-group-index="{{groupIndex}}" data-card-index="{{cardIndex}}" binderror="handleListArtError" />
+                <view wx:if="{{card.artCropImageUrl && !card.artCropFailed}}" class="grade-card-art-fade"></view>
+                <view class="grade-card-name">
+                  <text class="grade-card-chinese">{{card.chineseName}}</text>
+                  <text wx:if="{{card.name !== card.chineseName}}" class="grade-card-english">{{card.name}}</text>
+                </view>
+                <view class="grade-card-meta">
+                  <view class="grade-card-meta-left">
+                    <text wx:if="{{setIconFontReady && currentSetGlyph}}" class="set-rarity set-rarity-{{card.rarityClass}}">{{currentSetGlyph}}</text>
+                    <text wx:if="{{!setIconFontReady || !currentSetGlyph}}" class="rarity-badge rarity-{{card.rarityClass}}">{{card.rarityShort}}</text>
+                    <view class="color-symbols">
+                      <block wx:for="{{card.colorSymbols}}" wx:key="key" wx:for-item="symbol">
+                        <view class="mana-symbol color-symbol mana-{{symbol.tone}} mana-code-{{symbol.className}} {{symbol.split ? 'mana-split' : ''}} {{symbol.phyrexian ? 'mana-phyrexian' : ''}}">
+                          <text wx:if="{{manaFontReady && symbol.glyph}}" class="mana-glyph {{symbol.split ? 'mana-glyph-top' : ''}}">{{symbol.glyph}}</text>
+                          <text wx:if="{{manaFontReady && symbol.secondaryGlyph}}" class="mana-glyph mana-glyph-bottom">{{symbol.secondaryGlyph}}</text>
+                          <text wx:if="{{!manaFontReady || !symbol.glyph}}" class="mana-fallback">{{symbol.text}}</text>
+                        </view>
+                      </block>
+                    </view>
+                  </view>
+                  <text class="grade-card-score">{{card.metricText}}</text>
+                </view>
+              </view>
+            </block>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <view wx:if="{{gradeHelpOpen}}" class="modal-mask" bindtap="closeGradeHelp">
+    <view class="modal help-modal" catchtap="noop">
+      <view class="modal-title">评分计算说明</view>
+      <view class="help-note">当前评分指标：{{gradeMetricOptions[metricIndex].shortLabel}}</view>
+      <view class="help-list">
+        <block wx:for="{{gradeHelpItems}}" wx:key="*this">
+          <view class="help-bullet">{{item}}</view>
+        </block>
+      </view>
+      <view class="modal-actions">
+        <button type="primary" bindtap="closeGradeHelp">我知道了</button>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{selectedCard}}" class="modal-mask detail-modal-mask" bindtap="closeCard" catchtouchmove="noop">
+    <view class="modal card-detail-modal" catchtap="noop">
+      <view class="card-detail-header">
+        <view class="card-detail-title-wrap">
+          <view class="card-detail-title-row">
+            <view class="modal-title detail-card-title">{{selectedCard.chineseName}}</view>
+          </view>
+          <view class="muted detail-card-subtitle">{{selectedCard.name}}</view>
+          <view class="detail-rarity-line">
+            <view class="color-symbols">
+              <block wx:for="{{selectedCard.colorSymbols}}" wx:key="key" wx:for-item="symbol">
+                <view class="mana-symbol color-symbol mana-{{symbol.tone}} mana-code-{{symbol.className}} {{symbol.split ? 'mana-split' : ''}} {{symbol.phyrexian ? 'mana-phyrexian' : ''}}">
+                  <text wx:if="{{manaFontReady && symbol.glyph}}" class="mana-glyph {{symbol.split ? 'mana-glyph-top' : ''}}">{{symbol.glyph}}</text>
+                  <text wx:if="{{manaFontReady && symbol.secondaryGlyph}}" class="mana-glyph mana-glyph-bottom">{{symbol.secondaryGlyph}}</text>
+                  <text wx:if="{{!manaFontReady || !symbol.glyph}}" class="mana-fallback">{{symbol.text}}</text>
+                </view>
+              </block>
+            </view>
+            <text class="detail-rarity-text">{{selectedCard.rarityText}}</text>
+          </view>
+        </view>
+        <view class="detail-header-actions">
+          <view class="icon-action detail-icon-action" role="button" aria-label="关闭" bindtap="closeCard">
+            <image class="action-icon" mode="aspectFit" src="/assets/icons/close.svg" />
+          </view>
+        </view>
+      </view>
+
+      <scroll-view scroll-y class="card-detail-scroll">
+        <view class="card-detail-media">
+          <image wx:if="{{selectedCard.imageUrl && !selectedCard.imageFailed}}" class="card-detail-image" mode="aspectFit" webp src="{{selectedCard.imageUrl}}" binderror="handleImageError" />
+          <view wx:if="{{!selectedCard.imageUrl || selectedCard.imageFailed}}" class="card-detail-placeholder">卡图暂不可用</view>
+        </view>
+
+        <view class="rules-panel">
+          <view wx:if="{{selectedCardDetailLoading}}" class="muted small">正在加载中文规则文本...</view>
+          <view wx:if="{{!selectedCardDetailLoading && selectedCardDetailError}}" class="muted small">{{selectedCardDetailError}}</view>
+          <block wx:if="{{!selectedCardDetailLoading && !selectedCardDetailError && selectedCardDetail}}">
+            <block wx:for="{{selectedCardDetail.faces}}" wx:key="name" wx:for-item="face">
+              <view class="rule-face">
+                <view wx:if="{{selectedCardDetail.isDoubleFaced}}" class="rule-face-name">{{face.name}}</view>
+                <view wx:if="{{face.manaCostSymbols.length}}" class="mana-row">
+                  <block wx:for="{{face.manaCostSymbols}}" wx:key="key" wx:for-item="symbol">
+                    <view class="mana-symbol mana-{{symbol.tone}} mana-code-{{symbol.className}} {{symbol.split ? 'mana-split' : ''}} {{symbol.phyrexian ? 'mana-phyrexian' : ''}}">
+                      <text wx:if="{{manaFontReady && symbol.glyph}}" class="mana-glyph {{symbol.split ? 'mana-glyph-top' : ''}}">{{symbol.glyph}}</text>
+                      <text wx:if="{{manaFontReady && symbol.secondaryGlyph}}" class="mana-glyph mana-glyph-bottom">{{symbol.secondaryGlyph}}</text>
+                      <text wx:if="{{!manaFontReady || !symbol.glyph}}" class="mana-fallback">{{symbol.text}}</text>
+                    </view>
+                  </block>
+                </view>
+                <view wx:if="{{!face.manaCostSymbols.length && face.manaCostText}}" class="rule-mana mono">{{face.manaCostText}}</view>
+                <view wx:if="{{face.typeLine}}" class="rule-type">{{face.typeLine}}</view>
+                <view wx:if="{{face.oracleSegments.length}}" class="rule-text">
+                  <block wx:for="{{face.oracleSegments}}" wx:key="key" wx:for-item="segment">
+                    <text wx:if="{{segment.type === 'text'}}">{{segment.text}}</text>
+                    <text wx:if="{{segment.type === 'mana'}}" class="mana-symbol inline-mana-symbol mana-{{segment.tone}} mana-code-{{segment.className}} {{segment.split ? 'mana-split' : ''}} {{segment.phyrexian ? 'mana-phyrexian' : ''}}">
+                      <text wx:if="{{manaFontReady && segment.glyph}}" class="mana-glyph {{segment.split ? 'mana-glyph-top' : ''}}">{{segment.glyph}}</text>
+                      <text wx:if="{{manaFontReady && segment.secondaryGlyph}}" class="mana-glyph mana-glyph-bottom">{{segment.secondaryGlyph}}</text>
+                      <text wx:if="{{!manaFontReady || !segment.glyph}}" class="mana-fallback">{{segment.text}}</text>
+                    </text>
+                  </block>
+                </view>
+                <view wx:if="{{face.flavorText}}" class="rule-flavor">{{face.flavorText}}</view>
+                <view wx:if="{{face.powerText}}" class="rule-power">{{face.powerText}}</view>
+              </view>
+            </block>
+          </block>
+        </view>
+
+        <view class="detail-core-grid">
+          <view class="detail-core-item">
+            <view class="detail-value primary-detail-value">{{selectedCard.alsaText}}</view>
+            <view class="detail-label">平均抓位</view>
+          </view>
+          <view class="detail-core-item">
+            <view class="detail-value primary-detail-value">{{selectedCard.gihText}}</view>
+            <view class="detail-label">在手胜率</view>
+          </view>
+          <view class="detail-core-item">
+            <view class="detail-value primary-detail-value">{{selectedCard.iihText}}</view>
+            <view class="detail-label">在手胜率提升</view>
+          </view>
+        </view>
+
+        <view class="detail-section">
+          <view class="detail-section-title">轮抽数据</view>
+          <view class="detail-row-grid">
+            <view class="detail-data-row">
+              <text class="detail-label">见过次数</text>
+              <text class="detail-row-value">{{selectedCard.seenText}}</text>
+            </view>
+            <view class="detail-data-row">
+              <text class="detail-label">选择次数</text>
+              <text class="detail-row-value">{{selectedCard.pickedText}}</text>
+            </view>
+            <view class="detail-data-row">
+              <text class="detail-label">平均选择位置</text>
+              <text class="detail-row-value">{{selectedCard.ataText}}</text>
+            </view>
+            <view class="detail-data-row">
+              <text class="detail-label">游戏次数</text>
+              <text class="detail-row-value">{{selectedCard.gameText}}</text>
+            </view>
+          </view>
+        </view>
+
+        <view class="detail-section">
+          <view class="detail-section-title">详细胜率</view>
+          <view class="detail-row-grid">
+            <view class="detail-data-row">
+              <text class="detail-label">起手胜率</text>
+              <text class="detail-row-value">{{selectedCard.ohText}}</text>
+            </view>
+            <view class="detail-data-row">
+              <text class="detail-label">抽到胜率</text>
+              <text class="detail-row-value">{{selectedCard.gdText}}</text>
+            </view>
+            <view class="detail-data-row">
+              <text class="detail-label">未抽到胜率</text>
+              <text class="detail-row-value">{{selectedCard.gnsText}}</text>
+            </view>
+            <view class="detail-data-row">
+              <text class="detail-label">使用胜率</text>
+              <text class="detail-row-value">{{selectedCard.gpText}}</text>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+  <bottom-nav />
+</view>

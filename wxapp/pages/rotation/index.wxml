@@ -1,0 +1,123 @@
+<view class="page">
+  <view class="hero">
+    <view class="eyebrow">万智日程</view>
+    <view class="title">标准轮替</view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">轮替说明</view>
+    <view class="muted small">标准赛制中，最近三年内发行的正式系列都可以使用。2027 年起，每年新系列发售时，超过三年的系列将会轮替出标准赛制。</view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">当前标准系列</view>
+    <view wx:if="{{loading}}" class="muted small">正在加载轮替数据...</view>
+    <view wx:if="{{!loading && error}}" class="muted small">{{error}}</view>
+    <view wx:if="{{setNameLoading}}" class="muted small">正在加载系列中文名...</view>
+    <view wx:if="{{setNameError}}" class="muted small">{{setNameError}}，已使用原始系列名。</view>
+    <view wx:if="{{!loading && !error && !setNameLoading && !currentGroups.length}}" class="muted small">暂无当前标准系列数据。</view>
+    <block wx:for="{{currentGroups}}" wx:key="key" wx:for-item="group">
+      <view class="rotation-group {{group.isNext ? 'next-group' : ''}}">
+        <view class="group-head">
+          <view>
+            <view class="group-title">{{group.title}}</view>
+            <view class="muted small">{{group.timeLeftText}}</view>
+          </view>
+          <view wx:if="{{group.isNext}}" class="next-badge">下一轮替</view>
+        </view>
+        <block wx:for="{{group.sets}}" wx:key="code">
+          <view class="set-row">
+            <view class="set-logo" aria-label="{{item.code}} 系列标识">
+              <text wx:if="{{item.setGlyph}}" class="set-logo-glyph">{{item.setGlyph}}</text>
+              <text wx:if="{{!item.setGlyph}}" class="set-logo-code">-</text>
+            </view>
+            <view class="set-main">
+              <view class="set-title-line">
+                <view class="set-copy-area">
+                  <view class="set-name-line">
+                    <view class="set-name">{{item.localizedName}}</view>
+                  </view>
+                  <view class="set-code-line">
+                    <view class="set-code">{{item.code}}</view>
+                    <view wx:if="{{item.universesBeyond}}" class="tag ub code-tag">无疆新宇宙</view>
+                  </view>
+                </view>
+              </view>
+              <view wx:if="{{item.hasDigital}}" class="tag-row">
+                <view wx:if="{{item.hasDigital}}" class="tag digital">穿越预兆路</view>
+              </view>
+              <view wx:if="{{item.hasDigital}}" class="digital-row">
+                <view class="digital-logo" aria-label="{{item.digital_code}} 数字系列标识">
+                  <text wx:if="{{item.digitalGlyph}}" class="digital-logo-glyph">{{item.digitalGlyph}}</text>
+                  <text wx:if="{{!item.digitalGlyph}}" class="digital-logo-code">-</text>
+                </view>
+                <view class="digital-main">
+                  <view class="muted small">{{item.digital_code}} · {{item.digitalDisplayText}}</view>
+                </view>
+              </view>
+            </view>
+            <view class="right-text">
+              <view class="muted small">发售：{{item.enterText}}</view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </block>
+  </view>
+
+  <view class="card">
+    <view class="section-title">未来系列</view>
+    <view wx:if="{{!loading && !error && !upcomingSets.length}}" class="muted small">暂无未来系列数据。</view>
+    <block wx:for="{{upcomingSets}}" wx:key="code">
+      <view class="set-row">
+        <view class="set-logo" aria-label="{{item.code}} 系列标识">
+          <text wx:if="{{item.setGlyph}}" class="set-logo-glyph">{{item.setGlyph}}</text>
+          <text wx:if="{{!item.setGlyph}}" class="set-logo-code">-</text>
+        </view>
+        <view class="set-main">
+          <view class="set-title-line">
+            <view class="set-copy-area">
+              <view class="set-name-line">
+                <view class="set-name">{{item.localizedName}}</view>
+              </view>
+              <view class="set-code-line">
+                <view class="set-code">{{item.code}}</view>
+                <view wx:if="{{item.universesBeyond}}" class="tag ub code-tag">无疆新宇宙</view>
+              </view>
+            </view>
+          </view>
+          <view wx:if="{{item.hasDigital}}" class="tag-row">
+            <view wx:if="{{item.hasDigital}}" class="tag digital">穿越预兆路</view>
+          </view>
+        </view>
+        <view class="right-text">
+          <view class="muted small">发售：{{item.enterText}}</view>
+          <view class="muted small">{{item.timeLeftText}}</view>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <view class="card" wx:if="{{bans.length}}">
+    <view class="section-title">标准禁牌</view>
+    <block wx:for="{{bans}}" wx:key="card_name">
+      <view class="ban-card">
+        <image wx:if="{{item.card_image_url && !item.imageFailed}}" class="ban-image" mode="aspectFill" src="{{item.card_image_url}}" data-index="{{index}}" data-url="{{item.card_image_url}}" bindtap="previewBanImage" binderror="handleBanImageError" />
+        <view wx:if="{{!item.card_image_url || item.imageFailed}}" class="ban-image ban-image-empty">卡图暂不可用</view>
+        <view class="ban-main">
+          <view class="ban-title-line">
+            <text class="ban-set-glyph">{{item.setGlyph}}</text>
+            <view class="ban-title">{{item.card_name}}</view>
+          </view>
+          <view class="ban-reason">{{item.reason}}</view>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <view wx:if="{{!bans.length}}" class="card">
+    <view class="section-title">标准禁牌</view>
+    <view class="muted small">当前标准系列暂无记录在案的禁牌。</view>
+  </view>
+  <bottom-nav />
+</view>

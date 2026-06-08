@@ -1,0 +1,186 @@
+<view class="page">
+  <view class="hero">
+    <view class="eyebrow">其他工具</view>
+    <view class="title">抽卡概率</view>
+  </view>
+
+  <view class="tabs">
+    <view class="tab {{tab === 'single' ? 'active' : ''}}" data-tab="single" bindtap="setTab">单牌概率</view>
+    <view class="tab {{tab === 'multi' ? 'active' : ''}}" data-tab="multi" bindtap="setTab">多牌概率</view>
+    <view class="tab {{tab === 'bo1' ? 'active' : ''}}" data-tab="bo1" bindtap="setTab">BO1 地牌</view>
+  </view>
+
+  <view wx:if="{{tab === 'single'}}" class="card">
+    <view class="section-title">输入参数</view>
+    <view class="field">
+      <view class="label">牌库总数</view>
+      <input class="input" type="number" value="{{single.populationSize}}" data-field="populationSize" bindinput="updateSingle" />
+      <view class="quick-row">
+        <view class="quick-chip" data-field="populationSize" data-value="40" bindtap="quickSingle">40</view>
+        <view class="quick-chip" data-field="populationSize" data-value="60" bindtap="quickSingle">60</view>
+      </view>
+    </view>
+    <view class="field">
+      <view class="label">抽牌数量</view>
+      <input class="input" type="number" value="{{single.sampleSize}}" data-field="sampleSize" bindinput="updateSingle" />
+      <view class="quick-row">
+        <view class="quick-chip" data-field="sampleSize" data-value="7" bindtap="quickSingle">7</view>
+        <view class="quick-chip" data-field="sampleSize" data-value="8" bindtap="quickSingle">8</view>
+        <view class="quick-chip" data-field="sampleSize" data-value="9" bindtap="quickSingle">9</view>
+      </view>
+    </view>
+    <view class="field">
+      <view class="label">目标牌数量</view>
+      <input class="input" type="number" value="{{single.successesInPopulation}}" data-field="successesInPopulation" bindinput="updateSingle" />
+      <view class="quick-row">
+        <view class="quick-chip" data-field="successesInPopulation" data-value="4" bindtap="quickSingle">4</view>
+        <view class="quick-chip" data-field="successesInPopulation" data-value="17" bindtap="quickSingle">17</view>
+        <view class="quick-chip" data-field="successesInPopulation" data-value="24" bindtap="quickSingle">24</view>
+      </view>
+    </view>
+    <view class="field">
+      <view class="label">期望抽到数量</view>
+      <input class="input" type="number" value="{{single.successesInSample}}" data-field="successesInSample" bindinput="updateSingle" />
+      <view class="quick-row">
+        <view class="quick-chip" data-field="successesInSample" data-value="1" bindtap="quickSingle">1</view>
+        <view class="quick-chip" data-field="successesInSample" data-value="2" bindtap="quickSingle">2</view>
+        <view class="quick-chip" data-field="successesInSample" data-value="3" bindtap="quickSingle">3</view>
+        <view class="quick-chip" data-field="successesInSample" data-value="4" bindtap="quickSingle">4</view>
+      </view>
+    </view>
+    <button type="primary" bindtap="calculateSingle">计算概率</button>
+  </view>
+
+  <view id="single-result" wx:if="{{tab === 'single' && singleResult}}" class="card">
+    <view class="section-title">计算结果</view>
+    <view class="stat-grid">
+      <view class="stat"><view class="stat-label">至少抽到</view><view class="stat-value">{{singleResult.orMore}}</view></view>
+      <view class="stat"><view class="stat-label">恰好抽到</view><view class="stat-value">{{singleResult.exact}}</view></view>
+      <view class="stat"><view class="stat-label">不超过</view><view class="stat-value">{{singleResult.orLess}}</view></view>
+      <view class="stat"><view class="stat-label">一张没有</view><view class="stat-value">{{singleResult.zero}}</view></view>
+    </view>
+  </view>
+
+  <view wx:if="{{tab === 'multi'}}" class="card">
+    <view class="section-title">基础参数</view>
+    <view class="field">
+      <view class="label">牌库总数</view>
+      <input class="input" type="number" value="{{multi.populationSize}}" data-field="populationSize" bindinput="updateMulti" />
+      <view class="quick-row">
+        <view class="quick-chip" data-field="populationSize" data-value="40" bindtap="quickMulti">40</view>
+        <view class="quick-chip" data-field="populationSize" data-value="60" bindtap="quickMulti">60</view>
+      </view>
+    </view>
+    <view class="field">
+      <view class="label">抽牌数量</view>
+      <input class="input" type="number" value="{{multi.sampleSize}}" data-field="sampleSize" bindinput="updateMulti" />
+    </view>
+
+    <view class="row target-title">
+      <view class="section-title">目标牌</view>
+      <view class="text-action" bindtap="addTargetCard">添加</view>
+    </view>
+
+    <block wx:for="{{multi.targetCards}}" wx:key="id">
+      <view class="target-card">
+        <view class="row target-head">
+          <view class="target-name">目标 {{index + 1}}</view>
+          <view wx:if="{{multi.targetCards.length > 1}}" class="text-action muted-action" data-index="{{index}}" bindtap="removeTargetCard">移除</view>
+        </view>
+        <view class="field">
+          <view class="label">牌名</view>
+          <input class="input" value="{{item.name}}" data-index="{{index}}" data-field="name" bindinput="updateTargetCard" />
+        </view>
+        <view class="target-grid">
+          <view class="field">
+            <view class="label">牌库中的数量</view>
+            <input class="input" type="number" value="{{item.count}}" data-index="{{index}}" data-field="count" bindinput="updateTargetCard" />
+          </view>
+          <view class="field">
+            <view class="label">期望抽到数量</view>
+            <input class="input" type="number" value="{{item.expected}}" data-index="{{index}}" data-field="expected" bindinput="updateTargetCard" />
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <button type="primary" bindtap="calculateMulti">计算多牌概率</button>
+  </view>
+
+  <view id="multi-result" wx:if="{{tab === 'multi' && multiResult}}" class="card">
+    <view class="section-title">计算结果</view>
+    <view wx:if="{{multiResult.error}}" class="error-box">{{multiResult.error}}</view>
+    <view wx:if="{{!multiResult.error}}">
+      <view class="stat-grid">
+        <view class="stat"><view class="stat-label">同时满足所有目标</view><view class="stat-value">{{multiResult.all}}</view></view>
+        <view class="stat"><view class="stat-label">至少满足一种目标</view><view class="stat-value">{{multiResult.atLeastOne}}</view></view>
+      </view>
+      <view class="individual-list">
+        <block wx:for="{{multiResult.individual}}" wx:key="id">
+          <view class="individual-row">
+            <view class="individual-name">{{item.name}}</view>
+            <view class="individual-value">{{item.probability}}</view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{tab === 'bo1'}}" class="card">
+    <view class="section-title">BO1 地牌输入</view>
+    <view class="field">
+      <view class="label">卡组总数</view>
+      <input class="input" type="number" value="{{bo1.deckSize}}" data-field="deckSize" bindinput="updateBo1" />
+      <view class="quick-row">
+        <view class="quick-chip" data-field="deckSize" data-value="40" bindtap="quickBo1">40</view>
+        <view class="quick-chip" data-field="deckSize" data-value="60" bindtap="quickBo1">60</view>
+      </view>
+    </view>
+    <view class="field">
+      <view class="label">地牌数量</view>
+      <input class="input" type="number" value="{{bo1.landCount}}" data-field="landCount" bindinput="updateBo1" />
+      <view class="quick-row">
+        <view class="quick-chip" data-field="landCount" data-value="16" bindtap="quickBo1">16</view>
+        <view class="quick-chip" data-field="landCount" data-value="17" bindtap="quickBo1">17</view>
+        <view class="quick-chip" data-field="landCount" data-value="22" bindtap="quickBo1">22</view>
+        <view class="quick-chip" data-field="landCount" data-value="24" bindtap="quickBo1">24</view>
+        <view class="quick-chip" data-field="landCount" data-value="26" bindtap="quickBo1">26</view>
+      </view>
+    </view>
+    <button type="primary" bindtap="calculateBo1">计算 BO1 概率</button>
+  </view>
+
+  <view id="bo1-result" wx:if="{{tab === 'bo1' && bo1Result}}" class="card">
+    <view class="section-title">地牌分布对比</view>
+    <view class="muted">平均地牌数：{{bo1Result.averageLands}}</view>
+    <view class="legend-row">
+      <view class="legend-item"><view class="legend-dot bo1-dot"></view><text>BO1 优化后</text></view>
+      <view class="legend-item"><view class="legend-dot normal-dot"></view><text>普通抓牌</text></view>
+    </view>
+    <block wx:for="{{bo1Result.distribution}}" wx:key="lands">
+      <view class="compare-row">
+        <view class="compare-label">{{item.lands}} 张</view>
+        <view class="compare-bars">
+          <view class="compare-line">
+            <view class="bar-track"><view class="bar-fill bo1-fill" style="width: {{item.bo1Width}};"></view></view>
+            <view class="bar-value bo1-value">{{item.probability}}</view>
+          </view>
+          <view class="compare-line">
+            <view class="bar-track"><view class="bar-fill normal-fill" style="width: {{item.normalWidth}};"></view></view>
+            <view class="bar-value normal-value">{{item.normal}}</view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <view wx:if="{{tab === 'bo1'}}" class="card">
+    <view class="section-title">计算原理说明</view>
+    <view class="explain-list">
+      <view class="explain-item">普通抓牌概率使用超几何分布，计算从卡组中抽取 7 张时命中特定地牌数量的概率。</view>
+      <view class="explain-item">BO1 优化会模拟 3 次独立起手，并选择地牌比例最接近卡组地牌比例的一手。</view>
+      <view class="explain-item">上方对比用于观察 BO1 机制对 0 地、1 地、泛滥等起手分布的影响。</view>
+    </view>
+  </view>
+  <bottom-nav />
+</view>

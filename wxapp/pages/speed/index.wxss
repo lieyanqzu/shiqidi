@@ -1,0 +1,504 @@
+.speed-summary {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18rpx;
+  margin: 22rpx 0;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #dbe5f0;
+}
+
+.speed-summary-main {
+  min-width: 0;
+  flex: 1;
+}
+
+.speed-summary-title {
+  color: #111827;
+  font-size: 31rpx;
+  font-weight: 900;
+  line-height: 1.25;
+}
+
+.speed-summary-meta {
+  margin-top: 8rpx;
+  color: #667085;
+  font-size: 23rpx;
+  line-height: 1.4;
+}
+
+.speed-summary-actions {
+  flex-shrink: 0;
+}
+
+.speed-loading-banner {
+  display: flex;
+  align-items: center;
+  gap: 14rpx;
+  margin: 0 0 18rpx;
+  padding: 16rpx 18rpx;
+  border: 1rpx solid #bfdbfe;
+  border-radius: 12rpx;
+  background: #eff6ff;
+  color: #0f5ce8;
+  font-size: 24rpx;
+  font-weight: 850;
+}
+
+.banner-spinner {
+  width: 30rpx;
+  height: 30rpx;
+  border-width: 3rpx;
+}
+
+.filter-panel {
+  margin-bottom: 18rpx;
+}
+
+.filter-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16rpx;
+  margin-bottom: 12rpx;
+}
+
+.filter-head .label {
+  margin-bottom: 0;
+}
+
+.compact-title {
+  margin-bottom: 0;
+  padding-left: 0;
+  border-left: 0;
+  font-size: 27rpx;
+}
+
+.format-head {
+  margin-top: 20rpx;
+}
+
+.filter-actions {
+  display: flex;
+  gap: 8rpx;
+  flex-shrink: 0;
+}
+
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+  max-height: 300rpx;
+  overflow: auto;
+  padding: 4rpx 2rpx 8rpx;
+}
+
+.compact-chip-row {
+  max-height: 220rpx;
+}
+
+.chip {
+  padding: 10rpx 16rpx;
+  border: 1rpx solid #dbe5f0;
+  border-radius: 12rpx;
+  background: #ffffff;
+  color: #435269;
+  font-size: 22rpx;
+  font-weight: 750;
+  box-shadow: none;
+  transition: transform 120ms ease, opacity 120ms ease;
+}
+
+.chip:active {
+  opacity: 0.82;
+  transform: scale(0.98);
+}
+
+.chip.active {
+  border-color: #0f5ce8;
+  background: #eff6ff;
+  color: #0f5ce8;
+  box-shadow: none;
+}
+
+.stat-grid {
+  margin-top: 20rpx;
+}
+
+.chart-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12rpx;
+  flex-shrink: 0;
+}
+
+.legend-row {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  gap: 10rpx;
+  margin: 2rpx 0 14rpx;
+  min-width: 100%;
+}
+
+.legend-scroll {
+  width: 100%;
+  white-space: nowrap;
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8rpx;
+  min-height: 44rpx;
+  padding: 0 12rpx;
+  border: 1rpx solid #dbe5f0;
+  border-radius: 12rpx;
+  background: #ffffff;
+  color: #344054;
+  font-size: 22rpx;
+  font-weight: 750;
+}
+
+.legend-marker {
+  width: 18rpx;
+  height: 18rpx;
+  flex-shrink: 0;
+  background-color: currentColor;
+}
+
+.legend-marker.circle {
+  border-radius: 999rpx;
+}
+
+.legend-marker.square {
+  border-radius: 3rpx;
+}
+
+.legend-marker.diamond {
+  border-radius: 3rpx;
+  transform: rotate(45deg);
+}
+
+.legend-marker.triangle {
+  width: 0;
+  height: 0;
+  border-right: 10rpx solid transparent;
+  border-bottom: 18rpx solid currentColor;
+  border-left: 10rpx solid transparent;
+  background: transparent;
+}
+
+.set-glyph {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30rpx;
+  height: 30rpx;
+  flex-shrink: 0;
+  font-family: Keyrune, sans-serif;
+  font-size: 30rpx;
+  line-height: 1;
+}
+
+.tooltip-glyph {
+  width: 34rpx;
+  height: 34rpx;
+  font-size: 34rpx;
+}
+
+.chart-hint {
+  margin-bottom: 14rpx;
+}
+
+.chart-wrap {
+  position: relative;
+  width: 100%;
+  height: 600rpx;
+  overflow: hidden;
+  border: 1rpx solid #dbe5f0;
+  border-radius: 8rpx;
+  background-color: #ffffff;
+  box-shadow: none;
+}
+
+.chart-plot {
+  position: relative;
+  width: 100%;
+  height: 600rpx;
+}
+
+.chart-grid-line {
+  position: absolute;
+  z-index: 1;
+  background: #e5e7eb;
+  pointer-events: none;
+}
+
+.chart-grid-line-y {
+  height: 1px;
+}
+
+.chart-grid-line-x {
+  width: 1px;
+}
+
+.chart-y-label,
+.chart-x-label {
+  position: absolute;
+  z-index: 2;
+  color: #6b7280;
+  font-size: 11px;
+  line-height: 14px;
+  pointer-events: none;
+}
+
+.chart-y-label {
+  left: 0;
+  text-align: right;
+  transform: translateY(-50%);
+}
+
+.chart-x-label {
+  bottom: 21px;
+  text-align: center;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.chart-axis {
+  position: absolute;
+  z-index: 2;
+  background: #9ca3af;
+  pointer-events: none;
+}
+
+.chart-axis-y {
+  width: 1px;
+}
+
+.chart-axis-x {
+  height: 1px;
+}
+
+.chart-axis-title {
+  position: absolute;
+  z-index: 2;
+  color: #374151;
+  font-size: 12px;
+  line-height: 14px;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.chart-y-title {
+  left: 14px;
+  transform: translate(-50%, -50%) rotate(-90deg);
+}
+
+.chart-x-title {
+  bottom: 3px;
+  transform: translateX(-50%);
+}
+
+.chart-marker-layer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.chart-set-marker {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
+}
+
+.chart-set-marker .legend-marker {
+  position: relative;
+  z-index: 2;
+  width: 10px;
+  height: 10px;
+}
+
+.chart-set-marker .legend-marker.triangle {
+  width: 0;
+  height: 0;
+  border-right-width: 6px;
+  border-bottom-width: 10px;
+  border-left-width: 6px;
+}
+
+.chart-set-marker.selected {
+  z-index: 5;
+}
+
+.chart-point-halo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  width: 13px;
+  height: 13px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  opacity: 0.18;
+  transform: translate(-50%, -50%);
+}
+
+.chart-set-marker.selected .chart-point-halo {
+  width: 19px;
+  height: 19px;
+  opacity: 0.32;
+}
+
+.chart-set-glyph {
+  position: relative;
+  z-index: 2;
+  width: 28px;
+  height: 28px;
+  font-size: 26px;
+  line-height: 28px;
+  text-align: center;
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.95),
+    0 -1px 0 rgba(255, 255, 255, 0.95),
+    1px 0 0 rgba(255, 255, 255, 0.95),
+    -1px 0 0 rgba(255, 255, 255, 0.95),
+    0 0 8px rgba(255, 255, 255, 0.92);
+}
+
+.chart-set-marker.selected .chart-set-glyph {
+  width: 34px;
+  height: 34px;
+  font-size: 32px;
+  line-height: 34px;
+}
+
+.chart-loading-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16rpx;
+  background: rgba(255, 255, 255, 0.86);
+  color: #0f172a;
+  font-size: 25rpx;
+  font-weight: 850;
+}
+
+.speed-spinner {
+  width: 42rpx;
+  height: 42rpx;
+  border: 4rpx solid #dbe5f0;
+  border-top-color: #0f5ce8;
+  border-radius: 999rpx;
+  animation: speed-spin 900ms linear infinite;
+}
+
+.chart-loading-text {
+  line-height: 1.35;
+}
+
+@keyframes speed-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.list-head .section-title {
+  margin-bottom: 0;
+}
+
+.chart-tooltip {
+  margin-top: 16rpx;
+  padding: 18rpx;
+  border: 1rpx solid #dbe5f0;
+  border-radius: 14rpx;
+  background: #ffffff;
+}
+
+.chart-tooltip-title {
+  color: #0f172a;
+  font-size: 28rpx;
+  font-weight: 800;
+}
+
+.chart-tooltip-head {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+  margin-bottom: 6rpx;
+}
+
+.speed-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16rpx;
+  margin-bottom: 14rpx;
+  padding: 18rpx;
+  border: 1rpx solid #dbe5f0;
+  border-radius: 14rpx;
+  background: #ffffff;
+  box-shadow: none;
+  transition: transform 120ms ease, opacity 120ms ease;
+}
+
+.speed-row:active {
+  opacity: 0.86;
+  transform: scale(0.99);
+}
+
+.speed-main {
+  min-width: 0;
+}
+
+.speed-row:last-child {
+  margin-bottom: 0;
+}
+
+.speed-title-line {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+}
+
+.speed-title {
+  min-width: 0;
+  color: #0f172a;
+  font-size: 30rpx;
+  font-weight: 850;
+  overflow-wrap: anywhere;
+}
+
+.speed-stats {
+  flex-shrink: 0;
+  color: #0f5ce8;
+  text-align: right;
+  font-size: 30rpx;
+  font-weight: 900;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .speed-spinner {
+    animation: none;
+  }
+}
