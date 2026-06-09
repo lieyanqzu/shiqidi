@@ -40,9 +40,6 @@ jobs:
         run: pnpm build
         env:
           NEXT_TELEMETRY_DISABLED: 1
-          LEANCLOUD_APP_ID: ${{ secrets.LEANCLOUD_APP_ID }}
-          LEANCLOUD_APP_KEY: ${{ secrets.LEANCLOUD_APP_KEY }}
-          LEANCLOUD_SERVER_URL: ${{ secrets.LEANCLOUD_SERVER_URL }}
           ICP_NUMBER: ${{ secrets.ICP_NUMBER }}
 
       - name: Deploy to out branch

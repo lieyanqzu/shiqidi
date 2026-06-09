@@ -1,6 +1,7 @@
 'use client'
 
 import Link from "next/link";
+import Image from "next/image";
 import { ThemeToggle } from "@/components/common/theme-toggle";
 import { Github, ChevronDown, ExternalLink, Menu, X, Calendar, Activity, Download } from "lucide-react";
 import { useState, useEffect } from "react";
@@ -472,6 +473,45 @@ function DesktopDropdownMenu({ item }: { item: MenuItem }) {
   );
 }
 
+function WxappButton() {
+  return (
+    <Tooltip
+      side="bottom"
+      triggerClassName="inline-flex h-5 w-5 items-center justify-center"
+      content={
+        <div className="w-[220px] space-y-3 text-center">
+          <h3 className="font-medium text-[--foreground]">十七地小程序</h3>
+          <Image
+            src="/image/wxapp_qrcode.jpg"
+            alt="十七地小程序码"
+            width={180}
+            height={180}
+            className="mx-auto rounded-lg"
+          />
+          <p className="text-xs leading-relaxed text-[--muted-foreground]">
+            使用微信扫码打开小程序
+          </p>
+        </div>
+      }
+    >
+      <button
+        type="button"
+        className="inline-flex items-center justify-center text-[--foreground-muted] hover:text-[--foreground] transition-colors"
+        title="打开小程序"
+        aria-label="打开小程序"
+      >
+        <svg viewBox="0 0 72 72" className="block h-5 w-5" aria-hidden="true">
+          <path
+            fill="currentColor"
+            fillRule="nonzero"
+            d="M49,9 C45.693,9 42.614,9.879 40,11.374 C35.205,14.118 32,18.968 32,24.5 L32,47.5 C32,51.642 27.97,55 23,55 C18.029,55 14,51.642 14,47.5 C14,44.552 16.046,42.009 19.015,40.783 C19.229,40.695 19.446,40.611 19.669,40.537 C21.538,39.787 23.141,38.379 23.736,36.744 C24.615,34.33 22.979,32.374 20.083,32.374 C19.361,32.374 18.629,32.496 17.923,32.716 C17.92,32.717 17.917,32.718 17.913,32.719 C13.726,33.921 10.231,36.557 8.133,40 C6.778,42.225 6,44.78 6,47.5 C6,56.047 13.626,63 23,63 C26.307,63 29.386,62.121 32,60.626 C36.795,57.882 40,53.032 40,47.5 L40,24.5 C40,20.358 44.029,17 49,17 C53.97,17 58,20.358 58,24.5 C58,27.574 55.781,30.216 52.604,31.374 C50.555,32.061 48.876,33.544 48.236,35.301 C47.362,37.703 48.99,39.651 51.873,39.651 C52.526,39.651 53.186,39.539 53.829,39.357 C53.934,39.328 54.038,39.296 54.142,39.265 C58.304,38.056 61.778,35.428 63.866,32 C65.222,29.776 66,27.22 66,24.5 C66,15.953 58.374,9 49,9"
+          />
+        </svg>
+      </button>
+    </Tooltip>
+  );
+}
+
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { isInstallable, install } = usePWAInstall();
@@ -504,7 +544,7 @@ export function Header() {
               ))}
             </nav>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 md:gap-3">
             <SetInfo className="hidden 2xl:flex" />
             <div className="w-px h-4 bg-[--border] hidden 2xl:flex" />
             <ServerStatusInfo className="hidden 2xl:flex" />
@@ -517,6 +557,7 @@ export function Header() {
                 <Download className="h-5 w-5" />
               </button>
             )}
+            <WxappButton />
             <a
               href="https://space.bilibili.com/271023"
               target="_blank"
