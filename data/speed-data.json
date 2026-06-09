@@ -1124,8 +1124,8 @@
   {
     "expansion": "MKM",
     "event_type": "QuickDraft",
-    "average_game_length": 9.239303917532709,
-    "win_rate_on_play": 0.5213414763792187
+    "average_game_length": 9.239677140449627,
+    "win_rate_on_play": 0.5213447151916011
   },
   {
     "expansion": "MKM",
@@ -1880,14 +1880,14 @@
   {
     "expansion": "Cube - Powered",
     "event_type": "PremierDraft",
-    "average_game_length": 6.64007000883568,
-    "win_rate_on_play": 0.5437304307135744
+    "average_game_length": 6.639515775006264,
+    "win_rate_on_play": 0.5437347479755734
   },
   {
     "expansion": "Cube - Powered",
     "event_type": "TradDraft",
-    "average_game_length": 6.476028504049902,
-    "win_rate_on_play": 0.539523925569565
+    "average_game_length": 6.475409040677493,
+    "win_rate_on_play": 0.5396700964249823
   },
   {
     "expansion": "OM1",
