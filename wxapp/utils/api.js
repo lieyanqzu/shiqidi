@@ -1,4 +1,7 @@
 const DEFAULT_TIMEOUT = 60000;
+const RETRY_TIMEOUT = 300000;
+const MAX_RETRIES = 2;
+const RETRY_DELAYS = [1000, 2000];
 const SITE_BASE_URL = 'https://shiqidi.lenitatis.com';
 const SCRYFALL_CARD_HOST = 'https://cards.scryfall.io';
 const MTGCH_IMAGE_HOST = 'https://images.mtgch.com';
@@ -66,14 +69,22 @@ function request({ url, data, header = DEFAULT_HEADERS, timeout = DEFAULT_TIMEOU
   });
 }
 
+function requestWithRetry({ url, data, header, timeout = RETRY_TIMEOUT, retries = MAX_RETRIES }) {
+  return request({ url, data, header, timeout }).catch((error) => {
+    if (retries <= 0) return Promise.reject(error);
+    const delay = RETRY_DELAYS[MAX_RETRIES - retries] || 1000;
+    return new Promise((resolve) => setTimeout(resolve, delay))
+      .then(() => requestWithRetry({ url, data, header, timeout, retries: retries - 1 }));
+  });
+}
+
 function fetchCardData(params) {
   const query = Object.keys(params)
     .filter((key) => params[key] !== undefined && params[key] !== '')
     .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
     .join('&');
-  return request({
+  return requestWithRetry({
     url: `https://www.17lands.com/card_ratings/data?${query}`,
-    timeout: DEFAULT_TIMEOUT,
   });
 }
 
@@ -82,23 +93,20 @@ function fetchColorRatings(params) {
     .filter((key) => params[key] !== undefined && params[key] !== '')
     .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
     .join('&');
-  return request({
+  return requestWithRetry({
     url: `https://www.17lands.com/color_ratings/data?${query}`,
-    timeout: DEFAULT_TIMEOUT,
   });
 }
 
 function fetchFilterMetadata() {
-  return request({
+  return requestWithRetry({
     url: 'https://www.17lands.com/data/filters',
-    timeout: DEFAULT_TIMEOUT,
   });
 }
 
 function fetchPlayDrawData() {
-  return request({
+  return requestWithRetry({
     url: 'https://www.17lands.com/data/play_draw',
-    timeout: DEFAULT_TIMEOUT,
   }).then((response) => {
     const rows = Array.isArray(response)
       ? response
