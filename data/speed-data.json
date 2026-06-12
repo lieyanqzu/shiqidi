@@ -1124,8 +1124,8 @@
   {
     "expansion": "MKM",
     "event_type": "QuickDraft",
-    "average_game_length": 9.24263521832455,
-    "win_rate_on_play": 0.5209858202077218
+    "average_game_length": 9.243816406604235,
+    "win_rate_on_play": 0.5209359674254974
   },
   {
     "expansion": "MKM",
@@ -1658,8 +1658,8 @@
   {
     "expansion": "TDM",
     "event_type": "Sealed",
-    "average_game_length": 9.12903125145327,
-    "win_rate_on_play": 0.5227551402984768
+    "average_game_length": 9.129274709645367,
+    "win_rate_on_play": 0.5226436751949791
   },
   {
     "expansion": "TDM",
@@ -1880,14 +1880,14 @@
   {
     "expansion": "Cube - Powered",
     "event_type": "PremierDraft",
-    "average_game_length": 6.638162605850212,
-    "win_rate_on_play": 0.5437702502310313
+    "average_game_length": 6.6375337366847935,
+    "win_rate_on_play": 0.5437870672012397
   },
   {
     "expansion": "Cube - Powered",
     "event_type": "TradDraft",
-    "average_game_length": 6.474765135408397,
-    "win_rate_on_play": 0.5398290673036584
+    "average_game_length": 6.474207902713696,
+    "win_rate_on_play": 0.5399367051293265
   },
   {
     "expansion": "OM1",
@@ -2102,14 +2102,14 @@
   {
     "expansion": "SOS",
     "event_type": "PickTwoDraft",
-    "average_game_length": 9.081274481464446,
-    "win_rate_on_play": 0.5210597746693086
+    "average_game_length": 9.081557121039854,
+    "win_rate_on_play": 0.5210988989501627
   },
   {
     "expansion": "SOS",
     "event_type": "PremierDraft",
-    "average_game_length": 9.000657172227864,
-    "win_rate_on_play": 0.526286829350614
+    "average_game_length": 9.000676970406325,
+    "win_rate_on_play": 0.5262881044989721
   },
   {
     "expansion": "SOS",
@@ -2120,8 +2120,8 @@
   {
     "expansion": "SOS",
     "event_type": "TradDraft",
-    "average_game_length": 8.787570532495693,
-    "win_rate_on_play": 0.5296212718155872
+    "average_game_length": 8.787347986499672,
+    "win_rate_on_play": 0.5297532879227015
   },
   {
     "expansion": "SOS",
@@ -2138,8 +2138,8 @@
   {
     "expansion": "SOS",
     "event_type": "QuickDraft",
-    "average_game_length": 8.848558090188991,
-    "win_rate_on_play": 0.5245623743962385
+    "average_game_length": 8.848432169320587,
+    "win_rate_on_play": 0.5245696615090693
   },
   {
     "expansion": "SOS",
