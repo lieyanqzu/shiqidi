@@ -8,6 +8,7 @@ const { fetchRemoteData } = require('../../utils/remote-data');
 let expansionOptions = [];
 let formatOptions = [];
 let cardDataDefaults = {};
+let userGroupOptions = [];
 
 const emptyFilterMetadata = {
   formats_by_expansion: {},
@@ -50,6 +51,7 @@ function applyOptions(options = {}) {
   expansionOptions = Array.isArray(options.expansionOptions) ? options.expansionOptions : [];
   formatOptions = Array.isArray(options.formatOptions) ? options.formatOptions : [];
   cardDataDefaults = options.cardDataDefaults || {};
+  userGroupOptions = Array.isArray(options.userGroupOptions) ? options.userGroupOptions : [];
 }
 
 function today() {
@@ -84,6 +86,11 @@ function getFormatIndex(options, value) {
   return index >= 0 ? index : 0;
 }
 
+function getOptionIndex(options, value) {
+  const index = options.findIndex((item) => item.value === value);
+  return index >= 0 ? index : 0;
+}
+
 function getDefaultExpansion() {
   const value = cardDataDefaults && cardDataDefaults.expansion;
   return expansionOptions.includes(value) ? value : (expansionOptions[0] || 'SOS');
@@ -103,18 +110,21 @@ function buildInitialState(metadata = emptyFilterMetadata) {
   const availableFormatOptions = getAvailableFormatOptions(expansion, metadata);
   const formatIndex = getFormatIndex(availableFormatOptions, getDefaultEventType());
   const formatOption = availableFormatOptions[formatIndex] || availableFormatOptions[0] || formatOptions[0];
+  const userGroupValue = '';
   return {
     filterMetadata: getFilterMetadata(metadata),
     availableFormatOptions,
     params: {
       expansion,
       event_type: formatOption ? formatOption.value : 'PremierDraft',
+      user_group: userGroupValue,
       start_date: getDefaultStartDate(expansion, metadata),
       end_date: today(),
       combine_splash: true,
     },
     expansionIndex: getExpansionIndex(expansion),
     formatIndex,
+    userGroupIndex: getOptionIndex(userGroupOptions, userGroupValue),
     separateSplash: false,
   };
 }
@@ -209,6 +219,7 @@ Page({
   data: {
     expansionOptions: [],
     formatOptions: [],
+    userGroupOptions: [],
     ...buildInitialState(),
     queryPanelOpen: false,
     loading: false,
@@ -230,6 +241,7 @@ Page({
       this.setData({
         expansionOptions,
         formatOptions,
+        userGroupOptions,
         ...buildInitialState(),
       }, () => this.loadFilterMetadata());
     } catch (error) {
@@ -292,6 +304,14 @@ Page({
     this.reloadAfterParamChange({
       formatIndex: index,
       'params.event_type': formatOption ? formatOption.value : 'PremierDraft',
+    });
+  },
+
+  onUserGroupChange(event) {
+    const index = Number(event.detail.value);
+    this.reloadAfterParamChange({
+      userGroupIndex: index,
+      'params.user_group': userGroupOptions[index].value,
     });
   },
 

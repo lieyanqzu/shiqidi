@@ -2,10 +2,10 @@ import '@/app/globals.css';
 import '@/styles/mana-symbols.css';
 import 'keyrune/css/keyrune.css';
 import 'mana-font/css/mana.css';
+import Script from 'next/script';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { Metadata } from 'next';
-import { AnalyticsTracker } from '@/components/common/analytics-tracker';
 
 export const metadata: Metadata = {
   title: {
@@ -87,11 +87,30 @@ export default function RootLayout({
         <div className="flex min-h-screen flex-col">
           <Header />
           <main className="flex-1">
-            <AnalyticsTracker />
             {children}
           </main>
           <Footer />
         </div>
+        <Script id="baidu-analytics" strategy="afterInteractive">
+          {`
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?ff8a75bdf041326c34deb33aaac36ba8";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+          `}
+        </Script>
+        <Script id="microsoft-clarity" strategy="afterInteractive">
+          {`
+            (function(c,l,a,r,i,t,y){
+              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", "x451zk6wh8");
+          `}
+        </Script>
       </body>
     </html>
   );

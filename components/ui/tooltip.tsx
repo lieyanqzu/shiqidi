@@ -10,6 +10,7 @@ interface TooltipProps {
   onOpenChange?: (open: boolean) => void
   side?: 'top' | 'right' | 'bottom' | 'left'
   className?: string
+  triggerClassName?: string
   showCloseButton?: boolean
   asNotification?: boolean
   backgroundImage?: string
@@ -90,13 +91,14 @@ const TooltipContent = ({
   )
 }
 
-const Tooltip = ({ 
-  children, 
-  content, 
-  open, 
+const Tooltip = ({
+  children,
+  content,
+  open,
   onOpenChange,
   side = 'bottom',
   className = '',
+  triggerClassName = '',
   showCloseButton = false,
   asNotification = false,
   backgroundImage
@@ -302,6 +304,7 @@ const Tooltip = ({
     <>
       <div
         ref={triggerRef}
+        className={triggerClassName}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onClick={handleClick}

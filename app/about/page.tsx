@@ -1,3 +1,4 @@
+import { PrivacyNotice } from '@/components/about/privacy-notice';
 import { generateMetadata } from '../metadata';
 
 export const metadata = generateMetadata(
@@ -198,6 +199,8 @@ export default function AboutPage() {
               ))}
             </div>
           </div>
+
+          <PrivacyNotice />
         </div>
       </div>
     </div>
