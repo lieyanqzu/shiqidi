@@ -14,6 +14,7 @@ const { getSetIconGlyph } = require('../../data/set-icons');
 const { loadKeyruneFont } = require('../../utils/font');
 const { fetchRemoteData } = require('../../utils/remote-data');
 const { toDisplayError } = require('../../utils/display-error');
+const { generatePageShareImage } = require('../../utils/share-image');
 
 let masteryConfig = null;
 
@@ -91,11 +92,30 @@ Page({
     seasonText: '',
     loading: true,
     error: '',
+    shareImageUrl: '',
   },
 
   onLoad() {
+    wx.showShareMenu({
+      withShareTicket: true,
+      menus: ['shareAppMessage', 'shareTimeline'],
+    });
     loadKeyruneFont();
     this.initializePage();
+    this.prepareShareImage();
+  },
+
+  async prepareShareImage() {
+    try {
+      const imagePath = await generatePageShareImage(this, {
+        title: '精研通行证计算器',
+        subtitle: '实用工具',
+        description: '计算精研通行证等级进度',
+      });
+      this.setData({ shareImageUrl: imagePath });
+    } catch (error) {
+      console.warn('生成分享图失败', error);
+    }
   },
 
   async initializePage() {
@@ -205,5 +225,20 @@ Page({
       numberOptions: pickerState.options,
       numberOptionIndexes: pickerState.indexes,
     });
+  },
+
+  onShareAppMessage() {
+    return {
+      title: '精研通行证计算器 - 十七地小助手',
+      path: '/pages/mastery/index',
+      imageUrl: this.data.shareImageUrl,
+    };
+  },
+
+  onShareTimeline() {
+    return {
+      title: '精研通行证计算器 - 十七地小助手',
+      imageUrl: this.data.shareImageUrl,
+    };
   },
 });

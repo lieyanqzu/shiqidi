@@ -258,3 +258,11 @@
 .tiny {
   font-size: 21rpx;
 }
+
+.share-canvas {
+  position: fixed;
+  left: -9999rpx;
+  bottom: -9999rpx;
+  width: 600px;
+  height: 480px;
+}

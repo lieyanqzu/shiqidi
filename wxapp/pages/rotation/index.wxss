@@ -293,3 +293,11 @@
   font-size: 24rpx;
   line-height: 1.45;
 }
+
+.share-canvas {
+  position: fixed;
+  left: -9999rpx;
+  bottom: -9999rpx;
+  width: 600px;
+  height: 480px;
+}

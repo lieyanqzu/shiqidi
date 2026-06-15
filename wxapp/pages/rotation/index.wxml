@@ -120,4 +120,5 @@
     <view class="muted small">当前标准系列暂无记录在案的禁牌。</view>
   </view>
   <bottom-nav />
+  <canvas class="share-canvas" canvas-id="shareCanvas"></canvas>
 </view>

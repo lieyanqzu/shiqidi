@@ -1,10 +1,11 @@
-const { dateText } = require('../../utils/format');
+const { dateText, parseDate } = require('../../utils/format');
 const { fetchChineseSetNames } = require('../../utils/api');
 const { loadKeyruneFont } = require('../../utils/font');
 const { getSetIconGlyph } = require('../../data/set-icons');
 const { previewImages } = require('../../utils/wx-actions');
 const { toDisplayError } = require('../../utils/display-error');
 const { fetchRemoteData } = require('../../utils/remote-data');
+const { generatePageShareImage } = require('../../utils/share-image');
 
 let rotation = {
   sets: [],
@@ -72,7 +73,7 @@ function formatRotationDate(date, roughDate) {
 }
 
 function dateForSort(date, roughDate) {
-  if (date) return new Date(date);
+  if (date) return parseDate(date);
   return parseRoughDate(roughDate) || new Date(8640000000000000);
 }
 
@@ -133,7 +134,7 @@ function groupCurrentSets(sets) {
       title: `${formatRotationDate(group.exitDate, group.roughExitDate)} 轮替`,
       timeLeftText: timeLeft(group.exitDate, group.roughExitDate),
       isNext: index === 0,
-      sets: group.sets.sort((a, b) => new Date(a.enter_date) - new Date(b.enter_date)),
+      sets: group.sets.sort((a, b) => parseDate(a.enter_date) - parseDate(b.enter_date)),
     }));
 }
 
@@ -170,9 +171,14 @@ Page({
     setIconFontReady: false,
     loading: true,
     error: '',
+    shareImageUrl: '',
   },
 
   async onLoad() {
+    wx.showShareMenu({
+      withShareTicket: true,
+      menus: ['shareAppMessage', 'shareTimeline'],
+    });
     this.loadSetIconFont();
     try {
       rotation = await fetchRemoteData('rotation');
@@ -185,10 +191,10 @@ Page({
     }
     const now = new Date();
     const currentSets = rotation.sets
-      .filter((set) => new Date(set.enter_date) <= now && (!set.exit_date || new Date(set.exit_date) > now));
+      .filter((set) => parseDate(set.enter_date) <= now && (!set.exit_date || parseDate(set.exit_date) > now));
     const currentGroups = groupCurrentSets(currentSets);
     const upcomingSets = rotation.sets
-      .filter((set) => new Date(set.enter_date) > now)
+      .filter((set) => parseDate(set.enter_date) > now)
       .slice(0, 8)
       .map(formatSet);
     const standardSetCodes = {};
@@ -204,6 +210,20 @@ Page({
     })).filter((ban) => standardSetCodes[normalizeSetCode(ban.set_code)]);
     this.setData({ currentGroups, upcomingSets, bans, loading: false, error: '' });
     this.loadChineseSetNames();
+    this.prepareShareImage();
+  },
+
+  async prepareShareImage() {
+    try {
+      const imagePath = await generatePageShareImage(this, {
+        title: '标准轮替日程',
+        subtitle: '万智日程',
+        description: '了解标准赛制的系列轮替时间表',
+      });
+      this.setData({ shareImageUrl: imagePath });
+    } catch (error) {
+      console.warn('生成分享图失败', error);
+    }
   },
 
   loadSetIconFont() {
@@ -251,5 +271,20 @@ Page({
     this.setData({
       [`bans[${index}].imageFailed`]: true,
     });
+  },
+
+  onShareAppMessage() {
+    return {
+      title: '标准轮替日程 - 十七地小助手',
+      path: '/pages/rotation/index',
+      imageUrl: this.data.shareImageUrl,
+    };
+  },
+
+  onShareTimeline() {
+    return {
+      title: '标准轮替日程 - 十七地小助手',
+      imageUrl: this.data.shareImageUrl,
+    };
   },
 });

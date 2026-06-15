@@ -1,3 +1,5 @@
+const { parseDate } = require('./format');
+
 const DAILY_WIN_XP = 25;
 const DAILY_WIN_COUNT = 10;
 const WEEKLY_WIN_XP = 250;
@@ -15,7 +17,7 @@ function formatNumber(value) {
 }
 
 function formatMasteryDate(value) {
-  const date = new Date(value);
+  const date = parseDate(value);
   if (Number.isNaN(date.getTime())) return String(value || '未知');
   return `${date.getFullYear()}/${pad(date.getMonth() + 1)}/${pad(date.getDate())}`;
 }
@@ -35,8 +37,8 @@ function getLocalRefreshTimeStringWithWeekday() {
 }
 
 function calculateDaysLeft(currentDate, endDate) {
-  const now = new Date(currentDate);
-  const end = new Date(endDate);
+  const now = parseDate(currentDate);
+  const end = parseDate(endDate);
   if (Number.isNaN(now.getTime()) || Number.isNaN(end.getTime())) return 0;
   end.setUTCHours(REFRESH_HOUR_UTC, 0, 0, 0);
   return Math.max(0, Math.ceil((end.getTime() - now.getTime()) / (1000 * 60 * 60 * 24)));

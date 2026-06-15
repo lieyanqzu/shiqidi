@@ -14,6 +14,7 @@ const { readStorage, writeStorage } = require('../../utils/storage');
 const { loadKeyruneFont, loadManaFont } = require('../../utils/font');
 const { getSetIconGlyph } = require('../../data/set-icons');
 const { fetchRemoteData } = require('../../utils/remote-data');
+const { generatePageShareImage } = require('../../utils/share-image');
 const {
   gradeMetrics,
   calculateGrades,
@@ -287,10 +288,15 @@ Page({
     setIconFontReady: false,
     manaFontReady: false,
     gradeHelpOpen: false,
+    shareImageUrl: '',
     ...resetResultState(),
   },
 
   onLoad() {
+    wx.showShareMenu({
+      withShareTicket: true,
+      menus: ['shareAppMessage', 'shareTimeline'],
+    });
     this.loadSetIconFont();
     this.loadManaIconFont();
     const metricIndex = loadMetricIndex();
@@ -300,6 +306,20 @@ Page({
       currentMetricLabel: metricOption.shortLabel,
     });
     this.initializePage();
+    this.prepareShareImage();
+  },
+
+  async prepareShareImage() {
+    try {
+      const imagePath = await generatePageShareImage(this, {
+        title: '卡牌数据',
+        subtitle: '轮抽数据',
+        description: '查看各系列轮抽中卡牌的表现数据',
+      });
+      this.setData({ shareImageUrl: imagePath });
+    } catch (error) {
+      console.warn('生成分享图失败', error);
+    }
   },
 
   async initializePage() {
@@ -759,5 +779,20 @@ Page({
         this.copySelectedCardLink();
       }
     });
+  },
+
+  onShareAppMessage() {
+    return {
+      title: '卡牌数据 - 十七地小助手',
+      path: '/pages/cards/index',
+      imageUrl: this.data.shareImageUrl,
+    };
+  },
+
+  onShareTimeline() {
+    return {
+      title: '卡牌数据 - 十七地小助手',
+      imageUrl: this.data.shareImageUrl,
+    };
   },
 });

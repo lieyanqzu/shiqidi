@@ -1,6 +1,7 @@
 const { calculateSingle, calculateMulti, calculateBo1 } = require('../../utils/probability');
 const { percent, number } = require('../../utils/format');
 const { scrollToSelector, showToast } = require('../../utils/wx-actions');
+const { generatePageShareImage } = require('../../utils/share-image');
 
 function barWidth(probability) {
   if (!probability) return '0%';
@@ -10,6 +11,7 @@ function barWidth(probability) {
 Page({
   data: {
     tab: 'single',
+    shareImageUrl: '',
     single: {
       populationSize: 60,
       sampleSize: 7,
@@ -36,6 +38,27 @@ Page({
       landCount: 24,
     },
     bo1Result: null,
+  },
+
+  onLoad() {
+    wx.showShareMenu({
+      withShareTicket: true,
+      menus: ['shareAppMessage', 'shareTimeline'],
+    });
+    this.prepareShareImage();
+  },
+
+  async prepareShareImage() {
+    try {
+      const imagePath = await generatePageShareImage(this, {
+        title: '抽卡概率计算器',
+        subtitle: '实用工具',
+        description: '计算万智牌抽卡概率，基于超几何分布',
+      });
+      this.setData({ shareImageUrl: imagePath });
+    } catch (error) {
+      console.warn('生成分享图失败', error);
+    }
   },
 
   setTab(event) {
@@ -189,5 +212,20 @@ Page({
     }, () => {
       this.scrollToResult('#bo1-result');
     });
+  },
+
+  onShareAppMessage() {
+    return {
+      title: '抽卡概率计算器 - 十七地小助手',
+      path: '/pages/hypergeometric/index',
+      imageUrl: this.data.shareImageUrl,
+    };
+  },
+
+  onShareTimeline() {
+    return {
+      title: '抽卡概率计算器 - 十七地小助手',
+      imageUrl: this.data.shareImageUrl,
+    };
   },
 });

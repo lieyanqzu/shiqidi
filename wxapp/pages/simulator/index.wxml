@@ -68,4 +68,5 @@
     <view wx:if="{{pack.length > 1}}" class="preview-hint">左右滑动浏览</view>
   </view>
   <bottom-nav />
+  <canvas class="share-canvas" canvas-id="shareCanvas"></canvas>
 </view>

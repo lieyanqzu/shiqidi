@@ -97,5 +97,6 @@
   </view>
 
   <canvas class="event-share-canvas" canvas-id="eventShareCanvas"></canvas>
+  <canvas class="share-canvas" canvas-id="shareCanvas"></canvas>
   <bottom-nav />
 </view>

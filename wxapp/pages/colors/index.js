@@ -4,6 +4,7 @@ const { parseColorSymbols } = require('../../utils/mana');
 const { loadManaFont } = require('../../utils/font');
 const { toDisplayError } = require('../../utils/display-error');
 const { fetchRemoteData } = require('../../utils/remote-data');
+const { generatePageShareImage } = require('../../utils/share-image');
 
 let expansionOptions = [];
 let formatOptions = [];
@@ -226,11 +227,30 @@ Page({
     error: '',
     colorGroups: [],
     manaFontReady: false,
+    shareImageUrl: '',
   },
 
   onLoad() {
+    wx.showShareMenu({
+      withShareTicket: true,
+      menus: ['shareAppMessage', 'shareTimeline'],
+    });
     this.loadManaIconFont();
     this.initializePage();
+    this.prepareShareImage();
+  },
+
+  async prepareShareImage() {
+    try {
+      const imagePath = await generatePageShareImage(this, {
+        title: '色组数据',
+        subtitle: '轮抽数据',
+        description: '查看限制赛各色组的胜率与对局数量',
+      });
+      this.setData({ shareImageUrl: imagePath });
+    } catch (error) {
+      console.warn('生成分享图失败', error);
+    }
   },
 
   async initializePage() {
@@ -354,5 +374,20 @@ Page({
         error: toDisplayError(error, '色组数据加载失败'),
       });
     }
+  },
+
+  onShareAppMessage() {
+    return {
+      title: '色组数据 - 十七地小助手',
+      path: '/pages/colors/index',
+      imageUrl: this.data.shareImageUrl,
+    };
+  },
+
+  onShareTimeline() {
+    return {
+      title: '色组数据 - 十七地小助手',
+      imageUrl: this.data.shareImageUrl,
+    };
   },
 });

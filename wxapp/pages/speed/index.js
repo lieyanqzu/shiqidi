@@ -6,6 +6,7 @@ const { nextRender, queryElementInfo } = require('../../utils/canvas');
 const { fetchPlayDrawData } = require('../../utils/api');
 const { toDisplayError } = require('../../utils/display-error');
 const { fetchRemoteData } = require('../../utils/remote-data');
+const { generatePageShareImage } = require('../../utils/share-image');
 
 let expansionOptions = [];
 let formatOptions = [];
@@ -221,11 +222,30 @@ Page({
       averageWinRate: '-',
     },
     filterPanelOpen: false,
+    shareImageUrl: '',
   },
 
   onLoad() {
+    wx.showShareMenu({
+      withShareTicket: true,
+      menus: ['shareAppMessage', 'shareTimeline'],
+    });
     this.loadSetIconFont();
     this.initializePage();
+    this.prepareShareImage();
+  },
+
+  async prepareShareImage() {
+    try {
+      const imagePath = await generatePageShareImage(this, {
+        title: '赛制速度',
+        subtitle: '轮抽数据',
+        description: '了解各个系列限制赛的速度和先手胜率',
+      });
+      this.setData({ shareImageUrl: imagePath });
+    } catch (error) {
+      console.warn('生成分享图失败', error);
+    }
   },
 
   async initializePage() {
@@ -589,6 +609,21 @@ Page({
     }
 
     this.showChartTooltip(nearest);
+  },
+
+  onShareAppMessage() {
+    return {
+      title: '赛制速度 - 十七地小助手',
+      path: '/pages/speed/index',
+      imageUrl: this.data.shareImageUrl,
+    };
+  },
+
+  onShareTimeline() {
+    return {
+      title: '赛制速度 - 十七地小助手',
+      imageUrl: this.data.shareImageUrl,
+    };
   },
 
 });
