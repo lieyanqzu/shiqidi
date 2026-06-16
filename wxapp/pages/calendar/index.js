@@ -1,20 +1,9 @@
-const { dateText } = require('../../utils/format');
+const { parseDate, dateText } = require('../../utils/format');
 const { addPhoneCalendarEvent, copyText } = require('../../utils/wx-actions');
 const { canvasToTempFilePath, createCanvasContext } = require('../../utils/canvas');
 const { fetchRemoteData } = require('../../utils/remote-data');
 const { toDisplayError } = require('../../utils/display-error');
 const { generatePageShareImage } = require('../../utils/share-image');
-
-// iOS 兼容的日期解析函数
-// iOS 不支持 "yyyy-MM-ddTHH:mm:ss±HH:mm" 格式，需要转换为 "yyyy-MM-ddTHH:mm:ss" 或 "yyyy/MM/dd HH:mm:ss"
-function parseDate(dateString) {
-  if (!dateString) return new Date();
-
-  // 移除时区偏移部分（如 -07:00, +08:00）
-  const normalized = String(dateString).replace(/([+-]\d{2}):(\d{2})$/, '');
-
-  return new Date(normalized);
-}
 
 let calendar = {
   metadata: {},
