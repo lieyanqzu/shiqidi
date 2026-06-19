@@ -1124,8 +1124,8 @@
   {
     "expansion": "MKM",
     "event_type": "QuickDraft",
-    "average_game_length": 9.252435140279129,
-    "win_rate_on_play": 0.5210586427154306
+    "average_game_length": 9.252431466486264,
+    "win_rate_on_play": 0.5210597488448739
   },
   {
     "expansion": "MKM",
@@ -1346,8 +1346,8 @@
   {
     "expansion": "BLB",
     "event_type": "QuickDraft",
-    "average_game_length": 8.726607338254022,
-    "win_rate_on_play": 0.5290107580622206
+    "average_game_length": 8.727668380198379,
+    "win_rate_on_play": 0.5289562728916831
   },
   {
     "expansion": "BLB",
@@ -1712,8 +1712,8 @@
   {
     "expansion": "FIN",
     "event_type": "PremierDraft",
-    "average_game_length": 8.93111423671596,
-    "win_rate_on_play": 0.5276823825394947
+    "average_game_length": 8.931089743627828,
+    "win_rate_on_play": 0.5276340168016759
   },
   {
     "expansion": "FIN",
@@ -1880,14 +1880,14 @@
   {
     "expansion": "Cube - Powered",
     "event_type": "PremierDraft",
-    "average_game_length": 6.634472773497746,
-    "win_rate_on_play": 0.5438207930991794
+    "average_game_length": 6.6338190454734,
+    "win_rate_on_play": 0.5438022155136132
   },
   {
     "expansion": "Cube - Powered",
     "event_type": "TradDraft",
-    "average_game_length": 6.471834036863154,
-    "win_rate_on_play": 0.5403069060270294
+    "average_game_length": 6.470953428359575,
+    "win_rate_on_play": 0.5403094322554038
   },
   {
     "expansion": "OM1",
@@ -2186,7 +2186,7 @@
   {
     "expansion": "SOS",
     "event_type": "MidWeekSealed",
-    "average_game_length": 8.061208774463356,
-    "win_rate_on_play": 0.5269836696299396
+    "average_game_length": 8.103124225314378,
+    "win_rate_on_play": 0.5250874065675744
   }
 ]
