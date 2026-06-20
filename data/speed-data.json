@@ -1346,8 +1346,8 @@
   {
     "expansion": "BLB",
     "event_type": "QuickDraft",
-    "average_game_length": 8.727668380198379,
-    "win_rate_on_play": 0.5289562728916831
+    "average_game_length": 8.729114609744375,
+    "win_rate_on_play": 0.5289767145708899
   },
   {
     "expansion": "BLB",
@@ -1712,8 +1712,8 @@
   {
     "expansion": "FIN",
     "event_type": "PremierDraft",
-    "average_game_length": 8.931089743627828,
-    "win_rate_on_play": 0.5276340168016759
+    "average_game_length": 8.930974846707628,
+    "win_rate_on_play": 0.5276865162520901
   },
   {
     "expansion": "FIN",
@@ -1880,14 +1880,14 @@
   {
     "expansion": "Cube - Powered",
     "event_type": "PremierDraft",
-    "average_game_length": 6.6338190454734,
-    "win_rate_on_play": 0.5438022155136132
+    "average_game_length": 6.633391474004963,
+    "win_rate_on_play": 0.5438031108713534
   },
   {
     "expansion": "Cube - Powered",
     "event_type": "TradDraft",
-    "average_game_length": 6.470953428359575,
-    "win_rate_on_play": 0.5403094322554038
+    "average_game_length": 6.4713586643136205,
+    "win_rate_on_play": 0.5401572256382614
   },
   {
     "expansion": "OM1",
@@ -2102,14 +2102,14 @@
   {
     "expansion": "SOS",
     "event_type": "PickTwoDraft",
-    "average_game_length": 9.084607786353345,
-    "win_rate_on_play": 0.5216082905226643
+    "average_game_length": 9.085934684689164,
+    "win_rate_on_play": 0.5213591297287584
   },
   {
     "expansion": "SOS",
     "event_type": "PremierDraft",
-    "average_game_length": 9.001991719479548,
-    "win_rate_on_play": 0.526369269478629
+    "average_game_length": 9.001910552819336,
+    "win_rate_on_play": 0.526369177969535
   },
   {
     "expansion": "SOS",
@@ -2120,8 +2120,8 @@
   {
     "expansion": "SOS",
     "event_type": "TradDraft",
-    "average_game_length": 8.790613802730954,
-    "win_rate_on_play": 0.5293117237603112
+    "average_game_length": 8.790252203286132,
+    "win_rate_on_play": 0.5295410160902333
   },
   {
     "expansion": "SOS",
@@ -2186,7 +2186,7 @@
   {
     "expansion": "SOS",
     "event_type": "MidWeekSealed",
-    "average_game_length": 8.103124225314378,
-    "win_rate_on_play": 0.5250874065675744
+    "average_game_length": 8.105105165400364,
+    "win_rate_on_play": 0.5250183502123296
   }
 ]
