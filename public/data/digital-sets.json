@@ -388,6 +388,12 @@
           }
         ]
       }
+    },
+    {
+      "name": "霍比特人",
+      "code": "HOB",
+      "releaseDate": "2026-08-12",
+      "wikiUrl": "https://mtg.wiki/page/The_Hobbit?utm_source=shiqidi"
     }
   ]
 }

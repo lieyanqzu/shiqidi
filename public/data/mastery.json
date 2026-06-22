@@ -1,9 +1,9 @@
 {
-  "setCode": "SOS",
-  "startDate": "2026-04-21",
-  "endDate": "2026-06-23",
-  "maxLevel": 60,
+  "setCode": "MSH",
+  "startDate": "2026-06-23",
+  "endDate": "2026-08-11",
+  "maxLevel": 45,
   "defaultDailyWins": 4,
   "defaultWeeklyWins": 15,
-  "setName": "斯翠海文的秘密"
+  "setName": "漫威超级英雄"
 }
