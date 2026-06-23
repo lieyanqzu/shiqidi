@@ -237,5 +237,6 @@
   </view>
 
   <canvas class="card-share-canvas" canvas-id="cardShareCanvas"></canvas>
+  <canvas class="share-canvas" canvas-id="shareCanvas"></canvas>
   <bottom-nav />
 </view>

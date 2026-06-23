@@ -302,4 +302,5 @@
     </view>
   </view>
   <bottom-nav />
+  <canvas class="share-canvas" canvas-id="shareCanvas"></canvas>
 </view>

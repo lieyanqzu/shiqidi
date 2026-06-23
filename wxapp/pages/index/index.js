@@ -1,4 +1,5 @@
 const { openPage } = require('../../utils/wx-actions');
+const { generatePageShareImage } = require('../../utils/share-image');
 
 const sections = [
   {
@@ -84,10 +85,47 @@ const sections = [
 Page({
   data: {
     sections,
+    shareImageUrl: '',
+  },
+
+  onLoad() {
+    wx.showShareMenu({
+      withShareTicket: true,
+      menus: ['shareAppMessage', 'shareTimeline'],
+    });
+    this.prepareShareImage();
+  },
+
+  async prepareShareImage() {
+    try {
+      const imagePath = await generatePageShareImage(this, {
+        title: '十七地小助手',
+        subtitle: 'MTGA工具',
+        description: '万智牌竞技场数据分析与实用工具合集',
+      });
+      this.setData({ shareImageUrl: imagePath });
+    } catch (error) {
+      console.warn('生成分享图失败', error);
+    }
   },
 
   openFeature(event) {
     const { url } = event.currentTarget.dataset;
     openPage(url);
+  },
+
+  onShareAppMessage() {
+    return {
+      title: '十七地小助手',
+      path: '/pages/index/index',
+      imageUrl: this.data.shareImageUrl,
+    };
+  },
+
+  onShareTimeline() {
+    return {
+      title: '十七地小助手',
+      imageUrl: this.data.shareImageUrl,
+    };
   },
 });

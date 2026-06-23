@@ -5,6 +5,7 @@ const {
 } = require('../../utils/api');
 const { toDisplayError } = require('../../utils/display-error');
 const { loadRemoteDataMap } = require('../../utils/remote-data');
+const { generatePageShareImage } = require('../../utils/share-image');
 
 function weightedRandom(items, weights) {
   const totalWeight = weights.reduce((sum, weight) => sum + Number(weight || 0), 0);
@@ -140,10 +141,29 @@ Page({
     selectedPreviewCard: null,
     selectedPreviewIndex: -1,
     previewImageLoading: false,
+    shareImageUrl: '',
   },
 
   onLoad() {
+    wx.showShareMenu({
+      withShareTicket: true,
+      menus: ['shareAppMessage', 'shareTimeline'],
+    });
     this.loadSimulatorData();
+    this.prepareShareImage();
+  },
+
+  async prepareShareImage() {
+    try {
+      const imagePath = await generatePageShareImage(this, {
+        title: '开包模拟器',
+        subtitle: '实用工具',
+        description: '模拟开启补充包，体验开包乐趣',
+      });
+      this.setData({ shareImageUrl: imagePath });
+    } catch (error) {
+      console.warn('生成分享图失败', error);
+    }
   },
 
   async loadSimulatorData() {
@@ -411,6 +431,21 @@ Page({
       [`pack[${index}].fallbackImageUrl`]: '',
       [`pack[${index}].imageFailed`]: true,
     });
+  },
+
+  onShareAppMessage() {
+    return {
+      title: '开包模拟器 - 十七地小助手',
+      path: '/pages/simulator/index',
+      imageUrl: this.data.shareImageUrl,
+    };
+  },
+
+  onShareTimeline() {
+    return {
+      title: '开包模拟器 - 十七地小助手',
+      imageUrl: this.data.shareImageUrl,
+    };
   },
 
 });

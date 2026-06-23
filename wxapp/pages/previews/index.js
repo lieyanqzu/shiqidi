@@ -3,6 +3,7 @@ const {
   searchMtgchCards,
   buildScryfallImageUrl,
 } = require('../../utils/api');
+const { parseDate } = require('../../utils/format');
 const { parseManaCost, parseManaTextSegments } = require('../../utils/mana');
 const { copyText, previewImages, showInfoModal } = require('../../utils/wx-actions');
 const { canvasToTempFilePath, createCanvasContext } = require('../../utils/canvas');
@@ -10,6 +11,7 @@ const { toDisplayError } = require('../../utils/display-error');
 const { loadKeyruneFont, loadManaFont } = require('../../utils/font');
 const { getSetIconGlyph } = require('../../data/set-icons');
 const { fetchRemoteData } = require('../../utils/remote-data');
+const { generatePageShareImage } = require('../../utils/share-image');
 
 const cardRefCache = {};
 const REFERENCE_COLLAPSE_LIMIT = 12;
@@ -354,14 +356,14 @@ function decorateReferenceDisplay(card) {
 
 function formatReleaseDate(value) {
   if (!value) return '待定';
-  const date = new Date(value);
+  const date = parseDate(value);
   if (Number.isNaN(date.getTime())) return String(value);
   return `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`;
 }
 
 function isReleased(value) {
   if (!value) return false;
-  const date = new Date(value);
+  const date = parseDate(value);
   return !Number.isNaN(date.getTime()) && date.getTime() <= Date.now();
 }
 
@@ -396,6 +398,7 @@ Page({
     cards: [],
     selectedCard: null,
     selectedShareImage: '',
+    pageShareImageUrl: '',
     setIconFontReady: false,
     manaFontReady: false,
     loading: true,
@@ -403,9 +406,27 @@ Page({
   },
 
   onLoad() {
+    wx.showShareMenu({
+      withShareTicket: true,
+      menus: ['shareAppMessage', 'shareTimeline'],
+    });
     this.loadSetIconFont();
     this.loadManaIconFont();
     this.loadPreviewData();
+    this.preparePageShareImage();
+  },
+
+  async preparePageShareImage() {
+    try {
+      const imagePath = await generatePageShareImage(this, {
+        title: '炼金预览',
+        subtitle: '万智日程',
+        description: '预览即将上线的炼金系列卡牌',
+      });
+      this.setData({ pageShareImageUrl: imagePath });
+    } catch (error) {
+      console.warn('生成页面分享图失败', error);
+    }
   },
 
   async loadPreviewData() {
@@ -421,7 +442,7 @@ Page({
         .map((file) => fetchRemoteData(`previews/${String(file).replace(/\.json$/i, '')}`)));
       this.previewSets = previewSets
         .filter((set) => set && set.code && Array.isArray(set.cards))
-        .sort((left, right) => new Date(right.release_date) - new Date(left.release_date));
+        .sort((left, right) => parseDate(right.release_date) - parseDate(left.release_date));
       this.setData({
         loading: false,
         error: '',
@@ -518,7 +539,7 @@ Page({
     });
     const cards = rawCards.map((card) => this.decorateCard(card));
     const progress = total ? Math.min(100, (cards.length / total) * 100) : 100;
-    const released = set.release_date && new Date(set.release_date).getTime() <= Date.now();
+    const released = set.release_date && parseDate(set.release_date).getTime() <= Date.now();
     const currentSet = decorateSet(set);
     this.setData({
       selectedIndex: index,
@@ -895,9 +916,19 @@ Page({
       };
     }
     return {
-      title: '炼金系列预览 - 十七地',
+      title: '炼金系列预览 - 十七地小助手',
       path: '/pages/previews/index',
-      imageUrl: this.data.selectedShareImage || '',
+      imageUrl: this.data.pageShareImageUrl || '',
+    };
+  },
+
+  onShareTimeline() {
+    const currentSet = this.data.currentSet;
+    const query = currentSet && currentSet.code ? `set=${currentSet.code}` : '';
+    return {
+      title: '炼金系列预览 - 十七地小助手',
+      query,
+      imageUrl: this.data.pageShareImageUrl || '',
     };
   },
 

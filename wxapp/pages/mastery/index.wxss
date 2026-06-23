@@ -120,3 +120,11 @@
   font-size: 28rpx;
   font-weight: 800;
 }
+
+.share-canvas {
+  position: fixed;
+  left: -9999rpx;
+  bottom: -9999rpx;
+  width: 600px;
+  height: 480px;
+}

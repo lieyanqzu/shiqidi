@@ -1,5 +1,7 @@
 const { fetchStatusSummary } = require('../../utils/api');
 const { toDisplayError } = require('../../utils/display-error');
+const { parseDate } = require('../../utils/format');
+const { generatePageShareImage } = require('../../utils/share-image');
 
 const statusText = {
   componentNames: {
@@ -89,7 +91,7 @@ function pageStatusClass(status) {
 
 function formatDateTime(value) {
   if (!value) return '未知时间';
-  const date = new Date(value);
+  const date = parseDate(value);
   if (Number.isNaN(date.getTime())) return String(value);
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -156,6 +158,7 @@ Page({
     componentGroups: [],
     incidents: [],
     maintenances: [],
+    shareImageUrl: '',
   },
 
   onShow() {
@@ -163,7 +166,25 @@ Page({
   },
 
   onLoad() {
+    wx.showShareMenu({
+      withShareTicket: true,
+      menus: ['shareAppMessage', 'shareTimeline'],
+    });
     this.loadStatus();
+    this.prepareShareImage();
+  },
+
+  async prepareShareImage() {
+    try {
+      const imagePath = await generatePageShareImage(this, {
+        title: 'MTGA服务状态',
+        subtitle: '万智日程',
+        description: '查看MTGA的服务器状态和维护信息',
+      });
+      this.setData({ shareImageUrl: imagePath });
+    } catch (error) {
+      console.warn('生成分享图失败', error);
+    }
   },
 
   onHide() {
@@ -240,5 +261,20 @@ Page({
     this.setData({
       [`componentGroups[${index}].expanded`]: !this.data.componentGroups[index].expanded,
     });
+  },
+
+  onShareAppMessage() {
+    return {
+      title: 'MTGA服务状态 - 十七地小助手',
+      path: '/pages/status/index',
+      imageUrl: this.data.shareImageUrl,
+    };
+  },
+
+  onShareTimeline() {
+    return {
+      title: 'MTGA服务状态 - 十七地小助手',
+      imageUrl: this.data.shareImageUrl,
+    };
   },
 });

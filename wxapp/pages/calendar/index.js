@@ -1,8 +1,9 @@
-const { dateText } = require('../../utils/format');
+const { parseDate, dateText } = require('../../utils/format');
 const { addPhoneCalendarEvent, copyText } = require('../../utils/wx-actions');
 const { canvasToTempFilePath, createCanvasContext } = require('../../utils/canvas');
 const { fetchRemoteData } = require('../../utils/remote-data');
 const { toDisplayError } = require('../../utils/display-error');
+const { generatePageShareImage } = require('../../utils/share-image');
 
 let calendar = {
   metadata: {},
@@ -170,15 +171,15 @@ function pad(value) {
 
 function dateTimeText(value) {
   if (!value) return '未知';
-  const date = new Date(value);
+  const date = parseDate(value);
   if (Number.isNaN(date.getTime())) return String(value);
   return `${date.getMonth() + 1}月${date.getDate()}日 ${pad(date.getHours())}:${pad(date.getMinutes())}`;
 }
 
 function buildStatus(event) {
   const now = Date.now();
-  const start = new Date(event.startTime).getTime();
-  const end = new Date(event.endTime).getTime();
+  const start = parseDate(event.startTime).getTime();
+  const end = parseDate(event.endTime).getTime();
   const day = 24 * 60 * 60 * 1000;
   const hour = 60 * 60 * 1000;
 
@@ -289,9 +290,14 @@ Page({
     actionSheetVisible: false,
     selectedEvent: null,
     selectedShareImage: shareImageUrl,
+    pageShareImageUrl: '',
   },
 
   async onLoad(options = {}) {
+    wx.showShareMenu({
+      withShareTicket: true,
+      menus: ['shareAppMessage', 'shareTimeline'],
+    });
     try {
       calendar = normalizeCalendarData(await fetchRemoteData('events'));
       const typeValues = Array.from(new Set(calendar.events.map((event) => event.type)));
@@ -311,6 +317,20 @@ Page({
         loading: false,
         error: toDisplayError(error, '活动日历数据加载失败'),
       });
+    }
+    this.preparePageShareImage();
+  },
+
+  async preparePageShareImage() {
+    try {
+      const imagePath = await generatePageShareImage(this, {
+        title: '活动日历',
+        subtitle: '万智日程',
+        description: '查看MTGA的活动排期和赛制安排',
+      });
+      this.setData({ pageShareImageUrl: imagePath });
+    } catch (error) {
+      console.warn('生成页面分享图失败', error);
     }
   },
 
@@ -347,7 +367,7 @@ Page({
         const events = calendar.events
           .filter((event) => event.type === section.type)
           .map(formatEvent)
-          .sort((a, b) => new Date(a.startTime) - new Date(b.startTime));
+          .sort((a, b) => parseDate(a.startTime) - parseDate(b.startTime));
         return {
           ...section,
           events,
@@ -404,8 +424,8 @@ Page({
 
     const payload = {
       title: `MTGA：${item.title}`,
-      startTime: Math.floor(new Date(item.startTime).getTime() / 1000),
-      endTime: Math.floor(new Date(item.endTime).getTime() / 1000),
+      startTime: Math.floor(parseDate(item.startTime).getTime() / 1000),
+      endTime: Math.floor(parseDate(item.endTime).getTime() / 1000),
       notes: this.buildEventNotes(item),
       alarmOffset: defaultAlarmOffset,
     };
@@ -495,18 +515,18 @@ Page({
 
       ctx.setFillStyle('#0f172a');
       ctx.setFontSize(36);
-      const titleBottom = this.drawWrappedText(ctx, item.title, 70, 210, 460, 46, 2);
+      const titleBottom = this.drawWrappedText(ctx, item.title, 70, 210, 460, 60, 2);
 
       ctx.setFillStyle('#334155');
       ctx.setFontSize(24);
-      ctx.fillText(item.timeText, 70, titleBottom + 28);
+      ctx.fillText(item.timeText, 70, titleBottom + 32);
       if (item.format) {
-        ctx.fillText(`赛制：${item.format}`, 70, titleBottom + 66);
+        ctx.fillText(`赛制：${item.format}`, 70, titleBottom + 70);
       }
       if (item.description) {
         ctx.setFillStyle('#64748b');
         ctx.setFontSize(22);
-        this.drawWrappedText(ctx, item.description, 70, titleBottom + (item.format ? 104 : 66), 460, 30, 2);
+        this.drawWrappedText(ctx, item.description, 70, titleBottom + (item.format ? 108 : 70), 460, 40, 2);
       }
 
       ctx.setFillStyle('#94a3b8');
@@ -542,15 +562,27 @@ Page({
       : null;
     if (!item) {
       return {
-        title: 'MTGA 活动日历 - 十七地',
+        title: 'MTGA活动日历 - 十七地小助手',
         path: '/pages/calendar/index',
-        imageUrl: this.data.selectedShareImage || shareImageUrl,
+        imageUrl: this.data.pageShareImageUrl || shareImageUrl,
       };
     }
     return {
       title: `${item.title} · ${item.timeText}`,
       path: this.buildSharePath(item),
       imageUrl: this.data.selectedShareImage || shareImageUrl,
+    };
+  },
+
+  onShareTimeline() {
+    const typeOptions = this.data.typeOptions || [];
+    const typeIndex = this.data.typeIndex || 0;
+    const currentType = typeOptions[typeIndex];
+    const query = currentType && currentType.value ? `type=${encodeURIComponent(currentType.value)}` : '';
+    return {
+      title: 'MTGA活动日历 - 十七地小助手',
+      query,
+      imageUrl: this.data.pageShareImageUrl || shareImageUrl,
     };
   },
 });

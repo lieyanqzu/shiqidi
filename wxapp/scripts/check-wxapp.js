@@ -852,6 +852,12 @@ function checkCanvasFallbacks() {
       }
       return;
     }
+    if (text.includes('canvas-id="shareCanvas"') && jsText.includes('prepareShareImage')) {
+      if (!jsText.includes('generatePageShareImage') || !jsText.includes('shareImageUrl')) {
+        fail(`${relative(jsPath)} 页面分享图 canvas 必须使用 generatePageShareImage 工具并提供兜底`);
+      }
+      return;
+    }
     if (!text.includes('chartStatus')) {
       fail(`${relative(filePath)} 使用 canvas 时必须提供中文状态兜底`);
     }
