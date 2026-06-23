@@ -1,6 +1,6 @@
 {
   "cardDataDefaults": {
-    "expansion": "SOS",
+    "expansion": "MSH",
     "event_type": "PremierDraft"
   },
   "speedDefaults": {
@@ -11,6 +11,7 @@
     ]
   },
   "expansionOptions": [
+    "MSH",
     "SOS",
     "Y26SOS",
     "TMT",
