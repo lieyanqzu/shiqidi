@@ -1712,8 +1712,8 @@
   {
     "expansion": "FIN",
     "event_type": "PremierDraft",
-    "average_game_length": 8.930539585029052,
-    "win_rate_on_play": 0.5276688523424772
+    "average_game_length": 8.930726733543558,
+    "win_rate_on_play": 0.5276573859492333
   },
   {
     "expansion": "FIN",
@@ -1880,14 +1880,14 @@
   {
     "expansion": "Cube - Powered",
     "event_type": "PremierDraft",
-    "average_game_length": 6.632849101904318,
-    "win_rate_on_play": 0.5437910449386947
+    "average_game_length": 6.632683254421393,
+    "win_rate_on_play": 0.5438434318386616
   },
   {
     "expansion": "Cube - Powered",
     "event_type": "TradDraft",
-    "average_game_length": 6.470561337780336,
-    "win_rate_on_play": 0.5402278872006918
+    "average_game_length": 6.470641020971995,
+    "win_rate_on_play": 0.5403178446392856
   },
   {
     "expansion": "OM1",
@@ -2102,14 +2102,14 @@
   {
     "expansion": "SOS",
     "event_type": "PickTwoDraft",
-    "average_game_length": 9.085978411283103,
-    "win_rate_on_play": 0.5212251844519263
+    "average_game_length": 9.086526955929548,
+    "win_rate_on_play": 0.5213120952827699
   },
   {
     "expansion": "SOS",
     "event_type": "PremierDraft",
-    "average_game_length": 9.002608420992951,
-    "win_rate_on_play": 0.5263752160364941
+    "average_game_length": 9.002508183189333,
+    "win_rate_on_play": 0.5263965132869525
   },
   {
     "expansion": "SOS",
@@ -2120,8 +2120,8 @@
   {
     "expansion": "SOS",
     "event_type": "TradDraft",
-    "average_game_length": 8.792197118026094,
-    "win_rate_on_play": 0.5295105335142163
+    "average_game_length": 8.79124938595125,
+    "win_rate_on_play": 0.5296221214038245
   },
   {
     "expansion": "SOS",
@@ -2188,5 +2188,17 @@
     "event_type": "MidWeekSealed",
     "average_game_length": 8.105105165400364,
     "win_rate_on_play": 0.5250183502123296
+  },
+  {
+    "expansion": "MSH",
+    "event_type": "PremierDraft",
+    "average_game_length": 8.84329605102539,
+    "win_rate_on_play": 0.5256274938583374
+  },
+  {
+    "expansion": "MSH",
+    "event_type": "Sealed",
+    "average_game_length": 8.823286056518555,
+    "win_rate_on_play": 0.5237751007080078
   }
 ]
