@@ -1346,8 +1346,8 @@
   {
     "expansion": "BLB",
     "event_type": "QuickDraft",
-    "average_game_length": 8.73401528945397,
-    "win_rate_on_play": 0.5287776177977367
+    "average_game_length": 8.734944622618642,
+    "win_rate_on_play": 0.5287329151022043
   },
   {
     "expansion": "BLB",
@@ -1712,8 +1712,8 @@
   {
     "expansion": "FIN",
     "event_type": "PremierDraft",
-    "average_game_length": 8.930726733543558,
-    "win_rate_on_play": 0.5276573859492333
+    "average_game_length": 8.93073235810068,
+    "win_rate_on_play": 0.5276564451497708
   },
   {
     "expansion": "FIN",
@@ -1880,14 +1880,14 @@
   {
     "expansion": "Cube - Powered",
     "event_type": "PremierDraft",
-    "average_game_length": 6.632683254421393,
-    "win_rate_on_play": 0.5438434318386616
+    "average_game_length": 6.632661344870891,
+    "win_rate_on_play": 0.5438452518028867
   },
   {
     "expansion": "Cube - Powered",
     "event_type": "TradDraft",
-    "average_game_length": 6.470641020971995,
-    "win_rate_on_play": 0.5403178446392856
+    "average_game_length": 6.470622942201431,
+    "win_rate_on_play": 0.5402879070402946
   },
   {
     "expansion": "OM1",
@@ -2102,14 +2102,14 @@
   {
     "expansion": "SOS",
     "event_type": "PickTwoDraft",
-    "average_game_length": 9.086526955929548,
-    "win_rate_on_play": 0.5213120952827699
+    "average_game_length": 9.086521156592502,
+    "win_rate_on_play": 0.5213001845755224
   },
   {
     "expansion": "SOS",
     "event_type": "PremierDraft",
-    "average_game_length": 9.002508183189333,
-    "win_rate_on_play": 0.5263965132869525
+    "average_game_length": 9.002535064903434,
+    "win_rate_on_play": 0.5264004831173545
   },
   {
     "expansion": "SOS",
@@ -2191,14 +2191,26 @@
   },
   {
     "expansion": "MSH",
+    "event_type": "PickTwoDraft",
+    "average_game_length": 8.894775754658482,
+    "win_rate_on_play": 0.5362535821484994
+  },
+  {
+    "expansion": "MSH",
     "event_type": "PremierDraft",
-    "average_game_length": 8.84329605102539,
-    "win_rate_on_play": 0.5256274938583374
+    "average_game_length": 8.87659241762377,
+    "win_rate_on_play": 0.5251721495071742
   },
   {
     "expansion": "MSH",
     "event_type": "Sealed",
-    "average_game_length": 8.823286056518555,
-    "win_rate_on_play": 0.5237751007080078
+    "average_game_length": 8.772962423693928,
+    "win_rate_on_play": 0.532947981814084
+  },
+  {
+    "expansion": "MSH",
+    "event_type": "TradDraft",
+    "average_game_length": 8.667431695406291,
+    "win_rate_on_play": 0.5208146177247885
   }
 ]
