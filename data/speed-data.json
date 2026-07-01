@@ -2198,19 +2198,19 @@
   {
     "expansion": "MSH",
     "event_type": "PremierDraft",
-    "average_game_length": 8.92383568082185,
-    "win_rate_on_play": 0.5267424555328482
+    "average_game_length": 8.931260200355146,
+    "win_rate_on_play": 0.5260631402601862
   },
   {
     "expansion": "MSH",
     "event_type": "Sealed",
-    "average_game_length": 8.806869737911562,
-    "win_rate_on_play": 0.5312755495070209
+    "average_game_length": 8.816206019821475,
+    "win_rate_on_play": 0.5322218731226821
   },
   {
     "expansion": "MSH",
     "event_type": "TradDraft",
-    "average_game_length": 8.66283052174369,
-    "win_rate_on_play": 0.5300422187661071
+    "average_game_length": 8.669825654581834,
+    "win_rate_on_play": 0.5307531372232251
   }
 ]
