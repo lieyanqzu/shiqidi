@@ -12,7 +12,6 @@ import { type GradeMetric, type CustomMetricConfig, loadCustomMetricConfig } fro
 import { Button } from "@/components/ui/button";
 import { CardGradeMetrics } from "@/components/card/card-grade-metrics";
 import { loadPublicOptions, type PublicOptionsData } from "@/lib/options";
-import { getStartDateForExpansion, loadExpansionMetadata } from "@/lib/filter";
 
 import { SealedDeckImporter } from "@/components/card/sealed-deck-importer";
 
@@ -154,22 +153,13 @@ export default function CardsPage() {
         return;
       }
 
-      const expansion = defaults.expansion ?? params.expansion;
-      let startDate = params.start_date;
-
-      try {
-        await loadExpansionMetadata();
-        startDate = getStartDateForExpansion(expansion)?.split('T')[0] ?? startDate;
-      } catch (error) {
-        console.error('加载系列起始日期失败:', error);
-      }
-
-      if (cancelled) return;
+      const cancelledLocal = cancelled;
+      if (cancelledLocal) return;
 
       setParams({
-        expansion,
+        expansion: defaults.expansion ?? params.expansion,
         event_type: defaults.event_type ?? params.event_type,
-        start_date: startDate,
+        time_period: params.time_period || 'ALL_TIME',
       });
       setDefaultsApplied(true);
     }

@@ -24,6 +24,7 @@ export const useCardStore = create<CardStore>((set) => ({
   params: {
     expansion: '',
     event_type: '',
+    time_period: 'ALL_TIME',
     start_date: '2016-01-01',
     end_date: today,
   },

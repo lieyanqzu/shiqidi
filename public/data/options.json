@@ -356,6 +356,36 @@
       "value": "ArenaDirect_Sealed"
     }
   ],
+  "timePeriodOptions": [
+    {
+      "label": "全部时间",
+      "value": "ALL_TIME"
+    },
+    {
+      "label": "首周除外",
+      "value": "ALL_EXCEPT_FIRST_WEEK"
+    },
+    {
+      "label": "最近赛事",
+      "value": "LATEST_EVENT"
+    },
+    {
+      "label": "近两周",
+      "value": "LAST_TWO_WEEKS"
+    },
+    {
+      "label": "近一周",
+      "value": "LAST_WEEK"
+    },
+    {
+      "label": "近一天",
+      "value": "LAST_DAY"
+    },
+    {
+      "label": "首周",
+      "value": "FIRST_WEEK"
+    }
+  ],
   "userGroupOptions": [
     {
       "label": "所有用户",

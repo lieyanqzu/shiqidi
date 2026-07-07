@@ -1,12 +1,27 @@
 import { CardData, ChineseCardData } from "@/types/card";
+import { ColorRatingRow } from "@/types/color";
 
 export interface CardDataParams {
   expansion: string;           // 系列代码，如 "FDN"
   event_type: string;         // 游戏格式，如 "PremierDraft"
   user_group?: string;        // 玩家分组，如 "middle"，为空时表示所有用户
+  time_period: string;        // 时间范围，如 "ALL_TIME"（17lands 已用 time_period 替代 date 字段）
+  colors?: string;           // 套牌颜色筛选
+  // 以下字段已废弃：17lands 卡牌数据 API 不再使用 date 字段，改用 time_period。
+  // 保留是为了兼容已有数据结构，前端不再发送或展示。
   start_date: string;         // 开始日期，如 "2016-01-01"
   end_date: string;           // 结束日期，如 "2024-03-14"
-  colors?: string;           // 套牌颜色筛选
+}
+
+// 色组数据查询参数
+// 17lands 色组数据接口（/color_ratings/data）仍使用 date 字段
+export interface ColorRatingParams {
+  expansion: string;           // 系列代码
+  event_type: string;         // 游戏格式
+  start_date: string;         // 开始日期，如 "2016-01-01"
+  end_date: string;           // 结束日期，如 "2024-03-14"
+  user_group?: string;        // 玩家分组，为空时表示所有用户
+  combine_splash?: boolean;   // 是否合并混色套牌到主色组
 }
 
 // 静态卡名数据类型: [英文名, 中文名, 图片URL(不用), scryfallId(不用), oracleId(不用)]
@@ -69,14 +84,19 @@ class LRUCache<K, V> {
 // 卡牌详细信息缓存 - 使用LRU策略，最多缓存100张卡
 const cardDetailCache = new LRUCache<string, DetailedCardData>(100);
 
+// 卡牌数据接口基址
+// 17lands 新版卡牌数据接口加了跨域限制，浏览器无法直接访问，
+// 通过 EdgeOne Edge Functions 部署在同源 /api/card_data 下做代理。
+// 本地开发时可通过 NEXT_PUBLIC_API_BASE 环境变量指向其他地址（如本地 edgeOne CLI）。
+const CARD_DATA_API_BASE = process.env.NEXT_PUBLIC_API_BASE || '';
+
 export async function fetchCardData(params: CardDataParams, signal?: AbortSignal): Promise<CardData[]> {
   const searchParams = new URLSearchParams({
     expansion: params.expansion,
     event_type: params.event_type,
-    start_date: params.start_date,
-    end_date: params.end_date,
+    time_period: params.time_period,
   });
-  
+
   if (params.user_group) {
     searchParams.append('user_group', params.user_group);
   }
@@ -86,7 +106,7 @@ export async function fetchCardData(params: CardDataParams, signal?: AbortSignal
   }
 
   const response = await fetch(
-    `https://www.17lands.com/card_ratings/data?${searchParams}`,
+    `${CARD_DATA_API_BASE}/api/card_data?${searchParams}`,
     {
       headers: {
         'accept': 'application/json',
@@ -97,6 +117,41 @@ export async function fetchCardData(params: CardDataParams, signal?: AbortSignal
 
   if (!response.ok) {
     throw new Error('Failed to fetch card data');
+  }
+
+  return response.json();
+}
+
+// 获取色组数据
+// 17lands 色组数据接口对浏览器有跨域限制，通过同源 Edge Functions 代理访问。
+export async function fetchColorRatings(params: ColorRatingParams, signal?: AbortSignal): Promise<ColorRatingRow[]> {
+  const searchParams = new URLSearchParams({
+    expansion: params.expansion,
+    event_type: params.event_type,
+    start_date: params.start_date,
+    end_date: params.end_date,
+  });
+
+  if (params.user_group) {
+    searchParams.append('user_group', params.user_group);
+  }
+
+  if (params.combine_splash !== undefined) {
+    searchParams.append('combine_splash', String(params.combine_splash));
+  }
+
+  const response = await fetch(
+    `${CARD_DATA_API_BASE}/api/color_ratings?${searchParams}`,
+    {
+      headers: {
+        'accept': 'application/json',
+      },
+      signal
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error('Failed to fetch color ratings');
   }
 
   return response.json();
