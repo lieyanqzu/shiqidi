@@ -12,14 +12,18 @@ export const metadata = generateMetadata(
 )
 
 export default function HomePage() {
-  const sections = [
+  const sections: {
+    title: string;
+    description: string;
+    links: { label: string; href: string; description: string; external?: boolean }[];
+  }[] = [
     {
       title: "轮抽数据",
       description: "深入分析万智牌轮抽数据",
       links: [
         { label: "卡牌数据", href: "/cards", description: "查看各系列轮抽中卡牌的表现数据，包括胜率、选取率等详细统计" },
         { label: "赛制速度", href: "/speed", description: "了解各个系列限制赛的速度和先手胜率" },
-        { label: "色组数据", href: "https://www.17lands.com/deck_color_data", external: true, description: "分析不同色组组合的胜率和选用率" },
+        { label: "色组数据", href: "/colors", description: "分析不同色组组合的胜率和选用率" },
       ]
     },
     {

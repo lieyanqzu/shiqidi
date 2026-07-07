@@ -10,6 +10,7 @@ export interface PublicOptionsData {
   expansionOptions: string[];
   formatOptions: Option[];
   formatSpeedOptions?: Option[];
+  timePeriodOptions: Option[];
   cardDataDefaults?: {
     expansion?: string;
     event_type?: string;

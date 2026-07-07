@@ -9,6 +9,7 @@ export interface ExpansionMetadata {
   groups: (string | null)[];
   ranked_formats: string[];
   start_dates: Record<string, string>;
+  time_periods: Record<string, string[]>;
 }
 
 // 懒加载元数据
@@ -25,6 +26,7 @@ function getMetadata(): ExpansionMetadata {
       groups: [],
       ranked_formats: [],
       start_dates: {},
+      time_periods: {},
     };
   }
   return cachedMetadata;
@@ -45,6 +47,16 @@ export function getFormatsForExpansion(expansion: string): string[] {
 export function getStartDateForExpansion(expansion: string): string | null {
   const data = getMetadata();
   return data.start_dates[expansion] || null;
+}
+
+// 获取系列支持的时间段列表
+// 17lands 卡牌数据 API 已用 time_period 替代 start_date/end_date。
+// 元数据中按系列提供了可用时间段，未配置时回退到通用列表（key 为空字符串）。
+export function getTimePeriodsForExpansion(expansion: string): string[] {
+  const data = getMetadata();
+  return data.time_periods?.[expansion]
+    || data.time_periods?.['']
+    || [];
 }
 
 // 获取所有系列列表

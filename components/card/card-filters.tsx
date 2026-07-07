@@ -5,12 +5,10 @@ import type { CardDataParams } from "@/lib/api";
 import { useEffect, useState, useRef, useMemo } from 'react';
 import { useMediaQuery } from '@/hooks/use-media-query';
 import { Select } from "@/components/ui/select";
-import { DateRangePicker } from "@/components/ui/date-range-picker";
 import { Popper } from "@/components/ui/popper";
-import { parseISO } from 'date-fns';
 import { SetIcon, type SetIconRarity } from '@/components/logo/set-icon';
 import { toExpansionOptions, type PublicOptionsData } from "@/lib/options";
-import { getFormatsForExpansion, getStartDateForExpansion, getLiveExpansions, loadExpansionMetadata } from "@/lib/filter";
+import { getFormatsForExpansion, getTimePeriodsForExpansion, getLiveExpansions, loadExpansionMetadata } from "@/lib/filter";
 
 interface CardFiltersProps {
   params: CardDataParams;
@@ -35,14 +33,13 @@ export function CardFilters({
   searchText,
   options,
 }: CardFiltersProps) {
-  const startDate = parseISO(params.start_date);
-  const endDate = parseISO(params.end_date);
   const isMobile = useMediaQuery('(max-width: 1024px)');
   const [showFilters, setShowFilters] = useState(false);
   const [metadataVersion, setMetadataVersion] = useState(0);
   const filterButtonRef = useRef<HTMLButtonElement>(null);
   const expansionOptions = useMemo(() => toExpansionOptions(options.expansionOptions), [options.expansionOptions]);
   const formatOptions = options.formatOptions;
+  const timePeriodOptions = options.timePeriodOptions;
   const userGroupOptions = options.userGroupOptions;
   const deckColorOptions = options.deckColorOptions;
   const cardColorOptions = options.colorOptions;
@@ -76,6 +73,15 @@ export function CardFilters({
     return formatOptions.filter(option => formats.includes(option.value));
   }, [formatOptions, params.expansion, metadataVersion]);
 
+  // 根据选择的系列获取可用的时间段选项
+  // 17lands 卡牌数据 API 用 time_period 替代 date，可用列表由 filter.json 按系列提供
+  const availableTimePeriods = useMemo(() => {
+    void metadataVersion;
+    const timePeriods = getTimePeriodsForExpansion(params.expansion);
+    if (!timePeriods.length) return timePeriodOptions;
+    return timePeriodOptions.filter(option => timePeriods.includes(option.value));
+  }, [timePeriodOptions, params.expansion, metadataVersion]);
+
   // 当系列变化时，检查当前选择的赛制是否可用，如果不可用则选择第一个可用的赛制
   const handleExpansionChange = (expansion: string) => {
     const formats = getFormatsForExpansion(expansion);
@@ -92,10 +98,10 @@ export function CardFilters({
       }
     }
 
-    // 获取系列的起始日期
-    const startDate = getStartDateForExpansion(expansion);
-    if (startDate) {
-      newParams.start_date = startDate.split('T')[0];
+    // 如果当前时间段不在新系列的可用列表中，回退到可用列表的第一个
+    const timePeriods = getTimePeriodsForExpansion(expansion);
+    if (timePeriods.length && !timePeriods.includes(params.time_period)) {
+      newParams.time_period = timePeriods[0];
     }
 
     onParamsChange(newParams);
@@ -182,14 +188,13 @@ export function CardFilters({
               onChange={(e) => onSearchFilter(e.target.value)}
               className="w-full sm:w-64"
             />
-            <div className="w-full sm:w-auto">
-              <DateRangePicker
-                startDate={startDate}
-                endDate={endDate}
-                onStartDateChange={(date) => onParamsChange({ start_date: date.toISOString().split('T')[0] })}
-                onEndDateChange={(date) => onParamsChange({ end_date: date.toISOString().split('T')[0] })}
-              />
-            </div>
+            <Select
+              options={availableTimePeriods}
+              value={params.time_period}
+              onChange={(e) => onParamsChange({ time_period: e.target.value })}
+              title="时间范围"
+              className="w-full sm:w-auto sm:min-w-[140px]"
+            />
           </div>
 
           {/* 桌面端：第二行 - 其他筛选选项 */}
@@ -297,17 +302,12 @@ export function CardFilters({
           anchor={filterButtonRef.current}
         >
           <div className="space-y-4">
-            <DateRangePicker
-              startDate={parseISO(tempParams.start_date)}
-              endDate={parseISO(tempParams.end_date)}
-              onStartDateChange={(date) => setTempParams({
-                ...tempParams,
-                start_date: date.toISOString().split('T')[0]
-              })}
-              onEndDateChange={(date) => setTempParams({
-                ...tempParams,
-                end_date: date.toISOString().split('T')[0]
-              })}
+            <Select
+              options={availableTimePeriods}
+              value={tempParams.time_period}
+              onChange={(e) => setTempParams({ ...tempParams, time_period: e.target.value })}
+              title="时间范围"
+              className="w-full"
             />
 
             <Select
