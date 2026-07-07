@@ -42,6 +42,9 @@ jobs:
           NEXT_TELEMETRY_DISABLED: 1
           ICP_NUMBER: ${{ secrets.ICP_NUMBER }}
 
+      - name: Copy edge-functions to out
+        run: pnpm postbuild
+
       - name: Deploy to out branch
         uses: JamesIves/github-pages-deploy-action@v4
         with:
