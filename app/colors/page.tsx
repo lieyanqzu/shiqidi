@@ -137,7 +137,7 @@ export default function ColorsPage() {
             {titleExpansion ? `${titleExpansion} ` : ''}色组数据
           </h1>
           <a
-            href="https://www.17lands.com/color_ratings?utm_source=shiqidi"
+            href="https://www.17lands.com/deck_color_data"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1 px-2 py-1 text-xs rounded-md bg-[--accent]/10 text-[--muted-foreground] hover:text-[--foreground] hover:bg-[--accent]/20 transition-colors"

@@ -303,7 +303,7 @@ export default function CardsPage() {
             {titleExpansion ? `${titleExpansion} ` : ''}轮抽卡牌数据
           </h1>
           <a
-            href="https://www.17lands.com/card_data?utm_source=shiqidi"
+            href="https://www.17lands.com/card_data"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1 px-2 py-1 text-xs rounded-md bg-[--accent]/10 text-[--muted-foreground] hover:text-[--foreground] hover:bg-[--accent]/20 transition-colors"

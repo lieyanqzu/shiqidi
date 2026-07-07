@@ -81,7 +81,6 @@ export function ColorFilters({
 
   // 移动端临时状态
   const [tempParams, setTempParams] = useState<ColorRatingParams>(params);
-  const [tempSeparateSplash, setTempSeparateSplash] = useState(separateSplash);
 
   const handleConfirm = () => {
     const hasParamsChanged = Object.entries(tempParams).some(([key, value]) => {
@@ -92,10 +91,6 @@ export function ColorFilters({
       onParamsChange(tempParams);
     }
 
-    if (tempSeparateSplash !== separateSplash) {
-      onSeparateSplashChange(tempSeparateSplash);
-    }
-
     setShowFilters(false);
   };
 
@@ -104,15 +99,14 @@ export function ColorFilters({
       setShowFilters(false);
     } else {
       setTempParams(params);
-      setTempSeparateSplash(separateSplash);
       setShowFilters(true);
     }
   };
 
   // 混色开关
   const SplashSwitch = ({ checked, onChange }: { checked: boolean; onChange: (v: boolean) => void }) => (
-    <label className="flex items-center gap-2 cursor-pointer select-none">
-      <span className="text-sm text-[--component-foreground-muted] whitespace-nowrap">区分混色</span>
+    <label className="flex items-center gap-2 cursor-pointer select-none whitespace-nowrap">
+      <span className="text-sm text-[--component-foreground-muted]">区分混色</span>
       <button
         type="button"
         role="switch"
@@ -122,15 +116,12 @@ export function ColorFilters({
       >
         <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${checked ? 'translate-x-4' : 'translate-x-0.5'}`} />
       </button>
-      <span className="text-xs text-[--component-foreground-muted]">
-        {checked ? '单独统计带混色的套牌' : '合并进主色组'}
-      </span>
     </label>
   );
 
   return (
     <div className="space-y-4">
-      {/* 移动端：系列和筛选按钮 */}
+      {/* 移动端：系列、区分混色和筛选按钮 */}
       {isMobile ? (
         <div className="flex items-center gap-2">
           <Select
@@ -140,11 +131,12 @@ export function ColorFilters({
             title="系列"
             className="w-32 shrink-0"
           />
+          <SplashSwitch checked={separateSplash} onChange={onSeparateSplashChange} />
           <button
             ref={filterButtonRef}
             onClick={handleOpenFilters}
             className={`
-              p-2 rounded-md transition-colors shrink-0
+              p-2 rounded-md transition-colors shrink-0 ml-auto
               ${showFilters
                 ? 'bg-[--primary] text-white'
                 : 'bg-[--component-background] hover:bg-[--component-background-hover]'}
@@ -158,40 +150,38 @@ export function ColorFilters({
         </div>
       ) : (
         <>
-          {/* 桌面端：第一行 - 日期范围和混色开关 */}
-          <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
-            <DateRangePicker
-              startDate={startDate}
-              endDate={endDate}
-              onStartDateChange={(date) => onParamsChange({ start_date: date.toISOString().split('T')[0] })}
-              onEndDateChange={(date) => onParamsChange({ end_date: date.toISOString().split('T')[0] })}
-            />
-            <SplashSwitch checked={separateSplash} onChange={onSeparateSplashChange} />
-          </div>
-
-          {/* 桌面端：第二行 - 其他筛选 */}
-          <div className="flex flex-wrap gap-2 sm:gap-4">
+          {/* 桌面端：单行筛选，区分混色靠右 */}
+          <div className="flex flex-wrap items-center gap-2 sm:gap-4">
             <Select
               groups={expansionGroups}
               value={params.expansion}
               onChange={(e) => handleExpansionChange(e.target.value)}
               title="系列"
-              className="w-full sm:w-32 shrink-0"
+              className="w-32 shrink-0"
             />
             <Select
               options={availableFormats}
               value={params.event_type}
               onChange={(e) => onParamsChange({ event_type: e.target.value })}
               title="模式"
-              className="w-full sm:w-auto sm:min-w-[140px]"
+              className="w-auto sm:min-w-[140px] shrink-0"
             />
             <Select
               options={userGroupOptions}
               value={params.user_group || ""}
               onChange={(e) => onParamsChange({ user_group: e.target.value })}
               title="用户组"
-              className="w-full sm:w-auto sm:min-w-[100px]"
+              className="w-auto sm:min-w-[100px] shrink-0"
             />
+            <DateRangePicker
+              startDate={startDate}
+              endDate={endDate}
+              onStartDateChange={(date) => onParamsChange({ start_date: date.toISOString().split('T')[0] })}
+              onEndDateChange={(date) => onParamsChange({ end_date: date.toISOString().split('T')[0] })}
+            />
+            <div className="ml-auto">
+              <SplashSwitch checked={separateSplash} onChange={onSeparateSplashChange} />
+            </div>
           </div>
         </>
       )}
@@ -232,8 +222,6 @@ export function ColorFilters({
               title="用户组"
               className="w-full"
             />
-
-            <SplashSwitch checked={tempSeparateSplash} onChange={setTempSeparateSplash} />
 
             <div className="flex justify-end">
               <button
