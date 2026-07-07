@@ -79,12 +79,18 @@ function requestWithRetry({ url, data, header, timeout = RETRY_TIMEOUT, retries 
 }
 
 function fetchCardData(params) {
-  const query = Object.keys(params)
+  // 17lands 卡牌数据 API 已用 time_period 替代 start_date/end_date，这里只发送需要的字段
+  const fields = ['expansion', 'event_type', 'time_period', 'user_group', 'colors'];
+  const query = fields
     .filter((key) => params[key] !== undefined && params[key] !== '')
     .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
     .join('&');
   return requestWithRetry({
-    url: `https://www.17lands.com/card_ratings/data?${query}`,
+    url: `https://www.17lands.com/api/card_data?${query}`,
+  }).then((payload) => {
+    // 统一提取 data 字段，兼容两种格式
+    if (Array.isArray(payload)) return payload;
+    return (payload && Array.isArray(payload.data)) ? payload.data : [];
   });
 }
 

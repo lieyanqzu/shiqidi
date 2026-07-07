@@ -35,10 +35,12 @@ let deckColorOptions = [];
 let rarityLabels = {};
 let colorOptions = [];
 let rarityOptions = [];
+let timePeriodOptions = [];
 
 const emptyFilterMetadata = {
   formats_by_expansion: {},
   start_dates: {},
+  time_periods: {},
 };
 
 const gradeHelpItems = [
@@ -64,6 +66,7 @@ function applyOptions(options = {}) {
   rarityLabels = options.rarityLabels || {};
   colorOptions = Array.isArray(options.colorOptions) ? options.colorOptions : [];
   rarityOptions = Array.isArray(options.rarityOptions) ? options.rarityOptions : [];
+  timePeriodOptions = Array.isArray(options.timePeriodOptions) ? options.timePeriodOptions : [];
 }
 
 function today() {
@@ -71,7 +74,7 @@ function today() {
 }
 
 function getFilterMetadata(data) {
-  return data && data.formats_by_expansion && data.start_dates ? data : emptyFilterMetadata;
+  return data && data.formats_by_expansion && data.start_dates && data.time_periods ? data : emptyFilterMetadata;
 }
 
 function getAvailableFormatOptions(expansion, metadata = emptyFilterMetadata) {
@@ -86,6 +89,21 @@ function getAvailableFormatOptions(expansion, metadata = emptyFilterMetadata) {
 function getExpansionStartDate(expansion, metadata = emptyFilterMetadata) {
   const value = getFilterMetadata(metadata).start_dates[expansion];
   return value ? String(value).slice(0, 10) : '';
+}
+
+// 获取系列支持的时间段列表
+// 17lands 卡牌数据 API 已用 time_period 替代 start_date/end_date
+function getTimePeriodsForExpansion(expansion, metadata = emptyFilterMetadata) {
+  const periods = getFilterMetadata(metadata).time_periods[expansion];
+  if (Array.isArray(periods) && periods.length) return periods;
+  return getFilterMetadata(metadata).time_periods[''] || [];
+}
+
+function getAvailableTimePeriodOptions(expansion, metadata = emptyFilterMetadata) {
+  const periods = getTimePeriodsForExpansion(expansion, metadata);
+  if (!periods.length) return timePeriodOptions;
+  const options = timePeriodOptions.filter((item) => periods.includes(item.value));
+  return options.length ? options : timePeriodOptions;
 }
 
 function getOptionIndex(options, value) {
@@ -117,6 +135,11 @@ function getDefaultStartDate(expansion, metadata) {
     || '2016-01-01';
 }
 
+function getDefaultTimePeriod(expansion, metadata) {
+  const periods = getTimePeriodsForExpansion(expansion, metadata);
+  return periods.length ? periods[0] : 'ALL_TIME';
+}
+
 function buildInitialState(metadata = emptyFilterMetadata) {
   const expansion = getDefaultExpansion();
   const availableFormatOptions = getAvailableFormatOptions(expansion, metadata);
@@ -124,19 +147,25 @@ function buildInitialState(metadata = emptyFilterMetadata) {
   const formatOption = availableFormatOptions[formatIndex] || availableFormatOptions[0] || formatOptions[0];
   const userGroupValue = '';
   const deckColorValue = '';
+  const timePeriodValue = getDefaultTimePeriod(expansion, metadata);
+  const availableTimePeriodOptions = getAvailableTimePeriodOptions(expansion, metadata);
+  const timePeriodIndex = getOptionIndex(availableTimePeriodOptions, timePeriodValue);
   return {
     filterMetadata: getFilterMetadata(metadata),
     availableFormatOptions,
+    availableTimePeriodOptions,
     params: {
       expansion,
       event_type: formatOption ? formatOption.value : 'PremierDraft',
       user_group: userGroupValue,
       colors: deckColorValue,
+      time_period: timePeriodValue,
       start_date: getDefaultStartDate(expansion, metadata),
       end_date: today(),
     },
     expansionIndex: getExpansionIndex(expansion),
     formatIndex,
+    timePeriodIndex,
     userGroupIndex: getOptionIndex(userGroupOptions, userGroupValue),
     deckColorIndex: getOptionIndex(deckColorOptions, deckColorValue),
     currentSetGlyph: getSetIconGlyph(expansion),
@@ -385,14 +414,34 @@ Page({
     const formatIndex = getFormatIndex(availableFormatOptions, currentFormat);
     const formatOption = availableFormatOptions[formatIndex] || availableFormatOptions[0] || formatOptions[0];
     const startDate = getExpansionStartDate(expansion, this.data.filterMetadata);
+    // 切换系列时，按新系列更新时间段选项；若当前值不可用则回退到第一个可用项
+    const availableTimePeriodOptions = getAvailableTimePeriodOptions(expansion, this.data.filterMetadata);
+    const periods = getTimePeriodsForExpansion(expansion, this.data.filterMetadata);
+    let timePeriodValue = this.data.params.time_period;
+    if (periods.length && !periods.includes(timePeriodValue)) {
+      timePeriodValue = periods[0];
+    }
+    const timePeriodIndex = getOptionIndex(availableTimePeriodOptions, timePeriodValue);
     this.reloadAfterParamChange({
       expansionIndex: index,
       availableFormatOptions,
+      availableTimePeriodOptions,
       formatIndex,
+      timePeriodIndex,
       'params.expansion': expansion,
       'params.event_type': formatOption ? formatOption.value : 'PremierDraft',
+      'params.time_period': timePeriodValue,
       currentSetGlyph: getSetIconGlyph(expansion),
       ...(startDate ? { 'params.start_date': startDate } : {}),
+    });
+  },
+
+  onTimePeriodChange(event) {
+    const index = Number(event.detail.value);
+    const option = this.data.availableTimePeriodOptions[index] || this.data.availableTimePeriodOptions[0];
+    this.reloadAfterParamChange({
+      timePeriodIndex: index,
+      'params.time_period': option ? option.value : 'ALL_TIME',
     });
   },
 
@@ -418,13 +467,6 @@ Page({
     this.reloadAfterParamChange({
       deckColorIndex: index,
       'params.colors': deckColorOptions[index].value,
-    });
-  },
-
-  onDateChange(event) {
-    const { field } = event.currentTarget.dataset;
-    this.reloadAfterParamChange({
-      [`params.${field}`]: event.detail.value,
     });
   },
 
