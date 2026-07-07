@@ -40,7 +40,7 @@ export async function onRequestGet(context) {
       status: upstreamResponse.status,
       headers: {
         'content-type': upstreamResponse.headers.get('content-type') || 'application/json; charset=utf-8',
-        'cache-control': 'public, max-age=300',
+        'cache-control': 'public, max-age=3600',
         'access-control-allow-origin': '*',
       },
     });

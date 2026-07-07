@@ -27,13 +27,30 @@ export async function onRequestGet(context) {
       },
     });
 
-    // 透传响应体与状态码
+    // 解析上游响应，只返回 data 数组（剥离 copyright/notes 外层）
+    // 兼容上游返回 { data: [...] } 或直接数组两种格式
     const body = await upstreamResponse.text();
-    return new Response(body, {
+    let payload;
+    try {
+      payload = JSON.parse(body);
+    } catch (e) {
+      return new Response(body, {
+        status: upstreamResponse.status,
+        headers: {
+          'content-type': upstreamResponse.headers.get('content-type') || 'application/json; charset=utf-8',
+          'cache-control': 'public, max-age=300',
+          'access-control-allow-origin': '*',
+        },
+      });
+    }
+
+    const data = Array.isArray(payload) ? payload : (payload && Array.isArray(payload.data) ? payload.data : []);
+
+    return new Response(JSON.stringify(data), {
       status: upstreamResponse.status,
       headers: {
-        'content-type': upstreamResponse.headers.get('content-type') || 'application/json; charset=utf-8',
-        'cache-control': 'public, max-age=300',
+        'content-type': 'application/json; charset=utf-8',
+        'cache-control': 'public, max-age=3600',
         'access-control-allow-origin': '*',
       },
     });
