@@ -8,7 +8,7 @@ import { DateRangePicker } from "@/components/ui/date-range-picker";
 import { Popper } from "@/components/ui/popper";
 import { parseISO } from 'date-fns';
 import { toExpansionOptions, type PublicOptionsData } from "@/lib/options";
-import { getFormatsForExpansion, getLiveExpansions, loadExpansionMetadata } from "@/lib/filter";
+import { getFormatsForExpansion, getLiveExpansions, getStartDateForExpansion, loadExpansionMetadata } from "@/lib/filter";
 
 interface ColorFiltersProps {
   params: ColorRatingParams;
@@ -74,6 +74,12 @@ export function ColorFilters({
       } else {
         newParams.event_type = formats[0];
       }
+    }
+
+    // 色组数据仍用 date 字段，切换系列时把 start_date 设为新系列的起始日期
+    const startDate = getStartDateForExpansion(expansion);
+    if (startDate) {
+      newParams.start_date = startDate.split('T')[0];
     }
 
     onParamsChange(newParams);
