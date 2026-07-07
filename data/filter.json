@@ -902,7 +902,6 @@
       "Sealed",
       "PickTwoDraft",
       "TradSealed",
-      "ArenaDirect_Sealed",
       "QuickDraft",
       "QualifierPlayInSealed"
     ]
@@ -926,9 +925,9 @@
     "BRO": "2022-11-15T15:00:00Z",
     "CLB": "2022-06-10T00:00:00Z",
     "CORE": "2021-03-26T00:00:00Z",
-    "Chaos": "2026-06-06T06:27:17.950644Z",
-    "Cube": "2026-06-06T06:27:17.950641Z",
-    "Cube - Powered": "2026-06-06T06:27:17.950639Z",
+    "Chaos": "2026-06-07T02:23:51.086180Z",
+    "Cube": "2026-06-07T02:23:51.086177Z",
+    "Cube - Powered": "2026-06-07T02:23:51.086173Z",
     "DBL": "2022-01-28T00:00:00Z",
     "DFT": "2025-02-11T15:00:00Z",
     "DMR": "2023-01-13T00:00:00Z",
@@ -969,8 +968,8 @@
     "RIX": "2019-03-01T00:00:00Z",
     "RNA": "2019-01-17T00:00:00Z",
     "ROE": "2010-04-23T00:00:00Z",
-    "Ravnica": "2026-06-06T06:27:17.950601Z",
-    "Remix - Artifacts": "2026-06-06T06:27:17.950647Z",
+    "Ravnica": "2026-06-07T02:23:51.086118Z",
+    "Remix - Artifacts": "2026-06-07T02:23:51.086183Z",
     "SIR": "2023-03-21T15:00:00Z",
     "SNC": "2022-04-28T00:00:00Z",
     "SOS": "2026-04-21T15:00:00Z",
@@ -1000,5 +999,664 @@
     "Y26ECL": "2026-02-03T15:00:00Z",
     "Y26SOS": "2026-05-19T15:00:00Z",
     "ZNR": "2020-09-16T00:00:00Z"
+  },
+  "time_periods": {
+    "": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "AFR": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "AKR": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "BLB": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "BRO": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "CORE": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "Chaos": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "Cube": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "Cube - Powered": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "DBL": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "DFT": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "DMU": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "DOM": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "DSK": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "ECL": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "ELD": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "EOE": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "FDN": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "FIN": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "GRN": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "HBG": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "IKO": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "KHM": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "KLR": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "KTK": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "LCI": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "LTR": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "M19": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "M20": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "M21": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "MAT": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "MH3": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "MID": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "MKM": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "MOM": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "MSH": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "NEO": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "OM1": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "ONE": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "OTJ": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "PIO": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "RAVM": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "RIX": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "RNA": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "Ravnica": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "Remix - Artifacts": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "SIR": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "SNC": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "SOS": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "STX": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "TDM": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "THB": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "TLA": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "TMT": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "VOW": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "WAR": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "WOE": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "Y22SNC": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "Y23BRO": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "Y23DMU": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "Y23ONE": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "Y24LCI": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "Y24MKM": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "Y24OTJ": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "Y24WOE": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "Y25BLB": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "Y25DFT": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "Y25DSK": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "Y25EOE": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "Y25TDM": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "Y26ECL": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "Y26SOS": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "ZNR": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ]
   }
 }
