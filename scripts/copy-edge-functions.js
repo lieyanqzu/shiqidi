@@ -6,7 +6,7 @@ const fs = require('fs');
 const path = require('path');
 
 const projectRoot = path.resolve(__dirname, '..');
-const sourceDir = path.join(projectRoot, 'api');
+const sourceDir = path.join(projectRoot, 'scripts', 'edge-functions');
 const targetDir = path.join(projectRoot, 'out', 'edge-functions', 'api');
 
 // 递归复制目录
@@ -25,10 +25,10 @@ function copyDirRecursive(src, dest) {
 }
 
 if (!fs.existsSync(sourceDir)) {
-  console.log('api 目录不存在，跳过复制');
+  console.log('edge-functions 子模块不存在，跳过复制（请先 git submodule update --init）');
   process.exit(0);
 }
 
 copyDirRecursive(sourceDir, targetDir);
-console.log('api 已复制到 out/edge-functions/api');
+console.log('edge-functions 已复制到 out/edge-functions/api');
 
