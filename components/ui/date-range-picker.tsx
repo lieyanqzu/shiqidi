@@ -23,7 +23,7 @@ export function DateRangePicker({
   const inputClassName = "form-control w-full sm:w-32 bg-[--component-background] border border-[--border] rounded-md px-3 py-2 text-sm text-[--component-foreground] focus:border-[--primary] focus:outline-none focus:ring-1 focus:ring-[--primary]";
 
   return (
-    <div className="flex items-center gap-2 w-full">
+    <div className="flex items-center gap-2">
       <DatePicker
         selected={startDate}
         onChange={(date: Date | null) => date && onStartDateChange(date)}

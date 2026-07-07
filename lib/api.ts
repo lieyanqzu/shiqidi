@@ -119,7 +119,9 @@ export async function fetchCardData(params: CardDataParams, signal?: AbortSignal
     throw new Error('Failed to fetch card data');
   }
 
-  return response.json();
+  const payload = await response.json();
+  // 旧版直接返回数组。兼容两种格式，取 data 字段或数组本身。
+  return Array.isArray(payload) ? payload : (payload?.data ?? []);
 }
 
 // 获取色组数据
