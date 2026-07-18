@@ -393,7 +393,30 @@
       "name": "霍比特人",
       "code": "HOB",
       "releaseDate": "2026-08-12",
-      "wikiUrl": "https://mtg.wiki/page/The_Hobbit?utm_source=shiqidi"
+      "wikiUrl": "https://mtg.wiki/page/The_Hobbit?utm_source=shiqidi",
+      "preview": {
+        "title": "去而复返的旅程",
+        "description": "和比尔博一同踏上一生一次的冒险，与矮人交友，耍弄食人妖，智斗精灵族，唱响歌曲。",
+        "backgroundImage": "/image/background/HOB_sma_key_1920x1080.jpg",
+        "links": [
+          {
+            "name": "大学院废墟（中文）",
+            "url": "https://mtgch.com/previews/HOB/?utm_source=shiqidi"
+          },
+          {
+            "name": "官网牌图集合",
+            "url": "https://magic.wizards.com/en/products/the-hobbit/card-image-gallery"
+          },
+          {
+            "name": "Scryfall",
+            "url": "https://scryfall.com/sets/hob?order=spoiled&utm_source=shiqidi"
+          },
+          {
+            "name": "Untapped.gg",
+            "url": "https://mtga.untapped.gg/codex/sets/the-hobbit?sortBy=spoilerDate&utm_source=shiqidi"
+          }
+        ]
+      }
     }
   ]
 }
