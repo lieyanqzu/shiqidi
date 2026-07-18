@@ -337,7 +337,7 @@ export function Content({ currentSetGroups, futureSets, recentBans }: Props) {
           <div className="bg-[--card] rounded-lg border-2 border-[--border] p-4">
             <div className="space-y-3">
               {futureSets.map((set, index) => (
-                <div key={set.code || index} className="border border-[--border] rounded-lg p-4 group">
+                <div key={`${set.code || 'unknown'}-${index}`} className="border border-[--border] rounded-lg p-4 group">
                   <div className="flex flex-col gap-2">
                     <div className="flex items-start justify-between gap-4">
                       <div>

@@ -314,7 +314,7 @@
       "code": "WOE",
       "enter_date": "2023-09-01T00:00:00.000",
       "rough_enter_date": "Q3 2023",
-      "exit_date": null,
+      "exit_date": "2027-01-29T00:00:00.000",
       "rough_exit_date": "Q1 2027"
     },
     {
@@ -324,7 +324,7 @@
       "code": "LCI",
       "enter_date": "2023-11-10T00:00:00.000",
       "rough_enter_date": "Q4 2023",
-      "exit_date": null,
+      "exit_date": "2027-01-29T00:00:00.000",
       "rough_exit_date": "Q1 2027"
     },
     {
@@ -334,7 +334,7 @@
       "code": "MKM",
       "enter_date": "2024-02-02T00:00:00.000",
       "rough_enter_date": "Q1 2024",
-      "exit_date": null,
+      "exit_date": "2027-01-29T00:00:00.000",
       "rough_exit_date": "Q1 2027"
     },
     {
@@ -344,7 +344,7 @@
       "code": "OTJ",
       "enter_date": "2024-04-12T00:00:00.000",
       "rough_enter_date": "Q2 2024",
-      "exit_date": null,
+      "exit_date": "2027-01-29T00:00:00.000",
       "rough_exit_date": "Q1 2027"
     },
     {
@@ -354,7 +354,7 @@
       "code": "BIG",
       "enter_date": "2024-04-12T00:00:00.000",
       "rough_enter_date": "Q2 2024",
-      "exit_date": null,
+      "exit_date": "2027-01-29T00:00:00.000",
       "rough_exit_date": "Q1 2027"
     },
     {
@@ -364,7 +364,7 @@
       "code": "BLB",
       "enter_date": "2024-08-02T00:00:00.000",
       "rough_enter_date": "Q3 2024",
-      "exit_date": null,
+      "exit_date": "2027-01-29T00:00:00.000",
       "rough_exit_date": "Q1 2027"
     },
     {
@@ -374,7 +374,7 @@
       "code": "DSK",
       "enter_date": "2024-09-20T00:00:00.000",
       "rough_enter_date": "Q3 2024",
-      "exit_date": null,
+      "exit_date": "2027-01-29T00:00:00.000",
       "rough_exit_date": "Q1 2027"
     },
     {
@@ -518,10 +518,73 @@
       "codename": null,
       "block": null,
       "code": "TRK",
-      "enter_date": "2026-11-13T00:00:00.000",
+      "enter_date": "2026-11-06T00:00:00.000",
       "rough_enter_date": "November 2026",
       "exit_date": null,
       "rough_exit_date": "Q1 2029",
+      "universes_beyond": true
+    },
+    {
+      "name": "Nauctis: The Sunken Realm",
+      "codename": null,
+      "block": null,
+      "code": "NAU",
+      "enter_date": "2027-01-29T00:00:00.000",
+      "rough_enter_date": "February 2027",
+      "exit_date": null,
+      "rough_exit_date": "Q1 2030"
+    },
+    {
+      "name": "未公布",
+      "codename": null,
+      "block": null,
+      "code": "???",
+      "enter_date": "2027-04-02T00:00:00.000",
+      "rough_enter_date": "April 2027",
+      "exit_date": null,
+      "rough_exit_date": "Q1 2030",
+      "universes_beyond": true
+    },
+    {
+      "name": "Kamigawa: Titanbreach",
+      "codename": null,
+      "block": null,
+      "code": "KTB",
+      "enter_date": "2027-05-28T00:00:00.000",
+      "rough_enter_date": "June 2027",
+      "exit_date": null,
+      "rough_exit_date": "Q1 2030"
+    },
+    {
+      "name": "未公布",
+      "codename": null,
+      "block": null,
+      "code": "???",
+      "enter_date": "2027-07-30T00:00:00.000",
+      "rough_enter_date": "August 2027",
+      "exit_date": null,
+      "rough_exit_date": "Q1 2030",
+      "universes_beyond": true
+    },
+    {
+      "name": "Zhalfir",
+      "codename": null,
+      "block": null,
+      "code": "ZFR",
+      "enter_date": "2027-09-24T00:00:00.000",
+      "rough_enter_date": "October 2027",
+      "exit_date": null,
+      "rough_exit_date": "Q1 2030"
+    },
+    {
+      "name": "未公布",
+      "codename": null,
+      "block": null,
+      "code": "???",
+      "enter_date": "2027-11-12T00:00:00.000",
+      "rough_enter_date": "November 2027",
+      "exit_date": null,
+      "rough_exit_date": "Q1 2030",
       "universes_beyond": true
     }
   ],
