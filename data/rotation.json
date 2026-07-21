@@ -1,11 +1,5 @@
 {
-  "meta": {
-    "comments": {
-      "consuming": "Do not consume this file as an API. Use api/v6/*, which is stable and generated from this file.",
-      "contributing": "Keep the most recent round of drops in this file to power 'recently dropped sets' on the site.",
-      "building": "After modifying this file, run `npm install` to build the API from it."
-    }
-  },
+  "meta": {},
   "sets": [
     {
       "name": "Kaladesh",
