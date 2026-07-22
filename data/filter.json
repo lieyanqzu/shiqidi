@@ -103,6 +103,7 @@
     "RNA",
     "KTK",
     "XLN",
+    "Cube - Planar",
     "Cube - Powered",
     "Cube",
     "Chaos",
@@ -272,6 +273,10 @@
       "OpenDraft_D2_Draft1_Bo3",
       "OpenDraft_D2_Draft2B_Bo3",
       "OpenDraft_D2_Draft2_Bo3"
+    ],
+    "Cube - Planar": [
+      "PremierDraft",
+      "TradDraft"
     ],
     "Cube - Powered": [
       "PremierDraft",
@@ -900,7 +905,14 @@
     "me"
   ],
   "live_formats_by_expansion": {
+    "Cube - Planar": [
+      "PremierDraft",
+      "TradDraft"
+    ],
     "DFT": [
+      "PremierDraft"
+    ],
+    "DSK": [
       "PremierDraft"
     ],
     "ECL": [
@@ -912,6 +924,9 @@
       "Sealed",
       "PickTwoDraft",
       "ArenaDirect_Sealed"
+    ],
+    "OTJ": [
+      "QuickDraft"
     ]
   },
   "ranked_formats": [
@@ -933,9 +948,10 @@
     "BRO": "2022-11-15T15:00:00Z",
     "CLB": "2022-06-10T00:00:00Z",
     "CORE": "2021-03-26T00:00:00Z",
-    "Chaos": "2026-06-21T05:19:27.410905Z",
-    "Cube": "2026-06-21T05:19:27.410902Z",
-    "Cube - Powered": "2026-06-21T05:19:27.410900Z",
+    "Chaos": "2026-06-22T05:18:20.132930Z",
+    "Cube": "2026-06-22T05:18:20.132927Z",
+    "Cube - Planar": "2026-06-22T05:18:20.132923Z",
+    "Cube - Powered": "2026-06-22T05:18:20.132925Z",
     "DBL": "2022-01-28T00:00:00Z",
     "DFT": "2025-02-11T15:00:00Z",
     "DMR": "2023-01-13T00:00:00Z",
@@ -976,8 +992,8 @@
     "RIX": "2019-03-01T00:00:00Z",
     "RNA": "2019-01-17T00:00:00Z",
     "ROE": "2010-04-23T00:00:00Z",
-    "Ravnica": "2026-06-21T05:19:27.410859Z",
-    "Remix - Artifacts": "2026-06-21T05:19:27.410907Z",
+    "Ravnica": "2026-06-22T05:18:20.132891Z",
+    "Remix - Artifacts": "2026-06-22T05:18:20.132932Z",
     "SIR": "2023-03-21T15:00:00Z",
     "SNC": "2022-04-28T00:00:00Z",
     "SOS": "2026-04-21T15:00:00Z",
@@ -1073,6 +1089,15 @@
       "FIRST_WEEK"
     ],
     "Cube": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "Cube - Planar": [
       "ALL_TIME",
       "ALL_EXCEPT_FIRST_WEEK",
       "LATEST_EVENT",
