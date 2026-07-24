@@ -1184,8 +1184,8 @@
   {
     "expansion": "OTJ",
     "event_type": "QuickDraft",
-    "average_game_length": 8.924537753055555,
-    "win_rate_on_play": 0.526090937634055
+    "average_game_length": 8.924768390140509,
+    "win_rate_on_play": 0.5259882644848967
   },
   {
     "expansion": "OTJ",
@@ -1394,8 +1394,8 @@
   {
     "expansion": "DSK",
     "event_type": "PremierDraft",
-    "average_game_length": 8.754253632636717,
-    "win_rate_on_play": 0.5235743241220102
+    "average_game_length": 8.754159323389297,
+    "win_rate_on_play": 0.5235557994167226
   },
   {
     "expansion": "DSK",
@@ -1994,8 +1994,8 @@
   {
     "expansion": "ECL",
     "event_type": "QuickDraft",
-    "average_game_length": 9.321757892617674,
-    "win_rate_on_play": 0.5156006721770527
+    "average_game_length": 9.321757237817167,
+    "win_rate_on_play": 0.5155962737358514
   },
   {
     "expansion": "ECL",
@@ -2192,14 +2192,14 @@
   {
     "expansion": "MSH",
     "event_type": "PickTwoDraft",
-    "average_game_length": 9.041203854023783,
-    "win_rate_on_play": 0.5250619833512967
+    "average_game_length": 9.04504323399771,
+    "win_rate_on_play": 0.5253325055733508
   },
   {
     "expansion": "MSH",
     "event_type": "PremierDraft",
-    "average_game_length": 8.989631190739564,
-    "win_rate_on_play": 0.5252176153036031
+    "average_game_length": 8.990444658633947,
+    "win_rate_on_play": 0.5253376636007836
   },
   {
     "expansion": "MSH",
@@ -2210,8 +2210,8 @@
   {
     "expansion": "MSH",
     "event_type": "TradDraft",
-    "average_game_length": 8.73430410645501,
-    "win_rate_on_play": 0.5327739384387802
+    "average_game_length": 8.734344104721153,
+    "win_rate_on_play": 0.5326924569436218
   },
   {
     "expansion": "MSH",
@@ -2258,7 +2258,7 @@
   {
     "expansion": "Cube - Planar",
     "event_type": "PremierDraft",
-    "average_game_length": 7.716310874147322,
-    "win_rate_on_play": 0.5558323233044858
+    "average_game_length": 7.769691458546412,
+    "win_rate_on_play": 0.5537997127331497
   }
 ]
