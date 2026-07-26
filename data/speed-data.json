@@ -1184,8 +1184,8 @@
   {
     "expansion": "OTJ",
     "event_type": "QuickDraft",
-    "average_game_length": 8.925523204608744,
-    "win_rate_on_play": 0.526031484028272
+    "average_game_length": 8.924798404846573,
+    "win_rate_on_play": 0.5260345672295508
   },
   {
     "expansion": "OTJ",
@@ -1394,8 +1394,8 @@
   {
     "expansion": "DSK",
     "event_type": "PremierDraft",
-    "average_game_length": 8.754064326960282,
-    "win_rate_on_play": 0.5235052442162157
+    "average_game_length": 8.754355234973612,
+    "win_rate_on_play": 0.5234851774564667
   },
   {
     "expansion": "DSK",
@@ -2192,14 +2192,14 @@
   {
     "expansion": "MSH",
     "event_type": "PickTwoDraft",
-    "average_game_length": 9.049469596137513,
-    "win_rate_on_play": 0.5253308142782132
+    "average_game_length": 9.05073614298063,
+    "win_rate_on_play": 0.5257047436456509
   },
   {
     "expansion": "MSH",
     "event_type": "PremierDraft",
-    "average_game_length": 8.991355998935436,
-    "win_rate_on_play": 0.5251725808168133
+    "average_game_length": 8.992842628731815,
+    "win_rate_on_play": 0.5251785404198949
   },
   {
     "expansion": "MSH",
@@ -2210,8 +2210,8 @@
   {
     "expansion": "MSH",
     "event_type": "TradDraft",
-    "average_game_length": 8.735719244883951,
-    "win_rate_on_play": 0.5328942465320591
+    "average_game_length": 8.73601363266534,
+    "win_rate_on_play": 0.53295401990092
   },
   {
     "expansion": "MSH",
@@ -2222,8 +2222,8 @@
   {
     "expansion": "MSH",
     "event_type": "ArenaDirect_Sealed",
-    "average_game_length": 9.10268911923996,
-    "win_rate_on_play": 0.5225886878359395
+    "average_game_length": 9.103253847410812,
+    "win_rate_on_play": 0.5222346901257744
   },
   {
     "expansion": "MSH",
@@ -2258,7 +2258,7 @@
   {
     "expansion": "Cube - Planar",
     "event_type": "PremierDraft",
-    "average_game_length": 7.790954677049561,
-    "win_rate_on_play": 0.5543852150579449
+    "average_game_length": 7.807495600225156,
+    "win_rate_on_play": 0.5551833429972743
   }
 ]
