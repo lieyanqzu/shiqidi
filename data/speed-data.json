@@ -1184,8 +1184,8 @@
   {
     "expansion": "OTJ",
     "event_type": "QuickDraft",
-    "average_game_length": 8.924798404846573,
-    "win_rate_on_play": 0.5260345672295508
+    "average_game_length": 8.925471169274196,
+    "win_rate_on_play": 0.5260125104082326
   },
   {
     "expansion": "OTJ",
@@ -1394,8 +1394,8 @@
   {
     "expansion": "DSK",
     "event_type": "PremierDraft",
-    "average_game_length": 8.754355234973612,
-    "win_rate_on_play": 0.5234851774564667
+    "average_game_length": 8.754459840056526,
+    "win_rate_on_play": 0.5234741470271722
   },
   {
     "expansion": "DSK",
@@ -2192,14 +2192,14 @@
   {
     "expansion": "MSH",
     "event_type": "PickTwoDraft",
-    "average_game_length": 9.05073614298063,
-    "win_rate_on_play": 0.5257047436456509
+    "average_game_length": 9.053449706632106,
+    "win_rate_on_play": 0.5252813416186183
   },
   {
     "expansion": "MSH",
     "event_type": "PremierDraft",
-    "average_game_length": 8.992842628731815,
-    "win_rate_on_play": 0.5251785404198949
+    "average_game_length": 8.994368176562682,
+    "win_rate_on_play": 0.5251602259193127
   },
   {
     "expansion": "MSH",
@@ -2210,8 +2210,8 @@
   {
     "expansion": "MSH",
     "event_type": "TradDraft",
-    "average_game_length": 8.73601363266534,
-    "win_rate_on_play": 0.53295401990092
+    "average_game_length": 8.733624102606514,
+    "win_rate_on_play": 0.5328942653319462
   },
   {
     "expansion": "MSH",
@@ -2222,8 +2222,8 @@
   {
     "expansion": "MSH",
     "event_type": "ArenaDirect_Sealed",
-    "average_game_length": 9.103253847410812,
-    "win_rate_on_play": 0.5222346901257744
+    "average_game_length": 9.106891468774382,
+    "win_rate_on_play": 0.521456355887396
   },
   {
     "expansion": "MSH",
@@ -2258,7 +2258,7 @@
   {
     "expansion": "Cube - Planar",
     "event_type": "PremierDraft",
-    "average_game_length": 7.807495600225156,
-    "win_rate_on_play": 0.5551833429972743
+    "average_game_length": 7.820515034090573,
+    "win_rate_on_play": 0.5539414598769368
   }
 ]
