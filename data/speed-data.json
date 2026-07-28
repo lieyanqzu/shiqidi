@@ -1184,8 +1184,8 @@
   {
     "expansion": "OTJ",
     "event_type": "QuickDraft",
-    "average_game_length": 8.925471169274196,
-    "win_rate_on_play": 0.5260125104082326
+    "average_game_length": 8.925482423111655,
+    "win_rate_on_play": 0.5258332737563253
   },
   {
     "expansion": "OTJ",
@@ -1394,8 +1394,8 @@
   {
     "expansion": "DSK",
     "event_type": "PremierDraft",
-    "average_game_length": 8.754459840056526,
-    "win_rate_on_play": 0.5234741470271722
+    "average_game_length": 8.754566775226277,
+    "win_rate_on_play": 0.5234680321382114
   },
   {
     "expansion": "DSK",
@@ -2192,14 +2192,14 @@
   {
     "expansion": "MSH",
     "event_type": "PickTwoDraft",
-    "average_game_length": 9.053449706632106,
-    "win_rate_on_play": 0.5252813416186183
+    "average_game_length": 9.054757243547595,
+    "win_rate_on_play": 0.524943491789489
   },
   {
     "expansion": "MSH",
     "event_type": "PremierDraft",
-    "average_game_length": 8.994368176562682,
-    "win_rate_on_play": 0.5251602259193127
+    "average_game_length": 8.995232832015946,
+    "win_rate_on_play": 0.5252045654702676
   },
   {
     "expansion": "MSH",
@@ -2210,8 +2210,8 @@
   {
     "expansion": "MSH",
     "event_type": "TradDraft",
-    "average_game_length": 8.733624102606514,
-    "win_rate_on_play": 0.5328942653319462
+    "average_game_length": 8.733791013537184,
+    "win_rate_on_play": 0.5332736793616183
   },
   {
     "expansion": "MSH",
@@ -2222,8 +2222,8 @@
   {
     "expansion": "MSH",
     "event_type": "ArenaDirect_Sealed",
-    "average_game_length": 9.106891468774382,
-    "win_rate_on_play": 0.521456355887396
+    "average_game_length": 9.107550838265082,
+    "win_rate_on_play": 0.5211862585864242
   },
   {
     "expansion": "MSH",
@@ -2258,7 +2258,7 @@
   {
     "expansion": "Cube - Planar",
     "event_type": "PremierDraft",
-    "average_game_length": 7.820515034090573,
-    "win_rate_on_play": 0.5539414598769368
+    "average_game_length": 7.833213307289578,
+    "win_rate_on_play": 0.5539034473114463
   }
 ]
