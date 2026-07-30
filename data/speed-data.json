@@ -1184,8 +1184,8 @@
   {
     "expansion": "OTJ",
     "event_type": "QuickDraft",
-    "average_game_length": 8.925741187767665,
-    "win_rate_on_play": 0.5257844443710387
+    "average_game_length": 8.92597612553807,
+    "win_rate_on_play": 0.5258337009167843
   },
   {
     "expansion": "OTJ",
@@ -1394,8 +1394,8 @@
   {
     "expansion": "DSK",
     "event_type": "PremierDraft",
-    "average_game_length": 8.754430434114232,
-    "win_rate_on_play": 0.5234729440302618
+    "average_game_length": 8.754425205373872,
+    "win_rate_on_play": 0.5234728141174667
   },
   {
     "expansion": "DSK",
@@ -1772,8 +1772,8 @@
   {
     "expansion": "EOE",
     "event_type": "PremierDraft",
-    "average_game_length": 8.990655692003875,
-    "win_rate_on_play": 0.5234592962939701
+    "average_game_length": 8.990892938350315,
+    "win_rate_on_play": 0.5234686868064846
   },
   {
     "expansion": "EOE",
@@ -2192,14 +2192,14 @@
   {
     "expansion": "MSH",
     "event_type": "PickTwoDraft",
-    "average_game_length": 9.057858163824898,
-    "win_rate_on_play": 0.5247569358083016
+    "average_game_length": 9.059381446151619,
+    "win_rate_on_play": 0.5247384161695058
   },
   {
     "expansion": "MSH",
     "event_type": "PremierDraft",
-    "average_game_length": 8.996546160776605,
-    "win_rate_on_play": 0.5251116928257252
+    "average_game_length": 8.997463752354038,
+    "win_rate_on_play": 0.5252407277331935
   },
   {
     "expansion": "MSH",
@@ -2210,8 +2210,8 @@
   {
     "expansion": "MSH",
     "event_type": "TradDraft",
-    "average_game_length": 8.73172697155009,
-    "win_rate_on_play": 0.5335749424697317
+    "average_game_length": 8.732367011960076,
+    "win_rate_on_play": 0.5329205523231328
   },
   {
     "expansion": "MSH",
@@ -2258,7 +2258,7 @@
   {
     "expansion": "Cube - Planar",
     "event_type": "PremierDraft",
-    "average_game_length": 7.836433342251082,
-    "win_rate_on_play": 0.5533074118872283
+    "average_game_length": 7.890360889503169,
+    "win_rate_on_play": 0.5490363132955728
   }
 ]
