@@ -417,6 +417,24 @@
           }
         ]
       }
+    },
+    {
+      "name": "现实裂界",
+      "code": "FRA",
+      "releaseDate": "2026-09-30",
+      "wikiUrl": "https://mtg.wiki/page/Reality_Fracture?utm_source=shiqidi"
+    },
+    {
+      "name": "炼金：现实裂界",
+      "code": "YFRA",
+      "releaseDate": "2026-10-21",
+      "wikiUrl": "https://mtg.wiki/page/Alchemy:_Reality_Fracture?utm_source=shiqidi"
+    },
+    {
+      "name": "星际迷航",
+      "code": "TRK",
+      "releaseDate": "2026-11-11",
+      "wikiUrl": "https://mtg.wiki/page/Star_Trek?utm_source=shiqidi"
     }
   ]
 }
