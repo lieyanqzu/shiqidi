@@ -242,8 +242,8 @@
   {
     "expansion": "WAR",
     "event_type": "PremierDraft",
-    "average_game_length": 9.774972086989717,
-    "win_rate_on_play": 0.5062144035090578
+    "average_game_length": 9.781907902247756,
+    "win_rate_on_play": 0.5060577407058883
   },
   {
     "expansion": "ZNR",
@@ -2192,14 +2192,14 @@
   {
     "expansion": "MSH",
     "event_type": "PickTwoDraft",
-    "average_game_length": 9.066747222878139,
-    "win_rate_on_play": 0.5253811778611136
+    "average_game_length": 9.066310468725199,
+    "win_rate_on_play": 0.5253311639536742
   },
   {
     "expansion": "MSH",
     "event_type": "PremierDraft",
-    "average_game_length": 9.001581110105965,
-    "win_rate_on_play": 0.5255937280058699
+    "average_game_length": 9.001269261228448,
+    "win_rate_on_play": 0.5255892368419502
   },
   {
     "expansion": "MSH",
@@ -2210,8 +2210,8 @@
   {
     "expansion": "MSH",
     "event_type": "TradDraft",
-    "average_game_length": 8.729040977651762,
-    "win_rate_on_play": 0.5335013977256565
+    "average_game_length": 8.72811415254377,
+    "win_rate_on_play": 0.5335342588199863
   },
   {
     "expansion": "MSH",
@@ -2228,8 +2228,8 @@
   {
     "expansion": "MSH",
     "event_type": "QuickDraft",
-    "average_game_length": 8.748693828256867,
-    "win_rate_on_play": 0.5307700721979081
+    "average_game_length": 8.750188393263674,
+    "win_rate_on_play": 0.5303976064949363
   },
   {
     "expansion": "MSH",
@@ -2258,19 +2258,19 @@
   {
     "expansion": "Cube - Planar",
     "event_type": "PremierDraft",
-    "average_game_length": 7.995109486438034,
-    "win_rate_on_play": 0.5498415879943415
+    "average_game_length": 7.999545688976425,
+    "win_rate_on_play": 0.5500544137706385
   },
   {
     "expansion": "Cube - Planar",
     "event_type": "TradDraft",
-    "average_game_length": 7.789601664067223,
-    "win_rate_on_play": 0.5656785402636441
+    "average_game_length": 7.788987583322242,
+    "win_rate_on_play": 0.5653305552639979
   },
   {
     "expansion": "MSH",
     "event_type": "MidWeekQuickDraft",
-    "average_game_length": 7.820825953641118,
-    "win_rate_on_play": 0.5207896740661332
+    "average_game_length": 7.811145107584831,
+    "win_rate_on_play": 0.5244459595768763
   }
 ]
