@@ -242,8 +242,8 @@
   {
     "expansion": "WAR",
     "event_type": "PremierDraft",
-    "average_game_length": 9.78701743439893,
-    "win_rate_on_play": 0.5062181066670809
+    "average_game_length": 9.794097402449975,
+    "win_rate_on_play": 0.5060240942332572
   },
   {
     "expansion": "ZNR",
@@ -2192,14 +2192,14 @@
   {
     "expansion": "MSH",
     "event_type": "PickTwoDraft",
-    "average_game_length": 9.066032982465451,
-    "win_rate_on_play": 0.5251277745865691
+    "average_game_length": 9.066262653748602,
+    "win_rate_on_play": 0.5253171641921593
   },
   {
     "expansion": "MSH",
     "event_type": "PremierDraft",
-    "average_game_length": 9.001238528362423,
-    "win_rate_on_play": 0.5255258809696387
+    "average_game_length": 9.0014629507299,
+    "win_rate_on_play": 0.5255618989571218
   },
   {
     "expansion": "MSH",
@@ -2210,8 +2210,8 @@
   {
     "expansion": "MSH",
     "event_type": "TradDraft",
-    "average_game_length": 8.728988363203507,
-    "win_rate_on_play": 0.5333524212545279
+    "average_game_length": 8.728973690634563,
+    "win_rate_on_play": 0.533411776211294
   },
   {
     "expansion": "MSH",
@@ -2228,8 +2228,8 @@
   {
     "expansion": "MSH",
     "event_type": "QuickDraft",
-    "average_game_length": 8.74978674633476,
-    "win_rate_on_play": 0.5299744214683791
+    "average_game_length": 8.751979745771694,
+    "win_rate_on_play": 0.5299320850909981
   },
   {
     "expansion": "MSH",
@@ -2240,8 +2240,8 @@
   {
     "expansion": "MSH",
     "event_type": "ContenderDraft",
-    "average_game_length": 9.04098711261609,
-    "win_rate_on_play": 0.5261967211006479
+    "average_game_length": 9.048675963282346,
+    "win_rate_on_play": 0.5260671129362343
   },
   {
     "expansion": "MSH",
@@ -2258,14 +2258,14 @@
   {
     "expansion": "Cube - Planar",
     "event_type": "PremierDraft",
-    "average_game_length": 8.003163684760617,
-    "win_rate_on_play": 0.5503377658781198
+    "average_game_length": 8.006692154195203,
+    "win_rate_on_play": 0.5506818756835523
   },
   {
     "expansion": "Cube - Planar",
     "event_type": "TradDraft",
-    "average_game_length": 7.780154347480037,
-    "win_rate_on_play": 0.5665149201512276
+    "average_game_length": 7.773981992756048,
+    "win_rate_on_play": 0.5667574913276727
   },
   {
     "expansion": "MSH",
