@@ -652,6 +652,27 @@
       "set_code": "MKM:67",
       "reason": "作为牌张优势引擎，几乎无对应手段，助长了顶级套牌强度，抑制了创新和多样性。",
       "announcement_url": "https://magic.wizards.com/en/news/announcements/banned-and-restricted-november-10-2025"
+    },
+    {
+      "card_name": "獾地鼠幼兽",
+      "card_image_url": "https://cards.scryfall.io/art_crop/front/3/4/340c5799-4964-44dd-8c48-8f3f3aba5211.jpg",
+      "set_code": "TLA:167",
+      "reason": "作为绿色快攻的核心，其廉价的滚雪球效应迫使套牌必须用低费解立即应对，过度压缩环境曲线。",
+      "announcement_url": "https://magic.wizards.com/en/news/announcements/banned-and-restricted-august-10-2026"
+    },
+    {
+      "card_name": "逐风客才能",
+      "card_image_url": "https://cards.scryfall.io/art_crop/front/a/3/a36e682d-b43d-4e08-bf5b-70d7e924dbe5.jpg",
+      "set_code": "BLB:75",
+      "reason": "兼具极快的起手和与回手咒语配合的后期能力，对一费卡牌而言过于全面，使红蓝灵技套牌过于强势。",
+      "announcement_url": "https://magic.wizards.com/en/news/announcements/banned-and-restricted-august-10-2026"
+    },
+    {
+      "card_name": "奶奶",
+      "card_image_url": "https://cards.scryfall.io/art_crop/front/f/a/fa434b41-e5f7-4989-865a-95db67b05cb1.jpg",
+      "set_code": "TLA:54",
+      "reason": "作为课程套牌的法术力引擎，它像獾地鼠幼兽一样具有滚雪球效应，对一费卡牌而言提供了过多的后期优势。",
+      "announcement_url": "https://magic.wizards.com/en/news/announcements/banned-and-restricted-august-10-2026"
     }
   ]
 }
