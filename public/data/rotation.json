@@ -520,7 +520,7 @@
     },
     {
       "name": "Nauctis: The Sunken Realm",
-      "codename": null,
+      "codename": "Amsterdam",
       "block": null,
       "code": "NAU",
       "enter_date": "2027-01-29T00:00:00.000",
@@ -541,7 +541,7 @@
     },
     {
       "name": "Kamigawa: Titanbreach",
-      "codename": null,
+      "codename": "Berlin",
       "block": null,
       "code": "KTB",
       "enter_date": "2027-05-28T00:00:00.000",
@@ -562,7 +562,7 @@
     },
     {
       "name": "Zhalfir",
-      "codename": null,
+      "codename": "Cairo",
       "block": null,
       "code": "ZFR",
       "enter_date": "2027-09-24T00:00:00.000",
