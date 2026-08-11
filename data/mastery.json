@@ -1,9 +1,9 @@
 {
-  "setCode": "MSH",
-  "startDate": "2026-06-23",
-  "endDate": "2026-08-11",
+  "setCode": "HOB",
+  "startDate": "2026-08-11",
+  "endDate": "2026-09-29",
   "maxLevel": 45,
   "defaultDailyWins": 4,
   "defaultWeeklyWins": 15,
-  "setName": "漫威超级英雄"
+  "setName": "霍比特人"
 }
