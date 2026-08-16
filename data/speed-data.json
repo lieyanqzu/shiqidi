@@ -242,8 +242,8 @@
   {
     "expansion": "WAR",
     "event_type": "PremierDraft",
-    "average_game_length": 9.805045938162106,
-    "win_rate_on_play": 0.5058413411123942
+    "average_game_length": 9.804996737984387,
+    "win_rate_on_play": 0.505845923596806
   },
   {
     "expansion": "ZNR",
@@ -1418,8 +1418,8 @@
   {
     "expansion": "DSK",
     "event_type": "QuickDraft",
-    "average_game_length": 8.958272998492472,
-    "win_rate_on_play": 0.5185040810467175
+    "average_game_length": 8.959488239751373,
+    "win_rate_on_play": 0.5184653767531259
   },
   {
     "expansion": "DSK",
@@ -2198,8 +2198,8 @@
   {
     "expansion": "MSH",
     "event_type": "PremierDraft",
-    "average_game_length": 9.001789771276185,
-    "win_rate_on_play": 0.5255879941200168
+    "average_game_length": 9.001778393500945,
+    "win_rate_on_play": 0.5255851252396251
   },
   {
     "expansion": "MSH",
@@ -2228,8 +2228,8 @@
   {
     "expansion": "MSH",
     "event_type": "QuickDraft",
-    "average_game_length": 8.75506223558791,
-    "win_rate_on_play": 0.5298758540695366
+    "average_game_length": 8.75509114657427,
+    "win_rate_on_play": 0.5298877038026398
   },
   {
     "expansion": "MSH",
@@ -2276,25 +2276,31 @@
   {
     "expansion": "HOB",
     "event_type": "PickTwoDraft",
-    "average_game_length": 8.65411071522952,
-    "win_rate_on_play": 0.5405202392622475
+    "average_game_length": 8.656018985632853,
+    "win_rate_on_play": 0.5390476711344409
   },
   {
     "expansion": "HOB",
     "event_type": "PremierDraft",
-    "average_game_length": 8.521178690727973,
-    "win_rate_on_play": 0.5461885337631833
+    "average_game_length": 8.527038222705903,
+    "win_rate_on_play": 0.5456941120438733
   },
   {
     "expansion": "HOB",
     "event_type": "Sealed",
-    "average_game_length": 8.619673569741765,
-    "win_rate_on_play": 0.5440851611378219
+    "average_game_length": 8.61160262617504,
+    "win_rate_on_play": 0.544858796010777
   },
   {
     "expansion": "HOB",
     "event_type": "TradDraft",
-    "average_game_length": 8.300403383997333,
-    "win_rate_on_play": 0.5651918370437137
+    "average_game_length": 8.327355640773414,
+    "win_rate_on_play": 0.5617109564302156
+  },
+  {
+    "expansion": "HOB",
+    "event_type": "ArenaDirect_Sealed",
+    "average_game_length": 8.573862075805664,
+    "win_rate_on_play": 0.5400434732437134
   }
 ]
