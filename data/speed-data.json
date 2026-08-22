@@ -1418,8 +1418,8 @@
   {
     "expansion": "DSK",
     "event_type": "QuickDraft",
-    "average_game_length": 8.96724799819528,
-    "win_rate_on_play": 0.5183868615151911
+    "average_game_length": 8.967298640542948,
+    "win_rate_on_play": 0.5183995158924635
   },
   {
     "expansion": "DSK",
@@ -2276,8 +2276,8 @@
   {
     "expansion": "HOB",
     "event_type": "PickTwoDraft",
-    "average_game_length": 8.670318483245822,
-    "win_rate_on_play": 0.5412898192573679
+    "average_game_length": 8.676139866822025,
+    "win_rate_on_play": 0.5422733409579259
   },
   {
     "expansion": "HOB",
