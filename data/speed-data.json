@@ -2276,14 +2276,14 @@
   {
     "expansion": "HOB",
     "event_type": "PickTwoDraft",
-    "average_game_length": 8.683877520648977,
-    "win_rate_on_play": 0.5416776035195127
+    "average_game_length": 8.689037706619224,
+    "win_rate_on_play": 0.5413640138674434
   },
   {
     "expansion": "HOB",
     "event_type": "PremierDraft",
-    "average_game_length": 8.572494567664876,
-    "win_rate_on_play": 0.5461381560550091
+    "average_game_length": 8.57633298701442,
+    "win_rate_on_play": 0.5461858087990642
   },
   {
     "expansion": "HOB",
