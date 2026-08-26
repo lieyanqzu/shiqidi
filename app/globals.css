@@ -23,6 +23,11 @@
   --primary: #3b82f6;
   --primary-foreground: #ffffff;
 
+  /* 爱发电品牌色（支持我们模块专用） */
+  --afdian: #946ce6;
+  --afdian-dark: #7c5cce;
+  --afdian-foreground: #ffffff;
+
   /* 表格专用 */
   --table-header-background: var(--component-background);
   --table-header-foreground: var(--component-foreground);
@@ -53,6 +58,11 @@
   /* 主题色 */
   --primary: #60a5fa;
   --primary-foreground: #ffffff;
+
+  /* 爱发电品牌色（暗色模式降饱和度，保持可读） */
+  --afdian: #7c5cce;
+  --afdian-dark: #5b3eb8;
+  --afdian-foreground: #ffffff;
 
   /* 表格专用 */
   --table-header-background: var(--component-background);
