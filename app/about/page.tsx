@@ -3,13 +3,14 @@
 import { useState } from 'react';
 import { PrivacyNotice } from '@/components/about/privacy-notice';
 import { AfdianCTA } from '@/components/about/afdian-cta';
+import { SponsorList } from '@/components/about/sponsor-list';
 import {
   Tabs,
   UnderlineTabsList,
   UnderlineTabsTrigger,
   TabsContent,
 } from '@/components/ui/tabs';
-import { Users } from 'lucide-react';
+import { sponsors } from '@/data/sponsors';
 
 const resources = [
   {
@@ -144,16 +145,8 @@ export default function AboutPage() {
               {/* 爱发电引导 */}
               <AfdianCTA />
 
-              {/* 支持者名单占位 */}
-              <div className="bg-[--card] rounded-lg p-6">
-                <div className="flex items-center gap-2 mb-3">
-                  <Users className="w-5 h-5 text-[--afdian]" aria-hidden="true" />
-                  <h2 className="text-xl font-semibold">支持者名单</h2>
-                </div>
-                <p className="text-sm text-[--muted-foreground] leading-relaxed">
-                  支持者名单正在筹备中，敬请期待。
-                </p>
-              </div>
+              {/* 支持者名单 */}
+              <SponsorList sponsors={sponsors} />
             </div>
           </TabsContent>
 
