@@ -36,6 +36,9 @@ jobs:
 
       - name: Run prebuild script
         run: pnpm prebuild
+        env:
+          AFDIAN_USER_ID: ${{ secrets.AFDIAN_USER_ID }}
+          AFDIAN_TOKEN: ${{ secrets.AFDIAN_TOKEN }}
 
       - name: Build
         run: pnpm build
