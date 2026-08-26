@@ -32,6 +32,7 @@ yarn-debug.log*
 yarn-error.log*
 /public/data/speed-data.json
 /public/data/filter.json
+/public/data/sponsors.json
 
 # env files (can opt-in for committing if needed)
 .env*

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "node scripts/fetch-speed-data.js && node scripts/fetch-filter-data.js",
+    "prebuild": "node scripts/fetch-speed-data.js && node scripts/fetch-filter-data.js && node scripts/fetch-sponsors.js",
     "build": "next build",
     "postbuild": "node scripts/copy-edge-functions.js",
     "start": "next start",

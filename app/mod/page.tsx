@@ -99,7 +99,16 @@ export default function ModPage() {
 
         <div className="mt-2 text-[11px] text-[--muted-foreground] leading-snug opacity-70">
           <p>
-            * 推广内容仅用于支持开发维护，本站与相关服务商无隶属或合作关系。您可自由选择下载/加速服务，相关服务问题请联系对应服务商，本站不对其负责。
+            * 推广返利内容仅用于支持开发维护，本站与相关服务商无隶属或合作关系。您可自由选择下载/加速服务，相关服务问题请联系对应服务商，本站不对其负责。如果您想通过直接赞助的方式支持本站服务，也可以前往
+            <a
+              href="https://afdian.com/a/shiqidi"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[--primary] hover:opacity-80 mx-0.5 underline-offset-2 hover:underline"
+            >
+              爱发电
+            </a>
+            赞助支持。
           </p>
         </div>
       </div>
