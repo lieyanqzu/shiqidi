@@ -836,8 +836,8 @@
   {
     "expansion": "LTR",
     "event_type": "PremierDraft",
-    "average_game_length": 8.7540451756386,
-    "win_rate_on_play": 0.5245029839221866
+    "average_game_length": 8.754082269365156,
+    "win_rate_on_play": 0.5245042342743433
   },
   {
     "expansion": "LTR",
@@ -2276,26 +2276,26 @@
   {
     "expansion": "HOB",
     "event_type": "PickTwoDraft",
-    "average_game_length": 8.701605469742978,
-    "win_rate_on_play": 0.540616375270086
+    "average_game_length": 8.703819968528014,
+    "win_rate_on_play": 0.5409823306744116
   },
   {
     "expansion": "HOB",
     "event_type": "PremierDraft",
-    "average_game_length": 8.587409628060604,
-    "win_rate_on_play": 0.5465427654755557
+    "average_game_length": 8.587440817818898,
+    "win_rate_on_play": 0.5465106162123355
   },
   {
     "expansion": "HOB",
     "event_type": "Sealed",
-    "average_game_length": 8.608071637677691,
-    "win_rate_on_play": 0.5461845332650437
+    "average_game_length": 8.6062098980488,
+    "win_rate_on_play": 0.5467754593813091
   },
   {
     "expansion": "HOB",
     "event_type": "TradDraft",
-    "average_game_length": 8.35410880021507,
-    "win_rate_on_play": 0.5500044571464265
+    "average_game_length": 8.35782510183781,
+    "win_rate_on_play": 0.5498247550022937
   },
   {
     "expansion": "HOB",
@@ -2306,19 +2306,19 @@
   {
     "expansion": "HOB",
     "event_type": "ArenaDirect_Sealed",
-    "average_game_length": 8.648909325177831,
-    "win_rate_on_play": 0.538823661096131
+    "average_game_length": 8.652846889214462,
+    "win_rate_on_play": 0.539179690337573
   },
   {
     "expansion": "HOB",
     "event_type": "QuickDraft",
-    "average_game_length": 8.298890371300566,
-    "win_rate_on_play": 0.5435320681800526
+    "average_game_length": 8.298456299270915,
+    "win_rate_on_play": 0.5437258090918542
   },
   {
     "expansion": "HOB",
     "event_type": "ContenderDraft",
-    "average_game_length": 8.697005091174228,
-    "win_rate_on_play": 0.5491001032488106
+    "average_game_length": 8.690178956533309,
+    "win_rate_on_play": 0.5481536451541185
   }
 ]
