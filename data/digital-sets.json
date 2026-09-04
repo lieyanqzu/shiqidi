@@ -422,7 +422,30 @@
       "name": "现实裂界",
       "code": "FRA",
       "releaseDate": "2026-09-30",
-      "wikiUrl": "https://mtg.wiki/page/Reality_Fracture?utm_source=shiqidi"
+      "wikiUrl": "https://mtg.wiki/page/Reality_Fracture?utm_source=shiqidi",
+      "preview": {
+        "title": "现实正在瓦解",
+        "description": "随着杰斯的逆声宇宙成形，并威胁要吞没我们所知的多重宇宙，他昔日的盟友必须与之正面交锋。",
+        "backgroundImage": "/image/background/FRA-1313-EN-1080x1080.png",
+        "links": [
+          {
+            "name": "大学院废墟（中文）",
+            "url": "https://mtgch.com/previews/FRA/?utm_source=shiqidi"
+          },
+          {
+            "name": "官网牌图集合",
+            "url": "https://magic.wizards.com/en/products/reality-fracture/card-image-gallery"
+          },
+          {
+            "name": "Scryfall",
+            "url": "https://scryfall.com/sets/fra?order=spoiled&utm_source=shiqidi"
+          },
+          {
+            "name": "Untapped.gg",
+            "url": "https://mtga.untapped.gg/codex/sets/reality-fracture?sortBy=spoilerDate&utm_source=shiqidi"
+          }
+        ]
+      }
     },
     {
       "name": "炼金：现实裂界",
