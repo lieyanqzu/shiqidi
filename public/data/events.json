@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "lastUpdated": "2026-08-11",
+    "lastUpdated": "2026-09-04",
     "announcementUrl": "https://magic.wizards.com/en/news/mtg-arena/the-hobbit-event-schedule"
   },
   "groups": [
@@ -33,6 +33,24 @@
           "startTime": "2026-09-01T14:00:00-07:00",
           "endTime": "2026-09-03T14:00:00-07:00",
           "format": "构筑"
+        },
+        {
+          "title": "莫秘维",
+          "startTime": "2026-09-09T14:00:00-07:00",
+          "endTime": "2026-09-11T14:00:00-07:00",
+          "format": "莫秘维"
+        },
+        {
+          "title": "霍比特人幻影快速轮抽",
+          "startTime": "2026-09-16T14:00:00-07:00",
+          "endTime": "2026-09-18T14:00:00-07:00",
+          "format": "霍比特人快速轮抽"
+        },
+        {
+          "title": "霍比特人幻影现开",
+          "startTime": "2026-09-23T14:00:00-07:00",
+          "endTime": "2026-09-25T14:00:00-07:00",
+          "format": "霍比特人现开"
         }
       ]
     },
