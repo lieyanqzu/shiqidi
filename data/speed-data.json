@@ -980,8 +980,8 @@
   {
     "expansion": "LCI",
     "event_type": "QuickDraft",
-    "average_game_length": 8.729665344841342,
-    "win_rate_on_play": 0.5300509425887817
+    "average_game_length": 8.731956399368924,
+    "win_rate_on_play": 0.5298730513810311
   },
   {
     "expansion": "LCI",
@@ -1238,8 +1238,8 @@
   {
     "expansion": "MH3",
     "event_type": "PremierDraft",
-    "average_game_length": 8.130784648223436,
-    "win_rate_on_play": 0.5364651419433688
+    "average_game_length": 8.130900103626688,
+    "win_rate_on_play": 0.5364658356191223
   },
   {
     "expansion": "MH3",
@@ -1880,14 +1880,14 @@
   {
     "expansion": "Cube - Powered",
     "event_type": "PremierDraft",
-    "average_game_length": 6.630223775216286,
-    "win_rate_on_play": 0.5438029531184818
+    "average_game_length": 6.629657427067383,
+    "win_rate_on_play": 0.5438233399297039
   },
   {
     "expansion": "Cube - Powered",
     "event_type": "TradDraft",
-    "average_game_length": 6.468109934847066,
-    "win_rate_on_play": 0.5400248247529429
+    "average_game_length": 6.466738008285093,
+    "win_rate_on_play": 0.5399280142981039
   },
   {
     "expansion": "OM1",
@@ -2276,14 +2276,14 @@
   {
     "expansion": "HOB",
     "event_type": "PickTwoDraft",
-    "average_game_length": 8.730675026837265,
-    "win_rate_on_play": 0.5414023396625421
+    "average_game_length": 8.730904389857946,
+    "win_rate_on_play": 0.5412946741669944
   },
   {
     "expansion": "HOB",
     "event_type": "PremierDraft",
-    "average_game_length": 8.602843261880693,
-    "win_rate_on_play": 0.5458766504844135
+    "average_game_length": 8.603752588929947,
+    "win_rate_on_play": 0.5459122100068416
   },
   {
     "expansion": "HOB",
@@ -2294,8 +2294,8 @@
   {
     "expansion": "HOB",
     "event_type": "TradDraft",
-    "average_game_length": 8.348653339840363,
-    "win_rate_on_play": 0.5522230273313107
+    "average_game_length": 8.350302676261327,
+    "win_rate_on_play": 0.5519827791637146
   },
   {
     "expansion": "HOB",
@@ -2318,14 +2318,14 @@
   {
     "expansion": "HOB",
     "event_type": "ContenderDraft",
-    "average_game_length": 8.7101808987189,
-    "win_rate_on_play": 0.5488825834817482
+    "average_game_length": 8.71412625630297,
+    "win_rate_on_play": 0.5486436882374002
   },
   {
     "expansion": "HOB",
     "event_type": "OpenDraft_D1_Bo1",
-    "average_game_length": 8.75008451006141,
-    "win_rate_on_play": 0.5448216649893676
+    "average_game_length": 8.754431479858003,
+    "win_rate_on_play": 0.5473501999693627
   },
   {
     "expansion": "HOB",
