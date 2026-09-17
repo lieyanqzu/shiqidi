@@ -524,8 +524,8 @@
   {
     "expansion": "DMU",
     "event_type": "PremierDraft",
-    "average_game_length": 9.699379849393553,
-    "win_rate_on_play": 0.5125119375584564
+    "average_game_length": 9.699714875357083,
+    "win_rate_on_play": 0.5125103508658431
   },
   {
     "expansion": "DMU",
@@ -980,8 +980,8 @@
   {
     "expansion": "LCI",
     "event_type": "QuickDraft",
-    "average_game_length": 8.733614655730495,
-    "win_rate_on_play": 0.5298128209867742
+    "average_game_length": 8.733597549564093,
+    "win_rate_on_play": 0.5298136931283773
   },
   {
     "expansion": "LCI",
@@ -1604,8 +1604,8 @@
   {
     "expansion": "DFT",
     "event_type": "ArenaDirect_Sealed",
-    "average_game_length": 9.162242142814879,
-    "win_rate_on_play": 0.5232178676974928
+    "average_game_length": 9.164827232440212,
+    "win_rate_on_play": 0.523361768673994
   },
   {
     "expansion": "DFT",
@@ -1880,14 +1880,14 @@
   {
     "expansion": "Cube - Powered",
     "event_type": "PremierDraft",
-    "average_game_length": 6.629606537538933,
-    "win_rate_on_play": 0.5438126083731076
+    "average_game_length": 6.629188094242871,
+    "win_rate_on_play": 0.5438082256732226
   },
   {
     "expansion": "Cube - Powered",
     "event_type": "TradDraft",
-    "average_game_length": 6.467510540308923,
-    "win_rate_on_play": 0.5398696180474464
+    "average_game_length": 6.46687852825552,
+    "win_rate_on_play": 0.5397797313741085
   },
   {
     "expansion": "OM1",
@@ -2276,14 +2276,14 @@
   {
     "expansion": "HOB",
     "event_type": "PickTwoDraft",
-    "average_game_length": 8.7319701215637,
-    "win_rate_on_play": 0.5412278312236718
+    "average_game_length": 8.732918991317849,
+    "win_rate_on_play": 0.5413236599488102
   },
   {
     "expansion": "HOB",
     "event_type": "PremierDraft",
-    "average_game_length": 8.604757562537856,
-    "win_rate_on_play": 0.5458180848455771
+    "average_game_length": 8.604722035334513,
+    "win_rate_on_play": 0.5458155203918812
   },
   {
     "expansion": "HOB",
@@ -2294,8 +2294,8 @@
   {
     "expansion": "HOB",
     "event_type": "TradDraft",
-    "average_game_length": 8.352052214290424,
-    "win_rate_on_play": 0.5522805419777005
+    "average_game_length": 8.350245679382487,
+    "win_rate_on_play": 0.5522818798222039
   },
   {
     "expansion": "HOB",
@@ -2312,8 +2312,8 @@
   {
     "expansion": "HOB",
     "event_type": "QuickDraft",
-    "average_game_length": 8.310174456781327,
-    "win_rate_on_play": 0.5444215762216255
+    "average_game_length": 8.323267628691724,
+    "win_rate_on_play": 0.5446479599578631
   },
   {
     "expansion": "HOB",
@@ -2332,5 +2332,11 @@
     "event_type": "QualifierPlayInSealed",
     "average_game_length": 8.651795752704404,
     "win_rate_on_play": 0.5480349570447701
+  },
+  {
+    "expansion": "HOB",
+    "event_type": "MidWeekQuickDraft",
+    "average_game_length": 7.838805647280424,
+    "win_rate_on_play": 0.5512696359895222
   }
 ]
