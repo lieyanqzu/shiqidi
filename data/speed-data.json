@@ -524,8 +524,8 @@
   {
     "expansion": "DMU",
     "event_type": "PremierDraft",
-    "average_game_length": 9.699714875357083,
-    "win_rate_on_play": 0.5125103508658431
+    "average_game_length": 9.699842623773952,
+    "win_rate_on_play": 0.5125559396454299
   },
   {
     "expansion": "DMU",
@@ -1238,8 +1238,8 @@
   {
     "expansion": "MH3",
     "event_type": "PremierDraft",
-    "average_game_length": 8.13082831972677,
-    "win_rate_on_play": 0.5364531560652446
+    "average_game_length": 8.130812754460596,
+    "win_rate_on_play": 0.5364556352530936
   },
   {
     "expansion": "MH3",
@@ -2276,14 +2276,14 @@
   {
     "expansion": "HOB",
     "event_type": "PickTwoDraft",
-    "average_game_length": 8.732918991317849,
-    "win_rate_on_play": 0.5413236599488102
+    "average_game_length": 8.734338995690399,
+    "win_rate_on_play": 0.5411540843420808
   },
   {
     "expansion": "HOB",
     "event_type": "PremierDraft",
-    "average_game_length": 8.604722035334513,
-    "win_rate_on_play": 0.5458155203918812
+    "average_game_length": 8.604971982603372,
+    "win_rate_on_play": 0.5457709571557924
   },
   {
     "expansion": "HOB",
@@ -2294,8 +2294,8 @@
   {
     "expansion": "HOB",
     "event_type": "TradDraft",
-    "average_game_length": 8.350245679382487,
-    "win_rate_on_play": 0.5522818798222039
+    "average_game_length": 8.350621055460078,
+    "win_rate_on_play": 0.5528261669111784
   },
   {
     "expansion": "HOB",
@@ -2312,8 +2312,8 @@
   {
     "expansion": "HOB",
     "event_type": "QuickDraft",
-    "average_game_length": 8.323267628691724,
-    "win_rate_on_play": 0.5446479599578631
+    "average_game_length": 8.336528354263132,
+    "win_rate_on_play": 0.544692654144048
   },
   {
     "expansion": "HOB",
@@ -2336,7 +2336,7 @@
   {
     "expansion": "HOB",
     "event_type": "MidWeekQuickDraft",
-    "average_game_length": 7.838805647280424,
-    "win_rate_on_play": 0.5512696359895222
+    "average_game_length": 7.860650941420043,
+    "win_rate_on_play": 0.5494393163689865
   }
 ]
