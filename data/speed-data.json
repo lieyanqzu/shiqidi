@@ -1604,8 +1604,8 @@
   {
     "expansion": "DFT",
     "event_type": "ArenaDirect_Sealed",
-    "average_game_length": 9.164827232440212,
-    "win_rate_on_play": 0.523361768673994
+    "average_game_length": 9.162609189738827,
+    "win_rate_on_play": 0.5230437696403516
   },
   {
     "expansion": "DFT",
@@ -1880,14 +1880,14 @@
   {
     "expansion": "Cube - Powered",
     "event_type": "PremierDraft",
-    "average_game_length": 6.629188094242871,
-    "win_rate_on_play": 0.5438082256732226
+    "average_game_length": 6.629028757984825,
+    "win_rate_on_play": 0.5437594518849274
   },
   {
     "expansion": "Cube - Powered",
     "event_type": "TradDraft",
-    "average_game_length": 6.46687852825552,
-    "win_rate_on_play": 0.5397797313741085
+    "average_game_length": 6.467136649444433,
+    "win_rate_on_play": 0.5395035883852923
   },
   {
     "expansion": "OM1",
