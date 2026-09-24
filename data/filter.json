@@ -426,6 +426,10 @@
       "MidWeekQuickDraft",
       "QualifierPlayInSealed"
     ],
+    "FRA": [
+      "PremierDraft",
+      "Sealed"
+    ],
     "GRN": [
       "PremierDraft",
       "QuickDraft",
@@ -935,8 +939,9 @@
     "DFT": [
       "ArenaDirect_Sealed"
     ],
-    "DMU": [
-      "PremierDraft"
+    "FRA": [
+      "PremierDraft",
+      "Sealed"
     ],
     "HOB": [
       "PremierDraft",
@@ -969,10 +974,10 @@
     "BRO": "2022-11-15T15:00:00Z",
     "CLB": "2022-06-10T00:00:00Z",
     "CORE": "2021-03-26T00:00:00Z",
-    "Chaos": "2026-08-24T07:21:58.624884Z",
-    "Cube": "2026-08-24T07:21:58.624881Z",
-    "Cube - Planar": "2026-08-24T07:21:58.624876Z",
-    "Cube - Powered": "2026-08-24T07:21:58.624879Z",
+    "Chaos": "2026-08-25T07:13:02.124728Z",
+    "Cube": "2026-08-25T07:13:02.124725Z",
+    "Cube - Planar": "2026-08-25T07:13:02.124720Z",
+    "Cube - Powered": "2026-08-25T07:13:02.124723Z",
     "DBL": "2022-01-28T00:00:00Z",
     "DFT": "2025-02-11T15:00:00Z",
     "DMR": "2023-01-13T00:00:00Z",
@@ -1015,8 +1020,8 @@
     "RIX": "2019-03-01T00:00:00Z",
     "RNA": "2019-01-17T00:00:00Z",
     "ROE": "2010-04-23T00:00:00Z",
-    "Ravnica": "2026-08-24T07:21:58.624835Z",
-    "Remix - Artifacts": "2026-08-24T07:21:58.624886Z",
+    "Ravnica": "2026-08-25T07:13:02.124682Z",
+    "Remix - Artifacts": "2026-08-25T07:13:02.124755Z",
     "SIR": "2023-03-21T15:00:00Z",
     "SNC": "2022-04-28T00:00:00Z",
     "SOS": "2026-04-21T15:00:00Z",
@@ -1239,6 +1244,16 @@
       "FIRST_WEEK"
     ],
     "FIN": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LAST_TWO_EVENTS",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "FRA": [
       "ALL_TIME",
       "ALL_EXCEPT_FIRST_WEEK",
       "LAST_TWO_EVENTS",
