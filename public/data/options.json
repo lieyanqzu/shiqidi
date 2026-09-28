@@ -1,6 +1,6 @@
 {
   "cardDataDefaults": {
-    "expansion": "HOB",
+    "expansion": "FRA",
     "event_type": "PremierDraft"
   },
   "speedDefaults": {
@@ -11,6 +11,8 @@
     ]
   },
   "expansionOptions": [
+    "FRA",
+    "Y26FRA",
     "HOB",
     "MSH",
     "SOS",
