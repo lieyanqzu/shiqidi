@@ -4,11 +4,11 @@
       "code": "FRA",
       "boosters": [
         {
-          "code": "hob-collector",
+          "code": "fra-collector",
           "name": "聚珍补充包"
         },
         {
-          "code": "hob-play",
+          "code": "fra-play",
           "name": "常规补充包"
         }
       ]
