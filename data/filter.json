@@ -34,6 +34,7 @@
     "WUBRG"
   ],
   "expansions": [
+    "FRA",
     "HOB",
     "MSH",
     "SOS",
@@ -428,7 +429,10 @@
     ],
     "FRA": [
       "PremierDraft",
-      "Sealed"
+      "TradDraft",
+      "PickTwoDraft",
+      "Sealed",
+      "TradSealed"
     ],
     "GRN": [
       "PremierDraft",
@@ -937,6 +941,13 @@
       "PremierDraft",
       "TradDraft"
     ],
+    "FRA": [
+      "PremierDraft",
+      "TradDraft",
+      "PickTwoDraft",
+      "Sealed",
+      "TradSealed"
+    ],
     "HOB": [
       "PremierDraft",
       "TradDraft",
@@ -949,6 +960,9 @@
     ],
     "OTJ": [
       "PremierDraft"
+    ],
+    "WOE": [
+      "QuickDraft"
     ]
   },
   "ranked_formats": [
@@ -970,10 +984,10 @@
     "BRO": "2022-11-15T15:00:00Z",
     "CLB": "2022-06-10T00:00:00Z",
     "CORE": "2021-03-26T00:00:00Z",
-    "Chaos": "2026-08-30T07:53:42.983203Z",
-    "Cube": "2026-08-30T07:53:42.983201Z",
-    "Cube - Planar": "2026-08-30T07:53:42.983196Z",
-    "Cube - Powered": "2026-08-30T07:53:42.983199Z",
+    "Chaos": "2026-08-31T08:01:02.540218Z",
+    "Cube": "2026-08-31T08:01:02.540216Z",
+    "Cube - Planar": "2026-08-31T08:01:02.540211Z",
+    "Cube - Powered": "2026-08-31T08:01:02.540214Z",
     "DBL": "2022-01-28T00:00:00Z",
     "DFT": "2025-02-11T15:00:00Z",
     "DMR": "2023-01-13T00:00:00Z",
@@ -1016,8 +1030,8 @@
     "RIX": "2019-03-01T00:00:00Z",
     "RNA": "2019-01-17T00:00:00Z",
     "ROE": "2010-04-23T00:00:00Z",
-    "Ravnica": "2026-08-30T07:53:42.983159Z",
-    "Remix - Artifacts": "2026-08-30T07:53:42.983206Z",
+    "Ravnica": "2026-08-31T08:01:02.540176Z",
+    "Remix - Artifacts": "2026-08-31T08:01:02.540221Z",
     "SIR": "2023-03-21T15:00:00Z",
     "SNC": "2022-04-28T00:00:00Z",
     "SOS": "2026-04-21T15:00:00Z",
