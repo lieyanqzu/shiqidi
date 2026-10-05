@@ -2,6 +2,7 @@ import '@/app/globals.css';
 import '@/styles/mana-symbols.css';
 import 'keyrune/css/keyrune.css';
 import 'mana-font/css/mana.css';
+import '@/styles/loyalty-symbols.css';
 import Script from 'next/script';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';

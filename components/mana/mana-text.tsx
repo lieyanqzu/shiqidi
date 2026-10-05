@@ -76,7 +76,12 @@ export function ManaText({ text, className = '', renderCardRef }: ManaTextProps)
 
 // 处理法术力费用的辅助函数
 function processManaCost(text: string): string {
-  return text.replace(/\{([^}]+)\}/g, (match, symbol) => {
+  return text.replace(/\{([^}]+)\}|\[([+\-−](?:\d+|X)|0)\]/gi, (match, symbol, loyalty: string | undefined) => {
+    if (loyalty !== undefined) {
+      const value = loyalty.replace('−', '-').toUpperCase();
+      const direction = value === '0' ? 'zero' : value.startsWith('+') ? 'up' : 'down';
+      return `<i class="ms ms-loyalty-${direction} ms-loyalty-inline" data-loyalty="${value}" role="img" aria-label="[${value}]"></i>`;
+    }
     // 处理横置符号
     if (symbol === 'T' || symbol === 'Tap' || symbol === 'tap') {
       return `<i class="ms ms-cost ms-tap align-text-bottom"></i>`;
