@@ -1,0 +1,38 @@
+{
+    "code": "YFRA",
+    "name": "炼金：现实裂界",
+    "logo_code": "y26",
+    "release_date": "2026-10-14",
+    "description": "炼金：斯翠海文共31张卡牌，将于2026年10月14日上线万智牌：竞技场。感谢六宜散人翻译，以及轻脚翻译并制作中文卡图。",
+    "total_cards": 31,
+    "cards": [
+        {
+            "id": "yfra-1",
+            "name": "Enter the Eternities",
+            "zhs_name": "迈入虚空",
+            "mana_cost": "{G}{U}",
+            "type": "Sorcery",
+            "zhs_type": "法术",
+            "text": "Exile target creature you control. Draft a [+1] ability, a [-2] ability, and a [-8] ability. Create a legendary planeswalker token with the exiled creature's name and colors and the drafted abilities. Put a number of loyalty counters on it equal to the exiled creature's power.\nFLAVOR\nMany planeswalkers' first journeys are full of chaos and confusion. Tam's was touched by sadness, yet full of hope.",
+            "zhs_text": "放逐目标由你操控的生物。抽选一个[+1]异能，一个[-2]异能与一个[-8]异能。派出一个传奇衍生鹏洛客，其具有所放逐之生物的名称，颜色与所抽选的异能。在其上放置等同于所放逐之生物力量的忠诚指示物。\nFLAVOR\n多数鹏洛客的初次行旅都饱尝混沌与迷惘。谭姆此行虽始于伤悲，却也满怀希望。",
+            "artist": "Julie Dillon",
+            "image_url_en": "https://media.wizards.com/2026/fra/Ilf87ogj4O/en_TLbg527gv0.webp",
+            "image_url_zh": "/image/alchemy/yfra/迈入虚空.png",
+            "rarity": "mythic"
+        },
+        {
+            "id": "yfra-2",
+            "name": "Salvaged Imitations",
+            "zhs_name": "回收仿品",
+            "mana_cost": "{X}{R}{G}",
+            "type": "Sorcery",
+            "zhs_type": "法术",
+            "text": "For each number between 1 and X, `conjure` a random artifact card with that mana value onto the battlefield. X can't be 0.",
+            "zhs_text": "为1至X中的每个数字各进行以下流程～将一张法术力值等同于该数字的随机神器牌`幻变`进战场。X不能为0。",
+            "artist": "Michele Giorgi",
+            "image_url_en": "https://media.wizards.com/2026/fra/Ilf87ogj4O/en_dNnH5YfAFp.webp",
+            "image_url_zh": "/image/alchemy/yfra/回收仿品.png",
+            "rarity": "rare"
+        }
+    ]
+}
