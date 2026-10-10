@@ -33,6 +33,51 @@
             "image_url_en": "https://media.wizards.com/2026/fra/Ilf87ogj4O/en_dNnH5YfAFp.webp",
             "image_url_zh": "/image/alchemy/yfra/回收仿品.png",
             "rarity": "rare"
+        },
+        {
+            "id": "yfra-3",
+            "name": "Remnants of Beleren",
+            "zhs_name": "贝连遗珍",
+            "mana_cost": "{1}{U}",
+            "type": "Artifact",
+            "zhs_type": "神器",
+            "text": "If you would `empower Jace`, you may instead put that many loyalty counters on a Jace you control.\n{T}: `Empower Jace` 1.\n{1}{U}, {T}: `Draft` a card from the Beleren Spellbook.",
+            "zhs_text": "如果你将`聚能杰斯`，你可以改为在一个由你操控的杰斯上放置等量忠诚指示物。\n{T}: `聚能杰斯`1。\n{1}{U}, {T}: 从贝连法术书中`抽选`一张牌。",
+            "artist": "Volkan Baga",
+            "image_url_en": "/image/alchemy/yfra/Remnants of Beleren.png",
+            "image_url_zh": "/image/alchemy/yfra/贝连遗珍.png",
+            "rarity": "mythic",
+            "spellbook": [
+                "WAR:270",
+                "RTR:44",
+                "LRW:71",
+                "XLN:280",
+                "M12:58",
+                "ZNR:63",
+                "OTJ:271",
+                "M15:62",
+                "WWK:31",
+                "ONE:57",
+                "SOI:69",
+                "ORI:60",
+                "WAR:54",
+                "FRA:216",
+                "FRA:43"
+            ]
+        },
+        {
+            "id": "yfra-4",
+            "name": "Willbound Quill",
+            "zhs_name": "缚意笔毫",
+            "mana_cost": "{4}",
+            "type": "Artifact",
+            "zhs_type": "神器",
+            "text": "{T}: Add one mana of any color.\nActualize — Whenever you cast a spell that isn't from your starting deck, copy that spell. You may choose new targets for the copy.",
+            "zhs_text": "{T}: 加一点任意颜色的法术力。\n具现～每当你施放来自你起始套牌之外的咒语时，复制该咒语。你可以为该复制品选择新的目标。",
+            "artist": "Leonardo Santanna",
+            "image_url_en": "/image/alchemy/yfra/Willbound Quill.png",
+            "image_url_zh": "/image/alchemy/yfra/缚意笔毫.png",
+            "rarity": "mythic"
         }
     ]
 }

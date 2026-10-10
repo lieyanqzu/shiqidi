@@ -547,5 +547,13 @@
       "perpetually incorporates"
     ],
     "text": "A card incorporated this way costs more mana to cast, gains the incorporated color in addition to its other colors"
+  },
+  {
+    "name": "聚能杰斯",
+    "text": "在一个由你操控的杰斯衍生物上放置X个忠诚指示物。如果你未操控此类衍生物，则先派出一个蓝色杰斯衍生鹏洛客，且具有「[−1]：刺探1」与「[−3]：抓一张牌。」"
+  },
+  {
+    "name": "Empower Jace",
+    "text": "Put X loyalty counters on a Jace token you control. If you don't control one, first create a blue Jace planeswalker token with \"[−1]: Surveil 1\" and \"[−3]: Draw a card.\""
   }
 ]
