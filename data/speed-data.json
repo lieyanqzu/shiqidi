@@ -896,8 +896,8 @@
   {
     "expansion": "WOE",
     "event_type": "QuickDraft",
-    "average_game_length": 8.707339037264553,
-    "win_rate_on_play": 0.522535682060968
+    "average_game_length": 8.707335000719217,
+    "win_rate_on_play": 0.5225393031525545
   },
   {
     "expansion": "WOE",
@@ -2360,43 +2360,43 @@
   {
     "expansion": "FRA",
     "event_type": "PickTwoDraft",
-    "average_game_length": 9.838525732115974,
-    "win_rate_on_play": 0.5214206262641702
+    "average_game_length": 9.839232725124587,
+    "win_rate_on_play": 0.52066859145371
   },
   {
     "expansion": "FRA",
     "event_type": "PremierDraft",
-    "average_game_length": 9.762515485711932,
-    "win_rate_on_play": 0.5226726875098914
+    "average_game_length": 9.7741512778126,
+    "win_rate_on_play": 0.5222686606700692
   },
   {
     "expansion": "FRA",
     "event_type": "Sealed",
-    "average_game_length": 9.777693043594631,
-    "win_rate_on_play": 0.5223294726746521
+    "average_game_length": 9.78706754438684,
+    "win_rate_on_play": 0.5225052894614476
   },
   {
     "expansion": "FRA",
     "event_type": "TradDraft",
-    "average_game_length": 9.505653418605748,
-    "win_rate_on_play": 0.532894322178177
+    "average_game_length": 9.52125093872217,
+    "win_rate_on_play": 0.5322913111559812
   },
   {
     "expansion": "FRA",
     "event_type": "TradSealed",
-    "average_game_length": 9.530102183876535,
-    "win_rate_on_play": 0.5307262676832174
+    "average_game_length": 9.544999771793332,
+    "win_rate_on_play": 0.5313274451483667
   },
   {
     "expansion": "FRA",
     "event_type": "ArenaDirect_Sealed",
-    "average_game_length": 9.997030691096153,
-    "win_rate_on_play": 0.521915711925088
+    "average_game_length": 10.013220507657206,
+    "win_rate_on_play": 0.5214035128048061
   },
   {
     "expansion": "FRA",
     "event_type": "QuickDraft",
-    "average_game_length": 9.7177095413208,
-    "win_rate_on_play": 0.514341413974762
+    "average_game_length": 9.692383819156223,
+    "win_rate_on_play": 0.5295414278904597
   }
 ]
