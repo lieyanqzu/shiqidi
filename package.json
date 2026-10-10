@@ -12,8 +12,8 @@
     "release:wxapp": "node wxapp/scripts/release-wxapp.js"
   },
   "dependencies": {
-    "@radix-ui/react-slider": "^1.4.7",
-    "@radix-ui/react-tabs": "^1.1.21",
+    "@radix-ui/react-slider": "^1.5.0",
+    "@radix-ui/react-tabs": "^1.1.22",
     "date-fns": "^4.4.0",
     "keyrune": "^3.19.0",
     "lucide-react": "^0.471.2",
