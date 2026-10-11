@@ -896,8 +896,8 @@
   {
     "expansion": "WOE",
     "event_type": "QuickDraft",
-    "average_game_length": 8.707335000719217,
-    "win_rate_on_play": 0.5225393031525545
+    "average_game_length": 8.707331966186986,
+    "win_rate_on_play": 0.5225390718248097
   },
   {
     "expansion": "WOE",
@@ -2360,43 +2360,43 @@
   {
     "expansion": "FRA",
     "event_type": "PickTwoDraft",
-    "average_game_length": 9.839232725124587,
-    "win_rate_on_play": 0.52066859145371
+    "average_game_length": 9.849874744432496,
+    "win_rate_on_play": 0.5207327267498939
   },
   {
     "expansion": "FRA",
     "event_type": "PremierDraft",
-    "average_game_length": 9.7741512778126,
-    "win_rate_on_play": 0.5222686606700692
+    "average_game_length": 9.784122082014877,
+    "win_rate_on_play": 0.5223140785476547
   },
   {
     "expansion": "FRA",
     "event_type": "Sealed",
-    "average_game_length": 9.78706754438684,
-    "win_rate_on_play": 0.5225052894614476
+    "average_game_length": 9.787784299916455,
+    "win_rate_on_play": 0.5225959493530037
   },
   {
     "expansion": "FRA",
     "event_type": "TradDraft",
-    "average_game_length": 9.52125093872217,
-    "win_rate_on_play": 0.5322913111559812
+    "average_game_length": 9.535992852844688,
+    "win_rate_on_play": 0.5326310246248825
   },
   {
     "expansion": "FRA",
     "event_type": "TradSealed",
-    "average_game_length": 9.544999771793332,
-    "win_rate_on_play": 0.5313274451483667
+    "average_game_length": 9.528209501717916,
+    "win_rate_on_play": 0.531018218114741
   },
   {
     "expansion": "FRA",
     "event_type": "ArenaDirect_Sealed",
-    "average_game_length": 10.013220507657206,
-    "win_rate_on_play": 0.5214035128048061
+    "average_game_length": 10.019697598659553,
+    "win_rate_on_play": 0.5218387115249322
   },
   {
     "expansion": "FRA",
     "event_type": "QuickDraft",
-    "average_game_length": 9.692383819156223,
-    "win_rate_on_play": 0.5295414278904597
+    "average_game_length": 9.696487224536366,
+    "win_rate_on_play": 0.5282957198020708
   }
 ]
