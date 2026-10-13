@@ -62,14 +62,14 @@ export function CardGrades({ data, allCards, metric, expansion, isLoading, custo
   }, [visibleCardsWithGrades, customConfig]);
 
   const metricLabel = GRADE_METRICS.find(m => m.value === metric)?.shortLabel || metric;
-  
+
   // 判断是否为胜率指标（需要转换为百分比显示）
   const isWinRateMetric = useMemo(() => {
     // 自定义指标永远不显示百分比
     if (metric === 'custom') {
       return false;
     }
-    
+
     // 标准胜率指标
     const winRateMetrics: GradeMetric[] = [
       'ever_drawn_win_rate',
@@ -77,7 +77,7 @@ export function CardGrades({ data, allCards, metric, expansion, isLoading, custo
       'drawn_win_rate',
       'drawn_improvement_win_rate'
     ];
-    
+
     return winRateMetrics.includes(metric);
   }, [metric]);
 
@@ -98,7 +98,7 @@ export function CardGrades({ data, allCards, metric, expansion, isLoading, custo
 
     <div className="space-y-4">
       <div className="w-[calc(100vw-2rem)] lg:w-[calc(100vw-4rem)] xl:w-[calc(100vw-6rem)] mx-auto space-y-4">
-            {/* 桌面端：表格视图（按颜色分列） */}
+        {/* 桌面端：表格视图（按颜色分列） */}
         <div className="hidden md:block overflow-x-auto">
           <div className="min-w-[1200px]">
             <div className="card">
@@ -110,7 +110,7 @@ export function CardGrades({ data, allCards, metric, expansion, isLoading, custo
                 {COLOR_ORDER.map((color) => (
                   <div key={color} className="px-4 py-3 text-center">
                     <div className="flex items-center justify-center">
-                      <div 
+                      <div
                         className={`
                           w-8 h-8 rounded-full flex items-center justify-center
                           card-symbol-${COLOR_SYMBOL_CLASS[color]}
@@ -292,7 +292,7 @@ function CardGradeItem({ card, metricLabel, expansion, isWinRateMetric, quantity
   const hideTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const showTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const isMobile = useMediaQuery("(max-width: 1024px)");
-  
+
   // 根据指标类型格式化显示值
   const displayValue = useMemo(() => {
     if (isWinRateMetric) {
@@ -338,12 +338,12 @@ function CardGradeItem({ card, metricLabel, expansion, isWinRateMetric, quantity
     gradient: 'linear-gradient(180deg, rgba(156,163,175,0.95) 0%, rgba(107,114,128,0.95) 100%)',
     glow: 'rgba(107,114,128,0.45)'
   };
-  
+
   const chineseCard = chineseCards[card.name];
   const chineseName = chineseCard?.atomic_official_name || chineseCard?.atomic_translated_name || chineseCard?.zhs_name;
-  
+
   const cardImageUrl = getCardArtCropUrl(card.url, chineseCard?.id);
-  
+
   // 在移动端，锁定 body 滚动
   useEffect(() => {
     if (isMobile && tooltipVisible) {
@@ -369,12 +369,12 @@ function CardGradeItem({ card, metricLabel, expansion, isWinRateMetric, quantity
         clearTimeout(hideTimeoutRef.current);
         hideTimeoutRef.current = null;
       }
-      
+
       // 如果tooltip已经显示，不需要延迟
       if (tooltipVisible) {
         return;
       }
-      
+
       // 延迟300ms显示，避免快速扫过时弹出
       showTimeoutRef.current = setTimeout(() => {
         setTooltipVisible(true);
@@ -390,12 +390,12 @@ function CardGradeItem({ card, metricLabel, expansion, isWinRateMetric, quantity
         clearTimeout(showTimeoutRef.current);
         showTimeoutRef.current = null;
       }
-      
+
       // 如果tooltip没有显示，不需要隐藏
       if (!tooltipVisible) {
         return;
       }
-      
+
       // 延迟200ms隐藏，给鼠标时间移动到tooltip上
       hideTimeoutRef.current = setTimeout(() => {
         setTooltipVisible(false);
@@ -427,19 +427,19 @@ function CardGradeItem({ card, metricLabel, expansion, isWinRateMetric, quantity
       e.preventDefault();
       e.stopPropagation();
       const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
-      setMousePos({ 
-        x: rect.left, 
-        y: rect.top + window.scrollY 
+      setMousePos({
+        x: rect.left,
+        y: rect.top + window.scrollY
       });
       setTooltipVisible(!tooltipVisible);
     } else {
       const scryfallId = chineseCard?.id || (card.url ? extractScryfallIdFromUrl(card.url) : null);
       if (scryfallId) {
-        window.open(`https://mtgch.com/result?q=id=${scryfallId}&utm_source=shiqidi`, '_blank');
+        window.open(`https://mtgch.com/result?q=scryfall_id=${scryfallId}&utm_source=shiqidi`, '_blank');
       }
     }
   };
-  
+
   return (
     <>
       <div

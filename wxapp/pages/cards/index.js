@@ -761,7 +761,7 @@ Page({
     });
   },
 
-  noop() {},
+  noop() { },
 
   handleImageError() {
     const card = this.data.selectedCard;
@@ -807,7 +807,7 @@ Page({
       showToast('缺少卡牌 ID');
       return;
     }
-    copyText(`https://mtgch.com/result?q=id=${card.id}&utm_source=shiqidi`, '卡牌地址已复制', '卡牌地址复制失败');
+    copyText(`https://mtgch.com/result?q=scryfall_id=${card.id}&utm_source=shiqidi`, '卡牌地址已复制', '卡牌地址复制失败');
   },
 
   openSelectedCardActions() {

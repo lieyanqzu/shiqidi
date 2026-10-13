@@ -19,7 +19,7 @@ export function CardNameCell({ card, expansion, quantity }: CardNameCellProps) {
   const chineseCard = chineseCards[card.name];
   const chineseName = chineseCard?.atomic_official_name || chineseCard?.atomic_translated_name || chineseCard?.zhs_name;
   const isMobile = useMediaQuery("(max-width: 1024px)");
-  
+
   const [tooltipVisible, setTooltipVisible] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const hideTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -52,12 +52,12 @@ export function CardNameCell({ card, expansion, quantity }: CardNameCellProps) {
         clearTimeout(hideTimeoutRef.current);
         hideTimeoutRef.current = null;
       }
-      
+
       // 如果tooltip已经显示，不需要延迟
       if (tooltipVisible) {
         return;
       }
-      
+
       // 延迟300ms显示，避免快速扫过时弹出
       showTimeoutRef.current = setTimeout(() => {
         setTooltipVisible(true);
@@ -73,12 +73,12 @@ export function CardNameCell({ card, expansion, quantity }: CardNameCellProps) {
         clearTimeout(showTimeoutRef.current);
         showTimeoutRef.current = null;
       }
-      
+
       // 如果tooltip没有显示，不需要隐藏
       if (!tooltipVisible) {
         return;
       }
-      
+
       // 延迟200ms隐藏，给鼠标时间移动到tooltip上
       hideTimeoutRef.current = setTimeout(() => {
         setTooltipVisible(false);
@@ -110,21 +110,21 @@ export function CardNameCell({ card, expansion, quantity }: CardNameCellProps) {
       e.preventDefault();
       e.stopPropagation();
       const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
-      setMousePos({ 
-        x: rect.left, 
-        y: rect.top + window.scrollY 
+      setMousePos({
+        x: rect.left,
+        y: rect.top + window.scrollY
       });
       setTooltipVisible(!tooltipVisible);
     } else {
       const scryfallId = chineseCard?.id || (card.url ? extractScryfallIdFromUrl(card.url) : null);
       if (scryfallId) {
-        window.open(`https://mtgch.com/result?q=id=${scryfallId}&utm_source=shiqidi`, '_blank');
+        window.open(`https://mtgch.com/result?q=scryfall_id=${scryfallId}&utm_source=shiqidi`, '_blank');
       }
     }
   };
 
   return (
-    <div 
+    <div
       className="relative max-w-[300px] cursor-pointer"
       style={{
         backgroundImage: cardImageUrl ? `url(${cardImageUrl})` : 'none',
