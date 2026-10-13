@@ -2360,8 +2360,8 @@
   {
     "expansion": "FRA",
     "event_type": "PickTwoDraft",
-    "average_game_length": 9.858560535243429,
-    "win_rate_on_play": 0.5200005802767836
+    "average_game_length": 9.868563273611711,
+    "win_rate_on_play": 0.5200580099512759
   },
   {
     "expansion": "FRA",
@@ -2390,8 +2390,8 @@
   {
     "expansion": "FRA",
     "event_type": "ArenaDirect_Sealed",
-    "average_game_length": 10.028097320023086,
-    "win_rate_on_play": 0.5215585235599881
+    "average_game_length": 10.034109339783601,
+    "win_rate_on_play": 0.5217035092968159
   },
   {
     "expansion": "FRA",
