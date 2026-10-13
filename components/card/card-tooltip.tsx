@@ -254,7 +254,7 @@ const CardTooltip: FC<CardTooltipProps> = ({ card, visible, x, y, expansion, isM
                   e.stopPropagation();
                   const scryfallId = chineseCard?.id || (card.url ? extractScryfallIdFromUrl(card.url) : null);
                   if (scryfallId) {
-                    window.open(`https://mtgch.com/result?q=id=${scryfallId}&utm_source=shiqidi`, '_blank');
+                    window.open(`https://mtgch.com/result?q=scryfall_id=${scryfallId}&utm_source=shiqidi`, '_blank');
                   }
                 }}
                 className="text-sm text-blue-500 hover:text-blue-600"

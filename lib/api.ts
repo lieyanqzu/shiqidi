@@ -44,7 +44,7 @@ class LRUCache<K, V> {
     if (!this.cache.has(key)) {
       return undefined;
     }
-    
+
     // 访问时，删除并重新插入以更新为最近使用
     const value = this.cache.get(key)!;
     this.cache.delete(key);
@@ -63,7 +63,7 @@ class LRUCache<K, V> {
         this.cache.delete(firstKey);
       }
     }
-    
+
     // 添加到末尾（最近使用）
     this.cache.set(key, value);
   }
@@ -203,9 +203,9 @@ export async function loadStaticChineseNames(): Promise<Map<string, string>> {
     if (!response.ok) {
       throw new Error('Failed to fetch card names');
     }
-    
+
     const data: StaticCardName[] = await response.json();
-    
+
     // 构建英文名到中文名的映射
     const nameMap = new Map<string, string>();
     for (const [englishName, chineseName] of data) {
@@ -213,7 +213,7 @@ export async function loadStaticChineseNames(): Promise<Map<string, string>> {
         nameMap.set(englishName, chineseName);
       }
     }
-    
+
     chineseNameCache = nameMap;
     return nameMap;
   } catch (error) {
@@ -232,7 +232,7 @@ export async function fetchCardDetailByScryfallId(scryfallId: string): Promise<D
 
   try {
     const response = await fetch(
-      `https://mtgch.com/api/v1/result?q=id%3D${scryfallId}&page=1&page_size=1&unique=oracle_id&priority_chinese=true&view=1`,
+      `https://mtgch.com/api/v1/result?q=scryfall_id%3D${scryfallId}&page=1&page_size=1&unique=oracle_id&priority_chinese=true&view=1`,
       {
         headers: {
           'accept': 'application/json',
@@ -283,29 +283,29 @@ function denormalizeCardName(name: string): string {
 
 // 使用静态数据获取中文卡名
 export async function fetchAllChineseCardData(
-  setCode: string, 
+  setCode: string,
   cards: CardData[],
   onResults?: (results: ChineseCardData[]) => void
 ): Promise<ChineseCardData[]> {
   try {
     // 加载静态中文卡名数据（只需要一次网络请求）
     const nameMap = await loadStaticChineseNames();
-    
+
     // 构建结果数组
     const results: ChineseCardData[] = cards.map(card => {
       // 标准化卡名以匹配静态数据格式
       const normalizedName = normalizeCardName(card.name);
       let chineseName = nameMap.get(normalizedName) || nameMap.get(card.name) || card.name;
-      
+
       // 反标准化中文名用于显示（将 "/" 转换回 " // "）
       chineseName = denormalizeCardName(chineseName);
-      
+
       // 从URL中提取Scryfall ID
       let scryfallId = '';
       if (card.url) {
         scryfallId = extractScryfallIdFromUrl(card.url) || '';
       }
-      
+
       // 构建简化的ChineseCardData对象
       return {
         name: card.name,
@@ -315,12 +315,12 @@ export async function fetchAllChineseCardData(
         id: scryfallId,
       };
     });
-    
+
     // 立即返回结果
     if (onResults && results.length > 0) {
       onResults(results);
     }
-    
+
     return results;
   } catch (error) {
     console.error('Failed to fetch all Chinese card data:', error);

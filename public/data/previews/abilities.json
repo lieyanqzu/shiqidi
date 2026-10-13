@@ -555,5 +555,29 @@
   {
     "name": "Empower Jace",
     "text": "Put X loyalty counters on a Jace token you control. If you don't control one, first create a blue Jace planeswalker token with \"[−1]: Surveil 1\" and \"[−3]: Draw a card.\""
+  },
+  {
+    "name": "反瞬间保护",
+    "text": "不能成为瞬间咒语或瞬间牌之起动式或触发式异能的目标，且瞬间咒语或瞬间牌对其造成的伤害会被防止。"
+  },
+  {
+    "name": "Protection from instants",
+    "text": "It can’t be the target of instant spells or activated or triggered abilities from instant cards, and damage that would be dealt to it by instant spells or cards is prevented."
+  },
+  {
+    "name": "虹彩",
+    "text": "能用任意种类的法术力来施放该咒语。（无官方机制说明，目前仅为猜测）"
+  },
+  {
+    "name": "Prismatic",
+    "text": "Mana of any type can be spent to cast that spell"
+  },
+  {
+    "name": "增殖",
+    "text": "选择任意数量的永久物和／或牌手，然后为其已有之每种指示物各多放置一个同类的指示物。"
+  },
+  {
+    "name": "Proliferate",
+    "text": "Choose any number of permanents and/or players, then give each another counter of each kind already there."
   }
 ]
