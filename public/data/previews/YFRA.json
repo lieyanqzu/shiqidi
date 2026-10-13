@@ -17,7 +17,7 @@
             "zhs_text": "对每个生物而言，除非其操控者为其支付{1}，否则它不能攻击由你操控的鹏洛客。\n[+1]：直到你的下一个回合，至多一个目标神器或生物失去所有异能。\n[-1]：派出一个2/2白色牛衍生生物。\n[-7]：你获得具有以下异能的徽记～「在你的维持开始时，将一张随机鹏洛客牌`幻变`进放逐区。本回合中，你可以施放该牌，且不需支付其法术力费用。」",
             "artist": "Billy Christian",
             "image_url_en": "https://media.wizards.com/2026/fra/23ns838efds/en_7ottDLAkZB.webp",
-            "image_url_zh": "https://ncuainzogfrrrjxlrkcs.supabase.co/storage/v1/object/public/card-images/yfra2-1/1791840667623_woli5o.png",
+            "image_url_zh": "/image/alchemy/yfra/仙儿君王瓯柯.png",
             "rarity": "mythic"
         },
         {
@@ -31,7 +31,7 @@
             "zhs_text": "当此生物进场时，你可以`请援`鹏洛客。若你如此作，则其`永久`得「此鹏洛客的忠诚异能须额外支付[+1]来起动。」\nFLAVOR\n在调查校长最忠实的诸位盟友时，她惊讶地发现其中一些人的形貌与她熟知面容略有不符。",
             "artist": "Julia Metzger",
             "image_url_en": "https://media.wizards.com/2026/fra/23ns838efds/en_5ovSvo1S2L.webp",
-            "image_url_zh": "https://ncuainzogfrrrjxlrkcs.supabase.co/storage/v1/object/public/card-images/yfra2-2/1791840341760_odmjfq.png",
+            "image_url_zh": "/image/alchemy/yfra/鹏洛客先知.png",
             "rarity": "uncommon",
             "pow_tough": "1/4"
         },
@@ -46,7 +46,7 @@
             "zhs_text": "`飞行`\n每当你获得生命时，你手上与坟墓场中的生物牌`永久`得+1/+1。\n只要你本回合获得过生命，你便可以从你的坟墓场施放生物咒语。如果你以此法施放咒语，则该生物进场时上面有一个`终命指示物`。",
             "artist": "Lie Setiawan",
             "image_url_en": "https://media.wizards.com/2026/fra/23ns838efds/en_7ZY597CCQC.webp",
-            "image_url_zh": "https://ncuainzogfrrrjxlrkcs.supabase.co/storage/v1/object/public/card-images/yfra2-3/1791840161721_ol76qp.png",
+            "image_url_zh": "/image/alchemy/yfra/救生灵丝瓦伽沃.png",
             "rarity": "rare",
             "pow_tough": "2/4"
         },
@@ -61,7 +61,7 @@
             "zhs_text": "`飞行`\n魔艺～每当你施放或复制瞬间或法术咒语时，目标由你操控的生物之基础力量为3直到回合结束。",
             "artist": "Slawomir Maniak",
             "image_url_en": "https://media.wizards.com/2026/fra/23ns838efds/en_rM4DdtQiPK.webp",
-            "image_url_zh": "https://ncuainzogfrrrjxlrkcs.supabase.co/storage/v1/object/public/card-images/yfra2-4/1791840033301_88fy8l.png",
+            "image_url_zh": "/image/alchemy/yfra/殉衡智者.png",
             "rarity": "uncommon",
             "pow_tough": "0/2"
         },
@@ -76,7 +76,7 @@
             "zhs_text": "当此结界进场时，`偷窃`目标对手的牌库。\n具现～每当你施放来自你起始套牌之外的咒语时，`聚能杰斯`2。\nFLAVOR\n「佛莫里宝库～我们的计划正是在此合同……但我觉得你我也正神离于此。」\n～杰斯向瓦斯卡倾诉",
             "artist": "Jorge Jacinto",
             "image_url_en": "https://media.wizards.com/2026/fra/23ns838efds/en_pAsjimrmxi.webp",
-            "image_url_zh": "https://ncuainzogfrrrjxlrkcs.supabase.co/storage/v1/object/public/card-images/yfra2-5/1791839819417_2tqysf.png",
+            "image_url_zh": "/image/alchemy/yfra/理论交错.png",
             "rarity": "uncommon"
         },
         {
@@ -90,7 +90,7 @@
             "zhs_text": "`双打`\n具现～回响耶夫的力量等同于你本盘游戏中施放过来自你起始套牌之外咒语的数量，其防御力等同于该数量加1。",
             "artist": "Andrew Mar",
             "image_url_en": "https://media.wizards.com/2026/fra/23ns838efds/en_9k6Jhq5FgA.webp",
-            "image_url_zh": "https://ncuainzogfrrrjxlrkcs.supabase.co/storage/v1/object/public/card-images/yfra2-6/1791839672963_0lw7bj.png",
+            "image_url_zh": "/image/alchemy/yfra/回响耶夫.png",
             "rarity": "rare",
             "pow_tough": "*/1+*"
         },
@@ -105,7 +105,7 @@
             "zhs_text": "I — 此传纪获得「{T}：加{U}。」\nII — 此传纪获得「{U}，{T}：将一张名称为`杰斯的哨卫:0`的牌`幻变`进战场。」\nIII — `聚能杰斯`3。",
             "artist": "Matt Stewart",
             "image_url_en": "https://media.wizards.com/2026/fra/23ns838efds/en_EDeRO8E1qj.webp",
-            "image_url_zh": "https://ncuainzogfrrrjxlrkcs.supabase.co/storage/v1/object/public/card-images/yfra2-7/1791839517754_ladd6.png",
+            "image_url_zh": "/image/alchemy/yfra/杰斯传.png",
             "rarity": "rare",
             "related": [
                 "XLN:283"
@@ -122,7 +122,7 @@
             "zhs_text": "当此牌从任何区域置入你的坟墓场时，将一张名称为`巨海兽幼雏:0`的牌`幻变`进你手上。\n{1}{U}：将此牌从你的坟墓场移回战场。只能于你坟墓场中牌的数量比牌库多时起动，且仅限法术时机。",
             "artist": "Tiffany Turrill",
             "image_url_en": "https://media.wizards.com/2026/fra/23ns838efds/en_OIp4AjvZVp.webp",
-            "image_url_zh": "https://ncuainzogfrrrjxlrkcs.supabase.co/storage/v1/object/public/card-images/yfra2-8/1791842908668_4qqir.png",
+            "image_url_zh": "/image/alchemy/yfra/悖论巨海兽.png",
             "rarity": "rare",
             "pow_tough": "7/7",
             "related": [
@@ -140,7 +140,7 @@
             "zhs_text": "如果你将`聚能杰斯`，你可以改为在一个由你操控的杰斯上放置等量忠诚指示物。\n{T}：`聚能杰斯`1。\n{1}{U}，{T}：从贝连法术书中`抽选`一张牌。\nFLAVOR\n虚无灵。探案客。十会盟。守御人。执戈兵。素启页。劫存民。杰斯的每一面相都完成了其使命～如今轮到塑理师了。",
             "artist": "Volkan Baga",
             "image_url_en": "https://media.wizards.com/2026/fra/23ns838efds/en_bvxo9fkT2k.webp",
-            "image_url_zh": "https://ncuainzogfrrrjxlrkcs.supabase.co/storage/v1/object/public/card-images/yfra2-9/1791838310787_hcby5.png",
+            "image_url_zh": "/image/alchemy/yfra/贝连遗珍.png",
             "rarity": "mythic",
             "spellbook": [
                 "WAR:270",
@@ -171,7 +171,7 @@
             "zhs_text": "`威慑`\n你牌库中每有一张生物牌，此生物便得-1/-1。",
             "artist": "Pascal Quidault",
             "image_url_en": "https://media.wizards.com/2026/fra/23ns838efds/en_BBJjLO0KXF.webp",
-            "image_url_zh": "https://ncuainzogfrrrjxlrkcs.supabase.co/storage/v1/object/public/card-images/yfra2-10/1791838420223_hozn7e.png",
+            "image_url_zh": "/image/alchemy/yfra/退避阶梯亚龙.png",
             "rarity": "rare",
             "pow_tough": "5/5"
         },
@@ -186,7 +186,7 @@
             "zhs_text": "检视目标牌手手牌中所有的生物牌与鹏洛客牌。你可以放逐其中一张牌。若你如此作，则将该牌的一张副本`幻变`进你的坟墓场。",
             "artist": "Xavier Ribeiro",
             "image_url_en": "https://media.wizards.com/2026/fra/23ns838efds/en_BjNLbtR2Vp.webp",
-            "image_url_zh": "https://ncuainzogfrrrjxlrkcs.supabase.co/storage/v1/object/public/card-images/yfra2-11/1791838220246_2c18mf.png",
+            "image_url_zh": "/image/alchemy/yfra/跳脱凡胎.png",
             "rarity": "uncommon"
         },
         {
@@ -200,7 +200,7 @@
             "zhs_text": "`闪现`\n`飞行`\n当此生物进场时，检视目标牌手手牌中所有的非地牌。你可以放逐其中一张牌。若你如此作，则该牌手将一张名称为`心灵石:0`的牌`幻变`进其手上。",
             "artist": "Michele Giorgi",
             "image_url_en": "https://media.wizards.com/2026/fra/23ns838efds/en_REnDSJYITO.webp",
-            "image_url_zh": "https://ncuainzogfrrrjxlrkcs.supabase.co/storage/v1/object/public/card-images/yfra2-12/1791838098430_jolsd3.png",
+            "image_url_zh": "/image/alchemy/yfra/喧闹聚群.png",
             "rarity": "rare",
             "pow_tough": "3/1",
             "related": [
@@ -218,7 +218,7 @@
             "zhs_text": "当此生物进场时，将一张名称为`烈火咏叹:0`的牌`幻变`进战场。\n如果某个由你操控的红色来源将对任一永久物或牌手造成伤害，则改为它对该永久物或牌手造成原数量加1点伤害。",
             "artist": "Pascal Quidault",
             "image_url_en": "https://media.wizards.com/2026/fra/23ns838efds/en_qGxdJPaMMN.webp",
-            "image_url_zh": "https://ncuainzogfrrrjxlrkcs.supabase.co/storage/v1/object/public/card-images/yfra2-13/1791837923354_m8m3m2.png",
+            "image_url_zh": "/image/alchemy/yfra/炙烈独奏家.png",
             "rarity": "rare",
             "pow_tough": "3/3",
             "related": [
@@ -236,7 +236,7 @@
             "zhs_text": "火花灼燃对目标生物或鹏洛客造成2点伤害。如果本回合中该生物或鹏洛客将死去，则改为将它放逐。\n你施放的下一个鹏洛客咒语减少{1}来施放。\nFLAVOR\n杀出另一位阿耶尼让茜卓颇感不适。但更让她难受的是，她能在他每个举动中见到自己挚友的影子。",
             "artist": "Fajareka Setiawan",
             "image_url_en": "https://media.wizards.com/2026/fra/23ns838efds/en_yCV6spJun1.webp",
-            "image_url_zh": "https://ncuainzogfrrrjxlrkcs.supabase.co/storage/v1/object/public/card-images/yfra2-14/1791837752373_fkqz4.png",
+            "image_url_zh": "/image/alchemy/yfra/火花灼燃.png",
             "rarity": "uncommon"
         },
         {
@@ -250,7 +250,7 @@
             "zhs_text": "具现～你本盘游戏中每施放过一个来自你起始套牌之外的咒语，此咒语便减少{1}来施放。\n`践踏`\n每当埃泰力进场或攻击时，将一张随机恐龙牌`幻变`进放逐区。本回合中，你可以施放该牌，且不需支付其法术力费用。",
             "artist": "Loïc Canavaggia",
             "image_url_en": "https://media.wizards.com/2026/fra/23ns838efds/en_Lxfa4Q7Z9u.webp",
-            "image_url_zh": "https://ncuainzogfrrrjxlrkcs.supabase.co/storage/v1/object/public/card-images/yfra2-15/1791837599237_fjcn3l.png",
+            "image_url_zh": "/image/alchemy/yfra/始苑埃泰力.png",
             "rarity": "rare",
             "pow_tough": "7/7"
         },
@@ -265,7 +265,7 @@
             "zhs_text": "当此生物进场时，将X张名称为倪勒娅的先知的牌`幻变`进你的牌库，X为你的绿色献力，然后洗牌。然后若你的牌库中的牌比起始套牌多，由你操控的生物得+X/+X且获得`敏捷`异能直到回合结束。",
             "artist": "Xavier Ribeiro",
             "image_url_en": "https://media.wizards.com/2026/fra/23ns838efds/en_qbLFDhie68.webp",
-            "image_url_zh": "https://ncuainzogfrrrjxlrkcs.supabase.co/storage/v1/object/public/card-images/yfra2-16/1791837352793_urmgn.png",
+            "image_url_zh": "/image/alchemy/yfra/倪勒娅的先知.png",
             "rarity": "rare",
             "pow_tough": "3/1"
         },
@@ -280,7 +280,7 @@
             "zhs_text": "竭绝～{1}：将一张名称为`希望种子:0`的牌`幻变`进你手上。",
             "artist": "Taras Susak",
             "image_url_en": "https://media.wizards.com/2026/fra/23ns838efds/en_xsS346gtJz.webp",
-            "image_url_zh": "https://ncuainzogfrrrjxlrkcs.supabase.co/storage/v1/object/public/card-images/yfra2-17/1791837224432_rpfsmm.png",
+            "image_url_zh": "/image/alchemy/yfra/无私萌动客.png",
             "rarity": "uncommon",
             "pow_tough": "2/1",
             "related": [
@@ -298,7 +298,7 @@
             "zhs_text": "`警戒`，`敏捷`，`反瞬间保护`\n于此生物进场时，为每位对手各进行以下流程～记下其牌库中最普遍的生物类别。\n此生物具有「保护～反每种所记下的生物类别」。",
             "artist": "Dmitry Burmak",
             "image_url_en": "https://media.wizards.com/2026/fra/23ns838efds/en_VGmCHRnNGR.webp",
-            "image_url_zh": "https://ncuainzogfrrrjxlrkcs.supabase.co/storage/v1/object/public/card-images/yfra2-18/1791837113313_0s56si.png",
+            "image_url_zh": "/image/alchemy/yfra/灾鳞盘蛇.png",
             "rarity": "rare",
             "pow_tough": "5/5"
         },
@@ -313,7 +313,7 @@
             "zhs_text": "守护～牺牲一个血滴神器。\n其他生物都是血滴神器，仍具有原本类别，且具有「{1}，{T}，弃一张牌，牺牲此生物：抓一张牌。」\n每当任一牌手牺牲一个非衍生物的生物或弃一张生物牌时，将它放逐。该牌`永久`获得`虹彩`异能。直到你下一个回合的回合结束，你可以施放该牌。",
             "artist": "Simon Dominic",
             "image_url_en": "https://media.wizards.com/2026/fra/23ns838efds/en_K41K2Zc91V.webp",
-            "image_url_zh": "https://ncuainzogfrrrjxlrkcs.supabase.co/storage/v1/object/public/card-images/yfra-6/1791731406428_all884.png",
+            "image_url_zh": "/image/alchemy/yfra/血胆虫群.png",
             "rarity": "rare",
             "pow_tough": "6/6"
         },
@@ -328,7 +328,7 @@
             "zhs_text": "你施放的鹏洛客咒语减少{1}来施放。\n在你的维持开始时，将一张随机鹏洛客牌`幻变`进你手上。该牌`永久`获得`虹彩`异能。\nFLAVOR\n「设使无有奥札奇、波拉斯与非瑞克西亚，我们将成为什么样子？如果多重宇宙从不曾需求拯救，自然也不需经历此诸般苦难。」\n～塑理师杰斯贝连",
             "artist": "Anastasia Ovchinnikova",
             "image_url_en": "https://media.wizards.com/2026/fra/23ns838efds/en_QcHvmzqG9T.webp",
-            "image_url_zh": "https://ncuainzogfrrrjxlrkcs.supabase.co/storage/v1/object/public/card-images/yfra2-20/1791836835536_eewsi.png",
+            "image_url_zh": "/image/alchemy/yfra/改变叙事.png",
             "rarity": "rare"
         },
         {
@@ -342,7 +342,7 @@
             "zhs_text": "每当一张或数张瞬间和／或法术牌离开你坟墓场时，将一张法术力值为X的随机生物牌`幻变`进战场，X等同于这些牌中最大的法术力值。",
             "artist": "Igor Grechanyi",
             "image_url_en": "https://media.wizards.com/2026/fra/23ns838efds/en_bqWczdon45.webp",
-            "image_url_zh": "https://ncuainzogfrrrjxlrkcs.supabase.co/storage/v1/object/public/card-images/yfra2-21/1791836681730_8417ce.png",
+            "image_url_zh": "/image/alchemy/yfra/恶魔配方.png",
             "rarity": "rare"
         },
         {
@@ -356,7 +356,7 @@
             "zhs_text": "`系命`\n每当你获得生命时，迪娜`永久`得+1/+1。\n当迪娜死去时，选择你手上的一张生物牌。它`永久`获得`践踏`异能且得+X/+X，X为迪娜的力量。",
             "artist": "Aurore Folny",
             "image_url_en": "https://media.wizards.com/2026/fra/23ns838efds/en_cUldjFfNbi.webp",
-            "image_url_zh": "https://ncuainzogfrrrjxlrkcs.supabase.co/storage/v1/object/public/card-images/yfra2-22/1791836437624_4x98l.png",
+            "image_url_zh": "/image/alchemy/yfra/稼生迪娜.png",
             "rarity": "uncommon",
             "pow_tough": "1/1"
         },
@@ -371,7 +371,7 @@
             "zhs_text": "放逐目标由你操控的生物。抽选一个[+1]异能，一个[-2]异能与一个[-8]异能。派出一个传奇衍生鹏洛客，其具有所放逐之生物的名称，颜色与所抽选的异能。在其上放置等同于所放逐之生物力量的忠诚指示物。\nFLAVOR\n多数鹏洛客的初次行旅都饱尝混沌与迷惘。谭姆此行虽始于伤悲，却也满怀希望。",
             "artist": "Julie Dillon",
             "image_url_en": "https://media.wizards.com/2026/fra/Ilf87ogj4O/en_TLbg527gv0.webp",
-            "image_url_zh": "https://ncuainzogfrrrjxlrkcs.supabase.co/storage/v1/object/public/card-images/yfra-1/1791223153374_e50d4s.png",
+            "image_url_zh": "/image/alchemy/yfra/迈入虚空.png",
             "rarity": "mythic"
         },
         {
@@ -385,7 +385,7 @@
             "zhs_text": "派出一个2/2无色，名称为学员的法术师／士兵衍生生物。本局游戏中你每获得过3点生命，便额外派出一个上述衍生物。",
             "artist": "Elizabeth Peiró",
             "image_url_en": "https://media.wizards.com/2026/fra/23ns838efds/en_XD16CeySmc.webp",
-            "image_url_zh": "https://ncuainzogfrrrjxlrkcs.supabase.co/storage/v1/object/public/card-images/yfra2-24/1791836139973_xf26lh.png",
+            "image_url_zh": "/image/alchemy/yfra/茁壮军势.png",
             "rarity": "rare"
         },
         {
@@ -399,7 +399,7 @@
             "zhs_text": "每当一个由你操控的来源向任一对手造成非战斗伤害时，`取出`一张法术力值等同于所造成伤害数量的牌。在下一个结束步骤开始时，弃掉该牌。",
             "artist": "Fajareka Setiawan",
             "image_url_en": "https://media.wizards.com/2026/fra/23ns838efds/en_3meb9TWVg2.webp",
-            "image_url_zh": "https://ncuainzogfrrrjxlrkcs.supabase.co/storage/v1/object/public/card-images/yfra2-25/1791836012920_5mndb.png",
+            "image_url_zh": "/image/alchemy/yfra/聚光逐客齐力安.png",
             "rarity": "uncommon",
             "pow_tough": "2/2"
         },
@@ -414,7 +414,7 @@
             "zhs_text": "只要昆托力是于本回合进场，本回合中你便可以起动由你操控之鹏洛客的忠诚异能两次，而不是只能起动一次。\n[0]：`增殖`。你获得3点生命。\n[-1]：`取出`一张非昆托力鹏洛客牌。\n[-3]：派出一个2/2无色，名称为学员的法术师／士兵衍生生物。然后在每个由你操控的生物上各放置一个+1/+1指示物。",
             "artist": "Lie Setiawan",
             "image_url_en": "https://media.wizards.com/2026/fra/23ns838efds/en_4nslE2L5xs.webp",
-            "image_url_zh": "https://ncuainzogfrrrjxlrkcs.supabase.co/storage/v1/object/public/card-images/yfra-5/1791731156354_5ogd2q.png",
+            "image_url_zh": "/image/alchemy/yfra/裂命昆托力.png",
             "rarity": "mythic"
         },
         {
@@ -428,7 +428,7 @@
             "zhs_text": "牺牲一个神器：如莎成为已`备法`。只能于法术时机起动，且每回合限一次。",
             "artist": "Dmitry Burmak",
             "image_url_en": "https://media.wizards.com/2026/fra/23ns838efds/en_Btt0uqbI2r.webp",
-            "image_url_zh": "https://ncuainzogfrrrjxlrkcs.supabase.co/storage/v1/object/public/card-images/yfra2-27/1791835784790_ht3r.png",
+            "image_url_zh": "/image/alchemy/yfra/热诚艺家如莎.png",
             "rarity": "uncommon",
             "pow_tough": "2/3",
             "name2": "Next Iteration",
@@ -450,7 +450,7 @@
             "zhs_text": "为1至X中的每个数字各进行以下流程～将一张法术力值等同于该数字的随机神器牌`幻变`进战场。X不能为0。",
             "artist": "Michele Giorgi",
             "image_url_en": "https://media.wizards.com/2026/fra/Ilf87ogj4O/en_dNnH5YfAFp.webp",
-            "image_url_zh": "https://ncuainzogfrrrjxlrkcs.supabase.co/storage/v1/object/public/card-images/yfra-2/1791223280846_wy622v.png",
+            "image_url_zh": "/image/alchemy/yfra/回收仿品.png",
             "rarity": "rare"
         },
         {
@@ -464,7 +464,7 @@
             "zhs_text": "琦梦视同她力量为正数地来分配战斗伤害。\n每当一张或数张牌从你牌库进入你坟墓场时，琦梦成为已`备法`。",
             "artist": "Jodie Muir",
             "image_url_en": "https://media.wizards.com/2026/fra/23ns838efds/en_uMBfhMSqX6.webp",
-            "image_url_zh": "https://ncuainzogfrrrjxlrkcs.supabase.co/storage/v1/object/public/card-images/yfra2-29/1791835457736_jxoekq.png",
+            "image_url_zh": "/image/alchemy/yfra/精算琦梦.png",
             "rarity": "uncommon",
             "pow_tough": "-1/4",
             "name2": "Simple Subtraction",
@@ -486,7 +486,7 @@
             "zhs_text": "{T}：加一点任意颜色的法术力。\n具现～每当你施放来自你起始套牌之外的咒语时，复制该咒语。你可以为该复制品选择新的目标。\nFLAVOR\n塑理师简拔学生助手时颇为小心，虑及许可他们有所更张时特为尤甚。",
             "artist": "Leonardo Santanna",
             "image_url_en": "https://media.wizards.com/2026/fra/23ns838efds/en_eLQLMmrIOs.webp",
-            "image_url_zh": "https://ncuainzogfrrrjxlrkcs.supabase.co/storage/v1/object/public/card-images/yfra2-30/1791834625137_w1h5hp.png",
+            "image_url_zh": "/image/alchemy/yfra/缚意笔毫.png",
             "rarity": "mythic"
         },
         {
@@ -500,7 +500,7 @@
             "zhs_text": "如果你是先手牌手，则此地须横置进场。\n{T}，牺牲此地：从你的牌库中搜寻一张具基本地类别的地牌，将之放进战场，然后洗牌。\nFLAVOR\n赫克海文肇创之物旋卷外延，直至多重宇宙昔日实在与迫临未来仅隔纤毫。",
             "artist": "Jorge Jacinto",
             "image_url_en": "https://media.wizards.com/2026/fra/23ns838efds/en_K6i0NHueFt.webp",
-            "image_url_zh": "https://ncuainzogfrrrjxlrkcs.supabase.co/storage/v1/object/public/card-images/yfra2-31/1791834956596_p9a5a.png",
+            "image_url_zh": "/image/alchemy/yfra/蕴潜天际.png",
             "rarity": "rare"
         }
     ]
