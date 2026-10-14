@@ -35,6 +35,7 @@
   ],
   "expansions": [
     "FRA",
+    "Y26FRA",
     "HOB",
     "MSH",
     "SOS",
@@ -434,7 +435,8 @@
       "PickTwoDraft",
       "Sealed",
       "TradSealed",
-      "ArenaDirect_Sealed"
+      "ArenaDirect_Sealed",
+      "ContenderDraft"
     ],
     "GRN": [
       "PremierDraft",
@@ -921,6 +923,9 @@
       "PremierDraft",
       "PickTwoDraft"
     ],
+    "Y26FRA": [
+      "PremierDraft"
+    ],
     "Y26SOS": [
       "PremierDraft"
     ],
@@ -946,7 +951,11 @@
       "Sealed",
       "TradSealed",
       "ArenaDirect_Sealed",
-      "QuickDraft"
+      "QuickDraft",
+      "ContenderDraft"
+    ],
+    "Y26FRA": [
+      "PremierDraft"
     ]
   },
   "ranked_formats": [
@@ -968,10 +977,10 @@
     "BRO": "2022-11-15T15:00:00Z",
     "CLB": "2022-06-10T00:00:00Z",
     "CORE": "2021-03-26T00:00:00Z",
-    "Chaos": "2026-09-13T08:57:52.441643Z",
-    "Cube": "2026-09-13T08:57:52.441640Z",
-    "Cube - Planar": "2026-09-13T08:57:52.441636Z",
-    "Cube - Powered": "2026-09-13T08:57:52.441638Z",
+    "Chaos": "2026-09-14T07:06:47.024032Z",
+    "Cube": "2026-09-14T07:06:47.024030Z",
+    "Cube - Planar": "2026-09-14T07:06:47.024025Z",
+    "Cube - Powered": "2026-09-14T07:06:47.024028Z",
     "DBL": "2022-01-28T00:00:00Z",
     "DFT": "2025-02-11T15:00:00Z",
     "DMR": "2023-01-13T00:00:00Z",
@@ -1014,8 +1023,8 @@
     "RIX": "2019-03-01T00:00:00Z",
     "RNA": "2019-01-17T00:00:00Z",
     "ROE": "2010-04-23T00:00:00Z",
-    "Ravnica": "2026-09-13T08:57:52.441597Z",
-    "Remix - Artifacts": "2026-09-13T08:57:52.441645Z",
+    "Ravnica": "2026-09-14T07:06:47.023989Z",
+    "Remix - Artifacts": "2026-09-14T07:06:47.024034Z",
     "SIR": "2023-03-21T15:00:00Z",
     "SNC": "2022-04-28T00:00:00Z",
     "SOS": "2026-04-21T15:00:00Z",
@@ -1779,6 +1788,16 @@
       "FIRST_WEEK"
     ],
     "Y26ECL": [
+      "ALL_TIME",
+      "ALL_EXCEPT_FIRST_WEEK",
+      "LAST_TWO_EVENTS",
+      "LATEST_EVENT",
+      "LAST_TWO_WEEKS",
+      "LAST_WEEK",
+      "LAST_DAY",
+      "FIRST_WEEK"
+    ],
+    "Y26FRA": [
       "ALL_TIME",
       "ALL_EXCEPT_FIRST_WEEK",
       "LAST_TWO_EVENTS",
