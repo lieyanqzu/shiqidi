@@ -2360,26 +2360,26 @@
   {
     "expansion": "FRA",
     "event_type": "PickTwoDraft",
-    "average_game_length": 9.879751654095722,
-    "win_rate_on_play": 0.5202256706270075
+    "average_game_length": 9.883002855766957,
+    "win_rate_on_play": 0.5198837650380108
   },
   {
     "expansion": "FRA",
     "event_type": "PremierDraft",
-    "average_game_length": 9.812031452612418,
-    "win_rate_on_play": 0.5228205160442116
+    "average_game_length": 9.81582664723001,
+    "win_rate_on_play": 0.5227325434842954
   },
   {
     "expansion": "FRA",
     "event_type": "Sealed",
-    "average_game_length": 9.801646153410012,
-    "win_rate_on_play": 0.5223055303029883
+    "average_game_length": 9.806143706253355,
+    "win_rate_on_play": 0.5220286494432284
   },
   {
     "expansion": "FRA",
     "event_type": "TradDraft",
-    "average_game_length": 9.54715253280092,
-    "win_rate_on_play": 0.5327865303232662
+    "average_game_length": 9.548601029789813,
+    "win_rate_on_play": 0.532251900794162
   },
   {
     "expansion": "FRA",
@@ -2390,25 +2390,25 @@
   {
     "expansion": "FRA",
     "event_type": "ArenaDirect_Sealed",
-    "average_game_length": 10.034241987535314,
-    "win_rate_on_play": 0.521650291553053
+    "average_game_length": 10.034158776062966,
+    "win_rate_on_play": 0.5216557736989191
   },
   {
     "expansion": "FRA",
     "event_type": "QuickDraft",
-    "average_game_length": 9.722503959007705,
-    "win_rate_on_play": 0.5271832848936632
+    "average_game_length": 9.72592325505485,
+    "win_rate_on_play": 0.5277669216963212
   },
   {
     "expansion": "FRA",
     "event_type": "ContenderDraft",
-    "average_game_length": 9.859077390979046,
-    "win_rate_on_play": 0.530553962182209
+    "average_game_length": 9.851195282506021,
+    "win_rate_on_play": 0.5258428785218658
   },
   {
     "expansion": "Y26FRA",
     "event_type": "PremierDraft",
-    "average_game_length": 9.573517565342543,
-    "win_rate_on_play": 0.5086303939962477
+    "average_game_length": 9.502502686039902,
+    "win_rate_on_play": 0.5179627673910586
   }
 ]
