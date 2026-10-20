@@ -457,7 +457,30 @@
       "name": "星际迷航",
       "code": "TRK",
       "releaseDate": "2026-11-11",
-      "wikiUrl": "https://mtg.wiki/page/Star_Trek?utm_source=shiqidi"
+      "wikiUrl": "https://mtg.wiki/page/Star_Trek?utm_source=shiqidi",
+      "preview": {
+        "title": "舰长，请您指挥",
+        "description": "探索《星际迷航》60年的历史，再会难忘的船员、宿敌、和星舰，勇踏前人未至之境。",
+        "backgroundImage": "/image/background/TRK-1709_THJVAXRSPMC_1920x1080.png",
+        "links": [
+          {
+            "name": "大学院废墟（中文）",
+            "url": "https://mtgch.com/previews/TRK/?utm_source=shiqidi"
+          },
+          {
+            "name": "官网牌图集合",
+            "url": "https://magic.wizards.com/en/products/star-trek/card-image-gallery"
+          },
+          {
+            "name": "Scryfall",
+            "url": "https://scryfall.com/sets/trk?order=spoiled&utm_source=shiqidi"
+          },
+          {
+            "name": "Untapped.gg",
+            "url": "https://mtga.untapped.gg/codex/sets/star-trek?sortBy=spoilerDate&utm_source=shiqidi"
+          }
+        ]
+      }
     }
   ]
 }
