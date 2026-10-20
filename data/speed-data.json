@@ -1610,8 +1610,8 @@
   {
     "expansion": "DFT",
     "event_type": "QuickDraft",
-    "average_game_length": 9.055704908721578,
-    "win_rate_on_play": 0.5309670259158934
+    "average_game_length": 9.05603456490698,
+    "win_rate_on_play": 0.5308991734673175
   },
   {
     "expansion": "DFT",
@@ -2360,26 +2360,26 @@
   {
     "expansion": "FRA",
     "event_type": "PickTwoDraft",
-    "average_game_length": 9.894192919187486,
-    "win_rate_on_play": 0.5194715732113607
+    "average_game_length": 9.899832869836656,
+    "win_rate_on_play": 0.519211939019303
   },
   {
     "expansion": "FRA",
     "event_type": "PremierDraft",
-    "average_game_length": 9.825594003462669,
-    "win_rate_on_play": 0.5226403528267016
+    "average_game_length": 9.828897174269988,
+    "win_rate_on_play": 0.5228484598722317
   },
   {
     "expansion": "FRA",
     "event_type": "Sealed",
-    "average_game_length": 9.816840357034108,
-    "win_rate_on_play": 0.5219135069205032
+    "average_game_length": 9.81784305543302,
+    "win_rate_on_play": 0.5223168058896068
   },
   {
     "expansion": "FRA",
     "event_type": "TradDraft",
-    "average_game_length": 9.555036408235296,
-    "win_rate_on_play": 0.5333382307219692
+    "average_game_length": 9.558402375424695,
+    "win_rate_on_play": 0.5335587006243562
   },
   {
     "expansion": "FRA",
@@ -2396,25 +2396,25 @@
   {
     "expansion": "FRA",
     "event_type": "QuickDraft",
-    "average_game_length": 9.74267641894906,
-    "win_rate_on_play": 0.5267993307541775
+    "average_game_length": 9.74278285803733,
+    "win_rate_on_play": 0.5267946579398708
   },
   {
     "expansion": "FRA",
     "event_type": "ContenderDraft",
-    "average_game_length": 9.892270060436815,
-    "win_rate_on_play": 0.5241372222691834
+    "average_game_length": 9.908011626820912,
+    "win_rate_on_play": 0.5231176203871806
   },
   {
     "expansion": "Y26FRA",
     "event_type": "PremierDraft",
-    "average_game_length": 9.478141415719852,
-    "win_rate_on_play": 0.5219694825129038
+    "average_game_length": 9.473596460609727,
+    "win_rate_on_play": 0.5226384077016452
   },
   {
     "expansion": "FRA",
     "event_type": "LimitedChampionshipQualifier_Draft1",
-    "average_game_length": 9.793912437629718,
-    "win_rate_on_play": 0.5273644682734072
+    "average_game_length": 9.782110295444479,
+    "win_rate_on_play": 0.5288109285238912
   }
 ]
