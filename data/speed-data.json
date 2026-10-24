@@ -326,8 +326,8 @@
   {
     "expansion": "VOW",
     "event_type": "PremierDraft",
-    "average_game_length": 9.406755314989061,
-    "win_rate_on_play": 0.5196544808880914
+    "average_game_length": 9.40634968158358,
+    "win_rate_on_play": 0.5196775627599075
   },
   {
     "expansion": "VOW",
@@ -1610,8 +1610,8 @@
   {
     "expansion": "DFT",
     "event_type": "QuickDraft",
-    "average_game_length": 9.058263179035471,
-    "win_rate_on_play": 0.5307961769698978
+    "average_game_length": 9.057985734050845,
+    "win_rate_on_play": 0.5308007459526604
   },
   {
     "expansion": "DFT",
@@ -1880,14 +1880,14 @@
   {
     "expansion": "Cube - Powered",
     "event_type": "PremierDraft",
-    "average_game_length": 6.6244577050062325,
-    "win_rate_on_play": 0.5438652745318759
+    "average_game_length": 6.623718087975673,
+    "win_rate_on_play": 0.543855678025777
   },
   {
     "expansion": "Cube - Powered",
     "event_type": "TradDraft",
-    "average_game_length": 6.459670480435588,
-    "win_rate_on_play": 0.5399794262218441
+    "average_game_length": 6.458801260618508,
+    "win_rate_on_play": 0.5400266718117327
   },
   {
     "expansion": "OM1",
@@ -2360,26 +2360,26 @@
   {
     "expansion": "FRA",
     "event_type": "PickTwoDraft",
-    "average_game_length": 9.906161331110404,
-    "win_rate_on_play": 0.5192919263471716
+    "average_game_length": 9.907711856838471,
+    "win_rate_on_play": 0.5193411602031421
   },
   {
     "expansion": "FRA",
     "event_type": "PremierDraft",
-    "average_game_length": 9.83703779409968,
-    "win_rate_on_play": 0.5231783321970955
+    "average_game_length": 9.837930802435295,
+    "win_rate_on_play": 0.5234951701149938
   },
   {
     "expansion": "FRA",
     "event_type": "Sealed",
-    "average_game_length": 9.827087883995926,
-    "win_rate_on_play": 0.5222611108628576
+    "average_game_length": 9.833554665971143,
+    "win_rate_on_play": 0.5221103842441204
   },
   {
     "expansion": "FRA",
     "event_type": "TradDraft",
-    "average_game_length": 9.567217341359727,
-    "win_rate_on_play": 0.5341950048764866
+    "average_game_length": 9.559641709033754,
+    "win_rate_on_play": 0.5344340912589542
   },
   {
     "expansion": "FRA",
@@ -2390,26 +2390,26 @@
   {
     "expansion": "FRA",
     "event_type": "ArenaDirect_Sealed",
-    "average_game_length": 10.034158776062966,
-    "win_rate_on_play": 0.5216557736989191
+    "average_game_length": 10.040333662766697,
+    "win_rate_on_play": 0.5215159799344249
   },
   {
     "expansion": "FRA",
     "event_type": "QuickDraft",
-    "average_game_length": 9.742528989553954,
-    "win_rate_on_play": 0.5267267334792577
+    "average_game_length": 9.742483429282602,
+    "win_rate_on_play": 0.5267136211806486
   },
   {
     "expansion": "FRA",
     "event_type": "ContenderDraft",
-    "average_game_length": 9.896375415227965,
-    "win_rate_on_play": 0.5253894496327566
+    "average_game_length": 9.896939243899226,
+    "win_rate_on_play": 0.5250062270744628
   },
   {
     "expansion": "Y26FRA",
     "event_type": "PremierDraft",
-    "average_game_length": 9.47518412663194,
-    "win_rate_on_play": 0.5248698132105671
+    "average_game_length": 9.471187757744886,
+    "win_rate_on_play": 0.5256735025116283
   },
   {
     "expansion": "FRA",
