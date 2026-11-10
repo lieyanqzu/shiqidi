@@ -481,6 +481,12 @@
           }
         ]
       }
+    },
+    {
+      "name": "Nauctis",
+      "code": "NAU",
+      "releaseDate": "2027-02-03",
+      "wikiUrl": "https://mtg.wiki/page/Nauctis:_The_Sunken_Realm?utm_source=shiqidi"
     }
   ]
 }

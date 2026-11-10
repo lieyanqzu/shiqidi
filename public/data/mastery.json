@@ -1,9 +1,9 @@
 {
-  "setCode": "FRA",
-  "startDate": "2026-09-29",
-  "endDate": "2026-11-10",
-  "maxLevel": 45,
+  "setCode": "TRK",
+  "startDate": "2026-11-10",
+  "endDate": "2027-02-02",
+  "maxLevel": 80,
   "defaultDailyWins": 4,
   "defaultWeeklyWins": 15,
-  "setName": "现实裂界"
+  "setName": "星际迷航"
 }

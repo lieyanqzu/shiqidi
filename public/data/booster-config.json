@@ -1,6 +1,15 @@
 {
   "sets": [
     {
+      "code": "MBC",
+      "boosters": [
+        {
+          "code": "mbc-draft",
+          "name": "轮抽补充包"
+        }
+      ]
+    },
+    {
       "code": "FRA",
       "boosters": [
         {

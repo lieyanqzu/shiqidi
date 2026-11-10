@@ -129,7 +129,6 @@
           "plst:AKH-36": 1,
           "plst:AKH-38": 1,
           "plst:AKH-8": 1,
-          "plst:ALL-16": 1,
           "plst:APC-18": 1,
           "plst:AVR-22": 1,
           "plst:AVR-31": 1,
@@ -198,6 +197,7 @@
           "plst:CNS-88": 1,
           "plst:CON-3": 1,
           "plst:CSP-9": 1,
+          "plst:CST-16": 1,
           "plst:DDC-16": 1,
           "plst:DDF-3": 1,
           "plst:DDG-5": 1,
@@ -467,6 +467,7 @@
         "total_weight": 358,
         "cards": {
           "plst:2X2-40": 1,
+          "plst:2XM-40": 1,
           "plst:2XM-52": 1,
           "plst:2XM-68": 1,
           "plst:5DN-38": 1,
@@ -578,7 +579,6 @@
           "plst:DOM-60": 1,
           "plst:DOM-69": 1,
           "plst:DOM-70": 1,
-          "plst:DRK-21": 1,
           "plst:DTK-46": 1,
           "plst:DTK-56": 1,
           "plst:E01-30": 1,
@@ -236689,8 +236689,9 @@
     ],
     "sheets": {
       "bonus": {
-        "total_weight": 4,
+        "total_weight": 5,
         "cards": {
+          "sld:7135:foil": 1,
           "sld:7138:foil": 1,
           "sld:7139:foil": 1,
           "sld:7145:foil": 1,
