@@ -1346,8 +1346,8 @@
   {
     "expansion": "BLB",
     "event_type": "QuickDraft",
-    "average_game_length": 8.750240752725903,
-    "win_rate_on_play": 0.5288301841115806
+    "average_game_length": 8.750828081114348,
+    "win_rate_on_play": 0.5289533086041568
   },
   {
     "expansion": "BLB",
@@ -1652,8 +1652,8 @@
   {
     "expansion": "TDM",
     "event_type": "PremierDraft",
-    "average_game_length": 8.846429759520523,
-    "win_rate_on_play": 0.5298734476101393
+    "average_game_length": 8.846582113297234,
+    "win_rate_on_play": 0.5298699732417452
   },
   {
     "expansion": "TDM",
@@ -2360,14 +2360,14 @@
   {
     "expansion": "FRA",
     "event_type": "PickTwoDraft",
-    "average_game_length": 9.928589556446004,
-    "win_rate_on_play": 0.520676121017819
+    "average_game_length": 9.930027448647692,
+    "win_rate_on_play": 0.5205745211334087
   },
   {
     "expansion": "FRA",
     "event_type": "PremierDraft",
-    "average_game_length": 9.84814620057023,
-    "win_rate_on_play": 0.5243158567644768
+    "average_game_length": 9.848236959314983,
+    "win_rate_on_play": 0.5243263850347162
   },
   {
     "expansion": "FRA",
@@ -2438,32 +2438,32 @@
   {
     "expansion": "TRK",
     "event_type": "PickTwoDraft",
-    "average_game_length": 8.767844215022041,
-    "win_rate_on_play": 0.5411524356532009
+    "average_game_length": 8.762619080460322,
+    "win_rate_on_play": 0.5422104684074823
   },
   {
     "expansion": "TRK",
     "event_type": "PremierDraft",
-    "average_game_length": 8.635242208807858,
-    "win_rate_on_play": 0.5437324207824534
+    "average_game_length": 8.621782607610115,
+    "win_rate_on_play": 0.5432882775725726
   },
   {
     "expansion": "TRK",
     "event_type": "Sealed",
-    "average_game_length": 8.842741639431626,
-    "win_rate_on_play": 0.5363550871872393
+    "average_game_length": 8.843703229827025,
+    "win_rate_on_play": 0.5361308180713107
   },
   {
     "expansion": "TRK",
     "event_type": "TradDraft",
-    "average_game_length": 8.477467660470442,
-    "win_rate_on_play": 0.5464285690869604
+    "average_game_length": 8.457691265299118,
+    "win_rate_on_play": 0.5488493835300194
   },
   {
     "expansion": "TRK",
     "event_type": "ArenaDirect_Sealed",
-    "average_game_length": 8.745599845473155,
-    "win_rate_on_play": 0.5410668445001484
+    "average_game_length": 8.757842290046405,
+    "win_rate_on_play": 0.5406668207641966
   },
   {
     "expansion": "TRK",
