@@ -856,7 +856,8 @@
       "TradSealed",
       "ArenaDirect_Sealed",
       "ContenderDraft",
-      "QualifierPlayInSealed"
+      "QualifierPlayInSealed",
+      "QualifierPlayInTradSealed"
     ],
     "VOW": [
       "PremierDraft",
@@ -977,7 +978,8 @@
       "TradDraft",
       "TradSealed",
       "ArenaDirect_Sealed",
-      "QuickDraft"
+      "QuickDraft",
+      "QualifierPlayInTradSealed"
     ]
   },
   "ranked_formats": [
@@ -999,10 +1001,10 @@
     "BRO": "2022-11-15T15:00:00Z",
     "CLB": "2022-06-10T00:00:00Z",
     "CORE": "2021-03-26T00:00:00Z",
-    "Chaos": "2026-10-21T09:41:44.809343Z",
-    "Cube": "2026-10-21T09:41:44.809340Z",
-    "Cube - Planar": "2026-10-21T09:41:44.809333Z",
-    "Cube - Powered": "2026-10-21T09:41:44.809337Z",
+    "Chaos": "2026-10-22T09:13:31.307558Z",
+    "Cube": "2026-10-22T09:13:31.307555Z",
+    "Cube - Planar": "2026-10-22T09:13:31.307551Z",
+    "Cube - Powered": "2026-10-22T09:13:31.307553Z",
     "DBL": "2022-01-28T00:00:00Z",
     "DFT": "2025-02-11T15:00:00Z",
     "DMR": "2023-01-13T00:00:00Z",
@@ -1045,8 +1047,8 @@
     "RIX": "2019-03-01T00:00:00Z",
     "RNA": "2019-01-17T00:00:00Z",
     "ROE": "2010-04-23T00:00:00Z",
-    "Ravnica": "2026-10-21T09:41:44.809280Z",
-    "Remix - Artifacts": "2026-10-21T09:41:44.809350Z",
+    "Ravnica": "2026-10-22T09:13:31.307512Z",
+    "Remix - Artifacts": "2026-10-22T09:13:31.307562Z",
     "SIR": "2023-03-21T15:00:00Z",
     "SNC": "2022-04-28T00:00:00Z",
     "SOS": "2026-04-21T15:00:00Z",
