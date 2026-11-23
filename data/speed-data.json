@@ -1652,8 +1652,8 @@
   {
     "expansion": "TDM",
     "event_type": "PremierDraft",
-    "average_game_length": 8.846603597011365,
-    "win_rate_on_play": 0.5298915187596945
+    "average_game_length": 8.846802914571544,
+    "win_rate_on_play": 0.5298590738359567
   },
   {
     "expansion": "TDM",
@@ -2360,14 +2360,14 @@
   {
     "expansion": "FRA",
     "event_type": "PickTwoDraft",
-    "average_game_length": 9.929635667815704,
-    "win_rate_on_play": 0.5205153719711713
+    "average_game_length": 9.930365465606858,
+    "win_rate_on_play": 0.5205796090014688
   },
   {
     "expansion": "FRA",
     "event_type": "PremierDraft",
-    "average_game_length": 9.848589733213833,
-    "win_rate_on_play": 0.5242714068332225
+    "average_game_length": 9.848461501608412,
+    "win_rate_on_play": 0.5242835800464247
   },
   {
     "expansion": "FRA",
@@ -2438,32 +2438,32 @@
   {
     "expansion": "TRK",
     "event_type": "PickTwoDraft",
-    "average_game_length": 8.758347346876649,
-    "win_rate_on_play": 0.540599058013932
+    "average_game_length": 8.754243055701211,
+    "win_rate_on_play": 0.5407776008906713
   },
   {
     "expansion": "TRK",
     "event_type": "PremierDraft",
-    "average_game_length": 8.615034777692625,
-    "win_rate_on_play": 0.5440364164190029
+    "average_game_length": 8.61825811056094,
+    "win_rate_on_play": 0.5441811648123327
   },
   {
     "expansion": "TRK",
     "event_type": "Sealed",
-    "average_game_length": 8.840122511067705,
-    "win_rate_on_play": 0.5381936852690337
+    "average_game_length": 8.834731964826004,
+    "win_rate_on_play": 0.5379139059371639
   },
   {
     "expansion": "TRK",
     "event_type": "TradDraft",
-    "average_game_length": 8.42874426987198,
-    "win_rate_on_play": 0.543669036542627
+    "average_game_length": 8.417196943414222,
+    "win_rate_on_play": 0.5445636264546914
   },
   {
     "expansion": "TRK",
     "event_type": "ArenaDirect_Sealed",
-    "average_game_length": 8.763805825989573,
-    "win_rate_on_play": 0.5383286584506453
+    "average_game_length": 8.76459510198181,
+    "win_rate_on_play": 0.5385768555918986
   },
   {
     "expansion": "TRK",
@@ -2474,8 +2474,8 @@
   {
     "expansion": "TRK",
     "event_type": "QuickDraft",
-    "average_game_length": 8.525907547691162,
-    "win_rate_on_play": 0.5413694119570912
+    "average_game_length": 8.558850317796429,
+    "win_rate_on_play": 0.5411365509675552
   },
   {
     "expansion": "TRK",
@@ -2486,7 +2486,7 @@
   {
     "expansion": "TRK",
     "event_type": "Qualifier_D1_Sealed",
-    "average_game_length": 8.6334810256958,
-    "win_rate_on_play": 0.5422370433807373
+    "average_game_length": 8.635292777038636,
+    "win_rate_on_play": 0.5418882795728426
   }
 ]
